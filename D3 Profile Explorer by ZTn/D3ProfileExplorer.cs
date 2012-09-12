@@ -17,6 +17,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             InitializeComponent();
 
+            guiBattleNetHost.Text = "eu.battle.net";
             guiD3ProfileExplorerDllName.Text = Assembly.GetExecutingAssembly().GetName().Name;
             guiD3ProfileExplorerVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             guiBattleNetDllName.Text = typeof(BattleNet.BattleTag).Assembly.GetName().Name;
@@ -27,6 +28,8 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void guiProfileLookup_Click(object sender, EventArgs e)
         {
+            D3.D3Api.host = guiBattleNetHost.Text;
+
             BattleTag battleTag = new BattleTag(guiBattleTag.Text);
 
             TreeNode node = new TreeNode("Career of " + battleTag.ToString());
