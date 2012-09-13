@@ -1,8 +1,16 @@
-﻿using ZTn.BNet.D3.Careers;
+﻿using System.Runtime.Serialization;
+using ZTn.BNet.D3.Careers;
 
 namespace ZTn.BNet.D3.Heroes
 {
-    public class HeroKills : CareerKills
+    [DataContract]
+    public class HeroKills
     {
+        #region >> Properties
+
+        [DataMember]
+        public int elites;
+
+        #endregion
     }
 }
