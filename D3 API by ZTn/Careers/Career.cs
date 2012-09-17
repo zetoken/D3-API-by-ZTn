@@ -22,9 +22,9 @@ namespace ZTn.BNet.D3.Careers
         [DataMember]
         public String lastHeroPlayed;
         [DataMember]
-        public Artisan[] artisans;
+        public CareerArtisan[] artisans;
         [DataMember]
-        public Artisan[] hardcoreArtisans;
+        public CareerArtisan[] hardcoreArtisans;
         [DataMember]
         public CareerKills kills;
         [DataMember]

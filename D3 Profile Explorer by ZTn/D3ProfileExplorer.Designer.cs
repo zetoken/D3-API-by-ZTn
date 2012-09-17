@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label guiLabel1;
             System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label label2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(guiD3ProfileExplorer));
             this.guiD3ProfileTreeView = new System.Windows.Forms.TreeView();
             this.guiProfileLookup = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@
             this.guiItemSummaryContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exploreItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.guiBattleNetLanguage = new System.Windows.Forms.TextBox();
             this.guiBattleNetHost = new System.Windows.Forms.TextBox();
             this.guiBattleNetDllName = new System.Windows.Forms.Label();
             this.guiD3APIDllName = new System.Windows.Forms.Label();
@@ -47,11 +49,15 @@
             this.guiD3APIVersion = new System.Windows.Forms.Label();
             this.guiD3ProfileExplorerVersion = new System.Windows.Forms.Label();
             this.guiD3ProfileExplorerDllName = new System.Windows.Forms.Label();
+            this.guiCareerArtisanContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exploreICareerArtisanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
             this.guiHeroSummaryContextMenu.SuspendLayout();
             this.guiItemSummaryContextMenu.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.guiCareerArtisanContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // guiLabel1
@@ -60,7 +66,7 @@
             guiLabel1.Location = new System.Drawing.Point(14, 32);
             guiLabel1.Name = "guiLabel1";
             guiLabel1.Size = new System.Drawing.Size(59, 13);
-            guiLabel1.TabIndex = 3;
+            guiLabel1.TabIndex = 0;
             guiLabel1.Text = "Battle Tag:";
             // 
             // label1
@@ -69,8 +75,17 @@
             label1.Location = new System.Drawing.Point(14, 6);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(32, 13);
-            label1.TabIndex = 7;
+            label1.TabIndex = 3;
             label1.Text = "Host:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(185, 6);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(58, 13);
+            label2.TabIndex = 5;
+            label2.Text = "Language:";
             // 
             // guiD3ProfileTreeView
             // 
@@ -80,7 +95,7 @@
             this.guiD3ProfileTreeView.Location = new System.Drawing.Point(12, 71);
             this.guiD3ProfileTreeView.Name = "guiD3ProfileTreeView";
             this.guiD3ProfileTreeView.Size = new System.Drawing.Size(760, 479);
-            this.guiD3ProfileTreeView.TabIndex = 0;
+            this.guiD3ProfileTreeView.TabIndex = 1;
             this.guiD3ProfileTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.guiD3ProfileTreeView_NodeMouseClick);
             // 
             // guiProfileLookup
@@ -88,7 +103,7 @@
             this.guiProfileLookup.Location = new System.Drawing.Point(185, 27);
             this.guiProfileLookup.Name = "guiProfileLookup";
             this.guiProfileLookup.Size = new System.Drawing.Size(150, 23);
-            this.guiProfileLookup.TabIndex = 1;
+            this.guiProfileLookup.TabIndex = 2;
             this.guiProfileLookup.Text = "Profile lookup";
             this.guiProfileLookup.UseVisualStyleBackColor = true;
             this.guiProfileLookup.Click += new System.EventHandler(this.guiProfileLookup_Click);
@@ -98,7 +113,7 @@
             this.guiBattleTag.Location = new System.Drawing.Point(79, 29);
             this.guiBattleTag.Name = "guiBattleTag";
             this.guiBattleTag.Size = new System.Drawing.Size(100, 20);
-            this.guiBattleTag.TabIndex = 2;
+            this.guiBattleTag.TabIndex = 1;
             // 
             // guiHeroSummaryContextMenu
             // 
@@ -132,6 +147,8 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.Controls.Add(label2);
+            this.panel1.Controls.Add(this.guiBattleNetLanguage);
             this.panel1.Controls.Add(label1);
             this.panel1.Controls.Add(this.guiBattleNetHost);
             this.panel1.Controls.Add(guiLabel1);
@@ -140,14 +157,22 @@
             this.panel1.Location = new System.Drawing.Point(434, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(338, 53);
-            this.panel1.TabIndex = 5;
+            this.panel1.TabIndex = 0;
+            // 
+            // guiBattleNetLanguage
+            // 
+            this.guiBattleNetLanguage.Location = new System.Drawing.Point(266, 3);
+            this.guiBattleNetLanguage.Name = "guiBattleNetLanguage";
+            this.guiBattleNetLanguage.Size = new System.Drawing.Size(69, 20);
+            this.guiBattleNetLanguage.TabIndex = 6;
+            this.guiBattleNetLanguage.TextChanged += new System.EventHandler(this.guiBattleNetLanguage_TextChanged);
             // 
             // guiBattleNetHost
             // 
             this.guiBattleNetHost.Location = new System.Drawing.Point(79, 3);
             this.guiBattleNetHost.Name = "guiBattleNetHost";
             this.guiBattleNetHost.Size = new System.Drawing.Size(100, 20);
-            this.guiBattleNetHost.TabIndex = 6;
+            this.guiBattleNetHost.TabIndex = 4;
             // 
             // guiBattleNetDllName
             // 
@@ -155,7 +180,7 @@
             this.guiBattleNetDllName.Location = new System.Drawing.Point(15, 27);
             this.guiBattleNetDllName.Name = "guiBattleNetDllName";
             this.guiBattleNetDllName.Size = new System.Drawing.Size(88, 13);
-            this.guiBattleNetDllName.TabIndex = 6;
+            this.guiBattleNetDllName.TabIndex = 4;
             this.guiBattleNetDllName.Text = "BNet API by ZTn";
             // 
             // guiD3APIDllName
@@ -164,7 +189,7 @@
             this.guiD3APIDllName.Location = new System.Drawing.Point(15, 45);
             this.guiD3APIDllName.Name = "guiD3APIDllName";
             this.guiD3APIDllName.Size = new System.Drawing.Size(78, 13);
-            this.guiD3APIDllName.TabIndex = 7;
+            this.guiD3APIDllName.TabIndex = 6;
             this.guiD3APIDllName.Text = "D3 API by ZTn";
             // 
             // guiBattleNetVersion
@@ -173,7 +198,7 @@
             this.guiBattleNetVersion.Location = new System.Drawing.Point(152, 27);
             this.guiBattleNetVersion.Name = "guiBattleNetVersion";
             this.guiBattleNetVersion.Size = new System.Drawing.Size(40, 13);
-            this.guiBattleNetVersion.TabIndex = 8;
+            this.guiBattleNetVersion.TabIndex = 5;
             this.guiBattleNetVersion.Text = "0.0.0.0";
             // 
             // guiD3APIVersion
@@ -182,7 +207,7 @@
             this.guiD3APIVersion.Location = new System.Drawing.Point(152, 45);
             this.guiD3APIVersion.Name = "guiD3APIVersion";
             this.guiD3APIVersion.Size = new System.Drawing.Size(40, 13);
-            this.guiD3APIVersion.TabIndex = 9;
+            this.guiD3APIVersion.TabIndex = 7;
             this.guiD3APIVersion.Text = "0.0.0.0";
             // 
             // guiD3ProfileExplorerVersion
@@ -192,7 +217,7 @@
             this.guiD3ProfileExplorerVersion.Location = new System.Drawing.Point(152, 9);
             this.guiD3ProfileExplorerVersion.Name = "guiD3ProfileExplorerVersion";
             this.guiD3ProfileExplorerVersion.Size = new System.Drawing.Size(40, 13);
-            this.guiD3ProfileExplorerVersion.TabIndex = 11;
+            this.guiD3ProfileExplorerVersion.TabIndex = 3;
             this.guiD3ProfileExplorerVersion.Text = "0.0.0.0";
             // 
             // guiD3ProfileExplorerDllName
@@ -202,8 +227,22 @@
             this.guiD3ProfileExplorerDllName.Location = new System.Drawing.Point(15, 9);
             this.guiD3ProfileExplorerDllName.Name = "guiD3ProfileExplorerDllName";
             this.guiD3ProfileExplorerDllName.Size = new System.Drawing.Size(131, 13);
-            this.guiD3ProfileExplorerDllName.TabIndex = 10;
+            this.guiD3ProfileExplorerDllName.TabIndex = 2;
             this.guiD3ProfileExplorerDllName.Text = "D3 Profile Explorer by ZTn";
+            // 
+            // guiCareerArtisanContextMenu
+            // 
+            this.guiCareerArtisanContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exploreICareerArtisanToolStripMenuItem});
+            this.guiCareerArtisanContextMenu.Name = "guiHeroSummaryContextMenu";
+            this.guiCareerArtisanContextMenu.Size = new System.Drawing.Size(153, 48);
+            // 
+            // exploreICareerArtisanToolStripMenuItem
+            // 
+            this.exploreICareerArtisanToolStripMenuItem.Name = "exploreICareerArtisanToolStripMenuItem";
+            this.exploreICareerArtisanToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exploreICareerArtisanToolStripMenuItem.Text = "Explore Artisan";
+            this.exploreICareerArtisanToolStripMenuItem.Click += new System.EventHandler(this.exploreICareerArtisanToolStripMenuItem_Click);
             // 
             // guiD3ProfileExplorer
             // 
@@ -225,6 +264,7 @@
             this.guiItemSummaryContextMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.guiCareerArtisanContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,6 +287,9 @@
         private System.Windows.Forms.Label guiD3ProfileExplorerVersion;
         private System.Windows.Forms.Label guiD3ProfileExplorerDllName;
         private System.Windows.Forms.TextBox guiBattleNetHost;
+        private System.Windows.Forms.TextBox guiBattleNetLanguage;
+        private System.Windows.Forms.ContextMenuStrip guiCareerArtisanContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem exploreICareerArtisanToolStripMenuItem;
     }
 }
 

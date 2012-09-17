@@ -8,6 +8,7 @@ using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Careers;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
+using ZTn.BNet.D3.Artisans;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -18,6 +19,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             InitializeComponent();
 
             guiBattleNetHost.Text = "eu.battle.net";
+            guiBattleNetLanguage.Text = "en";
             guiD3ProfileExplorerDllName.Text = Assembly.GetExecutingAssembly().GetName().Name;
             guiD3ProfileExplorerVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             guiBattleNetDllName.Text = typeof(BattleNet.BattleTag).Assembly.GetName().Name;
@@ -92,9 +94,14 @@ namespace ZTn.BNet.D3ProfileExplorer
                 node.ContextMenuStrip = guiHeroSummaryContextMenu;
                 node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
             }
-            if (d3Object is ItemSummary)
+            else if (d3Object is ItemSummary)
             {
                 node.ContextMenuStrip = guiItemSummaryContextMenu;
+                node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+            }
+            else if (d3Object is CareerArtisan)
+            {
+                node.ContextMenuStrip = guiCareerArtisanContextMenu;
                 node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
             }
         }
@@ -129,6 +136,24 @@ namespace ZTn.BNet.D3ProfileExplorer
             Item item = Item.getItemFromTooltipParams(itemSummary.tooltipParams);
 
             node.Nodes.AddRange(createNodeFromD3Object(item).ToArray());
+
+            guiD3ProfileTreeView.Nodes.Add(node);
+        }
+
+        private void guiBattleNetLanguage_TextChanged(object sender, EventArgs e)
+        {
+            D3.D3Api.locale = guiBattleNetLanguage.Text;
+        }
+
+        private void exploreICareerArtisanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CareerArtisan careerArtisan = (CareerArtisan)guiD3ProfileTreeView.SelectedNode.Tag;
+
+            TreeNode node = new TreeNode("Artisan " + careerArtisan.slug);
+
+            Artisan artisan = Artisan.getArtisanFromSlug(careerArtisan.slug);
+
+            node.Nodes.AddRange(createNodeFromD3Object(artisan).ToArray());
 
             guiD3ProfileTreeView.Nodes.Add(node);
         }

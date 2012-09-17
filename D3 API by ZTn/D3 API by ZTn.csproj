@@ -48,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Artisans\Artisan.cs" />
+    <Compile Include="Artisans\ArtisanLevel.cs" />
+    <Compile Include="Artisans\Reagent.cs" />
+    <Compile Include="Artisans\Recipe.cs" />
+    <Compile Include="Artisans\ArtisanTier.cs" />
+    <Compile Include="Artisans\ArtisanTraining.cs" />
+    <Compile Include="Artisans\CareerArtisan.cs" />
     <Compile Include="Careers\Career.cs" />
     <Compile Include="Careers\CareerKills.cs" />
     <Compile Include="Careers\ClassTimePlayed.cs" />
