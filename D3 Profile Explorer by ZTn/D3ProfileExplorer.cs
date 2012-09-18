@@ -18,8 +18,33 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             InitializeComponent();
 
-            guiBattleNetHost.Text = "eu.battle.net";
-            guiBattleNetLanguage.Text = "en";
+            List<Host> hosts = new List<Host>
+            {
+                new Host("Europe", "eu.battle.net"),
+                new Host("America","us.battle.net"),
+                new Host("Korea", "kr.battle.net"),
+                new Host("Taiwan","tw.battle.net")
+            };
+            guiBattleNetHostList.DataSource = hosts;
+            guiBattleNetHostList.DisplayMember = "name";
+
+            List<Language> langs = new List<Language>
+            {
+                new Language("English", "en"),
+                new Language("French","fr"),
+                new Language("German", "de"),
+                new Language("Italian","it"),
+                new Language("Spanish", "es"),
+                new Language("Polish","pl"),
+                new Language("Portuguese","pt"),
+                new Language("Russian","ru"),
+                new Language("Turkish","tr"),
+                new Language("Korean","ko"),
+                new Language("Chinese","zh")
+            };
+            guiBattleNetLanguageList.DataSource = langs;
+            guiBattleNetLanguageList.DisplayMember = "name";
+
             guiD3ProfileExplorerDllName.Text = Assembly.GetExecutingAssembly().GetName().Name;
             guiD3ProfileExplorerVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             guiBattleNetDllName.Text = typeof(BattleNet.BattleTag).Assembly.GetName().Name;
@@ -30,8 +55,6 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void guiProfileLookup_Click(object sender, EventArgs e)
         {
-            D3.D3Api.host = guiBattleNetHost.Text;
-
             BattleTag battleTag = new BattleTag(guiBattleTag.Text);
 
             TreeNode node = new TreeNode("Career of " + battleTag.ToString());
@@ -140,11 +163,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiD3ProfileTreeView.Nodes.Add(node);
         }
 
-        private void guiBattleNetLanguage_TextChanged(object sender, EventArgs e)
-        {
-            D3.D3Api.locale = guiBattleNetLanguage.Text;
-        }
-
         private void exploreICareerArtisanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CareerArtisan careerArtisan = (CareerArtisan)guiD3ProfileTreeView.SelectedNode.Tag;
@@ -156,6 +174,16 @@ namespace ZTn.BNet.D3ProfileExplorer
             node.Nodes.AddRange(createNodeFromD3Object(artisan).ToArray());
 
             guiD3ProfileTreeView.Nodes.Add(node);
+        }
+
+        private void guiBattleNetHostList_TextChanged(object sender, EventArgs e)
+        {
+            D3.D3Api.host = ((Host)guiBattleNetHostList.SelectedItem).url;
+        }
+
+        private void guiBattleNetLanguageList_TextChanged(object sender, EventArgs e)
+        {
+            D3.D3Api.locale = ((Language)guiBattleNetLanguageList.SelectedItem).code;
         }
     }
 }

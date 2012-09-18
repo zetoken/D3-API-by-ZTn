@@ -41,8 +41,7 @@
             this.guiItemSummaryContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exploreItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.guiBattleNetLanguage = new System.Windows.Forms.TextBox();
-            this.guiBattleNetHost = new System.Windows.Forms.TextBox();
+            this.guiBattleNetHostList = new System.Windows.Forms.ComboBox();
             this.guiBattleNetDllName = new System.Windows.Forms.Label();
             this.guiD3APIDllName = new System.Windows.Forms.Label();
             this.guiBattleNetVersion = new System.Windows.Forms.Label();
@@ -51,6 +50,7 @@
             this.guiD3ProfileExplorerDllName = new System.Windows.Forms.Label();
             this.guiCareerArtisanContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exploreICareerArtisanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guiBattleNetLanguageList = new System.Windows.Forms.ComboBox();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -147,10 +147,10 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.Controls.Add(this.guiBattleNetHostList);
             this.panel1.Controls.Add(label2);
-            this.panel1.Controls.Add(this.guiBattleNetLanguage);
+            this.panel1.Controls.Add(this.guiBattleNetLanguageList);
             this.panel1.Controls.Add(label1);
-            this.panel1.Controls.Add(this.guiBattleNetHost);
             this.panel1.Controls.Add(guiLabel1);
             this.panel1.Controls.Add(this.guiProfileLookup);
             this.panel1.Controls.Add(this.guiBattleTag);
@@ -159,20 +159,15 @@
             this.panel1.Size = new System.Drawing.Size(338, 53);
             this.panel1.TabIndex = 0;
             // 
-            // guiBattleNetLanguage
+            // guiBattleNetHostList
             // 
-            this.guiBattleNetLanguage.Location = new System.Drawing.Point(266, 3);
-            this.guiBattleNetLanguage.Name = "guiBattleNetLanguage";
-            this.guiBattleNetLanguage.Size = new System.Drawing.Size(69, 20);
-            this.guiBattleNetLanguage.TabIndex = 6;
-            this.guiBattleNetLanguage.TextChanged += new System.EventHandler(this.guiBattleNetLanguage_TextChanged);
-            // 
-            // guiBattleNetHost
-            // 
-            this.guiBattleNetHost.Location = new System.Drawing.Point(79, 3);
-            this.guiBattleNetHost.Name = "guiBattleNetHost";
-            this.guiBattleNetHost.Size = new System.Drawing.Size(100, 20);
-            this.guiBattleNetHost.TabIndex = 4;
+            this.guiBattleNetHostList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.guiBattleNetHostList.FormattingEnabled = true;
+            this.guiBattleNetHostList.Location = new System.Drawing.Point(79, 3);
+            this.guiBattleNetHostList.Name = "guiBattleNetHostList";
+            this.guiBattleNetHostList.Size = new System.Drawing.Size(100, 21);
+            this.guiBattleNetHostList.TabIndex = 8;
+            this.guiBattleNetHostList.TextChanged += new System.EventHandler(this.guiBattleNetHostList_TextChanged);
             // 
             // guiBattleNetDllName
             // 
@@ -235,7 +230,7 @@
             this.guiCareerArtisanContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exploreICareerArtisanToolStripMenuItem});
             this.guiCareerArtisanContextMenu.Name = "guiHeroSummaryContextMenu";
-            this.guiCareerArtisanContextMenu.Size = new System.Drawing.Size(153, 48);
+            this.guiCareerArtisanContextMenu.Size = new System.Drawing.Size(153, 26);
             // 
             // exploreICareerArtisanToolStripMenuItem
             // 
@@ -243,6 +238,16 @@
             this.exploreICareerArtisanToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exploreICareerArtisanToolStripMenuItem.Text = "Explore Artisan";
             this.exploreICareerArtisanToolStripMenuItem.Click += new System.EventHandler(this.exploreICareerArtisanToolStripMenuItem_Click);
+            // 
+            // guiBattleNetLanguageList
+            // 
+            this.guiBattleNetLanguageList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.guiBattleNetLanguageList.FormattingEnabled = true;
+            this.guiBattleNetLanguageList.Location = new System.Drawing.Point(266, 3);
+            this.guiBattleNetLanguageList.Name = "guiBattleNetLanguageList";
+            this.guiBattleNetLanguageList.Size = new System.Drawing.Size(69, 21);
+            this.guiBattleNetLanguageList.TabIndex = 8;
+            this.guiBattleNetLanguageList.TextChanged += new System.EventHandler(this.guiBattleNetLanguageList_TextChanged);
             // 
             // guiD3ProfileExplorer
             // 
@@ -286,10 +291,10 @@
         private System.Windows.Forms.Label guiD3APIDllName;
         private System.Windows.Forms.Label guiD3ProfileExplorerVersion;
         private System.Windows.Forms.Label guiD3ProfileExplorerDllName;
-        private System.Windows.Forms.TextBox guiBattleNetHost;
-        private System.Windows.Forms.TextBox guiBattleNetLanguage;
         private System.Windows.Forms.ContextMenuStrip guiCareerArtisanContextMenu;
         private System.Windows.Forms.ToolStripMenuItem exploreICareerArtisanToolStripMenuItem;
+        private System.Windows.Forms.ComboBox guiBattleNetHostList;
+        private System.Windows.Forms.ComboBox guiBattleNetLanguageList;
     }
 }
 
