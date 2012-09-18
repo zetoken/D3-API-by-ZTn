@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 API example", "D3 API ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Profile Explorer by ZTn", "D3 Profile Explorer by ZTn\D3 Profile Explorer by ZTn.csproj", "{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Calculator Library by ZTn", "D3 Calculator Library by ZTn\D3 Calculator Library by ZTn.csproj", "{F6E135DD-87C5-49C1-A560-07C2653B69A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6E135DD-87C5-49C1-A560-07C2653B69A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6E135DD-87C5-49C1-A560-07C2653B69A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6E135DD-87C5-49C1-A560-07C2653B69A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6E135DD-87C5-49C1-A560-07C2653B69A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
