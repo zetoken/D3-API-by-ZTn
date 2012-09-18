@@ -43,7 +43,12 @@ namespace ZTn.BNet.D3.Heroes
 
         public static Hero getHeroFromJSonString(String json)
         {
-            return getHeroFromJSonStream(new MemoryStream(System.Text.Encoding.Default.GetBytes(json)));
+            Hero hero;
+            using (MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(json)))
+            {
+                hero = getHeroFromJSonStream(stream);
+            }
+            return hero;
         }
     }
 }

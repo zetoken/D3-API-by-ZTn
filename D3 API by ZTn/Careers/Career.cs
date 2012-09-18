@@ -61,7 +61,12 @@ namespace ZTn.BNet.D3.Careers
 
         public static Career getCareerFromJSonString(String json)
         {
-            return getCareerFromJSonStream(new MemoryStream(System.Text.Encoding.Default.GetBytes(json)));
+            Career career;
+            using (MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(json)))
+            {
+                career = getCareerFromJSonStream(stream);
+            }
+            return career;
         }
     }
 }
