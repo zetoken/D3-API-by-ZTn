@@ -50,8 +50,11 @@
             this.guiD3ProfileExplorerVersion = new System.Windows.Forms.Label();
             this.guiD3ProfileExplorerDllName = new System.Windows.Forms.Label();
             this.guiCareerArtisanContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exploreICareerArtisanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exploreCareerArtisanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guiOfflineMode = new System.Windows.Forms.CheckBox();
+            this.guiHeroContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.d3CalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guiBuildGlobalItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -59,6 +62,7 @@
             this.guiItemSummaryContextMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.guiCareerArtisanContextMenu.SuspendLayout();
+            this.guiHeroContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // guiLabel1
@@ -239,16 +243,16 @@
             // guiCareerArtisanContextMenu
             // 
             this.guiCareerArtisanContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exploreICareerArtisanToolStripMenuItem});
+            this.exploreCareerArtisanToolStripMenuItem});
             this.guiCareerArtisanContextMenu.Name = "guiHeroSummaryContextMenu";
             this.guiCareerArtisanContextMenu.Size = new System.Drawing.Size(153, 26);
             // 
-            // exploreICareerArtisanToolStripMenuItem
+            // exploreCareerArtisanToolStripMenuItem
             // 
-            this.exploreICareerArtisanToolStripMenuItem.Name = "exploreICareerArtisanToolStripMenuItem";
-            this.exploreICareerArtisanToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exploreICareerArtisanToolStripMenuItem.Text = "Explore Artisan";
-            this.exploreICareerArtisanToolStripMenuItem.Click += new System.EventHandler(this.exploreICareerArtisanToolStripMenuItem_Click);
+            this.exploreCareerArtisanToolStripMenuItem.Name = "exploreCareerArtisanToolStripMenuItem";
+            this.exploreCareerArtisanToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exploreCareerArtisanToolStripMenuItem.Text = "Explore Artisan";
+            this.exploreCareerArtisanToolStripMenuItem.Click += new System.EventHandler(this.exploreCareerArtisanToolStripMenuItem_Click);
             // 
             // guiOfflineMode
             // 
@@ -260,6 +264,28 @@
             this.guiOfflineMode.Text = "Offline Mode (cache)";
             this.guiOfflineMode.UseVisualStyleBackColor = true;
             this.guiOfflineMode.CheckStateChanged += new System.EventHandler(this.guiOfflineMode_CheckStateChanged);
+            // 
+            // guiHeroContextMenu
+            // 
+            this.guiHeroContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.d3CalculatorToolStripMenuItem});
+            this.guiHeroContextMenu.Name = "guiHeroSummaryContextMenu";
+            this.guiHeroContextMenu.Size = new System.Drawing.Size(153, 48);
+            // 
+            // d3CalculatorToolStripMenuItem
+            // 
+            this.d3CalculatorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.guiBuildGlobalItemToolStripMenuItem});
+            this.d3CalculatorToolStripMenuItem.Name = "d3CalculatorToolStripMenuItem";
+            this.d3CalculatorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.d3CalculatorToolStripMenuItem.Text = "D3 Calculator";
+            // 
+            // guiBuildGlobalItemToolStripMenuItem
+            // 
+            this.guiBuildGlobalItemToolStripMenuItem.Name = "guiBuildGlobalItemToolStripMenuItem";
+            this.guiBuildGlobalItemToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.guiBuildGlobalItemToolStripMenuItem.Text = "Build Global Item ";
+            this.guiBuildGlobalItemToolStripMenuItem.Click += new System.EventHandler(this.guiBuildGlobalItemToolStripMenuItem_Click);
             // 
             // guiD3ProfileExplorer
             // 
@@ -283,6 +309,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.guiCareerArtisanContextMenu.ResumeLayout(false);
+            this.guiHeroContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,10 +332,13 @@
         private System.Windows.Forms.Label guiD3ProfileExplorerVersion;
         private System.Windows.Forms.Label guiD3ProfileExplorerDllName;
         private System.Windows.Forms.ContextMenuStrip guiCareerArtisanContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem exploreICareerArtisanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exploreCareerArtisanToolStripMenuItem;
         private System.Windows.Forms.ComboBox guiBattleNetHostList;
         private System.Windows.Forms.ComboBox guiBattleNetLanguageList;
         private System.Windows.Forms.CheckBox guiOfflineMode;
+        private System.Windows.Forms.ContextMenuStrip guiHeroContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem d3CalculatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem guiBuildGlobalItemToolStripMenuItem;
     }
 }
 
