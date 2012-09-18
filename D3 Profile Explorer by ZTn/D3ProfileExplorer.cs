@@ -9,6 +9,7 @@ using ZTn.BNet.D3.Careers;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 using ZTn.BNet.D3.Artisans;
+using ZTn.BNet.D3.DataProviders;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -17,6 +18,8 @@ namespace ZTn.BNet.D3ProfileExplorer
         public guiD3ProfileExplorer()
         {
             InitializeComponent();
+
+            D3.D3Api.dataProvider = new CacheableDataProvider(new HttpRequestDataProvider());
 
             List<Host> hosts = new List<Host>
             {
@@ -59,7 +62,16 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             TreeNode node = new TreeNode("Career of " + battleTag.ToString());
 
-            Career career = Career.getCareerFromBattleTag(battleTag);
+            Career career;
+            try
+            {
+                career = Career.getCareerFromBattleTag(battleTag);
+            }
+            catch (FileNotInCacheException)
+            {
+                MessageBox.Show("Career was not found in cache: go online to retrieve it.");
+                return;
+            }
 
             node.Nodes.AddRange(createNodeFromD3Object(career).ToArray());
 
@@ -137,7 +149,16 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             TreeNode node = new TreeNode("Hero " + battleTag.ToString() + " / " + heroSummary.id);
 
-            Hero hero = Hero.getHeroFromHeroId(battleTag, heroSummary.id);
+            Hero hero;
+            try
+            {
+                hero = Hero.getHeroFromHeroId(battleTag, heroSummary.id);
+            }
+            catch (FileNotInCacheException)
+            {
+                MessageBox.Show("Hero was not found in cache: go online to retrieve it.");
+                return;
+            }
 
             node.Nodes.AddRange(createNodeFromD3Object(hero).ToArray());
 
@@ -156,7 +177,16 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             TreeNode node = new TreeNode("Item " + itemSummary.tooltipParams);
 
-            Item item = Item.getItemFromTooltipParams(itemSummary.tooltipParams);
+            Item item;
+            try
+            {
+                item = Item.getItemFromTooltipParams(itemSummary.tooltipParams);
+            }
+            catch (FileNotInCacheException)
+            {
+                MessageBox.Show("Item was not found in cache: go online to retrieve it.");
+                return;
+            }
 
             node.Nodes.AddRange(createNodeFromD3Object(item).ToArray());
 
@@ -184,6 +214,15 @@ namespace ZTn.BNet.D3ProfileExplorer
         private void guiBattleNetLanguageList_TextChanged(object sender, EventArgs e)
         {
             D3.D3Api.locale = ((Language)guiBattleNetLanguageList.SelectedItem).code;
+        }
+
+        private void guiOfflineMode_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (D3.D3Api.dataProvider is CacheableDataProvider)
+            {
+                CacheableDataProvider dataProvider = (CacheableDataProvider)D3.D3Api.dataProvider;
+                dataProvider.online = !guiOfflineMode.Checked;
+            }
         }
     }
 }

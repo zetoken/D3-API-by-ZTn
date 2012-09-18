@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Careers;
+using ZTn.BNet.D3.DataProviders;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
@@ -10,12 +12,19 @@ namespace ZTn.BNet.D3
 {
     public class D3Api
     {
-        #region >> Properties
+        #region >> Fields
 
         public static String protocolPrefix = "http://";
         public static String host = "eu.battle.net";
         public static String apiPath = "/api/d3/";
         public static String locale = "fr";
+
+        public static ID3DataProvider dataProvider = new HttpRequestDataProvider();
+
+        #endregion
+
+        #region >> Properties
+
         public static String apiUrl
         {
             get { return protocolPrefix + host + apiPath; }
@@ -49,26 +58,42 @@ namespace ZTn.BNet.D3
 
         public static Career getCareerFromBattleTag(BattleTag battleTag)
         {
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(getCareerUrl(battleTag) + apiLocaleSuffix);
-            return Career.getCareerFromJSonStream(httpWebRequest.GetResponse().GetResponseStream());
+            Career career;
+            using (Stream stream = dataProvider.fetchData(getCareerUrl(battleTag) + apiLocaleSuffix))
+            {
+                career = Career.getCareerFromJSonStream(stream);
+            }
+            return career;
         }
 
         public static Hero getHeroFromHeroID(BattleTag battleTag, String heroId)
         {
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(D3Api.getHeroUrlFromHeroId(battleTag, heroId) + apiLocaleSuffix);
-            return Hero.getHeroFromJSonStream(httpWebRequest.GetResponse().GetResponseStream());
+            Hero hero;
+            using (Stream stream = dataProvider.fetchData(D3Api.getHeroUrlFromHeroId(battleTag, heroId) + apiLocaleSuffix))
+            {
+                hero = Hero.getHeroFromJSonStream(stream);
+            }
+            return hero;
         }
 
         public static Item getItemFromTooltipParams(String tooltipParams)
         {
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(D3Api.getItemUrlFromTooltipParams(tooltipParams) + apiLocaleSuffix);
-            return Item.getItemFromJSonStream(httpWebRequest.GetResponse().GetResponseStream());
+            Item item;
+            using (Stream stream = dataProvider.fetchData(D3Api.getItemUrlFromTooltipParams(tooltipParams) + apiLocaleSuffix))
+            {
+                item = Item.getItemFromJSonStream(stream);
+            }
+            return item;
         }
 
         public static Artisan getArtisanFromSlug(String slug)
         {
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(D3Api.getArtisanUrlFromSlug(slug) + apiLocaleSuffix);
-            return Artisan.getArtisanFromJSonStream(httpWebRequest.GetResponse().GetResponseStream());
+            Artisan artisan;
+            using (Stream stream = dataProvider.fetchData(D3Api.getArtisanUrlFromSlug(slug) + apiLocaleSuffix))
+            {
+                artisan = Artisan.getArtisanFromJSonStream(stream);
+            }
+            return artisan;
         }
     }
 }

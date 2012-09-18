@@ -42,6 +42,7 @@
             this.exploreItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.guiBattleNetHostList = new System.Windows.Forms.ComboBox();
+            this.guiBattleNetLanguageList = new System.Windows.Forms.ComboBox();
             this.guiBattleNetDllName = new System.Windows.Forms.Label();
             this.guiD3APIDllName = new System.Windows.Forms.Label();
             this.guiBattleNetVersion = new System.Windows.Forms.Label();
@@ -50,7 +51,7 @@
             this.guiD3ProfileExplorerDllName = new System.Windows.Forms.Label();
             this.guiCareerArtisanContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exploreICareerArtisanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.guiBattleNetLanguageList = new System.Windows.Forms.ComboBox();
+            this.guiOfflineMode = new System.Windows.Forms.CheckBox();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -169,6 +170,16 @@
             this.guiBattleNetHostList.TabIndex = 8;
             this.guiBattleNetHostList.TextChanged += new System.EventHandler(this.guiBattleNetHostList_TextChanged);
             // 
+            // guiBattleNetLanguageList
+            // 
+            this.guiBattleNetLanguageList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.guiBattleNetLanguageList.FormattingEnabled = true;
+            this.guiBattleNetLanguageList.Location = new System.Drawing.Point(266, 3);
+            this.guiBattleNetLanguageList.Name = "guiBattleNetLanguageList";
+            this.guiBattleNetLanguageList.Size = new System.Drawing.Size(69, 21);
+            this.guiBattleNetLanguageList.TabIndex = 8;
+            this.guiBattleNetLanguageList.TextChanged += new System.EventHandler(this.guiBattleNetLanguageList_TextChanged);
+            // 
             // guiBattleNetDllName
             // 
             this.guiBattleNetDllName.AutoSize = true;
@@ -239,21 +250,23 @@
             this.exploreICareerArtisanToolStripMenuItem.Text = "Explore Artisan";
             this.exploreICareerArtisanToolStripMenuItem.Click += new System.EventHandler(this.exploreICareerArtisanToolStripMenuItem_Click);
             // 
-            // guiBattleNetLanguageList
+            // guiOfflineMode
             // 
-            this.guiBattleNetLanguageList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.guiBattleNetLanguageList.FormattingEnabled = true;
-            this.guiBattleNetLanguageList.Location = new System.Drawing.Point(266, 3);
-            this.guiBattleNetLanguageList.Name = "guiBattleNetLanguageList";
-            this.guiBattleNetLanguageList.Size = new System.Drawing.Size(69, 21);
-            this.guiBattleNetLanguageList.TabIndex = 8;
-            this.guiBattleNetLanguageList.TextChanged += new System.EventHandler(this.guiBattleNetLanguageList_TextChanged);
+            this.guiOfflineMode.AutoSize = true;
+            this.guiOfflineMode.Location = new System.Drawing.Point(303, 17);
+            this.guiOfflineMode.Name = "guiOfflineMode";
+            this.guiOfflineMode.Size = new System.Drawing.Size(125, 17);
+            this.guiOfflineMode.TabIndex = 8;
+            this.guiOfflineMode.Text = "Offline Mode (cache)";
+            this.guiOfflineMode.UseVisualStyleBackColor = true;
+            this.guiOfflineMode.CheckStateChanged += new System.EventHandler(this.guiOfflineMode_CheckStateChanged);
             // 
             // guiD3ProfileExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.guiOfflineMode);
             this.Controls.Add(this.guiD3ProfileExplorerVersion);
             this.Controls.Add(this.guiD3ProfileExplorerDllName);
             this.Controls.Add(this.guiD3APIVersion);
@@ -295,6 +308,7 @@
         private System.Windows.Forms.ToolStripMenuItem exploreICareerArtisanToolStripMenuItem;
         private System.Windows.Forms.ComboBox guiBattleNetHostList;
         private System.Windows.Forms.ComboBox guiBattleNetLanguageList;
+        private System.Windows.Forms.CheckBox guiOfflineMode;
     }
 }
 

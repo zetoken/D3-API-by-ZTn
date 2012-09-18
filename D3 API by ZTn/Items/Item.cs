@@ -57,7 +57,12 @@ namespace ZTn.BNet.D3.Items
 
         public static Item getItemFromJSonString(String json)
         {
-            return getItemFromJSonStream(new MemoryStream(System.Text.Encoding.Default.GetBytes(json)));
+            Item item;
+            using (MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(json)))
+            {
+                item = getItemFromJSonStream(stream);
+            }
+            return item;
         }
     }
 }

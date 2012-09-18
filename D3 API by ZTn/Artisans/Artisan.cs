@@ -35,7 +35,12 @@ namespace ZTn.BNet.D3.Artisans
 
         public static Artisan getItemFromJSonString(String json)
         {
-            return getArtisanFromJSonStream(new MemoryStream(System.Text.Encoding.Default.GetBytes(json)));
+            Artisan artisan;
+            using (MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(json)))
+            {
+                artisan = getArtisanFromJSonStream(stream);
+            }
+            return artisan;
         }
     }
 }
