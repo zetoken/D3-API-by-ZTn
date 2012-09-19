@@ -261,7 +261,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
 
             D3Calculator d3Calculator = new D3Calculator(mainHand, offHand, items.ToArray());
-            Item globalItem = d3Calculator.getUniqueItem();
+            Item globalItem = d3Calculator.heroStuff;
 
             TreeNode node = new TreeNode("Global Item of " + hero.id + " " + hero.name);
             node.Nodes.AddRange(createNodeFromD3Object(globalItem).ToArray());
@@ -298,7 +298,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
 
             D3Calculator d3Calculator = new D3Calculator(mainHand, offHand, items.ToArray());
-            Item globalItem = d3Calculator.getUniqueItem();
+            Item globalItem = d3Calculator.heroStuff;
 
             String s = String.Format("Your base DPS (without any buff) is {0}",
                 d3Calculator.getHeroDPS(hero.level, hero.paragonLevel));
