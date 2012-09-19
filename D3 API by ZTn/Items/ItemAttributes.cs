@@ -7,10 +7,17 @@ namespace ZTn.BNet.D3.Items
     {
         #region >> Fields
 
+        // Attack Per Second (weapon only)
         [DataMember(Name = "Attacks_Per_Second_Item")]
         public ItemValueRange attacksPerSecondItem;
+
+        // Attack Speed bonus only for the item (weapon only)
         [DataMember(Name = "Attacks_Per_Second_Item_Percent")]
         public ItemValueRange attacksPerSecondItemPercent;
+
+        // Attack Speed bonus
+        [DataMember(Name = "Attacks_Per_Second_Percent")]
+        public ItemValueRange attacksPerSecondPercent;
 
         [DataMember(Name = "Dexterity_Item")]
         public ItemValueRange dexterityItem;
@@ -115,6 +122,48 @@ namespace ZTn.BNet.D3.Items
         public ItemValueRange damageWeaponMin_Poison;
         [DataMember(Name = "Damage_Weapon_Percent_Bonus#Poison")]
         public ItemValueRange damageWeaponPercentBonus_Poison;
+
+        [DataMember(Name = "Damage_Bonus_Min#Arcane")]
+        public ItemValueRange damageBonusMin_Arcane;
+        [DataMember(Name = "Damage_Delta#Arcane")]
+        public ItemValueRange damageDelta_Arcane;
+        [DataMember(Name = "Damage_Min#Arcane")]
+        public ItemValueRange damageMin_Arcane;
+
+        [DataMember(Name = "Damage_Bonus_Min#Cold")]
+        public ItemValueRange damageBonusMin_Cold;
+        [DataMember(Name = "Damage_Delta#Cold")]
+        public ItemValueRange damageDelta_Cold;
+        [DataMember(Name = "Damage_Min#Cold")]
+        public ItemValueRange damageMin_Cold;
+
+        [DataMember(Name = "Damage_Bonus_Min#Fire")]
+        public ItemValueRange damageBonusMin_Fire;
+        [DataMember(Name = "Damage_Delta#Fire")]
+        public ItemValueRange damageDelta_Fire;
+        [DataMember(Name = "Damage_Min#Fire")]
+        public ItemValueRange damageMin_Fire;
+
+        [DataMember(Name = "Damage_Bonus_Min#Lightning")]
+        public ItemValueRange damageBonusMin_Lightning;
+        [DataMember(Name = "Damage_Delta#Lightning")]
+        public ItemValueRange damageDelta_Lightning;
+        [DataMember(Name = "Damage_Min#Lightning")]
+        public ItemValueRange damageMin_Lightning;
+
+        [DataMember(Name = "Damage_Bonus_Min#Physical")]
+        public ItemValueRange damageBonusMin_Physical;
+        [DataMember(Name = "Damage_Delta#Physical")]
+        public ItemValueRange damageDelta_Physical;
+        [DataMember(Name = "Damage_Min#Physical")]
+        public ItemValueRange damageMin_Physical;
+
+        [DataMember(Name = "Damage_Bonus_Min#Poison")]
+        public ItemValueRange damageBonusMin_Poison;
+        [DataMember(Name = "Damage_Delta#Poison")]
+        public ItemValueRange damageDelta_Poison;
+        [DataMember(Name = "Damage_Min#Poison")]
+        public ItemValueRange damageMin_Poison;
 
         [DataMember(Name = "Durability_Cur")]
         public ItemValueRange durabilityCur;

@@ -55,6 +55,7 @@
             this.guiHeroContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.d3CalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guiBuildGlobalItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guiGetBaseDPSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -275,7 +276,8 @@
             // d3CalculatorToolStripMenuItem
             // 
             this.d3CalculatorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.guiBuildGlobalItemToolStripMenuItem});
+            this.guiBuildGlobalItemToolStripMenuItem,
+            this.guiGetBaseDPSToolStripMenuItem});
             this.d3CalculatorToolStripMenuItem.Name = "d3CalculatorToolStripMenuItem";
             this.d3CalculatorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.d3CalculatorToolStripMenuItem.Text = "D3 Calculator";
@@ -286,6 +288,13 @@
             this.guiBuildGlobalItemToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.guiBuildGlobalItemToolStripMenuItem.Text = "Build Global Item ";
             this.guiBuildGlobalItemToolStripMenuItem.Click += new System.EventHandler(this.guiBuildGlobalItemToolStripMenuItem_Click);
+            // 
+            // guiGetBaseDPSToolStripMenuItem
+            // 
+            this.guiGetBaseDPSToolStripMenuItem.Name = "guiGetBaseDPSToolStripMenuItem";
+            this.guiGetBaseDPSToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.guiGetBaseDPSToolStripMenuItem.Text = "Get Base DPS";
+            this.guiGetBaseDPSToolStripMenuItem.Click += new System.EventHandler(this.guiGetBaseDPSToolStripMenuItem_Click);
             // 
             // guiD3ProfileExplorer
             // 
@@ -339,6 +348,7 @@
         private System.Windows.Forms.ContextMenuStrip guiHeroContextMenu;
         private System.Windows.Forms.ToolStripMenuItem d3CalculatorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem guiBuildGlobalItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem guiGetBaseDPSToolStripMenuItem;
     }
 }
 
