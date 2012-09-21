@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator
@@ -12,9 +13,9 @@ namespace ZTn.BNet.D3.Calculator
     {
         #region >> Fields
 
-        Item[] items;
-        public Weapon mainHand;
-        public Weapon offHand;
+        List<Item> items;
+        public Item mainHand;
+        public Item offHand;
 
         #endregion
 
@@ -23,14 +24,80 @@ namespace ZTn.BNet.D3.Calculator
         public HeroStuff(Item mainHand, Item offHand, Item[] items)
             : base()
         {
-            this.mainHand = new Weapon(mainHand);
-            this.offHand = new Weapon(offHand);
-            this.items = items;
+            this.mainHand = mainHand;
+            this.offHand = offHand;
+            this.items = new List<Item>(items);
         }
 
         #endregion
 
-        public void buildUniqueItem()
+        public double getWeaponAttackPerSecond()
+        {
+            double weaponAttackSpeed;
+
+            if (!isAmbidextry())
+            {
+                weaponAttackSpeed = mainHand.getRawWeaponAttackPerSecond().min;
+            }
+            else
+            {
+                // Right formula: 2 * 1 / ( 1 / main + 1 / off ) [found by ZTn]
+                weaponAttackSpeed = 2 * 1 / (1 / mainHand.getRawWeaponAttackPerSecond().min + 1 / offHand.getRawWeaponAttackPerSecond().min);
+                // Ambidextry gets a 15% bonus
+                weaponAttackSpeed *= 1.15;
+            }
+
+            return weaponAttackSpeed;
+        }
+
+        public double getWeaponDamage()
+        {
+            // Compute weapon damage
+            double damage = mainHand.getRawWeaponDamage().min + this.getRawBonusDamage().min;
+            // Ambidextry
+            if (isAmbidextry())
+            {
+                double mainHandDamage = mainHand.getRawWeaponDamage().min + this.getRawBonusDamage().min;
+                double offHandDamage = offHand.getRawWeaponDamage().min + this.getRawBonusDamage().min;
+                damage = (damage + offHandDamage) / 2;
+            }
+            return damage;
+        }
+
+        public double getWeaponDamageMin()
+        {
+            // Compute weapon damage
+            double damage = mainHand.getRawWeaponDamageMin().min + this.getRawBonusDamageMin().min;
+            // Ambidextry
+            if (isAmbidextry())
+            {
+                double mainHandDamage = mainHand.getRawWeaponDamageMin().min + this.getRawBonusDamageMin().min;
+                double offHandDamage = offHand.getRawWeaponDamageMin().min + this.getRawBonusDamageMin().min;
+                damage = (damage + offHandDamage) / 2;
+            }
+            return damage;
+        }
+
+        public double getWeaponDamageMax()
+        {
+            // Compute weapon damage
+            double damage = mainHand.getRawWeaponDamageMax().min + this.getRawBonusDamageMax().min;
+            // Ambidextry
+            if (isAmbidextry())
+            {
+                double mainHandDamage = mainHand.getRawWeaponDamageMax().min + this.getRawBonusDamageMax().min;
+                double offHandDamage = offHand.getRawWeaponDamageMax().min + this.getRawBonusDamageMax().min;
+                damage = (damage + offHandDamage) / 2;
+            }
+            return damage;
+        }
+
+        public Boolean isAmbidextry()
+        {
+            return (offHand.isWeapon());
+        }
+
+        public void update()
         {
             attributesRaw = new ItemAttributes();
 
@@ -38,8 +105,8 @@ namespace ZTn.BNet.D3.Calculator
             List<Item> stuff = new List<Item>(items);
 
             // Add weapons
-            stuff.Add(mainHand.item);
-            stuff.Add(offHand.item);
+            stuff.Add(mainHand);
+            stuff.Add(offHand);
 
             // Add gems on items
             foreach (Item item in items)
@@ -49,107 +116,23 @@ namespace ZTn.BNet.D3.Calculator
             }
 
             // Add gems on weapons
-            if (mainHand.item.gems != null)
-                stuff.AddRange(mainHand.item.gems);
-            if (offHand.item.gems != null)
-                stuff.AddRange(offHand.item.gems);
+            if (mainHand.gems != null)
+                stuff.AddRange(mainHand.gems);
+            if (offHand.gems != null)
+                stuff.AddRange(offHand.gems);
 
             foreach (Item item in stuff)
             {
-                Type type = item.attributesRaw.GetType();
-
-                foreach (FieldInfo fieldInfo in type.GetFields())
-                {
-                    if (fieldInfo.GetValue(item.attributesRaw) != null)
-                    {
-                        ItemValueRange itemValueRange = (ItemValueRange)fieldInfo.GetValue(item.attributesRaw);
-                        ItemValueRange uniqueItemValueRange = (ItemValueRange)fieldInfo.GetValue(this.attributesRaw);
-                        if (uniqueItemValueRange == null)
-                            uniqueItemValueRange = new ItemValueRange();
-                        uniqueItemValueRange.min += itemValueRange.min;
-                        uniqueItemValueRange.max += itemValueRange.max;
-                        fieldInfo.SetValue(this.attributesRaw, uniqueItemValueRange);
-                    }
-                }
+                attributesRaw += item.attributesRaw;
             }
+
+            this.updateFromRawAttributes();
         }
 
-        /// <summary>
-        /// Calculate weapon damage bonuses on stuff
-        /// </summary>
-        /// <param name="weapon"></param>
-        /// <returns></returns>
-        public double getBonusDamage()
+        public void updateWithTalents(Item addedBonus, Item multipliedBonus)
         {
-            double damage = getResistDamage("Arcane")
-                + getResistDamage("Cold")
-                + getResistDamage("Fire")
-                + getResistDamage("Lightning")
-                + getResistDamage("Physical")
-                + getResistDamage("Poison");
-
-            return damage;
+            update();
+            this.attributesRaw = (this.attributesRaw + addedBonus.attributesRaw) * multipliedBonus.attributesRaw;
         }
-
-        #region >> getResistDamage *
-
-        /// <summary>
-        /// Computes the specific damage for a resist done by an weapon other than a weapon
-        /// </summary>
-        /// <param name="weapon"></param>
-        /// <param name="resist">Must be one of "Arcane", "Cold", "Fire", "Lightning", "Physical", "Poison"</param>
-        /// <returns></returns>
-        public double getResistDamage(String resist)
-        {
-            return (getResistDamageMin(resist) + getResistDamageMax(resist)) / 2;
-        }
-
-        /// <summary>
-        /// Computes the specific maximum damage for a resist done by an weapon other than a weapon
-        /// </summary>
-        /// <param name="weapon"></param>
-        /// <param name="resist">Must be one of "Arcane", "Cold", "Fire", "Lightning", "Physical", "Poison"</param>
-        /// <returns></returns>
-        public double getResistDamageMax(String resist)
-        {
-            Type type = this.attributesRaw.GetType();
-
-            ItemValueRange damageMin = (ItemValueRange)type.GetField("damageMin_" + resist).GetValue(this.attributesRaw);
-            ItemValueRange damageDelta = (ItemValueRange)type.GetField("damageDelta_" + resist).GetValue(this.attributesRaw);
-
-            double min = (damageMin == null ? 0 : damageMin.min);
-            double delta = (damageDelta == null ? 0 : damageDelta.min);
-            double damage = min + delta;
-
-            return damage;
-        }
-
-        /// <summary>
-        /// Computes the specific minimum damage for a resist done by an weapon other than a weapon
-        /// </summary>
-        /// <param name="weapon"></param>
-        /// <param name="resist">Must be one of "Arcane", "Cold", "Fire", "Lightning", "Physical", "Poison"</param>
-        /// <returns></returns>
-        public double getResistDamageMin(String resist)
-        {
-            Type type = this.attributesRaw.GetType();
-
-            ItemValueRange damageMin = (ItemValueRange)type.GetField("damageMin_" + resist).GetValue(this.attributesRaw);
-            ItemValueRange damageBonusMin = (ItemValueRange)type.GetField("damageBonusMin_" + resist).GetValue(this.attributesRaw);
-
-            double min = (damageMin == null ? 0 : damageMin.min);
-            double bonusMin = (damageBonusMin == null ? 0 : damageBonusMin.min);
-            double damage = min + bonusMin;
-
-            return damage;
-        }
-
-        #endregion
-
-        public Boolean isAmbidextry()
-        {
-            return (offHand.isWeapon());
-        }
-
     }
 }

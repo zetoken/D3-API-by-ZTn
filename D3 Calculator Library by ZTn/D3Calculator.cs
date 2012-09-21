@@ -25,45 +25,97 @@ namespace ZTn.BNet.D3.Calculator
 
         #endregion
 
-        public double getWeaponDamage()
+        public double getDamageMultiplierNormal(int level, int paragonLevel)
         {
-            // Compute weapon damage
-            double damage = heroStuff.mainHand.getWeaponDamage() + heroStuff.getBonusDamage();
-            // Ambidextry
-            if (heroStuff.isAmbidextry())
-            {
-                double attackSpeedMainHand = heroStuff.mainHand.getWeaponAttackSpeed();
-                double attackSpeedOffHand = heroStuff.offHand.getWeaponAttackSpeed();
-                double attackSpeedAverage = getWeaponAttackSpeed();
-                double mainHandDamage = heroStuff.mainHand.getWeaponDamage() + heroStuff.getBonusDamage();
-                double offHandDamage = heroStuff.offHand.getWeaponDamage() + heroStuff.getBonusDamage();
-                damage = (damage + offHandDamage) / 2;
-            }
-            return damage;
+            double multiplier = 1;
+            // Update dps with Weapon Attack Speed
+            multiplier *= heroStuff.getWeaponAttackPerSecond();
+
+            // Update dps with Attack Speed
+            multiplier *= (1 + getIncreasedAttackSpeed());
+
+            // Update dps with Critic
+            multiplier *= 1;
+
+            // Update dps with main statistic
+            multiplier *= 1 + (heroStuff.attributesRaw.dexterityItem.min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
+
+            return multiplier;
         }
 
-        public double getWeaponDPS()
+        public double getDamageMultiplierCritic(int level, int paragonLevel)
         {
-            return getWeaponDamage() * getWeaponAttackSpeed();
+            double multiplier = 1;
+            // Update dps with Weapon Attack Speed
+            multiplier *= heroStuff.getWeaponAttackPerSecond();
+
+            // Update dps with Attack Speed
+            multiplier *= (1 + getIncreasedAttackSpeed());
+
+            // Update dps with Critic
+            double critPercentBonusCapped = 1;
+            double critDamagePercent = 0.5;
+            if (heroStuff.attributesRaw.critDamagePercent != null)
+                critDamagePercent += heroStuff.attributesRaw.critDamagePercent.min;
+            multiplier *= 1 + critPercentBonusCapped * critDamagePercent;
+
+            // Update dps with main statistic
+            multiplier *= 1 + (heroStuff.attributesRaw.dexterityItem.min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
+
+            return multiplier;
         }
 
-        public double getWeaponAttackSpeed()
+        public double getDamageMultiplier(int level, int paragonLevel)
         {
-            double weaponAttackSpeed;
+            double multiplier = 1;
+            // Update dps with Weapon Attack Speed
+            multiplier *= heroStuff.getWeaponAttackPerSecond();
 
-            if (!heroStuff.isAmbidextry())
-            {
-                weaponAttackSpeed = heroStuff.mainHand.getWeaponAttackSpeed();
-            }
-            else
-            {
-                // Right formula: 2 * 1 / ( 1 / main + 1 / off ) [found by ZTn]
-                weaponAttackSpeed = 2 * 1 / (1 / heroStuff.mainHand.getWeaponAttackSpeed() + 1 / heroStuff.offHand.getWeaponAttackSpeed());
-                // Ambidextry gets a 15% bonus
-                weaponAttackSpeed *= 1.15;
-            }
+            // Update dps with Attack Speed
+            multiplier *= (1 + getIncreasedAttackSpeed());
 
-            return weaponAttackSpeed;
+            // Update dps with Critic
+            double critPercentBonusCapped = 0.05;
+            if (heroStuff.attributesRaw.critPercentBonusCapped != null)
+                critPercentBonusCapped += heroStuff.attributesRaw.critPercentBonusCapped.min;
+            double critDamagePercent = 0.5;
+            if (heroStuff.attributesRaw.critDamagePercent != null)
+                critDamagePercent += heroStuff.attributesRaw.critDamagePercent.min;
+            multiplier *= 1 + critPercentBonusCapped * critDamagePercent;
+
+            // Update dps with main statistic
+            multiplier *= 1 + (heroStuff.attributesRaw.dexterityItem.min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
+
+            return multiplier;
+        }
+
+        private double getHeroDPSAsIs(int level, int paragonLevel)
+        {
+            double dps = heroStuff.getWeaponDamage();
+
+            // Update damage multiplier
+            dps *= getDamageMultiplier(level, paragonLevel);
+
+            return dps;
+        }
+
+        public double getHeroDPS(int level, int paragonLevel)
+        {
+            heroStuff.update();
+
+            return getHeroDPSAsIs(level, paragonLevel);
+        }
+
+        public double getHeroDPS(int level, int paragonLevel, Item addedBonus, Item multipliedBonus, double skillBonus)
+        {
+            heroStuff.updateWithTalents(addedBonus, multipliedBonus);
+
+            double dps = getHeroDPSAsIs(level, paragonLevel);
+
+            // Update dps with skill bonus
+            dps *= 1 + skillBonus;
+
+            return dps;
         }
 
         public double getIncreasedAttackSpeed()
@@ -76,31 +128,9 @@ namespace ZTn.BNet.D3.Calculator
             return attackSpeed;
         }
 
-        public double getHeroDPS(int level, int paragonLevel)
+        public double getWeaponDPS()
         {
-            heroStuff.buildUniqueItem();
-
-            double dps = getWeaponDamage();
-
-            // Update dps with Weapon Attack Speed
-            dps *= getWeaponAttackSpeed();
-
-            // Update dps with Attack Speed
-            dps *= (1 + getIncreasedAttackSpeed());
-
-            // Update dps with Critic
-            double critPercentBonusCapped = 0.05;
-            if (heroStuff.attributesRaw.critPercentBonusCapped != null)
-                critPercentBonusCapped += heroStuff.attributesRaw.critPercentBonusCapped.min;
-            double critDamagePercent = 0.5;
-            if (heroStuff.attributesRaw.critDamagePercent != null)
-                critDamagePercent += heroStuff.attributesRaw.critDamagePercent.min;
-            dps *= 1 + critPercentBonusCapped * critDamagePercent;
-
-            // Update dps with main statistic
-            dps *= 1 + (heroStuff.attributesRaw.dexterityItem.min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
-
-            return dps;
+            return heroStuff.getWeaponDamage() * heroStuff.getWeaponAttackPerSecond();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace ZTn.BNet.D3.Items
 {
@@ -177,6 +179,106 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Sockets")]
         public ItemValueRange sockets;
+
+        #endregion
+
+        #region >> Constructors
+
+        public ItemAttributes()
+        {
+        }
+
+        /// <summary>
+        /// Copy constructor.
+        /// Ensures all fields are properly copied by value.
+        /// </summary>
+        /// <param name="itemAttributes"></param>
+        public ItemAttributes(ItemAttributes itemAttributes)
+        {
+            Type type = this.GetType();
+
+            foreach (FieldInfo fieldInfo in type.GetFields())
+            {
+                if (fieldInfo.GetValue(itemAttributes) != null)
+                {
+                    ItemValueRange rightValueRange = (ItemValueRange)fieldInfo.GetValue(itemAttributes);
+                    ItemValueRange valueRange = new ItemValueRange();
+                    valueRange.min += rightValueRange.min;
+                    valueRange.max += rightValueRange.max;
+                    fieldInfo.SetValue(this, valueRange);
+                }
+            }
+        }
+
+        #endregion
+
+        #region >> Operators
+
+        public static ItemAttributes operator +(ItemAttributes left, ItemAttributes right)
+        {
+            ItemAttributes target = new ItemAttributes(left);
+
+            Type type = target.GetType();
+
+            foreach (FieldInfo fieldInfo in type.GetFields())
+            {
+                if (fieldInfo.GetValue(right) != null)
+                {
+                    ItemValueRange targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
+                    ItemValueRange rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
+                    if (targetValueRange == null)
+                        targetValueRange = new ItemValueRange();
+                    fieldInfo.SetValue(target, targetValueRange + rightValueRange);
+                }
+            }
+
+            return target;
+        }
+
+        public static ItemAttributes operator -(ItemAttributes left, ItemAttributes right)
+        {
+            ItemAttributes target = new ItemAttributes(left);
+
+            Type type = target.GetType();
+
+            foreach (FieldInfo fieldInfo in type.GetFields())
+            {
+                if (fieldInfo.GetValue(right) != null)
+                {
+                    ItemValueRange targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
+                    ItemValueRange rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
+                    if (targetValueRange == null)
+                        targetValueRange = new ItemValueRange();
+                    targetValueRange -= rightValueRange;
+                    if ((targetValueRange.min) == 0 && (targetValueRange.max == 0))
+                        targetValueRange = null;
+                    fieldInfo.SetValue(target, targetValueRange - rightValueRange);
+                }
+            }
+
+            return target;
+        }
+
+        public static ItemAttributes operator *(ItemAttributes left, ItemAttributes right)
+        {
+            ItemAttributes target = new ItemAttributes(left);
+
+            Type type = target.GetType();
+
+            foreach (FieldInfo fieldInfo in type.GetFields())
+            {
+                if (fieldInfo.GetValue(right) != null)
+                {
+                    ItemValueRange targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
+                    ItemValueRange rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
+                    if (targetValueRange == null)
+                        targetValueRange = new ItemValueRange(1);
+                    fieldInfo.SetValue(target, targetValueRange * rightValueRange);
+                }
+            }
+
+            return target;
+        }
 
         #endregion
     }

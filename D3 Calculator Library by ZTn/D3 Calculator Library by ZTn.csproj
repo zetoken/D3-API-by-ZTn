@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,10 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="D3Calculator.cs" />
-    <Compile Include="D3MonkCalculator.cs" />
     <Compile Include="HeroStuff.cs" />
+    <Compile Include="ItemExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\D3 API by ZTn\D3 API by ZTn.csproj">

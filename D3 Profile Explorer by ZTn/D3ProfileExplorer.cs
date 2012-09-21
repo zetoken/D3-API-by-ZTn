@@ -104,7 +104,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
                     foreach (FieldInfo fieldInfo in fieldInfos)
                     {
-                        if (fieldInfo.GetValue(d3Object) != null)
+                        if ((!fieldInfo.IsStatic) && (fieldInfo.GetValue(d3Object) != null))
                         {
                             TreeNode newNode = new TreeNode(fieldInfo.Name);
                             newNode.Nodes.AddRange(createNodeFromD3Object(fieldInfo.GetValue(d3Object)).ToArray());
@@ -232,59 +232,29 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
         }
 
-        private void guiBuildGlobalItemToolStripMenuItem_Click(object sender, EventArgs e)
+        private void d3CalculatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hero hero = (Hero)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            List<Item> items = new List<Item>();
-            items.Add(Item.getItemFromTooltipParams(hero.items.bracers.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.feet.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.hands.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.head.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.leftFinger.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.legs.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.neck.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.rightFinger.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.shoulders.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.torso.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.waist.tooltipParams));
-
-            Item mainHand = Item.getItemFromTooltipParams(hero.items.mainHand.tooltipParams);
-
-            Item offHand = null;
-            if (hero.items.offHand != null)
-                offHand = Item.getItemFromTooltipParams(hero.items.offHand.tooltipParams);
-            else
-            {
-                offHand = new Item();
-                offHand.attributesRaw = new ItemAttributes();
-            }
-
-            D3Calculator d3Calculator = new D3Calculator(mainHand, offHand, items.ToArray());
-            Item globalItem = d3Calculator.heroStuff;
-
-            TreeNode node = new TreeNode("Global Item of " + hero.id + " " + hero.name);
-            node.Nodes.AddRange(createNodeFromD3Object(globalItem).ToArray());
-
-            guiD3ProfileTreeView.Nodes.Add(node);
+            new D3CalculatorForm(hero).Show();
         }
 
-        private void guiGetBaseDPSToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buildUniqueItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hero hero = (Hero)guiD3ProfileTreeView.SelectedNode.Tag;
-
-            List<Item> items = new List<Item>();
-            items.Add(Item.getItemFromTooltipParams(hero.items.bracers.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.feet.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.hands.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.head.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.leftFinger.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.legs.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.neck.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.rightFinger.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.shoulders.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.torso.tooltipParams));
-            items.Add(Item.getItemFromTooltipParams(hero.items.waist.tooltipParams));
+            List<Item> items = new List<Item>{
+                Item.getItemFromTooltipParams(hero.items.bracers.tooltipParams),
+                Item.getItemFromTooltipParams(hero.items.feet.tooltipParams),
+                Item.getItemFromTooltipParams(hero.items.hands.tooltipParams),
+                Item.getItemFromTooltipParams(hero.items.head.tooltipParams),
+                Item.getItemFromTooltipParams(hero.items.leftFinger.tooltipParams),
+                Item.getItemFromTooltipParams(hero.items.legs.tooltipParams),
+                Item.getItemFromTooltipParams(hero.items.neck.tooltipParams),
+                Item.getItemFromTooltipParams(hero.items.rightFinger.tooltipParams),
+                Item.getItemFromTooltipParams(hero.items.shoulders.tooltipParams),
+                Item.getItemFromTooltipParams(hero.items.torso.tooltipParams),
+                Item.getItemFromTooltipParams(hero.items.waist.tooltipParams)
+            };
 
             Item mainHand = Item.getItemFromTooltipParams(hero.items.mainHand.tooltipParams);
 
@@ -297,13 +267,15 @@ namespace ZTn.BNet.D3ProfileExplorer
                 offHand.attributesRaw = new ItemAttributes();
             }
 
-            D3Calculator d3Calculator = new D3Calculator(mainHand, offHand, items.ToArray());
-            Item globalItem = d3Calculator.heroStuff;
+            HeroStuff heroStuff = new HeroStuff(mainHand, offHand, items.ToArray());
+            heroStuff.update();
+            heroStuff.updateFromRawAttributes();
 
-            String s = String.Format("Your base DPS (without any buff) is {0}",
-                d3Calculator.getHeroDPS(hero.level, hero.paragonLevel));
+            TreeNode node = new TreeNode("Unique Item for " + hero.name);
+            node.Nodes.AddRange(createNodeFromD3Object(heroStuff).ToArray());
 
-            MessageBox.Show(s);
+            guiD3ProfileTreeView.Nodes.Add(node);
+
         }
     }
 }

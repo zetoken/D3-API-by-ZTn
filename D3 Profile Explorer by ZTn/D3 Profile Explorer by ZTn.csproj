@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="D3CalculatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="D3CalculatorForm.Designer.cs">
+      <DependentUpon>D3CalculatorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="D3ItemEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="D3ItemEditor.Designer.cs">
+      <DependentUpon>D3ItemEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="D3ProfileExplorer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +67,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="D3CalculatorForm.resx">
+      <DependentUpon>D3CalculatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="D3ItemEditor.resx">
+      <DependentUpon>D3ItemEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="D3ProfileExplorer.resx">
       <DependentUpon>D3ProfileExplorer.cs</DependentUpon>
     </EmbeddedResource>
