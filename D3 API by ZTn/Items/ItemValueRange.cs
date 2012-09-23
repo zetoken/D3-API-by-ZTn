@@ -52,7 +52,7 @@ namespace ZTn.BNet.D3.Items
         public static ItemValueRange operator -(ItemValueRange left, ItemValueRange right)
         {
             if (left == null)
-                return (new ItemValueRange(0)) - right;
+                return ItemValueRange.Zero - right;
             else if (right == null)
                 return left;
             else

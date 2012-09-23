@@ -55,6 +55,8 @@
             System.Windows.Forms.Label label8;
             System.Windows.Forms.Label label6;
             System.Windows.Forms.GroupBox groupBox1;
+            System.Windows.Forms.Label label25;
+            System.Windows.Forms.Label label26;
             this.guiCriticDamage = new System.Windows.Forms.TextBox();
             this.guiCriticChance = new System.Windows.Forms.TextBox();
             this.guiAttackSpeed = new System.Windows.Forms.TextBox();
@@ -88,9 +90,13 @@
             this.guiWeaponDamageMaxArcane = new System.Windows.Forms.TextBox();
             this.guiWeaponDamageMinArcane = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.guiGem1 = new System.Windows.Forms.ComboBox();
-            this.guiGem2 = new System.Windows.Forms.ComboBox();
             this.guiGem3 = new System.Windows.Forms.ComboBox();
+            this.guiGem2 = new System.Windows.Forms.ComboBox();
+            this.guiGem1 = new System.Windows.Forms.ComboBox();
+            this.guiWeaponDamageMaxHoly = new System.Windows.Forms.TextBox();
+            this.guiWeaponDamageMinHoly = new System.Windows.Forms.TextBox();
+            this.guiBonusDamageMaxHoly = new System.Windows.Forms.TextBox();
+            this.guiBonusDamageMinHoly = new System.Windows.Forms.TextBox();
             label23 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
@@ -118,6 +124,8 @@
             label8 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             groupBox1 = new System.Windows.Forms.GroupBox();
+            label25 = new System.Windows.Forms.Label();
+            label26 = new System.Windows.Forms.Label();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -136,7 +144,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new System.Drawing.Point(22, 126);
+            label10.Location = new System.Drawing.Point(22, 148);
             label10.Name = "label10";
             label10.Size = new System.Drawing.Size(46, 13);
             label10.TabIndex = 17;
@@ -145,7 +153,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new System.Drawing.Point(30, 178);
+            label11.Location = new System.Drawing.Point(30, 200);
             label11.Name = "label11";
             label11.Size = new System.Drawing.Size(38, 13);
             label11.TabIndex = 14;
@@ -291,7 +299,7 @@
             // label22
             // 
             label22.AutoSize = true;
-            label22.Location = new System.Drawing.Point(12, 204);
+            label22.Location = new System.Drawing.Point(12, 230);
             label22.Name = "label22";
             label22.Size = new System.Drawing.Size(97, 13);
             label22.TabIndex = 5;
@@ -300,7 +308,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(23, 152);
+            label5.Location = new System.Drawing.Point(23, 178);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(45, 13);
             label5.TabIndex = 11;
@@ -318,7 +326,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new System.Drawing.Point(23, 152);
+            label12.Location = new System.Drawing.Point(23, 174);
             label12.Name = "label12";
             label12.Size = new System.Drawing.Size(45, 13);
             label12.TabIndex = 11;
@@ -390,7 +398,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(22, 126);
+            label7.Location = new System.Drawing.Point(22, 152);
             label7.Name = "label7";
             label7.Size = new System.Drawing.Size(46, 13);
             label7.TabIndex = 17;
@@ -400,6 +408,9 @@
             // 
             groupBox2.AutoSize = true;
             groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox2.Controls.Add(label26);
+            groupBox2.Controls.Add(this.guiBonusDamageMaxHoly);
+            groupBox2.Controls.Add(this.guiBonusDamageMinHoly);
             groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(this.guiBonusDamageMaxFire);
             groupBox2.Controls.Add(this.guiBonusDamageMinFire);
@@ -422,7 +433,7 @@
             groupBox2.Controls.Add(label16);
             groupBox2.Location = new System.Drawing.Point(165, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new System.Drawing.Size(156, 214);
+            groupBox2.Size = new System.Drawing.Size(156, 236);
             groupBox2.TabIndex = 24;
             groupBox2.TabStop = false;
             groupBox2.Text = "Bonus Damage";
@@ -443,42 +454,42 @@
             // 
             // guiBonusDamageMaxLightning
             // 
-            this.guiBonusDamageMaxLightning.Location = new System.Drawing.Point(115, 123);
+            this.guiBonusDamageMaxLightning.Location = new System.Drawing.Point(115, 145);
             this.guiBonusDamageMaxLightning.Name = "guiBonusDamageMaxLightning";
             this.guiBonusDamageMaxLightning.Size = new System.Drawing.Size(35, 20);
             this.guiBonusDamageMaxLightning.TabIndex = 16;
             // 
             // guiBonusDamageMinLightning
             // 
-            this.guiBonusDamageMinLightning.Location = new System.Drawing.Point(74, 123);
+            this.guiBonusDamageMinLightning.Location = new System.Drawing.Point(74, 145);
             this.guiBonusDamageMinLightning.Name = "guiBonusDamageMinLightning";
             this.guiBonusDamageMinLightning.Size = new System.Drawing.Size(35, 20);
             this.guiBonusDamageMinLightning.TabIndex = 15;
             // 
             // guiBonusDamageMaxPoison
             // 
-            this.guiBonusDamageMaxPoison.Location = new System.Drawing.Point(115, 175);
+            this.guiBonusDamageMaxPoison.Location = new System.Drawing.Point(115, 197);
             this.guiBonusDamageMaxPoison.Name = "guiBonusDamageMaxPoison";
             this.guiBonusDamageMaxPoison.Size = new System.Drawing.Size(35, 20);
             this.guiBonusDamageMaxPoison.TabIndex = 13;
             // 
             // guiBonusDamageMinPoison
             // 
-            this.guiBonusDamageMinPoison.Location = new System.Drawing.Point(74, 175);
+            this.guiBonusDamageMinPoison.Location = new System.Drawing.Point(74, 197);
             this.guiBonusDamageMinPoison.Name = "guiBonusDamageMinPoison";
             this.guiBonusDamageMinPoison.Size = new System.Drawing.Size(35, 20);
             this.guiBonusDamageMinPoison.TabIndex = 12;
             // 
             // guiBonusDamageMaxPhysical
             // 
-            this.guiBonusDamageMaxPhysical.Location = new System.Drawing.Point(115, 149);
+            this.guiBonusDamageMaxPhysical.Location = new System.Drawing.Point(115, 171);
             this.guiBonusDamageMaxPhysical.Name = "guiBonusDamageMaxPhysical";
             this.guiBonusDamageMaxPhysical.Size = new System.Drawing.Size(35, 20);
             this.guiBonusDamageMaxPhysical.TabIndex = 10;
             // 
             // guiBonusDamageMinPhysical
             // 
-            this.guiBonusDamageMinPhysical.Location = new System.Drawing.Point(74, 149);
+            this.guiBonusDamageMinPhysical.Location = new System.Drawing.Point(74, 171);
             this.guiBonusDamageMinPhysical.Name = "guiBonusDamageMinPhysical";
             this.guiBonusDamageMinPhysical.Size = new System.Drawing.Size(35, 20);
             this.guiBonusDamageMinPhysical.TabIndex = 9;
@@ -523,7 +534,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(30, 178);
+            label6.Location = new System.Drawing.Point(30, 204);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(38, 13);
             label6.TabIndex = 14;
@@ -533,6 +544,9 @@
             // 
             groupBox1.AutoSize = true;
             groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox1.Controls.Add(label25);
+            groupBox1.Controls.Add(this.guiWeaponDamageMaxHoly);
+            groupBox1.Controls.Add(this.guiWeaponDamageMinHoly);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(this.guiWeaponDamageMaxFire);
             groupBox1.Controls.Add(this.guiWeaponDamageMinFire);
@@ -557,7 +571,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new System.Drawing.Point(3, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new System.Drawing.Size(156, 240);
+            groupBox1.Size = new System.Drawing.Size(156, 266);
             groupBox1.TabIndex = 23;
             groupBox1.TabStop = false;
             groupBox1.Text = "Damages";
@@ -578,42 +592,42 @@
             // 
             // guiWeaponDamageMaxLightning
             // 
-            this.guiWeaponDamageMaxLightning.Location = new System.Drawing.Point(115, 123);
+            this.guiWeaponDamageMaxLightning.Location = new System.Drawing.Point(115, 149);
             this.guiWeaponDamageMaxLightning.Name = "guiWeaponDamageMaxLightning";
             this.guiWeaponDamageMaxLightning.Size = new System.Drawing.Size(35, 20);
             this.guiWeaponDamageMaxLightning.TabIndex = 16;
             // 
             // guiWeaponDamageMinLightning
             // 
-            this.guiWeaponDamageMinLightning.Location = new System.Drawing.Point(74, 123);
+            this.guiWeaponDamageMinLightning.Location = new System.Drawing.Point(74, 149);
             this.guiWeaponDamageMinLightning.Name = "guiWeaponDamageMinLightning";
             this.guiWeaponDamageMinLightning.Size = new System.Drawing.Size(35, 20);
             this.guiWeaponDamageMinLightning.TabIndex = 15;
             // 
             // guiWeaponDamageMaxPoison
             // 
-            this.guiWeaponDamageMaxPoison.Location = new System.Drawing.Point(115, 175);
+            this.guiWeaponDamageMaxPoison.Location = new System.Drawing.Point(115, 201);
             this.guiWeaponDamageMaxPoison.Name = "guiWeaponDamageMaxPoison";
             this.guiWeaponDamageMaxPoison.Size = new System.Drawing.Size(35, 20);
             this.guiWeaponDamageMaxPoison.TabIndex = 13;
             // 
             // guiWeaponDamageMinPoison
             // 
-            this.guiWeaponDamageMinPoison.Location = new System.Drawing.Point(74, 175);
+            this.guiWeaponDamageMinPoison.Location = new System.Drawing.Point(74, 201);
             this.guiWeaponDamageMinPoison.Name = "guiWeaponDamageMinPoison";
             this.guiWeaponDamageMinPoison.Size = new System.Drawing.Size(35, 20);
             this.guiWeaponDamageMinPoison.TabIndex = 12;
             // 
             // guiWeaponDamageMaxPhysical
             // 
-            this.guiWeaponDamageMaxPhysical.Location = new System.Drawing.Point(115, 149);
+            this.guiWeaponDamageMaxPhysical.Location = new System.Drawing.Point(115, 175);
             this.guiWeaponDamageMaxPhysical.Name = "guiWeaponDamageMaxPhysical";
             this.guiWeaponDamageMaxPhysical.Size = new System.Drawing.Size(35, 20);
             this.guiWeaponDamageMaxPhysical.TabIndex = 10;
             // 
             // guiWeaponDamageMinPhysical
             // 
-            this.guiWeaponDamageMinPhysical.Location = new System.Drawing.Point(74, 149);
+            this.guiWeaponDamageMinPhysical.Location = new System.Drawing.Point(74, 175);
             this.guiWeaponDamageMinPhysical.Name = "guiWeaponDamageMinPhysical";
             this.guiWeaponDamageMinPhysical.Size = new System.Drawing.Size(35, 20);
             this.guiWeaponDamageMinPhysical.TabIndex = 9;
@@ -634,7 +648,7 @@
             // 
             // guiWeaponAttackPerSecond
             // 
-            this.guiWeaponAttackPerSecond.Location = new System.Drawing.Point(115, 201);
+            this.guiWeaponAttackPerSecond.Location = new System.Drawing.Point(115, 227);
             this.guiWeaponAttackPerSecond.Name = "guiWeaponAttackPerSecond";
             this.guiWeaponAttackPerSecond.Size = new System.Drawing.Size(35, 20);
             this.guiWeaponAttackPerSecond.TabIndex = 4;
@@ -659,36 +673,85 @@
             this.groupBox4.Controls.Add(this.guiGem3);
             this.groupBox4.Controls.Add(this.guiGem2);
             this.groupBox4.Controls.Add(this.guiGem1);
-            this.groupBox4.Location = new System.Drawing.Point(3, 249);
+            this.groupBox4.Location = new System.Drawing.Point(3, 275);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(474, 59);
             this.groupBox4.TabIndex = 26;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Equipped Gems";
             // 
-            // guiGem1
+            // guiGem3
             // 
-            this.guiGem1.FormattingEnabled = true;
-            this.guiGem1.Location = new System.Drawing.Point(6, 19);
-            this.guiGem1.Name = "guiGem1";
-            this.guiGem1.Size = new System.Drawing.Size(121, 21);
-            this.guiGem1.TabIndex = 1;
+            this.guiGem3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.guiGem3.FormattingEnabled = true;
+            this.guiGem3.Location = new System.Drawing.Point(260, 19);
+            this.guiGem3.Name = "guiGem3";
+            this.guiGem3.Size = new System.Drawing.Size(121, 21);
+            this.guiGem3.TabIndex = 5;
             // 
             // guiGem2
             // 
+            this.guiGem2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.guiGem2.FormattingEnabled = true;
             this.guiGem2.Location = new System.Drawing.Point(133, 19);
             this.guiGem2.Name = "guiGem2";
             this.guiGem2.Size = new System.Drawing.Size(121, 21);
             this.guiGem2.TabIndex = 3;
             // 
-            // guiGem3
+            // guiGem1
             // 
-            this.guiGem3.FormattingEnabled = true;
-            this.guiGem3.Location = new System.Drawing.Point(260, 19);
-            this.guiGem3.Name = "guiGem3";
-            this.guiGem3.Size = new System.Drawing.Size(121, 21);
-            this.guiGem3.TabIndex = 5;
+            this.guiGem1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.guiGem1.FormattingEnabled = true;
+            this.guiGem1.Location = new System.Drawing.Point(6, 19);
+            this.guiGem1.Name = "guiGem1";
+            this.guiGem1.Size = new System.Drawing.Size(121, 21);
+            this.guiGem1.TabIndex = 1;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new System.Drawing.Point(42, 126);
+            label25.Name = "label25";
+            label25.Size = new System.Drawing.Size(26, 13);
+            label25.TabIndex = 23;
+            label25.Text = "holy";
+            // 
+            // guiWeaponDamageMaxHoly
+            // 
+            this.guiWeaponDamageMaxHoly.Location = new System.Drawing.Point(115, 123);
+            this.guiWeaponDamageMaxHoly.Name = "guiWeaponDamageMaxHoly";
+            this.guiWeaponDamageMaxHoly.Size = new System.Drawing.Size(35, 20);
+            this.guiWeaponDamageMaxHoly.TabIndex = 22;
+            // 
+            // guiWeaponDamageMinHoly
+            // 
+            this.guiWeaponDamageMinHoly.Location = new System.Drawing.Point(74, 123);
+            this.guiWeaponDamageMinHoly.Name = "guiWeaponDamageMinHoly";
+            this.guiWeaponDamageMinHoly.Size = new System.Drawing.Size(35, 20);
+            this.guiWeaponDamageMinHoly.TabIndex = 21;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Location = new System.Drawing.Point(42, 126);
+            label26.Name = "label26";
+            label26.Size = new System.Drawing.Size(26, 13);
+            label26.TabIndex = 23;
+            label26.Text = "holy";
+            // 
+            // guiBonusDamageMaxHoly
+            // 
+            this.guiBonusDamageMaxHoly.Location = new System.Drawing.Point(115, 123);
+            this.guiBonusDamageMaxHoly.Name = "guiBonusDamageMaxHoly";
+            this.guiBonusDamageMaxHoly.Size = new System.Drawing.Size(35, 20);
+            this.guiBonusDamageMaxHoly.TabIndex = 22;
+            // 
+            // guiBonusDamageMinHoly
+            // 
+            this.guiBonusDamageMinHoly.Location = new System.Drawing.Point(74, 123);
+            this.guiBonusDamageMinHoly.Name = "guiBonusDamageMinHoly";
+            this.guiBonusDamageMinHoly.Size = new System.Drawing.Size(35, 20);
+            this.guiBonusDamageMinHoly.TabIndex = 21;
             // 
             // D3ItemEditor
             // 
@@ -701,7 +764,7 @@
             this.Controls.Add(groupBox2);
             this.Controls.Add(groupBox1);
             this.Name = "D3ItemEditor";
-            this.Size = new System.Drawing.Size(486, 311);
+            this.Size = new System.Drawing.Size(486, 337);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -752,6 +815,10 @@
         private System.Windows.Forms.ComboBox guiGem3;
         private System.Windows.Forms.ComboBox guiGem2;
         private System.Windows.Forms.ComboBox guiGem1;
+        public System.Windows.Forms.TextBox guiBonusDamageMaxHoly;
+        public System.Windows.Forms.TextBox guiBonusDamageMinHoly;
+        public System.Windows.Forms.TextBox guiWeaponDamageMaxHoly;
+        public System.Windows.Forms.TextBox guiWeaponDamageMinHoly;
 
 
     }

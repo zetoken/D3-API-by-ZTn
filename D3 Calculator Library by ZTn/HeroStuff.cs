@@ -53,13 +53,11 @@ namespace ZTn.BNet.D3.Calculator
         public double getWeaponDamage()
         {
             // Compute weapon damage
-            double damage = mainHand.getRawWeaponDamage().min + this.getRawBonusDamage().min;
+            double damage = this.getRawWeaponDamage().min + this.getRawBonusDamage().min;
             // Ambidextry
             if (isAmbidextry())
             {
-                double mainHandDamage = mainHand.getRawWeaponDamage().min + this.getRawBonusDamage().min;
-                double offHandDamage = offHand.getRawWeaponDamage().min + this.getRawBonusDamage().min;
-                damage = (damage + offHandDamage) / 2;
+                damage = this.getRawWeaponDamage().min / 2 + this.getRawBonusDamage().min;
             }
             return damage;
         }
@@ -67,13 +65,11 @@ namespace ZTn.BNet.D3.Calculator
         public double getWeaponDamageMin()
         {
             // Compute weapon damage
-            double damage = mainHand.getRawWeaponDamageMin().min + this.getRawBonusDamageMin().min;
+            double damage = this.getRawWeaponDamageMin().min + this.getRawBonusDamageMin().min;
             // Ambidextry
             if (isAmbidextry())
             {
-                double mainHandDamage = mainHand.getRawWeaponDamageMin().min + this.getRawBonusDamageMin().min;
-                double offHandDamage = offHand.getRawWeaponDamageMin().min + this.getRawBonusDamageMin().min;
-                damage = (damage + offHandDamage) / 2;
+                damage = this.getRawWeaponDamageMin().min / 2 + this.getRawBonusDamageMin().min;
             }
             return damage;
         }
@@ -81,13 +77,11 @@ namespace ZTn.BNet.D3.Calculator
         public double getWeaponDamageMax()
         {
             // Compute weapon damage
-            double damage = mainHand.getRawWeaponDamageMax().min + this.getRawBonusDamageMax().min;
+            double damage = mainHand.getRawWeaponDamageMax().min + this.getRawWeaponDamageMax().min + this.getRawBonusDamageMax().min;
             // Ambidextry
             if (isAmbidextry())
             {
-                double mainHandDamage = mainHand.getRawWeaponDamageMax().min + this.getRawBonusDamageMax().min;
-                double offHandDamage = offHand.getRawWeaponDamageMax().min + this.getRawBonusDamageMax().min;
-                damage = (damage + offHandDamage) / 2;
+                damage = this.getRawWeaponDamageMax().min / 2 + this.getRawBonusDamageMax().min;
             }
             return damage;
         }

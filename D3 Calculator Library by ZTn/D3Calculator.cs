@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator
@@ -12,14 +13,16 @@ namespace ZTn.BNet.D3.Calculator
     {
         #region >> Fields
 
+        public Hero hero;
         public HeroStuff heroStuff;
 
         #endregion
 
         #region >> Constructors
 
-        public D3Calculator(Item mainHand, Item offHand, Item[] items)
+        public D3Calculator(Hero hero, Item mainHand, Item offHand, Item[] items)
         {
+            this.hero = hero;
             heroStuff = new HeroStuff(mainHand, offHand, items);
         }
 
@@ -38,7 +41,7 @@ namespace ZTn.BNet.D3.Calculator
             multiplier *= 1;
 
             // Update dps with main statistic
-            multiplier *= 1 + (heroStuff.attributesRaw.dexterityItem.min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
+            multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
 
             return multiplier;
         }
@@ -60,7 +63,7 @@ namespace ZTn.BNet.D3.Calculator
             multiplier *= 1 + critPercentBonusCapped * critDamagePercent;
 
             // Update dps with main statistic
-            multiplier *= 1 + (heroStuff.attributesRaw.dexterityItem.min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
+            multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
 
             return multiplier;
         }
@@ -84,7 +87,7 @@ namespace ZTn.BNet.D3.Calculator
             multiplier *= 1 + critPercentBonusCapped * critDamagePercent;
 
             // Update dps with main statistic
-            multiplier *= 1 + (heroStuff.attributesRaw.dexterityItem.min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
+            multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
 
             return multiplier;
         }
@@ -126,6 +129,30 @@ namespace ZTn.BNet.D3.Calculator
                 attackSpeed = heroStuff.attributesRaw.attacksPerSecondPercent.min;
 
             return attackSpeed;
+        }
+
+        public ItemValueRange getMainCharacteristic()
+        {
+            ItemValueRange result = ItemValueRange.Zero;
+
+            switch (hero.heroClass)
+            {
+                case "monk":
+                case "demon-hunter":
+                    result = heroStuff.attributesRaw.dexterityItem;
+                    break;
+                case "witch-doctor":
+                case "wizard":
+                    result = heroStuff.attributesRaw.intelligenceItem;
+                    break;
+                case "barbarian":
+                    result = heroStuff.attributesRaw.strengthItem;
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
         }
 
         public double getWeaponDPS()

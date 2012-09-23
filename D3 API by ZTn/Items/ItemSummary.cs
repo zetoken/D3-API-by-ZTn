@@ -9,15 +9,15 @@ namespace ZTn.BNet.D3.Items
         #region >> Properties
 
         [DataMember]
-        public String id;
+        public String id { get; set; }
         [DataMember]
-        public String name;
+        public String name { get; set; }
         [DataMember]
-        public String icon;
+        public String icon { get; set; }
         [DataMember]
-        public String displayColor;
+        public String displayColor { get; set; }
         [DataMember]
-        public String tooltipParams;
+        public String tooltipParams { get; set; }
 
         #endregion
 

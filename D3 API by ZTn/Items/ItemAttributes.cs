@@ -92,6 +92,17 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Damage_Weapon_Percent_Bonus#Fire")]
         public ItemValueRange damageWeaponPercentBonus_Fire;
 
+        [DataMember(Name = "Damage_Weapon_Bonus_Delta#Holy")]
+        public ItemValueRange damageWeaponBonusDelta_Holy;
+        [DataMember(Name = "Damage_Weapon_Bonus_Min#Holy")]
+        public ItemValueRange damageWeaponBonusMin_Holy;
+        [DataMember(Name = "Damage_Weapon_Delta#Holy")]
+        public ItemValueRange damageWeaponDelta_Holy;
+        [DataMember(Name = "Damage_Weapon_Min#Holy")]
+        public ItemValueRange damageWeaponMin_Holy;
+        [DataMember(Name = "Damage_Weapon_Percent_Bonus#Holy")]
+        public ItemValueRange damageWeaponPercentBonus_Holy;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Delta#Lightning")]
         public ItemValueRange damageWeaponBonusDelta_Lightning;
         [DataMember(Name = "Damage_Weapon_Bonus_Min#Lightning")]
@@ -145,6 +156,13 @@ namespace ZTn.BNet.D3.Items
         public ItemValueRange damageDelta_Fire;
         [DataMember(Name = "Damage_Min#Fire")]
         public ItemValueRange damageMin_Fire;
+
+        [DataMember(Name = "Damage_Bonus_Min#Holy")]
+        public ItemValueRange damageBonusMin_Holy;
+        [DataMember(Name = "Damage_Delta#Holy")]
+        public ItemValueRange damageDelta_Holy;
+        [DataMember(Name = "Damage_Min#Holy")]
+        public ItemValueRange damageMin_Holy;
 
         [DataMember(Name = "Damage_Bonus_Min#Lightning")]
         public ItemValueRange damageBonusMin_Lightning;

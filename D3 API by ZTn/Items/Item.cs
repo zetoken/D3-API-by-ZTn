@@ -11,7 +11,7 @@ namespace ZTn.BNet.D3.Items
         #region >> Properties
 
         [DataMember]
-        public int requiredLevel;
+        public int requiredLevel { get; set; }
         [DataMember]
         public int itemLevel;
         [DataMember]
@@ -40,6 +40,19 @@ namespace ZTn.BNet.D3.Items
         public ItemSalvageComponent[] salvage;
         [DataMember]
         public Item[] gems;
+
+        #endregion
+
+        #region >> Constructors
+
+        public Item()
+        {
+        }
+
+        public Item(ItemAttributes itemAttributes)
+        {
+            this.attributesRaw = itemAttributes;
+        }
 
         #endregion
 

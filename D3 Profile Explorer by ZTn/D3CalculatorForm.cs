@@ -33,6 +33,8 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         #endregion
 
+        #region >> Constructors
+
         public D3CalculatorForm()
         {
             InitializeComponent();
@@ -62,8 +64,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 offHand = Item.getItemFromTooltipParams(hero.items.offHand.tooltipParams);
             else
             {
-                offHand = new Item();
-                offHand.attributesRaw = new ItemAttributes();
+                offHand = new Item(new ItemAttributes());
             }
 
             guiMainHandEditor.setEditedItem(mainHand);
@@ -81,42 +82,48 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiWaistEditor.setEditedItem(waist);
         }
 
+        #endregion
+
         private void guiDoCalculations_Click(object sender, EventArgs e)
         {
             List<Item> items = new List<Item>();
-            items.Add(bracers);
-            items.Add(feet);
-            items.Add(hands);
-            items.Add(head);
-            items.Add(leftFinger);
-            items.Add(legs);
-            items.Add(neck);
-            items.Add(rightFinger);
-            items.Add(shoulders);
-            items.Add(torso);
-            items.Add(waist);
+            items.Add(guiBracersEditor.getEditedItem());
+            items.Add(guiFeetEditor.getEditedItem());
+            items.Add(guiHandsEditor.getEditedItem());
+            items.Add(guiHeadEditor.getEditedItem());
+            items.Add(guiLeftFingerEditor.getEditedItem());
+            items.Add(guiLegsEditor.getEditedItem());
+            items.Add(guiNeckEditor.getEditedItem());
+            items.Add(guiRightFingerEditor.getEditedItem());
+            items.Add(guiShouldersEditor.getEditedItem());
+            items.Add(guiTorsoEditor.getEditedItem());
+            items.Add(guiWaistEditor.getEditedItem());
 
-            Item mainHand = Item.getItemFromTooltipParams(hero.items.mainHand.tooltipParams);
+            Item mainHand = guiMainHandEditor.getEditedItem();
 
-            Item offHand = null;
-            if (hero.items.offHand != null)
-                offHand = Item.getItemFromTooltipParams(hero.items.offHand.tooltipParams);
-            else
-            {
-                offHand = new Item();
-                offHand.attributesRaw = new ItemAttributes();
-            }
+            Item offHand = guiOffHandEditor.getEditedItem();
 
             Item multipliedBonus = new Item();
             multipliedBonus.attributesRaw = new ItemAttributes();
 
             Item addedBonus = new Item();
             addedBonus.attributesRaw = new ItemAttributes();
-            addedBonus.attributesRaw.critDamagePercent = new ItemValueRange(0.1); // TODO: AUTOMATE THAT +10% CRITIC DAMAGE and all
+            if (guiSkillCriticDamage50Percent.Checked)
+                addedBonus.attributesRaw += new ItemAttributes() { critDamagePercent = new ItemValueRange(0.5) };
+            if (guiSkillCriticChance3Percent.Checked)
+                addedBonus.attributesRaw += new ItemAttributes() { critPercentBonusCapped = new ItemValueRange(0.03) };
+            if (guiSkillCriticChance10Percent.Checked)
+                addedBonus.attributesRaw += new ItemAttributes() { critPercentBonusCapped = new ItemValueRange(0.10) };
+            if (guiSkillAttackSpeed3Percent.Checked)
+                addedBonus.attributesRaw += new ItemAttributes() { attacksPerSecondItemPercent = new ItemValueRange(0.03) };
 
             double skillBonus = 0;
+            if (guiSkillDamage15Percent.Checked)
+                skillBonus += 0.15;
+            if (guiSkillDamage20Percent.Checked)
+                skillBonus += 0.20;
 
-            D3Calculator d3Calculator = new D3Calculator(mainHand, offHand, items.ToArray());
+            D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
             Item globalItem = d3Calculator.heroStuff;
 
             guiCalculatedDPS.Text = d3Calculator.getHeroDPS(hero.level, hero.paragonLevel).ToString();
@@ -132,9 +139,17 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiCalcultatedDamageMaxWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal(hero.level, hero.paragonLevel)).ToString();
             guiCalcultatedDamageCriticMinWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic(hero.level, hero.paragonLevel)).ToString();
             guiCalcultatedDamageCriticMaxWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic(hero.level, hero.paragonLevel)).ToString();
+
+            populateCalculatedData(guiItemsDexterity, d3Calculator.heroStuff.attributesRaw.dexterityItem);
+            populateCalculatedData(guiItemsIntelligence, d3Calculator.heroStuff.attributesRaw.intelligenceItem);
+            populateCalculatedData(guiItemsStrength, d3Calculator.heroStuff.attributesRaw.strengthItem);
+            populateCalculatedData(guiItemsVitality, d3Calculator.heroStuff.attributesRaw.vitalityItem);
+            populateCalculatedData(guiItemsCriticChance, d3Calculator.heroStuff.attributesRaw.critPercentBonusCapped);
+            populateCalculatedData(guiItemsSpeedAttack, d3Calculator.heroStuff.attributesRaw.attacksPerSecondPercent);
+            populateCalculatedData(guiItemsCriticDamage, d3Calculator.heroStuff.attributesRaw.critDamagePercent);
         }
 
-        private void populateItemEditorData(TextBox textBox, ItemValueRange itemValueRange)
+        private void populateCalculatedData(TextBox textBox, ItemValueRange itemValueRange)
         {
             if (itemValueRange != null)
                 textBox.Text = itemValueRange.min.ToString();

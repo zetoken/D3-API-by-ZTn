@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="D3Calculator.cs" />
+    <Compile Include="GemHelper.cs" />
     <Compile Include="HeroStuff.cs" />
     <Compile Include="ItemExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
