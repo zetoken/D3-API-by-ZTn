@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Web;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Careers;
@@ -38,7 +39,7 @@ namespace ZTn.BNet.D3
 
         public static String getCareerUrl(BattleTag battleTag)
         {
-            return apiUrl + "profile/" + battleTag.name + "-" + battleTag.code + "/";
+            return apiUrl + "profile/" + HttpUtility.UrlEncode(battleTag.name) + "-" + battleTag.code + "/";
         }
 
         public static String getHeroUrlFromHeroId(BattleTag battleTag, String heroId)
@@ -59,7 +60,7 @@ namespace ZTn.BNet.D3
         public static Career getCareerFromBattleTag(BattleTag battleTag)
         {
             Career career;
-            using (Stream stream = dataProvider.fetchData(getCareerUrl(battleTag) + apiLocaleSuffix))
+            using (Stream stream = dataProvider.fetchData(getCareerUrl(battleTag) + "/index" + apiLocaleSuffix))
             {
                 career = Career.getCareerFromJSonStream(stream);
             }
