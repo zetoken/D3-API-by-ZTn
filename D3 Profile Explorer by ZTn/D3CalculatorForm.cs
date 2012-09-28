@@ -45,17 +45,28 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             this.hero = hero;
 
-            bracers = Item.getItemFromTooltipParams(hero.items.bracers.tooltipParams);
-            feet = Item.getItemFromTooltipParams(hero.items.feet.tooltipParams);
-            hands = Item.getItemFromTooltipParams(hero.items.hands.tooltipParams);
-            head = Item.getItemFromTooltipParams(hero.items.head.tooltipParams);
-            leftFinger = Item.getItemFromTooltipParams(hero.items.leftFinger.tooltipParams);
-            legs = Item.getItemFromTooltipParams(hero.items.legs.tooltipParams);
-            neck = Item.getItemFromTooltipParams(hero.items.neck.tooltipParams);
-            rightFinger = Item.getItemFromTooltipParams(hero.items.rightFinger.tooltipParams);
-            shoulders = Item.getItemFromTooltipParams(hero.items.shoulders.tooltipParams);
-            torso = Item.getItemFromTooltipParams(hero.items.torso.tooltipParams);
-            waist = Item.getItemFromTooltipParams(hero.items.waist.tooltipParams);
+            if (hero.items.bracers != null)
+                bracers = Item.getItemFromTooltipParams(hero.items.bracers.tooltipParams);
+            if (hero.items.feet != null)
+                feet = Item.getItemFromTooltipParams(hero.items.feet.tooltipParams);
+            if (hero.items.hands != null)
+                hands = Item.getItemFromTooltipParams(hero.items.hands.tooltipParams);
+            if (hero.items.head != null)
+                head = Item.getItemFromTooltipParams(hero.items.head.tooltipParams);
+            if (hero.items.leftFinger != null)
+                leftFinger = Item.getItemFromTooltipParams(hero.items.leftFinger.tooltipParams);
+            if (hero.items.legs != null)
+                legs = Item.getItemFromTooltipParams(hero.items.legs.tooltipParams);
+            if (hero.items.neck != null)
+                neck = Item.getItemFromTooltipParams(hero.items.neck.tooltipParams);
+            if (hero.items.rightFinger != null)
+                rightFinger = Item.getItemFromTooltipParams(hero.items.rightFinger.tooltipParams);
+            if (hero.items.shoulders != null)
+                shoulders = Item.getItemFromTooltipParams(hero.items.shoulders.tooltipParams);
+            if (hero.items.torso != null)
+                torso = Item.getItemFromTooltipParams(hero.items.torso.tooltipParams);
+            if (hero.items.waist != null)
+                waist = Item.getItemFromTooltipParams(hero.items.waist.tooltipParams);
 
             Item mainHand = Item.getItemFromTooltipParams(hero.items.mainHand.tooltipParams);
 
@@ -63,9 +74,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (hero.items.offHand != null)
                 offHand = Item.getItemFromTooltipParams(hero.items.offHand.tooltipParams);
             else
-            {
                 offHand = new Item(new ItemAttributes());
-            }
 
             guiMainHandEditor.setEditedItem(mainHand);
             guiOffHandEditor.setEditedItem(offHand);

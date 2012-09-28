@@ -139,14 +139,17 @@ namespace ZTn.BNet.D3.Calculator
             {
                 case "monk":
                 case "demon-hunter":
-                    result = heroStuff.attributesRaw.dexterityItem;
+                    if (heroStuff.attributesRaw.dexterityItem != null)
+                        result = heroStuff.attributesRaw.dexterityItem;
                     break;
                 case "witch-doctor":
                 case "wizard":
-                    result = heroStuff.attributesRaw.intelligenceItem;
+                    if (heroStuff.attributesRaw.intelligenceItem != null)
+                        result = heroStuff.attributesRaw.intelligenceItem;
                     break;
                 case "barbarian":
-                    result = heroStuff.attributesRaw.strengthItem;
+                    if (heroStuff.attributesRaw.strengthItem != null)
+                        result = heroStuff.attributesRaw.strengthItem;
                     break;
                 default:
                     break;

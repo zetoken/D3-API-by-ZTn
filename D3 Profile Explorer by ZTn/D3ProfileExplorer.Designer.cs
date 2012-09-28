@@ -71,7 +71,7 @@
             guiLabel1.Location = new System.Drawing.Point(14, 32);
             guiLabel1.Name = "guiLabel1";
             guiLabel1.Size = new System.Drawing.Size(59, 13);
-            guiLabel1.TabIndex = 0;
+            guiLabel1.TabIndex = 4;
             guiLabel1.Text = "Battle Tag:";
             // 
             // label1
@@ -80,7 +80,7 @@
             label1.Location = new System.Drawing.Point(14, 6);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(32, 13);
-            label1.TabIndex = 3;
+            label1.TabIndex = 0;
             label1.Text = "Host:";
             // 
             // label2
@@ -89,7 +89,7 @@
             label2.Location = new System.Drawing.Point(185, 6);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(58, 13);
-            label2.TabIndex = 5;
+            label2.TabIndex = 2;
             label2.Text = "Language:";
             // 
             // guiD3ProfileTreeView
@@ -108,7 +108,7 @@
             this.guiProfileLookup.Location = new System.Drawing.Point(185, 27);
             this.guiProfileLookup.Name = "guiProfileLookup";
             this.guiProfileLookup.Size = new System.Drawing.Size(150, 23);
-            this.guiProfileLookup.TabIndex = 2;
+            this.guiProfileLookup.TabIndex = 6;
             this.guiProfileLookup.Text = "Profile lookup";
             this.guiProfileLookup.UseVisualStyleBackColor = true;
             this.guiProfileLookup.Click += new System.EventHandler(this.guiProfileLookup_Click);
@@ -118,7 +118,7 @@
             this.guiBattleTag.Location = new System.Drawing.Point(79, 29);
             this.guiBattleTag.Name = "guiBattleTag";
             this.guiBattleTag.Size = new System.Drawing.Size(100, 20);
-            this.guiBattleTag.TabIndex = 1;
+            this.guiBattleTag.TabIndex = 5;
             // 
             // guiHeroSummaryContextMenu
             // 
@@ -171,7 +171,7 @@
             this.guiBattleNetHostList.Location = new System.Drawing.Point(79, 3);
             this.guiBattleNetHostList.Name = "guiBattleNetHostList";
             this.guiBattleNetHostList.Size = new System.Drawing.Size(100, 21);
-            this.guiBattleNetHostList.TabIndex = 8;
+            this.guiBattleNetHostList.TabIndex = 1;
             this.guiBattleNetHostList.TextChanged += new System.EventHandler(this.guiBattleNetHostList_TextChanged);
             // 
             // guiBattleNetLanguageList
@@ -181,7 +181,7 @@
             this.guiBattleNetLanguageList.Location = new System.Drawing.Point(266, 3);
             this.guiBattleNetLanguageList.Name = "guiBattleNetLanguageList";
             this.guiBattleNetLanguageList.Size = new System.Drawing.Size(69, 21);
-            this.guiBattleNetLanguageList.TabIndex = 8;
+            this.guiBattleNetLanguageList.TabIndex = 3;
             this.guiBattleNetLanguageList.TextChanged += new System.EventHandler(this.guiBattleNetLanguageList_TextChanged);
             // 
             // guiBattleNetDllName
@@ -190,7 +190,7 @@
             this.guiBattleNetDllName.Location = new System.Drawing.Point(15, 27);
             this.guiBattleNetDllName.Name = "guiBattleNetDllName";
             this.guiBattleNetDllName.Size = new System.Drawing.Size(88, 13);
-            this.guiBattleNetDllName.TabIndex = 4;
+            this.guiBattleNetDllName.TabIndex = 3;
             this.guiBattleNetDllName.Text = "BNet API by ZTn";
             // 
             // guiD3APIDllName
@@ -199,7 +199,7 @@
             this.guiD3APIDllName.Location = new System.Drawing.Point(15, 45);
             this.guiD3APIDllName.Name = "guiD3APIDllName";
             this.guiD3APIDllName.Size = new System.Drawing.Size(78, 13);
-            this.guiD3APIDllName.TabIndex = 6;
+            this.guiD3APIDllName.TabIndex = 5;
             this.guiD3APIDllName.Text = "D3 API by ZTn";
             // 
             // guiBattleNetVersion
@@ -208,7 +208,7 @@
             this.guiBattleNetVersion.Location = new System.Drawing.Point(152, 27);
             this.guiBattleNetVersion.Name = "guiBattleNetVersion";
             this.guiBattleNetVersion.Size = new System.Drawing.Size(40, 13);
-            this.guiBattleNetVersion.TabIndex = 5;
+            this.guiBattleNetVersion.TabIndex = 4;
             this.guiBattleNetVersion.Text = "0.0.0.0";
             // 
             // guiD3APIVersion
@@ -217,7 +217,7 @@
             this.guiD3APIVersion.Location = new System.Drawing.Point(152, 45);
             this.guiD3APIVersion.Name = "guiD3APIVersion";
             this.guiD3APIVersion.Size = new System.Drawing.Size(40, 13);
-            this.guiD3APIVersion.TabIndex = 7;
+            this.guiD3APIVersion.TabIndex = 6;
             this.guiD3APIVersion.Text = "0.0.0.0";
             // 
             // guiD3ProfileExplorerVersion
@@ -227,7 +227,7 @@
             this.guiD3ProfileExplorerVersion.Location = new System.Drawing.Point(152, 9);
             this.guiD3ProfileExplorerVersion.Name = "guiD3ProfileExplorerVersion";
             this.guiD3ProfileExplorerVersion.Size = new System.Drawing.Size(40, 13);
-            this.guiD3ProfileExplorerVersion.TabIndex = 3;
+            this.guiD3ProfileExplorerVersion.TabIndex = 2;
             this.guiD3ProfileExplorerVersion.Text = "0.0.0.0";
             // 
             // guiD3ProfileExplorerDllName
@@ -237,7 +237,7 @@
             this.guiD3ProfileExplorerDllName.Location = new System.Drawing.Point(15, 9);
             this.guiD3ProfileExplorerDllName.Name = "guiD3ProfileExplorerDllName";
             this.guiD3ProfileExplorerDllName.Size = new System.Drawing.Size(131, 13);
-            this.guiD3ProfileExplorerDllName.TabIndex = 2;
+            this.guiD3ProfileExplorerDllName.TabIndex = 1;
             this.guiD3ProfileExplorerDllName.Text = "D3 Profile Explorer by ZTn";
             // 
             // guiCareerArtisanContextMenu
@@ -271,7 +271,7 @@
             this.d3CalculatorToolStripMenuItem,
             this.buildUniqueItemToolStripMenuItem});
             this.guiHeroContextMenu.Name = "guiHeroSummaryContextMenu";
-            this.guiHeroContextMenu.Size = new System.Drawing.Size(170, 70);
+            this.guiHeroContextMenu.Size = new System.Drawing.Size(170, 48);
             // 
             // d3CalculatorToolStripMenuItem
             // 
