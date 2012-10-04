@@ -124,7 +124,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (guiSkillCriticChance10Percent.Checked)
                 addedBonus.attributesRaw += new ItemAttributes() { critPercentBonusCapped = new ItemValueRange(0.10) };
             if (guiSkillAttackSpeed3Percent.Checked)
-                addedBonus.attributesRaw += new ItemAttributes() { attacksPerSecondItemPercent = new ItemValueRange(0.03) };
+                addedBonus.attributesRaw += new ItemAttributes() { attacksPerSecondItem = new ItemValueRange(0.03) };
 
             double skillBonus = 0;
             if (guiSkillDamage15Percent.Checked)

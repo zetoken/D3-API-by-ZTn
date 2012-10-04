@@ -14,8 +14,10 @@ namespace ZTn.BNet.D3.Calculator
         #region >> Fields
 
         List<Item> items;
-        public Item mainHand;
-        public Item offHand;
+        Item mainHand;
+        Item offHand;
+
+        Item addedBonus;
 
         #endregion
 
@@ -98,6 +100,19 @@ namespace ZTn.BNet.D3.Calculator
             // Build a list of all items with attributes
             List<Item> stuff = new List<Item>(items);
 
+            // Add bonus (skills, buffs)
+            if ((addedBonus != null) && (addedBonus.attributesRaw != null))
+            {
+                if (addedBonus.attributesRaw.attacksPerSecondItem != null)
+                {
+                    mainHand.attributesRaw.attacksPerSecondItem += addedBonus.attributesRaw.attacksPerSecondItem;
+                    if (offHand.isWeapon())
+                        offHand.attributesRaw.attacksPerSecondItem += addedBonus.attributesRaw.attacksPerSecondItem;
+                    addedBonus.attributesRaw.attacksPerSecondItem = null;
+                }
+                attributesRaw += addedBonus.attributesRaw;
+            }
+
             // Add weapons
             stuff.Add(mainHand);
             stuff.Add(offHand);
@@ -115,6 +130,7 @@ namespace ZTn.BNet.D3.Calculator
             if (offHand.gems != null)
                 stuff.AddRange(offHand.gems);
 
+            // Add items
             foreach (Item item in stuff)
             {
                 attributesRaw += item.attributesRaw;
@@ -125,8 +141,9 @@ namespace ZTn.BNet.D3.Calculator
 
         public void updateWithTalents(Item addedBonus, Item multipliedBonus)
         {
+            this.addedBonus = addedBonus;
             update();
-            this.attributesRaw = (this.attributesRaw + addedBonus.attributesRaw) * multipliedBonus.attributesRaw;
+            this.attributesRaw = this.attributesRaw * multipliedBonus.attributesRaw;
         }
     }
 }
