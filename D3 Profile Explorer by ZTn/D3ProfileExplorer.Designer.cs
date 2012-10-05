@@ -55,6 +55,7 @@
             this.guiHeroContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.d3CalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buildUniqueItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.d3CalculatorHeroSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -123,14 +124,15 @@
             // guiHeroSummaryContextMenu
             // 
             this.guiHeroSummaryContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exploreHeroToolStripMenuItem});
+            this.exploreHeroToolStripMenuItem,
+            this.d3CalculatorHeroSummaryToolStripMenuItem});
             this.guiHeroSummaryContextMenu.Name = "guiHeroSummaryContextMenu";
-            this.guiHeroSummaryContextMenu.Size = new System.Drawing.Size(142, 26);
+            this.guiHeroSummaryContextMenu.Size = new System.Drawing.Size(146, 48);
             // 
             // exploreHeroToolStripMenuItem
             // 
             this.exploreHeroToolStripMenuItem.Name = "exploreHeroToolStripMenuItem";
-            this.exploreHeroToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.exploreHeroToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exploreHeroToolStripMenuItem.Text = "Explore Hero";
             this.exploreHeroToolStripMenuItem.Click += new System.EventHandler(this.exploreHeroToolStripMenuItem_Click);
             // 
@@ -287,6 +289,13 @@
             this.buildUniqueItemToolStripMenuItem.Text = "Build Unique Item";
             this.buildUniqueItemToolStripMenuItem.Click += new System.EventHandler(this.buildUniqueItemToolStripMenuItem_Click);
             // 
+            // d3CalculatorHeroSummaryToolStripMenuItem
+            // 
+            this.d3CalculatorHeroSummaryToolStripMenuItem.Name = "d3CalculatorHeroSummaryToolStripMenuItem";
+            this.d3CalculatorHeroSummaryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.d3CalculatorHeroSummaryToolStripMenuItem.Text = "D3 Calculator";
+            this.d3CalculatorHeroSummaryToolStripMenuItem.Click += new System.EventHandler(this.d3CalculatorHeroSummaryToolStripMenuItem_Click);
+            // 
             // guiD3ProfileExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,6 +348,7 @@
         private System.Windows.Forms.ContextMenuStrip guiHeroContextMenu;
         private System.Windows.Forms.ToolStripMenuItem d3CalculatorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem buildUniqueItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem d3CalculatorHeroSummaryToolStripMenuItem;
     }
 }
 

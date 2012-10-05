@@ -73,6 +73,16 @@ namespace ZTn.BNet.D3ProfileExplorer
                 MessageBox.Show("Career was not found in cache: go online to retrieve it.");
                 return;
             }
+            catch (BNetResponseFailed)
+            {
+                MessageBox.Show("Battle.net sent an http error: try again later.");
+                return;
+            }
+            catch (BNetFailureObjectReturned)
+            {
+                MessageBox.Show("Battle.net sent an error: verify the battle tag.");
+                return;
+            }
 
             node.Nodes.AddRange(createNodeFromD3Object(career).ToArray());
 
@@ -276,6 +286,26 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             guiD3ProfileTreeView.Nodes.Add(node);
 
+        }
+
+        private void d3CalculatorHeroSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HeroSummary heroSummary = (HeroSummary)guiD3ProfileTreeView.SelectedNode.Tag;
+
+            BattleTag battleTag = new BattleTag(guiBattleTag.Text);
+
+            Hero hero;
+            try
+            {
+                hero = Hero.getHeroFromHeroId(battleTag, heroSummary.id);
+            }
+            catch (FileNotInCacheException)
+            {
+                MessageBox.Show("Hero was not found in cache: go online to retrieve it.");
+                return;
+            }
+
+            new D3CalculatorForm(hero).Show();
         }
     }
 }
