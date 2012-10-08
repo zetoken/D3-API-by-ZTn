@@ -16,6 +16,10 @@ namespace ZTn.BNet.D3.Calculator
         public Hero hero;
         public HeroStuff heroStuff;
 
+        public Item addedBonus = new Item(new ItemAttributes());
+        public Item multipliedBonus = new Item(new ItemAttributes());
+        public double skillBonus = 0;
+
         #endregion
 
         #region >> Constructors
@@ -28,54 +32,41 @@ namespace ZTn.BNet.D3.Calculator
 
         #endregion
 
-        public double getDamageMultiplierNormal(int level, int paragonLevel)
+        public double getDamageMultiplierNormal()
         {
             double multiplier = 1;
-            // Update dps with Weapon Attack Speed
-            multiplier *= heroStuff.getWeaponAttackPerSecond();
-
-            // Update dps with Attack Speed
-            multiplier *= (1 + getIncreasedAttackSpeed());
-
-            // Update dps with Critic
-            multiplier *= 1;
 
             // Update dps with main statistic
-            multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
+            multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * hero.level) + (hero.paragonLevel * 3)) / 100;
+
+            // Update damage with skill bonus
+            multiplier *= 1 + skillBonus;
 
             return multiplier;
         }
 
-        public double getDamageMultiplierCritic(int level, int paragonLevel)
+        public double getDamageMultiplierCritic()
         {
             double multiplier = 1;
-            // Update dps with Weapon Attack Speed
-            multiplier *= heroStuff.getWeaponAttackPerSecond();
-
-            // Update dps with Attack Speed
-            multiplier *= (1 + getIncreasedAttackSpeed());
 
             // Update dps with Critic
-            double critPercentBonusCapped = 1;
             double critDamagePercent = 0.5;
             if (heroStuff.attributesRaw.critDamagePercent != null)
                 critDamagePercent += heroStuff.attributesRaw.critDamagePercent.min;
-            multiplier *= 1 + critPercentBonusCapped * critDamagePercent;
+            multiplier *= 1 + critDamagePercent;
 
             // Update dps with main statistic
-            multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
+            multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * hero.level) + (hero.paragonLevel * 3)) / 100;
+
+            // Update damage with skill bonus
+            multiplier *= 1 + skillBonus;
 
             return multiplier;
         }
 
-        public double getDamageMultiplier(int level, int paragonLevel)
+        public double getDamageMultiplier()
         {
             double multiplier = 1;
-            // Update dps with Weapon Attack Speed
-            multiplier *= heroStuff.getWeaponAttackPerSecond();
-
-            // Update dps with Attack Speed
-            multiplier *= (1 + getIncreasedAttackSpeed());
 
             // Update dps with Critic
             double critPercentBonusCapped = 0.05;
@@ -87,36 +78,56 @@ namespace ZTn.BNet.D3.Calculator
             multiplier *= 1 + critPercentBonusCapped * critDamagePercent;
 
             // Update dps with main statistic
-            multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * level) + (paragonLevel * 3)) / 100;
+            multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * hero.level) + (hero.paragonLevel * 3)) / 100;
 
             return multiplier;
         }
 
-        private double getHeroDPSAsIs(int level, int paragonLevel)
+        public double getActualAttackSpeed()
+        {
+            double multiplier = 1;
+
+            // Update multiplier with Weapon Attack Speed
+            multiplier *= heroStuff.getWeaponAttackPerSecond();
+
+            // Update multiplier with Attack Speed
+            multiplier *= 1 + getIncreasedAttackSpeed();
+
+            return multiplier;
+        }
+
+        private double getHeroDPSAsIs()
         {
             double dps = heroStuff.getWeaponDamage();
 
             // Update damage multiplier
-            dps *= getDamageMultiplier(level, paragonLevel);
+            dps *= getDamageMultiplier();
+
+            // Update dps multiplier
+            dps *= getActualAttackSpeed();
+
+            // Update dps with skill bonus
+            dps *= 1 + skillBonus;
 
             return dps;
         }
 
-        public double getHeroDPS(int level, int paragonLevel)
+        public double getHeroDPS()
         {
             heroStuff.update();
 
-            return getHeroDPSAsIs(level, paragonLevel);
+            return getHeroDPSAsIs();
         }
 
-        public double getHeroDPS(int level, int paragonLevel, Item addedBonus, Item multipliedBonus, double skillBonus)
+        public double getHeroDPS(Item addedBonus, Item multipliedBonus, double skillBonus)
         {
+            this.addedBonus = addedBonus;
+            this.multipliedBonus = multipliedBonus;
+            this.skillBonus = skillBonus;
+
             heroStuff.updateWithTalents(addedBonus, multipliedBonus);
 
-            double dps = getHeroDPSAsIs(level, paragonLevel);
-
-            // Update dps with skill bonus
-            dps *= 1 + skillBonus;
+            double dps = getHeroDPSAsIs();
 
             return dps;
         }
@@ -156,11 +167,6 @@ namespace ZTn.BNet.D3.Calculator
             }
 
             return result;
-        }
-
-        public double getWeaponDPS()
-        {
-            return heroStuff.getWeaponDamage() * heroStuff.getWeaponAttackPerSecond();
         }
     }
 }

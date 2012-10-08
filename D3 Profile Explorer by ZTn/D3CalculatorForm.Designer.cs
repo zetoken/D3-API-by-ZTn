@@ -180,6 +180,7 @@
             // 
             // guiHeroClass
             // 
+            this.guiHeroClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.guiHeroClass.FormattingEnabled = true;
             this.guiHeroClass.Location = new System.Drawing.Point(104, 19);
             this.guiHeroClass.Name = "guiHeroClass";

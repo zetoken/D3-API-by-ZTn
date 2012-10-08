@@ -161,19 +161,19 @@ namespace ZTn.BNet.D3ProfileExplorer
             D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
             Item globalItem = d3Calculator.heroStuff;
 
-            guiCalculatedDPS.Text = d3Calculator.getHeroDPS(hero.level, hero.paragonLevel).ToString();
-            guiCalculatedAttackPerSecond.Text = d3Calculator.heroStuff.getWeaponAttackPerSecond().ToString();
-            guiCalcultatedDamageMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal(hero.level, hero.paragonLevel)).ToString();
-            guiCalcultatedDamageMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal(hero.level, hero.paragonLevel)).ToString();
-            guiCalcultatedDamageCriticMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic(hero.level, hero.paragonLevel)).ToString();
-            guiCalcultatedDamageCriticMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic(hero.level, hero.paragonLevel)).ToString();
+            guiCalculatedDPS.Text = d3Calculator.getHeroDPS().ToString();
+            guiCalculatedAttackPerSecond.Text = d3Calculator.getActualAttackSpeed().ToString();
+            guiCalcultatedDamageMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal()).ToString();
+            guiCalcultatedDamageMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal()).ToString();
+            guiCalcultatedDamageCriticMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic()).ToString();
+            guiCalcultatedDamageCriticMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic()).ToString();
 
-            guiCalculatedDPSWithBuffs.Text = d3Calculator.getHeroDPS(hero.level, hero.paragonLevel, addedBonus, multipliedBonus, skillBonus).ToString();
-            guiCalculatedAttackPerSecondWithBuffs.Text = d3Calculator.heroStuff.getWeaponAttackPerSecond().ToString();
-            guiCalcultatedDamageMinWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal(hero.level, hero.paragonLevel)).ToString();
-            guiCalcultatedDamageMaxWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal(hero.level, hero.paragonLevel)).ToString();
-            guiCalcultatedDamageCriticMinWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic(hero.level, hero.paragonLevel)).ToString();
-            guiCalcultatedDamageCriticMaxWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic(hero.level, hero.paragonLevel)).ToString();
+            guiCalculatedDPSWithBuffs.Text = d3Calculator.getHeroDPS(addedBonus, multipliedBonus, skillBonus).ToString();
+            guiCalculatedAttackPerSecondWithBuffs.Text = d3Calculator.getActualAttackSpeed().ToString();
+            guiCalcultatedDamageMinWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal()).ToString();
+            guiCalcultatedDamageMaxWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal()).ToString();
+            guiCalcultatedDamageCriticMinWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic()).ToString();
+            guiCalcultatedDamageCriticMaxWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic()).ToString();
 
             populateCalculatedData(guiItemsDexterity, d3Calculator.heroStuff.attributesRaw.dexterityItem);
             populateCalculatedData(guiItemsIntelligence, d3Calculator.heroStuff.attributesRaw.intelligenceItem);
