@@ -30,14 +30,22 @@
         {
             System.Windows.Forms.Label label6;
             System.Windows.Forms.TabPage tabPage14;
-            this.guiSkillCriticChance10Percent = new System.Windows.Forms.CheckBox();
-            this.guiSkillAttackSpeed3Percent = new System.Windows.Forms.CheckBox();
+            System.Windows.Forms.Label label17;
+            System.Windows.Forms.Label label18;
+            System.Windows.Forms.Label label16;
+            System.Windows.Forms.GroupBox groupBox5;
+            System.Windows.Forms.GroupBox groupBox4;
+            System.Windows.Forms.TabControl tabControl1;
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.guiHeroClass = new System.Windows.Forms.ComboBox();
+            this.guiHeroParagonLevel = new System.Windows.Forms.TextBox();
+            this.guiHeroLevel = new System.Windows.Forms.TextBox();
             this.guiSkillCriticChance3Percent = new System.Windows.Forms.CheckBox();
-            this.guiSkillCriticDamage50Percent = new System.Windows.Forms.CheckBox();
-            this.guiSkillDamage20Percent = new System.Windows.Forms.CheckBox();
+            this.guiSkillAttackSpeed3Percent = new System.Windows.Forms.CheckBox();
             this.guiSkillDamage15Percent = new System.Windows.Forms.CheckBox();
-            this.guiDoCalculations = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.guiSkillCriticChance10Percent = new System.Windows.Forms.CheckBox();
+            this.guiSkillDamage20Percent = new System.Windows.Forms.CheckBox();
+            this.guiSkillCriticDamage50Percent = new System.Windows.Forms.CheckBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.guiMainHandEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -64,6 +72,7 @@
             this.guiTorsoEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.guiWaistEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiDoCalculations = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.guiItemsDexterity = new System.Windows.Forms.TextBox();
             this.guiItemsIntelligence = new System.Windows.Forms.TextBox();
@@ -102,8 +111,17 @@
             this.guiCalculatedAttackPerSecondWithBuffs = new System.Windows.Forms.TextBox();
             label6 = new System.Windows.Forms.Label();
             tabPage14 = new System.Windows.Forms.TabPage();
+            label17 = new System.Windows.Forms.Label();
+            label18 = new System.Windows.Forms.Label();
+            label16 = new System.Windows.Forms.Label();
+            groupBox5 = new System.Windows.Forms.GroupBox();
+            groupBox4 = new System.Windows.Forms.GroupBox();
+            tabControl1 = new System.Windows.Forms.TabControl();
             tabPage14.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            groupBox5.SuspendLayout();
+            groupBox4.SuspendLayout();
+            tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -133,120 +151,201 @@
             // 
             // tabPage14
             // 
-            tabPage14.Controls.Add(this.guiSkillCriticChance10Percent);
-            tabPage14.Controls.Add(this.guiSkillAttackSpeed3Percent);
-            tabPage14.Controls.Add(this.guiSkillCriticChance3Percent);
-            tabPage14.Controls.Add(this.guiSkillCriticDamage50Percent);
-            tabPage14.Controls.Add(this.guiSkillDamage20Percent);
-            tabPage14.Controls.Add(this.guiSkillDamage15Percent);
-            tabPage14.Location = new System.Drawing.Point(4, 22);
+            tabPage14.Controls.Add(this.groupBox6);
+            tabPage14.Controls.Add(groupBox5);
+            tabPage14.Controls.Add(groupBox4);
+            tabPage14.Location = new System.Drawing.Point(4, 40);
             tabPage14.Name = "tabPage14";
             tabPage14.Padding = new System.Windows.Forms.Padding(3);
-            tabPage14.Size = new System.Drawing.Size(692, 552);
+            tabPage14.Size = new System.Drawing.Size(504, 534);
             tabPage14.TabIndex = 13;
             tabPage14.Text = "Skills";
             tabPage14.UseVisualStyleBackColor = true;
             // 
-            // guiSkillCriticChance10Percent
+            // groupBox6
             // 
-            this.guiSkillCriticChance10Percent.AutoSize = true;
-            this.guiSkillCriticChance10Percent.Location = new System.Drawing.Point(6, 75);
-            this.guiSkillCriticChance10Percent.Name = "guiSkillCriticChance10Percent";
-            this.guiSkillCriticChance10Percent.Size = new System.Drawing.Size(118, 17);
-            this.guiSkillCriticChance10Percent.TabIndex = 5;
-            this.guiSkillCriticChance10Percent.Text = "+10% Critic Chance";
-            this.guiSkillCriticChance10Percent.UseVisualStyleBackColor = true;
+            this.groupBox6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox6.Controls.Add(this.guiHeroClass);
+            this.groupBox6.Controls.Add(this.guiHeroParagonLevel);
+            this.groupBox6.Controls.Add(label17);
+            this.groupBox6.Controls.Add(label18);
+            this.groupBox6.Controls.Add(this.guiHeroLevel);
+            this.groupBox6.Controls.Add(label16);
+            this.groupBox6.Location = new System.Drawing.Point(288, 6);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(210, 111);
+            this.groupBox6.TabIndex = 8;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Hero details";
             // 
-            // guiSkillAttackSpeed3Percent
+            // guiHeroClass
             // 
-            this.guiSkillAttackSpeed3Percent.AutoSize = true;
-            this.guiSkillAttackSpeed3Percent.Location = new System.Drawing.Point(6, 121);
-            this.guiSkillAttackSpeed3Percent.Name = "guiSkillAttackSpeed3Percent";
-            this.guiSkillAttackSpeed3Percent.Size = new System.Drawing.Size(114, 17);
-            this.guiSkillAttackSpeed3Percent.TabIndex = 4;
-            this.guiSkillAttackSpeed3Percent.Text = "+3% Attack Speed";
-            this.guiSkillAttackSpeed3Percent.UseVisualStyleBackColor = true;
+            this.guiHeroClass.FormattingEnabled = true;
+            this.guiHeroClass.Location = new System.Drawing.Point(104, 19);
+            this.guiHeroClass.Name = "guiHeroClass";
+            this.guiHeroClass.Size = new System.Drawing.Size(100, 21);
+            this.guiHeroClass.TabIndex = 5;
+            // 
+            // guiHeroParagonLevel
+            // 
+            this.guiHeroParagonLevel.Location = new System.Drawing.Point(104, 72);
+            this.guiHeroParagonLevel.Name = "guiHeroParagonLevel";
+            this.guiHeroParagonLevel.Size = new System.Drawing.Size(40, 20);
+            this.guiHeroParagonLevel.TabIndex = 3;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new System.Drawing.Point(13, 75);
+            label17.Name = "label17";
+            label17.Size = new System.Drawing.Size(85, 13);
+            label17.TabIndex = 1;
+            label17.Text = "Parangon Level:";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new System.Drawing.Point(63, 22);
+            label18.Name = "label18";
+            label18.Size = new System.Drawing.Size(35, 13);
+            label18.TabIndex = 4;
+            label18.Text = "Class:";
+            // 
+            // guiHeroLevel
+            // 
+            this.guiHeroLevel.Location = new System.Drawing.Point(104, 46);
+            this.guiHeroLevel.Name = "guiHeroLevel";
+            this.guiHeroLevel.Size = new System.Drawing.Size(40, 20);
+            this.guiHeroLevel.TabIndex = 2;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new System.Drawing.Point(62, 49);
+            label16.Name = "label16";
+            label16.Size = new System.Drawing.Size(36, 13);
+            label16.TabIndex = 0;
+            label16.Text = "Level:";
+            // 
+            // groupBox5
+            // 
+            groupBox5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox5.Controls.Add(this.guiSkillCriticChance3Percent);
+            groupBox5.Controls.Add(this.guiSkillAttackSpeed3Percent);
+            groupBox5.Location = new System.Drawing.Point(6, 136);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new System.Drawing.Size(200, 78);
+            groupBox5.TabIndex = 7;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Followers";
             // 
             // guiSkillCriticChance3Percent
             // 
             this.guiSkillCriticChance3Percent.AutoSize = true;
-            this.guiSkillCriticChance3Percent.Location = new System.Drawing.Point(6, 98);
+            this.guiSkillCriticChance3Percent.Location = new System.Drawing.Point(6, 19);
             this.guiSkillCriticChance3Percent.Name = "guiSkillCriticChance3Percent";
             this.guiSkillCriticChance3Percent.Size = new System.Drawing.Size(112, 17);
             this.guiSkillCriticChance3Percent.TabIndex = 3;
             this.guiSkillCriticChance3Percent.Text = "+3% Critic Chance";
             this.guiSkillCriticChance3Percent.UseVisualStyleBackColor = true;
             // 
-            // guiSkillCriticDamage50Percent
+            // guiSkillAttackSpeed3Percent
             // 
-            this.guiSkillCriticDamage50Percent.AutoSize = true;
-            this.guiSkillCriticDamage50Percent.Location = new System.Drawing.Point(6, 52);
-            this.guiSkillCriticDamage50Percent.Name = "guiSkillCriticDamage50Percent";
-            this.guiSkillCriticDamage50Percent.Size = new System.Drawing.Size(121, 17);
-            this.guiSkillCriticDamage50Percent.TabIndex = 2;
-            this.guiSkillCriticDamage50Percent.Text = "+50% Critic Damage";
-            this.guiSkillCriticDamage50Percent.UseVisualStyleBackColor = true;
+            this.guiSkillAttackSpeed3Percent.AutoSize = true;
+            this.guiSkillAttackSpeed3Percent.Location = new System.Drawing.Point(6, 42);
+            this.guiSkillAttackSpeed3Percent.Name = "guiSkillAttackSpeed3Percent";
+            this.guiSkillAttackSpeed3Percent.Size = new System.Drawing.Size(114, 17);
+            this.guiSkillAttackSpeed3Percent.TabIndex = 4;
+            this.guiSkillAttackSpeed3Percent.Text = "+3% Attack Speed";
+            this.guiSkillAttackSpeed3Percent.UseVisualStyleBackColor = true;
             // 
-            // guiSkillDamage20Percent
+            // groupBox4
             // 
-            this.guiSkillDamage20Percent.AutoSize = true;
-            this.guiSkillDamage20Percent.Location = new System.Drawing.Point(6, 29);
-            this.guiSkillDamage20Percent.Name = "guiSkillDamage20Percent";
-            this.guiSkillDamage20Percent.Size = new System.Drawing.Size(95, 17);
-            this.guiSkillDamage20Percent.TabIndex = 1;
-            this.guiSkillDamage20Percent.Text = "+20% Damage";
-            this.guiSkillDamage20Percent.UseVisualStyleBackColor = true;
+            groupBox4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox4.Controls.Add(this.guiSkillDamage15Percent);
+            groupBox4.Controls.Add(this.guiSkillCriticChance10Percent);
+            groupBox4.Controls.Add(this.guiSkillDamage20Percent);
+            groupBox4.Controls.Add(this.guiSkillCriticDamage50Percent);
+            groupBox4.Location = new System.Drawing.Point(6, 6);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new System.Drawing.Size(200, 124);
+            groupBox4.TabIndex = 6;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Demon hunter";
             // 
             // guiSkillDamage15Percent
             // 
             this.guiSkillDamage15Percent.AutoSize = true;
-            this.guiSkillDamage15Percent.Location = new System.Drawing.Point(6, 6);
+            this.guiSkillDamage15Percent.Location = new System.Drawing.Point(6, 19);
             this.guiSkillDamage15Percent.Name = "guiSkillDamage15Percent";
             this.guiSkillDamage15Percent.Size = new System.Drawing.Size(95, 17);
             this.guiSkillDamage15Percent.TabIndex = 0;
             this.guiSkillDamage15Percent.Text = "+15% Damage";
             this.guiSkillDamage15Percent.UseVisualStyleBackColor = true;
             // 
-            // guiDoCalculations
+            // guiSkillCriticChance10Percent
             // 
-            this.guiDoCalculations.Location = new System.Drawing.Point(896, 12);
-            this.guiDoCalculations.Name = "guiDoCalculations";
-            this.guiDoCalculations.Size = new System.Drawing.Size(100, 23);
-            this.guiDoCalculations.TabIndex = 0;
-            this.guiDoCalculations.Text = "Do Calculations";
-            this.guiDoCalculations.UseVisualStyleBackColor = true;
-            this.guiDoCalculations.Click += new System.EventHandler(this.guiDoCalculations_Click);
+            this.guiSkillCriticChance10Percent.AutoSize = true;
+            this.guiSkillCriticChance10Percent.Location = new System.Drawing.Point(6, 88);
+            this.guiSkillCriticChance10Percent.Name = "guiSkillCriticChance10Percent";
+            this.guiSkillCriticChance10Percent.Size = new System.Drawing.Size(118, 17);
+            this.guiSkillCriticChance10Percent.TabIndex = 5;
+            this.guiSkillCriticChance10Percent.Text = "+10% Critic Chance";
+            this.guiSkillCriticChance10Percent.UseVisualStyleBackColor = true;
+            // 
+            // guiSkillDamage20Percent
+            // 
+            this.guiSkillDamage20Percent.AutoSize = true;
+            this.guiSkillDamage20Percent.Location = new System.Drawing.Point(6, 42);
+            this.guiSkillDamage20Percent.Name = "guiSkillDamage20Percent";
+            this.guiSkillDamage20Percent.Size = new System.Drawing.Size(95, 17);
+            this.guiSkillDamage20Percent.TabIndex = 1;
+            this.guiSkillDamage20Percent.Text = "+20% Damage";
+            this.guiSkillDamage20Percent.UseVisualStyleBackColor = true;
+            // 
+            // guiSkillCriticDamage50Percent
+            // 
+            this.guiSkillCriticDamage50Percent.AutoSize = true;
+            this.guiSkillCriticDamage50Percent.Location = new System.Drawing.Point(6, 65);
+            this.guiSkillCriticDamage50Percent.Name = "guiSkillCriticDamage50Percent";
+            this.guiSkillCriticDamage50Percent.Size = new System.Drawing.Size(121, 17);
+            this.guiSkillCriticDamage50Percent.TabIndex = 2;
+            this.guiSkillCriticDamage50Percent.Text = "+50% Critic Damage";
+            this.guiSkillCriticDamage50Percent.UseVisualStyleBackColor = true;
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Controls.Add(this.tabPage9);
-            this.tabControl1.Controls.Add(this.tabPage10);
-            this.tabControl1.Controls.Add(this.tabPage11);
-            this.tabControl1.Controls.Add(this.tabPage12);
-            this.tabControl1.Controls.Add(this.tabPage13);
-            this.tabControl1.Controls.Add(tabPage14);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(700, 578);
-            this.tabControl1.TabIndex = 4;
+            tabControl1.Controls.Add(this.tabPage1);
+            tabControl1.Controls.Add(this.tabPage2);
+            tabControl1.Controls.Add(this.tabPage3);
+            tabControl1.Controls.Add(this.tabPage4);
+            tabControl1.Controls.Add(this.tabPage5);
+            tabControl1.Controls.Add(this.tabPage6);
+            tabControl1.Controls.Add(this.tabPage7);
+            tabControl1.Controls.Add(this.tabPage8);
+            tabControl1.Controls.Add(this.tabPage9);
+            tabControl1.Controls.Add(this.tabPage10);
+            tabControl1.Controls.Add(this.tabPage11);
+            tabControl1.Controls.Add(this.tabPage12);
+            tabControl1.Controls.Add(this.tabPage13);
+            tabControl1.Controls.Add(tabPage14);
+            tabControl1.HotTrack = true;
+            tabControl1.Location = new System.Drawing.Point(12, 12);
+            tabControl1.Multiline = true;
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new System.Drawing.Size(512, 578);
+            tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
+            tabControl1.TabIndex = 4;
             // 
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.Controls.Add(this.guiMainHandEditor);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 40);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(692, 552);
+            this.tabPage1.Size = new System.Drawing.Size(504, 534);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main Hand";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -264,10 +363,10 @@
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.Controls.Add(this.guiOffHandEditor);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(692, 552);
+            this.tabPage2.Size = new System.Drawing.Size(504, 534);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Off Hand";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -285,10 +384,10 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.Controls.Add(this.guiBracersEditor);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 40);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(692, 552);
+            this.tabPage3.Size = new System.Drawing.Size(504, 534);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Bracers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -306,10 +405,10 @@
             // 
             this.tabPage4.AutoScroll = true;
             this.tabPage4.Controls.Add(this.guiFeetEditor);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 40);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(692, 552);
+            this.tabPage4.Size = new System.Drawing.Size(504, 534);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Feet";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -327,10 +426,10 @@
             // 
             this.tabPage5.AutoScroll = true;
             this.tabPage5.Controls.Add(this.guiHandsEditor);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 40);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(692, 552);
+            this.tabPage5.Size = new System.Drawing.Size(504, 534);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Hands";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -348,10 +447,10 @@
             // 
             this.tabPage6.AutoScroll = true;
             this.tabPage6.Controls.Add(this.guiHeadEditor);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Location = new System.Drawing.Point(4, 40);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(692, 552);
+            this.tabPage6.Size = new System.Drawing.Size(504, 534);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Head";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -369,10 +468,10 @@
             // 
             this.tabPage7.AutoScroll = true;
             this.tabPage7.Controls.Add(this.guiLeftFingerEditor);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Location = new System.Drawing.Point(4, 40);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(692, 552);
+            this.tabPage7.Size = new System.Drawing.Size(504, 534);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Left Finger";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -390,10 +489,10 @@
             // 
             this.tabPage8.AutoScroll = true;
             this.tabPage8.Controls.Add(this.guiLegsEditor);
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Location = new System.Drawing.Point(4, 40);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(692, 552);
+            this.tabPage8.Size = new System.Drawing.Size(504, 534);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Legs";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -411,10 +510,10 @@
             // 
             this.tabPage9.AutoScroll = true;
             this.tabPage9.Controls.Add(this.guiNeckEditor);
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Location = new System.Drawing.Point(4, 40);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(692, 552);
+            this.tabPage9.Size = new System.Drawing.Size(504, 534);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Neck";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -432,10 +531,10 @@
             // 
             this.tabPage10.AutoScroll = true;
             this.tabPage10.Controls.Add(this.guiRightFingerEditor);
-            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Location = new System.Drawing.Point(4, 40);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(692, 552);
+            this.tabPage10.Size = new System.Drawing.Size(504, 534);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Right Finger";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -453,10 +552,10 @@
             // 
             this.tabPage11.AutoScroll = true;
             this.tabPage11.Controls.Add(this.guiShouldersEditor);
-            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Location = new System.Drawing.Point(4, 40);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(692, 552);
+            this.tabPage11.Size = new System.Drawing.Size(504, 534);
             this.tabPage11.TabIndex = 10;
             this.tabPage11.Text = "Shoulders";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -474,10 +573,10 @@
             // 
             this.tabPage12.AutoScroll = true;
             this.tabPage12.Controls.Add(this.guiTorsoEditor);
-            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Location = new System.Drawing.Point(4, 40);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(692, 552);
+            this.tabPage12.Size = new System.Drawing.Size(504, 534);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "Torso";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -495,10 +594,10 @@
             // 
             this.tabPage13.AutoScroll = true;
             this.tabPage13.Controls.Add(this.guiWaistEditor);
-            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Location = new System.Drawing.Point(4, 40);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(692, 552);
+            this.tabPage13.Size = new System.Drawing.Size(504, 534);
             this.tabPage13.TabIndex = 12;
             this.tabPage13.Text = "Waist";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -511,6 +610,16 @@
             this.guiWaistEditor.Name = "guiWaistEditor";
             this.guiWaistEditor.Size = new System.Drawing.Size(486, 337);
             this.guiWaistEditor.TabIndex = 0;
+            // 
+            // guiDoCalculations
+            // 
+            this.guiDoCalculations.Location = new System.Drawing.Point(896, 12);
+            this.guiDoCalculations.Name = "guiDoCalculations";
+            this.guiDoCalculations.Size = new System.Drawing.Size(100, 23);
+            this.guiDoCalculations.TabIndex = 0;
+            this.guiDoCalculations.Text = "Do Calculations";
+            this.guiDoCalculations.UseVisualStyleBackColor = true;
+            this.guiDoCalculations.Click += new System.EventHandler(this.guiDoCalculations_Click);
             // 
             // label1
             // 
@@ -639,7 +748,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.guiItemsVitality);
-            this.groupBox1.Location = new System.Drawing.Point(718, 12);
+            this.groupBox1.Location = new System.Drawing.Point(530, 376);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(156, 214);
             this.groupBox1.TabIndex = 1;
@@ -862,13 +971,18 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(tabControl1);
             this.Controls.Add(this.guiDoCalculations);
             this.Name = "D3CalculatorForm";
             this.Text = "D3 Calculator by ZTn";
             tabPage14.ResumeLayout(false);
-            tabPage14.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -908,7 +1022,6 @@
         #endregion
 
         private System.Windows.Forms.Button guiDoCalculations;
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
@@ -977,5 +1090,9 @@
         private System.Windows.Forms.CheckBox guiSkillAttackSpeed3Percent;
         private System.Windows.Forms.CheckBox guiSkillCriticChance3Percent;
         private System.Windows.Forms.CheckBox guiSkillCriticChance10Percent;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.ComboBox guiHeroClass;
+        private System.Windows.Forms.TextBox guiHeroParagonLevel;
+        private System.Windows.Forms.TextBox guiHeroLevel;
     }
 }

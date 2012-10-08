@@ -38,12 +38,18 @@ namespace ZTn.BNet.D3ProfileExplorer
         public D3CalculatorForm()
         {
             InitializeComponent();
+
+            guiHeroClass.DataSource = new List<String>() { "barbarian", "demon-hunter", "monk", "witch-doctor", "wizard" };
         }
 
         public D3CalculatorForm(Hero hero)
             : this()
         {
             this.hero = hero;
+
+            guiHeroClass.SelectedItem = hero.heroClass;
+            guiHeroLevel.Text = hero.level.ToString();
+            guiHeroParagonLevel.Text = hero.paragonLevel.ToString();
 
             if (hero.items.bracers != null)
                 bracers = Item.getItemFromTooltipParams(hero.items.bracers.tooltipParams);
@@ -93,8 +99,28 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         #endregion
 
+        private Hero getEditedHero()
+        {
+            Hero hero = new Hero();
+            hero.heroClass = (String)guiHeroClass.SelectedItem;
+
+            if (String.IsNullOrEmpty(guiHeroLevel.Text))
+                hero.level = 60;
+            else
+                hero.level = Int32.Parse(guiHeroLevel.Text);
+
+            if (String.IsNullOrEmpty(guiHeroParagonLevel.Text))
+                hero.paragonLevel = 0;
+            else
+                hero.paragonLevel = Int32.Parse(guiHeroParagonLevel.Text);
+
+            return hero;
+        }
+
         private void guiDoCalculations_Click(object sender, EventArgs e)
         {
+            hero = getEditedHero();
+
             List<Item> items = new List<Item>();
             items.Add(guiBracersEditor.getEditedItem());
             items.Add(guiFeetEditor.getEditedItem());
