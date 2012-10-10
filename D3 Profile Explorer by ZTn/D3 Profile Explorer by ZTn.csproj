@@ -59,6 +59,7 @@
     <Compile Include="D3ItemEditor.Designer.cs">
       <DependentUpon>D3ItemEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="HeroSummaryInformation.cs" />
     <Compile Include="D3ProfileExplorer.cs">
       <SubType>Form</SubType>
     </Compile>

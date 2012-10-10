@@ -61,7 +61,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             BattleTag battleTag = new BattleTag(guiBattleTag.Text);
 
-            TreeNode node = new TreeNode("Career of " + battleTag.ToString());
+            TreeNode node = new TreeNode("Career of " + battleTag.ToString() + " on " + D3.D3Api.host);
 
             Career career;
             try
@@ -134,24 +134,27 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void insertContextMenu(TreeNode node, Object d3Object)
         {
-            node.Tag = d3Object;
             if (d3Object is Hero)
             {
+                node.Tag = d3Object;
                 node.ContextMenuStrip = guiHeroContextMenu;
                 node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
             }
             else if (d3Object is HeroSummary)
             {
+                node.Tag = new HeroSummaryInformation(D3.D3Api.host, new BattleTag(guiBattleTag.Text), (HeroSummary)d3Object);
                 node.ContextMenuStrip = guiHeroSummaryContextMenu;
                 node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
             }
             else if (d3Object is ItemSummary)
             {
+                node.Tag = d3Object;
                 node.ContextMenuStrip = guiItemSummaryContextMenu;
                 node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
             }
             else if (d3Object is CareerArtisan)
             {
+                node.Tag = d3Object;
                 node.ContextMenuStrip = guiCareerArtisanContextMenu;
                 node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
             }
@@ -165,16 +168,14 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void exploreHeroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HeroSummary heroSummary = (HeroSummary)guiD3ProfileTreeView.SelectedNode.Tag;
+            HeroSummaryInformation heroSummaryInformation = (HeroSummaryInformation)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            BattleTag battleTag = new BattleTag(guiBattleTag.Text);
-
-            TreeNode node = new TreeNode("Hero " + battleTag.ToString() + " / " + heroSummary.id);
+            TreeNode node = new TreeNode("Hero " + heroSummaryInformation.battleTag + " / " + heroSummaryInformation.heroSummary.id);
 
             Hero hero;
             try
             {
-                hero = Hero.getHeroFromHeroId(battleTag, heroSummary.id);
+                hero = Hero.getHeroFromHeroId(heroSummaryInformation.battleTag, heroSummaryInformation.heroSummary.id);
             }
             catch (FileNotInCacheException)
             {
@@ -290,14 +291,12 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void d3CalculatorHeroSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HeroSummary heroSummary = (HeroSummary)guiD3ProfileTreeView.SelectedNode.Tag;
-
-            BattleTag battleTag = new BattleTag(guiBattleTag.Text);
+            HeroSummaryInformation heroSummaryInformation = (HeroSummaryInformation)guiD3ProfileTreeView.SelectedNode.Tag;
 
             Hero hero;
             try
             {
-                hero = Hero.getHeroFromHeroId(battleTag, heroSummary.id);
+                hero = Hero.getHeroFromHeroId(heroSummaryInformation.battleTag, heroSummaryInformation.heroSummary.id);
             }
             catch (FileNotInCacheException)
             {
