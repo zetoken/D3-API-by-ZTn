@@ -43,6 +43,8 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Armor_Item")]
         public ItemValueRange armorItem;
+        [DataMember(Name = "Armor_Bonus_Item")]
+        public ItemValueRange armorBonusItem;
 
         [DataMember(Name = "Resistance#Arcane")]
         public ItemValueRange resistance_Arcane;
@@ -197,6 +199,8 @@ namespace ZTn.BNet.D3.Items
         public ItemValueRange magicFind;
         [DataMember(Name = "Gold_Find")]
         public ItemValueRange goldFind;
+        [DataMember(Name = "Gold_PickUp_Radius")]
+        public ItemValueRange goldPickUpRadius;
 
         [DataMember(Name = "Sockets")]
         public ItemValueRange sockets;
