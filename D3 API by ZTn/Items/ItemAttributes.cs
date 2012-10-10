@@ -190,6 +190,9 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Durability_Max")]
         public ItemValueRange durability_Max;
 
+        [DataMember(Name = "Hitpoints_Max_Percent_Bonus_Item")]
+        public ItemValueRange hitpointsMaxPercentBonusItem;
+
         [DataMember(Name = "Magic_Find")]
         public ItemValueRange magicFind;
         [DataMember(Name = "Gold_Find")]
