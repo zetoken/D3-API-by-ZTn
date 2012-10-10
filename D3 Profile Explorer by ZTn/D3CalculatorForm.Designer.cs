@@ -109,6 +109,8 @@
             this.guiCalcultatedDamageMaxWithBuffs = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.guiCalculatedAttackPerSecondWithBuffs = new System.Windows.Forms.TextBox();
+            this.guiItemsLifePercent = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             tabPage14 = new System.Windows.Forms.TabPage();
             label17 = new System.Windows.Forms.Label();
@@ -735,6 +737,8 @@
             // groupBox1
             // 
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox1.Controls.Add(this.guiItemsLifePercent);
+            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.guiItemsDexterity);
             this.groupBox1.Controls.Add(this.guiItemsCriticDamage);
             this.groupBox1.Controls.Add(this.label1);
@@ -749,9 +753,9 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.guiItemsVitality);
-            this.groupBox1.Location = new System.Drawing.Point(530, 376);
+            this.groupBox1.Location = new System.Drawing.Point(530, 357);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(156, 214);
+            this.groupBox1.Size = new System.Drawing.Size(156, 233);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Items Summary";
@@ -964,6 +968,23 @@
             this.guiCalculatedAttackPerSecondWithBuffs.Size = new System.Drawing.Size(70, 20);
             this.guiCalculatedAttackPerSecondWithBuffs.TabIndex = 9;
             // 
+            // guiItemsLifePercent
+            // 
+            this.guiItemsLifePercent.Location = new System.Drawing.Point(115, 201);
+            this.guiItemsLifePercent.Name = "guiItemsLifePercent";
+            this.guiItemsLifePercent.ReadOnly = true;
+            this.guiItemsLifePercent.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsLifePercent.TabIndex = 15;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(65, 204);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(44, 13);
+            this.label19.TabIndex = 14;
+            this.label19.Text = "+ % Life";
+            // 
             // D3CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1095,5 +1116,7 @@
         private System.Windows.Forms.ComboBox guiHeroClass;
         private System.Windows.Forms.TextBox guiHeroParagonLevel;
         private System.Windows.Forms.TextBox guiHeroLevel;
+        private System.Windows.Forms.TextBox guiItemsLifePercent;
+        private System.Windows.Forms.Label label19;
     }
 }

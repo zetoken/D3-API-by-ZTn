@@ -179,15 +179,22 @@ namespace ZTn.BNet.D3ProfileExplorer
             populateCalculatedData(guiItemsIntelligence, d3Calculator.heroStuff.attributesRaw.intelligenceItem);
             populateCalculatedData(guiItemsStrength, d3Calculator.heroStuff.attributesRaw.strengthItem);
             populateCalculatedData(guiItemsVitality, d3Calculator.heroStuff.attributesRaw.vitalityItem);
-            populateCalculatedData(guiItemsCriticChance, d3Calculator.heroStuff.attributesRaw.critPercentBonusCapped);
-            populateCalculatedData(guiItemsSpeedAttack, d3Calculator.heroStuff.attributesRaw.attacksPerSecondPercent);
-            populateCalculatedData(guiItemsCriticDamage, d3Calculator.heroStuff.attributesRaw.critDamagePercent);
+            populateCalculatedDataPercent(guiItemsCriticChance, d3Calculator.heroStuff.attributesRaw.critPercentBonusCapped);
+            populateCalculatedDataPercent(guiItemsSpeedAttack, d3Calculator.heroStuff.attributesRaw.attacksPerSecondPercent);
+            populateCalculatedDataPercent(guiItemsCriticDamage, d3Calculator.heroStuff.attributesRaw.critDamagePercent);
+            populateCalculatedDataPercent(guiItemsLifePercent, d3Calculator.heroStuff.attributesRaw.hitpointsMaxPercentBonusItem);
         }
 
         private void populateCalculatedData(TextBox textBox, ItemValueRange itemValueRange)
         {
             if (itemValueRange != null)
                 textBox.Text = itemValueRange.min.ToString();
+        }
+
+        private void populateCalculatedDataPercent(TextBox textBox, ItemValueRange itemValueRange)
+        {
+            if (itemValueRange != null)
+                textBox.Text = (100 * itemValueRange.min).ToString();
         }
     }
 }

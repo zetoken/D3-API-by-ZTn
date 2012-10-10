@@ -116,5 +116,23 @@ namespace ZTn.BNet.D3.Calculator
             new Item(new ItemAttributes() { critDamagePercent = new ItemValueRange(0.90) }) { name = "+ 90% Critic Damage" },
             new Item(new ItemAttributes() { critDamagePercent = new ItemValueRange(1.00) }) { name = "+ 100% Critic Damage" }
         };
+
+        public static List<Item> lifePercent = new List<Item>()
+        {
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.05) }) { name = "+ 5% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.06) }) { name = "+ 6% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.07) }) { name = "+ 7% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.08) }) { name = "+ 8% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.09) }) { name = "+ 9% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.10) }) { name = "+ 10% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.11) }) { name = "+ 11% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.12) }) { name = "+ 12% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.13) }) { name = "+ 13% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.14) }) { name = "+ 14% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.15) }) { name = "+ 15% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.16) }) { name = "+ 16% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.17) }) { name = "+ 17% Life" },
+            new Item(new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.18) }) { name = "+ 18% Life" }
+        };
     }
 }

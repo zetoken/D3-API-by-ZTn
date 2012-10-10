@@ -29,6 +29,7 @@ namespace ZTn.BNet.D3.Calculator
             gems1.AddRange(GemHelper.vitality);
             gems1.AddRange(GemHelper.damage);
             gems1.AddRange(GemHelper.criticDamage);
+            gems1.AddRange(GemHelper.lifePercent);
             gems2 = new List<Item>(gems1);
             gems3 = new List<Item>(gems1);
 
@@ -48,6 +49,14 @@ namespace ZTn.BNet.D3.Calculator
                 textBox.Text = String.Empty;
         }
 
+        private void populateDataPercent(TextBox textBox, ItemValueRange itemValueRange)
+        {
+            if (itemValueRange != null && itemValueRange.min != 0)
+                textBox.Text = (100 * itemValueRange.min).ToString();
+            else
+                textBox.Text = String.Empty;
+        }
+
         private ItemValueRange getData(TextBox textBox)
         {
             ItemValueRange data;
@@ -56,6 +65,17 @@ namespace ZTn.BNet.D3.Calculator
                 data = null;
             else
                 data = new ItemValueRange(Double.Parse(textBox.Text));
+            return data;
+        }
+
+        private ItemValueRange getDataPercent(TextBox textBox)
+        {
+            ItemValueRange data;
+
+            if (String.IsNullOrEmpty(textBox.Text))
+                data = null;
+            else
+                data = new ItemValueRange(Double.Parse(textBox.Text) / 100);
             return data;
         }
 
@@ -127,6 +147,17 @@ namespace ZTn.BNet.D3.Calculator
                     }
                 }
             }
+            else if (equippedGem.attributesRaw.hitpointsMaxPercentBonusItem != null)
+            {
+                foreach (Item gem in gems1)
+                {
+                    if ((gem.attributesRaw.hitpointsMaxPercentBonusItem != null) && (gem.attributesRaw.hitpointsMaxPercentBonusItem.min == equippedGem.attributesRaw.hitpointsMaxPercentBonusItem.min))
+                    {
+                        comboBox.SelectedItem = gem;
+                        break;
+                    }
+                }
+            }
         }
 
         public void setEditedItem(Item item)
@@ -141,9 +172,10 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiIntelligence, attr.intelligenceItem);
                 populateData(guiStrength, attr.strengthItem);
                 populateData(guiVitality, attr.vitalityItem);
-                populateData(guiAttackSpeed, attr.attacksPerSecondPercent);
-                populateData(guiCriticDamage, attr.critDamagePercent);
-                populateData(guiCriticChance, attr.critPercentBonusCapped);
+                populateDataPercent(guiAttackSpeed, attr.attacksPerSecondPercent);
+                populateDataPercent(guiCriticDamage, attr.critDamagePercent);
+                populateDataPercent(guiCriticChance, attr.critPercentBonusCapped);
+                populateDataPercent(guiHitpointsMaxPercent, attr.hitpointsMaxPercentBonusItem);
 
                 // Weapon Characterics
                 if (attr.attacksPerSecondItemPercent == null)
@@ -215,9 +247,10 @@ namespace ZTn.BNet.D3.Calculator
             attr.intelligenceItem = getData(guiIntelligence);
             attr.strengthItem = getData(guiStrength);
             attr.vitalityItem = getData(guiVitality);
-            attr.attacksPerSecondPercent = getData(guiAttackSpeed);
-            attr.critDamagePercent = getData(guiCriticDamage);
-            attr.critPercentBonusCapped = getData(guiCriticChance);
+            attr.attacksPerSecondPercent = getDataPercent(guiAttackSpeed);
+            attr.critDamagePercent = getDataPercent(guiCriticDamage);
+            attr.critPercentBonusCapped = getDataPercent(guiCriticChance);
+            attr.hitpointsMaxPercentBonusItem = getDataPercent(guiHitpointsMaxPercent);
 
             attr.attacksPerSecondItem = getData(guiWeaponAttackPerSecond);
 

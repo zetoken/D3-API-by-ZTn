@@ -33,6 +33,7 @@
             System.Windows.Forms.Label label11;
             System.Windows.Forms.Label label24;
             System.Windows.Forms.GroupBox groupBox3;
+            System.Windows.Forms.Label label27;
             System.Windows.Forms.Label label18;
             System.Windows.Forms.Label label19;
             System.Windows.Forms.Label label17;
@@ -57,6 +58,7 @@
             System.Windows.Forms.Label label6;
             System.Windows.Forms.GroupBox groupBox1;
             System.Windows.Forms.Label label25;
+            this.guiHitpointsMaxPercent = new System.Windows.Forms.TextBox();
             this.guiCriticDamage = new System.Windows.Forms.TextBox();
             this.guiCriticChance = new System.Windows.Forms.TextBox();
             this.guiAttackSpeed = new System.Windows.Forms.TextBox();
@@ -102,6 +104,7 @@
             label11 = new System.Windows.Forms.Label();
             label24 = new System.Windows.Forms.Label();
             groupBox3 = new System.Windows.Forms.GroupBox();
+            label27 = new System.Windows.Forms.Label();
             label18 = new System.Windows.Forms.Label();
             label19 = new System.Windows.Forms.Label();
             label17 = new System.Windows.Forms.Label();
@@ -172,6 +175,8 @@
             // 
             groupBox3.AutoSize = true;
             groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox3.Controls.Add(label27);
+            groupBox3.Controls.Add(this.guiHitpointsMaxPercent);
             groupBox3.Controls.Add(label18);
             groupBox3.Controls.Add(label24);
             groupBox3.Controls.Add(label23);
@@ -188,10 +193,26 @@
             groupBox3.Controls.Add(this.guiDexterity);
             groupBox3.Location = new System.Drawing.Point(327, 3);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new System.Drawing.Size(156, 214);
+            groupBox3.Size = new System.Drawing.Size(156, 240);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Characteristics";
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Location = new System.Drawing.Point(65, 204);
+            label27.Name = "label27";
+            label27.Size = new System.Drawing.Size(44, 13);
+            label27.TabIndex = 14;
+            label27.Text = "+ % Life";
+            // 
+            // guiHitpointsMaxPercent
+            // 
+            this.guiHitpointsMaxPercent.Location = new System.Drawing.Point(115, 201);
+            this.guiHitpointsMaxPercent.Name = "guiHitpointsMaxPercent";
+            this.guiHitpointsMaxPercent.Size = new System.Drawing.Size(35, 20);
+            this.guiHitpointsMaxPercent.TabIndex = 15;
             // 
             // label18
             // 
@@ -597,7 +618,7 @@
             groupBox1.Size = new System.Drawing.Size(156, 266);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Damages";
+            groupBox1.Text = "Weapon Only Damages";
             // 
             // label25
             // 
@@ -819,6 +840,7 @@
         public System.Windows.Forms.TextBox guiBonusDamageMinHoly;
         public System.Windows.Forms.TextBox guiWeaponDamageMaxHoly;
         public System.Windows.Forms.TextBox guiWeaponDamageMinHoly;
+        public System.Windows.Forms.TextBox guiHitpointsMaxPercent;
 
 
     }
