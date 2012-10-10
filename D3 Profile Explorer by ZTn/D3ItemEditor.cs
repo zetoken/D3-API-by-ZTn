@@ -176,6 +176,7 @@ namespace ZTn.BNet.D3.Calculator
                 populateDataPercent(guiCriticDamage, attr.critDamagePercent);
                 populateDataPercent(guiCriticChance, attr.critPercentBonusCapped);
                 populateDataPercent(guiHitpointsMaxPercent, attr.hitpointsMaxPercentBonusItem);
+                populateData(guiArmor, attr.armorItem + attr.armorBonusItem);
 
                 // Weapon Characterics
                 if (attr.attacksPerSecondItemPercent == null)
@@ -219,6 +220,14 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiBonusDamageMaxPhysical, attr.damageMin_Physical + attr.damageDelta_Physical);
                 populateData(guiBonusDamageMaxPoison, attr.damageMin_Poison + attr.damageDelta_Poison);
 
+                populateData(guiResistance_All, attr.resistanceAll);
+                populateData(guiResistance_Arcane, attr.resistance_Arcane);
+                populateData(guiResistance_Cold, attr.resistance_Cold);
+                populateData(guiResistance_Fire, attr.resistance_Fire);
+                populateData(guiResistance_Lightning, attr.resistance_Lightning);
+                populateData(guiResistance_Physical, attr.resistance_Physical);
+                populateData(guiResistance_Poison, attr.resistance_Poison);
+
                 // GemHelper
                 if (item.gems != null)
                 {
@@ -251,6 +260,7 @@ namespace ZTn.BNet.D3.Calculator
             attr.critDamagePercent = getDataPercent(guiCriticDamage);
             attr.critPercentBonusCapped = getDataPercent(guiCriticChance);
             attr.hitpointsMaxPercentBonusItem = getDataPercent(guiHitpointsMaxPercent);
+            attr.armorItem = getData(guiArmor);
 
             attr.attacksPerSecondItem = getData(guiWeaponAttackPerSecond);
 
@@ -285,6 +295,14 @@ namespace ZTn.BNet.D3.Calculator
             attr.damageDelta_Lightning = getData(guiBonusDamageMaxLightning) - attr.damageMin_Lightning;
             attr.damageDelta_Physical = getData(guiBonusDamageMaxPhysical) - attr.damageMin_Physical;
             attr.damageDelta_Poison = getData(guiBonusDamageMaxPoison) - attr.damageMin_Poison;
+
+            attr.resistanceAll = getData(guiResistance_All);
+            attr.resistance_Arcane = getData(guiResistance_Arcane);
+            attr.resistance_Cold = getData(guiResistance_Cold);
+            attr.resistance_Fire = getData(guiResistance_Fire);
+            attr.resistance_Lightning = getData(guiResistance_Lightning);
+            attr.resistance_Physical = getData(guiResistance_Physical);
+            attr.resistance_Poison = getData(guiResistance_Poison);
 
             item.attributesRaw = attr;
             List<Item> gems = new List<Item>();

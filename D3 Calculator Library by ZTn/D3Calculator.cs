@@ -78,7 +78,8 @@ namespace ZTn.BNet.D3.Calculator
             multiplier *= 1 + critPercentBonusCapped * critDamagePercent;
 
             // Update dps with main statistic
-            multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * hero.level) + (hero.paragonLevel * 3)) / 100;
+            double characteristic = getMainCharacteristic().min + (7 + 3 * hero.level) + (hero.paragonLevel * 3);
+            multiplier *= 1 + characteristic / 100;
 
             return multiplier;
         }
@@ -94,6 +95,24 @@ namespace ZTn.BNet.D3.Calculator
             multiplier *= 1 + getIncreasedAttackSpeed();
 
             return multiplier;
+        }
+
+        public double getHeroArmor()
+        {
+            double armor = 0;
+
+            // Update with base item's armor
+            if (heroStuff.attributesRaw.armorItem != null)
+                armor += heroStuff.attributesRaw.armorItem.min;
+
+            // Update with item's bonus armor
+            if (heroStuff.attributesRaw.armorBonusItem != null)
+                armor += heroStuff.attributesRaw.armorBonusItem.min;
+
+            // Update with strength bonus
+            armor += getHeroStrength();
+
+            return armor;
         }
 
         private double getHeroDPSAsIs()
@@ -130,6 +149,186 @@ namespace ZTn.BNet.D3.Calculator
             double dps = getHeroDPSAsIs();
 
             return dps;
+        }
+
+        public double getHeroHitpoints()
+        {
+            // Use hitpoints formula
+            double hitpoints;
+            if (hero.level < 35)
+                hitpoints = 36 + 4 * hero.level + 10 * getHeroVitality();
+            else
+                hitpoints = 36 + 4 * hero.level + (hero.level - 25) * getHeroVitality();
+
+            // Update with +% Life bonus
+            if (heroStuff.attributesRaw.hitpointsMaxPercentBonusItem != null)
+                hitpoints *= 1 + heroStuff.attributesRaw.hitpointsMaxPercentBonusItem.min;
+
+            return hitpoints;
+        }
+
+        public double getHeroResistance_All()
+        {
+            double resist = 0;
+
+            if (heroStuff.attributesRaw.resistanceAll != null)
+                resist = heroStuff.attributesRaw.resistanceAll.min;
+
+            // Update with intelligence bonus
+            resist += getHeroIntelligence() / 10;
+
+            return resist;
+        }
+
+        public double getHeroResistance_Arcane()
+        {
+            double resist = getHeroResistance_All();
+
+            if (heroStuff.attributesRaw.resistance_Arcane != null)
+                resist += heroStuff.attributesRaw.resistance_Arcane.min;
+
+            return resist;
+        }
+
+        public double getHeroResistance_Cold()
+        {
+            double resist = getHeroResistance_All();
+
+            if (heroStuff.attributesRaw.resistance_Cold != null)
+                resist += heroStuff.attributesRaw.resistance_Cold.min;
+
+            return resist;
+        }
+
+        public double getHeroResistance_Fire()
+        {
+            double resist = getHeroResistance_All();
+
+            if (heroStuff.attributesRaw.resistance_Fire != null)
+                resist += heroStuff.attributesRaw.resistance_Fire.min;
+
+            return resist;
+        }
+
+        public double getHeroResistance_Lightning()
+        {
+            double resist = getHeroResistance_All();
+
+            if (heroStuff.attributesRaw.resistance_Lightning != null)
+                resist += heroStuff.attributesRaw.resistance_Lightning.min;
+
+            return resist;
+        }
+
+        public double getHeroResistance_Physical()
+        {
+            double resist = getHeroResistance_All();
+
+            if (heroStuff.attributesRaw.resistance_Physical != null)
+                resist += heroStuff.attributesRaw.resistance_Physical.min;
+
+            return resist;
+        }
+
+        public double getHeroResistance_Poison()
+        {
+            double resist = getHeroResistance_All();
+
+            if (heroStuff.attributesRaw.resistance_Poison != null)
+                resist += heroStuff.attributesRaw.resistance_Poison.min;
+
+            return resist;
+        }
+
+        public double getHeroDexterity()
+        {
+            double characteristic = 0;
+
+            switch (hero.heroClass)
+            {
+                case "barbarian":
+                case "witch-doctor":
+                case "wizard":
+                    characteristic = 7 + 1 * hero.level + 1 * hero.paragonLevel;
+                    break;
+                case "monk":
+                case "demon-hunter":
+                    characteristic = 7 + 3 * hero.level + 3 * hero.paragonLevel;
+                    break;
+                default:
+                    break;
+            }
+
+            // Update with item bonus
+            if (heroStuff.attributesRaw.dexterityItem != null)
+                characteristic += heroStuff.attributesRaw.dexterityItem.min;
+
+            return characteristic;
+        }
+
+        public double getHeroIntelligence()
+        {
+            double characteristic = 0;
+
+            switch (hero.heroClass)
+            {
+                case "monk":
+                case "demon-hunter":
+                case "barbarian":
+                    characteristic = 7 + 1 * hero.level + 1 * hero.paragonLevel;
+                    break;
+                case "witch-doctor":
+                case "wizard":
+                    characteristic = 7 + 3 * hero.level + 3 * hero.paragonLevel;
+                    break;
+                default:
+                    break;
+            }
+
+            // Update with item bonus
+            if (heroStuff.attributesRaw.intelligenceItem != null)
+                characteristic += heroStuff.attributesRaw.intelligenceItem.min;
+
+            return characteristic;
+        }
+
+        public double getHeroStrength()
+        {
+            double characteristic = 0;
+
+            switch (hero.heroClass)
+            {
+                case "monk":
+                case "demon-hunter":
+                case "witch-doctor":
+                case "wizard":
+                    characteristic = 7 + 1 * hero.level + 1 * hero.paragonLevel;
+                    break;
+                case "barbarian":
+                    characteristic = 7 + 3 * hero.level + 3 * hero.paragonLevel;
+                    break;
+                default:
+                    break;
+            }
+
+            // Update with item bonus
+            if (heroStuff.attributesRaw.strengthItem != null)
+                characteristic += heroStuff.attributesRaw.strengthItem.min;
+
+            return characteristic;
+        }
+
+        public double getHeroVitality()
+        {
+            double vitality = 0;
+
+            vitality = 7 + 2 * hero.level + 2 * hero.paragonLevel;
+
+            // Update with item bonus
+            if (heroStuff.attributesRaw.vitalityItem != null)
+                vitality += heroStuff.attributesRaw.vitalityItem.min;
+
+            return vitality;
         }
 
         public double getIncreasedAttackSpeed()

@@ -167,6 +167,15 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiCalcultatedDamageMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal()).ToString();
             guiCalcultatedDamageCriticMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic()).ToString();
             guiCalcultatedDamageCriticMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic()).ToString();
+            guiCalculatedHitpoints.Text = d3Calculator.getHeroHitpoints().ToString();
+            guiCalculatedArmor.Text = d3Calculator.getHeroArmor().ToString();
+            guiCalculatedResistance_Arcane.Text = d3Calculator.getHeroResistance_Arcane().ToString();
+            guiCalculatedResistance_Cold.Text = d3Calculator.getHeroResistance_Cold().ToString();
+            guiCalculatedResistance_Fire.Text = d3Calculator.getHeroResistance_Fire().ToString();
+            guiCalculatedResistance_Lightning.Text = d3Calculator.getHeroResistance_Lightning().ToString();
+            guiCalculatedResistance_Physical.Text = d3Calculator.getHeroResistance_Physical().ToString();
+            guiCalculatedResistance_Poison.Text = d3Calculator.getHeroResistance_Poison().ToString();
+            guiCalculatedResistance_All.Text = d3Calculator.getHeroResistance_All().ToString();
 
             guiCalculatedDPSWithBuffs.Text = d3Calculator.getHeroDPS(addedBonus, multipliedBonus, skillBonus).ToString();
             guiCalculatedAttackPerSecondWithBuffs.Text = d3Calculator.getActualAttackSpeed().ToString();
@@ -183,6 +192,13 @@ namespace ZTn.BNet.D3ProfileExplorer
             populateCalculatedDataPercent(guiItemsSpeedAttack, d3Calculator.heroStuff.attributesRaw.attacksPerSecondPercent);
             populateCalculatedDataPercent(guiItemsCriticDamage, d3Calculator.heroStuff.attributesRaw.critDamagePercent);
             populateCalculatedDataPercent(guiItemsLifePercent, d3Calculator.heroStuff.attributesRaw.hitpointsMaxPercentBonusItem);
+            populateCalculatedData(guiItemsResistance_All, d3Calculator.heroStuff.attributesRaw.resistanceAll);
+            populateCalculatedData(guiItemsResistance_Arcane, d3Calculator.heroStuff.attributesRaw.resistance_Arcane);
+            populateCalculatedData(guiItemsResistance_Cold, d3Calculator.heroStuff.attributesRaw.resistance_Cold);
+            populateCalculatedData(guiItemsResistance_Fire, d3Calculator.heroStuff.attributesRaw.resistance_Fire);
+            populateCalculatedData(guiItemsResistance_Lightning, d3Calculator.heroStuff.attributesRaw.resistance_Lightning);
+            populateCalculatedData(guiItemsResistance_Physical, d3Calculator.heroStuff.attributesRaw.resistance_Physical);
+            populateCalculatedData(guiItemsResistance_Poison, d3Calculator.heroStuff.attributesRaw.resistance_Poison);
         }
 
         private void populateCalculatedData(TextBox textBox, ItemValueRange itemValueRange)

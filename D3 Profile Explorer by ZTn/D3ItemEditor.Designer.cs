@@ -33,6 +33,7 @@
             System.Windows.Forms.Label label11;
             System.Windows.Forms.Label label24;
             System.Windows.Forms.GroupBox groupBox3;
+            System.Windows.Forms.Label label35;
             System.Windows.Forms.Label label27;
             System.Windows.Forms.Label label18;
             System.Windows.Forms.Label label19;
@@ -58,6 +59,15 @@
             System.Windows.Forms.Label label6;
             System.Windows.Forms.GroupBox groupBox1;
             System.Windows.Forms.Label label25;
+            System.Windows.Forms.GroupBox groupBox5;
+            System.Windows.Forms.Label label33;
+            System.Windows.Forms.Label label34;
+            System.Windows.Forms.Label label32;
+            System.Windows.Forms.Label label28;
+            System.Windows.Forms.Label label31;
+            System.Windows.Forms.Label label29;
+            System.Windows.Forms.Label label30;
+            this.guiArmor = new System.Windows.Forms.TextBox();
             this.guiHitpointsMaxPercent = new System.Windows.Forms.TextBox();
             this.guiCriticDamage = new System.Windows.Forms.TextBox();
             this.guiCriticChance = new System.Windows.Forms.TextBox();
@@ -95,6 +105,13 @@
             this.guiWeaponAttackPerSecond = new System.Windows.Forms.TextBox();
             this.guiWeaponDamageMaxArcane = new System.Windows.Forms.TextBox();
             this.guiWeaponDamageMinArcane = new System.Windows.Forms.TextBox();
+            this.guiResistance_Lightning = new System.Windows.Forms.TextBox();
+            this.guiResistance_Physical = new System.Windows.Forms.TextBox();
+            this.guiResistance_Poison = new System.Windows.Forms.TextBox();
+            this.guiResistance_All = new System.Windows.Forms.TextBox();
+            this.guiResistance_Fire = new System.Windows.Forms.TextBox();
+            this.guiResistance_Cold = new System.Windows.Forms.TextBox();
+            this.guiResistance_Arcane = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.guiGem3 = new System.Windows.Forms.ComboBox();
             this.guiGem2 = new System.Windows.Forms.ComboBox();
@@ -105,6 +122,7 @@
             label11 = new System.Windows.Forms.Label();
             label24 = new System.Windows.Forms.Label();
             groupBox3 = new System.Windows.Forms.GroupBox();
+            label35 = new System.Windows.Forms.Label();
             label27 = new System.Windows.Forms.Label();
             label18 = new System.Windows.Forms.Label();
             label19 = new System.Windows.Forms.Label();
@@ -130,9 +148,18 @@
             label6 = new System.Windows.Forms.Label();
             groupBox1 = new System.Windows.Forms.GroupBox();
             label25 = new System.Windows.Forms.Label();
+            groupBox5 = new System.Windows.Forms.GroupBox();
+            label33 = new System.Windows.Forms.Label();
+            label34 = new System.Windows.Forms.Label();
+            label32 = new System.Windows.Forms.Label();
+            label28 = new System.Windows.Forms.Label();
+            label31 = new System.Windows.Forms.Label();
+            label29 = new System.Windows.Forms.Label();
+            label30 = new System.Windows.Forms.Label();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
+            groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -176,6 +203,8 @@
             // 
             groupBox3.AutoSize = true;
             groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox3.Controls.Add(label35);
+            groupBox3.Controls.Add(this.guiArmor);
             groupBox3.Controls.Add(label27);
             groupBox3.Controls.Add(this.guiHitpointsMaxPercent);
             groupBox3.Controls.Add(label18);
@@ -194,10 +223,26 @@
             groupBox3.Controls.Add(this.guiDexterity);
             groupBox3.Location = new System.Drawing.Point(327, 3);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new System.Drawing.Size(156, 240);
+            groupBox3.Size = new System.Drawing.Size(156, 266);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Characteristics";
+            // 
+            // label35
+            // 
+            label35.AutoSize = true;
+            label35.Location = new System.Drawing.Point(75, 230);
+            label35.Name = "label35";
+            label35.Size = new System.Drawing.Size(34, 13);
+            label35.TabIndex = 16;
+            label35.Text = "Armor";
+            // 
+            // guiArmor
+            // 
+            this.guiArmor.Location = new System.Drawing.Point(115, 227);
+            this.guiArmor.Name = "guiArmor";
+            this.guiArmor.Size = new System.Drawing.Size(35, 20);
+            this.guiArmor.TabIndex = 17;
             // 
             // label27
             // 
@@ -735,15 +780,151 @@
             this.guiWeaponDamageMinArcane.Size = new System.Drawing.Size(35, 20);
             this.guiWeaponDamageMinArcane.TabIndex = 3;
             // 
+            // groupBox5
+            // 
+            groupBox5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox5.Controls.Add(label33);
+            groupBox5.Controls.Add(this.guiResistance_Lightning);
+            groupBox5.Controls.Add(label34);
+            groupBox5.Controls.Add(this.guiResistance_Physical);
+            groupBox5.Controls.Add(label32);
+            groupBox5.Controls.Add(this.guiResistance_Poison);
+            groupBox5.Controls.Add(this.guiResistance_All);
+            groupBox5.Controls.Add(label28);
+            groupBox5.Controls.Add(label31);
+            groupBox5.Controls.Add(this.guiResistance_Fire);
+            groupBox5.Controls.Add(label29);
+            groupBox5.Controls.Add(this.guiResistance_Cold);
+            groupBox5.Controls.Add(label30);
+            groupBox5.Controls.Add(this.guiResistance_Arcane);
+            groupBox5.Location = new System.Drawing.Point(3, 275);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new System.Drawing.Size(480, 84);
+            groupBox5.TabIndex = 5;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Resistances";
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Location = new System.Drawing.Point(348, 48);
+            label33.Name = "label33";
+            label33.Size = new System.Drawing.Size(38, 13);
+            label33.TabIndex = 33;
+            label33.Text = "poison";
+            // 
+            // guiResistance_Lightning
+            // 
+            this.guiResistance_Lightning.Location = new System.Drawing.Point(180, 45);
+            this.guiResistance_Lightning.Name = "guiResistance_Lightning";
+            this.guiResistance_Lightning.Size = new System.Drawing.Size(35, 20);
+            this.guiResistance_Lightning.TabIndex = 34;
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Location = new System.Drawing.Point(235, 48);
+            label34.Name = "label34";
+            label34.Size = new System.Drawing.Size(45, 13);
+            label34.TabIndex = 31;
+            label34.Text = "physical";
+            // 
+            // guiResistance_Physical
+            // 
+            this.guiResistance_Physical.Location = new System.Drawing.Point(286, 45);
+            this.guiResistance_Physical.Name = "guiResistance_Physical";
+            this.guiResistance_Physical.Size = new System.Drawing.Size(35, 20);
+            this.guiResistance_Physical.TabIndex = 32;
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Location = new System.Drawing.Point(128, 48);
+            label32.Name = "label32";
+            label32.Size = new System.Drawing.Size(46, 13);
+            label32.TabIndex = 29;
+            label32.Text = "lightning";
+            // 
+            // guiResistance_Poison
+            // 
+            this.guiResistance_Poison.Location = new System.Drawing.Point(392, 45);
+            this.guiResistance_Poison.Name = "guiResistance_Poison";
+            this.guiResistance_Poison.Size = new System.Drawing.Size(35, 20);
+            this.guiResistance_Poison.TabIndex = 30;
+            // 
+            // guiResistance_All
+            // 
+            this.guiResistance_All.Location = new System.Drawing.Point(74, 19);
+            this.guiResistance_All.Name = "guiResistance_All";
+            this.guiResistance_All.Size = new System.Drawing.Size(35, 20);
+            this.guiResistance_All.TabIndex = 3;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new System.Drawing.Point(51, 22);
+            label28.Name = "label28";
+            label28.Size = new System.Drawing.Size(17, 13);
+            label28.TabIndex = 2;
+            label28.Text = "all";
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Location = new System.Drawing.Point(365, 22);
+            label31.Name = "label31";
+            label31.Size = new System.Drawing.Size(21, 13);
+            label31.TabIndex = 27;
+            label31.Text = "fire";
+            // 
+            // guiResistance_Fire
+            // 
+            this.guiResistance_Fire.Location = new System.Drawing.Point(392, 19);
+            this.guiResistance_Fire.Name = "guiResistance_Fire";
+            this.guiResistance_Fire.Size = new System.Drawing.Size(35, 20);
+            this.guiResistance_Fire.TabIndex = 28;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new System.Drawing.Point(253, 22);
+            label29.Name = "label29";
+            label29.Size = new System.Drawing.Size(27, 13);
+            label29.TabIndex = 25;
+            label29.Text = "cold";
+            // 
+            // guiResistance_Cold
+            // 
+            this.guiResistance_Cold.Location = new System.Drawing.Point(286, 19);
+            this.guiResistance_Cold.Name = "guiResistance_Cold";
+            this.guiResistance_Cold.Size = new System.Drawing.Size(35, 20);
+            this.guiResistance_Cold.TabIndex = 26;
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Location = new System.Drawing.Point(134, 22);
+            label30.Name = "label30";
+            label30.Size = new System.Drawing.Size(40, 13);
+            label30.TabIndex = 23;
+            label30.Text = "arcane";
+            // 
+            // guiResistance_Arcane
+            // 
+            this.guiResistance_Arcane.Location = new System.Drawing.Point(180, 19);
+            this.guiResistance_Arcane.Name = "guiResistance_Arcane";
+            this.guiResistance_Arcane.Size = new System.Drawing.Size(35, 20);
+            this.guiResistance_Arcane.TabIndex = 24;
+            // 
             // groupBox4
             // 
             this.groupBox4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox4.Controls.Add(this.guiGem3);
             this.groupBox4.Controls.Add(this.guiGem2);
             this.groupBox4.Controls.Add(this.guiGem1);
-            this.groupBox4.Location = new System.Drawing.Point(3, 275);
+            this.groupBox4.Location = new System.Drawing.Point(3, 365);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(474, 59);
+            this.groupBox4.Size = new System.Drawing.Size(480, 59);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Equipped Gems";
@@ -777,7 +958,7 @@
             // 
             // GuiReset
             // 
-            this.GuiReset.Location = new System.Drawing.Point(408, 340);
+            this.GuiReset.Location = new System.Drawing.Point(408, 430);
             this.GuiReset.Name = "GuiReset";
             this.GuiReset.Size = new System.Drawing.Size(75, 23);
             this.GuiReset.TabIndex = 4;
@@ -791,19 +972,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.GuiReset);
             this.Controls.Add(this.groupBox4);
+            this.Controls.Add(groupBox5);
+            this.Controls.Add(this.GuiReset);
             this.Controls.Add(groupBox3);
             this.Controls.Add(groupBox2);
             this.Controls.Add(groupBox1);
             this.Name = "D3ItemEditor";
-            this.Size = new System.Drawing.Size(486, 366);
+            this.Size = new System.Drawing.Size(486, 456);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -854,6 +1038,14 @@
         public System.Windows.Forms.TextBox guiWeaponDamageMinHoly;
         public System.Windows.Forms.TextBox guiHitpointsMaxPercent;
         private System.Windows.Forms.Button GuiReset;
+        public System.Windows.Forms.TextBox guiResistance_Lightning;
+        public System.Windows.Forms.TextBox guiResistance_Physical;
+        public System.Windows.Forms.TextBox guiResistance_Poison;
+        public System.Windows.Forms.TextBox guiResistance_Fire;
+        public System.Windows.Forms.TextBox guiResistance_Cold;
+        public System.Windows.Forms.TextBox guiResistance_All;
+        public System.Windows.Forms.TextBox guiResistance_Arcane;
+        public System.Windows.Forms.TextBox guiArmor;
 
 
     }
