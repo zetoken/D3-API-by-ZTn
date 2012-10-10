@@ -99,6 +99,7 @@
             this.guiGem3 = new System.Windows.Forms.ComboBox();
             this.guiGem2 = new System.Windows.Forms.ComboBox();
             this.guiGem1 = new System.Windows.Forms.ComboBox();
+            this.GuiReset = new System.Windows.Forms.Button();
             label23 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
@@ -774,18 +775,29 @@
             this.guiGem1.Size = new System.Drawing.Size(121, 21);
             this.guiGem1.TabIndex = 0;
             // 
+            // GuiReset
+            // 
+            this.GuiReset.Location = new System.Drawing.Point(408, 340);
+            this.GuiReset.Name = "GuiReset";
+            this.GuiReset.Size = new System.Drawing.Size(75, 23);
+            this.GuiReset.TabIndex = 4;
+            this.GuiReset.Text = "Restore Item";
+            this.GuiReset.UseVisualStyleBackColor = true;
+            this.GuiReset.Click += new System.EventHandler(this.GuiReset_Click);
+            // 
             // D3ItemEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.GuiReset);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(groupBox3);
             this.Controls.Add(groupBox2);
             this.Controls.Add(groupBox1);
             this.Name = "D3ItemEditor";
-            this.Size = new System.Drawing.Size(486, 337);
+            this.Size = new System.Drawing.Size(486, 366);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -841,6 +853,7 @@
         public System.Windows.Forms.TextBox guiWeaponDamageMaxHoly;
         public System.Windows.Forms.TextBox guiWeaponDamageMinHoly;
         public System.Windows.Forms.TextBox guiHitpointsMaxPercent;
+        private System.Windows.Forms.Button GuiReset;
 
 
     }

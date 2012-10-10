@@ -306,5 +306,10 @@ namespace ZTn.BNet.D3.Calculator
 
             return item;
         }
+
+        private void GuiReset_Click(object sender, EventArgs e)
+        {
+            setEditedItem((Item)Tag);
+        }
     }
 }
