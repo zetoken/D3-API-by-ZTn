@@ -168,6 +168,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiCalcultatedDamageCriticMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic()).ToString();
             guiCalcultatedDamageCriticMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic()).ToString();
             guiCalculatedHitpoints.Text = d3Calculator.getHeroHitpoints().ToString();
+
             guiCalculatedArmor.Text = d3Calculator.getHeroArmor().ToString();
             guiCalculatedResistance_Arcane.Text = d3Calculator.getHeroResistance_Arcane().ToString();
             guiCalculatedResistance_Cold.Text = d3Calculator.getHeroResistance_Cold().ToString();
@@ -176,6 +177,14 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiCalculatedResistance_Physical.Text = d3Calculator.getHeroResistance_Physical().ToString();
             guiCalculatedResistance_Poison.Text = d3Calculator.getHeroResistance_Poison().ToString();
             guiCalculatedResistance_All.Text = d3Calculator.getHeroResistance_All().ToString();
+
+            guiCalculatedDamageReduction_Armor.Text = (100 * d3Calculator.getHeroDamageReduction_Armor(hero.level)).ToString();
+            guiCalculatedDamageReduction_Arcane.Text = (100 * d3Calculator.getHeroDamageReduction_Arcane(hero.level)).ToString();
+            guiCalculatedDamageReduction_Cold.Text = (100 * d3Calculator.getHeroDamageReduction_Cold(hero.level)).ToString();
+            guiCalculatedDamageReduction_Fire.Text = (100 * d3Calculator.getHeroDamageReduction_Fire(hero.level)).ToString();
+            guiCalculatedDamageReduction_Lightning.Text = (100 * d3Calculator.getHeroDamageReduction_Lightning(hero.level)).ToString();
+            guiCalculatedDamageReduction_Physical.Text = (100 * d3Calculator.getHeroDamageReduction_Physical(hero.level)).ToString();
+            guiCalculatedDamageReduction_Poison.Text = (100 * d3Calculator.getHeroDamageReduction_Poison(hero.level)).ToString();
 
             guiCalculatedDPSWithBuffs.Text = d3Calculator.getHeroDPS(addedBonus, multipliedBonus, skillBonus).ToString();
             guiCalculatedAttackPerSecondWithBuffs.Text = d3Calculator.getActualAttackSpeed().ToString();

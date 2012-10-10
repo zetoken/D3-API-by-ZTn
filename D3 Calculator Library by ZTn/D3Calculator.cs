@@ -101,11 +101,11 @@ namespace ZTn.BNet.D3.Calculator
         {
             double armor = 0;
 
-            // Update with base item's armor
+            // Update with base item's resistance
             if (heroStuff.attributesRaw.armorItem != null)
                 armor += heroStuff.attributesRaw.armorItem.min;
 
-            // Update with item's bonus armor
+            // Update with item's bonus resistance
             if (heroStuff.attributesRaw.armorBonusItem != null)
                 armor += heroStuff.attributesRaw.armorBonusItem.min;
 
@@ -113,6 +113,55 @@ namespace ZTn.BNet.D3.Calculator
             armor += getHeroStrength();
 
             return armor;
+        }
+
+        public double getHeroDamageReduction_Armor(int mobLevel)
+        {
+            double armor = getHeroArmor();
+
+            return armor / (armor + 50 * mobLevel);
+        }
+
+        public double getHeroDamageReduction_Arcane(int mobLevel)
+        {
+            double resistance = getHeroResistance_Arcane();
+
+            return resistance / (resistance + 5 * mobLevel);
+        }
+
+        public double getHeroDamageReduction_Cold(int mobLevel)
+        {
+            double resistance = getHeroResistance_Cold();
+
+            return resistance / (resistance + 5 * mobLevel);
+        }
+
+        public double getHeroDamageReduction_Fire(int mobLevel)
+        {
+            double resistance = getHeroResistance_Fire();
+
+            return resistance / (resistance + 5 * mobLevel);
+        }
+
+        public double getHeroDamageReduction_Lightning(int mobLevel)
+        {
+            double resistance = getHeroResistance_Lightning();
+
+            return resistance / (resistance + 5 * mobLevel);
+        }
+
+        public double getHeroDamageReduction_Physical(int mobLevel)
+        {
+            double resistance = getHeroResistance_Physical();
+
+            return resistance / (resistance + 5 * mobLevel);
+        }
+
+        public double getHeroDamageReduction_Poison(int mobLevel)
+        {
+            double resistance = getHeroResistance_Poison();
+
+            return resistance / (resistance + 5 * mobLevel);
         }
 
         private double getHeroDPSAsIs()

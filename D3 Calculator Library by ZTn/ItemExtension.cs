@@ -31,7 +31,7 @@ namespace ZTn.BNet.D3.Calculator
             //public ItemValueRange maxDamage;
             item.maxDamage = item.getRawBonusDamageMax() + item.getRawWeaponDamageMax();
 
-            //public ItemValueRange armor;
+            //public ItemValueRange resistance;
             if (item.attributesRaw.armorItem == null)
                 item.armor = ItemValueRange.Zero;
             else
