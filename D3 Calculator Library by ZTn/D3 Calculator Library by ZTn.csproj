@@ -41,17 +41,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Skills\D3SkillModifier.cs" />
     <Compile Include="D3Calculator.cs" />
     <Compile Include="GemHelper.cs" />
     <Compile Include="HeroStuff.cs" />
     <Compile Include="ItemExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skills\DamageMultiplier.cs" />
+    <Compile Include="Skills\DemonHunter\Archery_Bow.cs" />
+    <Compile Include="Skills\DemonHunter\Archery_Crossbow.cs" />
+    <Compile Include="Skills\DemonHunter\Archery_HandCrossbow.cs" />
+    <Compile Include="Skills\DemonHunter\SteadyAim.cs" />
+    <Compile Include="Skills\Followers\Anatomy.cs" />
+    <Compile Include="Skills\Followers\FocusedMind.cs" />
+    <Compile Include="Skills\Followers\PoweredArmor.cs" />
+    <Compile Include="Skills\Monk\SeizeTheInitiative.cs" />
+    <Compile Include="Skills\Monk\MantraOfHealing_TimeOfNeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\D3 API by ZTn\D3 API by ZTn.csproj">
       <Project>{a62cfaea-60e1-4586-b306-7d606e6aa4d2}</Project>
       <Name>D3 API by ZTn</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Skills\Barbarian\" />
+    <Folder Include="Skills\WitchDoctor\" />
+    <Folder Include="Skills\Wizard\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

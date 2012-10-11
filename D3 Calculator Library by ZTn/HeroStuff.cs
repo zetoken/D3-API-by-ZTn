@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator
@@ -139,11 +134,10 @@ namespace ZTn.BNet.D3.Calculator
             this.updateFromRawAttributes();
         }
 
-        public void updateWithTalents(Item addedBonus, Item multipliedBonus)
+        public void updateWithTalents(Item addedBonus)
         {
             this.addedBonus = addedBonus;
             update();
-            this.attributesRaw = this.attributesRaw * multipliedBonus.attributesRaw;
         }
     }
 }

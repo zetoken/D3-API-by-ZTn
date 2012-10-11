@@ -138,30 +138,37 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             Item offHand = guiOffHandEditor.getEditedItem();
 
-            Item multipliedBonus = new Item();
-            multipliedBonus.attributesRaw = new ItemAttributes();
-
-            Item addedBonus = new Item();
-            addedBonus.attributesRaw = new ItemAttributes();
-            if (guiSkillCriticDamage50Percent.Checked)
-                addedBonus.attributesRaw += new ItemAttributes() { critDamagePercent = new ItemValueRange(0.5) };
-            if (guiSkillCriticChance3Percent.Checked)
-                addedBonus.attributesRaw += new ItemAttributes() { critPercentBonusCapped = new ItemValueRange(0.03) };
-            if (guiSkillCriticChance10Percent.Checked)
-                addedBonus.attributesRaw += new ItemAttributes() { critPercentBonusCapped = new ItemValueRange(0.10) };
-            if (guiSkillAttackSpeed3Percent.Checked)
-                addedBonus.attributesRaw += new ItemAttributes() { attacksPerSecondItem = new ItemValueRange(0.03) };
-
-            double skillBonus = 0;
-            if (guiSkillDamage15Percent.Checked)
-                skillBonus += 0.15;
-            if (guiSkillDamage20Percent.Checked)
-                skillBonus += 0.20;
-
             D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
             Item globalItem = d3Calculator.heroStuff;
 
-            guiCalculatedDPS.Text = d3Calculator.getHeroDPS().ToString();
+            Item addedBonus = new Item();
+            addedBonus.attributesRaw = new ItemAttributes();
+
+            // Demon Hunter skills
+            if (guiSkillArchery_Bow.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Archery_Bow()).getBonus(d3Calculator);
+            if (guiSkillArchery_Crossbow.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Archery_Crossbow()).getBonus(d3Calculator);
+            if (guiSkillArchery_HandCrossbow.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Archery_HandCrossbow()).getBonus(d3Calculator);
+            if (guiSkillSteadyAim.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.SteadyAim()).getBonus(d3Calculator);
+
+            // Monk skills
+            if (guiSkillSeizeTheInitiative.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.SeizeTheInitiative()).getBonus(d3Calculator);
+
+            // Followers buffs are applied after class skills
+            d3Calculator.getHeroDPS(addedBonus);
+
+            if (guiSkillAnatomy.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Followers.Anatomy()).getBonus(d3Calculator);
+            if (guiSkillFocusedMind.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Followers.FocusedMind()).getBonus(d3Calculator);
+            if (guiSkillPoweredArmor.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Followers.PoweredArmor()).getBonus(d3Calculator);
+
+            guiCalculatedDPS.Text = d3Calculator.getHeroDPS(addedBonus).ToString();
             guiCalculatedAttackPerSecond.Text = d3Calculator.getActualAttackSpeed().ToString();
             guiCalcultatedDamageMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal()).ToString();
             guiCalcultatedDamageMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal()).ToString();
@@ -185,13 +192,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiCalculatedDamageReduction_Lightning.Text = (100 * d3Calculator.getHeroDamageReduction_Lightning(hero.level)).ToString();
             guiCalculatedDamageReduction_Physical.Text = (100 * d3Calculator.getHeroDamageReduction_Physical(hero.level)).ToString();
             guiCalculatedDamageReduction_Poison.Text = (100 * d3Calculator.getHeroDamageReduction_Poison(hero.level)).ToString();
-
-            guiCalculatedDPSWithBuffs.Text = d3Calculator.getHeroDPS(addedBonus, multipliedBonus, skillBonus).ToString();
-            guiCalculatedAttackPerSecondWithBuffs.Text = d3Calculator.getActualAttackSpeed().ToString();
-            guiCalcultatedDamageMinWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal()).ToString();
-            guiCalcultatedDamageMaxWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal()).ToString();
-            guiCalcultatedDamageCriticMinWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic()).ToString();
-            guiCalcultatedDamageCriticMaxWithBuffs.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic()).ToString();
 
             populateCalculatedData(guiItemsDexterity, d3Calculator.heroStuff.attributesRaw.dexterityItem);
             populateCalculatedData(guiItemsIntelligence, d3Calculator.heroStuff.attributesRaw.intelligenceItem);

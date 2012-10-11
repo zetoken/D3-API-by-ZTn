@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using ZTn.BNet.D3.Heroes;
+﻿using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator
@@ -28,6 +22,7 @@ namespace ZTn.BNet.D3.Calculator
         {
             this.hero = hero;
             heroStuff = new HeroStuff(mainHand, offHand, items);
+            heroStuff.update();
         }
 
         #endregion
@@ -187,17 +182,32 @@ namespace ZTn.BNet.D3.Calculator
             return getHeroDPSAsIs();
         }
 
-        public double getHeroDPS(Item addedBonus, Item multipliedBonus, double skillBonus)
+        public double getHeroDPS(Item addedBonus)
         {
             this.addedBonus = addedBonus;
-            this.multipliedBonus = multipliedBonus;
-            this.skillBonus = skillBonus;
 
-            heroStuff.updateWithTalents(addedBonus, multipliedBonus);
+            heroStuff.updateWithTalents(addedBonus);
 
             double dps = getHeroDPSAsIs();
 
             return dps;
+        }
+
+        public double getHeroEffectiveHitpoints(int mobLevel)
+        {
+            double ehp = getHeroHitpoints();
+
+            // Update with armor reduction
+            ehp /= (1 + getHeroDamageReduction_Armor(mobLevel));
+
+            // Update with resistance reduction
+            ehp /= (1 + getHeroDamageReduction_Arcane(mobLevel));
+
+            // Update with class reduction
+            if ((hero.heroClass == "monk") || (hero.heroClass == "barbarian"))
+                ehp /= (1 + 0.30);
+
+            return ehp;
         }
 
         public double getHeroHitpoints()
