@@ -10,4 +10,6 @@ This project, dedicated to the game Diablo 3, is divided into 3 main parts:
 
 Look at the wiki for more informations.
 
+Binaries for .net 4.0 or later available in download section.
+
 Be free to comment, review and use this tools!
