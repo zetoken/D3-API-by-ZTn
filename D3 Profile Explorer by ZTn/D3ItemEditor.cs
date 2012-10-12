@@ -177,6 +177,8 @@ namespace ZTn.BNet.D3.Calculator
                 populateDataPercent(guiCriticChance, attr.critPercentBonusCapped);
                 populateDataPercent(guiHitpointsMaxPercent, attr.hitpointsMaxPercentBonusItem);
                 populateData(guiArmor, attr.armorItem + attr.armorBonusItem);
+                populateData(guiHitpointsOnHit, attr.hitpointsOnHit);
+                populateData(guiHitpointsRegenPerSecond, attr.hitpointsRegenPerSecond);
 
                 // Weapon Characterics
                 if (attr.attacksPerSecondItemPercent == null)
@@ -261,6 +263,8 @@ namespace ZTn.BNet.D3.Calculator
             attr.critPercentBonusCapped = getDataPercent(guiCriticChance);
             attr.hitpointsMaxPercentBonusItem = getDataPercent(guiHitpointsMaxPercent);
             attr.armorItem = getData(guiArmor);
+            attr.hitpointsOnHit = getData(guiHitpointsOnHit);
+            attr.hitpointsRegenPerSecond = getData(guiHitpointsRegenPerSecond);
 
             attr.attacksPerSecondItem = getData(guiWeaponAttackPerSecond);
 

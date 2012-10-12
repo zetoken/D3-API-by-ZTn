@@ -67,6 +67,8 @@
             System.Windows.Forms.Label label31;
             System.Windows.Forms.Label label29;
             System.Windows.Forms.Label label30;
+            System.Windows.Forms.Label label36;
+            System.Windows.Forms.Label label37;
             this.guiArmor = new System.Windows.Forms.TextBox();
             this.guiHitpointsMaxPercent = new System.Windows.Forms.TextBox();
             this.guiCriticDamage = new System.Windows.Forms.TextBox();
@@ -117,6 +119,8 @@
             this.guiGem2 = new System.Windows.Forms.ComboBox();
             this.guiGem1 = new System.Windows.Forms.ComboBox();
             this.GuiReset = new System.Windows.Forms.Button();
+            this.guiHitpointsOnHit = new System.Windows.Forms.TextBox();
+            this.guiHitpointsRegenPerSecond = new System.Windows.Forms.TextBox();
             label23 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
@@ -156,6 +160,8 @@
             label31 = new System.Windows.Forms.Label();
             label29 = new System.Windows.Forms.Label();
             label30 = new System.Windows.Forms.Label();
+            label36 = new System.Windows.Forms.Label();
+            label37 = new System.Windows.Forms.Label();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -203,6 +209,10 @@
             // 
             groupBox3.AutoSize = true;
             groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox3.Controls.Add(label37);
+            groupBox3.Controls.Add(this.guiHitpointsRegenPerSecond);
+            groupBox3.Controls.Add(label36);
+            groupBox3.Controls.Add(this.guiHitpointsOnHit);
             groupBox3.Controls.Add(label35);
             groupBox3.Controls.Add(this.guiArmor);
             groupBox3.Controls.Add(label27);
@@ -223,7 +233,7 @@
             groupBox3.Controls.Add(this.guiDexterity);
             groupBox3.Location = new System.Drawing.Point(327, 3);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new System.Drawing.Size(156, 266);
+            groupBox3.Size = new System.Drawing.Size(156, 318);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Characteristics";
@@ -797,10 +807,10 @@
             groupBox5.Controls.Add(this.guiResistance_Cold);
             groupBox5.Controls.Add(label30);
             groupBox5.Controls.Add(this.guiResistance_Arcane);
-            groupBox5.Location = new System.Drawing.Point(3, 275);
+            groupBox5.Location = new System.Drawing.Point(3, 332);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new System.Drawing.Size(480, 84);
-            groupBox5.TabIndex = 5;
+            groupBox5.TabIndex = 3;
             groupBox5.TabStop = false;
             groupBox5.Text = "Resistances";
             // 
@@ -810,7 +820,7 @@
             label33.Location = new System.Drawing.Point(348, 48);
             label33.Name = "label33";
             label33.Size = new System.Drawing.Size(38, 13);
-            label33.TabIndex = 33;
+            label33.TabIndex = 12;
             label33.Text = "poison";
             // 
             // guiResistance_Lightning
@@ -818,7 +828,7 @@
             this.guiResistance_Lightning.Location = new System.Drawing.Point(180, 45);
             this.guiResistance_Lightning.Name = "guiResistance_Lightning";
             this.guiResistance_Lightning.Size = new System.Drawing.Size(35, 20);
-            this.guiResistance_Lightning.TabIndex = 34;
+            this.guiResistance_Lightning.TabIndex = 9;
             // 
             // label34
             // 
@@ -826,7 +836,7 @@
             label34.Location = new System.Drawing.Point(235, 48);
             label34.Name = "label34";
             label34.Size = new System.Drawing.Size(45, 13);
-            label34.TabIndex = 31;
+            label34.TabIndex = 10;
             label34.Text = "physical";
             // 
             // guiResistance_Physical
@@ -834,7 +844,7 @@
             this.guiResistance_Physical.Location = new System.Drawing.Point(286, 45);
             this.guiResistance_Physical.Name = "guiResistance_Physical";
             this.guiResistance_Physical.Size = new System.Drawing.Size(35, 20);
-            this.guiResistance_Physical.TabIndex = 32;
+            this.guiResistance_Physical.TabIndex = 11;
             // 
             // label32
             // 
@@ -842,7 +852,7 @@
             label32.Location = new System.Drawing.Point(128, 48);
             label32.Name = "label32";
             label32.Size = new System.Drawing.Size(46, 13);
-            label32.TabIndex = 29;
+            label32.TabIndex = 8;
             label32.Text = "lightning";
             // 
             // guiResistance_Poison
@@ -850,14 +860,14 @@
             this.guiResistance_Poison.Location = new System.Drawing.Point(392, 45);
             this.guiResistance_Poison.Name = "guiResistance_Poison";
             this.guiResistance_Poison.Size = new System.Drawing.Size(35, 20);
-            this.guiResistance_Poison.TabIndex = 30;
+            this.guiResistance_Poison.TabIndex = 13;
             // 
             // guiResistance_All
             // 
             this.guiResistance_All.Location = new System.Drawing.Point(74, 19);
             this.guiResistance_All.Name = "guiResistance_All";
             this.guiResistance_All.Size = new System.Drawing.Size(35, 20);
-            this.guiResistance_All.TabIndex = 3;
+            this.guiResistance_All.TabIndex = 1;
             // 
             // label28
             // 
@@ -865,7 +875,7 @@
             label28.Location = new System.Drawing.Point(51, 22);
             label28.Name = "label28";
             label28.Size = new System.Drawing.Size(17, 13);
-            label28.TabIndex = 2;
+            label28.TabIndex = 0;
             label28.Text = "all";
             // 
             // label31
@@ -874,7 +884,7 @@
             label31.Location = new System.Drawing.Point(365, 22);
             label31.Name = "label31";
             label31.Size = new System.Drawing.Size(21, 13);
-            label31.TabIndex = 27;
+            label31.TabIndex = 6;
             label31.Text = "fire";
             // 
             // guiResistance_Fire
@@ -882,7 +892,7 @@
             this.guiResistance_Fire.Location = new System.Drawing.Point(392, 19);
             this.guiResistance_Fire.Name = "guiResistance_Fire";
             this.guiResistance_Fire.Size = new System.Drawing.Size(35, 20);
-            this.guiResistance_Fire.TabIndex = 28;
+            this.guiResistance_Fire.TabIndex = 7;
             // 
             // label29
             // 
@@ -890,7 +900,7 @@
             label29.Location = new System.Drawing.Point(253, 22);
             label29.Name = "label29";
             label29.Size = new System.Drawing.Size(27, 13);
-            label29.TabIndex = 25;
+            label29.TabIndex = 4;
             label29.Text = "cold";
             // 
             // guiResistance_Cold
@@ -898,7 +908,7 @@
             this.guiResistance_Cold.Location = new System.Drawing.Point(286, 19);
             this.guiResistance_Cold.Name = "guiResistance_Cold";
             this.guiResistance_Cold.Size = new System.Drawing.Size(35, 20);
-            this.guiResistance_Cold.TabIndex = 26;
+            this.guiResistance_Cold.TabIndex = 5;
             // 
             // label30
             // 
@@ -906,7 +916,7 @@
             label30.Location = new System.Drawing.Point(134, 22);
             label30.Name = "label30";
             label30.Size = new System.Drawing.Size(40, 13);
-            label30.TabIndex = 23;
+            label30.TabIndex = 2;
             label30.Text = "arcane";
             // 
             // guiResistance_Arcane
@@ -914,7 +924,7 @@
             this.guiResistance_Arcane.Location = new System.Drawing.Point(180, 19);
             this.guiResistance_Arcane.Name = "guiResistance_Arcane";
             this.guiResistance_Arcane.Size = new System.Drawing.Size(35, 20);
-            this.guiResistance_Arcane.TabIndex = 24;
+            this.guiResistance_Arcane.TabIndex = 3;
             // 
             // groupBox4
             // 
@@ -922,10 +932,10 @@
             this.groupBox4.Controls.Add(this.guiGem3);
             this.groupBox4.Controls.Add(this.guiGem2);
             this.groupBox4.Controls.Add(this.guiGem1);
-            this.groupBox4.Location = new System.Drawing.Point(3, 365);
+            this.groupBox4.Location = new System.Drawing.Point(3, 422);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(480, 59);
-            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Equipped Gems";
             // 
@@ -958,13 +968,45 @@
             // 
             // GuiReset
             // 
-            this.GuiReset.Location = new System.Drawing.Point(408, 430);
+            this.GuiReset.Location = new System.Drawing.Point(408, 487);
             this.GuiReset.Name = "GuiReset";
             this.GuiReset.Size = new System.Drawing.Size(75, 23);
-            this.GuiReset.TabIndex = 4;
+            this.GuiReset.TabIndex = 5;
             this.GuiReset.Text = "Restore Item";
             this.GuiReset.UseVisualStyleBackColor = true;
             this.GuiReset.Click += new System.EventHandler(this.GuiReset_Click);
+            // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Location = new System.Drawing.Point(54, 256);
+            label36.Name = "label36";
+            label36.Size = new System.Drawing.Size(55, 13);
+            label36.TabIndex = 18;
+            label36.Text = "Life on Hit";
+            // 
+            // guiHitpointsOnHit
+            // 
+            this.guiHitpointsOnHit.Location = new System.Drawing.Point(115, 253);
+            this.guiHitpointsOnHit.Name = "guiLifeOnHit";
+            this.guiHitpointsOnHit.Size = new System.Drawing.Size(35, 20);
+            this.guiHitpointsOnHit.TabIndex = 19;
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.Location = new System.Drawing.Point(27, 282);
+            label37.Name = "label37";
+            label37.Size = new System.Drawing.Size(82, 13);
+            label37.TabIndex = 20;
+            label37.Text = "Life per Second";
+            // 
+            // guiHitpointsRegenPerSecond
+            // 
+            this.guiHitpointsRegenPerSecond.Location = new System.Drawing.Point(115, 279);
+            this.guiHitpointsRegenPerSecond.Name = "guiLifePerSecond";
+            this.guiHitpointsRegenPerSecond.Size = new System.Drawing.Size(35, 20);
+            this.guiHitpointsRegenPerSecond.TabIndex = 21;
             // 
             // D3ItemEditor
             // 
@@ -979,7 +1021,7 @@
             this.Controls.Add(groupBox2);
             this.Controls.Add(groupBox1);
             this.Name = "D3ItemEditor";
-            this.Size = new System.Drawing.Size(486, 456);
+            this.Size = new System.Drawing.Size(486, 513);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -1046,6 +1088,8 @@
         public System.Windows.Forms.TextBox guiResistance_All;
         public System.Windows.Forms.TextBox guiResistance_Arcane;
         public System.Windows.Forms.TextBox guiArmor;
+        public System.Windows.Forms.TextBox guiHitpointsRegenPerSecond;
+        public System.Windows.Forms.TextBox guiHitpointsOnHit;
 
 
     }

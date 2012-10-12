@@ -1,8 +1,8 @@
 ﻿using ZTn.BNet.D3.Items;
 
-namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
+namespace ZTn.BNet.D3.Calculator.Skills.WitchDoctor
 {
-    public class SteadyAim : D3SkillModifier
+    public class PierceTheVeil : D3SkillModifier
     {
         readonly double multiplier = 0.20;
 

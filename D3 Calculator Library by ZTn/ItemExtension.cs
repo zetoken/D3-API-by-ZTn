@@ -116,7 +116,7 @@ namespace ZTn.BNet.D3.Calculator
         }
 
         /// <summary>
-        /// Computes raw weapon dps ie before all multipliers ( = average damage * attack per second )
+        /// Computes raw weapon dps ie before all multipliers ( = average thorns * attack per second )
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>

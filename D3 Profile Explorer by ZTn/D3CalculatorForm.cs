@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Heroes;
@@ -144,6 +138,20 @@ namespace ZTn.BNet.D3ProfileExplorer
             Item addedBonus = new Item();
             addedBonus.attributesRaw = new ItemAttributes();
 
+            // Barbarian skills
+            if (guiSkillNervesOfSteel.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.NervesOfSteel()).getBonus(d3Calculator);
+            if (guiSkillWeaponsMaster_MaceAxe.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_MaceAxe()).getBonus(d3Calculator);
+            if (guiSkillWeaponsMaster_PolearmSpear.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_PolearmSpear()).getBonus(d3Calculator);
+            if (guiSkillWeaponsMaster_SwordDagguer.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_SwordDagguer()).getBonus(d3Calculator);
+            if (guiSkillToughAsNails.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.ToughAsNails()).getBonus(d3Calculator);
+            if (guiSkillRuthless.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.Ruthless()).getBonus(d3Calculator);
+
             // Demon Hunter skills
             if (guiSkillArchery_Bow.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Archery_Bow()).getBonus(d3Calculator);
@@ -153,10 +161,20 @@ namespace ZTn.BNet.D3ProfileExplorer
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Archery_HandCrossbow()).getBonus(d3Calculator);
             if (guiSkillSteadyAim.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.SteadyAim()).getBonus(d3Calculator);
+            if (guiSkillSharpShooter.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.SharpShooter()).getBonus(d3Calculator);
 
             // Monk skills
             if (guiSkillSeizeTheInitiative.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.SeizeTheInitiative()).getBonus(d3Calculator);
+            if (guiSkillOneWithEverything.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.OneWithEverything()).getBonus(d3Calculator);
+            if (guiSkillMantraOfHealing_TimeOfNeed.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.MantraOfHealing_TimeOfNeed()).getBonus(d3Calculator);
+
+            // Witch Doctor skills
+            if (guiSkillPierceTheVeil.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.WitchDoctor.PierceTheVeil()).getBonus(d3Calculator);
 
             // Followers buffs are applied after class skills
             d3Calculator.getHeroDPS(addedBonus);
@@ -169,6 +187,47 @@ namespace ZTn.BNet.D3ProfileExplorer
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.Followers.PoweredArmor()).getBonus(d3Calculator);
 
             guiCalculatedDPS.Text = d3Calculator.getHeroDPS(addedBonus).ToString();
+            updateItemsSummary(d3Calculator);
+            updateCalculationResults(d3Calculator);
+        }
+
+        private void populateCalculatedData(TextBox textBox, ItemValueRange itemValueRange)
+        {
+            if (itemValueRange != null)
+                textBox.Text = itemValueRange.min.ToString();
+        }
+
+        private void populateCalculatedDataPercent(TextBox textBox, ItemValueRange itemValueRange)
+        {
+            if (itemValueRange != null)
+                textBox.Text = (100 * itemValueRange.min).ToString();
+        }
+
+        private void updateItemsSummary(D3Calculator d3Calculator)
+        {
+            populateCalculatedData(guiItemsDexterity, d3Calculator.heroStuff.attributesRaw.dexterityItem);
+            populateCalculatedData(guiItemsIntelligence, d3Calculator.heroStuff.attributesRaw.intelligenceItem);
+            populateCalculatedData(guiItemsStrength, d3Calculator.heroStuff.attributesRaw.strengthItem);
+            populateCalculatedData(guiItemsVitality, d3Calculator.heroStuff.attributesRaw.vitalityItem);
+
+            populateCalculatedDataPercent(guiItemsCriticChance, d3Calculator.heroStuff.attributesRaw.critPercentBonusCapped);
+            populateCalculatedDataPercent(guiItemsSpeedAttack, d3Calculator.heroStuff.attributesRaw.attacksPerSecondPercent);
+            populateCalculatedDataPercent(guiItemsCriticDamage, d3Calculator.heroStuff.attributesRaw.critDamagePercent);
+            populateCalculatedDataPercent(guiItemsLifePercent, d3Calculator.heroStuff.attributesRaw.hitpointsMaxPercentBonusItem);
+            populateCalculatedData(guiItemsLifeOnHit, d3Calculator.heroStuff.attributesRaw.hitpointsOnHit);
+            populateCalculatedData(guiItemsLifePerSecond, d3Calculator.heroStuff.attributesRaw.hitpointsRegenPerSecond);
+
+            populateCalculatedData(guiItemsResistance_All, d3Calculator.heroStuff.attributesRaw.resistanceAll);
+            populateCalculatedData(guiItemsResistance_Arcane, d3Calculator.heroStuff.attributesRaw.resistance_Arcane);
+            populateCalculatedData(guiItemsResistance_Cold, d3Calculator.heroStuff.attributesRaw.resistance_Cold);
+            populateCalculatedData(guiItemsResistance_Fire, d3Calculator.heroStuff.attributesRaw.resistance_Fire);
+            populateCalculatedData(guiItemsResistance_Lightning, d3Calculator.heroStuff.attributesRaw.resistance_Lightning);
+            populateCalculatedData(guiItemsResistance_Physical, d3Calculator.heroStuff.attributesRaw.resistance_Physical);
+            populateCalculatedData(guiItemsResistance_Poison, d3Calculator.heroStuff.attributesRaw.resistance_Poison);
+        }
+
+        private void updateCalculationResults(D3Calculator d3Calculator)
+        {
             guiCalculatedAttackPerSecond.Text = d3Calculator.getActualAttackSpeed().ToString();
             guiCalcultatedDamageMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal()).ToString();
             guiCalcultatedDamageMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal()).ToString();
@@ -192,34 +251,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiCalculatedDamageReduction_Lightning.Text = (100 * d3Calculator.getHeroDamageReduction_Lightning(hero.level)).ToString();
             guiCalculatedDamageReduction_Physical.Text = (100 * d3Calculator.getHeroDamageReduction_Physical(hero.level)).ToString();
             guiCalculatedDamageReduction_Poison.Text = (100 * d3Calculator.getHeroDamageReduction_Poison(hero.level)).ToString();
-
-            populateCalculatedData(guiItemsDexterity, d3Calculator.heroStuff.attributesRaw.dexterityItem);
-            populateCalculatedData(guiItemsIntelligence, d3Calculator.heroStuff.attributesRaw.intelligenceItem);
-            populateCalculatedData(guiItemsStrength, d3Calculator.heroStuff.attributesRaw.strengthItem);
-            populateCalculatedData(guiItemsVitality, d3Calculator.heroStuff.attributesRaw.vitalityItem);
-            populateCalculatedDataPercent(guiItemsCriticChance, d3Calculator.heroStuff.attributesRaw.critPercentBonusCapped);
-            populateCalculatedDataPercent(guiItemsSpeedAttack, d3Calculator.heroStuff.attributesRaw.attacksPerSecondPercent);
-            populateCalculatedDataPercent(guiItemsCriticDamage, d3Calculator.heroStuff.attributesRaw.critDamagePercent);
-            populateCalculatedDataPercent(guiItemsLifePercent, d3Calculator.heroStuff.attributesRaw.hitpointsMaxPercentBonusItem);
-            populateCalculatedData(guiItemsResistance_All, d3Calculator.heroStuff.attributesRaw.resistanceAll);
-            populateCalculatedData(guiItemsResistance_Arcane, d3Calculator.heroStuff.attributesRaw.resistance_Arcane);
-            populateCalculatedData(guiItemsResistance_Cold, d3Calculator.heroStuff.attributesRaw.resistance_Cold);
-            populateCalculatedData(guiItemsResistance_Fire, d3Calculator.heroStuff.attributesRaw.resistance_Fire);
-            populateCalculatedData(guiItemsResistance_Lightning, d3Calculator.heroStuff.attributesRaw.resistance_Lightning);
-            populateCalculatedData(guiItemsResistance_Physical, d3Calculator.heroStuff.attributesRaw.resistance_Physical);
-            populateCalculatedData(guiItemsResistance_Poison, d3Calculator.heroStuff.attributesRaw.resistance_Poison);
-        }
-
-        private void populateCalculatedData(TextBox textBox, ItemValueRange itemValueRange)
-        {
-            if (itemValueRange != null)
-                textBox.Text = itemValueRange.min.ToString();
-        }
-
-        private void populateCalculatedDataPercent(TextBox textBox, ItemValueRange itemValueRange)
-        {
-            if (itemValueRange != null)
-                textBox.Text = (100 * itemValueRange.min).ToString();
         }
     }
 }

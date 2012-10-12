@@ -34,7 +34,7 @@ namespace ZTn.BNet.D3.Calculator
             // Update dps with main statistic
             multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * hero.level) + (hero.paragonLevel * 3)) / 100;
 
-            // Update damage with skill bonus
+            // Update thorns with skill bonus
             multiplier *= 1 + skillBonus;
 
             return multiplier;
@@ -53,7 +53,7 @@ namespace ZTn.BNet.D3.Calculator
             // Update dps with main statistic
             multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * hero.level) + (hero.paragonLevel * 3)) / 100;
 
-            // Update damage with skill bonus
+            // Update thorns with skill bonus
             multiplier *= 1 + skillBonus;
 
             return multiplier;
@@ -163,7 +163,7 @@ namespace ZTn.BNet.D3.Calculator
         {
             double dps = heroStuff.getWeaponDamage();
 
-            // Update damage multiplier
+            // Update thorns multiplier
             dps *= getDamageMultiplier();
 
             // Update dps multiplier

@@ -1,10 +1,10 @@
 ﻿using ZTn.BNet.D3.Items;
 
-namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
+namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
 {
-    public class SteadyAim : D3SkillModifier
+    public class WeaponsMaster_SwordDagguer : D3SkillModifier
     {
-        readonly double multiplier = 0.20;
+        readonly double multiplier = 0.15;
 
         public override ItemAttributes getBonus(D3Calculator calculator)
         {

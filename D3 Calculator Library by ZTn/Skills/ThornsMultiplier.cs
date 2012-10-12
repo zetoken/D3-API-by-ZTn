@@ -1,18 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills
 {
-    public class DamageMultiplier : D3SkillModifier
+    public class ThornsMultiplier : D3SkillModifier
     {
         #region >> Constants
 
-        readonly String[] damagePrefixes = new String[] { 
-            "damageMin_", "damageBonusMin_",
-            "damageDelta_", 
-            "damageWeaponMin_", "damageWeaponBonusMin_",
-            "damageWeaponDelta_", "damageWeaponBonusDelta_", 
-            "damageWeaponPercentBonus_"
+        readonly String[] thornsPrefixes = new String[] { 
+            "thornsFixed_"
         };
 
         readonly String[] damageResists = new String[] {
@@ -25,7 +25,7 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
         #region >> Constructors
 
-        public DamageMultiplier(double multiplier)
+        public ThornsMultiplier(double multiplier)
         {
             this.multiplier = new ItemValueRange(multiplier);
         }
@@ -40,11 +40,11 @@ namespace ZTn.BNet.D3.Calculator.Skills
             Type type = typeof(ItemAttributes);
             foreach (String resist in damageResists)
             {
-                foreach (String damage in damagePrefixes)
+                foreach (String thorns in thornsPrefixes)
                 {
-                    ItemValueRange value = (ItemValueRange)type.GetField(damage + resist).GetValue(stuff);
+                    ItemValueRange value = (ItemValueRange)type.GetField(thorns + resist).GetValue(stuff);
                     if (value != null)
-                        type.GetField(damage + resist).SetValue(attr, multiplier * value);
+                        type.GetField(thorns + resist).SetValue(attr, multiplier * value);
                 }
             }
 

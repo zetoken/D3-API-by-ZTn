@@ -1,15 +1,14 @@
-﻿using System;
-using ZTn.BNet.D3.Items;
+﻿using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
-    public class Archery_Bow : DamageMultiplier
+    public class Archery_Bow : D3SkillModifier
     {
-        readonly ItemValueRange multiplier = new ItemValueRange(0.15);
+        readonly double multiplier = 0.15;
 
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            return getBonus(calculator, multiplier);
+            return (new DamageMultiplier(multiplier)).getBonus(calculator);
         }
     }
 }
