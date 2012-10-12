@@ -46,6 +46,8 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Armor_Bonus_Item")]
         public ItemValueRange armorBonusItem;
 
+        [DataMember(Name = "Resistance_All")]
+        public ItemValueRange resistance_All;
         [DataMember(Name = "Resistance#Arcane")]
         public ItemValueRange resistance_Arcane;
         [DataMember(Name = "Resistance#Cold")]
@@ -58,8 +60,6 @@ namespace ZTn.BNet.D3.Items
         public ItemValueRange resistance_Physical;
         [DataMember(Name = "Resistance#Poison")]
         public ItemValueRange resistance_Poison;
-        [DataMember(Name = "Resistance_All")]
-        public ItemValueRange resistanceAll;
 
         [DataMember(Name = "Damage_Weapon_Bonus_Delta#Arcane")]
         public ItemValueRange damageWeaponBonusDelta_Arcane;
@@ -186,6 +186,21 @@ namespace ZTn.BNet.D3.Items
         public ItemValueRange damageDelta_Poison;
         [DataMember(Name = "Damage_Min#Poison")]
         public ItemValueRange damageMin_Poison;
+
+        [DataMember(Name = "Damage_Type_Percent_Bonus#Arcane")]
+        public ItemValueRange damageTypePercentBonus_Arcane;
+        [DataMember(Name = "Damage_Type_Percent_Bonus#Cold")]
+        public ItemValueRange damageTypePercentBonus_Cold;
+        [DataMember(Name = "Damage_Type_Percent_Bonus#Fire")]
+        public ItemValueRange damageTypePercentBonus_Fire;
+        [DataMember(Name = "Damage_Type_Percent_Bonus#Holy")]
+        public ItemValueRange damageTypePercentBonus_Holy;
+        [DataMember(Name = "Damage_Type_Percent_Bonus#Lightning")]
+        public ItemValueRange damageTypePercentBonus_Lightning;
+        [DataMember(Name = "Damage_Type_Percent_Bonus#Physical")]
+        public ItemValueRange damageTypePercentBonus_Physical;
+        [DataMember(Name = "Damage_Type_Percent_Bonus#Poison")]
+        public ItemValueRange damageTypePercentBonus_Poison;
 
         [DataMember(Name = "Durability_Cur")]
         public ItemValueRange durabilityCur;
