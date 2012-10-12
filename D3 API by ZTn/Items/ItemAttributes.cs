@@ -195,6 +195,21 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Hitpoints_Max_Percent_Bonus_Item")]
         public ItemValueRange hitpointsMaxPercentBonusItem;
 
+        [DataMember(Name = "Thorns_Fixed#Arcane")]
+        public ItemValueRange thornsFixed_Arcane;
+        [DataMember(Name = "Thorns_Fixed#Cold")]
+        public ItemValueRange thornsFixed_Cold;
+        [DataMember(Name = "Thorns_Fixed#Fire")]
+        public ItemValueRange thornsFixed_Fire;
+        [DataMember(Name = "Thorns_Fixed#Holy")]
+        public ItemValueRange thornsFixed_Holy;
+        [DataMember(Name = "Thorns_Fixed#Lightning")]
+        public ItemValueRange thornsFixed_Lightning;
+        [DataMember(Name = "Thorns_Fixed#Physical")]
+        public ItemValueRange thornsFixed_Physical;
+        [DataMember(Name = "Thorns_Fixed#Poison")]
+        public ItemValueRange thornsFixed_Poison;
+
         [DataMember(Name = "Magic_Find")]
         public ItemValueRange magicFind;
         [DataMember(Name = "Gold_Find")]
