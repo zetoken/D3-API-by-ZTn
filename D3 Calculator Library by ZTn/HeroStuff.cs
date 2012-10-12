@@ -61,7 +61,7 @@ namespace ZTn.BNet.D3.Calculator
 
         public double getWeaponDamageMin()
         {
-            // Compute weapon thorns
+            // Compute weapon damage
             double damage = this.getRawWeaponDamageMin().min + this.getRawBonusDamageMin().min;
             // Ambidextry
             if (isAmbidextry())
@@ -73,7 +73,7 @@ namespace ZTn.BNet.D3.Calculator
 
         public double getWeaponDamageMax()
         {
-            // Compute weapon thorns
+            // Compute weapon damage
             double damage = mainHand.getRawWeaponDamageMax().min + this.getRawWeaponDamageMax().min + this.getRawBonusDamageMax().min;
             // Ambidextry
             if (isAmbidextry())

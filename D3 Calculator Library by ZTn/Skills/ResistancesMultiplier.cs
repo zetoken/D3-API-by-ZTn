@@ -20,8 +20,8 @@ namespace ZTn.BNet.D3.Calculator.Skills
             Item stuff = calculator.heroStuff;
             ItemAttributes attr = new ItemAttributes();
 
-            if (stuff.attributesRaw.resistanceAll != null)
-                attr.resistanceAll = multiplier * stuff.attributesRaw.resistanceAll;
+            if (stuff.attributesRaw.resistance_All != null)
+                attr.resistance_All = multiplier * stuff.attributesRaw.resistance_All;
             if (stuff.attributesRaw.resistance_Arcane != null)
                 attr.resistance_Arcane = multiplier * stuff.attributesRaw.resistance_Arcane;
             if (stuff.attributesRaw.resistance_Cold != null)

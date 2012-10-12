@@ -68,6 +68,8 @@
     <Compile Include="Skills\ResistancesMultiplier.cs" />
     <Compile Include="Skills\ThornsMultiplier.cs" />
     <Compile Include="Skills\WitchDoctor\PierceTheVeil.cs" />
+    <Compile Include="Skills\Wizard\GalvanizingWard.cs" />
+    <Compile Include="Skills\Wizard\GlassCannon.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\D3 API by ZTn\D3 API by ZTn.csproj">
@@ -75,9 +77,7 @@
       <Name>D3 API by ZTn</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Skills\Wizard\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

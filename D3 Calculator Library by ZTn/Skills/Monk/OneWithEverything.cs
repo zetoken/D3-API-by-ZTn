@@ -43,8 +43,8 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
                 attr.resistance_Physical = ItemValueRange.Zero - stuff.resistance_Physical;
             if (stuff.resistance_Poison != null)
                 attr.resistance_Poison = ItemValueRange.Zero - stuff.resistance_Poison;
-            if (stuff.resistanceAll != null)
-                attr.resistanceAll = new ItemValueRange(maxResist - calculator.getHeroResistance_All());
+            if (stuff.resistance_All != null)
+                attr.resistance_All = new ItemValueRange(maxResist - calculator.getHeroResistance_All());
 
             return attr;
         }

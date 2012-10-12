@@ -176,6 +176,12 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (guiSkillPierceTheVeil.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.WitchDoctor.PierceTheVeil()).getBonus(d3Calculator);
 
+            // Wizard skills
+            if (guiSkillGlassCannon.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Wizard.GlassCannon()).getBonus(d3Calculator);
+            if (guiSkillGalvanizingWard.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Wizard.GalvanizingWard()).getBonus(d3Calculator);
+
             // Followers buffs are applied after class skills
             d3Calculator.getHeroDPS(addedBonus);
 
@@ -217,7 +223,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             populateCalculatedData(guiItemsLifeOnHit, d3Calculator.heroStuff.attributesRaw.hitpointsOnHit);
             populateCalculatedData(guiItemsLifePerSecond, d3Calculator.heroStuff.attributesRaw.hitpointsRegenPerSecond);
 
-            populateCalculatedData(guiItemsResistance_All, d3Calculator.heroStuff.attributesRaw.resistanceAll);
+            populateCalculatedData(guiItemsResistance_All, d3Calculator.heroStuff.attributesRaw.resistance_All);
             populateCalculatedData(guiItemsResistance_Arcane, d3Calculator.heroStuff.attributesRaw.resistance_Arcane);
             populateCalculatedData(guiItemsResistance_Cold, d3Calculator.heroStuff.attributesRaw.resistance_Cold);
             populateCalculatedData(guiItemsResistance_Fire, d3Calculator.heroStuff.attributesRaw.resistance_Fire);
@@ -234,6 +240,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiCalcultatedDamageCriticMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic()).ToString();
             guiCalcultatedDamageCriticMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic()).ToString();
             guiCalculatedHitpoints.Text = d3Calculator.getHeroHitpoints().ToString();
+            guiCalculatedDodge.Text = d3Calculator.getHeroDodge().ToString();
 
             guiCalculatedArmor.Text = d3Calculator.getHeroArmor().ToString();
             guiCalculatedResistance_Arcane.Text = d3Calculator.getHeroResistance_Arcane().ToString();

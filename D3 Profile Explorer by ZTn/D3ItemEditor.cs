@@ -180,7 +180,7 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiHitpointsOnHit, attr.hitpointsOnHit);
                 populateData(guiHitpointsRegenPerSecond, attr.hitpointsRegenPerSecond);
 
-                // Weapon Characterics
+                // Weapon characterics
                 if (attr.attacksPerSecondItemPercent == null)
                 {
                     populateData(guiWeaponAttackPerSecond, attr.attacksPerSecondItem);
@@ -205,7 +205,7 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiWeaponDamageMaxPhysical, (attr.damageWeaponMin_Physical + attr.damageWeaponDelta_Physical + attr.damageWeaponBonusDelta_Physical) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Physical));
                 populateData(guiWeaponDamageMaxPoison, (attr.damageWeaponMin_Poison + attr.damageWeaponDelta_Poison + attr.damageWeaponBonusDelta_Poison) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Poison));
 
-                // Bonus characteristics
+                // Item damage bonuses
                 populateData(guiBonusDamageMinArcane, attr.damageMin_Arcane + attr.damageBonusMin_Arcane);
                 populateData(guiBonusDamageMinCold, attr.damageMin_Cold + attr.damageBonusMin_Cold);
                 populateData(guiBonusDamageMinFire, attr.damageMin_Fire + attr.damageBonusMin_Fire);
@@ -222,7 +222,16 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiBonusDamageMaxPhysical, attr.damageMin_Physical + attr.damageDelta_Physical);
                 populateData(guiBonusDamageMaxPoison, attr.damageMin_Poison + attr.damageDelta_Poison);
 
-                populateData(guiResistance_All, attr.resistanceAll);
+                populateDataPercent(guiBonusDamagePercentArcane, attr.damageTypePercentBonus_Arcane);
+                populateDataPercent(guiBonusDamagePercentCold, attr.damageTypePercentBonus_Cold);
+                populateDataPercent(guiBonusDamagePercentFire, attr.damageTypePercentBonus_Fire);
+                populateDataPercent(guiBonusDamagePercentHoly, attr.damageTypePercentBonus_Holy);
+                populateDataPercent(guiBonusDamagePercentLightning, attr.damageTypePercentBonus_Lightning);
+                populateDataPercent(guiBonusDamagePercentPhysical, attr.damageTypePercentBonus_Physical);
+                populateDataPercent(guiBonusDamagePercentPoison, attr.damageTypePercentBonus_Poison);
+
+                // Resistances
+                populateData(guiResistance_All, attr.resistance_All);
                 populateData(guiResistance_Arcane, attr.resistance_Arcane);
                 populateData(guiResistance_Cold, attr.resistance_Cold);
                 populateData(guiResistance_Fire, attr.resistance_Fire);
@@ -300,7 +309,15 @@ namespace ZTn.BNet.D3.Calculator
             attr.damageDelta_Physical = getData(guiBonusDamageMaxPhysical) - attr.damageMin_Physical;
             attr.damageDelta_Poison = getData(guiBonusDamageMaxPoison) - attr.damageMin_Poison;
 
-            attr.resistanceAll = getData(guiResistance_All);
+            attr.damageTypePercentBonus_Arcane = getDataPercent(guiBonusDamagePercentArcane);
+            attr.damageTypePercentBonus_Cold = getDataPercent(guiBonusDamagePercentCold);
+            attr.damageTypePercentBonus_Fire = getDataPercent(guiBonusDamagePercentFire);
+            attr.damageTypePercentBonus_Holy = getDataPercent(guiBonusDamagePercentHoly);
+            attr.damageTypePercentBonus_Lightning = getDataPercent(guiBonusDamagePercentLightning);
+            attr.damageTypePercentBonus_Physical = getDataPercent(guiBonusDamagePercentPhysical);
+            attr.damageTypePercentBonus_Poison = getDataPercent(guiBonusDamagePercentPoison);
+
+            attr.resistance_All = getData(guiResistance_All);
             attr.resistance_Arcane = getData(guiResistance_Arcane);
             attr.resistance_Cold = getData(guiResistance_Cold);
             attr.resistance_Fire = getData(guiResistance_Fire);

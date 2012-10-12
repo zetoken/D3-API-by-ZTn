@@ -83,10 +83,10 @@ namespace ZTn.BNet.D3.Calculator
         {
             double multiplier = 1;
 
-            // Update multiplier with Weapon Attack Speed
+            // Update malusMultiplier with Weapon Attack Speed
             multiplier *= heroStuff.getWeaponAttackPerSecond();
 
-            // Update multiplier with Attack Speed
+            // Update malusMultiplier with Attack Speed
             multiplier *= 1 + getIncreasedAttackSpeed();
 
             return multiplier;
@@ -159,14 +159,29 @@ namespace ZTn.BNet.D3.Calculator
             return resistance / (resistance + 5 * mobLevel);
         }
 
+        public double getHeroDodge()
+        {
+            double dogde = 0;
+            double dexterity = getHeroDexterity();
+
+            double dex0_100 = (dexterity > 100 ? 100 : dexterity);
+            double dex101_500 = (dexterity > 500 ? 500 - 100 : (dexterity > 100 ? dexterity - 100 : 0));
+            double dex501_1000 = (dexterity > 1000 ? 1000 - 500 : (dexterity > 500 ? dexterity - 500 : 0));
+            double dex1001_8000 = (dexterity > 8000 ? 8000 - 1000 : (dexterity > 1000 ? dexterity - 1000 : 0));
+
+            dogde = 0.100 * dex0_100 + 0.025 * dex101_500 + 0.020 * dex501_1000 + 0.010 * dex1001_8000;
+
+            return dogde;
+        }
+
         private double getHeroDPSAsIs()
         {
             double dps = heroStuff.getWeaponDamage();
 
-            // Update thorns multiplier
+            // Update thorns malusMultiplier
             dps *= getDamageMultiplier();
 
-            // Update dps multiplier
+            // Update dps malusMultiplier
             dps *= getActualAttackSpeed();
 
             // Update dps with skill bonus
@@ -230,8 +245,8 @@ namespace ZTn.BNet.D3.Calculator
         {
             double resist = 0;
 
-            if (heroStuff.attributesRaw.resistanceAll != null)
-                resist = heroStuff.attributesRaw.resistanceAll.min;
+            if (heroStuff.attributesRaw.resistance_All != null)
+                resist = heroStuff.attributesRaw.resistance_All.min;
 
             // Update with intelligence bonus
             resist += getHeroIntelligence() / 10;
