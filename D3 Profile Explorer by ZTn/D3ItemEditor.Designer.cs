@@ -56,6 +56,7 @@
             System.Windows.Forms.Label label16;
             System.Windows.Forms.Label label7;
             System.Windows.Forms.GroupBox groupBox2;
+            System.Windows.Forms.Label label38;
             System.Windows.Forms.Label label26;
             System.Windows.Forms.Label label8;
             System.Windows.Forms.Label label6;
@@ -70,7 +71,9 @@
             System.Windows.Forms.Label label29;
             System.Windows.Forms.Label label30;
             System.Windows.Forms.GroupBox groupBox4;
-            System.Windows.Forms.Label label38;
+            System.Windows.Forms.GroupBox groupBox6;
+            System.Windows.Forms.Label label39;
+            System.Windows.Forms.Label label40;
             this.guiHitpointsRegenPerSecond = new System.Windows.Forms.TextBox();
             this.guiHitpointsOnHit = new System.Windows.Forms.TextBox();
             this.guiArmor = new System.Windows.Forms.TextBox();
@@ -82,6 +85,13 @@
             this.guiStrength = new System.Windows.Forms.TextBox();
             this.guiVitality = new System.Windows.Forms.TextBox();
             this.guiDexterity = new System.Windows.Forms.TextBox();
+            this.guiBonusDamagePercentHoly = new System.Windows.Forms.TextBox();
+            this.guiBonusDamagePercentFire = new System.Windows.Forms.TextBox();
+            this.guiBonusDamagePercentLightning = new System.Windows.Forms.TextBox();
+            this.guiBonusDamagePercentPoison = new System.Windows.Forms.TextBox();
+            this.guiBonusDamagePercentPhysical = new System.Windows.Forms.TextBox();
+            this.guiBonusDamagePercentCold = new System.Windows.Forms.TextBox();
+            this.guiBonusDamagePercentArcane = new System.Windows.Forms.TextBox();
             this.guiBonusDamageMaxHoly = new System.Windows.Forms.TextBox();
             this.guiBonusDamageMinHoly = new System.Windows.Forms.TextBox();
             this.guiBonusDamageMaxFire = new System.Windows.Forms.TextBox();
@@ -122,13 +132,9 @@
             this.guiGem2 = new System.Windows.Forms.ComboBox();
             this.guiGem1 = new System.Windows.Forms.ComboBox();
             this.GuiReset = new System.Windows.Forms.Button();
-            this.guiBonusDamagePercentHoly = new System.Windows.Forms.TextBox();
-            this.guiBonusDamagePercentFire = new System.Windows.Forms.TextBox();
-            this.guiBonusDamagePercentLightning = new System.Windows.Forms.TextBox();
-            this.guiBonusDamagePercentPoison = new System.Windows.Forms.TextBox();
-            this.guiBonusDamagePercentPhysical = new System.Windows.Forms.TextBox();
-            this.guiBonusDamagePercentCold = new System.Windows.Forms.TextBox();
-            this.guiBonusDamagePercentArcane = new System.Windows.Forms.TextBox();
+            this.guiShieldBlockMax = new System.Windows.Forms.TextBox();
+            this.guiShieldBlockMin = new System.Windows.Forms.TextBox();
+            this.guiShieldBlockPercent = new System.Windows.Forms.TextBox();
             label23 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
@@ -157,6 +163,7 @@
             label16 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
             groupBox2 = new System.Windows.Forms.GroupBox();
+            label38 = new System.Windows.Forms.Label();
             label26 = new System.Windows.Forms.Label();
             label8 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
@@ -171,12 +178,15 @@
             label29 = new System.Windows.Forms.Label();
             label30 = new System.Windows.Forms.Label();
             groupBox4 = new System.Windows.Forms.GroupBox();
-            label38 = new System.Windows.Forms.Label();
+            groupBox6 = new System.Windows.Forms.GroupBox();
+            label39 = new System.Windows.Forms.Label();
+            label40 = new System.Windows.Forms.Label();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox4.SuspendLayout();
+            groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // label23
@@ -563,6 +573,64 @@
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Bonus Damage";
+            // 
+            // guiBonusDamagePercentHoly
+            // 
+            this.guiBonusDamagePercentHoly.Location = new System.Drawing.Point(156, 123);
+            this.guiBonusDamagePercentHoly.Name = "guiBonusDamagePercentHoly";
+            this.guiBonusDamagePercentHoly.Size = new System.Drawing.Size(35, 20);
+            this.guiBonusDamagePercentHoly.TabIndex = 27;
+            // 
+            // guiBonusDamagePercentFire
+            // 
+            this.guiBonusDamagePercentFire.Location = new System.Drawing.Point(156, 97);
+            this.guiBonusDamagePercentFire.Name = "guiBonusDamagePercentFire";
+            this.guiBonusDamagePercentFire.Size = new System.Drawing.Size(35, 20);
+            this.guiBonusDamagePercentFire.TabIndex = 26;
+            // 
+            // guiBonusDamagePercentLightning
+            // 
+            this.guiBonusDamagePercentLightning.Location = new System.Drawing.Point(156, 149);
+            this.guiBonusDamagePercentLightning.Name = "guiBonusDamagePercentLightning";
+            this.guiBonusDamagePercentLightning.Size = new System.Drawing.Size(35, 20);
+            this.guiBonusDamagePercentLightning.TabIndex = 28;
+            // 
+            // guiBonusDamagePercentPoison
+            // 
+            this.guiBonusDamagePercentPoison.Location = new System.Drawing.Point(156, 201);
+            this.guiBonusDamagePercentPoison.Name = "guiBonusDamagePercentPoison";
+            this.guiBonusDamagePercentPoison.Size = new System.Drawing.Size(35, 20);
+            this.guiBonusDamagePercentPoison.TabIndex = 30;
+            // 
+            // guiBonusDamagePercentPhysical
+            // 
+            this.guiBonusDamagePercentPhysical.Location = new System.Drawing.Point(156, 175);
+            this.guiBonusDamagePercentPhysical.Name = "guiBonusDamagePercentPhysical";
+            this.guiBonusDamagePercentPhysical.Size = new System.Drawing.Size(35, 20);
+            this.guiBonusDamagePercentPhysical.TabIndex = 29;
+            // 
+            // guiBonusDamagePercentCold
+            // 
+            this.guiBonusDamagePercentCold.Location = new System.Drawing.Point(156, 71);
+            this.guiBonusDamagePercentCold.Name = "guiBonusDamagePercentCold";
+            this.guiBonusDamagePercentCold.Size = new System.Drawing.Size(35, 20);
+            this.guiBonusDamagePercentCold.TabIndex = 25;
+            // 
+            // guiBonusDamagePercentArcane
+            // 
+            this.guiBonusDamagePercentArcane.Location = new System.Drawing.Point(156, 45);
+            this.guiBonusDamagePercentArcane.Name = "guiBonusDamagePercentArcane";
+            this.guiBonusDamagePercentArcane.Size = new System.Drawing.Size(35, 20);
+            this.guiBonusDamagePercentArcane.TabIndex = 24;
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.Location = new System.Drawing.Point(153, 29);
+            label38.Name = "label38";
+            label38.Size = new System.Drawing.Size(21, 13);
+            label38.TabIndex = 23;
+            label38.Text = "+%";
             // 
             // label26
             // 
@@ -1025,63 +1093,59 @@
             this.GuiReset.UseVisualStyleBackColor = true;
             this.GuiReset.Click += new System.EventHandler(this.GuiReset_Click);
             // 
-            // guiBonusDamagePercentHoly
+            // groupBox6
             // 
-            this.guiBonusDamagePercentHoly.Location = new System.Drawing.Point(156, 123);
-            this.guiBonusDamagePercentHoly.Name = "guiBonusDamagePercentHoly";
-            this.guiBonusDamagePercentHoly.Size = new System.Drawing.Size(35, 20);
-            this.guiBonusDamagePercentHoly.TabIndex = 27;
+            groupBox6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox6.Controls.Add(label39);
+            groupBox6.Controls.Add(this.guiShieldBlockPercent);
+            groupBox6.Controls.Add(this.guiShieldBlockMax);
+            groupBox6.Controls.Add(label40);
+            groupBox6.Controls.Add(this.guiShieldBlockMin);
+            groupBox6.Location = new System.Drawing.Point(165, 245);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new System.Drawing.Size(197, 76);
+            groupBox6.TabIndex = 6;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Shield Bonus";
             // 
-            // guiBonusDamagePercentFire
+            // label39
             // 
-            this.guiBonusDamagePercentFire.Location = new System.Drawing.Point(156, 97);
-            this.guiBonusDamagePercentFire.Name = "guiBonusDamagePercentFire";
-            this.guiBonusDamagePercentFire.Size = new System.Drawing.Size(35, 20);
-            this.guiBonusDamagePercentFire.TabIndex = 26;
+            label39.AutoSize = true;
+            label39.Location = new System.Drawing.Point(23, 48);
+            label39.Name = "label39";
+            label39.Size = new System.Drawing.Size(45, 13);
+            label39.TabIndex = 33;
+            label39.Text = "blocked";
             // 
-            // guiBonusDamagePercentLightning
+            // guiShieldBlockMax
             // 
-            this.guiBonusDamagePercentLightning.Location = new System.Drawing.Point(156, 149);
-            this.guiBonusDamagePercentLightning.Name = "guiBonusDamagePercentLightning";
-            this.guiBonusDamagePercentLightning.Size = new System.Drawing.Size(35, 20);
-            this.guiBonusDamagePercentLightning.TabIndex = 28;
+            this.guiShieldBlockMax.Location = new System.Drawing.Point(115, 45);
+            this.guiShieldBlockMax.Name = "guiShieldBlockMax";
+            this.guiShieldBlockMax.Size = new System.Drawing.Size(35, 20);
+            this.guiShieldBlockMax.TabIndex = 35;
             // 
-            // guiBonusDamagePercentPoison
+            // guiShieldBlockMin
             // 
-            this.guiBonusDamagePercentPoison.Location = new System.Drawing.Point(156, 201);
-            this.guiBonusDamagePercentPoison.Name = "guiBonusDamagePercentPoison";
-            this.guiBonusDamagePercentPoison.Size = new System.Drawing.Size(35, 20);
-            this.guiBonusDamagePercentPoison.TabIndex = 30;
+            this.guiShieldBlockMin.Location = new System.Drawing.Point(74, 45);
+            this.guiShieldBlockMin.Name = "guiShieldBlockMin";
+            this.guiShieldBlockMin.Size = new System.Drawing.Size(35, 20);
+            this.guiShieldBlockMin.TabIndex = 34;
             // 
-            // guiBonusDamagePercentPhysical
+            // label40
             // 
-            this.guiBonusDamagePercentPhysical.Location = new System.Drawing.Point(156, 175);
-            this.guiBonusDamagePercentPhysical.Name = "guiBonusDamagePercentPhysical";
-            this.guiBonusDamagePercentPhysical.Size = new System.Drawing.Size(35, 20);
-            this.guiBonusDamagePercentPhysical.TabIndex = 29;
+            label40.AutoSize = true;
+            label40.Location = new System.Drawing.Point(24, 22);
+            label40.Name = "label40";
+            label40.Size = new System.Drawing.Size(44, 13);
+            label40.TabIndex = 31;
+            label40.Text = "block %";
             // 
-            // guiBonusDamagePercentCold
+            // guiShieldBlockPercent
             // 
-            this.guiBonusDamagePercentCold.Location = new System.Drawing.Point(156, 71);
-            this.guiBonusDamagePercentCold.Name = "guiBonusDamagePercentCold";
-            this.guiBonusDamagePercentCold.Size = new System.Drawing.Size(35, 20);
-            this.guiBonusDamagePercentCold.TabIndex = 25;
-            // 
-            // guiBonusDamagePercentArcane
-            // 
-            this.guiBonusDamagePercentArcane.Location = new System.Drawing.Point(156, 45);
-            this.guiBonusDamagePercentArcane.Name = "guiBonusDamagePercentArcane";
-            this.guiBonusDamagePercentArcane.Size = new System.Drawing.Size(35, 20);
-            this.guiBonusDamagePercentArcane.TabIndex = 24;
-            // 
-            // label38
-            // 
-            label38.AutoSize = true;
-            label38.Location = new System.Drawing.Point(153, 29);
-            label38.Name = "label38";
-            label38.Size = new System.Drawing.Size(21, 13);
-            label38.TabIndex = 23;
-            label38.Text = "+%";
+            this.guiShieldBlockPercent.Location = new System.Drawing.Point(74, 19);
+            this.guiShieldBlockPercent.Name = "guiShieldBlockPercent";
+            this.guiShieldBlockPercent.Size = new System.Drawing.Size(35, 20);
+            this.guiShieldBlockPercent.TabIndex = 32;
             // 
             // D3ItemEditor
             // 
@@ -1089,6 +1153,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(groupBox6);
             this.Controls.Add(groupBox4);
             this.Controls.Add(groupBox5);
             this.Controls.Add(this.GuiReset);
@@ -1106,6 +1171,8 @@
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             groupBox4.ResumeLayout(false);
+            groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1171,6 +1238,9 @@
         public System.Windows.Forms.TextBox guiBonusDamagePercentPhysical;
         public System.Windows.Forms.TextBox guiBonusDamagePercentCold;
         public System.Windows.Forms.TextBox guiBonusDamagePercentArcane;
+        public System.Windows.Forms.TextBox guiShieldBlockPercent;
+        public System.Windows.Forms.TextBox guiShieldBlockMax;
+        public System.Windows.Forms.TextBox guiShieldBlockMin;
 
 
     }

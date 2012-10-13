@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZTn.BNet.D3.Items;
 
@@ -239,6 +233,11 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiResistance_Physical, attr.resistance_Physical);
                 populateData(guiResistance_Poison, attr.resistance_Poison);
 
+                // Shield
+                populateDataPercent(guiShieldBlockPercent, attr.blockChanceItem + attr.blockChanceBonusItem);
+                populateData(guiShieldBlockMin, attr.blockAmountItemMin);
+                populateData(guiShieldBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
+
                 // GemHelper
                 if (item.gems != null)
                 {
@@ -324,6 +323,11 @@ namespace ZTn.BNet.D3.Calculator
             attr.resistance_Lightning = getData(guiResistance_Lightning);
             attr.resistance_Physical = getData(guiResistance_Physical);
             attr.resistance_Poison = getData(guiResistance_Poison);
+
+            // Shield
+            attr.blockChanceItem = getData(guiShieldBlockPercent);
+            attr.blockAmountItemMin = getData(guiShieldBlockMin);
+            attr.blockAmountItemDelta = getData(guiShieldBlockMax) - attr.blockAmountItemMin;
 
             item.attributesRaw = attr;
             List<Item> gems = new List<Item>();

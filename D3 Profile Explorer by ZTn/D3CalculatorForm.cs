@@ -193,7 +193,9 @@ namespace ZTn.BNet.D3ProfileExplorer
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.Followers.PoweredArmor()).getBonus(d3Calculator);
 
             guiCalculatedDPS.Text = d3Calculator.getHeroDPS(addedBonus).ToString();
+
             updateItemsSummary(d3Calculator);
+
             updateCalculationResults(d3Calculator);
         }
 
@@ -211,29 +213,33 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void updateItemsSummary(D3Calculator d3Calculator)
         {
-            populateCalculatedData(guiItemsDexterity, d3Calculator.heroStuff.attributesRaw.dexterityItem);
-            populateCalculatedData(guiItemsIntelligence, d3Calculator.heroStuff.attributesRaw.intelligenceItem);
-            populateCalculatedData(guiItemsStrength, d3Calculator.heroStuff.attributesRaw.strengthItem);
-            populateCalculatedData(guiItemsVitality, d3Calculator.heroStuff.attributesRaw.vitalityItem);
+            ItemAttributes attr = d3Calculator.heroStuff.attributesRaw;
 
-            populateCalculatedDataPercent(guiItemsCriticChance, d3Calculator.heroStuff.attributesRaw.critPercentBonusCapped);
-            populateCalculatedDataPercent(guiItemsSpeedAttack, d3Calculator.heroStuff.attributesRaw.attacksPerSecondPercent);
-            populateCalculatedDataPercent(guiItemsCriticDamage, d3Calculator.heroStuff.attributesRaw.critDamagePercent);
-            populateCalculatedDataPercent(guiItemsLifePercent, d3Calculator.heroStuff.attributesRaw.hitpointsMaxPercentBonusItem);
-            populateCalculatedData(guiItemsLifeOnHit, d3Calculator.heroStuff.attributesRaw.hitpointsOnHit);
-            populateCalculatedData(guiItemsLifePerSecond, d3Calculator.heroStuff.attributesRaw.hitpointsRegenPerSecond);
+            populateCalculatedData(guiItemsDexterity, attr.dexterityItem);
+            populateCalculatedData(guiItemsIntelligence, attr.intelligenceItem);
+            populateCalculatedData(guiItemsStrength, attr.strengthItem);
+            populateCalculatedData(guiItemsVitality, attr.vitalityItem);
 
-            populateCalculatedData(guiItemsResistance_All, d3Calculator.heroStuff.attributesRaw.resistance_All);
-            populateCalculatedData(guiItemsResistance_Arcane, d3Calculator.heroStuff.attributesRaw.resistance_Arcane);
-            populateCalculatedData(guiItemsResistance_Cold, d3Calculator.heroStuff.attributesRaw.resistance_Cold);
-            populateCalculatedData(guiItemsResistance_Fire, d3Calculator.heroStuff.attributesRaw.resistance_Fire);
-            populateCalculatedData(guiItemsResistance_Lightning, d3Calculator.heroStuff.attributesRaw.resistance_Lightning);
-            populateCalculatedData(guiItemsResistance_Physical, d3Calculator.heroStuff.attributesRaw.resistance_Physical);
-            populateCalculatedData(guiItemsResistance_Poison, d3Calculator.heroStuff.attributesRaw.resistance_Poison);
+            populateCalculatedDataPercent(guiItemsCriticChance, attr.critPercentBonusCapped);
+            populateCalculatedDataPercent(guiItemsSpeedAttack, attr.attacksPerSecondPercent);
+            populateCalculatedDataPercent(guiItemsCriticDamage, attr.critDamagePercent);
+            populateCalculatedDataPercent(guiItemsLifePercent, attr.hitpointsMaxPercentBonusItem);
+            populateCalculatedData(guiItemsLifeOnHit, attr.hitpointsOnHit);
+            populateCalculatedData(guiItemsLifePerSecond, attr.hitpointsRegenPerSecond);
+
+            populateCalculatedData(guiItemsResistance_All, attr.resistance_All);
+            populateCalculatedData(guiItemsResistance_Arcane, attr.resistance_Arcane);
+            populateCalculatedData(guiItemsResistance_Cold, attr.resistance_Cold);
+            populateCalculatedData(guiItemsResistance_Fire, attr.resistance_Fire);
+            populateCalculatedData(guiItemsResistance_Lightning, attr.resistance_Lightning);
+            populateCalculatedData(guiItemsResistance_Physical, attr.resistance_Physical);
+            populateCalculatedData(guiItemsResistance_Poison, attr.resistance_Poison);
         }
 
         private void updateCalculationResults(D3Calculator d3Calculator)
         {
+            ItemAttributes attr = d3Calculator.heroStuff.attributesRaw;
+
             guiCalculatedAttackPerSecond.Text = d3Calculator.getActualAttackSpeed().ToString();
             guiCalcultatedDamageMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal()).ToString();
             guiCalcultatedDamageMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal()).ToString();
@@ -258,6 +264,10 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiCalculatedDamageReduction_Lightning.Text = (100 * d3Calculator.getHeroDamageReduction_Lightning(hero.level)).ToString();
             guiCalculatedDamageReduction_Physical.Text = (100 * d3Calculator.getHeroDamageReduction_Physical(hero.level)).ToString();
             guiCalculatedDamageReduction_Poison.Text = (100 * d3Calculator.getHeroDamageReduction_Poison(hero.level)).ToString();
+
+            populateCalculatedData(guiCalculatedBlockChance, attr.blockChanceItem);
+            populateCalculatedData(guiCalculatedBlockMin, attr.blockAmountItemMin);
+            populateCalculatedData(guiCalculatedBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
         }
     }
 }

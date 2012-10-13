@@ -244,6 +244,9 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Sockets")]
         public ItemValueRange sockets;
 
+        [IgnoreDataMember]
+        public ItemValueRange dodgeBonus;
+
         #endregion
 
         #region >> Constructors
