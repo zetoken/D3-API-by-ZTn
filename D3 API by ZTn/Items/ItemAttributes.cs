@@ -46,6 +46,15 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Armor_Bonus_Item")]
         public ItemValueRange armorBonusItem;
 
+        [DataMember(Name = "Block_Chance_Item")]
+        public ItemValueRange blockChanceItem;
+        [DataMember(Name = "Block_Chance_Bonus_Item")]
+        public ItemValueRange blockChanceBonusItem;
+        [DataMember(Name = "Block_Amount_Item_Min")]
+        public ItemValueRange blockAmountItemMin;
+        [DataMember(Name = "Block_Amount_Item_Delta")]
+        public ItemValueRange blockAmountItemDelta;
+
         [DataMember(Name = "Resistance_All")]
         public ItemValueRange resistance_All;
         [DataMember(Name = "Resistance#Arcane")]
