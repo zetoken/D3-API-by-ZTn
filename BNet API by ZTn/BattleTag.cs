@@ -25,7 +25,7 @@ namespace ZTn.BNet.BattleNet
                     code = splitted[1];
                 }
                 else
-                    throw new Exception("Battle tag bad format: " + id);
+                    throw new Exception("Battle tag bad format: " + value);
             }
         }
 

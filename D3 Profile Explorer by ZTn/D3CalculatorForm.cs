@@ -163,6 +163,8 @@ namespace ZTn.BNet.D3ProfileExplorer
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.SteadyAim()).getBonus(d3Calculator);
             if (guiSkillSharpShooter.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.SharpShooter()).getBonus(d3Calculator);
+            if (guiSkillPerfectionnist.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Perfectionnist()).getBonus(d3Calculator);
 
             // Monk skills
             if (guiSkillSeizeTheInitiative.Checked)

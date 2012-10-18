@@ -6,7 +6,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
     {
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            return new ItemAttributes() { armorBonusItem = new ItemValueRange(calculator.getHeroDexterity()) };
+            return new ItemAttributes() { armorBonusItem = new ItemValueRange(calculator.getHeroDexterity()) * (new ItemValueRange(0.5)) };
         }
     }
 }
