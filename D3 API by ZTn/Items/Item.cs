@@ -39,6 +39,8 @@ namespace ZTn.BNet.D3.Items
         [DataMember]
         public ItemSalvageComponent[] salvage;
         [DataMember]
+        public Set set;
+        [DataMember]
         public Item[] gems;
 
         #endregion
