@@ -10,6 +10,9 @@ namespace ZTn.BNet.D3.Calculator
         public Hero hero;
         public HeroStuff heroStuff;
 
+        ItemAttributes itemLevel;
+        ItemAttributes itemParagonLevel;
+
         #endregion
 
         #region >> Constructors
@@ -17,8 +20,13 @@ namespace ZTn.BNet.D3.Calculator
         public D3Calculator(Hero hero, Item mainHand, Item offHand, Item[] items)
         {
             this.hero = hero;
+
+            // Build unique item equivalent to items weared
             heroStuff = new HeroStuff(mainHand, offHand, items);
             heroStuff.update();
+
+            itemLevel = getItemAttributesFromLevel();
+            itemParagonLevel = getItemAttributesFromParagonLevel();
         }
 
         #endregion
@@ -219,7 +227,7 @@ namespace ZTn.BNet.D3.Calculator
             if (getHeroDamageReduction_Lightning(mobLevel) < resistance) resistance = getHeroDamageReduction_Lightning(mobLevel);
             if (getHeroDamageReduction_Physical(mobLevel) < resistance) resistance = getHeroDamageReduction_Physical(mobLevel);
             if (getHeroDamageReduction_Poison(mobLevel) < resistance) resistance = getHeroDamageReduction_Poison(mobLevel);
-            ehp /= (1 - getHeroDamageReduction_Arcane(mobLevel));
+            ehp /= (1 - resistance);
 
             // Update with class reduction
             if ((hero.heroClass == "monk") || (hero.heroClass == "barbarian"))
@@ -321,20 +329,8 @@ namespace ZTn.BNet.D3.Calculator
         {
             double characteristic = 0;
 
-            switch (hero.heroClass)
-            {
-                case "barbarian":
-                case "witch-doctor":
-                case "wizard":
-                    characteristic = 7 + 1 * hero.level + 1 * hero.paragonLevel;
-                    break;
-                case "monk":
-                case "demon-hunter":
-                    characteristic = 7 + 3 * hero.level + 3 * hero.paragonLevel;
-                    break;
-                default:
-                    break;
-            }
+            characteristic += itemLevel.dexterityItem.min;
+            characteristic += itemParagonLevel.dexterityItem.min;
 
             // Update with item bonus
             if (heroStuff.attributesRaw.dexterityItem != null)
@@ -347,20 +343,8 @@ namespace ZTn.BNet.D3.Calculator
         {
             double characteristic = 0;
 
-            switch (hero.heroClass)
-            {
-                case "monk":
-                case "demon-hunter":
-                case "barbarian":
-                    characteristic = 7 + 1 * hero.level + 1 * hero.paragonLevel;
-                    break;
-                case "witch-doctor":
-                case "wizard":
-                    characteristic = 7 + 3 * hero.level + 3 * hero.paragonLevel;
-                    break;
-                default:
-                    break;
-            }
+            characteristic += itemLevel.intelligenceItem.min;
+            characteristic += itemParagonLevel.intelligenceItem.min;
 
             // Update with item bonus
             if (heroStuff.attributesRaw.intelligenceItem != null)
@@ -373,20 +357,8 @@ namespace ZTn.BNet.D3.Calculator
         {
             double characteristic = 0;
 
-            switch (hero.heroClass)
-            {
-                case "monk":
-                case "demon-hunter":
-                case "witch-doctor":
-                case "wizard":
-                    characteristic = 7 + 1 * hero.level + 1 * hero.paragonLevel;
-                    break;
-                case "barbarian":
-                    characteristic = 7 + 3 * hero.level + 3 * hero.paragonLevel;
-                    break;
-                default:
-                    break;
-            }
+            characteristic += itemLevel.strengthItem.min;
+            characteristic += itemParagonLevel.strengthItem.min;
 
             // Update with item bonus
             if (heroStuff.attributesRaw.strengthItem != null)
@@ -399,7 +371,8 @@ namespace ZTn.BNet.D3.Calculator
         {
             double vitality = 0;
 
-            vitality = 7 + 2 * hero.level + 2 * hero.paragonLevel;
+            vitality += itemLevel.vitalityItem.min;
+            vitality += itemParagonLevel.vitalityItem.min;
 
             // Update with item bonus
             if (heroStuff.attributesRaw.vitalityItem != null)
@@ -416,6 +389,78 @@ namespace ZTn.BNet.D3.Calculator
                 attackSpeed = heroStuff.attributesRaw.attacksPerSecondPercent.min;
 
             return attackSpeed;
+        }
+
+        /// <summary>
+        /// Returns an ItemAttributes equivalent to bonuses earned from hero level
+        /// </summary>
+        /// <returns></returns>
+        public ItemAttributes getItemAttributesFromLevel()
+        {
+            ItemAttributes attr = new ItemAttributes();
+
+            switch (hero.heroClass)
+            {
+                case "monk":
+                case "demon-hunter":
+                    attr.dexterityItem = new ItemValueRange(7 + 3 * hero.level);
+                    attr.intelligenceItem = new ItemValueRange(7 + 1 * hero.level);
+                    attr.strengthItem = new ItemValueRange(7 + 1 * hero.level);
+                    break;
+                case "witch-doctor":
+                case "wizard":
+                    attr.dexterityItem = new ItemValueRange(7 + 1 * hero.level);
+                    attr.intelligenceItem = new ItemValueRange(7 + 3 * hero.level);
+                    attr.strengthItem = new ItemValueRange(7 + 1 * hero.level);
+                    break;
+                case "barbarian":
+                    attr.dexterityItem = new ItemValueRange(7 + 1 * hero.level);
+                    attr.intelligenceItem = new ItemValueRange(7 + 1 * hero.level);
+                    attr.strengthItem = new ItemValueRange(7 + 3 * hero.level);
+                    break;
+                default:
+                    break;
+            }
+
+            attr.vitalityItem = new ItemValueRange(7 + 2 * hero.level);
+
+            return attr;
+        }
+
+        /// <summary>
+        /// Returns an ItemAttributes equivalent to bonuses earned from hero paragon level
+        /// </summary>
+        /// <returns></returns>
+        public ItemAttributes getItemAttributesFromParagonLevel()
+        {
+            ItemAttributes attr = new ItemAttributes();
+
+            switch (hero.heroClass)
+            {
+                case "monk":
+                case "demon-hunter":
+                    attr.dexterityItem = new ItemValueRange(3 * hero.level);
+                    attr.intelligenceItem = new ItemValueRange(1 * hero.level);
+                    attr.strengthItem = new ItemValueRange(1 * hero.level);
+                    break;
+                case "witch-doctor":
+                case "wizard":
+                    attr.dexterityItem = new ItemValueRange(1 * hero.level);
+                    attr.intelligenceItem = new ItemValueRange(3 * hero.level);
+                    attr.strengthItem = new ItemValueRange(1 * hero.level);
+                    break;
+                case "barbarian":
+                    attr.dexterityItem = new ItemValueRange(1 * hero.level);
+                    attr.intelligenceItem = new ItemValueRange(1 * hero.level);
+                    attr.strengthItem = new ItemValueRange(3 * hero.level);
+                    break;
+                default:
+                    break;
+            }
+
+            attr.vitalityItem = new ItemValueRange(2 * hero.level);
+
+            return attr;
         }
 
         public ItemValueRange getMainCharacteristic()
