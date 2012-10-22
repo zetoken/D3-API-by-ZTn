@@ -270,6 +270,9 @@ namespace ZTn.BNet.D3ProfileExplorer
             populateCalculatedData(guiCalculatedBlockChance, attr.blockChanceItem);
             populateCalculatedData(guiCalculatedBlockMin, attr.blockAmountItemMin);
             populateCalculatedData(guiCalculatedBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
+
+            guiCalculatedEffectiveHitpoints.Text = Math.Round(d3Calculator.getHeroEffectiveHitpoints(hero.level)).ToString();
+            guiCalculatedDPSEHPRatio.Text = Math.Round(d3Calculator.getHeroDPS() * d3Calculator.getHeroEffectiveHitpoints(hero.level) / 1000000).ToString();
         }
     }
 }

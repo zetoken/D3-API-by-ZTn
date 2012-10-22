@@ -10,10 +10,6 @@ namespace ZTn.BNet.D3.Calculator
         public Hero hero;
         public HeroStuff heroStuff;
 
-        public Item addedBonus = new Item(new ItemAttributes());
-        public Item multipliedBonus = new Item(new ItemAttributes());
-        public double skillBonus = 0;
-
         #endregion
 
         #region >> Constructors
@@ -27,6 +23,10 @@ namespace ZTn.BNet.D3.Calculator
 
         #endregion
 
+        /// <summary>
+        /// Return damage multiplier when the non critical hit (normal)
+        /// </summary>
+        /// <returns></returns>
         public double getDamageMultiplierNormal()
         {
             double multiplier = 1;
@@ -34,12 +34,13 @@ namespace ZTn.BNet.D3.Calculator
             // Update dps with main statistic
             multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * hero.level) + (hero.paragonLevel * 3)) / 100;
 
-            // Update thorns with skill bonus
-            multiplier *= 1 + skillBonus;
-
             return multiplier;
         }
 
+        /// <summary>
+        /// Return damage multiplier for critical hit
+        /// </summary>
+        /// <returns></returns>
         public double getDamageMultiplierCritic()
         {
             double multiplier = 1;
@@ -53,12 +54,13 @@ namespace ZTn.BNet.D3.Calculator
             // Update dps with main statistic
             multiplier *= 1 + (getMainCharacteristic().min + (7 + 3 * hero.level) + (hero.paragonLevel * 3)) / 100;
 
-            // Update thorns with skill bonus
-            multiplier *= 1 + skillBonus;
-
             return multiplier;
         }
 
+        /// <summary>
+        /// Return average damage multiplier (taking care of critical and normal hits)
+        /// </summary>
+        /// <returns></returns>
         public double getDamageMultiplier()
         {
             double multiplier = 1;
@@ -178,14 +180,11 @@ namespace ZTn.BNet.D3.Calculator
         {
             double dps = heroStuff.getWeaponDamage();
 
-            // Update thorns malusMultiplier
+            // Update Damage Multiplier
             dps *= getDamageMultiplier();
 
-            // Update dps malusMultiplier
+            // Update Attack Speed Multiplier
             dps *= getActualAttackSpeed();
-
-            // Update dps with skill bonus
-            dps *= 1 + skillBonus;
 
             return dps;
         }
@@ -199,8 +198,6 @@ namespace ZTn.BNet.D3.Calculator
 
         public double getHeroDPS(Item addedBonus)
         {
-            this.addedBonus = addedBonus;
-
             heroStuff.updateWithTalents(addedBonus);
 
             double dps = getHeroDPSAsIs();
@@ -213,14 +210,20 @@ namespace ZTn.BNet.D3.Calculator
             double ehp = getHeroHitpoints();
 
             // Update with armor reduction
-            ehp /= (1 + getHeroDamageReduction_Armor(mobLevel));
+            ehp /= (1 - getHeroDamageReduction_Armor(mobLevel));
 
-            // Update with resistance reduction
-            ehp /= (1 + getHeroDamageReduction_Arcane(mobLevel));
+            // Update with lowest resistance reduction
+            double resistance = getHeroDamageReduction_Arcane(mobLevel);
+            if (getHeroDamageReduction_Cold(mobLevel) < resistance) resistance = getHeroDamageReduction_Cold(mobLevel);
+            if (getHeroDamageReduction_Fire(mobLevel) < resistance) resistance = getHeroDamageReduction_Fire(mobLevel);
+            if (getHeroDamageReduction_Lightning(mobLevel) < resistance) resistance = getHeroDamageReduction_Lightning(mobLevel);
+            if (getHeroDamageReduction_Physical(mobLevel) < resistance) resistance = getHeroDamageReduction_Physical(mobLevel);
+            if (getHeroDamageReduction_Poison(mobLevel) < resistance) resistance = getHeroDamageReduction_Poison(mobLevel);
+            ehp /= (1 - getHeroDamageReduction_Arcane(mobLevel));
 
             // Update with class reduction
             if ((hero.heroClass == "monk") || (hero.heroClass == "barbarian"))
-                ehp /= (1 + 0.30);
+                ehp /= (1 - 0.30);
 
             return ehp;
         }

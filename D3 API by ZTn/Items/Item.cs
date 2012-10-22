@@ -17,6 +17,8 @@ namespace ZTn.BNet.D3.Items
         [DataMember]
         public int bonusAffixes;
         [DataMember]
+        public String flavorText;
+        [DataMember]
         public String typeName;
         [DataMember]
         public ItemType type;
