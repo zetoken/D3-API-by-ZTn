@@ -138,7 +138,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             Item addedBonus = new Item();
             addedBonus.attributesRaw = new ItemAttributes();
 
-            // Barbarian skills
+            // Barbarian passive skills
             if (guiSkillNervesOfSteel.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.NervesOfSteel()).getBonus(d3Calculator);
             if (guiSkillWeaponsMaster_MaceAxe.Checked)
@@ -152,7 +152,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (guiSkillRuthless.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.Ruthless()).getBonus(d3Calculator);
 
-            // Demon Hunter skills
+            // Demon Hunter passive skills
             if (guiSkillArchery_Bow.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Archery_Bow()).getBonus(d3Calculator);
             if (guiSkillArchery_Crossbow.Checked)
@@ -166,13 +166,11 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (guiSkillPerfectionnist.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Perfectionnist()).getBonus(d3Calculator);
 
-            // Monk skills
+            // Monk passive skills
             if (guiSkillSeizeTheInitiative.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.SeizeTheInitiative()).getBonus(d3Calculator);
             if (guiSkillOneWithEverything.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.OneWithEverything()).getBonus(d3Calculator);
-            if (guiSkillMantraOfHealing_TimeOfNeed.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.MantraOfHealing_TimeOfNeed()).getBonus(d3Calculator);
 
             // Witch Doctor skills
             if (guiSkillPierceTheVeil.Checked)
@@ -184,9 +182,24 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (guiSkillGalvanizingWard.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.Wizard.GalvanizingWard()).getBonus(d3Calculator);
 
-            // Followers buffs are applied after class skills
+            // Some buffs are applied after class skills
             d3Calculator.getHeroDPS(addedBonus);
 
+            // Barbarian active skills
+
+            // Demon Hunter active skills
+
+            // Monk active skills
+            if (guiSkillMantraOfHealing_TimeOfNeed.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.MantraOfHealing_TimeOfNeed()).getBonus(d3Calculator);
+            if (guiSkillMantraOfEvasion_HardTarget.Checked)
+                addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.MantraOfEvasion_HardTarget()).getBonus(d3Calculator);
+
+            // Witch Doctor active skills
+
+            // Wizard skills
+
+            // Followers
             if (guiSkillAnatomy.Checked)
                 addedBonus.attributesRaw += (new D3.Calculator.Skills.Followers.Anatomy()).getBonus(d3Calculator);
             if (guiSkillFocusedMind.Checked)

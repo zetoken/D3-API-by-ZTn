@@ -64,6 +64,7 @@
     <Compile Include="Skills\Followers\Anatomy.cs" />
     <Compile Include="Skills\Followers\FocusedMind.cs" />
     <Compile Include="Skills\Followers\PoweredArmor.cs" />
+    <Compile Include="Skills\Monk\MantraOfEvasion_HardTarget.cs" />
     <Compile Include="Skills\Monk\OneWithEverything.cs" />
     <Compile Include="Skills\Monk\SeizeTheInitiative.cs" />
     <Compile Include="Skills\Monk\MantraOfHealing_TimeOfNeed.cs" />
