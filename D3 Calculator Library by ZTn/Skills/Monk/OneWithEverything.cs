@@ -11,22 +11,22 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
 
             double maxResist = 0;
 
-            double resistanceArcane = calculator.getHeroResistance_Arcane();
+            double resistanceArcane = calculator.getHeroResistance("Arcane");
             if (resistanceArcane > maxResist) maxResist = resistanceArcane;
 
-            double resistanceCold = calculator.getHeroResistance_Cold();
+            double resistanceCold = calculator.getHeroResistance("Cold");
             if (resistanceCold > maxResist) maxResist = resistanceCold;
 
-            double resistanceFire = calculator.getHeroResistance_Fire();
+            double resistanceFire = calculator.getHeroResistance("Fire");
             if (resistanceFire > maxResist) maxResist = resistanceFire;
 
-            double resistanceLightning = calculator.getHeroResistance_Lightning();
+            double resistanceLightning = calculator.getHeroResistance("Lightning");
             if (resistanceLightning > maxResist) maxResist = resistanceLightning;
 
-            double resistancePhysical = calculator.getHeroResistance_Physical();
+            double resistancePhysical = calculator.getHeroResistance("Physical");
             if (resistancePhysical > maxResist) maxResist = resistancePhysical;
 
-            double resistancePoison = calculator.getHeroResistance_Poison();
+            double resistancePoison = calculator.getHeroResistance("Poison");
             if (resistancePoison > maxResist) maxResist = resistancePoison;
 
             double resistanceAll = calculator.getHeroResistance_All();

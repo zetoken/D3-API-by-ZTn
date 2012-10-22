@@ -127,44 +127,9 @@ namespace ZTn.BNet.D3.Calculator
             return armor / (armor + 50 * mobLevel);
         }
 
-        public double getHeroDamageReduction_Arcane(int mobLevel)
+        public double getHeroDamageReduction(int mobLevel, string resist)
         {
-            double resistance = getHeroResistance_Arcane();
-
-            return resistance / (resistance + 5 * mobLevel);
-        }
-
-        public double getHeroDamageReduction_Cold(int mobLevel)
-        {
-            double resistance = getHeroResistance_Cold();
-
-            return resistance / (resistance + 5 * mobLevel);
-        }
-
-        public double getHeroDamageReduction_Fire(int mobLevel)
-        {
-            double resistance = getHeroResistance_Fire();
-
-            return resistance / (resistance + 5 * mobLevel);
-        }
-
-        public double getHeroDamageReduction_Lightning(int mobLevel)
-        {
-            double resistance = getHeroResistance_Lightning();
-
-            return resistance / (resistance + 5 * mobLevel);
-        }
-
-        public double getHeroDamageReduction_Physical(int mobLevel)
-        {
-            double resistance = getHeroResistance_Physical();
-
-            return resistance / (resistance + 5 * mobLevel);
-        }
-
-        public double getHeroDamageReduction_Poison(int mobLevel)
-        {
-            double resistance = getHeroResistance_Poison();
+            double resistance = getHeroResistance(resist);
 
             return resistance / (resistance + 5 * mobLevel);
         }
@@ -221,12 +186,12 @@ namespace ZTn.BNet.D3.Calculator
             ehp /= (1 - getHeroDamageReduction_Armor(mobLevel));
 
             // Update with lowest resistance reduction
-            double resistance = getHeroDamageReduction_Arcane(mobLevel);
-            if (getHeroDamageReduction_Cold(mobLevel) < resistance) resistance = getHeroDamageReduction_Cold(mobLevel);
-            if (getHeroDamageReduction_Fire(mobLevel) < resistance) resistance = getHeroDamageReduction_Fire(mobLevel);
-            if (getHeroDamageReduction_Lightning(mobLevel) < resistance) resistance = getHeroDamageReduction_Lightning(mobLevel);
-            if (getHeroDamageReduction_Physical(mobLevel) < resistance) resistance = getHeroDamageReduction_Physical(mobLevel);
-            if (getHeroDamageReduction_Poison(mobLevel) < resistance) resistance = getHeroDamageReduction_Poison(mobLevel);
+            double resistance = getHeroDamageReduction(mobLevel, "Arcane");
+            if (getHeroDamageReduction(mobLevel, "Cold") < resistance) resistance = getHeroDamageReduction(mobLevel, "Cold");
+            if (getHeroDamageReduction(mobLevel, "Fire") < resistance) resistance = getHeroDamageReduction(mobLevel, "Fire");
+            if (getHeroDamageReduction(mobLevel, "Lightning") < resistance) resistance = getHeroDamageReduction(mobLevel, "Lightning");
+            if (getHeroDamageReduction(mobLevel, "Physical") < resistance) resistance = getHeroDamageReduction(mobLevel, "Physical");
+            if (getHeroDamageReduction(mobLevel, "Poison") < resistance) resistance = getHeroDamageReduction(mobLevel, "Poison");
             ehp /= (1 - resistance);
 
             // Update with class reduction
@@ -256,8 +221,7 @@ namespace ZTn.BNet.D3.Calculator
         {
             double resist = 0;
 
-            if (heroStuff.attributesRaw.resistance_All != null)
-                resist = heroStuff.attributesRaw.resistance_All.min;
+            resist += heroStuff.getResistance("All");
 
             // Update with intelligence bonus
             resist += getHeroIntelligence() / 10;
@@ -265,64 +229,13 @@ namespace ZTn.BNet.D3.Calculator
             return resist;
         }
 
-        public double getHeroResistance_Arcane()
+        public double getHeroResistance(string resist)
         {
-            double resist = getHeroResistance_All();
+            double resistance = getHeroResistance_All();
 
-            if (heroStuff.attributesRaw.resistance_Arcane != null)
-                resist += heroStuff.attributesRaw.resistance_Arcane.min;
+            resistance += heroStuff.getResistance(resist);
 
-            return resist;
-        }
-
-        public double getHeroResistance_Cold()
-        {
-            double resist = getHeroResistance_All();
-
-            if (heroStuff.attributesRaw.resistance_Cold != null)
-                resist += heroStuff.attributesRaw.resistance_Cold.min;
-
-            return resist;
-        }
-
-        public double getHeroResistance_Fire()
-        {
-            double resist = getHeroResistance_All();
-
-            if (heroStuff.attributesRaw.resistance_Fire != null)
-                resist += heroStuff.attributesRaw.resistance_Fire.min;
-
-            return resist;
-        }
-
-        public double getHeroResistance_Lightning()
-        {
-            double resist = getHeroResistance_All();
-
-            if (heroStuff.attributesRaw.resistance_Lightning != null)
-                resist += heroStuff.attributesRaw.resistance_Lightning.min;
-
-            return resist;
-        }
-
-        public double getHeroResistance_Physical()
-        {
-            double resist = getHeroResistance_All();
-
-            if (heroStuff.attributesRaw.resistance_Physical != null)
-                resist += heroStuff.attributesRaw.resistance_Physical.min;
-
-            return resist;
-        }
-
-        public double getHeroResistance_Poison()
-        {
-            double resist = getHeroResistance_All();
-
-            if (heroStuff.attributesRaw.resistance_Poison != null)
-                resist += heroStuff.attributesRaw.resistance_Poison.min;
-
-            return resist;
+            return resistance;
         }
 
         public double getHeroDexterity()

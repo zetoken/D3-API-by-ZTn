@@ -264,21 +264,21 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiCalculatedDodge.Text = d3Calculator.getHeroDodge().ToString();
 
             guiCalculatedArmor.Text = d3Calculator.getHeroArmor().ToString();
-            guiCalculatedResistance_Arcane.Text = d3Calculator.getHeroResistance_Arcane().ToString();
-            guiCalculatedResistance_Cold.Text = d3Calculator.getHeroResistance_Cold().ToString();
-            guiCalculatedResistance_Fire.Text = d3Calculator.getHeroResistance_Fire().ToString();
-            guiCalculatedResistance_Lightning.Text = d3Calculator.getHeroResistance_Lightning().ToString();
-            guiCalculatedResistance_Physical.Text = d3Calculator.getHeroResistance_Physical().ToString();
-            guiCalculatedResistance_Poison.Text = d3Calculator.getHeroResistance_Poison().ToString();
+            guiCalculatedResistance_Arcane.Text = d3Calculator.getHeroResistance("Arcane").ToString();
+            guiCalculatedResistance_Cold.Text = d3Calculator.getHeroResistance("Cold").ToString();
+            guiCalculatedResistance_Fire.Text = d3Calculator.getHeroResistance("Fire").ToString();
+            guiCalculatedResistance_Lightning.Text = d3Calculator.getHeroResistance("Lightning").ToString();
+            guiCalculatedResistance_Physical.Text = d3Calculator.getHeroResistance("Physical").ToString();
+            guiCalculatedResistance_Poison.Text = d3Calculator.getHeroResistance("Poison").ToString();
             guiCalculatedResistance_All.Text = d3Calculator.getHeroResistance_All().ToString();
 
             guiCalculatedDamageReduction_Armor.Text = (100 * d3Calculator.getHeroDamageReduction_Armor(hero.level)).ToString();
-            guiCalculatedDamageReduction_Arcane.Text = (100 * d3Calculator.getHeroDamageReduction_Arcane(hero.level)).ToString();
-            guiCalculatedDamageReduction_Cold.Text = (100 * d3Calculator.getHeroDamageReduction_Cold(hero.level)).ToString();
-            guiCalculatedDamageReduction_Fire.Text = (100 * d3Calculator.getHeroDamageReduction_Fire(hero.level)).ToString();
-            guiCalculatedDamageReduction_Lightning.Text = (100 * d3Calculator.getHeroDamageReduction_Lightning(hero.level)).ToString();
-            guiCalculatedDamageReduction_Physical.Text = (100 * d3Calculator.getHeroDamageReduction_Physical(hero.level)).ToString();
-            guiCalculatedDamageReduction_Poison.Text = (100 * d3Calculator.getHeroDamageReduction_Poison(hero.level)).ToString();
+            guiCalculatedDamageReduction_Arcane.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Arcane")).ToString();
+            guiCalculatedDamageReduction_Cold.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Cold")).ToString();
+            guiCalculatedDamageReduction_Fire.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Fire")).ToString();
+            guiCalculatedDamageReduction_Lightning.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Lightning")).ToString();
+            guiCalculatedDamageReduction_Physical.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Physical")).ToString();
+            guiCalculatedDamageReduction_Poison.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Poison")).ToString();
 
             populateCalculatedData(guiCalculatedBlockChance, attr.blockChanceItem);
             populateCalculatedData(guiCalculatedBlockMin, attr.blockAmountItemMin);

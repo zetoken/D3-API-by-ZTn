@@ -97,6 +97,22 @@ namespace ZTn.BNet.D3.Calculator
         #endregion
 
         /// <summary>
+        /// Returns the resistance value given by the item for the given resist
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="resist"></param>
+        /// <returns></returns>
+        public static double getResistance(this Item item, String resist)
+        {
+            ItemValueRange resistance = (ItemValueRange)typeof(ItemAttributes).GetField("resistance_" + resist).GetValue(item.attributesRaw);
+
+            if (resistance == null)
+                return 0;
+            else
+                return resistance.min;
+        }
+
+        /// <summary>
         /// Computes weapon attack speed (attack per second).
         /// </summary>
         /// <param name="item"></param>
