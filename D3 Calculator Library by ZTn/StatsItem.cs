@@ -4,7 +4,7 @@ using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator
 {
-    public class HeroStuff : Item
+    public class StatsItem : Item
     {
         #region >> Fields
 
@@ -12,13 +12,16 @@ namespace ZTn.BNet.D3.Calculator
         Item mainHand;
         Item offHand;
 
-        Item addedBonus;
+        ItemAttributes attrLevel;
+        ItemAttributes attrParagonLevel;
+
+        ItemAttributes addedBonus;
 
         #endregion
 
         #region >> Constructor
 
-        public HeroStuff(Item mainHand, Item offHand, Item[] items)
+        public StatsItem(Item mainHand, Item offHand, Item[] items)
             : base()
         {
             this.mainHand = mainHand;
@@ -85,27 +88,33 @@ namespace ZTn.BNet.D3.Calculator
 
         public Boolean isAmbidextry()
         {
-            return (offHand.isWeapon());
+            return offHand.isWeapon();
         }
 
         public void update()
         {
             attributesRaw = new ItemAttributes();
 
+            // Add bonus from level and paragon
+            if (attrLevel != null)
+                attributesRaw += attrLevel;
+            if (attrParagonLevel != null)
+                attributesRaw += attrParagonLevel;
+
             // Build a list of all items with attributes
             List<Item> stuff = new List<Item>(items);
 
             // Add bonus (skills, buffs)
-            if ((addedBonus != null) && (addedBonus.attributesRaw != null))
+            if (addedBonus != null)
             {
-                if (addedBonus.attributesRaw.attacksPerSecondItem != null)
+                if (addedBonus.attacksPerSecondItem != null)
                 {
-                    mainHand.attributesRaw.attacksPerSecondItem += addedBonus.attributesRaw.attacksPerSecondItem;
+                    mainHand.attributesRaw.attacksPerSecondItem += addedBonus.attacksPerSecondItem;
                     if (offHand.isWeapon())
-                        offHand.attributesRaw.attacksPerSecondItem += addedBonus.attributesRaw.attacksPerSecondItem;
-                    addedBonus.attributesRaw.attacksPerSecondItem = null;
+                        offHand.attributesRaw.attacksPerSecondItem += addedBonus.attacksPerSecondItem;
+                    addedBonus.attacksPerSecondItem = null;
                 }
-                attributesRaw += addedBonus.attributesRaw;
+                attributesRaw += addedBonus;
             }
 
             // Add weapons
@@ -130,14 +139,21 @@ namespace ZTn.BNet.D3.Calculator
             {
                 attributesRaw += item.attributesRaw;
             }
-
-            this.updateFromRawAttributes();
         }
 
-        public void updateWithTalents(Item addedBonus)
+        public void setLevelBonus(ItemAttributes itemLevel)
+        {
+            this.attrLevel = itemLevel;
+        }
+
+        public void setParagonLevelBonus(ItemAttributes itemParagonLevel)
+        {
+            this.attrParagonLevel = itemParagonLevel;
+        }
+
+        public void setSkillsBonus(ItemAttributes addedBonus)
         {
             this.addedBonus = addedBonus;
-            update();
         }
     }
 }

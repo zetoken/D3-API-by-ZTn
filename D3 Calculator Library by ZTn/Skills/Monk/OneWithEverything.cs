@@ -6,7 +6,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
     {
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            ItemAttributes stuff = calculator.heroStuff.attributesRaw;
+            ItemAttributes stuff = calculator.heroItemStats.attributesRaw;
             ItemAttributes attr = new ItemAttributes();
 
             double maxResist = 0;

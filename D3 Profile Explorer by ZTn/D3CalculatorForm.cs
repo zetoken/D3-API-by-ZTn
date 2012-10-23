@@ -133,54 +133,53 @@ namespace ZTn.BNet.D3ProfileExplorer
             Item offHand = guiOffHandEditor.getEditedItem();
 
             D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
-            Item globalItem = d3Calculator.heroStuff;
+            Item globalItem = d3Calculator.heroItemStats;
 
-            Item addedBonus = new Item();
-            addedBonus.attributesRaw = new ItemAttributes();
+            ItemAttributes addedBonus = new ItemAttributes();
 
             // Barbarian passive skills
             if (guiSkillNervesOfSteel.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.NervesOfSteel()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Barbarian.NervesOfSteel()).getBonus(d3Calculator);
             if (guiSkillWeaponsMaster_MaceAxe.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_MaceAxe()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_MaceAxe()).getBonus(d3Calculator);
             if (guiSkillWeaponsMaster_PolearmSpear.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_PolearmSpear()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_PolearmSpear()).getBonus(d3Calculator);
             if (guiSkillWeaponsMaster_SwordDagguer.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_SwordDagguer()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_SwordDagguer()).getBonus(d3Calculator);
             if (guiSkillToughAsNails.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.ToughAsNails()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Barbarian.ToughAsNails()).getBonus(d3Calculator);
             if (guiSkillRuthless.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Barbarian.Ruthless()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Barbarian.Ruthless()).getBonus(d3Calculator);
 
             // Demon Hunter passive skills
             if (guiSkillArchery_Bow.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Archery_Bow()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.DemonHunter.Archery_Bow()).getBonus(d3Calculator);
             if (guiSkillArchery_Crossbow.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Archery_Crossbow()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.DemonHunter.Archery_Crossbow()).getBonus(d3Calculator);
             if (guiSkillArchery_HandCrossbow.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Archery_HandCrossbow()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.DemonHunter.Archery_HandCrossbow()).getBonus(d3Calculator);
             if (guiSkillSteadyAim.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.SteadyAim()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.DemonHunter.SteadyAim()).getBonus(d3Calculator);
             if (guiSkillSharpShooter.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.SharpShooter()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.DemonHunter.SharpShooter()).getBonus(d3Calculator);
             if (guiSkillPerfectionnist.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.DemonHunter.Perfectionnist()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.DemonHunter.Perfectionnist()).getBonus(d3Calculator);
 
             // Monk passive skills
             if (guiSkillSeizeTheInitiative.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.SeizeTheInitiative()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Monk.SeizeTheInitiative()).getBonus(d3Calculator);
             if (guiSkillOneWithEverything.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.OneWithEverything()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Monk.OneWithEverything()).getBonus(d3Calculator);
 
             // Witch Doctor skills
             if (guiSkillPierceTheVeil.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.WitchDoctor.PierceTheVeil()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.WitchDoctor.PierceTheVeil()).getBonus(d3Calculator);
 
             // Wizard skills
             if (guiSkillGlassCannon.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Wizard.GlassCannon()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Wizard.GlassCannon()).getBonus(d3Calculator);
             if (guiSkillGalvanizingWard.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Wizard.GalvanizingWard()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Wizard.GalvanizingWard()).getBonus(d3Calculator);
 
             // Some buffs are applied after class skills
             d3Calculator.getHeroDPS(addedBonus);
@@ -191,9 +190,11 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             // Monk active skills
             if (guiSkillMantraOfHealing_TimeOfNeed.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.MantraOfHealing_TimeOfNeed()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Monk.MantraOfHealing_TimeOfNeed()).getBonus(d3Calculator);
             if (guiSkillMantraOfEvasion_HardTarget.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Monk.MantraOfEvasion_HardTarget()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Monk.MantraOfEvasion_HardTarget()).getBonus(d3Calculator);
+            if (guiSkillMysticAlly_EarthAlly.Checked)
+                addedBonus += (new D3.Calculator.Skills.Monk.MysticAlly_EarthAlly()).getBonus(d3Calculator);
 
             // Witch Doctor active skills
 
@@ -201,11 +202,11 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             // Followers
             if (guiSkillAnatomy.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Followers.Anatomy()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Followers.Anatomy()).getBonus(d3Calculator);
             if (guiSkillFocusedMind.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Followers.FocusedMind()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Followers.FocusedMind()).getBonus(d3Calculator);
             if (guiSkillPoweredArmor.Checked)
-                addedBonus.attributesRaw += (new D3.Calculator.Skills.Followers.PoweredArmor()).getBonus(d3Calculator);
+                addedBonus += (new D3.Calculator.Skills.Followers.PoweredArmor()).getBonus(d3Calculator);
 
             guiCalculatedDPS.Text = d3Calculator.getHeroDPS(addedBonus).ToString();
 
@@ -228,7 +229,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void updateItemsSummary(D3Calculator d3Calculator)
         {
-            ItemAttributes attr = d3Calculator.heroStuff.attributesRaw;
+            ItemAttributes attr = d3Calculator.heroItemStats.attributesRaw;
 
             populateCalculatedData(guiItemsDexterity, attr.dexterityItem);
             populateCalculatedData(guiItemsIntelligence, attr.intelligenceItem);
@@ -253,13 +254,13 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void updateCalculationResults(D3Calculator d3Calculator)
         {
-            ItemAttributes attr = d3Calculator.heroStuff.attributesRaw;
+            ItemAttributes attr = d3Calculator.heroItemStats.attributesRaw;
 
             guiCalculatedAttackPerSecond.Text = d3Calculator.getActualAttackSpeed().ToString();
-            guiCalcultatedDamageMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal()).ToString();
-            guiCalcultatedDamageMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal()).ToString();
-            guiCalcultatedDamageCriticMin.Text = (d3Calculator.heroStuff.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic()).ToString();
-            guiCalcultatedDamageCriticMax.Text = (d3Calculator.heroStuff.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic()).ToString();
+            guiCalcultatedDamageMin.Text = (d3Calculator.heroItemStats.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal()).ToString();
+            guiCalcultatedDamageMax.Text = (d3Calculator.heroItemStats.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal()).ToString();
+            guiCalcultatedDamageCriticMin.Text = (d3Calculator.heroItemStats.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic()).ToString();
+            guiCalcultatedDamageCriticMax.Text = (d3Calculator.heroItemStats.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic()).ToString();
             guiCalculatedHitpoints.Text = d3Calculator.getHeroHitpoints().ToString();
             guiCalculatedDodge.Text = d3Calculator.getHeroDodge().ToString();
 

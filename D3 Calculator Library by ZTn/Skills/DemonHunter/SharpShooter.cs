@@ -6,7 +6,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
     {
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            ItemAttributes stuff = calculator.heroStuff.attributesRaw;
+            ItemAttributes stuff = calculator.heroItemStats.attributesRaw;
             ItemAttributes attr = new ItemAttributes();
 
             if (stuff.critPercentBonusCapped != null)

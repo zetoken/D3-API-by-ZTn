@@ -278,9 +278,8 @@ namespace ZTn.BNet.D3ProfileExplorer
                 offHand.attributesRaw = new ItemAttributes();
             }
 
-            HeroStuff heroStuff = new HeroStuff(mainHand, offHand, items.ToArray());
+            StatsItem heroStuff = new StatsItem(mainHand, offHand, items.ToArray());
             heroStuff.update();
-            heroStuff.updateFromRawAttributes();
 
             TreeNode node = new TreeNode("Unique Item for " + hero.name);
             node.Nodes.AddRange(createNodeFromD3Object(heroStuff).ToArray());

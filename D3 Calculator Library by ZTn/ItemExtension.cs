@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator
@@ -11,37 +7,6 @@ namespace ZTn.BNet.D3.Calculator
     {
         private static readonly Type type = typeof(ItemAttributes);
         private static readonly ItemValueRange half = new ItemValueRange(0.5);
-
-        /// <summary>
-        /// Updates main characterics of the item based on rawAttributes field
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        public static Item updateFromRawAttributes(this Item item)
-        {
-            //public ItemValueRange attacksPerSecond;
-            if (item.attributesRaw.attacksPerSecondItem == null)
-                item.attacksPerSecond = ItemValueRange.Zero;
-            else
-                item.attacksPerSecond = item.attributesRaw.attacksPerSecondItem * item.attributesRaw.attacksPerSecondItemPercent;
-
-            //public ItemValueRange minDamage;
-            item.minDamage = item.getRawBonusDamageMin() + item.getRawWeaponDamageMin();
-
-            //public ItemValueRange maxDamage;
-            item.maxDamage = item.getRawBonusDamageMax() + item.getRawWeaponDamageMax();
-
-            //public ItemValueRange resistance;
-            if (item.attributesRaw.armorItem == null)
-                item.armor = ItemValueRange.Zero;
-            else
-                item.armor = item.attributesRaw.armorItem;
-
-            //public ItemValueRange dps;
-            item.dps = (item.minDamage + item.maxDamage) * half * item.attacksPerSecond;
-
-            return item;
-        }
 
         /// <summary>
         /// Computes damages other than weapon damages (on rings, amulets, ...)

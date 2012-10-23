@@ -14,6 +14,8 @@ namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
         {
             ItemAttributes attr = new ItemAttributes();
 
+            attr.hitpointsMaxPercentBonusItem = new ItemValueRange(0.10);
+
             attr.armorBonusItem = new ItemValueRange(multiplier * calculator.getHeroArmor());
 
             attr += (new ResistancesMultiplier(multiplier)).getBonus(calculator);

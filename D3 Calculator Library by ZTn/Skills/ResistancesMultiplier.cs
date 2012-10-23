@@ -17,7 +17,7 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            Item stuff = calculator.heroStuff;
+            Item stuff = calculator.heroItemStats;
             ItemAttributes attr = new ItemAttributes();
 
             if (stuff.attributesRaw.resistance_All != null)
