@@ -1,4 +1,6 @@
-﻿using ZTn.BNet.D3.Heroes;
+﻿using System.Collections.Generic;
+using ZTn.BNet.D3.Calculator.Skills;
+using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator
@@ -170,6 +172,29 @@ namespace ZTn.BNet.D3.Calculator
             heroItemStats.update();
 
             return getHeroDPSAsIs();
+        }
+
+        public double getHeroDPS(List<D3SkillModifier> passives, List<D3SkillModifier> actives)
+        {
+            ItemAttributes itemAttributes = new ItemAttributes();
+
+            // Build passive bonuses
+            foreach (D3SkillModifier modifier in passives)
+            {
+                itemAttributes += modifier.getBonus(this);
+            }
+
+            // Compute the new unique item state with passives
+            update();
+
+            // Build active bonuses
+            foreach (D3SkillModifier modifier in actives)
+            {
+                itemAttributes += modifier.getBonus(this);
+            }
+
+            // Finally, return the dps
+            return getHeroDPS(itemAttributes);
         }
 
         public double getHeroDPS(ItemAttributes addedBonus)

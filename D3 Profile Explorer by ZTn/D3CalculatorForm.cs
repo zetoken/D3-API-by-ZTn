@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using ZTn.BNet.D3.Calculator;
+using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
@@ -113,8 +114,10 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void guiDoCalculations_Click(object sender, EventArgs e)
         {
+            // Retrieve hero from the GUI
             hero = getEditedHero();
 
+            // Retrieve weared items from the GUI
             List<Item> items = new List<Item>();
             items.Add(guiBracersEditor.getEditedItem());
             items.Add(guiFeetEditor.getEditedItem());
@@ -133,56 +136,56 @@ namespace ZTn.BNet.D3ProfileExplorer
             Item offHand = guiOffHandEditor.getEditedItem();
 
             D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
-            Item globalItem = d3Calculator.heroItemStats;
 
-            ItemAttributes addedBonus = new ItemAttributes();
+            // Retrieve used skills from the GUI
+            List<D3SkillModifier> passiveSkills = new List<D3SkillModifier>();
 
             // Barbarian passive skills
             if (guiSkillNervesOfSteel.Checked)
-                addedBonus += (new D3.Calculator.Skills.Barbarian.NervesOfSteel()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.NervesOfSteel());
             if (guiSkillWeaponsMaster_MaceAxe.Checked)
-                addedBonus += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_MaceAxe()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster_MaceAxe());
             if (guiSkillWeaponsMaster_PolearmSpear.Checked)
-                addedBonus += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_PolearmSpear()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster_PolearmSpear());
             if (guiSkillWeaponsMaster_SwordDagguer.Checked)
-                addedBonus += (new D3.Calculator.Skills.Barbarian.WeaponsMaster_SwordDagguer()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster_SwordDagguer());
             if (guiSkillToughAsNails.Checked)
-                addedBonus += (new D3.Calculator.Skills.Barbarian.ToughAsNails()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.ToughAsNails());
             if (guiSkillRuthless.Checked)
-                addedBonus += (new D3.Calculator.Skills.Barbarian.Ruthless()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.Ruthless());
 
             // Demon Hunter passive skills
             if (guiSkillArchery_Bow.Checked)
-                addedBonus += (new D3.Calculator.Skills.DemonHunter.Archery_Bow()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Archery_Bow());
             if (guiSkillArchery_Crossbow.Checked)
-                addedBonus += (new D3.Calculator.Skills.DemonHunter.Archery_Crossbow()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Archery_Crossbow());
             if (guiSkillArchery_HandCrossbow.Checked)
-                addedBonus += (new D3.Calculator.Skills.DemonHunter.Archery_HandCrossbow()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Archery_HandCrossbow());
             if (guiSkillSteadyAim.Checked)
-                addedBonus += (new D3.Calculator.Skills.DemonHunter.SteadyAim()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.SteadyAim());
             if (guiSkillSharpShooter.Checked)
-                addedBonus += (new D3.Calculator.Skills.DemonHunter.SharpShooter()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.SharpShooter());
             if (guiSkillPerfectionnist.Checked)
-                addedBonus += (new D3.Calculator.Skills.DemonHunter.Perfectionnist()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Perfectionnist());
 
             // Monk passive skills
             if (guiSkillSeizeTheInitiative.Checked)
-                addedBonus += (new D3.Calculator.Skills.Monk.SeizeTheInitiative()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.Monk.SeizeTheInitiative());
             if (guiSkillOneWithEverything.Checked)
-                addedBonus += (new D3.Calculator.Skills.Monk.OneWithEverything()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.Monk.OneWithEverything());
 
             // Witch Doctor skills
             if (guiSkillPierceTheVeil.Checked)
-                addedBonus += (new D3.Calculator.Skills.WitchDoctor.PierceTheVeil()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.WitchDoctor.PierceTheVeil());
 
             // Wizard skills
             if (guiSkillGlassCannon.Checked)
-                addedBonus += (new D3.Calculator.Skills.Wizard.GlassCannon()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.Wizard.GlassCannon());
             if (guiSkillGalvanizingWard.Checked)
-                addedBonus += (new D3.Calculator.Skills.Wizard.GalvanizingWard()).getBonus(d3Calculator);
+                passiveSkills.Add(new D3.Calculator.Skills.Wizard.GalvanizingWard());
 
-            // Some buffs are applied after class skills
-            d3Calculator.getHeroDPS(addedBonus);
+            // Some buffs are applied after passives skills: followers skills and active skills
+            List<D3SkillModifier> activeSkills = new List<D3SkillModifier>();
 
             // Barbarian active skills
 
@@ -190,11 +193,11 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             // Monk active skills
             if (guiSkillMantraOfHealing_TimeOfNeed.Checked)
-                addedBonus += (new D3.Calculator.Skills.Monk.MantraOfHealing_TimeOfNeed()).getBonus(d3Calculator);
+                activeSkills.Add(new D3.Calculator.Skills.Monk.MantraOfHealing_TimeOfNeed());
             if (guiSkillMantraOfEvasion_HardTarget.Checked)
-                addedBonus += (new D3.Calculator.Skills.Monk.MantraOfEvasion_HardTarget()).getBonus(d3Calculator);
+                activeSkills.Add(new D3.Calculator.Skills.Monk.MantraOfEvasion_HardTarget());
             if (guiSkillMysticAlly_EarthAlly.Checked)
-                addedBonus += (new D3.Calculator.Skills.Monk.MysticAlly_EarthAlly()).getBonus(d3Calculator);
+                activeSkills.Add(new D3.Calculator.Skills.Monk.MysticAlly_EarthAlly());
 
             // Witch Doctor active skills
 
@@ -202,13 +205,13 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             // Followers
             if (guiSkillAnatomy.Checked)
-                addedBonus += (new D3.Calculator.Skills.Followers.Anatomy()).getBonus(d3Calculator);
+                activeSkills.Add(new D3.Calculator.Skills.Followers.Anatomy());
             if (guiSkillFocusedMind.Checked)
-                addedBonus += (new D3.Calculator.Skills.Followers.FocusedMind()).getBonus(d3Calculator);
+                activeSkills.Add(new D3.Calculator.Skills.Followers.FocusedMind());
             if (guiSkillPoweredArmor.Checked)
-                addedBonus += (new D3.Calculator.Skills.Followers.PoweredArmor()).getBonus(d3Calculator);
+                activeSkills.Add(new D3.Calculator.Skills.Followers.PoweredArmor());
 
-            guiCalculatedDPS.Text = d3Calculator.getHeroDPS(addedBonus).ToString();
+            guiCalculatedDPS.Text = d3Calculator.getHeroDPS(passiveSkills, activeSkills).ToString();
 
             updateItemsSummary(d3Calculator);
 
