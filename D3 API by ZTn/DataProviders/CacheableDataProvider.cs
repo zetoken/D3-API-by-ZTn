@@ -56,9 +56,7 @@ namespace ZTn.BNet.D3.DataProviders
                     using (FileStream fileStream = File.Create(cachedFilePath))
                     {
                         binaryReader.BaseStream.CopyTo(fileStream);
-                        fileStream.Close();
                     }
-                    binaryReader.Close();
                 }
             }
 

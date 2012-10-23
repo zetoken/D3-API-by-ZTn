@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ZTn.BNet.D3.DataProviders
 {
+    [Serializable]
     public class BNetFailureObjectReturned : Exception
     {
+        [NonSerialized]
         public FailureObject failureObject;
 
         public BNetFailureObjectReturned()
