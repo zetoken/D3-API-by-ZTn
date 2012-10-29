@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{013AB500-9996-439A-942A-E2C77B774971}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZTn.BNet.D3</RootNamespace>
+    <AssemblyName>D3 API by ZTn</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Json" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Artisans\Artisan.cs" />
+    <Compile Include="Artisans\ArtisanLevel.cs" />
+    <Compile Include="Artisans\ArtisanTier.cs" />
+    <Compile Include="Artisans\ArtisanTraining.cs" />
+    <Compile Include="Artisans\CareerArtisan.cs" />
+    <Compile Include="Artisans\Reagent.cs" />
+    <Compile Include="Artisans\Recipe.cs" />
+    <Compile Include="Careers\Career.cs" />
+    <Compile Include="Careers\CareerKills.cs" />
+    <Compile Include="Careers\ClassTimePlayed.cs" />
+    <Compile Include="D3Api.cs" />
+    <Compile Include="DataProviders\BNetFailureObjectReturned.cs" />
+    <Compile Include="DataProviders\BNetResponseFailed.cs" />
+    <Compile Include="DataProviders\CacheableDataProvider.cs" />
+    <Compile Include="DataProviders\FileNotInCacheException.cs" />
+    <Compile Include="DataProviders\HttpRequestDataProvider.cs" />
+    <Compile Include="DataProviders\ID3DataProvider.cs" />
+    <Compile Include="FailureObject.cs" />
+    <Compile Include="Heroes\Hero.cs" />
+    <Compile Include="Heroes\HeroItems.cs" />
+    <Compile Include="Heroes\HeroKills.cs" />
+    <Compile Include="Heroes\HeroSkills.cs" />
+    <Compile Include="Heroes\HeroStats.cs" />
+    <Compile Include="Heroes\HeroSummary.cs" />
+    <Compile Include="HeroFollowers\Follower.cs" />
+    <Compile Include="HeroFollowers\FollowerItems.cs" />
+    <Compile Include="HeroFollowers\Followers.cs" />
+    <Compile Include="HeroFollowers\FollowerSkills.cs" />
+    <Compile Include="HeroFollowers\FollowerStats.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemAttributes.cs" />
+    <Compile Include="Items\ItemSalvageComponent.cs" />
+    <Compile Include="Items\ItemSummary.cs" />
+    <Compile Include="Items\ItemType.cs" />
+    <Compile Include="Items\ItemValueRange.cs" />
+    <Compile Include="Items\Set.cs" />
+    <Compile Include="Items\SetRank.cs" />
+    <Compile Include="Progresses\ActProgress.cs" />
+    <Compile Include="Progresses\DifficultyProgress.cs" />
+    <Compile Include="Progresses\Progress.cs" />
+    <Compile Include="Progresses\Quest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skills\ActiveSkill.cs" />
+    <Compile Include="Skills\PassiveSkill.cs" />
+    <Compile Include="Skills\Rune.cs" />
+    <Compile Include="Skills\Skill.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BNet API by ZTn\BNet API by ZTn.csproj">
+      <Project>{5305ad1d-aed6-4ccb-8f20-08353662bfc8}</Project>
+      <Name>BNet API by ZTn</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
