@@ -111,6 +111,7 @@
             this.guiSkillSteadyAim = new System.Windows.Forms.CheckBox();
             this.guiSkillArchery_Crossbow = new System.Windows.Forms.CheckBox();
             this.tabActiveSkills = new System.Windows.Forms.TabPage();
+            this.guiSkillMysticAlly_EarthAlly = new System.Windows.Forms.CheckBox();
             this.guiSkillMantraOfHealing_TimeOfNeed = new System.Windows.Forms.CheckBox();
             this.guiSkillMantraOfEvasion_HardTarget = new System.Windows.Forms.CheckBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -185,7 +186,7 @@
             this.guiCalcultatedDamageCriticMax = new System.Windows.Forms.TextBox();
             this.guiCalcultatedDamageCriticMin = new System.Windows.Forms.TextBox();
             this.guiDoCalculations = new System.Windows.Forms.Button();
-            this.guiSkillMysticAlly_EarthAlly = new System.Windows.Forms.CheckBox();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
             label6 = new System.Windows.Forms.Label();
             tabPassiveSkills = new System.Windows.Forms.TabPage();
             groupBox9 = new System.Windows.Forms.GroupBox();
@@ -271,6 +272,7 @@
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox10.SuspendLayout();
+            this.tabPage14.SuspendLayout();
             this.SuspendLayout();
             // 
             // label6
@@ -664,21 +666,22 @@
             tabControl1.Controls.Add(this.tabPage11);
             tabControl1.Controls.Add(this.tabPage12);
             tabControl1.Controls.Add(this.tabPage13);
+            tabControl1.Controls.Add(this.tabPage14);
             tabControl1.HotTrack = true;
             tabControl1.Location = new System.Drawing.Point(12, 12);
             tabControl1.Multiline = true;
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new System.Drawing.Size(550, 578);
+            tabControl1.Size = new System.Drawing.Size(1010, 578);
             tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             tabControl1.TabIndex = 0;
             // 
             // tabActiveSkills
             // 
             this.tabActiveSkills.Controls.Add(groupBox11);
-            this.tabActiveSkills.Location = new System.Drawing.Point(4, 40);
+            this.tabActiveSkills.Location = new System.Drawing.Point(4, 22);
             this.tabActiveSkills.Name = "tabActiveSkills";
-            this.tabActiveSkills.Size = new System.Drawing.Size(542, 534);
+            this.tabActiveSkills.Size = new System.Drawing.Size(542, 552);
             this.tabActiveSkills.TabIndex = 14;
             this.tabActiveSkills.Text = "Active Skills";
             this.tabActiveSkills.UseVisualStyleBackColor = true;
@@ -695,6 +698,16 @@
             groupBox11.TabIndex = 6;
             groupBox11.TabStop = false;
             groupBox11.Text = "Monk";
+            // 
+            // guiSkillMysticAlly_EarthAlly
+            // 
+            this.guiSkillMysticAlly_EarthAlly.AutoSize = true;
+            this.guiSkillMysticAlly_EarthAlly.Location = new System.Drawing.Point(6, 65);
+            this.guiSkillMysticAlly_EarthAlly.Name = "guiSkillMysticAlly_EarthAlly";
+            this.guiSkillMysticAlly_EarthAlly.Size = new System.Drawing.Size(185, 17);
+            this.guiSkillMysticAlly_EarthAlly.TabIndex = 6;
+            this.guiSkillMysticAlly_EarthAlly.Text = "Mystic Ally / Earth Ally (+20% Life)";
+            this.guiSkillMysticAlly_EarthAlly.UseVisualStyleBackColor = true;
             // 
             // guiSkillMantraOfHealing_TimeOfNeed
             // 
@@ -720,19 +733,19 @@
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.Controls.Add(this.guiMainHandEditor);
-            this.tabPage1.Location = new System.Drawing.Point(4, 40);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(542, 534);
+            this.tabPage1.Size = new System.Drawing.Size(1002, 552);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Main Hand";
+            this.tabPage1.Text = "Weared Items";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // guiMainHandEditor
             // 
             this.guiMainHandEditor.AutoSize = true;
             this.guiMainHandEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiMainHandEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiMainHandEditor.Location = new System.Drawing.Point(215, 6);
             this.guiMainHandEditor.Name = "guiMainHandEditor";
             this.guiMainHandEditor.Size = new System.Drawing.Size(527, 508);
             this.guiMainHandEditor.TabIndex = 0;
@@ -741,10 +754,10 @@
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.Controls.Add(this.guiOffHandEditor);
-            this.tabPage2.Location = new System.Drawing.Point(4, 40);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(542, 534);
+            this.tabPage2.Size = new System.Drawing.Size(542, 552);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Off Hand";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -762,10 +775,10 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.Controls.Add(this.guiBracersEditor);
-            this.tabPage3.Location = new System.Drawing.Point(4, 40);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(542, 534);
+            this.tabPage3.Size = new System.Drawing.Size(542, 552);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Bracers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -783,10 +796,10 @@
             // 
             this.tabPage4.AutoScroll = true;
             this.tabPage4.Controls.Add(this.guiFeetEditor);
-            this.tabPage4.Location = new System.Drawing.Point(4, 40);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(542, 534);
+            this.tabPage4.Size = new System.Drawing.Size(542, 552);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Feet";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -804,10 +817,10 @@
             // 
             this.tabPage5.AutoScroll = true;
             this.tabPage5.Controls.Add(this.guiHandsEditor);
-            this.tabPage5.Location = new System.Drawing.Point(4, 40);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(542, 534);
+            this.tabPage5.Size = new System.Drawing.Size(542, 552);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Hands";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -825,10 +838,10 @@
             // 
             this.tabPage6.AutoScroll = true;
             this.tabPage6.Controls.Add(this.guiHeadEditor);
-            this.tabPage6.Location = new System.Drawing.Point(4, 40);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(542, 534);
+            this.tabPage6.Size = new System.Drawing.Size(542, 552);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Head";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -846,10 +859,10 @@
             // 
             this.tabPage7.AutoScroll = true;
             this.tabPage7.Controls.Add(this.guiLeftFingerEditor);
-            this.tabPage7.Location = new System.Drawing.Point(4, 40);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(542, 534);
+            this.tabPage7.Size = new System.Drawing.Size(542, 552);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Left Finger";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -867,10 +880,10 @@
             // 
             this.tabPage8.AutoScroll = true;
             this.tabPage8.Controls.Add(this.guiLegsEditor);
-            this.tabPage8.Location = new System.Drawing.Point(4, 40);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(542, 534);
+            this.tabPage8.Size = new System.Drawing.Size(542, 552);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Legs";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -1026,7 +1039,7 @@
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(this.guiItemsVitality);
-            groupBox1.Location = new System.Drawing.Point(568, 43);
+            groupBox1.Location = new System.Drawing.Point(3, 32);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new System.Drawing.Size(156, 474);
             groupBox1.TabIndex = 2;
@@ -1360,7 +1373,7 @@
             groupBox2.Controls.Add(label22);
             groupBox2.Controls.Add(this.guiCalculatedResistance_Arcane);
             groupBox2.Controls.Add(label21);
-            groupBox2.Location = new System.Drawing.Point(730, 154);
+            groupBox2.Location = new System.Drawing.Point(165, 145);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new System.Drawing.Size(278, 370);
             groupBox2.TabIndex = 3;
@@ -1795,7 +1808,7 @@
             groupBox10.Controls.Add(this.guiCalcultatedDamageCriticMax);
             groupBox10.Controls.Add(label14);
             groupBox10.Controls.Add(this.guiCalcultatedDamageCriticMin);
-            groupBox10.Location = new System.Drawing.Point(730, 12);
+            groupBox10.Location = new System.Drawing.Point(165, 3);
             groupBox10.Name = "groupBox10";
             groupBox10.Size = new System.Drawing.Size(278, 136);
             groupBox10.TabIndex = 4;
@@ -1852,7 +1865,7 @@
             // 
             // guiDoCalculations
             // 
-            this.guiDoCalculations.Location = new System.Drawing.Point(568, 12);
+            this.guiDoCalculations.Location = new System.Drawing.Point(3, 3);
             this.guiDoCalculations.Name = "guiDoCalculations";
             this.guiDoCalculations.Size = new System.Drawing.Size(100, 23);
             this.guiDoCalculations.TabIndex = 1;
@@ -1860,26 +1873,25 @@
             this.guiDoCalculations.UseVisualStyleBackColor = true;
             this.guiDoCalculations.Click += new System.EventHandler(this.guiDoCalculations_Click);
             // 
-            // guiSkillMysticAlly_EarthAlly
+            // tabPage14
             // 
-            this.guiSkillMysticAlly_EarthAlly.AutoSize = true;
-            this.guiSkillMysticAlly_EarthAlly.Location = new System.Drawing.Point(6, 65);
-            this.guiSkillMysticAlly_EarthAlly.Name = "guiSkillMysticAlly_EarthAlly";
-            this.guiSkillMysticAlly_EarthAlly.Size = new System.Drawing.Size(185, 17);
-            this.guiSkillMysticAlly_EarthAlly.TabIndex = 6;
-            this.guiSkillMysticAlly_EarthAlly.Text = "Mystic Ally / Earth Ally (+20% Life)";
-            this.guiSkillMysticAlly_EarthAlly.UseVisualStyleBackColor = true;
+            this.tabPage14.Controls.Add(groupBox2);
+            this.tabPage14.Controls.Add(this.guiDoCalculations);
+            this.tabPage14.Controls.Add(groupBox10);
+            this.tabPage14.Controls.Add(groupBox1);
+            this.tabPage14.Location = new System.Drawing.Point(4, 22);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Size = new System.Drawing.Size(1002, 552);
+            this.tabPage14.TabIndex = 15;
+            this.tabPage14.Text = "Calculation Results";
+            this.tabPage14.UseVisualStyleBackColor = true;
             // 
             // D3CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 602);
-            this.Controls.Add(groupBox10);
-            this.Controls.Add(groupBox2);
-            this.Controls.Add(groupBox1);
             this.Controls.Add(tabControl1);
-            this.Controls.Add(this.guiDoCalculations);
             this.Name = "D3CalculatorForm";
             this.Text = "D3 Calculator by ZTn";
             tabPassiveSkills.ResumeLayout(false);
@@ -1933,6 +1945,7 @@
             groupBox2.PerformLayout();
             groupBox10.ResumeLayout(false);
             groupBox10.PerformLayout();
+            this.tabPage14.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2039,5 +2052,6 @@
         private System.Windows.Forms.CheckBox guiSkillMantraOfHealing_TimeOfNeed;
         private System.Windows.Forms.CheckBox guiSkillMantraOfEvasion_HardTarget;
         private System.Windows.Forms.CheckBox guiSkillMysticAlly_EarthAlly;
+        private System.Windows.Forms.TabPage tabPage14;
     }
 }
