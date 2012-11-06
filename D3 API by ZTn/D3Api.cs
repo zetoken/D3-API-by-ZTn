@@ -18,7 +18,7 @@ namespace ZTn.BNet.D3
         public static String protocolPrefix = "http://";
         public static String host = "eu.battle.net";
         public static String apiPath = "/api/d3/";
-        public static String locale = "fr";
+        public static String locale = "en";
 
         public static ID3DataProvider dataProvider = new HttpRequestDataProvider();
 

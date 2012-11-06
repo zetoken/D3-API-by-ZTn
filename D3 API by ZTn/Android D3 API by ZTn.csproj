@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Android\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Android\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -72,7 +72,6 @@
     <Compile Include="HeroFollowers\Follower.cs" />
     <Compile Include="HeroFollowers\FollowerItems.cs" />
     <Compile Include="HeroFollowers\Followers.cs" />
-    <Compile Include="HeroFollowers\FollowerSkills.cs" />
     <Compile Include="HeroFollowers\FollowerStats.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\ItemAttributes.cs" />
