@@ -173,6 +173,7 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiArmor, attr.armorItem + attr.armorBonusItem);
                 populateData(guiHitpointsOnHit, attr.hitpointsOnHit);
                 populateData(guiHitpointsRegenPerSecond, attr.hitpointsRegenPerSecond);
+                populateDataPercent(guiLifeSteal, attr.stealHealthPercent);
 
                 // Weapon characterics
                 if (attr.attacksPerSecondItemPercent == null)
@@ -190,6 +191,20 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiWeaponDamageMinLightning, (attr.damageWeaponMin_Lightning + attr.damageWeaponBonusMin_Lightning) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Lightning));
                 populateData(guiWeaponDamageMinPhysical, (attr.damageWeaponMin_Physical + attr.damageWeaponBonusMin_Physical) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Physical));
                 populateData(guiWeaponDamageMinPoison, (attr.damageWeaponMin_Poison + attr.damageWeaponBonusMin_Poison) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Poison));
+
+                // If bonus min > delta, then delta should be replaced by bonus min + 1
+                if ((attr.damageWeaponDelta_Arcane != null) && (attr.damageWeaponBonusMin_Arcane != null) && (attr.damageWeaponDelta_Arcane.min < attr.damageWeaponBonusMin_Arcane.min))
+                    attr.damageWeaponDelta_Arcane = attr.damageWeaponBonusMin_Arcane + ItemValueRange.One;
+                if ((attr.damageWeaponDelta_Cold != null) && (attr.damageWeaponBonusMin_Cold != null) && (attr.damageWeaponDelta_Cold.min < attr.damageWeaponBonusMin_Cold.min))
+                    attr.damageWeaponDelta_Cold = attr.damageWeaponBonusMin_Cold + ItemValueRange.One;
+                if ((attr.damageWeaponDelta_Fire != null) && (attr.damageWeaponBonusMin_Fire != null) && (attr.damageWeaponDelta_Fire.min < attr.damageWeaponBonusMin_Fire.min))
+                    attr.damageWeaponDelta_Fire = attr.damageWeaponBonusMin_Fire + ItemValueRange.One;
+                if ((attr.damageWeaponDelta_Holy != null) && (attr.damageWeaponBonusMin_Holy != null) && (attr.damageWeaponDelta_Holy.min < attr.damageWeaponBonusMin_Holy.min))
+                    attr.damageWeaponDelta_Holy = attr.damageWeaponBonusMin_Holy + ItemValueRange.One;
+                if ((attr.damageWeaponDelta_Physical != null) && (attr.damageWeaponBonusMin_Physical != null) && (attr.damageWeaponDelta_Physical.min < attr.damageWeaponBonusMin_Physical.min))
+                    attr.damageWeaponDelta_Physical = attr.damageWeaponBonusMin_Physical + ItemValueRange.One;
+                if ((attr.damageWeaponDelta_Poison != null) && (attr.damageWeaponBonusMin_Poison != null) && (attr.damageWeaponDelta_Poison.min < attr.damageWeaponBonusMin_Poison.min))
+                    attr.damageWeaponDelta_Poison = attr.damageWeaponBonusMin_Poison + ItemValueRange.One;
 
                 populateData(guiWeaponDamageMaxArcane, (attr.damageWeaponMin_Arcane + attr.damageWeaponDelta_Arcane + attr.damageWeaponBonusDelta_Arcane) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Arcane));
                 populateData(guiWeaponDamageMaxCold, (attr.damageWeaponMin_Cold + attr.damageWeaponDelta_Cold + attr.damageWeaponBonusDelta_Cold) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Cold));
@@ -273,6 +288,7 @@ namespace ZTn.BNet.D3.Calculator
             attr.armorItem = getData(guiArmor);
             attr.hitpointsOnHit = getData(guiHitpointsOnHit);
             attr.hitpointsRegenPerSecond = getData(guiHitpointsRegenPerSecond);
+            attr.stealHealthPercent = getDataPercent(guiLifeSteal);
 
             attr.attacksPerSecondItem = getData(guiWeaponAttackPerSecond);
 

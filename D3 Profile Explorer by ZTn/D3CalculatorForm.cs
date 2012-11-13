@@ -245,6 +245,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             populateCalculatedDataPercent(guiItemsLifePercent, attr.hitpointsMaxPercentBonusItem);
             populateCalculatedData(guiItemsLifeOnHit, attr.hitpointsOnHit);
             populateCalculatedData(guiItemsLifePerSecond, attr.hitpointsRegenPerSecond);
+            populateCalculatedDataPercent(guiItemsLifeSteal, attr.stealHealthPercent);
 
             populateCalculatedData(guiItemsResistance_All, attr.resistance_All);
             populateCalculatedData(guiItemsResistance_Arcane, attr.resistance_Arcane);

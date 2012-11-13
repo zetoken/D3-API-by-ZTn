@@ -41,23 +41,6 @@
             System.Windows.Forms.GroupBox groupBox4;
             System.Windows.Forms.TabControl tabControl1;
             System.Windows.Forms.GroupBox groupBox11;
-            System.Windows.Forms.GroupBox groupBox1;
-            System.Windows.Forms.Label label11;
-            System.Windows.Forms.Label label28;
-            System.Windows.Forms.Label label9;
-            System.Windows.Forms.Label label29;
-            System.Windows.Forms.Label label30;
-            System.Windows.Forms.Label label31;
-            System.Windows.Forms.Label label32;
-            System.Windows.Forms.Label label33;
-            System.Windows.Forms.Label label34;
-            System.Windows.Forms.Label label19;
-            System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label label7;
-            System.Windows.Forms.Label label2;
-            System.Windows.Forms.Label label3;
-            System.Windows.Forms.Label label5;
-            System.Windows.Forms.Label label4;
             System.Windows.Forms.GroupBox groupBox2;
             System.Windows.Forms.Label label46;
             System.Windows.Forms.Label label45;
@@ -81,11 +64,29 @@
             System.Windows.Forms.Label label23;
             System.Windows.Forms.Label label22;
             System.Windows.Forms.Label label21;
-            System.Windows.Forms.Label label14;
+            System.Windows.Forms.GroupBox groupBox10;
             System.Windows.Forms.Label label8;
             System.Windows.Forms.Label label10;
             System.Windows.Forms.Label label13;
-            System.Windows.Forms.GroupBox groupBox10;
+            System.Windows.Forms.Label label14;
+            System.Windows.Forms.GroupBox groupBox1;
+            System.Windows.Forms.Label label47;
+            System.Windows.Forms.Label label11;
+            System.Windows.Forms.Label label28;
+            System.Windows.Forms.Label label9;
+            System.Windows.Forms.Label label29;
+            System.Windows.Forms.Label label30;
+            System.Windows.Forms.Label label31;
+            System.Windows.Forms.Label label32;
+            System.Windows.Forms.Label label33;
+            System.Windows.Forms.Label label34;
+            System.Windows.Forms.Label label19;
+            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label label7;
+            System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label5;
+            System.Windows.Forms.Label label4;
             this.guiSkillGalvanizingWard = new System.Windows.Forms.CheckBox();
             this.guiSkillGlassCannon = new System.Windows.Forms.CheckBox();
             this.guiSkillPierceTheVeil = new System.Windows.Forms.CheckBox();
@@ -140,23 +141,7 @@
             this.guiTorsoEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.guiWaistEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiItemsLifePerSecond = new System.Windows.Forms.TextBox();
-            this.guiItemsResistance_All = new System.Windows.Forms.TextBox();
-            this.guiItemsLifeOnHit = new System.Windows.Forms.TextBox();
-            this.guiItemsResistance_Poison = new System.Windows.Forms.TextBox();
-            this.guiItemsResistance_Physical = new System.Windows.Forms.TextBox();
-            this.guiItemsResistance_Lightning = new System.Windows.Forms.TextBox();
-            this.guiItemsResistance_Fire = new System.Windows.Forms.TextBox();
-            this.guiItemsResistance_Cold = new System.Windows.Forms.TextBox();
-            this.guiItemsResistance_Arcane = new System.Windows.Forms.TextBox();
-            this.guiItemsLifePercent = new System.Windows.Forms.TextBox();
-            this.guiItemsDexterity = new System.Windows.Forms.TextBox();
-            this.guiItemsCriticDamage = new System.Windows.Forms.TextBox();
-            this.guiItemsCriticChance = new System.Windows.Forms.TextBox();
-            this.guiItemsIntelligence = new System.Windows.Forms.TextBox();
-            this.guiItemsSpeedAttack = new System.Windows.Forms.TextBox();
-            this.guiItemsStrength = new System.Windows.Forms.TextBox();
-            this.guiItemsVitality = new System.Windows.Forms.TextBox();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
             this.guiCalculatedDPSEHPRatio = new System.Windows.Forms.TextBox();
             this.guiCalculatedEffectiveHitpoints = new System.Windows.Forms.TextBox();
             this.guiCalculatedResistance_All = new System.Windows.Forms.TextBox();
@@ -179,14 +164,31 @@
             this.guiCalculatedResistance_Fire = new System.Windows.Forms.TextBox();
             this.guiCalculatedResistance_Cold = new System.Windows.Forms.TextBox();
             this.guiCalculatedResistance_Arcane = new System.Windows.Forms.TextBox();
+            this.guiDoCalculations = new System.Windows.Forms.Button();
             this.guiCalculatedDPS = new System.Windows.Forms.TextBox();
             this.guiCalculatedAttackPerSecond = new System.Windows.Forms.TextBox();
             this.guiCalcultatedDamageMax = new System.Windows.Forms.TextBox();
             this.guiCalcultatedDamageMin = new System.Windows.Forms.TextBox();
             this.guiCalcultatedDamageCriticMax = new System.Windows.Forms.TextBox();
             this.guiCalcultatedDamageCriticMin = new System.Windows.Forms.TextBox();
-            this.guiDoCalculations = new System.Windows.Forms.Button();
-            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.guiItemsLifeSteal = new System.Windows.Forms.TextBox();
+            this.guiItemsLifePerSecond = new System.Windows.Forms.TextBox();
+            this.guiItemsResistance_All = new System.Windows.Forms.TextBox();
+            this.guiItemsLifeOnHit = new System.Windows.Forms.TextBox();
+            this.guiItemsResistance_Poison = new System.Windows.Forms.TextBox();
+            this.guiItemsResistance_Physical = new System.Windows.Forms.TextBox();
+            this.guiItemsResistance_Lightning = new System.Windows.Forms.TextBox();
+            this.guiItemsResistance_Fire = new System.Windows.Forms.TextBox();
+            this.guiItemsResistance_Cold = new System.Windows.Forms.TextBox();
+            this.guiItemsResistance_Arcane = new System.Windows.Forms.TextBox();
+            this.guiItemsLifePercent = new System.Windows.Forms.TextBox();
+            this.guiItemsDexterity = new System.Windows.Forms.TextBox();
+            this.guiItemsCriticDamage = new System.Windows.Forms.TextBox();
+            this.guiItemsCriticChance = new System.Windows.Forms.TextBox();
+            this.guiItemsIntelligence = new System.Windows.Forms.TextBox();
+            this.guiItemsSpeedAttack = new System.Windows.Forms.TextBox();
+            this.guiItemsStrength = new System.Windows.Forms.TextBox();
+            this.guiItemsVitality = new System.Windows.Forms.TextBox();
             label6 = new System.Windows.Forms.Label();
             tabPassiveSkills = new System.Windows.Forms.TabPage();
             groupBox9 = new System.Windows.Forms.GroupBox();
@@ -200,23 +202,6 @@
             groupBox4 = new System.Windows.Forms.GroupBox();
             tabControl1 = new System.Windows.Forms.TabControl();
             groupBox11 = new System.Windows.Forms.GroupBox();
-            groupBox1 = new System.Windows.Forms.GroupBox();
-            label11 = new System.Windows.Forms.Label();
-            label28 = new System.Windows.Forms.Label();
-            label9 = new System.Windows.Forms.Label();
-            label29 = new System.Windows.Forms.Label();
-            label30 = new System.Windows.Forms.Label();
-            label31 = new System.Windows.Forms.Label();
-            label32 = new System.Windows.Forms.Label();
-            label33 = new System.Windows.Forms.Label();
-            label34 = new System.Windows.Forms.Label();
-            label19 = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
-            label7 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
-            label3 = new System.Windows.Forms.Label();
-            label5 = new System.Windows.Forms.Label();
-            label4 = new System.Windows.Forms.Label();
             groupBox2 = new System.Windows.Forms.GroupBox();
             label46 = new System.Windows.Forms.Label();
             label45 = new System.Windows.Forms.Label();
@@ -240,11 +225,29 @@
             label23 = new System.Windows.Forms.Label();
             label22 = new System.Windows.Forms.Label();
             label21 = new System.Windows.Forms.Label();
-            label14 = new System.Windows.Forms.Label();
+            groupBox10 = new System.Windows.Forms.GroupBox();
             label8 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             label13 = new System.Windows.Forms.Label();
-            groupBox10 = new System.Windows.Forms.GroupBox();
+            label14 = new System.Windows.Forms.Label();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            label47 = new System.Windows.Forms.Label();
+            label11 = new System.Windows.Forms.Label();
+            label28 = new System.Windows.Forms.Label();
+            label9 = new System.Windows.Forms.Label();
+            label29 = new System.Windows.Forms.Label();
+            label30 = new System.Windows.Forms.Label();
+            label31 = new System.Windows.Forms.Label();
+            label32 = new System.Windows.Forms.Label();
+            label33 = new System.Windows.Forms.Label();
+            label34 = new System.Windows.Forms.Label();
+            label19 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            label7 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
             tabPassiveSkills.SuspendLayout();
             groupBox9.SuspendLayout();
             groupBox8.SuspendLayout();
@@ -269,10 +272,10 @@
             this.tabPage11.SuspendLayout();
             this.tabPage12.SuspendLayout();
             this.tabPage13.SuspendLayout();
-            groupBox1.SuspendLayout();
+            this.tabPage14.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox10.SuspendLayout();
-            this.tabPage14.SuspendLayout();
+            groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label6
@@ -293,10 +296,10 @@
             tabPassiveSkills.Controls.Add(this.groupBox6);
             tabPassiveSkills.Controls.Add(groupBox5);
             tabPassiveSkills.Controls.Add(groupBox4);
-            tabPassiveSkills.Location = new System.Drawing.Point(4, 40);
+            tabPassiveSkills.Location = new System.Drawing.Point(4, 22);
             tabPassiveSkills.Name = "tabPassiveSkills";
             tabPassiveSkills.Padding = new System.Windows.Forms.Padding(3);
-            tabPassiveSkills.Size = new System.Drawing.Size(542, 534);
+            tabPassiveSkills.Size = new System.Drawing.Size(1002, 552);
             tabPassiveSkills.TabIndex = 13;
             tabPassiveSkills.Text = "Passive Skills";
             tabPassiveSkills.UseVisualStyleBackColor = true;
@@ -681,7 +684,7 @@
             this.tabActiveSkills.Controls.Add(groupBox11);
             this.tabActiveSkills.Location = new System.Drawing.Point(4, 22);
             this.tabActiveSkills.Name = "tabActiveSkills";
-            this.tabActiveSkills.Size = new System.Drawing.Size(542, 552);
+            this.tabActiveSkills.Size = new System.Drawing.Size(1002, 552);
             this.tabActiveSkills.TabIndex = 14;
             this.tabActiveSkills.Text = "Active Skills";
             this.tabActiveSkills.UseVisualStyleBackColor = true;
@@ -738,16 +741,16 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1002, 552);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Weared Items";
+            this.tabPage1.Text = "Main Hand";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // guiMainHandEditor
             // 
             this.guiMainHandEditor.AutoSize = true;
             this.guiMainHandEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiMainHandEditor.Location = new System.Drawing.Point(215, 6);
+            this.guiMainHandEditor.Location = new System.Drawing.Point(6, 6);
             this.guiMainHandEditor.Name = "guiMainHandEditor";
-            this.guiMainHandEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiMainHandEditor.Size = new System.Drawing.Size(530, 534);
             this.guiMainHandEditor.TabIndex = 0;
             // 
             // tabPage2
@@ -757,7 +760,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(542, 552);
+            this.tabPage2.Size = new System.Drawing.Size(1002, 552);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Off Hand";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -768,7 +771,7 @@
             this.guiOffHandEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiOffHandEditor.Location = new System.Drawing.Point(6, 6);
             this.guiOffHandEditor.Name = "guiOffHandEditor";
-            this.guiOffHandEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiOffHandEditor.Size = new System.Drawing.Size(530, 534);
             this.guiOffHandEditor.TabIndex = 0;
             // 
             // tabPage3
@@ -778,7 +781,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(542, 552);
+            this.tabPage3.Size = new System.Drawing.Size(1002, 552);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Bracers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -789,7 +792,7 @@
             this.guiBracersEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiBracersEditor.Location = new System.Drawing.Point(6, 6);
             this.guiBracersEditor.Name = "guiBracersEditor";
-            this.guiBracersEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiBracersEditor.Size = new System.Drawing.Size(530, 534);
             this.guiBracersEditor.TabIndex = 0;
             // 
             // tabPage4
@@ -799,7 +802,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(542, 552);
+            this.tabPage4.Size = new System.Drawing.Size(1002, 552);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Feet";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -810,7 +813,7 @@
             this.guiFeetEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiFeetEditor.Location = new System.Drawing.Point(6, 6);
             this.guiFeetEditor.Name = "guiFeetEditor";
-            this.guiFeetEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiFeetEditor.Size = new System.Drawing.Size(530, 534);
             this.guiFeetEditor.TabIndex = 0;
             // 
             // tabPage5
@@ -820,7 +823,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(542, 552);
+            this.tabPage5.Size = new System.Drawing.Size(1002, 552);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Hands";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -831,7 +834,7 @@
             this.guiHandsEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiHandsEditor.Location = new System.Drawing.Point(6, 6);
             this.guiHandsEditor.Name = "guiHandsEditor";
-            this.guiHandsEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiHandsEditor.Size = new System.Drawing.Size(530, 534);
             this.guiHandsEditor.TabIndex = 0;
             // 
             // tabPage6
@@ -841,7 +844,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(542, 552);
+            this.tabPage6.Size = new System.Drawing.Size(1002, 552);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Head";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -852,7 +855,7 @@
             this.guiHeadEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiHeadEditor.Location = new System.Drawing.Point(6, 6);
             this.guiHeadEditor.Name = "guiHeadEditor";
-            this.guiHeadEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiHeadEditor.Size = new System.Drawing.Size(530, 534);
             this.guiHeadEditor.TabIndex = 0;
             // 
             // tabPage7
@@ -862,7 +865,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(542, 552);
+            this.tabPage7.Size = new System.Drawing.Size(1002, 552);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Left Finger";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -873,7 +876,7 @@
             this.guiLeftFingerEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiLeftFingerEditor.Location = new System.Drawing.Point(6, 6);
             this.guiLeftFingerEditor.Name = "guiLeftFingerEditor";
-            this.guiLeftFingerEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiLeftFingerEditor.Size = new System.Drawing.Size(530, 534);
             this.guiLeftFingerEditor.TabIndex = 0;
             // 
             // tabPage8
@@ -883,7 +886,7 @@
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(542, 552);
+            this.tabPage8.Size = new System.Drawing.Size(1002, 552);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Legs";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -894,17 +897,17 @@
             this.guiLegsEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiLegsEditor.Location = new System.Drawing.Point(6, 6);
             this.guiLegsEditor.Name = "guiLegsEditor";
-            this.guiLegsEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiLegsEditor.Size = new System.Drawing.Size(530, 534);
             this.guiLegsEditor.TabIndex = 0;
             // 
             // tabPage9
             // 
             this.tabPage9.AutoScroll = true;
             this.tabPage9.Controls.Add(this.guiNeckEditor);
-            this.tabPage9.Location = new System.Drawing.Point(4, 40);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(542, 534);
+            this.tabPage9.Size = new System.Drawing.Size(1002, 552);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Neck";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -915,17 +918,17 @@
             this.guiNeckEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiNeckEditor.Location = new System.Drawing.Point(6, 6);
             this.guiNeckEditor.Name = "guiNeckEditor";
-            this.guiNeckEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiNeckEditor.Size = new System.Drawing.Size(530, 534);
             this.guiNeckEditor.TabIndex = 0;
             // 
             // tabPage10
             // 
             this.tabPage10.AutoScroll = true;
             this.tabPage10.Controls.Add(this.guiRightFingerEditor);
-            this.tabPage10.Location = new System.Drawing.Point(4, 40);
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(542, 534);
+            this.tabPage10.Size = new System.Drawing.Size(1002, 552);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Right Finger";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -936,17 +939,17 @@
             this.guiRightFingerEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiRightFingerEditor.Location = new System.Drawing.Point(6, 6);
             this.guiRightFingerEditor.Name = "guiRightFingerEditor";
-            this.guiRightFingerEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiRightFingerEditor.Size = new System.Drawing.Size(530, 534);
             this.guiRightFingerEditor.TabIndex = 0;
             // 
             // tabPage11
             // 
             this.tabPage11.AutoScroll = true;
             this.tabPage11.Controls.Add(this.guiShouldersEditor);
-            this.tabPage11.Location = new System.Drawing.Point(4, 40);
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(542, 534);
+            this.tabPage11.Size = new System.Drawing.Size(1002, 552);
             this.tabPage11.TabIndex = 10;
             this.tabPage11.Text = "Shoulders";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -957,17 +960,17 @@
             this.guiShouldersEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiShouldersEditor.Location = new System.Drawing.Point(6, 6);
             this.guiShouldersEditor.Name = "guiShouldersEditor";
-            this.guiShouldersEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiShouldersEditor.Size = new System.Drawing.Size(530, 534);
             this.guiShouldersEditor.TabIndex = 0;
             // 
             // tabPage12
             // 
             this.tabPage12.AutoScroll = true;
             this.tabPage12.Controls.Add(this.guiTorsoEditor);
-            this.tabPage12.Location = new System.Drawing.Point(4, 40);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(542, 534);
+            this.tabPage12.Size = new System.Drawing.Size(1002, 552);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "Torso";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -978,17 +981,17 @@
             this.guiTorsoEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiTorsoEditor.Location = new System.Drawing.Point(6, 6);
             this.guiTorsoEditor.Name = "guiTorsoEditor";
-            this.guiTorsoEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiTorsoEditor.Size = new System.Drawing.Size(530, 534);
             this.guiTorsoEditor.TabIndex = 0;
             // 
             // tabPage13
             // 
             this.tabPage13.AutoScroll = true;
             this.tabPage13.Controls.Add(this.guiWaistEditor);
-            this.tabPage13.Location = new System.Drawing.Point(4, 40);
+            this.tabPage13.Location = new System.Drawing.Point(4, 22);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(542, 534);
+            this.tabPage13.Size = new System.Drawing.Size(1002, 552);
             this.tabPage13.TabIndex = 12;
             this.tabPage13.Text = "Waist";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -999,332 +1002,21 @@
             this.guiWaistEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.guiWaistEditor.Location = new System.Drawing.Point(6, 6);
             this.guiWaistEditor.Name = "guiWaistEditor";
-            this.guiWaistEditor.Size = new System.Drawing.Size(527, 508);
+            this.guiWaistEditor.Size = new System.Drawing.Size(530, 534);
             this.guiWaistEditor.TabIndex = 0;
             // 
-            // groupBox1
-            // 
-            groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            groupBox1.Controls.Add(this.guiItemsLifePerSecond);
-            groupBox1.Controls.Add(this.guiItemsResistance_All);
-            groupBox1.Controls.Add(label11);
-            groupBox1.Controls.Add(label28);
-            groupBox1.Controls.Add(this.guiItemsLifeOnHit);
-            groupBox1.Controls.Add(label9);
-            groupBox1.Controls.Add(this.guiItemsResistance_Poison);
-            groupBox1.Controls.Add(label29);
-            groupBox1.Controls.Add(this.guiItemsResistance_Physical);
-            groupBox1.Controls.Add(label30);
-            groupBox1.Controls.Add(this.guiItemsResistance_Lightning);
-            groupBox1.Controls.Add(label31);
-            groupBox1.Controls.Add(this.guiItemsResistance_Fire);
-            groupBox1.Controls.Add(label32);
-            groupBox1.Controls.Add(this.guiItemsResistance_Cold);
-            groupBox1.Controls.Add(label33);
-            groupBox1.Controls.Add(this.guiItemsResistance_Arcane);
-            groupBox1.Controls.Add(label34);
-            groupBox1.Controls.Add(this.guiItemsLifePercent);
-            groupBox1.Controls.Add(label19);
-            groupBox1.Controls.Add(this.guiItemsDexterity);
-            groupBox1.Controls.Add(this.guiItemsCriticDamage);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(this.guiItemsCriticChance);
-            groupBox1.Controls.Add(this.guiItemsIntelligence);
-            groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(this.guiItemsSpeedAttack);
-            groupBox1.Controls.Add(this.guiItemsStrength);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(this.guiItemsVitality);
-            groupBox1.Location = new System.Drawing.Point(3, 32);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new System.Drawing.Size(156, 474);
-            groupBox1.TabIndex = 2;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Summary";
-            // 
-            // guiItemsLifePerSecond
-            // 
-            this.guiItemsLifePerSecond.Location = new System.Drawing.Point(115, 253);
-            this.guiItemsLifePerSecond.Name = "guiItemsLifePerSecond";
-            this.guiItemsLifePerSecond.ReadOnly = true;
-            this.guiItemsLifePerSecond.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsLifePerSecond.TabIndex = 33;
-            // 
-            // guiItemsResistance_All
-            // 
-            this.guiItemsResistance_All.Location = new System.Drawing.Point(115, 435);
-            this.guiItemsResistance_All.Name = "guiItemsResistance_All";
-            this.guiItemsResistance_All.ReadOnly = true;
-            this.guiItemsResistance_All.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsResistance_All.TabIndex = 29;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new System.Drawing.Point(33, 256);
-            label11.Name = "label11";
-            label11.Size = new System.Drawing.Size(76, 13);
-            label11.TabIndex = 32;
-            label11.Text = "life per second";
-            // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Location = new System.Drawing.Point(60, 438);
-            label28.Name = "label28";
-            label28.Size = new System.Drawing.Size(49, 13);
-            label28.TabIndex = 28;
-            label28.Text = "all resists";
-            // 
-            // guiItemsLifeOnHit
-            // 
-            this.guiItemsLifeOnHit.Location = new System.Drawing.Point(115, 227);
-            this.guiItemsLifeOnHit.Name = "guiItemsLifeOnHit";
-            this.guiItemsLifeOnHit.ReadOnly = true;
-            this.guiItemsLifeOnHit.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsLifeOnHit.TabIndex = 31;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new System.Drawing.Point(60, 230);
-            label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(49, 13);
-            label9.TabIndex = 30;
-            label9.Text = "life on hit";
-            // 
-            // guiItemsResistance_Poison
-            // 
-            this.guiItemsResistance_Poison.Location = new System.Drawing.Point(115, 409);
-            this.guiItemsResistance_Poison.Name = "guiItemsResistance_Poison";
-            this.guiItemsResistance_Poison.ReadOnly = true;
-            this.guiItemsResistance_Poison.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsResistance_Poison.TabIndex = 27;
-            // 
-            // label29
-            // 
-            label29.AutoSize = true;
-            label29.Location = new System.Drawing.Point(44, 412);
-            label29.Name = "label29";
-            label29.Size = new System.Drawing.Size(65, 13);
-            label29.TabIndex = 26;
-            label29.Text = "poison resist";
-            // 
-            // guiItemsResistance_Physical
-            // 
-            this.guiItemsResistance_Physical.Location = new System.Drawing.Point(115, 383);
-            this.guiItemsResistance_Physical.Name = "guiItemsResistance_Physical";
-            this.guiItemsResistance_Physical.ReadOnly = true;
-            this.guiItemsResistance_Physical.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsResistance_Physical.TabIndex = 25;
-            // 
-            // label30
-            // 
-            label30.AutoSize = true;
-            label30.Location = new System.Drawing.Point(37, 386);
-            label30.Name = "label30";
-            label30.Size = new System.Drawing.Size(72, 13);
-            label30.TabIndex = 24;
-            label30.Text = "physical resist";
-            // 
-            // guiItemsResistance_Lightning
-            // 
-            this.guiItemsResistance_Lightning.Location = new System.Drawing.Point(115, 357);
-            this.guiItemsResistance_Lightning.Name = "guiItemsResistance_Lightning";
-            this.guiItemsResistance_Lightning.ReadOnly = true;
-            this.guiItemsResistance_Lightning.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsResistance_Lightning.TabIndex = 23;
-            // 
-            // label31
-            // 
-            label31.AutoSize = true;
-            label31.Location = new System.Drawing.Point(36, 360);
-            label31.Name = "label31";
-            label31.Size = new System.Drawing.Size(73, 13);
-            label31.TabIndex = 22;
-            label31.Text = "lightning resist";
-            // 
-            // guiItemsResistance_Fire
-            // 
-            this.guiItemsResistance_Fire.Location = new System.Drawing.Point(115, 331);
-            this.guiItemsResistance_Fire.Name = "guiItemsResistance_Fire";
-            this.guiItemsResistance_Fire.ReadOnly = true;
-            this.guiItemsResistance_Fire.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsResistance_Fire.TabIndex = 21;
-            // 
-            // label32
-            // 
-            label32.AutoSize = true;
-            label32.Location = new System.Drawing.Point(61, 334);
-            label32.Name = "label32";
-            label32.Size = new System.Drawing.Size(48, 13);
-            label32.TabIndex = 20;
-            label32.Text = "fire resist";
-            // 
-            // guiItemsResistance_Cold
-            // 
-            this.guiItemsResistance_Cold.Location = new System.Drawing.Point(115, 305);
-            this.guiItemsResistance_Cold.Name = "guiItemsResistance_Cold";
-            this.guiItemsResistance_Cold.ReadOnly = true;
-            this.guiItemsResistance_Cold.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsResistance_Cold.TabIndex = 19;
-            // 
-            // label33
-            // 
-            label33.AutoSize = true;
-            label33.Location = new System.Drawing.Point(55, 308);
-            label33.Name = "label33";
-            label33.Size = new System.Drawing.Size(54, 13);
-            label33.TabIndex = 18;
-            label33.Text = "cold resist";
-            // 
-            // guiItemsResistance_Arcane
-            // 
-            this.guiItemsResistance_Arcane.Location = new System.Drawing.Point(115, 279);
-            this.guiItemsResistance_Arcane.Name = "guiItemsResistance_Arcane";
-            this.guiItemsResistance_Arcane.ReadOnly = true;
-            this.guiItemsResistance_Arcane.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsResistance_Arcane.TabIndex = 17;
-            // 
-            // label34
-            // 
-            label34.AutoSize = true;
-            label34.Location = new System.Drawing.Point(42, 282);
-            label34.Name = "label34";
-            label34.Size = new System.Drawing.Size(67, 13);
-            label34.TabIndex = 16;
-            label34.Text = "arcane resist";
-            // 
-            // guiItemsLifePercent
-            // 
-            this.guiItemsLifePercent.Location = new System.Drawing.Point(115, 201);
-            this.guiItemsLifePercent.Name = "guiItemsLifePercent";
-            this.guiItemsLifePercent.ReadOnly = true;
-            this.guiItemsLifePercent.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsLifePercent.TabIndex = 15;
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Location = new System.Drawing.Point(65, 204);
-            label19.Name = "label19";
-            label19.Size = new System.Drawing.Size(44, 13);
-            label19.TabIndex = 14;
-            label19.Text = "+ % Life";
-            // 
-            // guiItemsDexterity
-            // 
-            this.guiItemsDexterity.Location = new System.Drawing.Point(115, 19);
-            this.guiItemsDexterity.Name = "guiItemsDexterity";
-            this.guiItemsDexterity.ReadOnly = true;
-            this.guiItemsDexterity.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsDexterity.TabIndex = 1;
-            // 
-            // guiItemsCriticDamage
-            // 
-            this.guiItemsCriticDamage.Location = new System.Drawing.Point(115, 175);
-            this.guiItemsCriticDamage.Name = "guiItemsCriticDamage";
-            this.guiItemsCriticDamage.ReadOnly = true;
-            this.guiItemsCriticDamage.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsCriticDamage.TabIndex = 13;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(63, 22);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(46, 13);
-            label1.TabIndex = 0;
-            label1.Text = "dexterity";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(16, 178);
-            label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(93, 13);
-            label7.TabIndex = 12;
-            label7.Text = "+ % Critic Damage";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(49, 48);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(60, 13);
-            label2.TabIndex = 2;
-            label2.Text = "intelligence";
-            // 
-            // guiItemsCriticChance
-            // 
-            this.guiItemsCriticChance.Location = new System.Drawing.Point(115, 149);
-            this.guiItemsCriticChance.Name = "guiItemsCriticChance";
-            this.guiItemsCriticChance.ReadOnly = true;
-            this.guiItemsCriticChance.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsCriticChance.TabIndex = 11;
-            // 
-            // guiItemsIntelligence
-            // 
-            this.guiItemsIntelligence.Location = new System.Drawing.Point(115, 45);
-            this.guiItemsIntelligence.Name = "guiItemsIntelligence";
-            this.guiItemsIntelligence.ReadOnly = true;
-            this.guiItemsIntelligence.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsIntelligence.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(64, 74);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(45, 13);
-            label3.TabIndex = 4;
-            label3.Text = "strength";
-            // 
-            // guiItemsSpeedAttack
-            // 
-            this.guiItemsSpeedAttack.Location = new System.Drawing.Point(115, 123);
-            this.guiItemsSpeedAttack.Name = "guiItemsSpeedAttack";
-            this.guiItemsSpeedAttack.ReadOnly = true;
-            this.guiItemsSpeedAttack.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsSpeedAttack.TabIndex = 9;
-            // 
-            // guiItemsStrength
-            // 
-            this.guiItemsStrength.Location = new System.Drawing.Point(115, 71);
-            this.guiItemsStrength.Name = "guiItemsStrength";
-            this.guiItemsStrength.ReadOnly = true;
-            this.guiItemsStrength.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsStrength.TabIndex = 5;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(17, 126);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(92, 13);
-            label5.TabIndex = 8;
-            label5.Text = "+ % Attack Speed";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(73, 100);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(36, 13);
-            label4.TabIndex = 6;
-            label4.Text = "vitality";
-            // 
-            // guiItemsVitality
-            // 
-            this.guiItemsVitality.Location = new System.Drawing.Point(115, 97);
-            this.guiItemsVitality.Name = "guiItemsVitality";
-            this.guiItemsVitality.ReadOnly = true;
-            this.guiItemsVitality.Size = new System.Drawing.Size(35, 20);
-            this.guiItemsVitality.TabIndex = 7;
+            // tabPage14
+            // 
+            this.tabPage14.Controls.Add(groupBox2);
+            this.tabPage14.Controls.Add(this.guiDoCalculations);
+            this.tabPage14.Controls.Add(groupBox10);
+            this.tabPage14.Controls.Add(groupBox1);
+            this.tabPage14.Location = new System.Drawing.Point(4, 22);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Size = new System.Drawing.Size(1002, 552);
+            this.tabPage14.TabIndex = 15;
+            this.tabPage14.Text = "Calculation Results";
+            this.tabPage14.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -1758,42 +1450,15 @@
             label21.TabIndex = 24;
             label21.Text = "arcane resist";
             // 
-            // label14
+            // guiDoCalculations
             // 
-            label14.AutoSize = true;
-            label14.Location = new System.Drawing.Point(42, 74);
-            label14.Name = "label14";
-            label14.Size = new System.Drawing.Size(78, 13);
-            label14.TabIndex = 5;
-            label14.Text = "Critic Damages";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label8.Location = new System.Drawing.Point(88, 22);
-            label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(32, 13);
-            label8.TabIndex = 0;
-            label8.Text = "DPS";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new System.Drawing.Point(68, 48);
-            label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(52, 13);
-            label10.TabIndex = 2;
-            label10.Text = "Damages";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new System.Drawing.Point(23, 100);
-            label13.Name = "label13";
-            label13.Size = new System.Drawing.Size(97, 13);
-            label13.TabIndex = 8;
-            label13.Text = "Attack Per Second";
+            this.guiDoCalculations.Location = new System.Drawing.Point(3, 3);
+            this.guiDoCalculations.Name = "guiDoCalculations";
+            this.guiDoCalculations.Size = new System.Drawing.Size(100, 23);
+            this.guiDoCalculations.TabIndex = 1;
+            this.guiDoCalculations.Text = "Do Calculations";
+            this.guiDoCalculations.UseVisualStyleBackColor = true;
+            this.guiDoCalculations.Click += new System.EventHandler(this.guiDoCalculations_Click);
             // 
             // groupBox10
             // 
@@ -1823,6 +1488,25 @@
             this.guiCalculatedDPS.Size = new System.Drawing.Size(70, 20);
             this.guiCalculatedDPS.TabIndex = 1;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label8.Location = new System.Drawing.Point(88, 22);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(32, 13);
+            label8.TabIndex = 0;
+            label8.Text = "DPS";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new System.Drawing.Point(68, 48);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(52, 13);
+            label10.TabIndex = 2;
+            label10.Text = "Damages";
+            // 
             // guiCalculatedAttackPerSecond
             // 
             this.guiCalculatedAttackPerSecond.Location = new System.Drawing.Point(126, 97);
@@ -1830,6 +1514,15 @@
             this.guiCalculatedAttackPerSecond.ReadOnly = true;
             this.guiCalculatedAttackPerSecond.Size = new System.Drawing.Size(70, 20);
             this.guiCalculatedAttackPerSecond.TabIndex = 9;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new System.Drawing.Point(23, 100);
+            label13.Name = "label13";
+            label13.Size = new System.Drawing.Size(97, 13);
+            label13.TabIndex = 8;
+            label13.Text = "Attack Per Second";
             // 
             // guiCalcultatedDamageMax
             // 
@@ -1855,6 +1548,15 @@
             this.guiCalcultatedDamageCriticMax.Size = new System.Drawing.Size(70, 20);
             this.guiCalcultatedDamageCriticMax.TabIndex = 7;
             // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new System.Drawing.Point(42, 74);
+            label14.Name = "label14";
+            label14.Size = new System.Drawing.Size(78, 13);
+            label14.TabIndex = 5;
+            label14.Text = "Critic Damages";
+            // 
             // guiCalcultatedDamageCriticMin
             // 
             this.guiCalcultatedDamageCriticMin.Location = new System.Drawing.Point(126, 71);
@@ -1863,28 +1565,348 @@
             this.guiCalcultatedDamageCriticMin.Size = new System.Drawing.Size(70, 20);
             this.guiCalcultatedDamageCriticMin.TabIndex = 6;
             // 
-            // guiDoCalculations
+            // groupBox1
             // 
-            this.guiDoCalculations.Location = new System.Drawing.Point(3, 3);
-            this.guiDoCalculations.Name = "guiDoCalculations";
-            this.guiDoCalculations.Size = new System.Drawing.Size(100, 23);
-            this.guiDoCalculations.TabIndex = 1;
-            this.guiDoCalculations.Text = "Do Calculations";
-            this.guiDoCalculations.UseVisualStyleBackColor = true;
-            this.guiDoCalculations.Click += new System.EventHandler(this.guiDoCalculations_Click);
+            groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox1.Controls.Add(this.guiItemsLifeSteal);
+            groupBox1.Controls.Add(label47);
+            groupBox1.Controls.Add(this.guiItemsLifePerSecond);
+            groupBox1.Controls.Add(this.guiItemsResistance_All);
+            groupBox1.Controls.Add(label11);
+            groupBox1.Controls.Add(label28);
+            groupBox1.Controls.Add(this.guiItemsLifeOnHit);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(this.guiItemsResistance_Poison);
+            groupBox1.Controls.Add(label29);
+            groupBox1.Controls.Add(this.guiItemsResistance_Physical);
+            groupBox1.Controls.Add(label30);
+            groupBox1.Controls.Add(this.guiItemsResistance_Lightning);
+            groupBox1.Controls.Add(label31);
+            groupBox1.Controls.Add(this.guiItemsResistance_Fire);
+            groupBox1.Controls.Add(label32);
+            groupBox1.Controls.Add(this.guiItemsResistance_Cold);
+            groupBox1.Controls.Add(label33);
+            groupBox1.Controls.Add(this.guiItemsResistance_Arcane);
+            groupBox1.Controls.Add(label34);
+            groupBox1.Controls.Add(this.guiItemsLifePercent);
+            groupBox1.Controls.Add(label19);
+            groupBox1.Controls.Add(this.guiItemsDexterity);
+            groupBox1.Controls.Add(this.guiItemsCriticDamage);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(this.guiItemsCriticChance);
+            groupBox1.Controls.Add(this.guiItemsIntelligence);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(this.guiItemsSpeedAttack);
+            groupBox1.Controls.Add(this.guiItemsStrength);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(this.guiItemsVitality);
+            groupBox1.Location = new System.Drawing.Point(3, 32);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new System.Drawing.Size(156, 500);
+            groupBox1.TabIndex = 2;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Summary";
             // 
-            // tabPage14
+            // guiItemsLifeSteal
             // 
-            this.tabPage14.Controls.Add(groupBox2);
-            this.tabPage14.Controls.Add(this.guiDoCalculations);
-            this.tabPage14.Controls.Add(groupBox10);
-            this.tabPage14.Controls.Add(groupBox1);
-            this.tabPage14.Location = new System.Drawing.Point(4, 22);
-            this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(1002, 552);
-            this.tabPage14.TabIndex = 15;
-            this.tabPage14.Text = "Calculation Results";
-            this.tabPage14.UseVisualStyleBackColor = true;
+            this.guiItemsLifeSteal.Location = new System.Drawing.Point(115, 279);
+            this.guiItemsLifeSteal.Name = "guiItemsLifeSteal";
+            this.guiItemsLifeSteal.ReadOnly = true;
+            this.guiItemsLifeSteal.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsLifeSteal.TabIndex = 35;
+            // 
+            // label47
+            // 
+            label47.AutoSize = true;
+            label47.Location = new System.Drawing.Point(53, 282);
+            label47.Name = "label47";
+            label47.Size = new System.Drawing.Size(56, 13);
+            label47.TabIndex = 34;
+            label47.Text = "% life steal";
+            // 
+            // guiItemsLifePerSecond
+            // 
+            this.guiItemsLifePerSecond.Location = new System.Drawing.Point(115, 253);
+            this.guiItemsLifePerSecond.Name = "guiItemsLifePerSecond";
+            this.guiItemsLifePerSecond.ReadOnly = true;
+            this.guiItemsLifePerSecond.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsLifePerSecond.TabIndex = 33;
+            // 
+            // guiItemsResistance_All
+            // 
+            this.guiItemsResistance_All.Location = new System.Drawing.Point(115, 461);
+            this.guiItemsResistance_All.Name = "guiItemsResistance_All";
+            this.guiItemsResistance_All.ReadOnly = true;
+            this.guiItemsResistance_All.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsResistance_All.TabIndex = 29;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new System.Drawing.Point(33, 256);
+            label11.Name = "label11";
+            label11.Size = new System.Drawing.Size(76, 13);
+            label11.TabIndex = 32;
+            label11.Text = "life per second";
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new System.Drawing.Point(60, 464);
+            label28.Name = "label28";
+            label28.Size = new System.Drawing.Size(49, 13);
+            label28.TabIndex = 28;
+            label28.Text = "all resists";
+            // 
+            // guiItemsLifeOnHit
+            // 
+            this.guiItemsLifeOnHit.Location = new System.Drawing.Point(115, 227);
+            this.guiItemsLifeOnHit.Name = "guiItemsLifeOnHit";
+            this.guiItemsLifeOnHit.ReadOnly = true;
+            this.guiItemsLifeOnHit.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsLifeOnHit.TabIndex = 31;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new System.Drawing.Point(60, 230);
+            label9.Name = "label9";
+            label9.Size = new System.Drawing.Size(49, 13);
+            label9.TabIndex = 30;
+            label9.Text = "life on hit";
+            // 
+            // guiItemsResistance_Poison
+            // 
+            this.guiItemsResistance_Poison.Location = new System.Drawing.Point(115, 435);
+            this.guiItemsResistance_Poison.Name = "guiItemsResistance_Poison";
+            this.guiItemsResistance_Poison.ReadOnly = true;
+            this.guiItemsResistance_Poison.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsResistance_Poison.TabIndex = 27;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new System.Drawing.Point(44, 438);
+            label29.Name = "label29";
+            label29.Size = new System.Drawing.Size(65, 13);
+            label29.TabIndex = 26;
+            label29.Text = "poison resist";
+            // 
+            // guiItemsResistance_Physical
+            // 
+            this.guiItemsResistance_Physical.Location = new System.Drawing.Point(115, 409);
+            this.guiItemsResistance_Physical.Name = "guiItemsResistance_Physical";
+            this.guiItemsResistance_Physical.ReadOnly = true;
+            this.guiItemsResistance_Physical.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsResistance_Physical.TabIndex = 25;
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Location = new System.Drawing.Point(37, 412);
+            label30.Name = "label30";
+            label30.Size = new System.Drawing.Size(72, 13);
+            label30.TabIndex = 24;
+            label30.Text = "physical resist";
+            // 
+            // guiItemsResistance_Lightning
+            // 
+            this.guiItemsResistance_Lightning.Location = new System.Drawing.Point(115, 383);
+            this.guiItemsResistance_Lightning.Name = "guiItemsResistance_Lightning";
+            this.guiItemsResistance_Lightning.ReadOnly = true;
+            this.guiItemsResistance_Lightning.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsResistance_Lightning.TabIndex = 23;
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Location = new System.Drawing.Point(36, 386);
+            label31.Name = "label31";
+            label31.Size = new System.Drawing.Size(73, 13);
+            label31.TabIndex = 22;
+            label31.Text = "lightning resist";
+            // 
+            // guiItemsResistance_Fire
+            // 
+            this.guiItemsResistance_Fire.Location = new System.Drawing.Point(115, 357);
+            this.guiItemsResistance_Fire.Name = "guiItemsResistance_Fire";
+            this.guiItemsResistance_Fire.ReadOnly = true;
+            this.guiItemsResistance_Fire.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsResistance_Fire.TabIndex = 21;
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Location = new System.Drawing.Point(61, 360);
+            label32.Name = "label32";
+            label32.Size = new System.Drawing.Size(48, 13);
+            label32.TabIndex = 20;
+            label32.Text = "fire resist";
+            // 
+            // guiItemsResistance_Cold
+            // 
+            this.guiItemsResistance_Cold.Location = new System.Drawing.Point(115, 331);
+            this.guiItemsResistance_Cold.Name = "guiItemsResistance_Cold";
+            this.guiItemsResistance_Cold.ReadOnly = true;
+            this.guiItemsResistance_Cold.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsResistance_Cold.TabIndex = 19;
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Location = new System.Drawing.Point(55, 334);
+            label33.Name = "label33";
+            label33.Size = new System.Drawing.Size(54, 13);
+            label33.TabIndex = 18;
+            label33.Text = "cold resist";
+            // 
+            // guiItemsResistance_Arcane
+            // 
+            this.guiItemsResistance_Arcane.Location = new System.Drawing.Point(115, 305);
+            this.guiItemsResistance_Arcane.Name = "guiItemsResistance_Arcane";
+            this.guiItemsResistance_Arcane.ReadOnly = true;
+            this.guiItemsResistance_Arcane.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsResistance_Arcane.TabIndex = 17;
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Location = new System.Drawing.Point(42, 308);
+            label34.Name = "label34";
+            label34.Size = new System.Drawing.Size(67, 13);
+            label34.TabIndex = 16;
+            label34.Text = "arcane resist";
+            // 
+            // guiItemsLifePercent
+            // 
+            this.guiItemsLifePercent.Location = new System.Drawing.Point(115, 201);
+            this.guiItemsLifePercent.Name = "guiItemsLifePercent";
+            this.guiItemsLifePercent.ReadOnly = true;
+            this.guiItemsLifePercent.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsLifePercent.TabIndex = 15;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new System.Drawing.Point(65, 204);
+            label19.Name = "label19";
+            label19.Size = new System.Drawing.Size(44, 13);
+            label19.TabIndex = 14;
+            label19.Text = "+ % Life";
+            // 
+            // guiItemsDexterity
+            // 
+            this.guiItemsDexterity.Location = new System.Drawing.Point(115, 19);
+            this.guiItemsDexterity.Name = "guiItemsDexterity";
+            this.guiItemsDexterity.ReadOnly = true;
+            this.guiItemsDexterity.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsDexterity.TabIndex = 1;
+            // 
+            // guiItemsCriticDamage
+            // 
+            this.guiItemsCriticDamage.Location = new System.Drawing.Point(115, 175);
+            this.guiItemsCriticDamage.Name = "guiItemsCriticDamage";
+            this.guiItemsCriticDamage.ReadOnly = true;
+            this.guiItemsCriticDamage.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsCriticDamage.TabIndex = 13;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(63, 22);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(46, 13);
+            label1.TabIndex = 0;
+            label1.Text = "dexterity";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new System.Drawing.Point(16, 178);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(93, 13);
+            label7.TabIndex = 12;
+            label7.Text = "+ % Critic Damage";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(49, 48);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(60, 13);
+            label2.TabIndex = 2;
+            label2.Text = "intelligence";
+            // 
+            // guiItemsCriticChance
+            // 
+            this.guiItemsCriticChance.Location = new System.Drawing.Point(115, 149);
+            this.guiItemsCriticChance.Name = "guiItemsCriticChance";
+            this.guiItemsCriticChance.ReadOnly = true;
+            this.guiItemsCriticChance.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsCriticChance.TabIndex = 11;
+            // 
+            // guiItemsIntelligence
+            // 
+            this.guiItemsIntelligence.Location = new System.Drawing.Point(115, 45);
+            this.guiItemsIntelligence.Name = "guiItemsIntelligence";
+            this.guiItemsIntelligence.ReadOnly = true;
+            this.guiItemsIntelligence.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsIntelligence.TabIndex = 3;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(64, 74);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(45, 13);
+            label3.TabIndex = 4;
+            label3.Text = "strength";
+            // 
+            // guiItemsSpeedAttack
+            // 
+            this.guiItemsSpeedAttack.Location = new System.Drawing.Point(115, 123);
+            this.guiItemsSpeedAttack.Name = "guiItemsSpeedAttack";
+            this.guiItemsSpeedAttack.ReadOnly = true;
+            this.guiItemsSpeedAttack.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsSpeedAttack.TabIndex = 9;
+            // 
+            // guiItemsStrength
+            // 
+            this.guiItemsStrength.Location = new System.Drawing.Point(115, 71);
+            this.guiItemsStrength.Name = "guiItemsStrength";
+            this.guiItemsStrength.ReadOnly = true;
+            this.guiItemsStrength.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsStrength.TabIndex = 5;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(17, 126);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(92, 13);
+            label5.TabIndex = 8;
+            label5.Text = "+ % Attack Speed";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(73, 100);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(36, 13);
+            label4.TabIndex = 6;
+            label4.Text = "vitality";
+            // 
+            // guiItemsVitality
+            // 
+            this.guiItemsVitality.Location = new System.Drawing.Point(115, 97);
+            this.guiItemsVitality.Name = "guiItemsVitality";
+            this.guiItemsVitality.ReadOnly = true;
+            this.guiItemsVitality.Size = new System.Drawing.Size(35, 20);
+            this.guiItemsVitality.TabIndex = 7;
             // 
             // D3CalculatorForm
             // 
@@ -1939,13 +1961,13 @@
             this.tabPage12.PerformLayout();
             this.tabPage13.ResumeLayout(false);
             this.tabPage13.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            this.tabPage14.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox10.ResumeLayout(false);
             groupBox10.PerformLayout();
-            this.tabPage14.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2053,5 +2075,6 @@
         private System.Windows.Forms.CheckBox guiSkillMantraOfEvasion_HardTarget;
         private System.Windows.Forms.CheckBox guiSkillMysticAlly_EarthAlly;
         private System.Windows.Forms.TabPage tabPage14;
+        private System.Windows.Forms.TextBox guiItemsLifeSteal;
     }
 }
