@@ -254,6 +254,9 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiShieldBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
 
                 // GemHelper
+                guiGem1.SelectedIndex = 0;
+                guiGem2.SelectedIndex = 0;
+                guiGem3.SelectedIndex = 0;
                 if (item.gems != null)
                 {
                     if (item.gems.Length >= 1)
