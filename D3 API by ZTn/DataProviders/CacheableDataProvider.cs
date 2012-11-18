@@ -38,7 +38,10 @@ namespace ZTn.BNet.D3.DataProviders
                     stringBuilder.Append(hashByte.ToString("x2"));
             }
 
-            stringBuilder.Append(".json");
+            if (url.EndsWith(".png"))
+                stringBuilder.Append(".png");
+            else
+                stringBuilder.Append(".json");
 
             return stringBuilder.ToString();
         }

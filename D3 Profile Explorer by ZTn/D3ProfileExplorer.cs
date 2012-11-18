@@ -11,6 +11,8 @@ using ZTn.BNet.D3.Items;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.DataProviders;
 using ZTn.BNet.D3.Calculator;
+using ZTn.BNet.D3.Skills;
+using ZTn.BNet.D3.Medias;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -110,15 +112,27 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 if (type.FullName.Contains("ZTn.BNet.D3"))
                 {
+                    PropertyInfo[] propertyInfos = type.GetProperties();
+                    foreach (PropertyInfo propertyInfo in propertyInfos)
+                    {
+                        Object d3ObjectValue = propertyInfo.GetValue(d3Object, null);
+                        if ((d3ObjectValue != null))
+                        {
+                            TreeNode newNode = new TreeNode(propertyInfo.Name);
+                            newNode.Nodes.AddRange(createNodeFromD3Object(d3ObjectValue).ToArray());
+                            insertContextMenu(newNode, d3ObjectValue);
+                            newNodes.Add(newNode);
+                        }
+                    }
                     FieldInfo[] fieldInfos = type.GetFields();
-
                     foreach (FieldInfo fieldInfo in fieldInfos)
                     {
-                        if ((!fieldInfo.IsStatic) && (fieldInfo.GetValue(d3Object) != null))
+                        Object d3ObjectValue = fieldInfo.GetValue(d3Object);
+                        if ((!fieldInfo.IsStatic) && (d3ObjectValue != null))
                         {
                             TreeNode newNode = new TreeNode(fieldInfo.Name);
-                            newNode.Nodes.AddRange(createNodeFromD3Object(fieldInfo.GetValue(d3Object)).ToArray());
-                            insertContextMenu(newNode, fieldInfo.GetValue(d3Object));
+                            newNode.Nodes.AddRange(createNodeFromD3Object(d3ObjectValue).ToArray());
+                            insertContextMenu(newNode, d3ObjectValue);
                             newNodes.Add(newNode);
                         }
                     }
@@ -156,6 +170,12 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 node.Tag = d3Object;
                 node.ContextMenuStrip = guiCareerArtisanContextMenu;
+                node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+            }
+            else if (d3Object is Skill)
+            {
+                node.Tag = d3Object;
+                node.ContextMenuStrip = guiSkillContextMenu;
                 node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
             }
         }
@@ -304,6 +324,18 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
 
             new D3CalculatorForm(hero).Show();
+        }
+
+        private void getSkillPictureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Skill skill = (Skill)guiD3ProfileTreeView.SelectedNode.Tag;
+            D3Picture picture = D3.D3Api.getSkillIcon(skill.icon);
+        }
+
+        private void getItemPictureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ItemSummary itemSummary = (ItemSummary)guiD3ProfileTreeView.SelectedNode.Tag;
+            D3Picture picture = D3.D3Api.getItemIcon(itemSummary.icon);
         }
     }
 }

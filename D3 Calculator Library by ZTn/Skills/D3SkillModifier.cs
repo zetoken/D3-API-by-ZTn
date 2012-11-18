@@ -1,4 +1,5 @@
-﻿using ZTn.BNet.D3.Items;
+﻿using System;
+using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills
 {

@@ -73,6 +73,7 @@
     <Compile Include="HeroFollowers\FollowerStats.cs" />
     <Compile Include="Items\Set.cs" />
     <Compile Include="Items\SetRank.cs" />
+    <Compile Include="Medias\D3Picture.cs" />
     <Compile Include="Progresses\ActProgress.cs" />
     <Compile Include="Progresses\DifficultyProgress.cs" />
     <Compile Include="Progresses\Progress.cs" />

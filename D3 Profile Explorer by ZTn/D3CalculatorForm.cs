@@ -5,6 +5,7 @@ using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
+using ZTn.BNet.D3.Skills;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -25,6 +26,9 @@ namespace ZTn.BNet.D3ProfileExplorer
         Item shoulders;
         Item torso;
         Item waist;
+
+        Item mainHand;
+        Item offHand;
 
         #endregion
 
@@ -69,9 +73,8 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (hero.items.waist != null)
                 waist = Item.getItemFromTooltipParams(hero.items.waist.tooltipParams);
 
-            Item mainHand = Item.getItemFromTooltipParams(hero.items.mainHand.tooltipParams);
+            mainHand = Item.getItemFromTooltipParams(hero.items.mainHand.tooltipParams);
 
-            Item offHand;
             if (hero.items.offHand != null)
                 offHand = Item.getItemFromTooltipParams(hero.items.offHand.tooltipParams);
             else
@@ -90,6 +93,9 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiShouldersEditor.setEditedItem(shoulders);
             guiTorsoEditor.setEditedItem(torso);
             guiWaistEditor.setEditedItem(waist);
+
+            populatePassiveSkills();
+            populateActiveSkills();
         }
 
         #endregion
@@ -166,7 +172,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (guiSkillSharpShooter.Checked)
                 passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.SharpShooter());
             if (guiSkillPerfectionnist.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Perfectionnist());
+                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Perfectionist());
 
             // Monk passive skills
             if (guiSkillSeizeTheInitiative.Checked)
@@ -218,6 +224,39 @@ namespace ZTn.BNet.D3ProfileExplorer
             updateCalculationResults(d3Calculator);
         }
 
+        private void populateActiveSkills()
+        {
+            if (hero.skills.active != null)
+            {
+                foreach (ActiveSkill activeSkill in hero.skills.active)
+                {
+                    switch (activeSkill.skill.slug)
+                    {
+                        case "mantra-of-healing":
+                            switch (activeSkill.rune.slug)
+                            {
+                                case "":
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        case "mystic-ally":
+                            switch (activeSkill.rune.slug)
+                            {
+                                case "":
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
         private void populateCalculatedData(TextBox textBox, ItemValueRange itemValueRange)
         {
             if (itemValueRange != null)
@@ -228,6 +267,57 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             if (itemValueRange != null)
                 textBox.Text = (100 * itemValueRange.min).ToString();
+        }
+
+        private void populatePassiveSkills()
+        {
+            if (hero.skills.passive != null)
+            {
+                foreach (PassiveSkill passiveSkill in hero.skills.passive)
+                {
+                    switch (passiveSkill.skill.slug)
+                    {
+                        case "archery":
+                            if (mainHand != null)
+                            {
+                                switch (mainHand.type.id)
+                                {
+                                    case "Bow":
+                                        guiSkillArchery_Bow.Checked = true;
+                                        break;
+                                    case "Crossbow":
+                                        guiSkillArchery_Crossbow.Checked = true;
+                                        break;
+                                    case "HandCrossbow":
+                                        guiSkillArchery_HandCrossbow.Checked = true;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            break;
+                        case "one-with-everything":
+                            guiSkillOneWithEverything.Checked = true;
+                            break;
+                        case "perfectionist":
+                            guiSkillPerfectionnist.Checked = true;
+                            break;
+                        case "seize-the-initiative":
+                            guiSkillSeizeTheInitiative.Checked = true;
+                            break;
+                        case "sharp-shooter":
+                            guiSkillSharpShooter.Checked = true;
+                            break;
+                        case "steady-aim":
+                            guiSkillSteadyAim.Checked = true;
+                            break;
+                        case "the-guardians-path":
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         }
 
         private void updateItemsSummary(D3Calculator d3Calculator)

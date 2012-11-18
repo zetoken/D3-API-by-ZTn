@@ -35,19 +35,28 @@ namespace ZTn.BNet.D3.DataProviders
             if (httpWebResponse.StatusCode != HttpStatusCode.OK)
                 throw new BNetResponseFailed();
 
-            // Get the response an try to detect if server returned an object indicating a failure
             Stream responseStream = httpWebResponse.GetResponseStream();
-            MemoryStream memoryStream = new MemoryStream();
-            responseStream.CopyTo(memoryStream);
-            memoryStream.Position = 0;
-            FailureObject failureObject = getFailedObjectFromJSonStream(memoryStream);
 
-            if (failureObject.isFailureObject())
-                throw new BNetFailureObjectReturned(failureObject);
+            // if json object is returned, test if it is an error message
+            if (httpWebResponse.ContentType.Contains("application/json"))
+            {
+                // Get the response an try to detect if server returned an object indicating a failure
+                MemoryStream memoryStream = new MemoryStream();
+                responseStream.CopyTo(memoryStream);
+                memoryStream.Position = 0;
+                FailureObject failureObject = getFailedObjectFromJSonStream(memoryStream);
 
-            memoryStream.Position = 0;
+                if (failureObject.isFailureObject())
+                    throw new BNetFailureObjectReturned(failureObject);
 
-            return memoryStream;
+                memoryStream.Position = 0;
+
+                return memoryStream;
+            }
+            else
+            {
+                return responseStream;
+            }
         }
     }
 }

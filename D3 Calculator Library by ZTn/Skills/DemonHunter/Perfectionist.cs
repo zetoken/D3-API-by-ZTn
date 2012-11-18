@@ -6,7 +6,7 @@ using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
-    public class Perfectionnist : D3SkillModifier
+    public class Perfectionist : D3SkillModifier
     {
         readonly double multiplier = 0.10;
 

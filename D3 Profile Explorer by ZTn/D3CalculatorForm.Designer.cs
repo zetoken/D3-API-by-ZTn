@@ -595,9 +595,9 @@
             this.guiSkillPerfectionnist.AutoSize = true;
             this.guiSkillPerfectionnist.Location = new System.Drawing.Point(6, 134);
             this.guiSkillPerfectionnist.Name = "guiSkillPerfectionnist";
-            this.guiSkillPerfectionnist.Size = new System.Drawing.Size(213, 17);
+            this.guiSkillPerfectionnist.Size = new System.Drawing.Size(207, 17);
             this.guiSkillPerfectionnist.TabIndex = 5;
-            this.guiSkillPerfectionnist.Text = "Perfectionnist (+10% Armor, Resist, Life)";
+            this.guiSkillPerfectionnist.Text = "Perfectionist (+10% Armor, Resist, Life)";
             this.guiSkillPerfectionnist.UseVisualStyleBackColor = true;
             // 
             // guiSkillSharpShooter

@@ -8,6 +8,7 @@ using ZTn.BNet.D3.Careers;
 using ZTn.BNet.D3.DataProviders;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
+using ZTn.BNet.D3.Medias;
 
 namespace ZTn.BNet.D3
 {
@@ -19,6 +20,7 @@ namespace ZTn.BNet.D3
         public static String host = "eu.battle.net";
         public static String apiPath = "/api/d3/";
         public static String locale = "en";
+        public static String mediaPath = "http://media.blizzard.com/d3/";
 
         public static ID3DataProvider dataProvider = new HttpRequestDataProvider();
 
@@ -37,19 +39,14 @@ namespace ZTn.BNet.D3
 
         #endregion
 
-        public static String getCareerUrl(BattleTag battleTag)
+        public static Artisan getArtisanFromSlug(String slug)
         {
-            return apiUrl + "profile/" + HttpUtility.UrlEncode(battleTag.name) + "-" + battleTag.code + "/";
-        }
-
-        public static String getHeroUrlFromHeroId(BattleTag battleTag, String heroId)
-        {
-            return getCareerUrl(battleTag) + "hero/" + heroId;
-        }
-
-        public static String getItemUrlFromTooltipParams(String tooltipParams)
-        {
-            return apiUrl + "data/" + tooltipParams;
+            Artisan artisan;
+            using (Stream stream = dataProvider.fetchData(D3Api.getArtisanUrlFromSlug(slug) + apiLocaleSuffix))
+            {
+                artisan = Artisan.getArtisanFromJSonStream(stream);
+            }
+            return artisan;
         }
 
         public static String getArtisanUrlFromSlug(String slug)
@@ -67,6 +64,11 @@ namespace ZTn.BNet.D3
             return career;
         }
 
+        public static String getCareerUrl(BattleTag battleTag)
+        {
+            return apiUrl + "profile/" + HttpUtility.UrlEncode(battleTag.name) + "-" + battleTag.code + "/";
+        }
+
         public static Hero getHeroFromHeroID(BattleTag battleTag, String heroId)
         {
             Hero hero;
@@ -75,6 +77,11 @@ namespace ZTn.BNet.D3
                 hero = Hero.getHeroFromJSonStream(stream);
             }
             return hero;
+        }
+
+        public static String getHeroUrlFromHeroId(BattleTag battleTag, String heroId)
+        {
+            return getCareerUrl(battleTag) + "hero/" + heroId;
         }
 
         public static Item getItemFromTooltipParams(String tooltipParams)
@@ -87,14 +94,39 @@ namespace ZTn.BNet.D3
             return item;
         }
 
-        public static Artisan getArtisanFromSlug(String slug)
+        public static String getItemUrlFromTooltipParams(String tooltipParams)
         {
-            Artisan artisan;
-            using (Stream stream = dataProvider.fetchData(D3Api.getArtisanUrlFromSlug(slug) + apiLocaleSuffix))
+            return apiUrl + "data/" + tooltipParams;
+        }
+
+        public static String getItemIconUrl(String icon)
+        {
+            return mediaPath + "icons/items/small/" + icon + ".png";
+        }
+
+        public static D3Picture getItemIcon(String icon)
+        {
+            D3Picture picture;
+            using (Stream stream = dataProvider.fetchData(D3Api.getItemIconUrl(icon)))
             {
-                artisan = Artisan.getArtisanFromJSonStream(stream);
+                picture = new D3Picture(stream);
             }
-            return artisan;
+            return picture;
+        }
+
+        public static String getSkillIconUrl(String icon)
+        {
+            return mediaPath + "icons/skills/42/" + icon + ".png";
+        }
+
+        public static D3Picture getSkillIcon(String icon)
+        {
+            D3Picture picture;
+            using (Stream stream = dataProvider.fetchData(D3Api.getSkillIconUrl(icon)))
+            {
+                picture = new D3Picture(stream);
+            }
+            return picture;
         }
     }
 }
