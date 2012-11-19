@@ -108,6 +108,11 @@ namespace ZTn.BNet.D3ProfileExplorer
                     newNodes.Add(newNode);
                 }
             }
+            else if (type.IsEnum)
+            {
+                TreeNode newNode = new TreeNode(d3Object.ToString());
+                newNodes.Add(newNode);
+            }
             else
             {
                 if (type.FullName.Contains("ZTn.BNet.D3"))

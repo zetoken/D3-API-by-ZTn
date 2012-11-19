@@ -15,6 +15,13 @@ namespace ZTn.BNet.D3.Careers
     {
         #region >> Fields
 
+
+        [DataMember(Name = "battleTag")]
+        private String s_battleTag
+        {
+            set { battleTag = new BattleNet.BattleTag(value); }
+            get { return battleTag.id; }
+        }
         [IgnoreDataMember]
         public BattleNet.BattleTag battleTag = new BattleNet.BattleTag("undefined#0000");
         [DataMember]
@@ -33,17 +40,6 @@ namespace ZTn.BNet.D3.Careers
         public HeroSummary[] fallenHeroes;
         [DataMember]
         public Progress progression;
-
-        #endregion
-
-        #region >> Properties
-
-        [DataMember(Name = "battleTag")]
-        public String s_battleTag
-        {
-            set { battleTag = new BattleNet.BattleTag(value); }
-            get { return battleTag.id; }
-        }
 
         #endregion
 

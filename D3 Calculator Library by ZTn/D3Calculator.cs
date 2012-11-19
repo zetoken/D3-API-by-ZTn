@@ -226,7 +226,7 @@ namespace ZTn.BNet.D3.Calculator
             ehp /= (1 - resistance);
 
             // Update with class reduction
-            if ((hero.heroClass == "monk") || (hero.heroClass == "barbarian"))
+            if ((hero.heroClass == HeroClass.Monk) || (hero.heroClass == HeroClass.Barbarian))
                 ehp /= (1 - 0.30);
 
             return ehp;
@@ -329,17 +329,17 @@ namespace ZTn.BNet.D3.Calculator
 
             switch (hero.heroClass)
             {
-                case "monk":
-                case "demon-hunter":
+                case HeroClass.Monk:
+                case HeroClass.DemonHunter:
                     if (heroItemStats.attributesRaw.dexterityItem != null)
                         result = heroItemStats.attributesRaw.dexterityItem;
                     break;
-                case "witch-doctor":
-                case "wizard":
+                case HeroClass.WitchDoctor:
+                case HeroClass.Wizard:
                     if (heroItemStats.attributesRaw.intelligenceItem != null)
                         result = heroItemStats.attributesRaw.intelligenceItem;
                     break;
-                case "barbarian":
+                case HeroClass.Barbarian:
                     if (heroItemStats.attributesRaw.strengthItem != null)
                         result = heroItemStats.attributesRaw.strengthItem;
                     break;

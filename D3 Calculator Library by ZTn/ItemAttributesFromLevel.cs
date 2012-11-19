@@ -9,19 +9,19 @@ namespace ZTn.BNet.D3.Calculator
         {
             switch (hero.heroClass)
             {
-                case "monk":
-                case "demon-hunter":
+                case HeroClass.Monk:
+                case HeroClass.DemonHunter:
                     dexterityItem = new ItemValueRange(7 + 3 * hero.level);
                     intelligenceItem = new ItemValueRange(7 + 1 * hero.level);
                     strengthItem = new ItemValueRange(7 + 1 * hero.level);
                     break;
-                case "witch-doctor":
-                case "wizard":
+                case HeroClass.WitchDoctor:
+                case HeroClass.Wizard:
                     dexterityItem = new ItemValueRange(7 + 1 * hero.level);
                     intelligenceItem = new ItemValueRange(7 + 3 * hero.level);
                     strengthItem = new ItemValueRange(7 + 1 * hero.level);
                     break;
-                case "barbarian":
+                case HeroClass.Barbarian:
                     dexterityItem = new ItemValueRange(7 + 1 * hero.level);
                     intelligenceItem = new ItemValueRange(7 + 1 * hero.level);
                     strengthItem = new ItemValueRange(7 + 3 * hero.level);

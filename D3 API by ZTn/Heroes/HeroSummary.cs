@@ -20,13 +20,41 @@ namespace ZTn.BNet.D3.Heroes
         [DataMember]
         public int paragonLevel;
         [DataMember]
-        public String gender;
+        public HeroGender gender;
         [DataMember]
         public Boolean dead;
         [DataMember(Name = "class")]
-        public String heroClass;
+        private String s_heroClass
+        {
+            set
+            {
+                switch (value)
+                {
+                    case "barbarian": heroClass = HeroClass.Barbarian; break;
+                    case "demon-hunter": heroClass = HeroClass.DemonHunter; break;
+                    case "monk": heroClass = HeroClass.Monk; break;
+                    case "witch-doctor": heroClass = HeroClass.WitchDoctor; break;
+                    case "wizard": heroClass = HeroClass.Wizard; break;
+                    default: heroClass = HeroClass.Unknown; break;
+                }
+            }
+            get
+            {
+                switch (heroClass)
+                {
+                    case HeroClass.Barbarian: return "barbarian";
+                    case HeroClass.DemonHunter: return "demon-hunter";
+                    case HeroClass.Monk: return "monk";
+                    case HeroClass.WitchDoctor: return "witch-doctor";
+                    case HeroClass.Wizard: return "wizard";
+                    default: return null;
+                }
+            }
+        }
+        [IgnoreDataMember]
+        public HeroClass heroClass;
         [DataMember(Name = "last-updated")]
-        public long s_lastUpdated
+        private long s_lastUpdated
         {
             set { lastUpdated = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(value); }
             get { return lastUpdated.Ticks - (new DateTime(1970, 1, 1, 0, 0, 0, 0)).Ticks; }

@@ -38,7 +38,13 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             InitializeComponent();
 
-            guiHeroClass.DataSource = new List<String>() { "barbarian", "demon-hunter", "monk", "witch-doctor", "wizard" };
+            guiHeroClass.DataSource = new List<String>() {
+                HeroClass.Barbarian.ToString(),
+                HeroClass.DemonHunter.ToString(),
+                HeroClass.Monk.ToString(), 
+                HeroClass.WitchDoctor.ToString(), 
+                HeroClass.Wizard.ToString()
+            };
         }
 
         public D3CalculatorForm(Hero hero)
@@ -46,7 +52,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             this.hero = hero;
 
-            guiHeroClass.SelectedItem = hero.heroClass;
+            guiHeroClass.SelectedItem = hero.heroClass.ToString();
             guiHeroLevel.Text = hero.level.ToString();
             guiHeroParagonLevel.Text = hero.paragonLevel.ToString();
 
@@ -103,7 +109,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         private Hero getEditedHero()
         {
             Hero hero = new Hero();
-            hero.heroClass = (String)guiHeroClass.SelectedItem;
+            hero.heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), (String)(guiHeroClass.SelectedItem));
 
             if (String.IsNullOrEmpty(guiHeroLevel.Text))
                 hero.level = 60;
@@ -259,13 +265,13 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void populateCalculatedData(TextBox textBox, ItemValueRange itemValueRange)
         {
-            if (itemValueRange != null)
+            if (itemValueRange != null && itemValueRange.min != 0)
                 textBox.Text = itemValueRange.min.ToString();
         }
 
         private void populateCalculatedDataPercent(TextBox textBox, ItemValueRange itemValueRange)
         {
-            if (itemValueRange != null)
+            if (itemValueRange != null && itemValueRange.min != 0)
                 textBox.Text = (100 * itemValueRange.min).ToString();
         }
 
