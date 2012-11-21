@@ -13,6 +13,7 @@ using ZTn.BNet.D3.DataProviders;
 using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Skills;
 using ZTn.BNet.D3.Medias;
+using System.IO;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -331,16 +332,44 @@ namespace ZTn.BNet.D3ProfileExplorer
             new D3CalculatorForm(hero).Show();
         }
 
-        private void getSkillPictureToolStripMenuItem_Click(object sender, EventArgs e)
+        private void getItemLargeIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Skill skill = (Skill)guiD3ProfileTreeView.SelectedNode.Tag;
-            D3Picture picture = D3.D3Api.getSkillIcon(skill.icon);
+            ItemSummary itemSummary = (ItemSummary)guiD3ProfileTreeView.SelectedNode.Tag;
+            D3Picture picture = D3.D3Api.getItemIcon(itemSummary.icon, "large");
+            using (var imageStream = new MemoryStream(picture.bytes))
+            {
+                guiD3Icon.Image = Image.FromStream(imageStream);
+            }
         }
 
-        private void getItemPictureToolStripMenuItem_Click(object sender, EventArgs e)
+        private void getItemSmallIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ItemSummary itemSummary = (ItemSummary)guiD3ProfileTreeView.SelectedNode.Tag;
             D3Picture picture = D3.D3Api.getItemIcon(itemSummary.icon);
+            using (var imageStream = new MemoryStream(picture.bytes))
+            {
+                guiD3Icon.Image = Image.FromStream(imageStream);
+            }
+        }
+
+        private void getSkillIcon42ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Skill skill = (Skill)guiD3ProfileTreeView.SelectedNode.Tag;
+            D3Picture picture = D3.D3Api.getSkillIcon(skill.icon);
+            using (var imageStream = new MemoryStream(picture.bytes))
+            {
+                guiD3Icon.Image = Image.FromStream(imageStream);
+            }
+        }
+
+        private void getSkillIcon64ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Skill skill = (Skill)guiD3ProfileTreeView.SelectedNode.Tag;
+            D3Picture picture = D3.D3Api.getSkillIcon(skill.icon, "64");
+            using (var imageStream = new MemoryStream(picture.bytes))
+            {
+                guiD3Icon.Image = Image.FromStream(imageStream);
+            }
         }
     }
 }

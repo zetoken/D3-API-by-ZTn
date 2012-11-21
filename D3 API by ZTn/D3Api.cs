@@ -99,30 +99,45 @@ namespace ZTn.BNet.D3
             return apiUrl + "data/" + tooltipParams;
         }
 
-        public static String getItemIconUrl(String icon)
+        public static String getItemIconUrl(String icon, String size)
         {
-            return mediaPath + "icons/items/small/" + icon + ".png";
+            return mediaPath + "icons/items/" + size + "/" + icon + ".png";
         }
 
         public static D3Picture getItemIcon(String icon)
         {
             D3Picture picture;
-            using (Stream stream = dataProvider.fetchData(D3Api.getItemIconUrl(icon)))
+            using (Stream stream = dataProvider.fetchData(D3Api.getItemIconUrl(icon, "small")))
             {
                 picture = new D3Picture(stream);
             }
             return picture;
         }
 
-        public static String getSkillIconUrl(String icon)
+        public static D3Picture getItemIcon(String icon, String size)
         {
-            return mediaPath + "icons/skills/42/" + icon + ".png";
+            D3Picture picture;
+            using (Stream stream = dataProvider.fetchData(D3Api.getItemIconUrl(icon, size)))
+            {
+                picture = new D3Picture(stream);
+            }
+            return picture;
+        }
+
+        public static String getSkillIconUrl(String icon, String size)
+        {
+            return mediaPath + "icons/skills/" + size + "/" + icon + ".png";
         }
 
         public static D3Picture getSkillIcon(String icon)
         {
+            return getSkillIcon(icon, "42");
+        }
+
+        public static D3Picture getSkillIcon(String icon, String size)
+        {
             D3Picture picture;
-            using (Stream stream = dataProvider.fetchData(D3Api.getSkillIconUrl(icon)))
+            using (Stream stream = dataProvider.fetchData(D3Api.getSkillIconUrl(icon, size)))
             {
                 picture = new D3Picture(stream);
             }

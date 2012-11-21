@@ -9,9 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ZTn.BNet.D3ProfileExplorer</RootNamespace>
     <AssemblyName>D3 Profile Explorer by ZTn</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -105,6 +105,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Diablo III.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\BNet API by ZTn\BNet API by ZTn.csproj">
       <Project>{865b78ca-5ee6-4580-a5de-e74f0303f70b}</Project>
       <Name>BNet API by ZTn</Name>
@@ -112,15 +115,11 @@
     <ProjectReference Include="..\D3 API by ZTn\D3 API by ZTn.csproj">
       <Project>{a62cfaea-60e1-4586-b306-7d606e6aa4d2}</Project>
       <Name>D3 API by ZTn</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
     <ProjectReference Include="..\D3 Calculator Library by ZTn\D3 Calculator Library by ZTn.csproj">
       <Project>{f6e135dd-87c5-49c1-a560-07c2653b69a2}</Project>
       <Name>D3 Calculator Library by ZTn</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Diablo III.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

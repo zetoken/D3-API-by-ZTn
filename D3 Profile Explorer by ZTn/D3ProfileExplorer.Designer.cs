@@ -41,7 +41,7 @@
             this.d3CalculatorHeroSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guiItemSummaryContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exploreItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.getItemPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getItemSmallIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.guiBattleNetHostList = new System.Windows.Forms.ComboBox();
             this.guiBattleNetLanguageList = new System.Windows.Forms.ComboBox();
@@ -58,7 +58,10 @@
             this.d3CalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buildUniqueItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guiSkillContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.getSkillPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getSkillIcon42ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guiD3Icon = new System.Windows.Forms.PictureBox();
+            this.getItemLargeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getSkillIcon64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -68,6 +71,7 @@
             this.guiCareerArtisanContextMenu.SuspendLayout();
             this.guiHeroContextMenu.SuspendLayout();
             this.guiSkillContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guiD3Icon)).BeginInit();
             this.SuspendLayout();
             // 
             // guiLabel1
@@ -104,7 +108,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.guiD3ProfileTreeView.Location = new System.Drawing.Point(12, 71);
             this.guiD3ProfileTreeView.Name = "guiD3ProfileTreeView";
-            this.guiD3ProfileTreeView.Size = new System.Drawing.Size(760, 479);
+            this.guiD3ProfileTreeView.Size = new System.Drawing.Size(604, 479);
             this.guiD3ProfileTreeView.TabIndex = 1;
             this.guiD3ProfileTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.guiD3ProfileTreeView_NodeMouseClick);
             // 
@@ -151,23 +155,24 @@
             // 
             this.guiItemSummaryContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exploreItemToolStripMenuItem,
-            this.getItemPictureToolStripMenuItem});
+            this.getItemSmallIconToolStripMenuItem,
+            this.getItemLargeIconToolStripMenuItem});
             this.guiItemSummaryContextMenu.Name = "guiHeroSummaryContextMenu";
-            this.guiItemSummaryContextMenu.Size = new System.Drawing.Size(160, 70);
+            this.guiItemSummaryContextMenu.Size = new System.Drawing.Size(178, 70);
             // 
             // exploreItemToolStripMenuItem
             // 
             this.exploreItemToolStripMenuItem.Name = "exploreItemToolStripMenuItem";
-            this.exploreItemToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.exploreItemToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.exploreItemToolStripMenuItem.Text = "Explore Item";
             this.exploreItemToolStripMenuItem.Click += new System.EventHandler(this.exploreItemToolStripMenuItem_Click);
             // 
-            // getItemPictureToolStripMenuItem
+            // getItemSmallIconToolStripMenuItem
             // 
-            this.getItemPictureToolStripMenuItem.Name = "getItemPictureToolStripMenuItem";
-            this.getItemPictureToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.getItemPictureToolStripMenuItem.Text = "Get Item Picture";
-            this.getItemPictureToolStripMenuItem.Click += new System.EventHandler(this.getItemPictureToolStripMenuItem_Click);
+            this.getItemSmallIconToolStripMenuItem.Name = "getItemSmallIconToolStripMenuItem";
+            this.getItemSmallIconToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.getItemSmallIconToolStripMenuItem.Text = "Get Item Small Icon";
+            this.getItemSmallIconToolStripMenuItem.Click += new System.EventHandler(this.getItemSmallIconToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -311,22 +316,47 @@
             // guiSkillContextMenu
             // 
             this.guiSkillContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.getSkillPictureToolStripMenuItem});
+            this.getSkillIcon42ToolStripMenuItem,
+            this.getSkillIcon64ToolStripMenuItem});
             this.guiSkillContextMenu.Name = "guiHeroSummaryContextMenu";
-            this.guiSkillContextMenu.Size = new System.Drawing.Size(157, 26);
+            this.guiSkillContextMenu.Size = new System.Drawing.Size(166, 70);
             // 
-            // getSkillPictureToolStripMenuItem
+            // getSkillIcon42ToolStripMenuItem
             // 
-            this.getSkillPictureToolStripMenuItem.Name = "getSkillPictureToolStripMenuItem";
-            this.getSkillPictureToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.getSkillPictureToolStripMenuItem.Text = "Get Skill Picture";
-            this.getSkillPictureToolStripMenuItem.Click += new System.EventHandler(this.getSkillPictureToolStripMenuItem_Click);
+            this.getSkillIcon42ToolStripMenuItem.Name = "getSkillIcon42ToolStripMenuItem";
+            this.getSkillIcon42ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.getSkillIcon42ToolStripMenuItem.Text = "Get Skill Icon (42)";
+            this.getSkillIcon42ToolStripMenuItem.Click += new System.EventHandler(this.getSkillIcon42ToolStripMenuItem_Click);
+            // 
+            // guiD3Icon
+            // 
+            this.guiD3Icon.Location = new System.Drawing.Point(622, 350);
+            this.guiD3Icon.Name = "guiD3Icon";
+            this.guiD3Icon.Size = new System.Drawing.Size(150, 200);
+            this.guiD3Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.guiD3Icon.TabIndex = 9;
+            this.guiD3Icon.TabStop = false;
+            // 
+            // getItemLargeIconToolStripMenuItem
+            // 
+            this.getItemLargeIconToolStripMenuItem.Name = "getItemLargeIconToolStripMenuItem";
+            this.getItemLargeIconToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.getItemLargeIconToolStripMenuItem.Text = "Get Item Large Icon";
+            this.getItemLargeIconToolStripMenuItem.Click += new System.EventHandler(this.getItemLargeIconToolStripMenuItem_Click);
+            // 
+            // getSkillIcon64ToolStripMenuItem
+            // 
+            this.getSkillIcon64ToolStripMenuItem.Name = "getSkillIcon64ToolStripMenuItem";
+            this.getSkillIcon64ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.getSkillIcon64ToolStripMenuItem.Text = "Get Skill Icon (64)";
+            this.getSkillIcon64ToolStripMenuItem.Click += new System.EventHandler(this.getSkillIcon64ToolStripMenuItem_Click);
             // 
             // guiD3ProfileExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.guiD3Icon);
             this.Controls.Add(this.guiOfflineMode);
             this.Controls.Add(this.guiD3ProfileExplorerVersion);
             this.Controls.Add(this.guiD3ProfileExplorerDllName);
@@ -346,6 +376,7 @@
             this.guiCareerArtisanContextMenu.ResumeLayout(false);
             this.guiHeroContextMenu.ResumeLayout(false);
             this.guiSkillContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.guiD3Icon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,8 +408,11 @@
         private System.Windows.Forms.ToolStripMenuItem buildUniqueItemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem d3CalculatorHeroSummaryToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip guiSkillContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem getSkillPictureToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem getItemPictureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getSkillIcon42ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getItemSmallIconToolStripMenuItem;
+        private System.Windows.Forms.PictureBox guiD3Icon;
+        private System.Windows.Forms.ToolStripMenuItem getItemLargeIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getSkillIcon64ToolStripMenuItem;
     }
 }
 
