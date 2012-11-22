@@ -74,6 +74,7 @@
     <Compile Include="HeroFollowers\Follower.cs" />
     <Compile Include="HeroFollowers\FollowerItems.cs" />
     <Compile Include="HeroFollowers\Followers.cs" />
+    <Compile Include="HeroFollowers\FollowerSkill.cs" />
     <Compile Include="HeroFollowers\FollowerStats.cs" />
     <Compile Include="Items\Set.cs" />
     <Compile Include="Items\SetRank.cs" />

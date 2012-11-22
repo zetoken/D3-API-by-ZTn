@@ -219,22 +219,26 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             ItemSummary itemSummary = (ItemSummary)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            TreeNode node = new TreeNode("Item " + itemSummary.tooltipParams);
-
-            Item item;
-            try
+            if (itemSummary.tooltipParams != null)
             {
-                item = Item.getItemFromTooltipParams(itemSummary.tooltipParams);
-            }
-            catch (FileNotInCacheException)
-            {
-                MessageBox.Show("Item was not found in cache: go online to retrieve it.");
-                return;
-            }
 
-            node.Nodes.AddRange(createNodeFromD3Object(item).ToArray());
+                TreeNode node = new TreeNode("Item " + itemSummary.tooltipParams);
 
-            guiD3ProfileTreeView.Nodes.Add(node);
+                Item item;
+                try
+                {
+                    item = Item.getItemFromTooltipParams(itemSummary.tooltipParams);
+                }
+                catch (FileNotInCacheException)
+                {
+                    MessageBox.Show("Item was not found in cache: go online to retrieve it.");
+                    return;
+                }
+
+                node.Nodes.AddRange(createNodeFromD3Object(item).ToArray());
+
+                guiD3ProfileTreeView.Nodes.Add(node);
+            }
         }
 
         private void exploreCareerArtisanToolStripMenuItem_Click(object sender, EventArgs e)
@@ -335,40 +339,52 @@ namespace ZTn.BNet.D3ProfileExplorer
         private void getItemLargeIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ItemSummary itemSummary = (ItemSummary)guiD3ProfileTreeView.SelectedNode.Tag;
-            D3Picture picture = D3.D3Api.getItemIcon(itemSummary.icon, "large");
-            using (var imageStream = new MemoryStream(picture.bytes))
+            if (itemSummary.icon != null)
             {
-                guiD3Icon.Image = Image.FromStream(imageStream);
+                D3Picture picture = D3.D3Api.getItemIcon(itemSummary.icon, "large");
+                using (var imageStream = new MemoryStream(picture.bytes))
+                {
+                    guiD3Icon.Image = Image.FromStream(imageStream);
+                }
             }
         }
 
         private void getItemSmallIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ItemSummary itemSummary = (ItemSummary)guiD3ProfileTreeView.SelectedNode.Tag;
-            D3Picture picture = D3.D3Api.getItemIcon(itemSummary.icon);
-            using (var imageStream = new MemoryStream(picture.bytes))
+            if (itemSummary.icon != null)
             {
-                guiD3Icon.Image = Image.FromStream(imageStream);
+                D3Picture picture = D3.D3Api.getItemIcon(itemSummary.icon);
+                using (var imageStream = new MemoryStream(picture.bytes))
+                {
+                    guiD3Icon.Image = Image.FromStream(imageStream);
+                }
             }
         }
 
         private void getSkillIcon42ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Skill skill = (Skill)guiD3ProfileTreeView.SelectedNode.Tag;
-            D3Picture picture = D3.D3Api.getSkillIcon(skill.icon);
-            using (var imageStream = new MemoryStream(picture.bytes))
+            if (skill.icon != null)
             {
-                guiD3Icon.Image = Image.FromStream(imageStream);
+                D3Picture picture = D3.D3Api.getSkillIcon(skill.icon);
+                using (var imageStream = new MemoryStream(picture.bytes))
+                {
+                    guiD3Icon.Image = Image.FromStream(imageStream);
+                }
             }
         }
 
         private void getSkillIcon64ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Skill skill = (Skill)guiD3ProfileTreeView.SelectedNode.Tag;
-            D3Picture picture = D3.D3Api.getSkillIcon(skill.icon, "64");
-            using (var imageStream = new MemoryStream(picture.bytes))
+            if (skill.icon != null)
             {
-                guiD3Icon.Image = Image.FromStream(imageStream);
+                D3Picture picture = D3.D3Api.getSkillIcon(skill.icon, "64");
+                using (var imageStream = new MemoryStream(picture.bytes))
+                {
+                    guiD3Icon.Image = Image.FromStream(imageStream);
+                }
             }
         }
     }

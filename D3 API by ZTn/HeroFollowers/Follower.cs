@@ -19,7 +19,7 @@ namespace ZTn.BNet.D3.HeroFollowers
         [DataMember]
         public FollowerStats stats;
         [DataMember]
-        public Skill[] skills;
+        public FollowerSkill[] skills;
 
         #endregion
     }
