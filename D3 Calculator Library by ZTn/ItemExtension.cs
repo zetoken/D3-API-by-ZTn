@@ -33,7 +33,10 @@ namespace ZTn.BNet.D3.Calculator
             ItemValueRange damageBonusMin = (ItemValueRange)type.GetField("damageBonusMin_" + resist).GetValue(item.attributesRaw);
             ItemValueRange damageTypePercentBonus = (ItemValueRange)type.GetField("damageTypePercentBonus_" + resist).GetValue(item.attributesRaw);
 
-            ItemValueRange result = (damageMin + damageBonusMin) * (ItemValueRange.One + damageTypePercentBonus);
+            ItemValueRange result = (damageMin + damageBonusMin);
+
+            if (resist != "Physical")
+                result += item.getRawBonusDamageMin("Physical") * damageTypePercentBonus;
 
             return (result == null ? ItemValueRange.Zero : result);
         }
@@ -54,7 +57,10 @@ namespace ZTn.BNet.D3.Calculator
             ItemValueRange damageDelta = (ItemValueRange)type.GetField("damageDelta_" + resist).GetValue(item.attributesRaw);
             ItemValueRange damageTypePercentBonus = (ItemValueRange)type.GetField("damageTypePercentBonus_" + resist).GetValue(item.attributesRaw);
 
-            ItemValueRange result = (damageMin + damageDelta) * (ItemValueRange.One + damageTypePercentBonus);
+            ItemValueRange result = (damageMin + damageDelta);
+
+            if (resist != "Physical")
+                result += item.getRawBonusDamageMax("Physical") * damageTypePercentBonus;
 
             return (result == null ? ItemValueRange.Zero : result);
         }
@@ -134,7 +140,10 @@ namespace ZTn.BNet.D3.Calculator
             ItemValueRange damageWeaponPercentBonus = (ItemValueRange)type.GetField("damageWeaponPercentBonus_" + resist).GetValue(item.attributesRaw);
             ItemValueRange damageTypePercentBonus = (ItemValueRange)type.GetField("damageTypePercentBonus_" + resist).GetValue(item.attributesRaw);
 
-            ItemValueRange damage = (damageWeaponMin + damageWeaponBonusMin) * (ItemValueRange.One + damageWeaponPercentBonus) * (ItemValueRange.One + damageTypePercentBonus);
+            ItemValueRange damage = (damageWeaponMin + damageWeaponBonusMin) * (ItemValueRange.One + damageWeaponPercentBonus);
+
+            if (resist != "Physical")
+                damage += item.getRawWeaponDamageMin("Physical") * damageTypePercentBonus;
 
             return damage;
         }
@@ -157,7 +166,10 @@ namespace ZTn.BNet.D3.Calculator
             ItemValueRange damageWeaponPercentBonus = (ItemValueRange)type.GetField("damageWeaponPercentBonus_" + resist).GetValue(item.attributesRaw);
             ItemValueRange damageTypePercentBonus = (ItemValueRange)type.GetField("damageTypePercentBonus_" + resist).GetValue(item.attributesRaw);
 
-            ItemValueRange damage = (damageWeaponMin + damageWeaponDelta + damageWeaponBonusDelta) * (ItemValueRange.One + damageWeaponPercentBonus) * (ItemValueRange.One + damageTypePercentBonus);
+            ItemValueRange damage = (damageWeaponMin + damageWeaponDelta + damageWeaponBonusDelta) * (ItemValueRange.One + damageWeaponPercentBonus);
+
+            if (resist != "Physical")
+                damage += item.getRawWeaponDamageMax("Physical") * damageTypePercentBonus;
 
             return damage;
         }
