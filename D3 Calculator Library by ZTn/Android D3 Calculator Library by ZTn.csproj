@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9C8A301F-F625-4DDA-ADA6-F86E4E1A4A62}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZTn.BNet.D3.Calculator</RootNamespace>
+    <AssemblyName>D3 Calculator Library by ZTn</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Android\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Android\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="D3Calculator.cs" />
+    <Compile Include="GemHelper.cs" />
+    <Compile Include="ItemAttributesFromLevel.cs" />
+    <Compile Include="ItemAttributesFromParagonLevel.cs" />
+    <Compile Include="ItemExtension.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skills\Barbarian\NervesOfSteel.cs" />
+    <Compile Include="Skills\Barbarian\Ruthless.cs" />
+    <Compile Include="Skills\Barbarian\ToughAsNails.cs" />
+    <Compile Include="Skills\Barbarian\WeaponsMaster_MaceAxe.cs" />
+    <Compile Include="Skills\Barbarian\WeaponsMaster_PolearmSpear.cs" />
+    <Compile Include="Skills\Barbarian\WeaponsMaster_SwordDagguer.cs" />
+    <Compile Include="Skills\D3SkillModifier.cs" />
+    <Compile Include="Skills\DamageMultiplier.cs" />
+    <Compile Include="Skills\DemonHunter\Archery_Bow.cs" />
+    <Compile Include="Skills\DemonHunter\Archery_Crossbow.cs" />
+    <Compile Include="Skills\DemonHunter\Archery_HandCrossbow.cs" />
+    <Compile Include="Skills\DemonHunter\Perfectionist.cs" />
+    <Compile Include="Skills\DemonHunter\SharpShooter.cs" />
+    <Compile Include="Skills\DemonHunter\SteadyAim.cs" />
+    <Compile Include="Skills\Followers\Anatomy.cs" />
+    <Compile Include="Skills\Followers\FocusedMind.cs" />
+    <Compile Include="Skills\Followers\PoweredArmor.cs" />
+    <Compile Include="Skills\Monk\MantraOfEvasion_HardTarget.cs" />
+    <Compile Include="Skills\Monk\MantraOfHealing_TimeOfNeed.cs" />
+    <Compile Include="Skills\Monk\MysticAlly_EarthAlly.cs" />
+    <Compile Include="Skills\Monk\OneWithEverything.cs" />
+    <Compile Include="Skills\Monk\SeizeTheInitiative.cs" />
+    <Compile Include="Skills\ResistancesMultiplier.cs" />
+    <Compile Include="Skills\ThornsMultiplier.cs" />
+    <Compile Include="Skills\WitchDoctor\PierceTheVeil.cs" />
+    <Compile Include="Skills\Wizard\GalvanizingWard.cs" />
+    <Compile Include="Skills\Wizard\GlassCannon.cs" />
+    <Compile Include="StatsItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BNet API by ZTn\Android BNet API by ZTn.csproj">
+      <Project>{5305ad1d-aed6-4ccb-8f20-08353662bfc8}</Project>
+      <Name>Android BNet API by ZTn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\D3 API by ZTn\Android D3 API by ZTn.csproj">
+      <Project>{013ab500-9996-439a-942a-e2c77b774971}</Project>
+      <Name>Android D3 API by ZTn</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

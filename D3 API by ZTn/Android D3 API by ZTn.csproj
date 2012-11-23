@@ -35,13 +35,10 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Json" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +71,7 @@
     <Compile Include="HeroFollowers\Follower.cs" />
     <Compile Include="HeroFollowers\FollowerItems.cs" />
     <Compile Include="HeroFollowers\Followers.cs" />
+    <Compile Include="HeroFollowers\FollowerSkill.cs" />
     <Compile Include="HeroFollowers\FollowerStats.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\ItemAttributes.cs" />
