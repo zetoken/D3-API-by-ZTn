@@ -24,7 +24,7 @@ namespace ZTn.BNet.D3.Heroes
         [DataMember]
         public Boolean dead;
         [DataMember(Name = "class")]
-        private String s_heroClass
+        protected String s_heroClass
         {
             set
             {
@@ -54,7 +54,7 @@ namespace ZTn.BNet.D3.Heroes
         [IgnoreDataMember]
         public HeroClass heroClass;
         [DataMember(Name = "last-updated")]
-        private long s_lastUpdated
+        protected long s_lastUpdated
         {
             set { lastUpdated = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(value); }
             get { return lastUpdated.Ticks - (new DateTime(1970, 1, 1, 0, 0, 0, 0)).Ticks; }
