@@ -11,7 +11,7 @@ namespace ZTn.BNet.D3.Calculator
         /// <summary>
         /// Computes damages other than weapon damages (on rings, amulets, ...)
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="sets"></param>
         /// <returns></returns>
         public static ItemValueRange getRawBonusDamage(this Item item)
         {
@@ -68,9 +68,9 @@ namespace ZTn.BNet.D3.Calculator
         #endregion
 
         /// <summary>
-        /// Returns the resistance value given by the item for the given resist
+        /// Returns the resistance value given by the sets for the given resist
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="sets"></param>
         /// <param name="resist"></param>
         /// <returns></returns>
         public static double getResistance(this Item item, String resist)
@@ -86,7 +86,7 @@ namespace ZTn.BNet.D3.Calculator
         /// <summary>
         /// Computes weapon attack speed (attack per second).
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="sets"></param>
         /// <returns></returns>
         public static ItemValueRange getRawWeaponAttackPerSecond(this Item item)
         {
@@ -107,7 +107,7 @@ namespace ZTn.BNet.D3.Calculator
         /// <summary>
         /// Computes raw weapon dps ie before all multipliers ( = average thorns * attack per second )
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="sets"></param>
         /// <returns></returns>
         public static ItemValueRange getRawWeaponDPS(this Item item)
         {
@@ -117,7 +117,7 @@ namespace ZTn.BNet.D3.Calculator
         /// <summary>
         /// Computes weapon only damages
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="sets"></param>
         /// <returns></returns>
         public static ItemValueRange getRawWeaponDamage(this Item item)
         {
@@ -177,9 +177,9 @@ namespace ZTn.BNet.D3.Calculator
         #endregion
 
         /// <summary>
-        /// Informs if the item is a weapon based on its characteristics
+        /// Informs if the sets is a weapon based on its characteristics
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="sets"></param>
         /// <returns></returns>
         public static Boolean isWeapon(this Item item)
         {

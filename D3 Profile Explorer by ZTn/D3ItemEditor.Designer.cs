@@ -33,6 +33,7 @@
             System.Windows.Forms.Label label11;
             System.Windows.Forms.Label label24;
             System.Windows.Forms.GroupBox groupBox3;
+            System.Windows.Forms.Label label41;
             System.Windows.Forms.Label label37;
             System.Windows.Forms.Label label36;
             System.Windows.Forms.Label label35;
@@ -74,7 +75,7 @@
             System.Windows.Forms.GroupBox groupBox6;
             System.Windows.Forms.Label label39;
             System.Windows.Forms.Label label40;
-            System.Windows.Forms.Label label41;
+            this.guiLifeSteal = new System.Windows.Forms.TextBox();
             this.guiHitpointsRegenPerSecond = new System.Windows.Forms.TextBox();
             this.guiHitpointsOnHit = new System.Windows.Forms.TextBox();
             this.guiArmor = new System.Windows.Forms.TextBox();
@@ -136,12 +137,14 @@
             this.guiShieldBlockMax = new System.Windows.Forms.TextBox();
             this.guiShieldBlockMin = new System.Windows.Forms.TextBox();
             this.GuiReset = new System.Windows.Forms.Button();
-            this.guiLifeSteal = new System.Windows.Forms.TextBox();
+            this.guiItemName = new System.Windows.Forms.TextBox();
+            this.guiItemId = new System.Windows.Forms.TextBox();
             label23 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
             label24 = new System.Windows.Forms.Label();
             groupBox3 = new System.Windows.Forms.GroupBox();
+            label41 = new System.Windows.Forms.Label();
             label37 = new System.Windows.Forms.Label();
             label36 = new System.Windows.Forms.Label();
             label35 = new System.Windows.Forms.Label();
@@ -183,7 +186,6 @@
             groupBox6 = new System.Windows.Forms.GroupBox();
             label39 = new System.Windows.Forms.Label();
             label40 = new System.Windows.Forms.Label();
-            label41 = new System.Windows.Forms.Label();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -256,12 +258,28 @@
             groupBox3.Controls.Add(this.guiVitality);
             groupBox3.Controls.Add(label21);
             groupBox3.Controls.Add(this.guiDexterity);
-            groupBox3.Location = new System.Drawing.Point(368, 3);
+            groupBox3.Location = new System.Drawing.Point(368, 29);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new System.Drawing.Size(156, 344);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Characteristics";
+            // 
+            // label41
+            // 
+            label41.AutoSize = true;
+            label41.Location = new System.Drawing.Point(47, 308);
+            label41.Name = "label41";
+            label41.Size = new System.Drawing.Size(62, 13);
+            label41.TabIndex = 22;
+            label41.Text = "% Life Steal";
+            // 
+            // guiLifeSteal
+            // 
+            this.guiLifeSteal.Location = new System.Drawing.Point(115, 305);
+            this.guiLifeSteal.Name = "guiLifeSteal";
+            this.guiLifeSteal.Size = new System.Drawing.Size(35, 20);
+            this.guiLifeSteal.TabIndex = 23;
             // 
             // label37
             // 
@@ -572,7 +590,7 @@
             groupBox2.Controls.Add(this.guiBonusDamageMinArcane);
             groupBox2.Controls.Add(label15);
             groupBox2.Controls.Add(label16);
-            groupBox2.Location = new System.Drawing.Point(165, 3);
+            groupBox2.Location = new System.Drawing.Point(165, 29);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new System.Drawing.Size(197, 236);
             groupBox2.TabIndex = 1;
@@ -791,7 +809,7 @@
             groupBox1.Controls.Add(this.guiWeaponDamageMinArcane);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new System.Drawing.Point(3, 3);
+            groupBox1.Location = new System.Drawing.Point(3, 29);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new System.Drawing.Size(156, 266);
             groupBox1.TabIndex = 0;
@@ -929,7 +947,7 @@
             groupBox5.Controls.Add(this.guiResistance_Cold);
             groupBox5.Controls.Add(label30);
             groupBox5.Controls.Add(this.guiResistance_Arcane);
-            groupBox5.Location = new System.Drawing.Point(6, 353);
+            groupBox5.Location = new System.Drawing.Point(3, 379);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new System.Drawing.Size(521, 84);
             groupBox5.TabIndex = 3;
@@ -1054,7 +1072,7 @@
             groupBox4.Controls.Add(this.guiGem3);
             groupBox4.Controls.Add(this.guiGem2);
             groupBox4.Controls.Add(this.guiGem1);
-            groupBox4.Location = new System.Drawing.Point(6, 443);
+            groupBox4.Location = new System.Drawing.Point(3, 469);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new System.Drawing.Size(521, 59);
             groupBox4.TabIndex = 4;
@@ -1096,7 +1114,7 @@
             groupBox6.Controls.Add(this.guiShieldBlockMax);
             groupBox6.Controls.Add(label40);
             groupBox6.Controls.Add(this.guiShieldBlockMin);
-            groupBox6.Location = new System.Drawing.Point(165, 245);
+            groupBox6.Location = new System.Drawing.Point(165, 271);
             groupBox6.Name = "groupBox6";
             groupBox6.Size = new System.Drawing.Size(197, 76);
             groupBox6.TabIndex = 6;
@@ -1144,29 +1162,29 @@
             // 
             // GuiReset
             // 
-            this.GuiReset.Location = new System.Drawing.Point(452, 508);
+            this.GuiReset.Location = new System.Drawing.Point(368, 3);
             this.GuiReset.Name = "GuiReset";
-            this.GuiReset.Size = new System.Drawing.Size(75, 23);
+            this.GuiReset.Size = new System.Drawing.Size(156, 23);
             this.GuiReset.TabIndex = 5;
             this.GuiReset.Text = "Restore Item";
             this.GuiReset.UseVisualStyleBackColor = true;
             this.GuiReset.Click += new System.EventHandler(this.GuiReset_Click);
             // 
-            // label41
+            // guiItemName
             // 
-            label41.AutoSize = true;
-            label41.Location = new System.Drawing.Point(47, 308);
-            label41.Name = "label41";
-            label41.Size = new System.Drawing.Size(62, 13);
-            label41.TabIndex = 22;
-            label41.Text = "% Life Steal";
+            this.guiItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guiItemName.Location = new System.Drawing.Point(3, 3);
+            this.guiItemName.Name = "guiItemName";
+            this.guiItemName.Size = new System.Drawing.Size(230, 20);
+            this.guiItemName.TabIndex = 7;
+            this.guiItemName.Text = "Item Name";
             // 
-            // guiLifeSteal
+            // guiItemId
             // 
-            this.guiLifeSteal.Location = new System.Drawing.Point(115, 305);
-            this.guiLifeSteal.Name = "guiLifeSteal";
-            this.guiLifeSteal.Size = new System.Drawing.Size(35, 20);
-            this.guiLifeSteal.TabIndex = 23;
+            this.guiItemId.Location = new System.Drawing.Point(239, 3);
+            this.guiItemId.Name = "guiItemId";
+            this.guiItemId.Size = new System.Drawing.Size(123, 20);
+            this.guiItemId.TabIndex = 8;
             // 
             // D3ItemEditor
             // 
@@ -1174,6 +1192,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.guiItemId);
+            this.Controls.Add(this.guiItemName);
             this.Controls.Add(groupBox6);
             this.Controls.Add(groupBox4);
             this.Controls.Add(groupBox5);
@@ -1182,7 +1202,7 @@
             this.Controls.Add(groupBox2);
             this.Controls.Add(groupBox1);
             this.Name = "D3ItemEditor";
-            this.Size = new System.Drawing.Size(530, 534);
+            this.Size = new System.Drawing.Size(527, 531);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -1263,6 +1283,8 @@
         public System.Windows.Forms.TextBox guiShieldBlockMax;
         public System.Windows.Forms.TextBox guiShieldBlockMin;
         public System.Windows.Forms.TextBox guiLifeSteal;
+        private System.Windows.Forms.TextBox guiItemName;
+        private System.Windows.Forms.TextBox guiItemId;
 
 
     }

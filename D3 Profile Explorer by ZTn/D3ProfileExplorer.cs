@@ -14,6 +14,8 @@ using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Skills;
 using ZTn.BNet.D3.Medias;
 using System.IO;
+using ZTn.BNet.D3.Calculator.Sets;
+using System.Collections;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -113,6 +115,19 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 TreeNode newNode = new TreeNode(d3Object.ToString());
                 newNodes.Add(newNode);
+            }
+            else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+            {
+                if (d3Object != null)
+                {
+                    foreach (Object o in (IList)d3Object)
+                    {
+                        TreeNode newNode = new TreeNode(String.Format("[{0}]", o.GetType().Name));
+                        newNode.Nodes.AddRange(createNodeFromD3Object(o).ToArray());
+                        insertContextMenu(newNode, o);
+                        newNodes.Add(newNode);
+                    }
+                }
             }
             else
             {
@@ -386,6 +401,27 @@ namespace ZTn.BNet.D3ProfileExplorer
                     guiD3Icon.Image = Image.FromStream(imageStream);
                 }
             }
+        }
+
+        private void guiLoadKnownSets_Click(object sender, EventArgs e)
+        {
+
+            TreeNode node = new TreeNode("Known Sets (loaded from d3set.json)");
+
+            KnownSets knownSets;
+            try
+            {
+                knownSets = KnownSets.getKnownSetsFromJsonFile("d3set.json");
+            }
+            catch (FileNotInCacheException)
+            {
+                MessageBox.Show("Known sets file was not found");
+                return;
+            }
+
+            node.Nodes.AddRange(createNodeFromD3Object(knownSets).ToArray());
+
+            guiD3ProfileTreeView.Nodes.Add(node);
         }
     }
 }

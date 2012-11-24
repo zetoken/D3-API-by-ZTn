@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,12 +45,14 @@
   <ItemGroup>
     <Compile Include="ItemAttributesFromLevel.cs" />
     <Compile Include="ItemAttributesFromParagonLevel.cs" />
+    <Compile Include="Sets\SetExtension.cs" />
+    <Compile Include="Sets\KnownSets.cs" />
     <Compile Include="Skills\Barbarian\NervesOfSteel.cs" />
     <Compile Include="Skills\Barbarian\Ruthless.cs" />
     <Compile Include="Skills\Barbarian\ToughAsNails.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster_MaceAxe.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster_PolearmSpear.cs" />
-    <Compile Include="Skills\Barbarian\WeaponsMaster_SwordDagguer.cs" />
+    <Compile Include="Skills\Barbarian\WeaponsMaster_SwordDagger.cs" />
     <Compile Include="Skills\D3SkillModifier.cs" />
     <Compile Include="D3Calculator.cs" />
     <Compile Include="GemHelper.cs" />
@@ -83,7 +86,6 @@
       <Name>D3 API by ZTn</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

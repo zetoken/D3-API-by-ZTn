@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ZTn.BNet.D3.Calculator.Sets;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator
@@ -154,6 +155,11 @@ namespace ZTn.BNet.D3.Calculator
         public void setSkillsBonus(ItemAttributes addedBonus)
         {
             this.addedBonus = addedBonus;
+        }
+
+        public ItemAttributes getActivatedSetBonus(KnownSets knownSets)
+        {
+            return knownSets.getActivatedSetBonus(items);
         }
     }
 }

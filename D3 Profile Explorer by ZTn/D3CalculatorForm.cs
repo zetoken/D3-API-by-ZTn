@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using ZTn.BNet.D3.Calculator;
+using ZTn.BNet.D3.Calculator.Sets;
 using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
@@ -100,6 +101,25 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiTorsoEditor.setEditedItem(torso);
             guiWaistEditor.setEditedItem(waist);
 
+            List<Item> items = new List<Item>();
+            items.Add(guiBracersEditor.getEditedItem());
+            items.Add(guiFeetEditor.getEditedItem());
+            items.Add(guiHandsEditor.getEditedItem());
+            items.Add(guiHeadEditor.getEditedItem());
+            items.Add(guiLeftFingerEditor.getEditedItem());
+            items.Add(guiLegsEditor.getEditedItem());
+            items.Add(guiNeckEditor.getEditedItem());
+            items.Add(guiRightFingerEditor.getEditedItem());
+            items.Add(guiShouldersEditor.getEditedItem());
+            items.Add(guiTorsoEditor.getEditedItem());
+            items.Add(guiWaistEditor.getEditedItem());
+            items.Add(guiMainHandEditor.getEditedItem());
+            items.Add(guiOffHandEditor.getEditedItem());
+
+            D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
+            KnownSets knownSets = KnownSets.getKnownSetsFromJsonFile("d3set.json");
+            guiSetBonusEditor.setEditedItem(new Item(d3Calculator.heroItemStats.getActivatedSetBonus(knownSets)));
+
             populatePassiveSkills();
             populateActiveSkills();
         }
@@ -142,6 +162,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             items.Add(guiShouldersEditor.getEditedItem());
             items.Add(guiTorsoEditor.getEditedItem());
             items.Add(guiWaistEditor.getEditedItem());
+            items.Add(guiSetBonusEditor.getEditedItem());
 
             Item mainHand = guiMainHandEditor.getEditedItem();
 
@@ -159,8 +180,8 @@ namespace ZTn.BNet.D3ProfileExplorer
                 passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster_MaceAxe());
             if (guiSkillWeaponsMaster_PolearmSpear.Checked)
                 passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster_PolearmSpear());
-            if (guiSkillWeaponsMaster_SwordDagguer.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster_SwordDagguer());
+            if (guiSkillWeaponsMaster_SwordDagger.Checked)
+                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster_SwordDagger());
             if (guiSkillToughAsNails.Checked)
                 passiveSkills.Add(new D3.Calculator.Skills.Barbarian.ToughAsNails());
             if (guiSkillRuthless.Checked)
@@ -238,6 +259,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 {
                     switch (activeSkill.skill.slug)
                     {
+                        // Monk
                         case "mantra-of-healing":
                             switch (activeSkill.rune.slug)
                             {
@@ -283,6 +305,38 @@ namespace ZTn.BNet.D3ProfileExplorer
                 {
                     switch (passiveSkill.skill.slug)
                     {
+                        // Barbarian
+                        case "weapons-master":
+                            switch (mainHand.type.id)
+                            {
+                                case "Sword":
+                                case "Sword2H":
+                                case "Dagger":
+                                    guiSkillWeaponsMaster_SwordDagger.Checked = true;
+                                    break;
+                                case "Axe":
+                                case "Axe2H":
+                                case "Mace":
+                                case "Mace2H":
+                                    guiSkillWeaponsMaster_MaceAxe.Checked = true;
+                                    break;
+                                case "Polearm":
+                                case "Spear":
+                                    guiSkillWeaponsMaster_PolearmSpear.Checked = true;
+                                    break;
+                            }
+                            break;
+                        case "nerves-of-steel":
+                            guiSkillNervesOfSteel.Checked = true;
+                            break;
+                        case "ruthless":
+                            guiSkillRuthless.Checked = true;
+                            break;
+                        case "tough-as-nails":
+                            guiSkillToughAsNails.Checked = true;
+                            break;
+
+                        // Demon hunter
                         case "archery":
                             if (mainHand != null)
                             {
@@ -302,14 +356,8 @@ namespace ZTn.BNet.D3ProfileExplorer
                                 }
                             }
                             break;
-                        case "one-with-everything":
-                            guiSkillOneWithEverything.Checked = true;
-                            break;
                         case "perfectionist":
                             guiSkillPerfectionnist.Checked = true;
-                            break;
-                        case "seize-the-initiative":
-                            guiSkillSeizeTheInitiative.Checked = true;
                             break;
                         case "sharp-shooter":
                             guiSkillSharpShooter.Checked = true;
@@ -317,9 +365,30 @@ namespace ZTn.BNet.D3ProfileExplorer
                         case "steady-aim":
                             guiSkillSteadyAim.Checked = true;
                             break;
+
+                        // Monk
+                        case "one-with-everything":
+                            guiSkillOneWithEverything.Checked = true;
+                            break;
+                        case "seize-the-initiative":
+                            guiSkillSeizeTheInitiative.Checked = true;
+                            break;
                         case "the-guardians-path":
                             break;
                         default:
+                            break;
+
+                        // Witch doctor
+                        case "pierce-the-veil":
+                            guiSkillPierceTheVeil.Checked = true;
+                            break;
+
+                        // Wizard
+                        case "glass-cannon":
+                            guiSkillGlassCannon.Checked = true;
+                            break;
+                        case "galvanizing-ward":
+                            guiSkillGalvanizingWard.Checked = true;
                             break;
                     }
                 }
