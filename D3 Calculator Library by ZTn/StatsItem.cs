@@ -204,7 +204,9 @@ namespace ZTn.BNet.D3.Calculator
 
         public ItemAttributes getActivatedSetBonus(KnownSets knownSets)
         {
-            List<ItemSummary> allItems = new List<ItemSummary>(items);
+            List<ItemSummary> allItems = new List<ItemSummary>();
+            foreach (ItemSummary item in items)
+                allItems.Add(item);
             allItems.Add(mainHand);
             allItems.Add(offHand);
             return knownSets.getActivatedSetBonus(allItems);
