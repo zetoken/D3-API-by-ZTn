@@ -9,9 +9,13 @@ namespace ZTn.BNet.D3.Calculator
     {
         #region >> Fields
 
+        private static readonly Type typeOfItemAttributes = typeof(ItemAttributes);
+
         List<Item> items;
         Item mainHand;
         Item offHand;
+
+        Item ambidextryWeapon;
 
         ItemAttributes attrLevel;
         ItemAttributes attrParagonLevel;
@@ -25,66 +29,107 @@ namespace ZTn.BNet.D3.Calculator
         public StatsItem(Item mainHand, Item offHand, Item[] items)
             : base()
         {
+            if (mainHand != null && mainHand.isWeapon())
+                mainHand.checkAndUpdateWeaponDelta();
+            if (offHand != null && offHand.isWeapon())
+                offHand.checkAndUpdateWeaponDelta();
+
             this.mainHand = mainHand;
             this.offHand = offHand;
+
+            if (isAmbidextry())
+            {
+                ambidextryWeapon = new Item(computeAmbidextryWeaponAttributes());
+            }
+
             this.items = new List<Item>(items);
         }
 
         #endregion
 
+        protected double computeWeaponAttackPerSecondForAmbidextry()
+        {
+            double weaponAttackSpeed;
+            // Right formula: 2 * 1 / ( 1 / main + 1 / off ) [found by ZTn, nowhere else at that time]
+            weaponAttackSpeed = 2 * 1 / (1 / mainHand.getRawWeaponAttackPerSecond().min + 1 / offHand.getRawWeaponAttackPerSecond().min);
+            // Ambidextry gets a 15% bonus
+            weaponAttackSpeed *= 1.15;
+
+            return weaponAttackSpeed;
+        }
+
+        protected ItemAttributes computeAmbidextryWeaponAttributes()
+        {
+            List<String> resists = new List<string>() { "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison" };
+            List<String> fields = new List<string>() { "damageWeaponBonusDelta_", "damageWeaponBonusMin_", "damageWeaponDelta_", "damageWeaponMin_" };
+
+            ItemAttributes attr = mainHand.attributesRaw + offHand.attributesRaw;
+            ItemAttributes mattr = mainHand.attributesRaw;
+            ItemAttributes oattr = offHand.attributesRaw;
+
+            // Calculate attack per second
+            attr.attacksPerSecondItem = new ItemValueRange(computeWeaponAttackPerSecondForAmbidextry());
+            attr.attacksPerSecondItemPercent = null;
+
+            // Calculate damages of ambidextryWeapon
+            ItemValueRange half = new ItemValueRange(0.5);
+
+            foreach (String resist in resists)
+            {
+                ItemValueRange mainHandWeaponPercentBonus = (ItemValueRange)typeOfItemAttributes.GetField("damageWeaponPercentBonus_" + resist).GetValue(mainHand.attributesRaw);
+                ItemValueRange offHandWeaponPercentBonus = (ItemValueRange)typeOfItemAttributes.GetField("damageWeaponPercentBonus_" + resist).GetValue(offHand.attributesRaw);
+                foreach (String field in fields)
+                {
+                    ItemValueRange mainHandField = (ItemValueRange)typeOfItemAttributes.GetField(field + resist).GetValue(mainHand.attributesRaw);
+                    ItemValueRange offHandField = (ItemValueRange)typeOfItemAttributes.GetField(field + resist).GetValue(offHand.attributesRaw);
+                    ItemValueRange newValue =
+                        (
+                            mainHandField * (ItemValueRange.One + mainHandWeaponPercentBonus)
+                            + offHandField * (ItemValueRange.One + offHandWeaponPercentBonus)
+                        )
+                        * half;
+                    if (newValue.min == 0)
+                        newValue = null;
+                    typeOfItemAttributes.GetField(field + resist).SetValue(attr, newValue);
+                }
+            }
+
+            attr.damageWeaponPercentBonus_Arcane = null;
+            attr.damageWeaponPercentBonus_Cold = null;
+            attr.damageWeaponPercentBonus_Fire = null;
+            attr.damageWeaponPercentBonus_Holy = null;
+            attr.damageWeaponPercentBonus_Lightning = null;
+            attr.damageWeaponPercentBonus_Physical = null;
+            attr.damageWeaponPercentBonus_Poison = null;
+
+            return attr;
+        }
+
         public double getWeaponAttackPerSecond()
         {
             double weaponAttackSpeed;
 
-            if (!isAmbidextry())
-            {
-                weaponAttackSpeed = mainHand.getRawWeaponAttackPerSecond().min;
-            }
+            if (isAmbidextry())
+                weaponAttackSpeed = ambidextryWeapon.getRawWeaponAttackPerSecond().min;
             else
-            {
-                // Right formula: 2 * 1 / ( 1 / main + 1 / off ) [found by ZTn]
-                weaponAttackSpeed = 2 * 1 / (1 / mainHand.getRawWeaponAttackPerSecond().min + 1 / offHand.getRawWeaponAttackPerSecond().min);
-                // Ambidextry gets a 15% bonus
-                weaponAttackSpeed *= 1.15;
-            }
+                weaponAttackSpeed = mainHand.getRawWeaponAttackPerSecond().min;
 
             return weaponAttackSpeed;
         }
 
         public double getWeaponDamage()
         {
-            // Compute weapon thorns
-            double damage = this.getRawWeaponDamage().min + this.getRawBonusDamage().min;
-            // Ambidextry
-            if (isAmbidextry())
-            {
-                damage = this.getRawWeaponDamage().min / 2 + this.getRawBonusDamage().min;
-            }
-            return damage;
+            return this.getRawWeaponDamage().min + this.getRawBonusDamage().min;
         }
 
         public double getWeaponDamageMin()
         {
-            // Compute weapon damage
-            double damage = this.getRawWeaponDamageMin().min + this.getRawBonusDamageMin().min;
-            // Ambidextry
-            if (isAmbidextry())
-            {
-                damage = this.getRawWeaponDamageMin().min / 2 + this.getRawBonusDamageMin().min;
-            }
-            return damage;
+            return this.getRawWeaponDamageMin().min + this.getRawBonusDamageMin().min;
         }
 
         public double getWeaponDamageMax()
         {
-            // Compute weapon damage
-            double damage = mainHand.getRawWeaponDamageMax().min + this.getRawWeaponDamageMax().min + this.getRawBonusDamageMax().min;
-            // Ambidextry
-            if (isAmbidextry())
-            {
-                damage = this.getRawWeaponDamageMax().min / 2 + this.getRawBonusDamageMax().min;
-            }
-            return damage;
+            return mainHand.getRawWeaponDamageMax().min + this.getRawWeaponDamageMax().min + this.getRawBonusDamageMax().min;
         }
 
         public Boolean isAmbidextry()
@@ -102,25 +147,25 @@ namespace ZTn.BNet.D3.Calculator
             if (attrParagonLevel != null)
                 attributesRaw += attrParagonLevel;
 
-            // Build a list of all items with attributes
+            // Build a list of all items with fields
             List<Item> stuff = new List<Item>(items);
 
             // Add bonus (skills, buffs)
             if (addedBonus != null)
             {
-                if (addedBonus.attacksPerSecondItem != null)
-                {
-                    mainHand.attributesRaw.attacksPerSecondItem += addedBonus.attacksPerSecondItem;
-                    if (offHand.isWeapon())
-                        offHand.attributesRaw.attacksPerSecondItem += addedBonus.attacksPerSecondItem;
-                    addedBonus.attacksPerSecondItem = null;
-                }
                 attributesRaw += addedBonus;
             }
 
             // Add weapons
-            stuff.Add(mainHand);
-            stuff.Add(offHand);
+            if (isAmbidextry())
+            {
+                stuff.Add(ambidextryWeapon);
+            }
+            else
+            {
+                stuff.Add(mainHand);
+                stuff.Add(offHand);
+            }
 
             // Add gems on items
             foreach (Item item in items)
@@ -159,7 +204,10 @@ namespace ZTn.BNet.D3.Calculator
 
         public ItemAttributes getActivatedSetBonus(KnownSets knownSets)
         {
-            return knownSets.getActivatedSetBonus(items);
+            List<ItemSummary> allItems = new List<ItemSummary>(items);
+            allItems.Add(mainHand);
+            allItems.Add(offHand);
+            return knownSets.getActivatedSetBonus(allItems);
         }
     }
 }

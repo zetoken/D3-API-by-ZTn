@@ -173,66 +173,47 @@ namespace ZTn.BNet.D3.Calculator
                 populateDataPercent(guiCriticDamage, attr.critDamagePercent);
                 populateDataPercent(guiCriticChance, attr.critPercentBonusCapped);
                 populateDataPercent(guiHitpointsMaxPercent, attr.hitpointsMaxPercentBonusItem);
-                populateData(guiArmor, attr.armorItem + attr.armorBonusItem);
+                populateData(guiArmor, item.getArmor());
                 populateData(guiHitpointsOnHit, attr.hitpointsOnHit);
                 populateData(guiHitpointsRegenPerSecond, attr.hitpointsRegenPerSecond);
                 populateDataPercent(guiLifeSteal, attr.stealHealthPercent);
 
                 // Weapon characterics
-                if (attr.attacksPerSecondItemPercent == null)
-                {
-                    populateData(guiWeaponAttackPerSecond, attr.attacksPerSecondItem);
-                }
-                else
-                {
-                    populateData(guiWeaponAttackPerSecond, attr.attacksPerSecondItem * (ItemValueRange.One + attr.attacksPerSecondItemPercent));
-                }
-                populateData(guiWeaponDamageMinArcane, (attr.damageWeaponMin_Arcane + attr.damageWeaponBonusMin_Arcane) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Arcane));
-                populateData(guiWeaponDamageMinCold, (attr.damageWeaponMin_Cold + attr.damageWeaponBonusMin_Cold) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Cold));
-                populateData(guiWeaponDamageMinFire, (attr.damageWeaponMin_Fire + attr.damageWeaponBonusMin_Fire) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Fire));
-                populateData(guiWeaponDamageMinHoly, (attr.damageWeaponMin_Holy + attr.damageWeaponBonusMin_Holy) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Holy));
-                populateData(guiWeaponDamageMinLightning, (attr.damageWeaponMin_Lightning + attr.damageWeaponBonusMin_Lightning) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Lightning));
-                populateData(guiWeaponDamageMinPhysical, (attr.damageWeaponMin_Physical + attr.damageWeaponBonusMin_Physical) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Physical));
-                populateData(guiWeaponDamageMinPoison, (attr.damageWeaponMin_Poison + attr.damageWeaponBonusMin_Poison) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Poison));
+                populateData(guiWeaponAttackPerSecond, item.getRawWeaponAttackPerSecond());
+                populateData(guiWeaponDamageMinArcane, item.getRawWeaponDamageMin("Arcane"));
+                populateData(guiWeaponDamageMinCold, item.getRawWeaponDamageMin("Cold"));
+                populateData(guiWeaponDamageMinFire, item.getRawWeaponDamageMin("Fire"));
+                populateData(guiWeaponDamageMinHoly, item.getRawWeaponDamageMin("Holy"));
+                populateData(guiWeaponDamageMinLightning, item.getRawWeaponDamageMin("Lightning"));
+                populateData(guiWeaponDamageMinPhysical, item.getRawWeaponDamageMin("Physical"));
+                populateData(guiWeaponDamageMinPoison, item.getRawWeaponDamageMin("Poison"));
 
-                // If bonus min > delta, then delta should be replaced by bonus min + 1
-                if ((attr.damageWeaponDelta_Arcane != null) && (attr.damageWeaponBonusMin_Arcane != null) && (attr.damageWeaponDelta_Arcane.min < attr.damageWeaponBonusMin_Arcane.min))
-                    attr.damageWeaponDelta_Arcane = attr.damageWeaponBonusMin_Arcane + ItemValueRange.One;
-                if ((attr.damageWeaponDelta_Cold != null) && (attr.damageWeaponBonusMin_Cold != null) && (attr.damageWeaponDelta_Cold.min < attr.damageWeaponBonusMin_Cold.min))
-                    attr.damageWeaponDelta_Cold = attr.damageWeaponBonusMin_Cold + ItemValueRange.One;
-                if ((attr.damageWeaponDelta_Fire != null) && (attr.damageWeaponBonusMin_Fire != null) && (attr.damageWeaponDelta_Fire.min < attr.damageWeaponBonusMin_Fire.min))
-                    attr.damageWeaponDelta_Fire = attr.damageWeaponBonusMin_Fire + ItemValueRange.One;
-                if ((attr.damageWeaponDelta_Holy != null) && (attr.damageWeaponBonusMin_Holy != null) && (attr.damageWeaponDelta_Holy.min < attr.damageWeaponBonusMin_Holy.min))
-                    attr.damageWeaponDelta_Holy = attr.damageWeaponBonusMin_Holy + ItemValueRange.One;
-                if ((attr.damageWeaponDelta_Physical != null) && (attr.damageWeaponBonusMin_Physical != null) && (attr.damageWeaponDelta_Physical.min < attr.damageWeaponBonusMin_Physical.min))
-                    attr.damageWeaponDelta_Physical = attr.damageWeaponBonusMin_Physical + ItemValueRange.One;
-                if ((attr.damageWeaponDelta_Poison != null) && (attr.damageWeaponBonusMin_Poison != null) && (attr.damageWeaponDelta_Poison.min < attr.damageWeaponBonusMin_Poison.min))
-                    attr.damageWeaponDelta_Poison = attr.damageWeaponBonusMin_Poison + ItemValueRange.One;
+                item.checkAndUpdateWeaponDelta();
 
-                populateData(guiWeaponDamageMaxArcane, (attr.damageWeaponMin_Arcane + attr.damageWeaponDelta_Arcane + attr.damageWeaponBonusDelta_Arcane) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Arcane));
-                populateData(guiWeaponDamageMaxCold, (attr.damageWeaponMin_Cold + attr.damageWeaponDelta_Cold + attr.damageWeaponBonusDelta_Cold) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Cold));
-                populateData(guiWeaponDamageMaxFire, (attr.damageWeaponMin_Fire + attr.damageWeaponDelta_Fire + attr.damageWeaponBonusDelta_Fire) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Fire));
-                populateData(guiWeaponDamageMaxHoly, (attr.damageWeaponMin_Holy + attr.damageWeaponDelta_Holy + attr.damageWeaponBonusDelta_Holy) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Holy));
-                populateData(guiWeaponDamageMaxLightning, (attr.damageWeaponMin_Lightning + attr.damageWeaponDelta_Lightning + attr.damageWeaponBonusDelta_Lightning) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Lightning));
-                populateData(guiWeaponDamageMaxPhysical, (attr.damageWeaponMin_Physical + attr.damageWeaponDelta_Physical + attr.damageWeaponBonusDelta_Physical) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Physical));
-                populateData(guiWeaponDamageMaxPoison, (attr.damageWeaponMin_Poison + attr.damageWeaponDelta_Poison + attr.damageWeaponBonusDelta_Poison) * (ItemValueRange.One + attr.damageWeaponPercentBonus_Poison));
+                populateData(guiWeaponDamageMaxArcane, item.getRawWeaponDamageMax("Arcane"));
+                populateData(guiWeaponDamageMaxCold, item.getRawWeaponDamageMax("Cold"));
+                populateData(guiWeaponDamageMaxFire, item.getRawWeaponDamageMax("Fire"));
+                populateData(guiWeaponDamageMaxHoly, item.getRawWeaponDamageMax("Holy"));
+                populateData(guiWeaponDamageMaxLightning, item.getRawWeaponDamageMax("Lightning"));
+                populateData(guiWeaponDamageMaxPhysical, item.getRawWeaponDamageMax("Physical"));
+                populateData(guiWeaponDamageMaxPoison, item.getRawWeaponDamageMax("Poison"));
 
                 // Item damage bonuses
-                populateData(guiBonusDamageMinArcane, attr.damageMin_Arcane + attr.damageBonusMin_Arcane);
-                populateData(guiBonusDamageMinCold, attr.damageMin_Cold + attr.damageBonusMin_Cold);
-                populateData(guiBonusDamageMinFire, attr.damageMin_Fire + attr.damageBonusMin_Fire);
-                populateData(guiBonusDamageMinHoly, attr.damageMin_Holy + attr.damageBonusMin_Holy);
-                populateData(guiBonusDamageMinLightning, attr.damageMin_Lightning + attr.damageBonusMin_Lightning);
-                populateData(guiBonusDamageMinPhysical, attr.damageMin_Physical + attr.damageBonusMin_Physical);
-                populateData(guiBonusDamageMinPoison, attr.damageMin_Poison + attr.damageBonusMin_Poison);
+                populateData(guiBonusDamageMinArcane, item.getRawBonusDamageMin("Arcane"));
+                populateData(guiBonusDamageMinCold, item.getRawBonusDamageMin("Cold"));
+                populateData(guiBonusDamageMinFire, item.getRawBonusDamageMin("Fire"));
+                populateData(guiBonusDamageMinHoly, item.getRawBonusDamageMin("Holy"));
+                populateData(guiBonusDamageMinLightning, item.getRawBonusDamageMin("Lightning"));
+                populateData(guiBonusDamageMinPhysical, item.getRawBonusDamageMin("Physical"));
+                populateData(guiBonusDamageMinPoison, item.getRawBonusDamageMin("Poison"));
 
-                populateData(guiBonusDamageMaxArcane, attr.damageMin_Arcane + attr.damageDelta_Arcane);
-                populateData(guiBonusDamageMaxCold, attr.damageMin_Cold + attr.damageDelta_Cold);
-                populateData(guiBonusDamageMaxFire, attr.damageMin_Fire + attr.damageDelta_Fire);
-                populateData(guiBonusDamageMaxHoly, attr.damageMin_Holy + attr.damageDelta_Holy);
-                populateData(guiBonusDamageMaxLightning, attr.damageMin_Lightning + attr.damageDelta_Lightning);
-                populateData(guiBonusDamageMaxPhysical, attr.damageMin_Physical + attr.damageDelta_Physical);
-                populateData(guiBonusDamageMaxPoison, attr.damageMin_Poison + attr.damageDelta_Poison);
+                populateData(guiBonusDamageMaxArcane, item.getRawBonusDamageMax("Arcane"));
+                populateData(guiBonusDamageMaxCold, item.getRawBonusDamageMax("Cold"));
+                populateData(guiBonusDamageMaxFire, item.getRawBonusDamageMax("Fire"));
+                populateData(guiBonusDamageMaxHoly, item.getRawBonusDamageMax("Holy"));
+                populateData(guiBonusDamageMaxLightning, item.getRawBonusDamageMax("Lightning"));
+                populateData(guiBonusDamageMaxPhysical, item.getRawBonusDamageMax("Physical"));
+                populateData(guiBonusDamageMaxPoison, item.getRawBonusDamageMax("Poison"));
 
                 populateDataPercent(guiBonusDamagePercentArcane, attr.damageTypePercentBonus_Arcane);
                 populateDataPercent(guiBonusDamagePercentCold, attr.damageTypePercentBonus_Cold);

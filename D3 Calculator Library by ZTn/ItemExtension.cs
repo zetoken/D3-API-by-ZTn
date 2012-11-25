@@ -9,7 +9,17 @@ namespace ZTn.BNet.D3.Calculator
         private static readonly ItemValueRange half = new ItemValueRange(0.5);
 
         /// <summary>
-        /// Computes damages other than weapon damages (on rings, amulets, ...)
+        /// Computes armor brought by the item
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static ItemValueRange getArmor(this Item item)
+        {
+            return item.attributesRaw.armorItem + item.attributesRaw.armorBonusItem;
+        }
+
+        /// <summary>
+        /// Computes damages other than ambidextryWeapon damages (on rings, amulets, ...)
         /// </summary>
         /// <param name="sets"></param>
         /// <returns></returns>
@@ -84,7 +94,7 @@ namespace ZTn.BNet.D3.Calculator
         }
 
         /// <summary>
-        /// Computes weapon attack speed (attack per second).
+        /// Computes ambidextryWeapon attack speed (attack per second).
         /// </summary>
         /// <param name="sets"></param>
         /// <returns></returns>
@@ -105,7 +115,7 @@ namespace ZTn.BNet.D3.Calculator
         }
 
         /// <summary>
-        /// Computes raw weapon dps ie before all multipliers ( = average thorns * attack per second )
+        /// Computes raw ambidextryWeapon dps ie before all multipliers ( = average thorns * attack per second )
         /// </summary>
         /// <param name="sets"></param>
         /// <returns></returns>
@@ -115,7 +125,7 @@ namespace ZTn.BNet.D3.Calculator
         }
 
         /// <summary>
-        /// Computes weapon only damages
+        /// Computes ambidextryWeapon only damages
         /// </summary>
         /// <param name="sets"></param>
         /// <returns></returns>
@@ -161,6 +171,7 @@ namespace ZTn.BNet.D3.Calculator
         public static ItemValueRange getRawWeaponDamageMax(this Item item, String resist)
         {
             ItemValueRange damageWeaponMin = (ItemValueRange)type.GetField("damageWeaponMin_" + resist).GetValue(item.attributesRaw);
+            ItemValueRange damageWeaponBonusMin = (ItemValueRange)type.GetField("damageWeaponBonusMin_" + resist).GetValue(item.attributesRaw);
             ItemValueRange damageWeaponDelta = (ItemValueRange)type.GetField("damageWeaponDelta_" + resist).GetValue(item.attributesRaw);
             ItemValueRange damageWeaponBonusDelta = (ItemValueRange)type.GetField("damageWeaponBonusDelta_" + resist).GetValue(item.attributesRaw);
             ItemValueRange damageWeaponPercentBonus = (ItemValueRange)type.GetField("damageWeaponPercentBonus_" + resist).GetValue(item.attributesRaw);
@@ -176,8 +187,46 @@ namespace ZTn.BNet.D3.Calculator
 
         #endregion
 
+        #region >> checkAndUpdateWeaponDelta *
+
         /// <summary>
-        /// Informs if the sets is a weapon based on its characteristics
+        /// Check a specific case of "invalid" ambidextryWeapon damage values:
+        /// If bonus min > delta, then delta should be replaced by bonus min + 1
+        /// </summary>
+        /// <param name="item"></param>
+        public static Item checkAndUpdateWeaponDelta(this Item item)
+        {
+            return item
+                .checkAndUpdateWeaponDelta("Arcane")
+                .checkAndUpdateWeaponDelta("Cold")
+                .checkAndUpdateWeaponDelta("Fire")
+                .checkAndUpdateWeaponDelta("Holy")
+                .checkAndUpdateWeaponDelta("Lightning")
+                .checkAndUpdateWeaponDelta("Physical")
+                .checkAndUpdateWeaponDelta("Poison");
+        }
+
+        /// <summary>
+        /// Check a specific case of "invalid" ambidextryWeapon damage values (based on a specific resist):
+        /// If bonus min > delta, then delta should be replaced by bonus min + 1
+        /// </summary>
+        /// <param name="item"></param>
+        public static Item checkAndUpdateWeaponDelta(this Item item, String resist)
+        {
+            ItemValueRange damageWeaponBonusMin = (ItemValueRange)type.GetField("damageWeaponBonusMin_" + resist).GetValue(item.attributesRaw);
+            ItemValueRange damageWeaponDelta = (ItemValueRange)type.GetField("damageWeaponDelta_" + resist).GetValue(item.attributesRaw);
+
+            if ((damageWeaponDelta != null) && (damageWeaponBonusMin != null) && (damageWeaponDelta.min < damageWeaponBonusMin.min))
+                damageWeaponDelta = damageWeaponBonusMin + ItemValueRange.One;
+            type.GetField("damageWeaponDelta_" + resist).SetValue(item.attributesRaw, damageWeaponDelta);
+
+            return item;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Informs if the sets is a ambidextryWeapon based on its characteristics
         /// </summary>
         /// <param name="sets"></param>
         /// <returns></returns>

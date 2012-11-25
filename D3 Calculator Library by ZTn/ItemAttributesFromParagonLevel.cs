@@ -32,8 +32,8 @@ namespace ZTn.BNet.D3.Calculator
 
             vitalityItem = new ItemValueRange(2 * hero.paragonLevel);
 
-            goldFind = new ItemValueRange(3 * hero.paragonLevel);
-            magicFind = new ItemValueRange(3 * hero.paragonLevel);
+            goldFind = new ItemValueRange(0.03 * hero.paragonLevel);
+            magicFind = new ItemValueRange(0.03 * hero.paragonLevel);
         }
     }
 }

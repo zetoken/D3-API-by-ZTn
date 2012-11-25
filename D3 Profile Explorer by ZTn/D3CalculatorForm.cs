@@ -113,8 +113,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             items.Add(guiShouldersEditor.getEditedItem());
             items.Add(guiTorsoEditor.getEditedItem());
             items.Add(guiWaistEditor.getEditedItem());
-            items.Add(guiMainHandEditor.getEditedItem());
-            items.Add(guiOffHandEditor.getEditedItem());
 
             D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
             KnownSets knownSets = KnownSets.getKnownSetsFromJsonFile("d3set.json");

@@ -55,9 +55,16 @@
       <Project>{a62cfaea-60e1-4586-b306-7d606e6aa4d2}</Project>
       <Name>D3 API by ZTn</Name>
     </ProjectReference>
+    <ProjectReference Include="..\D3 Calculator Library by ZTn\D3 Calculator Library by ZTn.csproj">
+      <Project>{f6e135dd-87c5-49c1-a560-07c2653b69a2}</Project>
+      <Name>D3 Calculator Library by ZTn</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="d3set.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
