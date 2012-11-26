@@ -255,29 +255,32 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 foreach (ActiveSkill activeSkill in hero.skills.active)
                 {
-                    switch (activeSkill.skill.slug)
+                    if (activeSkill.skill != null)
                     {
-                        // Monk
-                        case "mantra-of-healing":
-                            switch (activeSkill.rune.slug)
-                            {
-                                case "":
-                                    break;
-                                default:
-                                    break;
-                            }
-                            break;
-                        case "mystic-ally":
-                            switch (activeSkill.rune.slug)
-                            {
-                                case "":
-                                    break;
-                                default:
-                                    break;
-                            }
-                            break;
-                        default:
-                            break;
+                        switch (activeSkill.skill.slug)
+                        {
+                            // Monk
+                            case "mantra-of-healing":
+                                switch (activeSkill.rune.slug)
+                                {
+                                    case "":
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            case "mystic-ally":
+                                switch (activeSkill.rune.slug)
+                                {
+                                    case "":
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
@@ -301,93 +304,96 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 foreach (PassiveSkill passiveSkill in hero.skills.passive)
                 {
-                    switch (passiveSkill.skill.slug)
+                    if (passiveSkill.skill != null)
                     {
-                        // Barbarian
-                        case "weapons-master":
-                            switch (mainHand.type.id)
-                            {
-                                case "Sword":
-                                case "Sword2H":
-                                case "Dagger":
-                                    guiSkillWeaponsMaster_SwordDagger.Checked = true;
-                                    break;
-                                case "Axe":
-                                case "Axe2H":
-                                case "Mace":
-                                case "Mace2H":
-                                    guiSkillWeaponsMaster_MaceAxe.Checked = true;
-                                    break;
-                                case "Polearm":
-                                case "Spear":
-                                    guiSkillWeaponsMaster_PolearmSpear.Checked = true;
-                                    break;
-                            }
-                            break;
-                        case "nerves-of-steel":
-                            guiSkillNervesOfSteel.Checked = true;
-                            break;
-                        case "ruthless":
-                            guiSkillRuthless.Checked = true;
-                            break;
-                        case "tough-as-nails":
-                            guiSkillToughAsNails.Checked = true;
-                            break;
-
-                        // Demon hunter
-                        case "archery":
-                            if (mainHand != null)
-                            {
+                        switch (passiveSkill.skill.slug)
+                        {
+                            // Barbarian
+                            case "weapons-master":
                                 switch (mainHand.type.id)
                                 {
-                                    case "Bow":
-                                        guiSkillArchery_Bow.Checked = true;
+                                    case "Sword":
+                                    case "Sword2H":
+                                    case "Dagger":
+                                        guiSkillWeaponsMaster_SwordDagger.Checked = true;
                                         break;
-                                    case "Crossbow":
-                                        guiSkillArchery_Crossbow.Checked = true;
+                                    case "Axe":
+                                    case "Axe2H":
+                                    case "Mace":
+                                    case "Mace2H":
+                                        guiSkillWeaponsMaster_MaceAxe.Checked = true;
                                         break;
-                                    case "HandCrossbow":
-                                        guiSkillArchery_HandCrossbow.Checked = true;
-                                        break;
-                                    default:
+                                    case "Polearm":
+                                    case "Spear":
+                                        guiSkillWeaponsMaster_PolearmSpear.Checked = true;
                                         break;
                                 }
-                            }
-                            break;
-                        case "perfectionist":
-                            guiSkillPerfectionnist.Checked = true;
-                            break;
-                        case "sharp-shooter":
-                            guiSkillSharpShooter.Checked = true;
-                            break;
-                        case "steady-aim":
-                            guiSkillSteadyAim.Checked = true;
-                            break;
+                                break;
+                            case "nerves-of-steel":
+                                guiSkillNervesOfSteel.Checked = true;
+                                break;
+                            case "ruthless":
+                                guiSkillRuthless.Checked = true;
+                                break;
+                            case "tough-as-nails":
+                                guiSkillToughAsNails.Checked = true;
+                                break;
 
-                        // Monk
-                        case "one-with-everything":
-                            guiSkillOneWithEverything.Checked = true;
-                            break;
-                        case "seize-the-initiative":
-                            guiSkillSeizeTheInitiative.Checked = true;
-                            break;
-                        case "the-guardians-path":
-                            break;
-                        default:
-                            break;
+                            // Demon hunter
+                            case "archery":
+                                if (mainHand != null)
+                                {
+                                    switch (mainHand.type.id)
+                                    {
+                                        case "Bow":
+                                            guiSkillArchery_Bow.Checked = true;
+                                            break;
+                                        case "Crossbow":
+                                            guiSkillArchery_Crossbow.Checked = true;
+                                            break;
+                                        case "HandCrossbow":
+                                            guiSkillArchery_HandCrossbow.Checked = true;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                break;
+                            case "perfectionist":
+                                guiSkillPerfectionnist.Checked = true;
+                                break;
+                            case "sharp-shooter":
+                                guiSkillSharpShooter.Checked = true;
+                                break;
+                            case "steady-aim":
+                                guiSkillSteadyAim.Checked = true;
+                                break;
 
-                        // Witch doctor
-                        case "pierce-the-veil":
-                            guiSkillPierceTheVeil.Checked = true;
-                            break;
+                            // Monk
+                            case "one-with-everything":
+                                guiSkillOneWithEverything.Checked = true;
+                                break;
+                            case "seize-the-initiative":
+                                guiSkillSeizeTheInitiative.Checked = true;
+                                break;
+                            case "the-guardians-path":
+                                break;
+                            default:
+                                break;
 
-                        // Wizard
-                        case "glass-cannon":
-                            guiSkillGlassCannon.Checked = true;
-                            break;
-                        case "galvanizing-ward":
-                            guiSkillGalvanizingWard.Checked = true;
-                            break;
+                            // Witch doctor
+                            case "pierce-the-veil":
+                                guiSkillPierceTheVeil.Checked = true;
+                                break;
+
+                            // Wizard
+                            case "glass-cannon":
+                                guiSkillGlassCannon.Checked = true;
+                                break;
+                            case "galvanizing-ward":
+                                guiSkillGalvanizingWard.Checked = true;
+                                break;
+                        }
                     }
                 }
             }
