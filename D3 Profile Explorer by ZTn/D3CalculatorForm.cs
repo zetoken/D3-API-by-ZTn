@@ -58,37 +58,39 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiHeroParagonLevel.Text = hero.paragonLevel.ToString();
 
             if (hero.items.bracers != null)
-                bracers = Item.getItemFromTooltipParams(hero.items.bracers.tooltipParams);
+                bracers = hero.items.bracers.getFullItem();
             if (hero.items.feet != null)
-                feet = Item.getItemFromTooltipParams(hero.items.feet.tooltipParams);
+                feet = hero.items.feet.getFullItem();
             if (hero.items.hands != null)
-                hands = Item.getItemFromTooltipParams(hero.items.hands.tooltipParams);
+                hands = hero.items.hands.getFullItem();
             if (hero.items.head != null)
-                head = Item.getItemFromTooltipParams(hero.items.head.tooltipParams);
+                head = hero.items.head.getFullItem();
             if (hero.items.leftFinger != null)
-                leftFinger = Item.getItemFromTooltipParams(hero.items.leftFinger.tooltipParams);
+                leftFinger = hero.items.leftFinger.getFullItem();
             if (hero.items.legs != null)
-                legs = Item.getItemFromTooltipParams(hero.items.legs.tooltipParams);
+                legs = hero.items.legs.getFullItem();
             if (hero.items.neck != null)
-                neck = Item.getItemFromTooltipParams(hero.items.neck.tooltipParams);
+                neck = hero.items.neck.getFullItem();
             if (hero.items.rightFinger != null)
-                rightFinger = Item.getItemFromTooltipParams(hero.items.rightFinger.tooltipParams);
+                rightFinger = hero.items.rightFinger.getFullItem();
             if (hero.items.shoulders != null)
-                shoulders = Item.getItemFromTooltipParams(hero.items.shoulders.tooltipParams);
+                shoulders = hero.items.shoulders.getFullItem();
             if (hero.items.torso != null)
-                torso = Item.getItemFromTooltipParams(hero.items.torso.tooltipParams);
+                torso = hero.items.torso.getFullItem();
             if (hero.items.waist != null)
-                waist = Item.getItemFromTooltipParams(hero.items.waist.tooltipParams);
+                waist = hero.items.waist.getFullItem();
 
+            // If no weapon is set in mainHand, use "naked hand" weapon
             if (hero.items.mainHand != null)
-                mainHand = Item.getItemFromTooltipParams(hero.items.mainHand.tooltipParams);
+                mainHand = hero.items.mainHand.getFullItem();
             else
-                mainHand = new Item(new ItemAttributes() { attacksPerSecondItem = new ItemValueRange(1) });
+                mainHand = D3Calculator.nakedHandWeapon;
 
+            // If no item is set in offHand, use a blank item
             if (hero.items.offHand != null)
-                offHand = Item.getItemFromTooltipParams(hero.items.offHand.tooltipParams);
+                offHand = hero.items.offHand.getFullItem();
             else
-                offHand = new Item(new ItemAttributes());
+                offHand = D3Calculator.blankWeapon;
 
             guiMainHandEditor.setEditedItem(mainHand);
             guiOffHandEditor.setEditedItem(offHand);

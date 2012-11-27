@@ -34,8 +34,17 @@ namespace ZTn.BNet.D3.Calculator
             if (offHand != null && offHand.isWeapon())
                 offHand.checkAndUpdateWeaponDelta();
 
-            this.mainHand = mainHand;
-            this.offHand = offHand;
+            // If no mainHand is used, then use default "naked hand" weapon
+            if (mainHand != null)
+                this.mainHand = mainHand;
+            else
+                this.mainHand = D3Calculator.nakedHandWeapon;
+
+            // If no offHand is used, then use default "blank" weapon
+            if (offHand != null)
+                this.offHand = offHand;
+            else
+                this.offHand = D3Calculator.blankWeapon;
 
             if (isAmbidextry())
             {

@@ -17,6 +17,14 @@ namespace ZTn.BNet.D3.Calculator
 
         #endregion
 
+        #region >> Constants
+
+        public static readonly Item nakedHandWeapon = new Item(new ItemAttributes() { attacksPerSecondItem = ItemValueRange.One });
+
+        public static readonly Item blankWeapon = new Item(new ItemAttributes() { });
+
+        #endregion
+
         #region >> Constructors
 
         public D3Calculator(Hero hero, Item mainHand, Item offHand, Item[] items)
