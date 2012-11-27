@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
+using Newtonsoft.Json;
 
 namespace ZTn.BNet.D3.Artisans
 {
@@ -28,9 +28,11 @@ namespace ZTn.BNet.D3.Artisans
 
         public static Artisan getArtisanFromJSonStream(Stream stream)
         {
-            DataContractJsonSerializer jsSerializer = new DataContractJsonSerializer(typeof(Artisan));
-            Artisan artisan = (Artisan)jsSerializer.ReadObject(stream);
-            return artisan;
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamReader streamReader = new StreamReader(stream))
+            {
+                return (Artisan)serializer.Deserialize(streamReader, typeof(Artisan));
+            }
         }
 
         public static Artisan getItemFromJSonString(String json)

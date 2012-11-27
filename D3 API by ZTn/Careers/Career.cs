@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-
+using Newtonsoft.Json;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Heroes;
@@ -50,9 +49,11 @@ namespace ZTn.BNet.D3.Careers
 
         public static Career getCareerFromJSonStream(Stream stream)
         {
-            DataContractJsonSerializer jsSerializer = new DataContractJsonSerializer(typeof(Career));
-            Career career = (Career)jsSerializer.ReadObject(stream);
-            return career;
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamReader streamReader = new StreamReader(stream))
+            {
+                return (Career)serializer.Deserialize(streamReader, typeof(Career));
+            }
         }
 
         public static Career getCareerFromJSonString(String json)

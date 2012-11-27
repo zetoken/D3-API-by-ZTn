@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
+using Newtonsoft.Json;
 
 namespace ZTn.BNet.D3.Items
 {
@@ -67,9 +67,11 @@ namespace ZTn.BNet.D3.Items
 
         public static Item getItemFromJSonStream(Stream stream)
         {
-            DataContractJsonSerializer jsSerializer = new DataContractJsonSerializer(typeof(Item));
-            Item item = (Item)jsSerializer.ReadObject(stream);
-            return item;
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamReader streamReader = new StreamReader(stream))
+            {
+                return (Item)serializer.Deserialize(streamReader, typeof(Item));
+            }
         }
 
         public static Item getItemFromJSonString(String json)

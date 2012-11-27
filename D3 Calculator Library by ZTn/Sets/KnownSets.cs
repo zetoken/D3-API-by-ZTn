@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Text;
+using Newtonsoft.Json;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Sets
@@ -54,8 +52,12 @@ namespace ZTn.BNet.D3.Calculator.Sets
 
         public static KnownSets getKnownSetFromJSonStream(Stream stream)
         {
-            DataContractJsonSerializer jsSerializer = new DataContractJsonSerializer(typeof(Set[]));
-            Set[] sets = (Set[])jsSerializer.ReadObject(stream);
+            JsonSerializer serializer = new JsonSerializer();
+            Set[] sets;
+            using (StreamReader streamReader = new StreamReader(stream))
+            {
+                sets = (Set[])serializer.Deserialize(streamReader, typeof(Set[]));
+            }
             return new KnownSets(sets);
         }
 

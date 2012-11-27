@@ -1,13 +1,12 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3;
-using ZTn.BNet.D3.Heroes;
-using ZTn.BNet.D3.Items;
-using ZTn.BNet.D3.Careers;
 using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Calculator.Sets;
-using System.Collections.Generic;
+using ZTn.BNet.D3.Careers;
+using ZTn.BNet.D3.Heroes;
+using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Example
 {

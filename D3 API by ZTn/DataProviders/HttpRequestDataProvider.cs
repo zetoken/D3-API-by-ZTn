@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
-using ZTn.BNet.D3.Careers;
+using Newtonsoft.Json;
 
 namespace ZTn.BNet.D3.DataProviders
 {
@@ -22,9 +17,10 @@ namespace ZTn.BNet.D3.DataProviders
 
         public static FailureObject getFailedObjectFromJSonStream(Stream stream)
         {
-            DataContractJsonSerializer jsSerializer = new DataContractJsonSerializer(typeof(FailureObject));
-            FailureObject failureObject = (FailureObject)jsSerializer.ReadObject(stream);
-            return failureObject;
+            JsonSerializer serializer = new JsonSerializer();
+            // Note: Do not use "using" statement, as we want the stream not to be closed to be reused !
+            StreamReader streamReader = new StreamReader(stream);
+            return (FailureObject)serializer.Deserialize(streamReader, typeof(FailureObject));
         }
 
         public Stream fetchData(String url)
@@ -35,27 +31,29 @@ namespace ZTn.BNet.D3.DataProviders
             if (httpWebResponse.StatusCode != HttpStatusCode.OK)
                 throw new BNetResponseFailed();
 
-            Stream responseStream = httpWebResponse.GetResponseStream();
-
-            // if json object is returned, test if it is an error message
-            if (httpWebResponse.ContentType.Contains("application/json"))
+            using (Stream responseStream = httpWebResponse.GetResponseStream())
             {
                 // Get the response an try to detect if server returned an object indicating a failure
+                // Note: Do not use "using" statement, as we want the stream not to be closed to be used outside !
                 MemoryStream memoryStream = new MemoryStream();
                 responseStream.CopyTo(memoryStream);
                 memoryStream.Position = 0;
-                FailureObject failureObject = getFailedObjectFromJSonStream(memoryStream);
 
-                if (failureObject.isFailureObject())
-                    throw new BNetFailureObjectReturned(failureObject);
+                // if json object is returned, test if it is an error message
+                if (httpWebResponse.ContentType.Contains("application/json"))
+                {
+                    FailureObject failureObject = getFailedObjectFromJSonStream(memoryStream);
 
-                memoryStream.Position = 0;
+                    if (failureObject.isFailureObject())
+                    {
+                        memoryStream.Close();
+                        throw new BNetFailureObjectReturned(failureObject);
+                    }
+
+                    memoryStream.Position = 0;
+                }
 
                 return memoryStream;
-            }
-            else
-            {
-                return responseStream;
             }
         }
     }

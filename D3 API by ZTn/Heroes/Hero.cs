@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-
+using Newtonsoft.Json;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.HeroFollowers;
 using ZTn.BNet.D3.Progresses;
@@ -36,9 +35,11 @@ namespace ZTn.BNet.D3.Heroes
 
         public static Hero getHeroFromJSonStream(Stream stream)
         {
-            DataContractJsonSerializer jsSerializer = new DataContractJsonSerializer(typeof(Hero));
-            Hero hero = (Hero)jsSerializer.ReadObject(stream);
-            return hero;
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamReader streamReader = new StreamReader(stream))
+            {
+                return (Hero)serializer.Deserialize(streamReader, typeof(Hero));
+            }
         }
 
         public static Hero getHeroFromJSonString(String json)
