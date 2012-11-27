@@ -80,7 +80,10 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (hero.items.waist != null)
                 waist = Item.getItemFromTooltipParams(hero.items.waist.tooltipParams);
 
-            mainHand = Item.getItemFromTooltipParams(hero.items.mainHand.tooltipParams);
+            if (hero.items.mainHand != null)
+                mainHand = Item.getItemFromTooltipParams(hero.items.mainHand.tooltipParams);
+            else
+                mainHand = new Item(new ItemAttributes() { attacksPerSecondItem = new ItemValueRange(1) });
 
             if (hero.items.offHand != null)
                 offHand = Item.getItemFromTooltipParams(hero.items.offHand.tooltipParams);
