@@ -54,13 +54,16 @@
     <Compile Include="Skills\Barbarian\NervesOfSteel.cs" />
     <Compile Include="Skills\Barbarian\Ruthless.cs" />
     <Compile Include="Skills\Barbarian\ToughAsNails.cs" />
+    <Compile Include="Skills\Barbarian\WeaponsMaster.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster_MaceAxe.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster_PolearmSpear.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster_SwordDagger.cs" />
     <Compile Include="Skills\D3SkillModifier.cs" />
     <Compile Include="D3Calculator.cs" />
     <Compile Include="GemHelper.cs" />
+    <Compile Include="Skills\DemonHunter\Archery.cs" />
     <Compile Include="Skills\Monk\MysticAlly_EarthAlly.cs" />
+    <Compile Include="Skills\NullModifier.cs" />
     <Compile Include="StatsItem.cs" />
     <Compile Include="ItemExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

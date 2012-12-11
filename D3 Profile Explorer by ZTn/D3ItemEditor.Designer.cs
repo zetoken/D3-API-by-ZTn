@@ -108,6 +108,7 @@
             this.guiBonusDamageMinCold = new System.Windows.Forms.TextBox();
             this.guiBonusDamageMaxArcane = new System.Windows.Forms.TextBox();
             this.guiBonusDamageMinArcane = new System.Windows.Forms.TextBox();
+            this.guiItemTypeId = new System.Windows.Forms.TextBox();
             this.guiWeaponDamageMaxHoly = new System.Windows.Forms.TextBox();
             this.guiWeaponDamageMinHoly = new System.Windows.Forms.TextBox();
             this.guiWeaponDamageMaxFire = new System.Windows.Forms.TextBox();
@@ -590,7 +591,7 @@
             groupBox2.Controls.Add(this.guiBonusDamageMinArcane);
             groupBox2.Controls.Add(label15);
             groupBox2.Controls.Add(label16);
-            groupBox2.Location = new System.Drawing.Point(165, 29);
+            groupBox2.Location = new System.Drawing.Point(165, 55);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new System.Drawing.Size(197, 236);
             groupBox2.TabIndex = 1;
@@ -809,12 +810,20 @@
             groupBox1.Controls.Add(this.guiWeaponDamageMinArcane);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new System.Drawing.Point(3, 29);
+            groupBox1.Location = new System.Drawing.Point(3, 55);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new System.Drawing.Size(156, 266);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Weapon Only Damages";
+            // 
+            // guiItemTypeId
+            // 
+            this.guiItemTypeId.Location = new System.Drawing.Point(239, 29);
+            this.guiItemTypeId.Name = "guiItemTypeId";
+            this.guiItemTypeId.Size = new System.Drawing.Size(123, 20);
+            this.guiItemTypeId.TabIndex = 25;
+            this.guiItemTypeId.Text = "Item Type Id";
             // 
             // label25
             // 
@@ -1114,7 +1123,7 @@
             groupBox6.Controls.Add(this.guiShieldBlockMax);
             groupBox6.Controls.Add(label40);
             groupBox6.Controls.Add(this.guiShieldBlockMin);
-            groupBox6.Location = new System.Drawing.Point(165, 271);
+            groupBox6.Location = new System.Drawing.Point(165, 297);
             groupBox6.Name = "groupBox6";
             groupBox6.Size = new System.Drawing.Size(197, 76);
             groupBox6.TabIndex = 6;
@@ -1192,6 +1201,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.guiItemTypeId);
             this.Controls.Add(this.guiItemId);
             this.Controls.Add(this.guiItemName);
             this.Controls.Add(groupBox6);
@@ -1285,6 +1295,7 @@
         public System.Windows.Forms.TextBox guiLifeSteal;
         private System.Windows.Forms.TextBox guiItemName;
         private System.Windows.Forms.TextBox guiItemId;
+        private System.Windows.Forms.TextBox guiItemTypeId;
 
 
     }

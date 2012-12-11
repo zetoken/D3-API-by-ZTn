@@ -12,7 +12,7 @@ namespace ZTn.BNet.D3.Calculator
         private static readonly Type typeOfItemAttributes = typeof(ItemAttributes);
 
         List<Item> items;
-        Item mainHand;
+        public Item mainHand;
         Item offHand;
 
         Item ambidextryWeapon;

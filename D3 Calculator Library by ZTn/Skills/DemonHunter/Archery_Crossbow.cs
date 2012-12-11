@@ -2,7 +2,7 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
-    public class Archery_Crossbow : D3SkillModifier
+    internal class Archery_Crossbow : D3SkillModifier
     {
         public override ItemAttributes getBonus(D3Calculator calculator)
         {

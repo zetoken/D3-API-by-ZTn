@@ -2,7 +2,7 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
 {
-    public class WeaponsMaster_SwordDagger : D3SkillModifier
+    internal class WeaponsMaster_SwordDagger : D3SkillModifier
     {
         readonly double multiplier = 0.15;
 

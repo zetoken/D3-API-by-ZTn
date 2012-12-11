@@ -161,6 +161,7 @@ namespace ZTn.BNet.D3.Calculator
             {
                 guiItemName.Text = item.name;
                 guiItemId.Text = item.id;
+                guiItemTypeId.Text = (item.type != null ? item.type.id : "");
 
                 ItemAttributes attr = item.attributesRaw;
 
@@ -266,6 +267,7 @@ namespace ZTn.BNet.D3.Calculator
 
             item.name = guiItemName.Text;
             item.id = guiItemId.Text;
+            item.type = new ItemType(guiItemTypeId.Text, false);
 
             attr.dexterityItem = getData(guiDexterity);
             attr.intelligenceItem = getData(guiIntelligence);

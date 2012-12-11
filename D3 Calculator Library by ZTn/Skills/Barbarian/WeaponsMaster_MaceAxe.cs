@@ -2,7 +2,7 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
 {
-    public class WeaponsMaster_MaceAxe : D3SkillModifier
+    internal class WeaponsMaster_MaceAxe : D3SkillModifier
     {
         public override ItemAttributes getBonus(D3Calculator calculator)
         {

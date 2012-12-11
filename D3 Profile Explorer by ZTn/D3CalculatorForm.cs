@@ -179,24 +179,16 @@ namespace ZTn.BNet.D3ProfileExplorer
             // Barbarian passive skills
             if (guiSkillNervesOfSteel.Checked)
                 passiveSkills.Add(new D3.Calculator.Skills.Barbarian.NervesOfSteel());
-            if (guiSkillWeaponsMaster_MaceAxe.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster_MaceAxe());
-            if (guiSkillWeaponsMaster_PolearmSpear.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster_PolearmSpear());
-            if (guiSkillWeaponsMaster_SwordDagger.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster_SwordDagger());
+            if (guiSkillWeaponsMaster.Checked)
+                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster());
             if (guiSkillToughAsNails.Checked)
                 passiveSkills.Add(new D3.Calculator.Skills.Barbarian.ToughAsNails());
             if (guiSkillRuthless.Checked)
                 passiveSkills.Add(new D3.Calculator.Skills.Barbarian.Ruthless());
 
             // Demon Hunter passive skills
-            if (guiSkillArchery_Bow.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Archery_Bow());
-            if (guiSkillArchery_Crossbow.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Archery_Crossbow());
-            if (guiSkillArchery_HandCrossbow.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Archery_HandCrossbow());
+            if (guiSkillArchery.Checked)
+                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Archery());
             if (guiSkillSteadyAim.Checked)
                 passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.SteadyAim());
             if (guiSkillSharpShooter.Checked)
@@ -315,24 +307,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                         {
                             // Barbarian
                             case "weapons-master":
-                                switch (mainHand.type.id)
-                                {
-                                    case "Sword":
-                                    case "Sword2H":
-                                    case "Dagger":
-                                        guiSkillWeaponsMaster_SwordDagger.Checked = true;
-                                        break;
-                                    case "Axe":
-                                    case "Axe2H":
-                                    case "Mace":
-                                    case "Mace2H":
-                                        guiSkillWeaponsMaster_MaceAxe.Checked = true;
-                                        break;
-                                    case "Polearm":
-                                    case "Spear":
-                                        guiSkillWeaponsMaster_PolearmSpear.Checked = true;
-                                        break;
-                                }
+                                guiSkillWeaponsMaster.Checked = true;
                                 break;
                             case "nerves-of-steel":
                                 guiSkillNervesOfSteel.Checked = true;
@@ -346,23 +321,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
                             // Demon hunter
                             case "archery":
-                                if (mainHand != null)
-                                {
-                                    switch (mainHand.type.id)
-                                    {
-                                        case "Bow":
-                                            guiSkillArchery_Bow.Checked = true;
-                                            break;
-                                        case "Crossbow":
-                                            guiSkillArchery_Crossbow.Checked = true;
-                                            break;
-                                        case "HandCrossbow":
-                                            guiSkillArchery_HandCrossbow.Checked = true;
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
+                                guiSkillArchery.Checked = true;
                                 break;
                             case "perfectionist":
                                 guiSkillPerfectionnist.Checked = true;

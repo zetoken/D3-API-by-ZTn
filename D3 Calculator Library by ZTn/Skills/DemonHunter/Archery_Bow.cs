@@ -2,7 +2,7 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
-    public class Archery_Bow : D3SkillModifier
+    internal class Archery_Bow : D3SkillModifier
     {
         readonly double multiplier = 0.15;
 
