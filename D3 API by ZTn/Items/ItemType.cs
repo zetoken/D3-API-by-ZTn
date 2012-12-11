@@ -11,5 +11,19 @@ namespace ZTn.BNet.D3.Items
 
         #endregion
 
+        #region >> Constructors
+
+        public ItemType()
+            : this(String.Empty, false)
+        {
+        }
+
+        public ItemType(String id, bool twoHanded)
+        {
+            this.id = id;
+            this.twoHanded = twoHanded;
+        }
+
+        #endregion
     }
 }
