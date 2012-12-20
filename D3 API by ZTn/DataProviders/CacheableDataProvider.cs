@@ -21,8 +21,14 @@ namespace ZTn.BNet.D3.DataProviders
         #region >> Constructors
 
         public CacheableDataProvider(ID3DataProvider dataProvider)
+            : this()
         {
             this.dataProvider = dataProvider;
+        }
+
+        public CacheableDataProvider()
+        {
+            Directory.CreateDirectory(@"cache");
         }
 
         #endregion
@@ -31,17 +37,56 @@ namespace ZTn.BNet.D3.DataProviders
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            using (MD5 md5 = MD5.Create())
+            Uri uri = new Uri(url);
+            if (uri.LocalPath.Contains("/profile/"))
             {
-                Byte[] hash = md5.ComputeHash(Encoding.Default.GetBytes(url));
-                foreach (Byte hashByte in hash)
-                    stringBuilder.Append(hashByte.ToString("x2"));
-            }
-
-            if (url.EndsWith(".png"))
-                stringBuilder.Append(".png");
-            else
+                String[] splitted = uri.LocalPath.Split(new String[] { "/profile/" }, StringSplitOptions.None);
+                stringBuilder.Append(splitted[1]);
                 stringBuilder.Append(".json");
+            }
+            else if (uri.LocalPath.Contains("/hero/"))
+            {
+                String[] splitted = uri.LocalPath.Split(new String[] { "/hero/" }, StringSplitOptions.None);
+                stringBuilder.Append(splitted[1]);
+                stringBuilder.Append(".json");
+            }
+            else if (uri.LocalPath.Contains("/item/"))
+            {
+                stringBuilder.Append("items/");
+                String[] splitted = uri.LocalPath.Split(new String[] { "/item/" }, StringSplitOptions.None);
+                if (splitted[1].Length < 32)
+                {
+                    stringBuilder.Append(splitted[1]);
+                    stringBuilder.Append("-");
+                }
+                else
+                {
+                    using (MD5 md5 = MD5.Create())
+                    {
+                        Byte[] hash = md5.ComputeHash(Encoding.Default.GetBytes(url));
+                        foreach (Byte hashByte in hash)
+                            stringBuilder.Append(hashByte.ToString("x2"));
+                    }
+                }
+                stringBuilder.Append(".json");
+            }
+            else if (uri.LocalPath.Contains("/icons/"))
+            {
+                stringBuilder.Append("icons/");
+                String[] splitted = uri.LocalPath.Split(new String[] { "/icons/" }, StringSplitOptions.None);
+                stringBuilder.Append(splitted[1]);
+            }
+            else
+            {
+                using (MD5 md5 = MD5.Create())
+                {
+                    Byte[] hash = md5.ComputeHash(Encoding.Default.GetBytes(url));
+                    foreach (Byte hashByte in hash)
+                        stringBuilder.Append(hashByte.ToString("x2"));
+                }
+
+                stringBuilder.Append(".json");
+            }
 
             return stringBuilder.ToString();
         }
@@ -50,9 +95,10 @@ namespace ZTn.BNet.D3.DataProviders
         {
             String cachedFilePath = "cache/" + getCachedFileName(url);
 
+
             if (online)
             {
-                DirectoryInfo directoryInfo = Directory.CreateDirectory("cache");
+                Directory.CreateDirectory(Path.GetDirectoryName(cachedFilePath));
 
                 using (BinaryReader binaryReader = new BinaryReader(dataProvider.fetchData(url)))
                 {
