@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3;
 using ZTn.BNet.D3.Calculator;
@@ -17,7 +19,8 @@ namespace ZTn.BNet.D3.Example
             BattleTag battleTag = new BattleTag("Tok#2360");
 
             //writeCareer(battleTag);
-            writeCalculation(battleTag);
+            //writeCalculation(battleTag);
+            buildGemsFile();
 
             Console.WriteLine();
             Console.WriteLine("= = = = END = = = =");
@@ -124,6 +127,38 @@ namespace ZTn.BNet.D3.Example
             foreach (HeroSummary heroDigest in career.fallenHeroes)
             {
                 Console.WriteLine("Hero {0}: {1} is {2} level {3} + {4} ", heroDigest.id, heroDigest.name, heroDigest.heroClass, heroDigest.level, heroDigest.paragonLevel);
+            }
+        }
+
+        static void buildGemsFile()
+        {
+            List<String> socketColors = new List<string>() { "Amethyst", "Emerald", "Ruby", "Topaz" };
+
+            System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
+            Byte[] jsonArrayStart = encoding.GetBytes("[");
+            Byte[] jsonArraySeparator = encoding.GetBytes(",");
+            Byte[] jsonArrayStop = encoding.GetBytes("]");
+            Boolean starting = true;
+
+            using (FileStream fileStream = File.Create("d3gem.json"))
+            {
+                fileStream.Write(jsonArrayStart, 0, jsonArrayStart.Length);
+
+                foreach (String gemColor in socketColors)
+                {
+                    for (int index = 1; index < 15; index++)
+                    {
+                        String id = String.Format("{0}_{1:00}", gemColor, index);
+                        Console.WriteLine("Retrieving " + id);
+                        Stream gemStream = D3Api.dataProvider.fetchData(D3Api.getItemUrlFromTooltipParams("item/" + id));
+                        if (!starting)
+                            fileStream.Write(jsonArraySeparator, 0, jsonArraySeparator.Length);
+                        starting = false;
+                        gemStream.CopyTo(fileStream);
+                    }
+                }
+
+                fileStream.Write(jsonArrayStop, 0, jsonArrayStop.Length);
             }
         }
     }

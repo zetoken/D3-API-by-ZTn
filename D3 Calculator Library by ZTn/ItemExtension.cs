@@ -21,7 +21,7 @@ namespace ZTn.BNet.D3.Calculator
         /// <summary>
         /// Computes damages other than ambidextryWeapon damages (on rings, amulets, ...)
         /// </summary>
-        /// <param name="sets"></param>
+        /// <param name="gems"></param>
         /// <returns></returns>
         public static ItemValueRange getRawBonusDamage(this Item item)
         {
@@ -78,9 +78,9 @@ namespace ZTn.BNet.D3.Calculator
         #endregion
 
         /// <summary>
-        /// Returns the resistance value given by the sets for the given resist
+        /// Returns the resistance value given by the gems for the given resist
         /// </summary>
-        /// <param name="sets"></param>
+        /// <param name="gems"></param>
         /// <param name="resist"></param>
         /// <returns></returns>
         public static double getResistance(this Item item, String resist)
@@ -96,7 +96,7 @@ namespace ZTn.BNet.D3.Calculator
         /// <summary>
         /// Computes ambidextryWeapon attack speed (attack per second).
         /// </summary>
-        /// <param name="sets"></param>
+        /// <param name="gems"></param>
         /// <returns></returns>
         public static ItemValueRange getRawWeaponAttackPerSecond(this Item item)
         {
@@ -117,7 +117,7 @@ namespace ZTn.BNet.D3.Calculator
         /// <summary>
         /// Computes raw ambidextryWeapon dps ie before all multipliers ( = average thorns * attack per second )
         /// </summary>
-        /// <param name="sets"></param>
+        /// <param name="gems"></param>
         /// <returns></returns>
         public static ItemValueRange getRawWeaponDPS(this Item item)
         {
@@ -127,7 +127,7 @@ namespace ZTn.BNet.D3.Calculator
         /// <summary>
         /// Computes ambidextryWeapon only damages
         /// </summary>
-        /// <param name="sets"></param>
+        /// <param name="gems"></param>
         /// <returns></returns>
         public static ItemValueRange getRawWeaponDamage(this Item item)
         {
@@ -226,9 +226,9 @@ namespace ZTn.BNet.D3.Calculator
         #endregion
 
         /// <summary>
-        /// Informs if the sets is a ambidextryWeapon based on its characteristics
+        /// Informs if the gems is a ambidextryWeapon based on its characteristics
         /// </summary>
-        /// <param name="sets"></param>
+        /// <param name="gems"></param>
         /// <returns></returns>
         public static Boolean isWeapon(this Item item)
         {

@@ -16,34 +16,34 @@ namespace ZTn.BNet.D3.Items
         public int itemLevel;
         [DataMember]
         public int bonusAffixes;
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public String flavorText;
         [DataMember]
         public String typeName;
         [DataMember]
         public ItemType type;
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ItemValueRange dps;
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ItemValueRange attacksPerSecond;
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ItemValueRange minDamage;
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ItemValueRange maxDamage;
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ItemValueRange armor;
         [DataMember]
         public String[] attributes;
         [DataMember]
         public ItemAttributes attributesRaw;
-        // [DataMember]
-        // public SocketEffect[] socketEffects;
+        [DataMember]
+        public SocketEffect[] socketEffects;
         [DataMember]
         public ItemSalvageComponent[] salvage;
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Set set;
         [DataMember]
-        public Item[] gems;
+        public SocketedGem[] gems;
 
         #endregion
 

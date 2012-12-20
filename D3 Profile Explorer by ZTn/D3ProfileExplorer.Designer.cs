@@ -43,6 +43,7 @@
             this.exploreItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getItemSmallIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getItemLargeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getMetaItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.guiBattleNetHostList = new System.Windows.Forms.ComboBox();
             this.guiBattleNetLanguageList = new System.Windows.Forms.ComboBox();
@@ -63,6 +64,7 @@
             this.getSkillIcon64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guiD3Icon = new System.Windows.Forms.PictureBox();
             this.guiLoadKnownSets = new System.Windows.Forms.Button();
+            this.guiLoadKnownGems = new System.Windows.Forms.Button();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -157,9 +159,10 @@
             this.guiItemSummaryContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exploreItemToolStripMenuItem,
             this.getItemSmallIconToolStripMenuItem,
-            this.getItemLargeIconToolStripMenuItem});
+            this.getItemLargeIconToolStripMenuItem,
+            this.getMetaItemToolStripMenuItem});
             this.guiItemSummaryContextMenu.Name = "guiHeroSummaryContextMenu";
-            this.guiItemSummaryContextMenu.Size = new System.Drawing.Size(178, 70);
+            this.guiItemSummaryContextMenu.Size = new System.Drawing.Size(178, 92);
             // 
             // exploreItemToolStripMenuItem
             // 
@@ -181,6 +184,13 @@
             this.getItemLargeIconToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.getItemLargeIconToolStripMenuItem.Text = "Get Item Large Icon";
             this.getItemLargeIconToolStripMenuItem.Click += new System.EventHandler(this.getItemLargeIconToolStripMenuItem_Click);
+            // 
+            // getMetaItemToolStripMenuItem
+            // 
+            this.getMetaItemToolStripMenuItem.Name = "getMetaItemToolStripMenuItem";
+            this.getMetaItemToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.getMetaItemToolStripMenuItem.Text = "Get Meta Item";
+            this.getMetaItemToolStripMenuItem.Click += new System.EventHandler(this.getMetaItemToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -362,11 +372,22 @@
             this.guiLoadKnownSets.UseVisualStyleBackColor = true;
             this.guiLoadKnownSets.Click += new System.EventHandler(this.guiLoadKnownSets_Click);
             // 
+            // guiLoadKnownGems
+            // 
+            this.guiLoadKnownGems.Location = new System.Drawing.Point(623, 101);
+            this.guiLoadKnownGems.Name = "guiLoadKnownGems";
+            this.guiLoadKnownGems.Size = new System.Drawing.Size(148, 23);
+            this.guiLoadKnownGems.TabIndex = 11;
+            this.guiLoadKnownGems.Text = "Load known gems";
+            this.guiLoadKnownGems.UseVisualStyleBackColor = true;
+            this.guiLoadKnownGems.Click += new System.EventHandler(this.guiLoadKnownGems_Click);
+            // 
             // guiD3ProfileExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.guiLoadKnownGems);
             this.Controls.Add(this.guiLoadKnownSets);
             this.Controls.Add(this.guiD3Icon);
             this.Controls.Add(this.guiOfflineMode);
@@ -426,6 +447,8 @@
         private System.Windows.Forms.ToolStripMenuItem getItemLargeIconToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem getSkillIcon64ToolStripMenuItem;
         private System.Windows.Forms.Button guiLoadKnownSets;
+        private System.Windows.Forms.ToolStripMenuItem getMetaItemToolStripMenuItem;
+        private System.Windows.Forms.Button guiLoadKnownGems;
     }
 }
 

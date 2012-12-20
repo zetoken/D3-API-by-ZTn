@@ -14,25 +14,6 @@ namespace ZTn.BNet.D3.Calculator
         public D3ItemEditor()
         {
             InitializeComponent();
-
-            gems1 = new List<Item>();
-            gems1.Add(new Item(new ItemAttributes()) { name = "( no gem )" });
-            gems1.AddRange(GemHelper.dexterity);
-            gems1.AddRange(GemHelper.intelligence);
-            gems1.AddRange(GemHelper.strength);
-            gems1.AddRange(GemHelper.vitality);
-            gems1.AddRange(GemHelper.damage);
-            gems1.AddRange(GemHelper.criticDamage);
-            gems1.AddRange(GemHelper.lifePercent);
-            gems2 = new List<Item>(gems1);
-            gems3 = new List<Item>(gems1);
-
-            guiGem1.DataSource = gems1;
-            guiGem1.DisplayMember = "name";
-            guiGem2.DataSource = gems2;
-            guiGem2.DisplayMember = "name";
-            guiGem3.DataSource = gems3;
-            guiGem3.DisplayMember = "name";
         }
 
         private void populateData(TextBox textBox, ItemValueRange itemValueRange)
@@ -73,79 +54,13 @@ namespace ZTn.BNet.D3.Calculator
             return data;
         }
 
-        private void selectActiveGem(ComboBox comboBox, List<Item> refGems, Item equippedGem)
+        private void selectActiveGem(ComboBox comboBox, List<Item> refGems, ItemSummary equippedGem)
         {
-            if (equippedGem.attributesRaw.dexterityItem != null)
+            if (equippedGem != null)
             {
-                foreach (Item gem in gems2)
+                foreach (Item gem in refGems)
                 {
-                    if ((gem.attributesRaw.dexterityItem != null) && (gem.attributesRaw.dexterityItem.min == equippedGem.attributesRaw.dexterityItem.min))
-                    {
-                        comboBox.SelectedItem = gem;
-                        break;
-                    }
-                }
-            }
-            else if (equippedGem.attributesRaw.intelligenceItem != null)
-            {
-                foreach (Item gem in gems1)
-                {
-                    if ((gem.attributesRaw.intelligenceItem != null) && (gem.attributesRaw.intelligenceItem.min == equippedGem.attributesRaw.intelligenceItem.min))
-                    {
-                        comboBox.SelectedItem = gem;
-                        break;
-                    }
-                }
-            }
-            else if (equippedGem.attributesRaw.strengthItem != null)
-            {
-                foreach (Item gem in gems1)
-                {
-                    if ((gem.attributesRaw.strengthItem != null) && (gem.attributesRaw.strengthItem.min == equippedGem.attributesRaw.strengthItem.min))
-                    {
-                        comboBox.SelectedItem = gem;
-                        break;
-                    }
-                }
-            }
-            else if (equippedGem.attributesRaw.vitalityItem != null)
-            {
-                foreach (Item gem in gems1)
-                {
-                    if ((gem.attributesRaw.vitalityItem != null) && (gem.attributesRaw.vitalityItem.min == equippedGem.attributesRaw.vitalityItem.min))
-                    {
-                        comboBox.SelectedItem = gem;
-                        break;
-                    }
-                }
-            }
-            else if (equippedGem.attributesRaw.damageWeaponBonusMin_Physical != null)
-            {
-                foreach (Item gem in gems1)
-                {
-                    if ((gem.attributesRaw.damageWeaponBonusMin_Physical != null) && (gem.attributesRaw.damageWeaponBonusMin_Physical.min == equippedGem.attributesRaw.damageWeaponBonusMin_Physical.min))
-                    {
-                        comboBox.SelectedItem = gem;
-                        break;
-                    }
-                }
-            }
-            else if (equippedGem.attributesRaw.critDamagePercent != null)
-            {
-                foreach (Item gem in gems1)
-                {
-                    if ((gem.attributesRaw.critDamagePercent != null) && (gem.attributesRaw.critDamagePercent.min == equippedGem.attributesRaw.critDamagePercent.min))
-                    {
-                        comboBox.SelectedItem = gem;
-                        break;
-                    }
-                }
-            }
-            else if (equippedGem.attributesRaw.hitpointsMaxPercentBonusItem != null)
-            {
-                foreach (Item gem in gems1)
-                {
-                    if ((gem.attributesRaw.hitpointsMaxPercentBonusItem != null) && (gem.attributesRaw.hitpointsMaxPercentBonusItem.min == equippedGem.attributesRaw.hitpointsMaxPercentBonusItem.min))
+                    if (equippedGem.id == gem.id)
                     {
                         comboBox.SelectedItem = gem;
                         break;
@@ -159,6 +74,27 @@ namespace ZTn.BNet.D3.Calculator
             Tag = item;
             if (item != null)
             {
+                gems1 = new List<Item>();
+                gems1.Add(new Item(new ItemAttributes()) { name = "( no gem )" });
+                if (item.type != null)
+                {
+                    if (item.isWeapon())
+                        gems1.AddRange(GemHelper.weaponSocketedGems);
+                    else if (item.type.id.Contains("Helm") || item.type.id.Contains("SpiritStone") || item.type.id.Contains("Mask") || item.type.id.Contains("Hat"))
+                        gems1.AddRange(GemHelper.helmSocketedGems);
+                    else
+                        gems1.AddRange(GemHelper.otherSocketedGems);
+                }
+                gems2 = new List<Item>(gems1);
+                gems3 = new List<Item>(gems1);
+
+                guiGem1.DataSource = gems1;
+                guiGem1.DisplayMember = "name";
+                guiGem2.DataSource = gems2;
+                guiGem2.DisplayMember = "name";
+                guiGem3.DataSource = gems3;
+                guiGem3.DisplayMember = "name";
+
                 guiItemName.Text = item.name;
                 guiItemId.Text = item.id;
                 guiItemTypeId.Text = (item.type != null ? item.type.id : "");
@@ -238,7 +174,7 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiShieldBlockMin, attr.blockAmountItemMin);
                 populateData(guiShieldBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
 
-                // GemHelper
+                // Gems
                 guiGem1.SelectedIndex = 0;
                 guiGem2.SelectedIndex = 0;
                 guiGem3.SelectedIndex = 0;
@@ -246,15 +182,15 @@ namespace ZTn.BNet.D3.Calculator
                 {
                     if (item.gems.Length >= 1)
                     {
-                        selectActiveGem(guiGem1, gems1, item.gems[0]);
+                        selectActiveGem(guiGem1, gems1, item.gems[0].item);
                     }
                     if (item.gems.Length >= 2)
                     {
-                        selectActiveGem(guiGem2, gems2, item.gems[1]);
+                        selectActiveGem(guiGem2, gems2, item.gems[1].item);
                     }
                     if (item.gems.Length >= 3)
                     {
-                        selectActiveGem(guiGem3, gems3, item.gems[2]);
+                        selectActiveGem(guiGem3, gems3, item.gems[2].item);
                     }
                 }
             }
@@ -338,19 +274,19 @@ namespace ZTn.BNet.D3.Calculator
             attr.blockAmountItemDelta = getData(guiShieldBlockMax) - attr.blockAmountItemMin;
 
             item.attributesRaw = attr;
-            List<Item> gems = new List<Item>();
+            List<SocketedGem> gems = new List<SocketedGem>();
 
-            if (guiGem1.SelectedIndex != 0)
+            if (guiGem1.SelectedIndex > 0)
             {
-                gems.Add((Item)guiGem1.SelectedItem);
+                gems.Add(new SocketedGem((Item)guiGem1.SelectedItem));
             }
-            if (guiGem2.SelectedIndex != 0)
+            if (guiGem2.SelectedIndex > 0)
             {
-                gems.Add((Item)guiGem2.SelectedItem);
+                gems.Add(new SocketedGem((Item)guiGem2.SelectedItem));
             }
-            if (guiGem3.SelectedIndex != 0)
+            if (guiGem3.SelectedIndex > 0)
             {
-                gems.Add((Item)guiGem3.SelectedItem);
+                gems.Add(new SocketedGem((Item)guiGem3.SelectedItem));
             }
 
             item.gems = gems.ToArray();

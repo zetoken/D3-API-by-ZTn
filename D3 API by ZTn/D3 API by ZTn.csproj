@@ -78,6 +78,8 @@
     <Compile Include="HeroFollowers\Followers.cs" />
     <Compile Include="HeroFollowers\FollowerSkill.cs" />
     <Compile Include="HeroFollowers\FollowerStats.cs" />
+    <Compile Include="Items\SocketEffect.cs" />
+    <Compile Include="Items\SocketedGem.cs" />
     <Compile Include="Items\Set.cs" />
     <Compile Include="Items\SetRank.cs" />
     <Compile Include="Medias\D3Picture.cs" />

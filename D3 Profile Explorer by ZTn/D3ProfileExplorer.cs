@@ -16,6 +16,7 @@ using ZTn.BNet.D3.Medias;
 using System.IO;
 using ZTn.BNet.D3.Calculator.Sets;
 using System.Collections;
+using ZTn.BNet.D3.Calculator.Gems;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -298,19 +299,29 @@ namespace ZTn.BNet.D3ProfileExplorer
         private void buildUniqueItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hero hero = (Hero)guiD3ProfileTreeView.SelectedNode.Tag;
-            List<Item> items = new List<Item>{
-                Item.getItemFromTooltipParams(hero.items.bracers.tooltipParams),
-                Item.getItemFromTooltipParams(hero.items.feet.tooltipParams),
-                Item.getItemFromTooltipParams(hero.items.hands.tooltipParams),
-                Item.getItemFromTooltipParams(hero.items.head.tooltipParams),
-                Item.getItemFromTooltipParams(hero.items.leftFinger.tooltipParams),
-                Item.getItemFromTooltipParams(hero.items.legs.tooltipParams),
-                Item.getItemFromTooltipParams(hero.items.neck.tooltipParams),
-                Item.getItemFromTooltipParams(hero.items.rightFinger.tooltipParams),
-                Item.getItemFromTooltipParams(hero.items.shoulders.tooltipParams),
-                Item.getItemFromTooltipParams(hero.items.torso.tooltipParams),
-                Item.getItemFromTooltipParams(hero.items.waist.tooltipParams)
-            };
+            List<Item> items = new List<Item>();
+            if (hero.items.bracers != null)
+                items.Add(Item.getItemFromTooltipParams(hero.items.bracers.tooltipParams));
+            if (hero.items.feet != null)
+                items.Add(Item.getItemFromTooltipParams(hero.items.feet.tooltipParams));
+            if (hero.items.hands != null)
+                items.Add(Item.getItemFromTooltipParams(hero.items.hands.tooltipParams));
+            if (hero.items.head != null)
+                items.Add(Item.getItemFromTooltipParams(hero.items.head.tooltipParams));
+            if (hero.items.leftFinger != null)
+                items.Add(Item.getItemFromTooltipParams(hero.items.leftFinger.tooltipParams));
+            if (hero.items.legs != null)
+                items.Add(Item.getItemFromTooltipParams(hero.items.legs.tooltipParams));
+            if (hero.items.neck != null)
+                items.Add(Item.getItemFromTooltipParams(hero.items.neck.tooltipParams));
+            if (hero.items.rightFinger != null)
+                items.Add(Item.getItemFromTooltipParams(hero.items.rightFinger.tooltipParams));
+            if (hero.items.shoulders != null)
+                items.Add(Item.getItemFromTooltipParams(hero.items.shoulders.tooltipParams));
+            if (hero.items.torso != null)
+                items.Add(Item.getItemFromTooltipParams(hero.items.torso.tooltipParams));
+            if (hero.items.waist != null)
+                items.Add(Item.getItemFromTooltipParams(hero.items.waist.tooltipParams));
 
             Item mainHand = Item.getItemFromTooltipParams(hero.items.mainHand.tooltipParams);
 
@@ -405,7 +416,6 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void guiLoadKnownSets_Click(object sender, EventArgs e)
         {
-
             TreeNode node = new TreeNode("Known Sets (loaded from d3set.json)");
 
             KnownSets knownSets;
@@ -422,6 +432,52 @@ namespace ZTn.BNet.D3ProfileExplorer
             node.Nodes.AddRange(createNodeFromD3Object(knownSets).ToArray());
 
             guiD3ProfileTreeView.Nodes.Add(node);
+        }
+
+        private void guiLoadKnownGems_Click(object sender, EventArgs e)
+        {
+            TreeNode node = new TreeNode("Known Gems (loaded from d3gem.json)");
+
+            KnownGems knownGems;
+            try
+            {
+                knownGems = KnownGems.getKnownGemsFromJsonFile("d3gem.json");
+            }
+            catch (FileNotInCacheException)
+            {
+                MessageBox.Show("Known gems file was not found");
+                return;
+            }
+
+            node.Nodes.AddRange(createNodeFromD3Object(knownGems).ToArray());
+
+            guiD3ProfileTreeView.Nodes.Add(node);
+        }
+
+        private void getMetaItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ItemSummary itemSummary = (ItemSummary)guiD3ProfileTreeView.SelectedNode.Tag;
+
+            if (itemSummary.id != null)
+            {
+
+                TreeNode node = new TreeNode("Item " + itemSummary.id);
+
+                Item item;
+                try
+                {
+                    item = Item.getItemFromTooltipParams("item/" + itemSummary.id);
+                }
+                catch (FileNotInCacheException)
+                {
+                    MessageBox.Show("Item was not found in cache: go online to retrieve it.");
+                    return;
+                }
+
+                node.Nodes.AddRange(createNodeFromD3Object(item).ToArray());
+
+                guiD3ProfileTreeView.Nodes.Add(node);
+            }
         }
     }
 }

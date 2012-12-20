@@ -31,7 +31,7 @@ namespace ZTn.BNet.D3.Calculator
         {
             this.hero = hero;
 
-            // Build unique sets equivalent to items weared
+            // Build unique gems equivalent to items weared
             heroItemStats = new StatsItem(mainHand, offHand, items);
 
             itemLevel = new ItemAttributesFromLevel(hero);
@@ -117,11 +117,11 @@ namespace ZTn.BNet.D3.Calculator
         {
             double armor = 0;
 
-            // Update with base sets's resistance
+            // Update with base gems's resistance
             if (heroItemStats.attributesRaw.armorItem != null)
                 armor += heroItemStats.attributesRaw.armorItem.min;
 
-            // Update with sets's bonus resistance
+            // Update with gems's bonus resistance
             if (heroItemStats.attributesRaw.armorBonusItem != null)
                 armor += heroItemStats.attributesRaw.armorBonusItem.min;
 
@@ -192,7 +192,7 @@ namespace ZTn.BNet.D3.Calculator
                 itemAttributes += modifier.getBonus(this);
             }
 
-            // Compute the new unique sets state with passives
+            // Compute the new unique gems state with passives
             update();
 
             // Build active bonuses
@@ -281,7 +281,7 @@ namespace ZTn.BNet.D3.Calculator
         {
             double characteristic = 0;
 
-            // Update with sets bonus
+            // Update with gems bonus
             if (heroItemStats.attributesRaw.dexterityItem != null)
                 characteristic += heroItemStats.attributesRaw.dexterityItem.min;
 
@@ -292,7 +292,7 @@ namespace ZTn.BNet.D3.Calculator
         {
             double characteristic = 0;
 
-            // Update with sets bonus
+            // Update with gems bonus
             if (heroItemStats.attributesRaw.intelligenceItem != null)
                 characteristic += heroItemStats.attributesRaw.intelligenceItem.min;
 
@@ -303,7 +303,7 @@ namespace ZTn.BNet.D3.Calculator
         {
             double characteristic = 0;
 
-            // Update with sets bonus
+            // Update with gems bonus
             if (heroItemStats.attributesRaw.strengthItem != null)
                 characteristic += heroItemStats.attributesRaw.strengthItem.min;
 
@@ -314,7 +314,7 @@ namespace ZTn.BNet.D3.Calculator
         {
             double vitality = 0;
 
-            // Update with sets bonus
+            // Update with gems bonus
             if (heroItemStats.attributesRaw.vitalityItem != null)
                 vitality += heroItemStats.attributesRaw.vitalityItem.min;
 

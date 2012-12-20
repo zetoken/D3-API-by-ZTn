@@ -180,14 +180,23 @@ namespace ZTn.BNet.D3.Calculator
             foreach (Item item in items)
             {
                 if (item.gems != null)
-                    stuff.AddRange(item.gems);
+                {
+                    foreach (SocketedGem gem in item.gems)
+                        stuff.Add(new Item(gem.attributesRaw));
+                }
             }
 
             // Add gems on weapons
             if (mainHand.gems != null)
-                stuff.AddRange(mainHand.gems);
+            {
+                foreach (SocketedGem gem in mainHand.gems)
+                    stuff.Add(new Item(gem.attributesRaw));
+            }
             if (offHand.gems != null)
-                stuff.AddRange(offHand.gems);
+            {
+                foreach (SocketedGem gem in offHand.gems)
+                    stuff.Add(new Item(gem.attributesRaw));
+            }
 
             // Add items
             foreach (Item item in stuff)

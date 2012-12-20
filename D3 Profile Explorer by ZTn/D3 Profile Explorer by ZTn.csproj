@@ -91,6 +91,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="d3gem.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="d3set.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

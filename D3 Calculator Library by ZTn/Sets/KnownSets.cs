@@ -50,7 +50,7 @@ namespace ZTn.BNet.D3.Calculator.Sets
             return attr;
         }
 
-        public static KnownSets getKnownSetFromJSonStream(Stream stream)
+        public static KnownSets getKnownSetsFromJSonStream(Stream stream)
         {
             JsonSerializer serializer = new JsonSerializer();
             Set[] sets;
@@ -66,7 +66,7 @@ namespace ZTn.BNet.D3.Calculator.Sets
             KnownSets knownSets;
             using (MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(json)))
             {
-                knownSets = getKnownSetFromJSonStream(stream);
+                knownSets = getKnownSetsFromJSonStream(stream);
             }
             return knownSets;
         }
@@ -76,7 +76,7 @@ namespace ZTn.BNet.D3.Calculator.Sets
             KnownSets knownSets;
             using (FileStream fileStream = new FileStream(fileName, FileMode.Open))
             {
-                knownSets = KnownSets.getKnownSetFromJSonStream(fileStream);
+                knownSets = KnownSets.getKnownSetsFromJSonStream(fileStream);
             }
             return knownSets;
         }
