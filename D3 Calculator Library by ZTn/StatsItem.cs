@@ -46,11 +46,6 @@ namespace ZTn.BNet.D3.Calculator
             else
                 this.offHand = D3Calculator.blankWeapon;
 
-            if (isAmbidextry())
-            {
-                ambidextryWeapon = new Item(computeAmbidextryWeaponAttributes());
-            }
-
             this.items = new List<Item>(items);
         }
 
@@ -61,8 +56,6 @@ namespace ZTn.BNet.D3.Calculator
             double weaponAttackSpeed;
             // Right formula: 2 * 1 / ( 1 / main + 1 / off ) [found by ZTn, nowhere else at that time]
             weaponAttackSpeed = 2 * 1 / (1 / mainHand.getRawWeaponAttackPerSecond().min + 1 / offHand.getRawWeaponAttackPerSecond().min);
-            // Ambidextry gets a 15% bonus
-            weaponAttackSpeed *= 1.15;
 
             return weaponAttackSpeed;
         }
@@ -117,11 +110,20 @@ namespace ZTn.BNet.D3.Calculator
         public double getWeaponAttackPerSecond()
         {
             double weaponAttackSpeed;
+            double increasedAttackSpeed;
 
             if (isAmbidextry())
+            {
                 weaponAttackSpeed = ambidextryWeapon.getRawWeaponAttackPerSecond().min;
+            }
             else
+            {
                 weaponAttackSpeed = mainHand.getRawWeaponAttackPerSecond().min;
+            }
+            weaponAttackSpeed += (attributesRaw.attacksPerSecondItemPercent != null ? attributesRaw.attacksPerSecondItemPercent.min : 0);
+
+            increasedAttackSpeed = (attributesRaw.attacksPerSecondPercent != null ? attributesRaw.attacksPerSecondPercent.min : 0);
+            weaponAttackSpeed *= 1 + increasedAttackSpeed;
 
             return weaponAttackSpeed;
         }
@@ -165,24 +167,13 @@ namespace ZTn.BNet.D3.Calculator
                 attributesRaw += addedBonus;
             }
 
-            // Add weapons
-            if (isAmbidextry())
-            {
-                stuff.Add(ambidextryWeapon);
-            }
-            else
-            {
-                stuff.Add(mainHand);
-                stuff.Add(offHand);
-            }
-
             // Add gems on items
             foreach (Item item in items)
             {
                 if (item.gems != null)
                 {
                     foreach (SocketedGem gem in item.gems)
-                        stuff.Add(new Item(gem.attributesRaw));
+                        attributesRaw += gem.attributesRaw;
                 }
             }
 
@@ -190,18 +181,32 @@ namespace ZTn.BNet.D3.Calculator
             if (mainHand.gems != null)
             {
                 foreach (SocketedGem gem in mainHand.gems)
-                    stuff.Add(new Item(gem.attributesRaw));
+                    attributesRaw += gem.attributesRaw;
             }
             if (offHand.gems != null)
             {
                 foreach (SocketedGem gem in offHand.gems)
-                    stuff.Add(new Item(gem.attributesRaw));
+                    attributesRaw += gem.attributesRaw;
             }
 
             // Add items
             foreach (Item item in stuff)
             {
                 attributesRaw += item.attributesRaw;
+            }
+
+            // Add weapons
+            if (isAmbidextry())
+            {
+                ambidextryWeapon = new Item(computeAmbidextryWeaponAttributes());
+                attributesRaw += ambidextryWeapon.attributesRaw;
+                // Ambidextry gets a 15% attack speed bonus
+                attributesRaw += new ItemAttributes() { attacksPerSecondPercent = new ItemValueRange(0.15) };
+            }
+            else
+            {
+                attributesRaw += mainHand.attributesRaw;
+                attributesRaw += offHand.attributesRaw;
             }
         }
 

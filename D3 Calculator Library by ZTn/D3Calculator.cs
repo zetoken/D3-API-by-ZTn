@@ -107,9 +107,6 @@ namespace ZTn.BNet.D3.Calculator
             // Update malusMultiplier with Weapon Attack Speed
             multiplier *= heroItemStats.getWeaponAttackPerSecond();
 
-            // Update malusMultiplier with Attack Speed
-            multiplier *= 1 + getIncreasedAttackSpeed();
-
             return multiplier;
         }
 
@@ -319,16 +316,6 @@ namespace ZTn.BNet.D3.Calculator
                 vitality += heroItemStats.attributesRaw.vitalityItem.min;
 
             return vitality;
-        }
-
-        public double getIncreasedAttackSpeed()
-        {
-            double attackSpeed = 0;
-
-            if (heroItemStats.attributesRaw.attacksPerSecondPercent != null)
-                attackSpeed = heroItemStats.attributesRaw.attacksPerSecondPercent.min;
-
-            return attackSpeed;
         }
 
         public ItemValueRange getMainCharacteristic()
