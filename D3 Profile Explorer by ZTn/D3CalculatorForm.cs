@@ -52,6 +52,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             : this()
         {
             this.hero = hero;
+            this.Text += " [ " + hero.name + " ]";
 
             guiHeroClass.SelectedItem = hero.heroClass.ToString();
             guiHeroLevel.Text = hero.level.ToString();
