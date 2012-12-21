@@ -11,9 +11,17 @@ namespace ZTn.BNet.D3.Calculator
         List<Item> gems2;
         List<Item> gems3;
 
+        List<String> weaponTypeIdList = new List<String>() { "Axe", "Axe2H", "Bow", "Crossbow", "Dagger", "Daibo", "FistWeapon", "HandCrossbow", "Mace", "Mace2H", "Polearm", "Spear", "Sword", "Sword2H" };
+        List<String> helmTypeIdList = new List<String>() { "Hat", "Helm", "Mask", "SpiritStone" };
+
         public D3ItemEditor()
         {
             InitializeComponent();
+
+            List<String> typeIdSource = new List<String>() { "", "Generic Armor" };
+            typeIdSource.AddRange(weaponTypeIdList);
+            typeIdSource.AddRange(helmTypeIdList);
+            guiItemTypeId.Items.AddRange(typeIdSource.ToArray());
         }
 
         private void populateData(TextBox textBox, ItemValueRange itemValueRange)
@@ -74,27 +82,6 @@ namespace ZTn.BNet.D3.Calculator
             Tag = item;
             if (item != null)
             {
-                gems1 = new List<Item>();
-                gems1.Add(new Item(new ItemAttributes()) { name = "( no gem )" });
-                if (item.type != null)
-                {
-                    if (item.isWeapon())
-                        gems1.AddRange(GemHelper.weaponSocketedGems);
-                    else if (item.type.id.Contains("Helm") || item.type.id.Contains("SpiritStone") || item.type.id.Contains("Mask") || item.type.id.Contains("Hat"))
-                        gems1.AddRange(GemHelper.helmSocketedGems);
-                    else
-                        gems1.AddRange(GemHelper.otherSocketedGems);
-                }
-                gems2 = new List<Item>(gems1);
-                gems3 = new List<Item>(gems1);
-
-                guiGem1.DataSource = gems1;
-                guiGem1.DisplayMember = "name";
-                guiGem2.DataSource = gems2;
-                guiGem2.DisplayMember = "name";
-                guiGem3.DataSource = gems3;
-                guiGem3.DisplayMember = "name";
-
                 guiItemName.Text = item.name;
                 guiItemId.Text = item.id;
                 guiItemTypeId.Text = (item.type != null ? item.type.id : "");
@@ -175,6 +162,27 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiShieldBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
 
                 // Gems
+                gems1 = new List<Item>();
+                gems1.Add(new Item(new ItemAttributes()) { name = "( no gem )" });
+                if (item.type != null)
+                {
+                    if (weaponTypeIdList.IndexOf(item.type.id) >= 0)
+                        gems1.AddRange(GemHelper.weaponSocketedGems);
+                    else if (item.type.id.Contains("Helm") || item.type.id.Contains("SpiritStone") || item.type.id.Contains("Mask") || item.type.id.Contains("Hat"))
+                        gems1.AddRange(GemHelper.helmSocketedGems);
+                    else
+                        gems1.AddRange(GemHelper.otherSocketedGems);
+                }
+                gems2 = new List<Item>(gems1);
+                gems3 = new List<Item>(gems1);
+
+                guiGem1.DataSource = gems1;
+                guiGem1.DisplayMember = "name";
+                guiGem2.DataSource = gems2;
+                guiGem2.DisplayMember = "name";
+                guiGem3.DataSource = gems3;
+                guiGem3.DisplayMember = "name";
+
                 guiGem1.SelectedIndex = 0;
                 guiGem2.SelectedIndex = 0;
                 guiGem3.SelectedIndex = 0;
@@ -297,6 +305,31 @@ namespace ZTn.BNet.D3.Calculator
         private void GuiReset_Click(object sender, EventArgs e)
         {
             setEditedItem((Item)Tag);
+        }
+
+        private void guiItemTypeId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // re-generates gems
+            gems1 = new List<Item>();
+            gems1.Add(new Item(new ItemAttributes()) { name = "( no gem )" });
+            if (weaponTypeIdList.IndexOf(guiItemTypeId.Text) >= 0)
+                gems1.AddRange(GemHelper.weaponSocketedGems);
+            else if (guiItemTypeId.Text.Contains("Helm") || guiItemTypeId.Text.Contains("SpiritStone") || guiItemTypeId.Text.Contains("Mask") || guiItemTypeId.Text.Contains("Hat"))
+                gems1.AddRange(GemHelper.helmSocketedGems);
+            else
+                gems1.AddRange(GemHelper.otherSocketedGems);
+            gems2 = new List<Item>(gems1);
+            gems3 = new List<Item>(gems1);
+
+            int index = guiGem1.SelectedIndex;
+            guiGem1.DataSource = gems1;
+            guiGem1.SelectedIndex = index;
+            index = guiGem2.SelectedIndex;
+            guiGem2.DataSource = gems2;
+            guiGem2.SelectedIndex = index;
+            index = guiGem3.SelectedIndex;
+            guiGem3.DataSource = gems3;
+            guiGem3.SelectedIndex = index;
         }
     }
 }

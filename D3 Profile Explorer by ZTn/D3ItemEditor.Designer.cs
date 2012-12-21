@@ -138,10 +138,10 @@
             this.guiShieldBlockPercent = new System.Windows.Forms.TextBox();
             this.guiShieldBlockMax = new System.Windows.Forms.TextBox();
             this.guiShieldBlockMin = new System.Windows.Forms.TextBox();
-            this.guiItemTypeId = new System.Windows.Forms.TextBox();
             this.GuiReset = new System.Windows.Forms.Button();
             this.guiItemName = new System.Windows.Forms.TextBox();
             this.guiItemId = new System.Windows.Forms.TextBox();
+            this.guiItemTypeId = new System.Windows.Forms.ComboBox();
             label23 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
@@ -1165,13 +1165,23 @@
             this.guiShieldBlockMin.Size = new System.Drawing.Size(35, 20);
             this.guiShieldBlockMin.TabIndex = 34;
             // 
-            // guiItemTypeId
+            // label42
             // 
-            this.guiItemTypeId.Location = new System.Drawing.Point(485, 3);
-            this.guiItemTypeId.Name = "guiItemTypeId";
-            this.guiItemTypeId.Size = new System.Drawing.Size(175, 20);
-            this.guiItemTypeId.TabIndex = 25;
-            this.guiItemTypeId.Text = "Item Type Id";
+            label42.AutoSize = true;
+            label42.Location = new System.Drawing.Point(239, 6);
+            label42.Name = "label42";
+            label42.Size = new System.Drawing.Size(15, 13);
+            label42.TabIndex = 26;
+            label42.Text = "id";
+            // 
+            // label43
+            // 
+            label43.AutoSize = true;
+            label43.Location = new System.Drawing.Point(441, 6);
+            label43.Name = "label43";
+            label43.Size = new System.Drawing.Size(38, 13);
+            label43.TabIndex = 27;
+            label43.Text = "type.id";
             // 
             // GuiReset
             // 
@@ -1200,23 +1210,15 @@
             this.guiItemId.TabIndex = 8;
             this.guiItemId.Text = "Item Id";
             // 
-            // label42
+            // guiItemTypeId
             // 
-            label42.AutoSize = true;
-            label42.Location = new System.Drawing.Point(239, 6);
-            label42.Name = "label42";
-            label42.Size = new System.Drawing.Size(15, 13);
-            label42.TabIndex = 26;
-            label42.Text = "id";
-            // 
-            // label43
-            // 
-            label43.AutoSize = true;
-            label43.Location = new System.Drawing.Point(441, 6);
-            label43.Name = "label43";
-            label43.Size = new System.Drawing.Size(38, 13);
-            label43.TabIndex = 27;
-            label43.Text = "type.id";
+            this.guiItemTypeId.FormattingEnabled = true;
+            this.guiItemTypeId.Location = new System.Drawing.Point(485, 3);
+            this.guiItemTypeId.Name = "guiItemTypeId";
+            this.guiItemTypeId.Size = new System.Drawing.Size(175, 21);
+            this.guiItemTypeId.TabIndex = 28;
+            this.guiItemTypeId.Text = "Item Type Id";
+            this.guiItemTypeId.SelectedIndexChanged += new System.EventHandler(this.guiItemTypeId_SelectedIndexChanged);
             // 
             // D3ItemEditor
             // 
@@ -1224,9 +1226,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.guiItemTypeId);
             this.Controls.Add(label43);
             this.Controls.Add(label42);
-            this.Controls.Add(this.guiItemTypeId);
             this.Controls.Add(this.guiItemId);
             this.Controls.Add(this.guiItemName);
             this.Controls.Add(groupBox6);
@@ -1320,7 +1322,7 @@
         public System.Windows.Forms.TextBox guiLifeSteal;
         private System.Windows.Forms.TextBox guiItemName;
         private System.Windows.Forms.TextBox guiItemId;
-        private System.Windows.Forms.TextBox guiItemTypeId;
+        private System.Windows.Forms.ComboBox guiItemTypeId;
 
 
     }
