@@ -111,18 +111,19 @@ namespace ZTn.BNet.D3.Calculator
         {
             double weaponAttackSpeed;
             double increasedAttackSpeed;
+            Item weapon;
 
             if (isAmbidextry())
-            {
-                weaponAttackSpeed = ambidextryWeapon.getRawWeaponAttackPerSecond().min;
-            }
+                weapon = ambidextryWeapon;
             else
-            {
-                weaponAttackSpeed = mainHand.getRawWeaponAttackPerSecond().min;
-            }
+                weapon = mainHand;
+
+            weaponAttackSpeed = weapon.getWeaponAttackPerSecond(attributesRaw.attacksPerSecondItem).min;
+
             weaponAttackSpeed += (attributesRaw.attacksPerSecondItemPercent != null ? attributesRaw.attacksPerSecondItemPercent.min : 0);
 
             increasedAttackSpeed = (attributesRaw.attacksPerSecondPercent != null ? attributesRaw.attacksPerSecondPercent.min : 0);
+
             weaponAttackSpeed *= 1 + increasedAttackSpeed;
 
             return weaponAttackSpeed;
@@ -195,7 +196,8 @@ namespace ZTn.BNet.D3.Calculator
                 attributesRaw += item.attributesRaw;
             }
 
-            // Add weapons
+            // Add weapons - Note: we don't want attackPerSecondItem to include weapon's value, only stuff or skills bonuses
+            ItemValueRange attackPerSecondItem = attributesRaw.attacksPerSecondItem;
             if (isAmbidextry())
             {
                 ambidextryWeapon = new Item(computeAmbidextryWeaponAttributes());
@@ -208,6 +210,7 @@ namespace ZTn.BNet.D3.Calculator
                 attributesRaw += mainHand.attributesRaw;
                 attributesRaw += offHand.attributesRaw;
             }
+            attributesRaw.attacksPerSecondItem = attackPerSecondItem;
         }
 
         public void setLevelBonus(ItemAttributes itemLevel)

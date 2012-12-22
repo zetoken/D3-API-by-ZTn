@@ -100,18 +100,7 @@ namespace ZTn.BNet.D3.Calculator
         /// <returns></returns>
         public static ItemValueRange getRawWeaponAttackPerSecond(this Item item)
         {
-            ItemValueRange weaponAttackSpeed = item.attributesRaw.attacksPerSecondItem;
-
-            if (weaponAttackSpeed == null)
-            {
-                weaponAttackSpeed = ItemValueRange.Zero;
-            }
-            else
-            {
-                weaponAttackSpeed *= (ItemValueRange.One + item.attributesRaw.attacksPerSecondItemPercent);
-            }
-
-            return weaponAttackSpeed;
+            return item.getWeaponAttackPerSecond(ItemValueRange.Zero);
         }
 
         /// <summary>
@@ -186,6 +175,22 @@ namespace ZTn.BNet.D3.Calculator
         }
 
         #endregion
+
+        public static ItemValueRange getWeaponAttackPerSecond(this Item item, ItemValueRange increaseFromOtherItems)
+        {
+            ItemValueRange weaponAttackSpeed = item.attributesRaw.attacksPerSecondItem;
+
+            if (weaponAttackSpeed == null)
+            {
+                weaponAttackSpeed = ItemValueRange.Zero + increaseFromOtherItems;
+            }
+            else
+            {
+                weaponAttackSpeed *= (ItemValueRange.One + item.attributesRaw.attacksPerSecondItemPercent + increaseFromOtherItems);
+            }
+
+            return weaponAttackSpeed;
+        }
 
         #region >> checkAndUpdateWeaponDelta *
 
