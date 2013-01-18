@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="D3Calculator.cs" />
     <Compile Include="GemHelper.cs" />
+    <Compile Include="Gems\KnownGems.cs" />
     <Compile Include="ItemAttributesFromLevel.cs" />
     <Compile Include="ItemAttributesFromParagonLevel.cs" />
     <Compile Include="ItemExtension.cs" />
@@ -55,11 +56,13 @@
     <Compile Include="Skills\Barbarian\NervesOfSteel.cs" />
     <Compile Include="Skills\Barbarian\Ruthless.cs" />
     <Compile Include="Skills\Barbarian\ToughAsNails.cs" />
+    <Compile Include="Skills\Barbarian\WeaponsMaster.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster_MaceAxe.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster_PolearmSpear.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster_SwordDagger.cs" />
     <Compile Include="Skills\D3SkillModifier.cs" />
     <Compile Include="Skills\DamageMultiplier.cs" />
+    <Compile Include="Skills\DemonHunter\Archery.cs" />
     <Compile Include="Skills\DemonHunter\Archery_Bow.cs" />
     <Compile Include="Skills\DemonHunter\Archery_Crossbow.cs" />
     <Compile Include="Skills\DemonHunter\Archery_HandCrossbow.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="Skills\Monk\MysticAlly_EarthAlly.cs" />
     <Compile Include="Skills\Monk\OneWithEverything.cs" />
     <Compile Include="Skills\Monk\SeizeTheInitiative.cs" />
+    <Compile Include="Skills\NullModifier.cs" />
     <Compile Include="Skills\ResistancesMultiplier.cs" />
     <Compile Include="Skills\ThornsMultiplier.cs" />
     <Compile Include="Skills\WitchDoctor\PierceTheVeil.cs" />

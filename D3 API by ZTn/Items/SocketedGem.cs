@@ -15,6 +15,8 @@ namespace ZTn.BNet.D3.Items
         public ItemSummary item;
         [DataMember]
         public ItemAttributes attributesRaw;
+        [DataMember]
+        public String[] attributes;
 
         #endregion
 

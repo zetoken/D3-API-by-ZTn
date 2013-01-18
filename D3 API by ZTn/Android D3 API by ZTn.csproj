@@ -85,6 +85,8 @@
     <Compile Include="Items\ItemValueRange.cs" />
     <Compile Include="Items\Set.cs" />
     <Compile Include="Items\SetRank.cs" />
+    <Compile Include="Items\SocketedGem.cs" />
+    <Compile Include="Items\SocketEffect.cs" />
     <Compile Include="Medias\D3Picture.cs" />
     <Compile Include="Progresses\ActProgress.cs" />
     <Compile Include="Progresses\DifficultyProgress.cs" />
