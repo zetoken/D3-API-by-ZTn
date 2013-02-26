@@ -1,0 +1,18 @@
+﻿[
+	{
+		name: "Europe",
+		url: "eu.battle.net"
+	},
+	{
+		name: "America",
+		url: "us.battle.net"
+	},
+	{
+		name: "Korea",
+		url: "kr.battle.net"
+	},
+	{
+		name: "Taiwan",
+		url: "tw.battle.net"
+	}
+]

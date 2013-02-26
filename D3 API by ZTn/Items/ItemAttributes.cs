@@ -194,6 +194,25 @@ namespace ZTn.BNet.D3.Items
 
         #endregion
 
+        #region >> Damage_Weapon_Bonus_Min_X1
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Arcane", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusMinX1_Arcane;
+        [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Cold", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusMinX1_Cold;
+        [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Fire", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusMinX1_Fire;
+        [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Holy", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusMinX1_Holy;
+        [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Lightning", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusMinX1_Lightning;
+        [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Physical", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusMinX1_Physical;
+        [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Poison", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusMinX1_Poison;
+
+        #endregion
+
         #region >> Damage_Weapon_Delta
 
         [DataMember(Name = "Damage_Weapon_Delta#Arcane", EmitDefaultValue = false)]

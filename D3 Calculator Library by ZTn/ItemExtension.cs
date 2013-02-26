@@ -147,6 +147,20 @@ namespace ZTn.BNet.D3.Calculator
             return damage;
         }
 
+        /// <summary>
+        /// D3 Patch 1.0.7: new weapon min attribute added for Ruby Gems
+        /// It is not increased by weapon multipliers nor taken into account for min>max comparison
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="resist"></param>
+        /// <returns></returns>
+        public static ItemValueRange getRawWeaponDamageMinX1(this Item item, String resist)
+        {
+            ItemValueRange damageWeaponMinX1 = (ItemValueRange)type.GetField("damageWeaponMinX1_" + resist).GetValue(item.attributesRaw);
+
+            return damageWeaponMinX1;
+        }
+
         #endregion
 
         #region >> getRawWeaponDamageMax *

@@ -17,6 +17,7 @@ using System.IO;
 using ZTn.BNet.D3.Calculator.Sets;
 using System.Collections;
 using ZTn.BNet.D3.Calculator.Gems;
+using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -28,30 +29,11 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             D3.D3Api.dataProvider = new CacheableDataProvider(new HttpRequestDataProvider());
 
-            List<Host> hosts = new List<Host>
-            {
-                new Host("Europe", "eu.battle.net"),
-                new Host("America","us.battle.net"),
-                new Host("Korea", "kr.battle.net"),
-                new Host("Taiwan","tw.battle.net")
-            };
+            List<Host> hosts = JsonHelpers.getDataFromJsonFile<Host>("hosts.json");
             guiBattleNetHostList.DataSource = hosts;
             guiBattleNetHostList.DisplayMember = "name";
 
-            List<Language> langs = new List<Language>
-            {
-                new Language("English", "en"),
-                new Language("French","fr"),
-                new Language("German", "de"),
-                new Language("Italian","it"),
-                new Language("Spanish", "es"),
-                new Language("Polish","pl"),
-                new Language("Portuguese","pt"),
-                new Language("Russian","ru"),
-                new Language("Turkish","tr"),
-                new Language("Korean","ko"),
-                new Language("Chinese","zh")
-            };
+            List<Language> langs = JsonHelpers.getDataFromJsonFile<Language>("languages.json");
             guiBattleNetLanguageList.DataSource = langs;
             guiBattleNetLanguageList.DisplayMember = "name";
 
@@ -285,7 +267,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (D3.D3Api.dataProvider is CacheableDataProvider)
             {
                 CacheableDataProvider dataProvider = (CacheableDataProvider)D3.D3Api.dataProvider;
-                dataProvider.online = !guiOfflineMode.Checked;
+                dataProvider.onlineMode = (guiOfflineMode.Checked ? OnlineMode.Offline : OnlineMode.Online);
             }
         }
 

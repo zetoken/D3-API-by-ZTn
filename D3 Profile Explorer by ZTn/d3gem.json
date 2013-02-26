@@ -2,22 +2,18 @@
 "id" : "Amethyst_01",
 "name" : "Chipped Amethyst",
 "icon" : "amethyst_01_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "item/chipped-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 14,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
-},
 "GemQuality" : {
 "min" : 1.0,
 "max" : 1.0
@@ -25,60 +21,61 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+5% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.05,
 "max" : 0.05
 }
-},
-"attributes" : [ "+5% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +2 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 2.0,
 "max" : 2.0
 }
-},
-"attributes" : [ "Each Hit Adds +2 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+6 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 6.0,
 "max" : 6.0
 }
-},
-"attributes" : [ "+6 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_02",
 "name" : "Flawed Amethyst",
 "icon" : "amethyst_02_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawed-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 22,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
-},
 "GemQuality" : {
 "min" : 2.0,
 "max" : 2.0
@@ -86,60 +83,61 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+6% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.06,
 "max" : 0.06
 }
-},
-"attributes" : [ "+6% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +3 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 3.0,
 "max" : 3.0
 }
-},
-"attributes" : [ "Each Hit Adds +3 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+10 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 10.0,
 "max" : 10.0
 }
-},
-"attributes" : [ "+10 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_03",
 "name" : "Amethyst",
 "icon" : "amethyst_03_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 30,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"GemQuality" : {
-"min" : 3.0,
-"max" : 3.0
-},
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
@@ -147,63 +145,68 @@
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"GemQuality" : {
+"min" : 3.0,
+"max" : 3.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+7% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.07,
 "max" : 0.07
 }
-},
-"attributes" : [ "+7% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +6 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 6.0,
 "max" : 6.0
 }
-},
-"attributes" : [ "Each Hit Adds +6 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+14 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 14.0,
 "max" : 14.0
 }
-},
-"attributes" : [ "+14 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_04",
 "name" : "Flawless Amethyst",
 "icon" : "amethyst_04_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 36,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"GemQuality" : {
-"min" : 4.0,
-"max" : 4.0
-},
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"GemQuality" : {
+"min" : 4.0,
+"max" : 4.0
 },
 "Durability_Cur" : {
 "min" : 0.0,
@@ -211,53 +214,58 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+8% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.08,
 "max" : 0.08
 }
-},
-"attributes" : [ "+8% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +10 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 10.0,
 "max" : 10.0
 }
-},
-"attributes" : [ "Each Hit Adds +10 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+18 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 18.0,
 "max" : 18.0
 }
-},
-"attributes" : [ "+18 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_05",
 "name" : "Perfect Amethyst",
 "icon" : "amethyst_05_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 42,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -265,60 +273,61 @@
 "GemQuality" : {
 "min" : 5.0,
 "max" : 5.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+9% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.09,
 "max" : 0.09
 }
-},
-"attributes" : [ "+9% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +15 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 15.0,
 "max" : 15.0
 }
-},
-"attributes" : [ "Each Hit Adds +15 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+22 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 22.0,
 "max" : 22.0
 }
-},
-"attributes" : [ "+22 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_06",
 "name" : "Radiant Amethyst",
 "icon" : "amethyst_06_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 48,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"GemQuality" : {
+"min" : 6.0,
+"max" : 6.0
+},
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
@@ -326,64 +335,57 @@
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
-},
-"GemQuality" : {
-"min" : 6.0,
-"max" : 6.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+10% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.1,
 "max" : 0.1
 }
-},
-"attributes" : [ "+10% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +25 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 25.0,
 "max" : 25.0
 }
-},
-"attributes" : [ "Each Hit Adds +25 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+26 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 26.0,
 "max" : 26.0
 }
-},
-"attributes" : [ "+26 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_07",
 "name" : "Square Amethyst",
 "icon" : "amethyst_07_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/square-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 54,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
-},
 "GemQuality" : {
 "min" : 7.0,
 "max" : 7.0
@@ -391,56 +393,65 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+11% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.11,
 "max" : 0.11
 }
-},
-"attributes" : [ "+11% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +35 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 35.0,
 "max" : 35.0
 }
-},
-"attributes" : [ "Each Hit Adds +35 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+30 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 30.0,
 "max" : 30.0
 }
-},
-"attributes" : [ "+30 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_08",
 "name" : "Flawless Square Amethyst",
 "icon" : "amethyst_08_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-square-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 60,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -448,67 +459,64 @@
 "GemQuality" : {
 "min" : 8.0,
 "max" : 8.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+12% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.12,
 "max" : 0.12
 }
-},
-"attributes" : [ "+12% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +65 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 65.0,
 "max" : 65.0
 }
-},
-"attributes" : [ "Each Hit Adds +65 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+34 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 34.0,
 "max" : 34.0
 }
-},
-"attributes" : [ "+34 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_09",
 "name" : "Perfect Square Amethyst",
 "icon" : "amethyst_09_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-square-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 61,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"GemQuality" : {
-"min" : 9.0,
-"max" : 9.0
-},
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"GemQuality" : {
+"min" : 9.0,
+"max" : 9.0
 },
 "Durability_Cur" : {
 "min" : 0.0,
@@ -516,57 +524,54 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+13% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.13,
 "max" : 0.13
 }
-},
-"attributes" : [ "+13% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +105 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 105.0,
 "max" : 105.0
 }
-},
-"attributes" : [ "Each Hit Adds +105 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+38 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 38.0,
 "max" : 38.0
 }
-},
-"attributes" : [ "+38 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_10",
 "name" : "Radiant Square Amethyst",
 "icon" : "amethyst_10_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-square-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 62,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"GemQuality" : {
-"min" : 10.0,
-"max" : 10.0
-},
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
@@ -574,53 +579,58 @@
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"GemQuality" : {
+"min" : 10.0,
+"max" : 10.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+14% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.14,
 "max" : 0.14
 }
-},
-"attributes" : [ "+14% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +190 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 190.0,
 "max" : 190.0
 }
-},
-"attributes" : [ "Each Hit Adds +190 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+42 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 42.0,
 "max" : 42.0
 }
-},
-"attributes" : [ "+42 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_11",
 "name" : "Star Amethyst",
 "icon" : "amethyst_11_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/star-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 63,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -638,53 +648,58 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+15% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.15,
 "max" : 0.15
 }
-},
-"attributes" : [ "+15% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +300 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 300.0,
 "max" : 300.0
 }
-},
-"attributes" : [ "Each Hit Adds +300 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+46 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 46.0,
 "max" : 46.0
 }
-},
-"attributes" : [ "+46 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_12",
 "name" : "Flawless Star Amethyst",
 "icon" : "amethyst_12_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-star-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 64,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"GemQuality" : {
+"min" : 12.0,
+"max" : 12.0
+},
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
@@ -692,64 +707,57 @@
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
-},
-"GemQuality" : {
-"min" : 12.0,
-"max" : 12.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+16% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.16,
 "max" : 0.16
 }
-},
-"attributes" : [ "+16% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +400 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 400.0,
 "max" : 400.0
 }
-},
-"attributes" : [ "Each Hit Adds +400 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+50 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 50.0,
 "max" : 50.0
 }
-},
-"attributes" : [ "+50 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_13",
 "name" : "Perfect Star Amethyst",
 "icon" : "amethyst_13_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-star-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 65,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
-},
 "GemQuality" : {
 "min" : 13.0,
 "max" : 13.0
@@ -757,56 +765,65 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+17% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.17,
 "max" : 0.17
 }
-},
-"attributes" : [ "+17% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +500 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 500.0,
 "max" : 500.0
 }
-},
-"attributes" : [ "Each Hit Adds +500 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+54 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 54.0,
 "max" : 54.0
 }
-},
-"attributes" : [ "+54 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Amethyst_14",
 "name" : "Radiant Star Amethyst",
 "icon" : "amethyst_14_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-star-amethyst",
 "requiredLevel" : 1,
 "itemLevel" : 66,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -814,64 +831,119 @@
 "GemQuality" : {
 "min" : 14.0,
 "max" : 14.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+18% Life" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Hitpoints_Max_Percent_Bonus_Item" : {
 "min" : 0.18,
 "max" : 0.18
 }
-},
-"attributes" : [ "+18% Life" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Each Hit Adds +600 Life" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Hitpoints_On_Hit" : {
 "min" : 600.0,
 "max" : 600.0
 }
-},
-"attributes" : [ "Each Hit Adds +600 Life" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+58 Vitality" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Vitality_Item" : {
 "min" : 58.0,
 "max" : 58.0
 }
-},
-"attributes" : [ "+58 Vitality" ]
+}
 } ],
+"bonusAffixesMax" : 0,
+"gems" : [ ]
+},{
+"id" : "Amethyst_15",
+"name" : "Marquise Amethyst",
+"icon" : "amethyst_15_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/marquise-amethyst",
+"requiredLevel" : 1,
+"itemLevel" : 67,
+"bonusAffixes" : 0,
+"typeName" : "Gem",
+"type" : {
+"twoHanded" : false,
+"id" : "Gem"
+},
+"attributes" : [ ],
+"attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
+"GemQuality" : {
+"min" : 15.0,
+"max" : 15.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
+}
+},
+"socketEffects" : [ {
+"attributes" : [ "+19% Life" ],
+"itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
+"attributesRaw" : {
+"Hitpoints_Max_Percent_Bonus_Item" : {
+"min" : 0.19,
+"max" : 0.19
+}
+}
+}, {
+"attributes" : [ "Each Hit Adds +700 Life" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Hitpoints_On_Hit" : {
+"min" : 700.0,
+"max" : 700.0
+}
+}
+}, {
+"attributes" : [ "+62 Vitality" ],
+"itemTypeName" : "Other",
+"itemTypeId" : "All",
+"attributesRaw" : {
+"Vitality_Item" : {
+"min" : 62.0,
+"max" : 62.0
+}
+}
+} ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_01",
 "name" : "Chipped Emerald",
 "icon" : "emerald_01_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "item/chipped-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 14,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"GemQuality" : {
-"min" : 1.0,
-"max" : 1.0
-},
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
@@ -879,56 +951,65 @@
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"GemQuality" : {
+"min" : 1.0,
+"max" : 1.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+5% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.05,
 "max" : 0.05
 }
-},
-"attributes" : [ "+5% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 10%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.1,
 "max" : 0.1
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 10%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+6 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 6.0,
 "max" : 6.0
 }
-},
-"attributes" : [ "+6 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_02",
 "name" : "Flawed Emerald",
 "icon" : "emerald_02_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawed-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 22,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "GemQuality" : {
 "min" : 2.0,
 "max" : 2.0
@@ -936,64 +1017,57 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
-},
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+7% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.07,
 "max" : 0.07
 }
-},
-"attributes" : [ "+7% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 15%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.15,
 "max" : 0.15
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 15%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+10 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 10.0,
 "max" : 10.0
 }
-},
-"attributes" : [ "+10 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_03",
 "name" : "Emerald",
 "icon" : "emerald_03_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/emerald",
 "requiredLevel" : 1,
 "itemLevel" : 30,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
-},
 "GemQuality" : {
 "min" : 3.0,
 "max" : 3.0
@@ -1001,56 +1075,65 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+9% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.09,
 "max" : 0.09
 }
-},
-"attributes" : [ "+9% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 20%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.2,
 "max" : 0.2
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 20%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+14 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 14.0,
 "max" : 14.0
 }
-},
-"attributes" : [ "+14 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_04",
 "name" : "Flawless Emerald",
 "icon" : "emerald_04_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 36,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"GemQuality" : {
+"min" : 4.0,
+"max" : 4.0
+},
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
@@ -1058,60 +1141,61 @@
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
-},
-"GemQuality" : {
-"min" : 4.0,
-"max" : 4.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+11% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.11,
 "max" : 0.11
 }
-},
-"attributes" : [ "+11% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 25%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.25,
 "max" : 0.25
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 25%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+18 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 18.0,
 "max" : 18.0
 }
-},
-"attributes" : [ "+18 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_05",
 "name" : "Perfect Emerald",
 "icon" : "emerald_05_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 42,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -1119,61 +1203,58 @@
 "GemQuality" : {
 "min" : 5.0,
 "max" : 5.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+13% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.13,
 "max" : 0.13
 }
-},
-"attributes" : [ "+13% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 30%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.3,
 "max" : 0.3
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 30%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+22 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 22.0,
 "max" : 22.0
 }
-},
-"attributes" : [ "+22 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_06",
 "name" : "Radiant Emerald",
 "icon" : "emerald_06_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 48,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
+"Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
 },
@@ -1181,63 +1262,60 @@
 "min" : 6.0,
 "max" : 6.0
 },
-"Durability_Max" : {
+"Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+15% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.15,
 "max" : 0.15
 }
-},
-"attributes" : [ "+15% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 35%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.35,
 "max" : 0.35
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 35%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+26 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 26.0,
 "max" : 26.0
 }
-},
-"attributes" : [ "+26 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_07",
 "name" : "Square Emerald",
 "icon" : "emerald_07_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/square-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 54,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"GemQuality" : {
-"min" : 7.0,
-"max" : 7.0
-},
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
@@ -1245,56 +1323,65 @@
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"GemQuality" : {
+"min" : 7.0,
+"max" : 7.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+17% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.17,
 "max" : 0.17
 }
-},
-"attributes" : [ "+17% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 40%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.4,
 "max" : 0.4
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 40%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+30 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 30.0,
 "max" : 30.0
 }
-},
-"attributes" : [ "+30 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_08",
 "name" : "Flawless Square Emerald",
 "icon" : "emerald_08_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-square-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 60,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "GemQuality" : {
 "min" : 8.0,
 "max" : 8.0
@@ -1302,64 +1389,57 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
-},
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+19% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.19,
 "max" : 0.19
 }
-},
-"attributes" : [ "+19% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 45%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.45,
 "max" : 0.45
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 45%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+34 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 34.0,
 "max" : 34.0
 }
-},
-"attributes" : [ "+34 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_09",
 "name" : "Perfect Square Emerald",
 "icon" : "emerald_09_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-square-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 61,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
-},
 "GemQuality" : {
 "min" : 9.0,
 "max" : 9.0
@@ -1367,56 +1447,65 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+21% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.21,
 "max" : 0.21
 }
-},
-"attributes" : [ "+21% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 50%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.5,
 "max" : 0.5
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 50%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+38 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 38.0,
 "max" : 38.0
 }
-},
-"attributes" : [ "+38 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_10",
 "name" : "Radiant Square Emerald",
 "icon" : "emerald_10_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-square-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 62,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"GemQuality" : {
+"min" : 10.0,
+"max" : 10.0
+},
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
@@ -1424,60 +1513,61 @@
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
-},
-"GemQuality" : {
-"min" : 10.0,
-"max" : 10.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+23% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.23,
 "max" : 0.23
 }
-},
-"attributes" : [ "+23% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 60%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.6,
 "max" : 0.6
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 60%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+42 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 42.0,
 "max" : 42.0
 }
-},
-"attributes" : [ "+42 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_11",
 "name" : "Star Emerald",
 "icon" : "emerald_11_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/star-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 63,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -1485,61 +1575,58 @@
 "GemQuality" : {
 "min" : 11.0,
 "max" : 11.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+25% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.25,
 "max" : 0.25
 }
-},
-"attributes" : [ "+25% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 70%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.7,
 "max" : 0.7
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 70%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+46 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 46.0,
 "max" : 46.0
 }
-},
-"attributes" : [ "+46 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_12",
 "name" : "Flawless Star Emerald",
 "icon" : "emerald_12_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-star-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 64,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
+"Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
 },
@@ -1547,63 +1634,60 @@
 "min" : 12.0,
 "max" : 12.0
 },
-"Durability_Max" : {
+"Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+27% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.27,
 "max" : 0.27
 }
-},
-"attributes" : [ "+27% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 80%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.8,
 "max" : 0.8
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 80%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+50 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 50.0,
 "max" : 50.0
 }
-},
-"attributes" : [ "+50 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_13",
 "name" : "Perfect Star Emerald",
 "icon" : "emerald_13_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-star-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 65,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"GemQuality" : {
-"min" : 13.0,
-"max" : 13.0
-},
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
@@ -1611,59 +1695,126 @@
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"GemQuality" : {
+"min" : 13.0,
+"max" : 13.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+29% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
 "min" : 0.29,
 "max" : 0.29
 }
-},
-"attributes" : [ "+29% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 90%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
 "min" : 0.9,
 "max" : 0.9
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 90%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+54 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
 "min" : 54.0,
 "max" : 54.0
 }
-},
-"attributes" : [ "+54 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Emerald_14",
 "name" : "Radiant Star Emerald",
 "icon" : "emerald_14_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-star-emerald",
 "requiredLevel" : 1,
 "itemLevel" : 66,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
+},
+"attributes" : [ ],
+"attributesRaw" : {
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
+},
+"GemQuality" : {
+"min" : 14.0,
+"max" : 14.0
+},
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+}
+},
+"socketEffects" : [ {
+"attributes" : [ "+31% Extra Gold from Monsters" ],
+"itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
+"attributesRaw" : {
+"Gold_Find" : {
+"min" : 0.31,
+"max" : 0.31
+}
+}
+}, {
+"attributes" : [ "Critical Hit Damage Increased by 100%" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Crit_Damage_Percent" : {
+"min" : 1.0,
+"max" : 1.0
+}
+}
+}, {
+"attributes" : [ "+58 Dexterity" ],
+"itemTypeName" : "Other",
+"itemTypeId" : "All",
+"attributesRaw" : {
+"Dexterity_Item" : {
+"min" : 58.0,
+"max" : 58.0
+}
+}
+} ],
+"bonusAffixesMax" : 0,
+"gems" : [ ]
+},{
+"id" : "Emerald_15",
+"name" : "Marquise Emerald",
+"icon" : "emerald_15_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/marquise-emerald",
+"requiredLevel" : 1,
+"itemLevel" : 67,
+"bonusAffixes" : 0,
+"typeName" : "Gem",
+"type" : {
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
 "GemQuality" : {
-"min" : 14.0,
-"max" : 14.0
+"min" : 15.0,
+"max" : 15.0
 },
 "Durability_Max" : {
 "min" : 0.0,
@@ -1675,57 +1826,54 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "+33% Extra Gold from Monsters" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Gold_Find" : {
-"min" : 0.31,
-"max" : 0.31
+"min" : 0.33,
+"max" : 0.33
 }
-},
-"attributes" : [ "+31% Extra Gold from Monsters" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Critical Hit Damage Increased by 110%" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Crit_Damage_Percent" : {
-"min" : 1.0,
-"max" : 1.0
+"min" : 1.1,
+"max" : 1.1
 }
-},
-"attributes" : [ "Critical Hit Damage Increased by 100%" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+62 Dexterity" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Dexterity_Item" : {
-"min" : 58.0,
-"max" : 58.0
+"min" : 62.0,
+"max" : 62.0
 }
-},
-"attributes" : [ "+58 Dexterity" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_01",
 "name" : "Chipped Ruby",
 "icon" : "ruby_01_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "item/chipped-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 14,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
-},
 "GemQuality" : {
 "min" : 1.0,
 "max" : 1.0
@@ -1733,57 +1881,62 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 5%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.05,
 "max" : 0.05
 }
-},
-"attributes" : [ "Increases Bonus Experience by 5%" ]
-}, {
-"itemTypeId" : "Weapon",
-"itemTypeName" : "Weapon",
-"attributesRaw" : {
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 2.0,
-"max" : 2.0
-},
-"Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 2.0,
-"max" : 2.0
 }
-},
-"attributes" : [ "+2 Minimum Damage", "+2 Maximum Damage" ]
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+3 Minimum Damage", "+3 Maximum Damage" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Damage_Weapon_Bonus_Delta#Physical" : {
+"min" : 3.0,
+"max" : 3.0
+},
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 3.0,
+"max" : 3.0
+}
+}
+}, {
+"attributes" : [ "+6 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 6.0,
 "max" : 6.0
 }
-},
-"attributes" : [ "+6 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_02",
 "name" : "Flawed Ruby",
 "icon" : "ruby_02_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawed-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 22,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -1801,58 +1954,59 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 7%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.07,
 "max" : 0.07
 }
-},
-"attributes" : [ "Increases Bonus Experience by 7%" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "+6 Minimum Damage", "+6 Maximum Damage" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 4.0,
-"max" : 4.0
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 6.0,
+"max" : 6.0
 },
 "Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 4.0,
-"max" : 4.0
+"min" : 6.0,
+"max" : 6.0
 }
-},
-"attributes" : [ "+4 Minimum Damage", "+4 Maximum Damage" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+10 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 10.0,
 "max" : 10.0
 }
-},
-"attributes" : [ "+10 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_03",
 "name" : "Ruby",
 "icon" : "ruby_03_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/ruby",
 "requiredLevel" : 1,
 "itemLevel" : 30,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
+"Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
 },
@@ -1860,63 +2014,68 @@
 "min" : 3.0,
 "max" : 3.0
 },
-"Durability_Max" : {
+"Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 9%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.09,
 "max" : 0.09
 }
-},
-"attributes" : [ "Increases Bonus Experience by 9%" ]
-}, {
-"itemTypeId" : "Weapon",
-"itemTypeName" : "Weapon",
-"attributesRaw" : {
-"Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 8.0,
-"max" : 8.0
-},
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 8.0,
-"max" : 8.0
 }
-},
-"attributes" : [ "+8 Minimum Damage", "+8 Maximum Damage" ]
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+9 Minimum Damage", "+9 Maximum Damage" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 9.0,
+"max" : 9.0
+},
+"Damage_Weapon_Bonus_Delta#Physical" : {
+"min" : 9.0,
+"max" : 9.0
+}
+}
+}, {
+"attributes" : [ "+14 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 14.0,
 "max" : 14.0
 }
-},
-"attributes" : [ "+14 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_04",
 "name" : "Flawless Ruby",
 "icon" : "ruby_04_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 36,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -1924,64 +2083,65 @@
 "GemQuality" : {
 "min" : 4.0,
 "max" : 4.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 11%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.11,
 "max" : 0.11
 }
-},
-"attributes" : [ "Increases Bonus Experience by 11%" ]
-}, {
-"itemTypeId" : "Weapon",
-"itemTypeName" : "Weapon",
-"attributesRaw" : {
-"Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 10.0,
-"max" : 10.0
-},
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 10.0,
-"max" : 10.0
 }
-},
-"attributes" : [ "+10 Minimum Damage", "+10 Maximum Damage" ]
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+12 Minimum Damage", "+12 Maximum Damage" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 12.0,
+"max" : 12.0
+},
+"Damage_Weapon_Bonus_Delta#Physical" : {
+"min" : 12.0,
+"max" : 12.0
+}
+}
+}, {
+"attributes" : [ "+18 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 18.0,
 "max" : 18.0
 }
-},
-"attributes" : [ "+18 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_05",
 "name" : "Perfect Ruby",
 "icon" : "ruby_05_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 42,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "GemQuality" : {
 "min" : 5.0,
 "max" : 5.0
@@ -1989,61 +2149,58 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
-},
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 13%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.13,
 "max" : 0.13
 }
-},
-"attributes" : [ "Increases Bonus Experience by 13%" ]
-}, {
-"itemTypeId" : "Weapon",
-"itemTypeName" : "Weapon",
-"attributesRaw" : {
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 11.0,
-"max" : 11.0
-},
-"Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 11.0,
-"max" : 11.0
 }
-},
-"attributes" : [ "+11 Minimum Damage", "+11 Maximum Damage" ]
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+15 Minimum Damage", "+15 Maximum Damage" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Damage_Weapon_Bonus_Delta#Physical" : {
+"min" : 15.0,
+"max" : 15.0
+},
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 15.0,
+"max" : 15.0
+}
+}
+}, {
+"attributes" : [ "+22 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 22.0,
 "max" : 22.0
 }
-},
-"attributes" : [ "+22 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_06",
 "name" : "Radiant Ruby",
 "icon" : "ruby_06_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 48,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -2061,61 +2218,58 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 15%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.15,
 "max" : 0.15
 }
-},
-"attributes" : [ "Increases Bonus Experience by 15%" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "+18 Minimum Damage", "+18 Maximum Damage" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 12.0,
-"max" : 12.0
+"min" : 18.0,
+"max" : 18.0
 },
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 12.0,
-"max" : 12.0
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 18.0,
+"max" : 18.0
 }
-},
-"attributes" : [ "+12 Minimum Damage", "+12 Maximum Damage" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+26 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 26.0,
 "max" : 26.0
 }
-},
-"attributes" : [ "+26 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_07",
 "name" : "Square Ruby",
 "icon" : "ruby_07_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/square-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 54,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
-},
 "GemQuality" : {
 "min" : 7.0,
 "max" : 7.0
@@ -2123,57 +2277,62 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 17%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.17,
 "max" : 0.17
 }
-},
-"attributes" : [ "Increases Bonus Experience by 17%" ]
-}, {
-"itemTypeId" : "Weapon",
-"itemTypeName" : "Weapon",
-"attributesRaw" : {
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 13.0,
-"max" : 13.0
-},
-"Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 13.0,
-"max" : 13.0
 }
-},
-"attributes" : [ "+13 Minimum Damage", "+13 Maximum Damage" ]
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+21 Minimum Damage", "+21 Maximum Damage" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Damage_Weapon_Bonus_Delta#Physical" : {
+"min" : 21.0,
+"max" : 21.0
+},
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 21.0,
+"max" : 21.0
+}
+}
+}, {
+"attributes" : [ "+30 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 30.0,
 "max" : 30.0
 }
-},
-"attributes" : [ "+30 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_08",
 "name" : "Flawless Square Ruby",
 "icon" : "ruby_08_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-square-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 60,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -2191,58 +2350,59 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 19%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.19,
 "max" : 0.19
 }
-},
-"attributes" : [ "Increases Bonus Experience by 19%" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "+25 Minimum Damage", "+25 Maximum Damage" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 14.0,
-"max" : 14.0
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 25.0,
+"max" : 25.0
 },
 "Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 14.0,
-"max" : 14.0
+"min" : 25.0,
+"max" : 25.0
 }
-},
-"attributes" : [ "+14 Minimum Damage", "+14 Maximum Damage" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+34 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 34.0,
 "max" : 34.0
 }
-},
-"attributes" : [ "+34 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_09",
 "name" : "Perfect Square Ruby",
 "icon" : "ruby_09_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-square-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 61,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
+"Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
 },
@@ -2250,63 +2410,68 @@
 "min" : 9.0,
 "max" : 9.0
 },
-"Durability_Max" : {
+"Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 21%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.21,
 "max" : 0.21
 }
-},
-"attributes" : [ "Increases Bonus Experience by 21%" ]
-}, {
-"itemTypeId" : "Weapon",
-"itemTypeName" : "Weapon",
-"attributesRaw" : {
-"Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 15.0,
-"max" : 15.0
-},
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 15.0,
-"max" : 15.0
 }
-},
-"attributes" : [ "+15 Minimum Damage", "+15 Maximum Damage" ]
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+30 Minimum Damage", "+30 Maximum Damage" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 30.0,
+"max" : 30.0
+},
+"Damage_Weapon_Bonus_Delta#Physical" : {
+"min" : 30.0,
+"max" : 30.0
+}
+}
+}, {
+"attributes" : [ "+38 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 38.0,
 "max" : 38.0
 }
-},
-"attributes" : [ "+38 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_10",
 "name" : "Radiant Square Ruby",
 "icon" : "ruby_10_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-square-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 62,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -2314,64 +2479,65 @@
 "GemQuality" : {
 "min" : 10.0,
 "max" : 10.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 23%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.23,
 "max" : 0.23
 }
-},
-"attributes" : [ "Increases Bonus Experience by 23%" ]
-}, {
-"itemTypeId" : "Weapon",
-"itemTypeName" : "Weapon",
-"attributesRaw" : {
-"Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 16.0,
-"max" : 16.0
-},
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 16.0,
-"max" : 16.0
 }
-},
-"attributes" : [ "+16 Minimum Damage", "+16 Maximum Damage" ]
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+40 Minimum Damage", "+40 Maximum Damage" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 40.0,
+"max" : 40.0
+},
+"Damage_Weapon_Bonus_Delta#Physical" : {
+"min" : 40.0,
+"max" : 40.0
+}
+}
+}, {
+"attributes" : [ "+42 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 42.0,
 "max" : 42.0
 }
-},
-"attributes" : [ "+42 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_11",
 "name" : "Star Ruby",
 "icon" : "ruby_11_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/star-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 63,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "GemQuality" : {
 "min" : 11.0,
 "max" : 11.0
@@ -2379,61 +2545,58 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
-},
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 25%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.25,
 "max" : 0.25
 }
-},
-"attributes" : [ "Increases Bonus Experience by 25%" ]
-}, {
-"itemTypeId" : "Weapon",
-"itemTypeName" : "Weapon",
-"attributesRaw" : {
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 17.0,
-"max" : 17.0
-},
-"Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 17.0,
-"max" : 17.0
 }
-},
-"attributes" : [ "+17 Minimum Damage", "+17 Maximum Damage" ]
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+60 Minimum Damage", "+60 Maximum Damage" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Damage_Weapon_Bonus_Delta#Physical" : {
+"min" : 60.0,
+"max" : 60.0
+},
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 60.0,
+"max" : 60.0
+}
+}
+}, {
+"attributes" : [ "+46 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 46.0,
 "max" : 46.0
 }
-},
-"attributes" : [ "+46 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_12",
 "name" : "Flawless Star Ruby",
 "icon" : "ruby_12_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-star-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 64,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -2451,61 +2614,58 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 27%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.27,
 "max" : 0.27
 }
-},
-"attributes" : [ "Increases Bonus Experience by 27%" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "+80 Minimum Damage", "+80 Maximum Damage" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 18.0,
-"max" : 18.0
+"min" : 80.0,
+"max" : 80.0
 },
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 18.0,
-"max" : 18.0
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 80.0,
+"max" : 80.0
 }
-},
-"attributes" : [ "+18 Minimum Damage", "+18 Maximum Damage" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+50 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 50.0,
 "max" : 50.0
 }
-},
-"attributes" : [ "+50 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_13",
 "name" : "Perfect Star Ruby",
 "icon" : "ruby_13_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-star-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 65,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
-},
 "GemQuality" : {
 "min" : 13.0,
 "max" : 13.0
@@ -2513,57 +2673,62 @@
 "Durability_Max" : {
 "min" : 0.0,
 "max" : 0.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 29%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.29,
 "max" : 0.29
 }
-},
-"attributes" : [ "Increases Bonus Experience by 29%" ]
-}, {
-"itemTypeId" : "Weapon",
-"itemTypeName" : "Weapon",
-"attributesRaw" : {
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 19.0,
-"max" : 19.0
-},
-"Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 19.0,
-"max" : 19.0
 }
-},
-"attributes" : [ "+19 Minimum Damage", "+19 Maximum Damage" ]
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+100 Minimum Damage", "+100 Maximum Damage" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Damage_Weapon_Bonus_Delta#Physical" : {
+"min" : 100.0,
+"max" : 100.0
+},
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 100.0,
+"max" : 100.0
+}
+}
+}, {
+"attributes" : [ "+54 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 54.0,
 "max" : 54.0
 }
-},
-"attributes" : [ "+54 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Ruby_14",
 "name" : "Radiant Star Ruby",
 "icon" : "ruby_14_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-star-ruby",
 "requiredLevel" : 1,
 "itemLevel" : 66,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -2581,57 +2746,128 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "Increases Bonus Experience by 31%" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Experience_Bonus_Percent" : {
 "min" : 0.31,
 "max" : 0.31
 }
-},
-"attributes" : [ "Increases Bonus Experience by 31%" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "+130 Minimum Damage", "+130 Maximum Damage" ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
-"Damage_Weapon_Bonus_Min#Physical" : {
-"min" : 20.0,
-"max" : 20.0
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 130.0,
+"max" : 130.0
 },
 "Damage_Weapon_Bonus_Delta#Physical" : {
-"min" : 20.0,
-"max" : 20.0
+"min" : 130.0,
+"max" : 130.0
 }
-},
-"attributes" : [ "+20 Minimum Damage", "+20 Maximum Damage" ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+58 Strength" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Strength_Item" : {
 "min" : 58.0,
 "max" : 58.0
 }
-},
-"attributes" : [ "+58 Strength" ]
+}
 } ],
+"bonusAffixesMax" : 0,
+"gems" : [ ]
+},{
+"id" : "Ruby_15",
+"name" : "Marquise Ruby",
+"icon" : "ruby_15_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/marquise-ruby",
+"requiredLevel" : 1,
+"itemLevel" : 67,
+"bonusAffixes" : 0,
+"typeName" : "Gem",
+"type" : {
+"twoHanded" : false,
+"id" : "Gem"
+},
+"attributes" : [ ],
+"attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
+"GemQuality" : {
+"min" : 15.0,
+"max" : 15.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
+}
+},
+"socketEffects" : [ {
+"attributes" : [ "Increases Bonus Experience by 33%" ],
+"itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
+"attributesRaw" : {
+"Experience_Bonus_Percent" : {
+"min" : 0.33,
+"max" : 0.33
+}
+}
+}, {
+"attributes" : [ "+160 Minimum Damage", "+160 Maximum Damage" ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Damage_Weapon_Bonus_Min_X1#Physical" : {
+"min" : 160.0,
+"max" : 160.0
+},
+"Damage_Weapon_Bonus_Delta#Physical" : {
+"min" : 160.0,
+"max" : 160.0
+}
+}
+}, {
+"attributes" : [ "+62 Strength" ],
+"itemTypeName" : "Other",
+"itemTypeId" : "All",
+"attributesRaw" : {
+"Strength_Item" : {
+"min" : 62.0,
+"max" : 62.0
+}
+}
+} ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_01",
 "name" : "Chipped Topaz",
 "icon" : "topaz_01_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "item/chipped-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 14,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -2639,57 +2875,54 @@
 "GemQuality" : {
 "min" : 1.0,
 "max" : 1.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "5% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.05,
 "max" : 0.05
 }
-},
-"attributes" : [ "5% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 2 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 2.0,
 "max" : 2.0
 }
-},
-"attributes" : [ "Melee attackers take 2 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+6 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 6.0,
 "max" : 6.0
 }
-},
-"attributes" : [ "+6 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_02",
 "name" : "Flawed Topaz",
 "icon" : "topaz_02_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawed-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 22,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -2707,50 +2940,51 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "7% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.07,
 "max" : 0.07
 }
-},
-"attributes" : [ "7% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 3 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 3.0,
 "max" : 3.0
 }
-},
-"attributes" : [ "Melee attackers take 3 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+10 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 10.0,
 "max" : 10.0
 }
-},
-"attributes" : [ "+10 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_03",
 "name" : "Topaz",
 "icon" : "topaz_03_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/topaz",
 "requiredLevel" : 1,
 "itemLevel" : 30,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -2768,50 +3002,51 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "9% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.09,
 "max" : 0.09
 }
-},
-"attributes" : [ "9% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 6 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 6.0,
 "max" : 6.0
 }
-},
-"attributes" : [ "Melee attackers take 6 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+14 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 14.0,
 "max" : 14.0
 }
-},
-"attributes" : [ "+14 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_04",
 "name" : "Flawless Topaz",
 "icon" : "topaz_04_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 36,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -2829,53 +3064,58 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "11% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.11,
 "max" : 0.11
 }
-},
-"attributes" : [ "11% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 10 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 10.0,
 "max" : 10.0
 }
-},
-"attributes" : [ "Melee attackers take 10 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+18 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 18.0,
 "max" : 18.0
 }
-},
-"attributes" : [ "+18 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_05",
 "name" : "Perfect Topaz",
 "icon" : "topaz_05_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 42,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -2883,57 +3123,54 @@
 "GemQuality" : {
 "min" : 5.0,
 "max" : 5.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "13% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.13,
 "max" : 0.13
 }
-},
-"attributes" : [ "13% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 15 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 15.0,
 "max" : 15.0
 }
-},
-"attributes" : [ "Melee attackers take 15 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+22 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 22.0,
 "max" : 22.0
 }
-},
-"attributes" : [ "+22 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_06",
 "name" : "Radiant Topaz",
 "icon" : "topaz_06_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 48,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -2941,63 +3178,68 @@
 "min" : 0.0,
 "max" : 0.0
 },
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
-},
 "GemQuality" : {
 "min" : 6.0,
 "max" : 6.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "15% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.15,
 "max" : 0.15
 }
-},
-"attributes" : [ "15% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 30 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 30.0,
 "max" : 30.0
 }
-},
-"attributes" : [ "Melee attackers take 30 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+26 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 26.0,
 "max" : 26.0
 }
-},
-"attributes" : [ "+26 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_07",
 "name" : "Square Topaz",
 "icon" : "topaz_07_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/square-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 54,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -3005,57 +3247,54 @@
 "GemQuality" : {
 "min" : 7.0,
 "max" : 7.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "17% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.17,
 "max" : 0.17
 }
-},
-"attributes" : [ "17% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 50 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 50.0,
 "max" : 50.0
 }
-},
-"attributes" : [ "Melee attackers take 50 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+30 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 30.0,
 "max" : 30.0
 }
-},
-"attributes" : [ "+30 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_08",
 "name" : "Flawless Square Topaz",
 "icon" : "topaz_08_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-square-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 60,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -3073,50 +3312,51 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "19% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.19,
 "max" : 0.19
 }
-},
-"attributes" : [ "19% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 100 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 100.0,
 "max" : 100.0
 }
-},
-"attributes" : [ "Melee attackers take 100 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+34 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 34.0,
 "max" : 34.0
 }
-},
-"attributes" : [ "+34 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_09",
 "name" : "Perfect Square Topaz",
 "icon" : "topaz_09_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-square-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 61,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -3134,50 +3374,51 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "21% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.21,
 "max" : 0.21
 }
-},
-"attributes" : [ "21% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 200 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 200.0,
 "max" : 200.0
 }
-},
-"attributes" : [ "Melee attackers take 200 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+38 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 38.0,
 "max" : 38.0
 }
-},
-"attributes" : [ "+38 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_10",
 "name" : "Radiant Square Topaz",
 "icon" : "topaz_10_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-square-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 62,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -3195,53 +3436,58 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "23% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.23,
 "max" : 0.23
 }
-},
-"attributes" : [ "23% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 350 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 350.0,
 "max" : 350.0
 }
-},
-"attributes" : [ "Melee attackers take 350 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+42 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 42.0,
 "max" : 42.0
 }
-},
-"attributes" : [ "+42 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_11",
 "name" : "Star Topaz",
 "icon" : "topaz_11_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/star-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 63,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -3249,57 +3495,54 @@
 "GemQuality" : {
 "min" : 11.0,
 "max" : 11.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "25% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.25,
 "max" : 0.25
 }
-},
-"attributes" : [ "25% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 600 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 600.0,
 "max" : 600.0
 }
-},
-"attributes" : [ "Melee attackers take 600 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+46 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 46.0,
 "max" : 46.0
 }
-},
-"attributes" : [ "+46 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_12",
 "name" : "Flawless Star Topaz",
 "icon" : "topaz_12_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/flawless-star-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 64,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -3307,63 +3550,68 @@
 "min" : 0.0,
 "max" : 0.0
 },
-"Durability_Cur" : {
-"min" : 0.0,
-"max" : 0.0
-},
 "GemQuality" : {
 "min" : 12.0,
 "max" : 12.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "27% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.27,
 "max" : 0.27
 }
-},
-"attributes" : [ "27% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 900 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 900.0,
 "max" : 900.0
 }
-},
-"attributes" : [ "Melee attackers take 900 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+50 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 50.0,
 "max" : 50.0
 }
-},
-"attributes" : [ "+50 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_13",
 "name" : "Perfect Star Topaz",
 "icon" : "topaz_13_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/perfect-star-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 65,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
 "Durability_Cur" : {
 "min" : 0.0,
 "max" : 0.0
@@ -3371,57 +3619,54 @@
 "GemQuality" : {
 "min" : 13.0,
 "max" : 13.0
-},
-"Durability_Max" : {
-"min" : 0.0,
-"max" : 0.0
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "29% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.29,
 "max" : 0.29
 }
-},
-"attributes" : [ "29% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 1250 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 1250.0,
 "max" : 1250.0
 }
-},
-"attributes" : [ "Melee attackers take 1250 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+54 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 54.0,
 "max" : 54.0
 }
-},
-"attributes" : [ "+54 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 },{
 "id" : "Topaz_14",
 "name" : "Radiant Star Topaz",
 "icon" : "topaz_14_demonhunter_male",
-"displayColor" : "white",
+"displayColor" : "blue",
 "tooltipParams" : "recipe/radiant-star-topaz",
 "requiredLevel" : 1,
 "itemLevel" : 66,
 "bonusAffixes" : 0,
 "typeName" : "Gem",
 "type" : {
-"id" : "Gem",
-"twoHanded" : false
+"twoHanded" : false,
+"id" : "Gem"
 },
 "attributes" : [ ],
 "attributesRaw" : {
@@ -3439,35 +3684,98 @@
 }
 },
 "socketEffects" : [ {
-"itemTypeId" : "Helm",
+"attributes" : [ "31% Better Chance of Finding Magical Items" ],
 "itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
 "attributesRaw" : {
 "Magic_Find" : {
 "min" : 0.31,
 "max" : 0.31
 }
-},
-"attributes" : [ "31% Better Chance of Finding Magical Items" ]
+}
 }, {
-"itemTypeId" : "Weapon",
+"attributes" : [ "Melee attackers take 1800 damage per hit." ],
 "itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
 "attributesRaw" : {
 "Thorns_Fixed#Physical" : {
 "min" : 1800.0,
 "max" : 1800.0
 }
-},
-"attributes" : [ "Melee attackers take 1800 damage per hit." ]
+}
 }, {
-"itemTypeId" : "All",
+"attributes" : [ "+58 Intelligence" ],
 "itemTypeName" : "Other",
+"itemTypeId" : "All",
 "attributesRaw" : {
 "Intelligence_Item" : {
 "min" : 58.0,
 "max" : 58.0
 }
-},
-"attributes" : [ "+58 Intelligence" ]
+}
 } ],
+"bonusAffixesMax" : 0,
+"gems" : [ ]
+},{
+"id" : "Topaz_15",
+"name" : "Marquise Topaz",
+"icon" : "topaz_15_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/marquise-topaz",
+"requiredLevel" : 1,
+"itemLevel" : 67,
+"bonusAffixes" : 0,
+"typeName" : "Gem",
+"type" : {
+"twoHanded" : false,
+"id" : "Gem"
+},
+"attributes" : [ ],
+"attributesRaw" : {
+"GemQuality" : {
+"min" : 15.0,
+"max" : 15.0
+},
+"Durability_Max" : {
+"min" : 0.0,
+"max" : 0.0
+},
+"Durability_Cur" : {
+"min" : 0.0,
+"max" : 0.0
+}
+},
+"socketEffects" : [ {
+"attributes" : [ "33% Better Chance of Finding Magical Items" ],
+"itemTypeName" : "Helm",
+"itemTypeId" : "Helm",
+"attributesRaw" : {
+"Magic_Find" : {
+"min" : 0.33,
+"max" : 0.33
+}
+}
+}, {
+"attributes" : [ "Melee attackers take 2500 damage per hit." ],
+"itemTypeName" : "Weapon",
+"itemTypeId" : "Weapon",
+"attributesRaw" : {
+"Thorns_Fixed#Physical" : {
+"min" : 2500.0,
+"max" : 2500.0
+}
+}
+}, {
+"attributes" : [ "+62 Intelligence" ],
+"itemTypeName" : "Other",
+"itemTypeId" : "All",
+"attributesRaw" : {
+"Intelligence_Item" : {
+"min" : 62.0,
+"max" : 62.0
+}
+}
+} ],
+"bonusAffixesMax" : 0,
 "gems" : [ ]
 }]

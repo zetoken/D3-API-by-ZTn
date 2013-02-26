@@ -309,7 +309,7 @@ namespace ZTn.BNet.D3.Calculator
 
         private void guiItemTypeId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // re-generates gems
+            // re-generates data
             gems1 = new List<Item>();
             gems1.Add(new Item(new ItemAttributes()) { name = "( no gem )" });
             if (weaponTypeIdList.IndexOf(guiItemTypeId.Text) >= 0)

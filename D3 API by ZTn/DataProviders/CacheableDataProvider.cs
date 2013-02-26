@@ -14,7 +14,7 @@ namespace ZTn.BNet.D3.DataProviders
 
         ID3DataProvider dataProvider;
 
-        public Boolean online = true;
+        public OnlineMode onlineMode = OnlineMode.Online;
 
         #endregion
 
@@ -107,7 +107,7 @@ namespace ZTn.BNet.D3.DataProviders
         {
             String cachedFilePath = getCacheStoragePath() + getCachedFileName(url);
 
-            if (online)
+            if ((onlineMode == OnlineMode.Online) || ((onlineMode == OnlineMode.OnlineIfMissing) && !File.Exists(cachedFilePath)))
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(cachedFilePath));
 

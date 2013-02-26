@@ -63,6 +63,7 @@
     <Compile Include="DataProviders\BNetFailureObjectReturned.cs" />
     <Compile Include="DataProviders\CacheableDataProvider.cs" />
     <Compile Include="DataProviders\BNetResponseFailed.cs" />
+    <Compile Include="DataProviders\OnlineMode.cs" />
     <Compile Include="DataProviders\FileNotInCacheException.cs" />
     <Compile Include="DataProviders\HttpRequestDataProvider.cs" />
     <Compile Include="Careers\Career.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Careers\ClassTimePlayed.cs" />
     <Compile Include="DataProviders\ID3DataProvider.cs" />
     <Compile Include="FailureObject.cs" />
+    <Compile Include="Helpers\JsonHelpers.cs" />
     <Compile Include="Heroes\HeroClass.cs" />
     <Compile Include="Heroes\HeroGender.cs" />
     <Compile Include="Heroes\HeroKills.cs" />
