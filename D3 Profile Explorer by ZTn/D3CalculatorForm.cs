@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Calculator.Sets;
@@ -122,7 +123,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
             KnownSets knownSets = KnownSets.getKnownSetsFromJsonFile("d3set.json");
-            guiSetBonusEditor.setEditedItem(new Item(d3Calculator.heroItemStats.getActivatedSetBonus(knownSets)));
+            guiSetBonusEditor.setEditedItem(new Item(d3Calculator.heroStatsItem.getActivatedSetBonus(knownSets)));
 
             populatePassiveSkills();
             populateActiveSkills();
@@ -240,7 +241,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (guiSkillPoweredArmor.Checked)
                 activeSkills.Add(new D3.Calculator.Skills.Followers.PoweredArmor());
 
-            guiCalculatedDPS.Text = d3Calculator.getHeroDPS(passiveSkills, activeSkills).ToString();
+            guiCalculatedDPS.Text = d3Calculator.getHeroDPS(passiveSkills, activeSkills).min.ToString();
 
             updateItemsSummary(d3Calculator);
 
@@ -251,34 +252,31 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             if (hero.skills.active != null)
             {
-                foreach (ActiveSkill activeSkill in hero.skills.active)
+                foreach (ActiveSkill activeSkill in hero.skills.active.Where(active => active.skill != null))
                 {
-                    if (activeSkill.skill != null)
+                    switch (activeSkill.skill.slug)
                     {
-                        switch (activeSkill.skill.slug)
-                        {
-                            // Monk
-                            case "mantra-of-healing":
-                                switch (activeSkill.rune.slug)
-                                {
-                                    case "":
-                                        break;
-                                    default:
-                                        break;
-                                }
-                                break;
-                            case "mystic-ally":
-                                switch (activeSkill.rune.slug)
-                                {
-                                    case "":
-                                        break;
-                                    default:
-                                        break;
-                                }
-                                break;
-                            default:
-                                break;
-                        }
+                        // Monk
+                        case "mantra-of-healing":
+                            switch (activeSkill.rune.slug)
+                            {
+                                case "":
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        case "mystic-ally":
+                            switch (activeSkill.rune.slug)
+                            {
+                                case "":
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
@@ -300,65 +298,62 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             if (hero.skills.passive != null)
             {
-                foreach (PassiveSkill passiveSkill in hero.skills.passive)
+                foreach (PassiveSkill passiveSkill in hero.skills.passive.Where(passive => passive.skill != null))
                 {
-                    if (passiveSkill.skill != null)
+                    switch (passiveSkill.skill.slug)
                     {
-                        switch (passiveSkill.skill.slug)
-                        {
-                            // Barbarian
-                            case "weapons-master":
-                                guiSkillWeaponsMaster.Checked = true;
-                                break;
-                            case "nerves-of-steel":
-                                guiSkillNervesOfSteel.Checked = true;
-                                break;
-                            case "ruthless":
-                                guiSkillRuthless.Checked = true;
-                                break;
-                            case "tough-as-nails":
-                                guiSkillToughAsNails.Checked = true;
-                                break;
+                        // Barbarian
+                        case "weapons-master":
+                            guiSkillWeaponsMaster.Checked = true;
+                            break;
+                        case "nerves-of-steel":
+                            guiSkillNervesOfSteel.Checked = true;
+                            break;
+                        case "ruthless":
+                            guiSkillRuthless.Checked = true;
+                            break;
+                        case "tough-as-nails":
+                            guiSkillToughAsNails.Checked = true;
+                            break;
 
-                            // Demon hunter
-                            case "archery":
-                                guiSkillArchery.Checked = true;
-                                break;
-                            case "perfectionist":
-                                guiSkillPerfectionnist.Checked = true;
-                                break;
-                            case "sharp-shooter":
-                                guiSkillSharpShooter.Checked = true;
-                                break;
-                            case "steady-aim":
-                                guiSkillSteadyAim.Checked = true;
-                                break;
+                        // Demon hunter
+                        case "archery":
+                            guiSkillArchery.Checked = true;
+                            break;
+                        case "perfectionist":
+                            guiSkillPerfectionnist.Checked = true;
+                            break;
+                        case "sharp-shooter":
+                            guiSkillSharpShooter.Checked = true;
+                            break;
+                        case "steady-aim":
+                            guiSkillSteadyAim.Checked = true;
+                            break;
 
-                            // Monk
-                            case "one-with-everything":
-                                guiSkillOneWithEverything.Checked = true;
-                                break;
-                            case "seize-the-initiative":
-                                guiSkillSeizeTheInitiative.Checked = true;
-                                break;
-                            case "the-guardians-path":
-                                break;
-                            default:
-                                break;
+                        // Monk
+                        case "one-with-everything":
+                            guiSkillOneWithEverything.Checked = true;
+                            break;
+                        case "seize-the-initiative":
+                            guiSkillSeizeTheInitiative.Checked = true;
+                            break;
+                        case "the-guardians-path":
+                            break;
+                        default:
+                            break;
 
-                            // Witch doctor
-                            case "pierce-the-veil":
-                                guiSkillPierceTheVeil.Checked = true;
-                                break;
+                        // Witch doctor
+                        case "pierce-the-veil":
+                            guiSkillPierceTheVeil.Checked = true;
+                            break;
 
-                            // Wizard
-                            case "glass-cannon":
-                                guiSkillGlassCannon.Checked = true;
-                                break;
-                            case "galvanizing-ward":
-                                guiSkillGalvanizingWard.Checked = true;
-                                break;
-                        }
+                        // Wizard
+                        case "glass-cannon":
+                            guiSkillGlassCannon.Checked = true;
+                            break;
+                        case "galvanizing-ward":
+                            guiSkillGalvanizingWard.Checked = true;
+                            break;
                     }
                 }
             }
@@ -366,7 +361,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void updateItemsSummary(D3Calculator d3Calculator)
         {
-            ItemAttributes attr = d3Calculator.heroItemStats.attributesRaw;
+            ItemAttributes attr = d3Calculator.heroStatsItem.attributesRaw;
 
             populateCalculatedData(guiItemsDexterity, attr.dexterityItem);
             populateCalculatedData(guiItemsIntelligence, attr.intelligenceItem);
@@ -392,24 +387,24 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void updateCalculationResults(D3Calculator d3Calculator)
         {
-            ItemAttributes attr = d3Calculator.heroItemStats.attributesRaw;
+            ItemAttributes attr = d3Calculator.heroStatsItem.attributesRaw;
 
-            guiCalculatedAttackPerSecond.Text = d3Calculator.getActualAttackSpeed().ToString();
-            guiCalcultatedDamageMin.Text = (d3Calculator.heroItemStats.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal()).ToString();
-            guiCalcultatedDamageMax.Text = (d3Calculator.heroItemStats.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal()).ToString();
-            guiCalcultatedDamageCriticMin.Text = (d3Calculator.heroItemStats.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic()).ToString();
-            guiCalcultatedDamageCriticMax.Text = (d3Calculator.heroItemStats.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic()).ToString();
-            guiCalculatedHitpoints.Text = d3Calculator.getHeroHitpoints().ToString();
+            guiCalculatedAttackPerSecond.Text = d3Calculator.getActualAttackSpeed().min.ToString();
+            populateCalculatedData(guiCalcultatedDamageMin, d3Calculator.heroStatsItem.getWeaponDamageMin() * d3Calculator.getDamageMultiplierNormal());
+            populateCalculatedData(guiCalcultatedDamageMax, d3Calculator.heroStatsItem.getWeaponDamageMax() * d3Calculator.getDamageMultiplierNormal());
+            populateCalculatedData(guiCalcultatedDamageCriticMin, d3Calculator.heroStatsItem.getWeaponDamageMin() * d3Calculator.getDamageMultiplierCritic());
+            populateCalculatedData(guiCalcultatedDamageCriticMax, d3Calculator.heroStatsItem.getWeaponDamageMax() * d3Calculator.getDamageMultiplierCritic());
+            populateCalculatedData(guiCalculatedHitpoints, d3Calculator.getHeroHitpoints());
             guiCalculatedDodge.Text = d3Calculator.getHeroDodge().ToString();
 
-            guiCalculatedArmor.Text = d3Calculator.getHeroArmor().ToString();
-            guiCalculatedResistance_Arcane.Text = d3Calculator.getHeroResistance("Arcane").ToString();
-            guiCalculatedResistance_Cold.Text = d3Calculator.getHeroResistance("Cold").ToString();
-            guiCalculatedResistance_Fire.Text = d3Calculator.getHeroResistance("Fire").ToString();
-            guiCalculatedResistance_Lightning.Text = d3Calculator.getHeroResistance("Lightning").ToString();
-            guiCalculatedResistance_Physical.Text = d3Calculator.getHeroResistance("Physical").ToString();
-            guiCalculatedResistance_Poison.Text = d3Calculator.getHeroResistance("Poison").ToString();
-            guiCalculatedResistance_All.Text = d3Calculator.getHeroResistance_All().ToString();
+            populateCalculatedData(guiCalculatedArmor, d3Calculator.getHeroArmor());
+            populateCalculatedData(guiCalculatedResistance_Arcane, d3Calculator.getHeroResistance("Arcane"));
+            populateCalculatedData(guiCalculatedResistance_Cold, d3Calculator.getHeroResistance("Cold"));
+            populateCalculatedData(guiCalculatedResistance_Fire, d3Calculator.getHeroResistance("Fire"));
+            populateCalculatedData(guiCalculatedResistance_Lightning, d3Calculator.getHeroResistance("Lightning"));
+            populateCalculatedData(guiCalculatedResistance_Physical, d3Calculator.getHeroResistance("Physical"));
+            populateCalculatedData(guiCalculatedResistance_Poison, d3Calculator.getHeroResistance("Poison"));
+            populateCalculatedData(guiCalculatedResistance_All, d3Calculator.getHeroResistance_All());
 
             guiCalculatedDamageReduction_Armor.Text = (100 * d3Calculator.getHeroDamageReduction_Armor(hero.level)).ToString();
             guiCalculatedDamageReduction_Arcane.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Arcane")).ToString();
@@ -424,7 +419,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             populateCalculatedData(guiCalculatedBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
 
             guiCalculatedEffectiveHitpoints.Text = Math.Round(d3Calculator.getHeroEffectiveHitpoints(hero.level)).ToString();
-            guiCalculatedDPSEHPRatio.Text = Math.Round(d3Calculator.getHeroDPS() * d3Calculator.getHeroEffectiveHitpoints(hero.level) / 1000000).ToString();
+            guiCalculatedDPSEHPRatio.Text = Math.Round(d3Calculator.getHeroDPS().min * d3Calculator.getHeroEffectiveHitpoints(hero.level) / 1000000).ToString();
         }
     }
 }

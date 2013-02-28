@@ -37,11 +37,8 @@ namespace ZTn.BNet.D3.Calculator.Gems
                     _helmSocketedGems = new List<Item>();
                     foreach (Item gem in knownGems.gems)
                     {
-                        foreach (SocketEffect effect in gem.socketEffects)
-                        {
-                            if (effect.itemTypeId == "Helm")
-                                _helmSocketedGems.Add(new Item(effect.attributesRaw) { name = effect.attributes[0], id = gem.id });
-                        }
+                        foreach (SocketEffect effect in gem.socketEffects.Where(effect => effect.itemTypeId == "Helm"))
+                            _helmSocketedGems.Add(new Item(effect.attributesRaw) { name = effect.attributes[0], id = gem.id });
                     }
                 }
                 return _helmSocketedGems;
@@ -56,11 +53,8 @@ namespace ZTn.BNet.D3.Calculator.Gems
                     _otherSocketedGems = new List<Item>();
                     foreach (Item gem in knownGems.gems)
                     {
-                        foreach (SocketEffect effect in gem.socketEffects)
-                        {
-                            if (effect.itemTypeId == "All")
-                                _otherSocketedGems.Add(new Item(effect.attributesRaw) { name = effect.attributes[0], id = gem.id });
-                        }
+                        foreach (SocketEffect effect in gem.socketEffects.Where(effect => effect.itemTypeId == "All"))
+                            _otherSocketedGems.Add(new Item(effect.attributesRaw) { name = effect.attributes[0], id = gem.id });
                     }
                 }
                 return _otherSocketedGems;
@@ -73,13 +67,11 @@ namespace ZTn.BNet.D3.Calculator.Gems
                 if (_weaponSocketedGems == null)
                 {
                     _weaponSocketedGems = new List<Item>();
+
                     foreach (Item gem in knownGems.gems)
                     {
-                        foreach (SocketEffect effect in gem.socketEffects)
-                        {
-                            if (effect.itemTypeId == "Weapon")
-                                _weaponSocketedGems.Add(new Item(effect.attributesRaw) { name = effect.attributes[0], id = gem.id });
-                        }
+                        foreach (SocketEffect effect in gem.socketEffects.Where(effect => effect.itemTypeId == "Weapon"))
+                            _weaponSocketedGems.Add(new Item(effect.attributesRaw) { name = effect.attributes[0], id = gem.id });
                     }
                 }
                 return _weaponSocketedGems;

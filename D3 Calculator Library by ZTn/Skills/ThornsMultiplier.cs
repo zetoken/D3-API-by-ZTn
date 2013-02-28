@@ -32,16 +32,15 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            Item stuff = calculator.heroItemStats;
+            Item stuff = calculator.heroStatsItem;
             ItemAttributes attr = new ItemAttributes();
 
             foreach (String resist in damageResists)
             {
                 foreach (String thorns in thornsPrefixes)
                 {
-                    ItemValueRange value = stuff.getAttributeRangeByName(thorns + resist);
-                    if (value != null)
-                        attr.setAttributeByName(thorns + resist, multiplier * value);
+                    ItemValueRange value = stuff.getAttributeByName(thorns + resist);
+                    attr.setAttributeByName(thorns + resist, multiplier * value);
                 }
             }
 

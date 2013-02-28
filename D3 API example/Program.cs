@@ -74,13 +74,13 @@ namespace ZTn.BNet.D3.Example
             KnownSets knownSets = KnownSets.getKnownSetsFromJsonFile("d3set.json");
 
             Console.WriteLine("Calculating set bonus");
-            Item setBonus = new Item(d3Calculator.heroItemStats.getActivatedSetBonus(knownSets));
+            Item setBonus = new Item(d3Calculator.heroStatsItem.getActivatedSetBonus(knownSets));
             items.Add(setBonus);
 
             d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
 
             Console.WriteLine("Calculation results");
-            double dps = d3Calculator.getHeroDPS();
+            ItemValueRange dps = d3Calculator.getHeroDPS();
             Console.WriteLine("Dexterity : {0}", d3Calculator.getHeroDexterity());
             Console.WriteLine("DPS : {0}", dps);
         }

@@ -9,12 +9,12 @@ namespace ZTn.BNet.D3.Calculator.Skills.Wizard
 
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            ItemAttributes stuff = calculator.heroItemStats.attributesRaw;
+            ItemAttributes stuff = calculator.heroStatsItem.attributesRaw;
             ItemAttributes attr;
 
             attr = (new DamageMultiplier(multiplier)).getBonus(calculator);
 
-            attr.armorBonusItem = new ItemValueRange(malusMultiplier * calculator.getHeroArmor());
+            attr.armorBonusItem = malusMultiplier * calculator.getHeroArmor();
 
             attr += (new ResistancesMultiplier(malusMultiplier)).getBonus(calculator);
 

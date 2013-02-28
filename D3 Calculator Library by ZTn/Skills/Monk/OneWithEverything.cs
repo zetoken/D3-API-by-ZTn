@@ -6,30 +6,30 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
     {
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            ItemAttributes stuff = calculator.heroItemStats.attributesRaw;
+            ItemAttributes stuff = calculator.heroStatsItem.attributesRaw;
             ItemAttributes attr = new ItemAttributes();
 
             double maxResist = 0;
 
-            double resistanceArcane = calculator.getHeroResistance("Arcane");
+            double resistanceArcane = calculator.getHeroResistance("Arcane").min;
             if (resistanceArcane > maxResist) maxResist = resistanceArcane;
 
-            double resistanceCold = calculator.getHeroResistance("Cold");
+            double resistanceCold = calculator.getHeroResistance("Cold").min;
             if (resistanceCold > maxResist) maxResist = resistanceCold;
 
-            double resistanceFire = calculator.getHeroResistance("Fire");
+            double resistanceFire = calculator.getHeroResistance("Fire").min;
             if (resistanceFire > maxResist) maxResist = resistanceFire;
 
-            double resistanceLightning = calculator.getHeroResistance("Lightning");
+            double resistanceLightning = calculator.getHeroResistance("Lightning").min;
             if (resistanceLightning > maxResist) maxResist = resistanceLightning;
 
-            double resistancePhysical = calculator.getHeroResistance("Physical");
+            double resistancePhysical = calculator.getHeroResistance("Physical").min;
             if (resistancePhysical > maxResist) maxResist = resistancePhysical;
 
-            double resistancePoison = calculator.getHeroResistance("Poison");
+            double resistancePoison = calculator.getHeroResistance("Poison").min;
             if (resistancePoison > maxResist) maxResist = resistancePoison;
 
-            double resistanceAll = calculator.getHeroResistance_All();
+            double resistanceAll = calculator.getHeroResistance_All().min;
 
             if (stuff.resistance_Arcane != null)
                 attr.resistance_Arcane = ItemValueRange.Zero - stuff.resistance_Arcane;

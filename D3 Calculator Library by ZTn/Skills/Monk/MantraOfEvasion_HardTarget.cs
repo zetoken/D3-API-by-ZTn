@@ -6,7 +6,7 @@ using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.Monk
 {
-    public class MantraOfEvasion_HardTarget:D3SkillModifier
+    public class MantraOfEvasion_HardTarget : D3SkillModifier
     {
         readonly double multiplier = 0.20;
 
@@ -14,7 +14,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
         {
             ItemAttributes attr = new ItemAttributes();
 
-            attr.armorBonusItem = new ItemValueRange(multiplier * calculator.getHeroArmor());
+            attr.armorBonusItem = multiplier * calculator.getHeroArmor();
 
             return attr;
         }

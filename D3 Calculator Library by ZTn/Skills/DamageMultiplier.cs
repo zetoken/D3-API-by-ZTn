@@ -5,6 +5,9 @@ using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills
 {
+    /// <summary>
+    /// Skill modifier that brings % damage bonus
+    /// </summary>
     public class DamageMultiplier : D3SkillModifier
     {
         #region >> Constants
@@ -36,16 +39,15 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            Item stuff = calculator.heroItemStats;
+            Item stuff = calculator.heroStatsItem;
             ItemAttributes attr = new ItemAttributes();
 
             foreach (String resist in damageResists)
             {
                 foreach (String damage in damagePrefixes)
                 {
-                    ItemValueRange value = stuff.getAttributeRangeByName(damage + resist);
-                    if (value != null)
-                        attr.setAttributeByName(damage + resist, multiplier * value);
+                    ItemValueRange value = stuff.getAttributeByName(damage + resist);
+                    attr.setAttributeByName(damage + resist, multiplier * value);
                 }
             }
 

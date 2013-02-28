@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 using ZTn.BNet.D3.Calculator.Gems;
@@ -69,14 +70,7 @@ namespace ZTn.BNet.D3.Calculator
         {
             if (equippedGem != null)
             {
-                foreach (Item gem in refGems)
-                {
-                    if (equippedGem.id == gem.id)
-                    {
-                        comboBox.SelectedItem = gem;
-                        break;
-                    }
-                }
+                comboBox.SelectedItem = refGems.Where(g => equippedGem.id == g.id).First();
             }
         }
 

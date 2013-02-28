@@ -6,7 +6,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
         public override Items.ItemAttributes getBonus(D3Calculator calculator)
         {
             D3SkillModifier skillModifier;
-            switch (calculator.heroItemStats.mainHand.type.id)
+            switch (calculator.heroStatsItem.mainHand.type.id)
             {
                 case "Bow":
                     skillModifier = new Archery_Bow();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Sets;
@@ -51,11 +52,11 @@ namespace ZTn.BNet.D3.Calculator
 
         #endregion
 
-        protected double computeWeaponAttackPerSecondForAmbidextry()
+        protected ItemValueRange computeWeaponAttackPerSecondForAmbidextry()
         {
-            double weaponAttackSpeed;
+            ItemValueRange weaponAttackSpeed;
             // Right formula: 2 * 1 / ( 1 / main + 1 / off ) [found by ZTn, nowhere else at that time]
-            weaponAttackSpeed = 2 * 1 / (1 / mainHand.getRawWeaponAttackPerSecond().min + 1 / offHand.getRawWeaponAttackPerSecond().min);
+            weaponAttackSpeed = 2 * 1 / (1 / mainHand.getRawWeaponAttackPerSecond() + 1 / offHand.getRawWeaponAttackPerSecond());
 
             return weaponAttackSpeed;
         }
@@ -70,32 +71,30 @@ namespace ZTn.BNet.D3.Calculator
             ItemAttributes oattr = offHand.attributesRaw;
 
             // Calculate attack per second
-            attr.attacksPerSecondItem = new ItemValueRange(computeWeaponAttackPerSecondForAmbidextry());
+            attr.attacksPerSecondItem = computeWeaponAttackPerSecondForAmbidextry();
             attr.attacksPerSecondItemPercent = null;
 
             // Calculate damages of ambidextryWeapon
-            ItemValueRange half = new ItemValueRange(0.5);
-
             foreach (String resist in resists)
             {
-                ItemValueRange mainHandWeaponPercentBonus = mainHand.getAttributeRangeByName("damageWeaponPercentBonus_" + resist);
-                ItemValueRange offHandWeaponPercentBonus = offHand.getAttributeRangeByName("damageWeaponPercentBonus_" + resist);
+                ItemValueRange mainHandWeaponPercentBonus = mainHand.getAttributeByName("damageWeaponPercentBonus_" + resist);
+                ItemValueRange offHandWeaponPercentBonus = offHand.getAttributeByName("damageWeaponPercentBonus_" + resist);
                 foreach (String field in fields)
                 {
-                    ItemValueRange mainHandField = mainHand.getAttributeRangeByName(field + resist);
-                    ItemValueRange offHandField = offHand.getAttributeRangeByName(field + resist);
-                    ItemValueRange newValue =
+                    ItemValueRange mainHandField = mainHand.getAttributeByName(field + resist);
+                    ItemValueRange offHandField = offHand.getAttributeByName(field + resist);
+                    ItemValueRange newValue = 0.5 *
                         (
                             mainHandField * (ItemValueRange.One + mainHandWeaponPercentBonus)
                             + offHandField * (ItemValueRange.One + offHandWeaponPercentBonus)
-                        )
-                        * half;
+                        );
                     if (newValue.min == 0)
                         newValue = null;
                     attr.setAttributeByName(field + resist, newValue);
                 }
             }
 
+            // Remove % damage bonus as they are taken into account in previous step
             attr.damageWeaponPercentBonus_Arcane = null;
             attr.damageWeaponPercentBonus_Cold = null;
             attr.damageWeaponPercentBonus_Fire = null;
@@ -107,10 +106,9 @@ namespace ZTn.BNet.D3.Calculator
             return attr;
         }
 
-        public double getWeaponAttackPerSecond()
+        public ItemValueRange getWeaponAttackPerSecond()
         {
-            double weaponAttackSpeed;
-            double increasedAttackSpeed;
+            ItemValueRange weaponAttackSpeed = ItemValueRange.Zero;
             Item weapon;
 
             if (isAmbidextry())
@@ -118,30 +116,29 @@ namespace ZTn.BNet.D3.Calculator
             else
                 weapon = mainHand;
 
-            weaponAttackSpeed = weapon.getWeaponAttackPerSecond(attributesRaw.attacksPerSecondItem).min;
+            // Initialize with weapon attack speed
+            weaponAttackSpeed = weapon.getWeaponAttackPerSecond(attributesRaw.attacksPerSecondItem);
 
-            weaponAttackSpeed += (attributesRaw.attacksPerSecondItemPercent != null ? attributesRaw.attacksPerSecondItemPercent.min : 0);
+            weaponAttackSpeed += attributesRaw.attacksPerSecondItemPercent;
 
-            increasedAttackSpeed = (attributesRaw.attacksPerSecondPercent != null ? attributesRaw.attacksPerSecondPercent.min : 0);
-
-            weaponAttackSpeed *= 1 + increasedAttackSpeed;
+            weaponAttackSpeed *= ItemValueRange.One + attributesRaw.attacksPerSecondPercent;
 
             return weaponAttackSpeed;
         }
 
-        public double getWeaponDamage()
+        public ItemValueRange getWeaponDamage()
         {
-            return this.getRawWeaponDamage().min + this.getRawBonusDamage().min;
+            return this.getRawWeaponDamage() + this.getRawBonusDamage();
         }
 
-        public double getWeaponDamageMin()
+        public ItemValueRange getWeaponDamageMin()
         {
-            return this.getRawWeaponDamageMin().min + this.getRawBonusDamageMin().min;
+            return this.getRawWeaponDamageMin() + this.getRawBonusDamageMin();
         }
 
-        public double getWeaponDamageMax()
+        public ItemValueRange getWeaponDamageMax()
         {
-            return mainHand.getRawWeaponDamageMax().min + this.getRawWeaponDamageMax().min + this.getRawBonusDamageMax().min;
+            return mainHand.getRawWeaponDamageMax() + this.getRawWeaponDamageMax() + this.getRawBonusDamageMax();
         }
 
         public Boolean isAmbidextry()
@@ -168,14 +165,11 @@ namespace ZTn.BNet.D3.Calculator
                 attributesRaw += addedBonus;
             }
 
-            // Add gems on items
-            foreach (Item item in items)
+            // Add gems on items 
+            foreach (Item item in items.Where(item => item.gems != null))
             {
-                if (item.gems != null)
-                {
-                    foreach (SocketedGem gem in item.gems)
-                        attributesRaw += gem.attributesRaw;
-                }
+                foreach (SocketedGem gem in item.gems)
+                    attributesRaw += gem.attributesRaw;
             }
 
             // Add gems on weapons

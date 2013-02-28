@@ -8,10 +8,10 @@ namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
 
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            ItemAttributes stuff = calculator.heroItemStats.attributesRaw;
+            ItemAttributes stuff = calculator.heroStatsItem.attributesRaw;
             ItemAttributes attr = new ItemAttributes();
 
-            attr.armorBonusItem = new ItemValueRange(0.25 * calculator.getHeroArmor());
+            attr.armorBonusItem = 0.25 * calculator.getHeroArmor();
 
             attr += (new ThornsMultiplier(multiplier)).getBonus(calculator);
 

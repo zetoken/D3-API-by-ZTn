@@ -12,10 +12,10 @@ namespace ZTn.BNet.D3.Calculator
         #region >> Fields
 
         public Hero hero;
-        public StatsItem heroItemStats;
+        public StatsItem heroStatsItem;
 
-        ItemAttributes itemLevel;
-        ItemAttributes itemParagonLevel;
+        ItemAttributes levelAttributes;
+        ItemAttributes paragonLevelAttributes;
 
         #endregion
 
@@ -34,10 +34,10 @@ namespace ZTn.BNet.D3.Calculator
             this.hero = hero;
 
             // Build unique gems equivalent to items weared
-            heroItemStats = new StatsItem(mainHand, offHand, items);
+            heroStatsItem = new StatsItem(mainHand, offHand, items);
 
-            itemLevel = new ItemAttributesFromLevel(hero);
-            itemParagonLevel = new ItemAttributesFromParagonLevel(hero);
+            levelAttributes = new ItemAttributesFromLevel(hero);
+            paragonLevelAttributes = new ItemAttributesFromParagonLevel(hero);
 
             update();
         }
@@ -68,8 +68,8 @@ namespace ZTn.BNet.D3.Calculator
 
             // Update dps with Critic
             double critDamagePercent = 0;
-            if (heroItemStats.attributesRaw.critDamagePercent != null)
-                critDamagePercent += heroItemStats.attributesRaw.critDamagePercent.min;
+            if (heroStatsItem.attributesRaw.critDamagePercent != null)
+                critDamagePercent += heroStatsItem.attributesRaw.critDamagePercent.min;
             multiplier *= 1 + critDamagePercent;
 
             // Update dps with main statistic
@@ -82,47 +82,45 @@ namespace ZTn.BNet.D3.Calculator
         /// Return average damage multiplier (taking care of critical and normal hits)
         /// </summary>
         /// <returns></returns>
-        public double getDamageMultiplier()
+        public ItemValueRange getDamageMultiplier()
         {
-            double multiplier = 1;
+            ItemValueRange multiplier = ItemValueRange.One;
 
             // Update dps with Critic
-            double critPercentBonusCapped = 0;
-            if (heroItemStats.attributesRaw.critPercentBonusCapped != null)
-                critPercentBonusCapped += heroItemStats.attributesRaw.critPercentBonusCapped.min;
-            double critDamagePercent = 0;
-            if (heroItemStats.attributesRaw.critDamagePercent != null)
-                critDamagePercent += heroItemStats.attributesRaw.critDamagePercent.min;
-            multiplier *= 1 + critPercentBonusCapped * critDamagePercent;
+            ItemValueRange critPercentBonusCapped = ItemValueRange.Zero;
+            if (heroStatsItem.attributesRaw.critPercentBonusCapped != null)
+                critPercentBonusCapped += heroStatsItem.attributesRaw.critPercentBonusCapped;
+            ItemValueRange critDamagePercent = ItemValueRange.Zero;
+            if (heroStatsItem.attributesRaw.critDamagePercent != null)
+                critDamagePercent += heroStatsItem.attributesRaw.critDamagePercent;
+            multiplier *= ItemValueRange.One + critPercentBonusCapped * critDamagePercent;
 
             // Update dps with main statistic
-            double characteristic = getMainCharacteristic().min;
-            multiplier *= 1 + characteristic / 100;
+            ItemValueRange characteristic = getMainCharacteristic();
+            multiplier *= ItemValueRange.One + characteristic / 100.0;
 
             return multiplier;
         }
 
-        public double getActualAttackSpeed()
+        public ItemValueRange getActualAttackSpeed()
         {
-            double multiplier = 1;
+            ItemValueRange multiplier = ItemValueRange.One;
 
             // Update malusMultiplier with Weapon Attack Speed
-            multiplier *= heroItemStats.getWeaponAttackPerSecond();
+            multiplier *= heroStatsItem.getWeaponAttackPerSecond();
 
             return multiplier;
         }
 
-        public double getHeroArmor()
+        public ItemValueRange getHeroArmor()
         {
-            double armor = 0;
+            ItemValueRange armor = ItemValueRange.Zero;
 
             // Update with base gems's resistance
-            if (heroItemStats.attributesRaw.armorItem != null)
-                armor += heroItemStats.attributesRaw.armorItem.min;
+            armor += heroStatsItem.attributesRaw.armorItem;
 
             // Update with gems's bonus resistance
-            if (heroItemStats.attributesRaw.armorBonusItem != null)
-                armor += heroItemStats.attributesRaw.armorBonusItem.min;
+            armor += heroStatsItem.attributesRaw.armorBonusItem;
 
             // Update with strength bonus
             armor += getHeroStrength();
@@ -132,14 +130,14 @@ namespace ZTn.BNet.D3.Calculator
 
         public double getHeroDamageReduction_Armor(int mobLevel)
         {
-            double armor = getHeroArmor();
+            double armor = getHeroArmor().min;
 
             return armor / (armor + 50 * mobLevel);
         }
 
         public double getHeroDamageReduction(int mobLevel, string resist)
         {
-            double resistance = getHeroResistance(resist);
+            double resistance = getHeroResistance(resist).min;
 
             return resistance / (resistance + 5 * mobLevel);
         }
@@ -147,7 +145,7 @@ namespace ZTn.BNet.D3.Calculator
         public double getHeroDodge()
         {
             double dogde = 0;
-            double dexterity = getHeroDexterity();
+            double dexterity = getHeroDexterity().min;
 
             double dex0_100 = (dexterity > 100 ? 100 : dexterity);
             double dex101_500 = (dexterity > 500 ? 500 - 100 : (dexterity > 100 ? dexterity - 100 : 0));
@@ -159,9 +157,9 @@ namespace ZTn.BNet.D3.Calculator
             return dogde;
         }
 
-        private double getHeroDPSAsIs()
+        private ItemValueRange getHeroDPSAsIs()
         {
-            double dps = heroItemStats.getWeaponDamage();
+            ItemValueRange dps = heroStatsItem.getWeaponDamage();
 
             // Update Damage Multiplier
             dps *= getDamageMultiplier();
@@ -172,16 +170,16 @@ namespace ZTn.BNet.D3.Calculator
             return dps;
         }
 
-        public double getHeroDPS()
+        public ItemValueRange getHeroDPS()
         {
-            heroItemStats.setLevelBonus(itemLevel);
-            heroItemStats.setParagonLevelBonus(itemParagonLevel);
-            heroItemStats.update();
+            heroStatsItem.setLevelBonus(levelAttributes);
+            heroStatsItem.setParagonLevelBonus(paragonLevelAttributes);
+            heroStatsItem.update();
 
             return getHeroDPSAsIs();
         }
 
-        public double getHeroDPS(List<D3SkillModifier> passives, List<D3SkillModifier> actives)
+        public ItemValueRange getHeroDPS(List<D3SkillModifier> passives, List<D3SkillModifier> actives)
         {
             ItemAttributes itemAttributes = new ItemAttributes();
 
@@ -204,21 +202,19 @@ namespace ZTn.BNet.D3.Calculator
             return getHeroDPS(itemAttributes);
         }
 
-        public double getHeroDPS(ItemAttributes addedBonus)
+        public ItemValueRange getHeroDPS(ItemAttributes addedBonus)
         {
-            heroItemStats.setLevelBonus(itemLevel);
-            heroItemStats.setParagonLevelBonus(itemParagonLevel);
-            heroItemStats.setSkillsBonus(addedBonus);
-            heroItemStats.update();
+            heroStatsItem.setLevelBonus(levelAttributes);
+            heroStatsItem.setParagonLevelBonus(paragonLevelAttributes);
+            heroStatsItem.setSkillsBonus(addedBonus);
+            heroStatsItem.update();
 
-            double dps = getHeroDPSAsIs();
-
-            return dps;
+            return getHeroDPSAsIs();
         }
 
         public double getHeroEffectiveHitpoints(int mobLevel)
         {
-            double ehp = getHeroHitpoints();
+            double ehp = getHeroHitpoints().min;
 
             // Update with armor reduction
             ehp /= (1 - getHeroDamageReduction_Armor(mobLevel));
@@ -239,27 +235,27 @@ namespace ZTn.BNet.D3.Calculator
             return ehp;
         }
 
-        public double getHeroHitpoints()
+        public ItemValueRange getHeroHitpoints()
         {
             // Use hitpoints formula
-            double hitpoints;
+            ItemValueRange hitpoints;
             if (hero.level < 35)
                 hitpoints = 36 + 4 * hero.level + 10 * getHeroVitality();
             else
                 hitpoints = 36 + 4 * hero.level + (hero.level - 25) * getHeroVitality();
 
             // Update with +% Life bonus
-            if (heroItemStats.attributesRaw.hitpointsMaxPercentBonusItem != null)
-                hitpoints *= 1 + heroItemStats.attributesRaw.hitpointsMaxPercentBonusItem.min;
+            if (heroStatsItem.attributesRaw.hitpointsMaxPercentBonusItem != null)
+                hitpoints *= 1 + heroStatsItem.attributesRaw.hitpointsMaxPercentBonusItem.min;
 
             return hitpoints;
         }
 
-        public double getHeroResistance_All()
+        public ItemValueRange getHeroResistance_All()
         {
-            double resist = 0;
+            ItemValueRange resist = ItemValueRange.Zero;
 
-            resist += heroItemStats.getResistance("All");
+            resist += heroStatsItem.getResistance("All");
 
             // Update with intelligence bonus
             resist += getHeroIntelligence() / 10;
@@ -267,57 +263,33 @@ namespace ZTn.BNet.D3.Calculator
             return resist;
         }
 
-        public double getHeroResistance(string resist)
+        public ItemValueRange getHeroResistance(string resist)
         {
-            double resistance = getHeroResistance_All();
+            ItemValueRange resistance = getHeroResistance_All();
 
-            resistance += heroItemStats.getResistance(resist);
+            resistance += heroStatsItem.getResistance(resist);
 
             return resistance;
         }
 
-        public double getHeroDexterity()
+        public ItemValueRange getHeroDexterity()
         {
-            double characteristic = 0;
-
-            // Update with gems bonus
-            if (heroItemStats.attributesRaw.dexterityItem != null)
-                characteristic += heroItemStats.attributesRaw.dexterityItem.min;
-
-            return characteristic;
+            return heroStatsItem.attributesRaw.dexterityItem;
         }
 
-        public double getHeroIntelligence()
+        public ItemValueRange getHeroIntelligence()
         {
-            double characteristic = 0;
-
-            // Update with gems bonus
-            if (heroItemStats.attributesRaw.intelligenceItem != null)
-                characteristic += heroItemStats.attributesRaw.intelligenceItem.min;
-
-            return characteristic;
+            return heroStatsItem.attributesRaw.intelligenceItem;
         }
 
-        public double getHeroStrength()
+        public ItemValueRange getHeroStrength()
         {
-            double characteristic = 0;
-
-            // Update with gems bonus
-            if (heroItemStats.attributesRaw.strengthItem != null)
-                characteristic += heroItemStats.attributesRaw.strengthItem.min;
-
-            return characteristic;
+            return heroStatsItem.attributesRaw.strengthItem;
         }
 
-        public double getHeroVitality()
+        public ItemValueRange getHeroVitality()
         {
-            double vitality = 0;
-
-            // Update with gems bonus
-            if (heroItemStats.attributesRaw.vitalityItem != null)
-                vitality += heroItemStats.attributesRaw.vitalityItem.min;
-
-            return vitality;
+            return heroStatsItem.attributesRaw.vitalityItem;
         }
 
         public ItemValueRange getMainCharacteristic()
@@ -328,17 +300,17 @@ namespace ZTn.BNet.D3.Calculator
             {
                 case HeroClass.Monk:
                 case HeroClass.DemonHunter:
-                    if (heroItemStats.attributesRaw.dexterityItem != null)
-                        result = heroItemStats.attributesRaw.dexterityItem;
+                    if (heroStatsItem.attributesRaw.dexterityItem != null)
+                        result = heroStatsItem.attributesRaw.dexterityItem;
                     break;
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
-                    if (heroItemStats.attributesRaw.intelligenceItem != null)
-                        result = heroItemStats.attributesRaw.intelligenceItem;
+                    if (heroStatsItem.attributesRaw.intelligenceItem != null)
+                        result = heroStatsItem.attributesRaw.intelligenceItem;
                     break;
                 case HeroClass.Barbarian:
-                    if (heroItemStats.attributesRaw.strengthItem != null)
-                        result = heroItemStats.attributesRaw.strengthItem;
+                    if (heroStatsItem.attributesRaw.strengthItem != null)
+                        result = heroStatsItem.attributesRaw.strengthItem;
                     break;
                 default:
                     break;
@@ -349,7 +321,7 @@ namespace ZTn.BNet.D3.Calculator
 
         public void update()
         {
-            heroItemStats.update();
+            heroStatsItem.update();
         }
     }
 }

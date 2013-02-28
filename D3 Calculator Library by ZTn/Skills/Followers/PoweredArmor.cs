@@ -6,7 +6,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Followers
     {
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            return new ItemAttributes() { armorBonusItem = new ItemValueRange(0.05 * calculator.getHeroArmor()) };
+            return new ItemAttributes() { armorBonusItem = 0.05 * calculator.getHeroArmor() };
         }
     }
 }

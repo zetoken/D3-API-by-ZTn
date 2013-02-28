@@ -20,11 +20,8 @@ namespace ZTn.BNet.D3.Calculator.Sets
 
             if (count > 1)
             {
-                foreach (SetRank setRank in set.ranks)
-                {
-                    if (count >= setRank.required)
-                        attr += setRank.attributesRaw;
-                }
+                foreach (SetRank setRank in set.ranks.Where(rank => count >= rank.required))
+                    attr += setRank.attributesRaw;
             }
 
             return attr;
@@ -50,10 +47,9 @@ namespace ZTn.BNet.D3.Calculator.Sets
             List<Item> setItemsFound = new List<Item>();
             List<String> setItemIds = set.getSetItemIds();
 
-            foreach (Item item in items)
+            foreach (Item item in items.Where(item => setItemIds.IndexOf(item.id) != -1))
             {
-                if (setItemIds.IndexOf(item.id) != -1)
-                    setItemsFound.Add(item);
+                setItemsFound.Add(item);
             }
 
             return setItemsFound;
@@ -64,10 +60,9 @@ namespace ZTn.BNet.D3.Calculator.Sets
             List<ItemSummary> setItemsFound = new List<ItemSummary>();
             List<String> setItemIds = set.getSetItemIds();
 
-            foreach (Item item in items)
+            foreach (Item item in items.Where(item => setItemIds.IndexOf(item.id) != -1))
             {
-                if (setItemIds.IndexOf(item.id) != -1)
-                    setItemsFound.Add(item);
+                setItemsFound.Add(item);
             }
 
             return setItemsFound;

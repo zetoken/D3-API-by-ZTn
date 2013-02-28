@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -129,10 +130,10 @@ namespace ZTn.BNet.D3ProfileExplorer
                         }
                     }
                     FieldInfo[] fieldInfos = type.GetFields();
-                    foreach (FieldInfo fieldInfo in fieldInfos)
+                    foreach (FieldInfo fieldInfo in fieldInfos.Where(info => !info.IsStatic))
                     {
                         Object d3ObjectValue = fieldInfo.GetValue(d3Object);
-                        if ((!fieldInfo.IsStatic) && (d3ObjectValue != null))
+                        if (d3ObjectValue != null)
                         {
                             TreeNode newNode = new TreeNode(fieldInfo.Name);
                             newNode.Nodes.AddRange(createNodeFromD3Object(d3ObjectValue).ToArray());
