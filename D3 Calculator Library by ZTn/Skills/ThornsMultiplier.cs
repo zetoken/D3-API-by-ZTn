@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills
@@ -34,17 +32,16 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            ItemAttributes stuff = calculator.heroItemStats.attributesRaw;
+            Item stuff = calculator.heroItemStats;
             ItemAttributes attr = new ItemAttributes();
 
-            Type type = typeof(ItemAttributes);
             foreach (String resist in damageResists)
             {
                 foreach (String thorns in thornsPrefixes)
                 {
-                    ItemValueRange value = (ItemValueRange)type.GetField(thorns + resist).GetValue(stuff);
+                    ItemValueRange value = stuff.getAttributeRangeByName(thorns + resist);
                     if (value != null)
-                        type.GetField(thorns + resist).SetValue(attr, multiplier * value);
+                        attr.setAttributeByName(thorns + resist, multiplier * value);
                 }
             }
 

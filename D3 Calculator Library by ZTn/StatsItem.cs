@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+
+using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Sets;
 using ZTn.BNet.D3.Items;
 
@@ -8,8 +10,6 @@ namespace ZTn.BNet.D3.Calculator
     public class StatsItem : Item
     {
         #region >> Fields
-
-        private static readonly Type typeOfItemAttributes = typeof(ItemAttributes);
 
         List<Item> items;
         public Item mainHand;
@@ -78,12 +78,12 @@ namespace ZTn.BNet.D3.Calculator
 
             foreach (String resist in resists)
             {
-                ItemValueRange mainHandWeaponPercentBonus = (ItemValueRange)typeOfItemAttributes.GetField("damageWeaponPercentBonus_" + resist).GetValue(mainHand.attributesRaw);
-                ItemValueRange offHandWeaponPercentBonus = (ItemValueRange)typeOfItemAttributes.GetField("damageWeaponPercentBonus_" + resist).GetValue(offHand.attributesRaw);
+                ItemValueRange mainHandWeaponPercentBonus = mainHand.getAttributeRangeByName("damageWeaponPercentBonus_" + resist);
+                ItemValueRange offHandWeaponPercentBonus = offHand.getAttributeRangeByName("damageWeaponPercentBonus_" + resist);
                 foreach (String field in fields)
                 {
-                    ItemValueRange mainHandField = (ItemValueRange)typeOfItemAttributes.GetField(field + resist).GetValue(mainHand.attributesRaw);
-                    ItemValueRange offHandField = (ItemValueRange)typeOfItemAttributes.GetField(field + resist).GetValue(offHand.attributesRaw);
+                    ItemValueRange mainHandField = mainHand.getAttributeRangeByName(field + resist);
+                    ItemValueRange offHandField = offHand.getAttributeRangeByName(field + resist);
                     ItemValueRange newValue =
                         (
                             mainHandField * (ItemValueRange.One + mainHandWeaponPercentBonus)
@@ -92,7 +92,7 @@ namespace ZTn.BNet.D3.Calculator
                         * half;
                     if (newValue.min == 0)
                         newValue = null;
-                    typeOfItemAttributes.GetField(field + resist).SetValue(attr, newValue);
+                    attr.setAttributeByName(field + resist, newValue);
                 }
             }
 

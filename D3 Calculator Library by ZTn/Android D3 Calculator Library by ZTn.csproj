@@ -45,11 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="D3Calculator.cs" />
-    <Compile Include="GemHelper.cs" />
+    <Compile Include="Gems\GemHelper.cs" />
     <Compile Include="Gems\KnownGems.cs" />
+    <Compile Include="Helpers\ItemAttributesExtension.cs" />
+    <Compile Include="Helpers\ItemExtension.cs" />
     <Compile Include="ItemAttributesFromLevel.cs" />
     <Compile Include="ItemAttributesFromParagonLevel.cs" />
-    <Compile Include="ItemExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sets\KnownSets.cs" />
     <Compile Include="Sets\SetExtension.cs" />

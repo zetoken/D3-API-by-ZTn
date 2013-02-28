@@ -72,6 +72,7 @@
     <Compile Include="DataProviders\ID3DataProvider.cs" />
     <Compile Include="FailureObject.cs" />
     <Compile Include="Helpers\JsonHelpers.cs" />
+    <Compile Include="Helpers\ItemAttributesHelper.cs" />
     <Compile Include="Heroes\HeroClass.cs" />
     <Compile Include="Heroes\HeroGender.cs" />
     <Compile Include="Heroes\HeroKills.cs" />

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+
+using ZTn.BNet.D3.Calculator.Gems;
+using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator

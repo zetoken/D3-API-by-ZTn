@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Items;
 
-namespace ZTn.BNet.D3.Calculator
+namespace ZTn.BNet.D3.Calculator.Gems
 {
     public class GemHelper
     {

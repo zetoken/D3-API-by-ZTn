@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+
+using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;

@@ -1,11 +1,14 @@
 ﻿using System;
+
 using ZTn.BNet.D3.Items;
 
-namespace ZTn.BNet.D3.Calculator
+namespace ZTn.BNet.D3.Calculator.Helpers
 {
+    /// <summary>
+    /// Extension class to be used with <see cref="Item"/> objects
+    /// </summary>
     public static class ItemExtension
     {
-        private static readonly Type type = typeof(ItemAttributes);
         private static readonly ItemValueRange half = new ItemValueRange(0.5);
 
         /// <summary>
@@ -16,6 +19,17 @@ namespace ZTn.BNet.D3.Calculator
         public static ItemValueRange getArmor(this Item item)
         {
             return item.attributesRaw.armorItem + item.attributesRaw.armorBonusItem;
+        }
+
+        /// <summary>
+        /// Returns the value of an attribute of an item given the attribute's name
+        /// </summary>
+        /// <param name="item">Source item</param>
+        /// <param name="fieldName">Name of the attribute to retrieve</param>
+        /// <returns></returns>
+        public static ItemValueRange getAttributeRangeByName(this Item item, String fieldName)
+        {
+            return (ItemValueRange)typeof(ItemAttributes).GetField(fieldName).GetValue(item.attributesRaw);
         }
 
         /// <summary>
@@ -39,9 +53,9 @@ namespace ZTn.BNet.D3.Calculator
 
         public static ItemValueRange getRawBonusDamageMin(this Item item, String resist)
         {
-            ItemValueRange damageMin = (ItemValueRange)type.GetField("damageMin_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageBonusMin = (ItemValueRange)type.GetField("damageBonusMin_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageTypePercentBonus = (ItemValueRange)type.GetField("damageTypePercentBonus_" + resist).GetValue(item.attributesRaw);
+            ItemValueRange damageMin = item.getAttributeRangeByName("damageMin_" + resist);
+            ItemValueRange damageBonusMin = item.getAttributeRangeByName("damageBonusMin_" + resist);
+            ItemValueRange damageTypePercentBonus = item.getAttributeRangeByName("damageTypePercentBonus_" + resist);
 
             ItemValueRange result = (damageMin + damageBonusMin);
 
@@ -63,9 +77,9 @@ namespace ZTn.BNet.D3.Calculator
 
         public static ItemValueRange getRawBonusDamageMax(this Item item, String resist)
         {
-            ItemValueRange damageMin = (ItemValueRange)type.GetField("damageMin_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageDelta = (ItemValueRange)type.GetField("damageDelta_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageTypePercentBonus = (ItemValueRange)type.GetField("damageTypePercentBonus_" + resist).GetValue(item.attributesRaw);
+            ItemValueRange damageMin = item.getAttributeRangeByName("damageMin_" + resist);
+            ItemValueRange damageDelta = item.getAttributeRangeByName("damageDelta_" + resist);
+            ItemValueRange damageTypePercentBonus = item.getAttributeRangeByName("damageTypePercentBonus_" + resist);
 
             ItemValueRange result = (damageMin + damageDelta);
 
@@ -85,7 +99,7 @@ namespace ZTn.BNet.D3.Calculator
         /// <returns></returns>
         public static double getResistance(this Item item, String resist)
         {
-            ItemValueRange resistance = (ItemValueRange)typeof(ItemAttributes).GetField("resistance_" + resist).GetValue(item.attributesRaw);
+            ItemValueRange resistance = item.getAttributeRangeByName("resistance_" + resist);
 
             if (resistance == null)
                 return 0;
@@ -134,10 +148,10 @@ namespace ZTn.BNet.D3.Calculator
 
         public static ItemValueRange getRawWeaponDamageMin(this Item item, String resist)
         {
-            ItemValueRange damageWeaponMin = (ItemValueRange)type.GetField("damageWeaponMin_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageWeaponBonusMin = (ItemValueRange)type.GetField("damageWeaponBonusMin_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageWeaponPercentBonus = (ItemValueRange)type.GetField("damageWeaponPercentBonus_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageTypePercentBonus = (ItemValueRange)type.GetField("damageTypePercentBonus_" + resist).GetValue(item.attributesRaw);
+            ItemValueRange damageWeaponMin = item.getAttributeRangeByName("damageWeaponMin_" + resist);
+            ItemValueRange damageWeaponBonusMin = item.getAttributeRangeByName("damageWeaponBonusMin_" + resist);
+            ItemValueRange damageWeaponPercentBonus = item.getAttributeRangeByName("damageWeaponPercentBonus_" + resist);
+            ItemValueRange damageTypePercentBonus = item.getAttributeRangeByName("damageTypePercentBonus_" + resist);
 
             ItemValueRange damage = (damageWeaponMin + damageWeaponBonusMin) * (ItemValueRange.One + damageWeaponPercentBonus);
 
@@ -156,7 +170,7 @@ namespace ZTn.BNet.D3.Calculator
         /// <returns></returns>
         public static ItemValueRange getRawWeaponDamageMinX1(this Item item, String resist)
         {
-            ItemValueRange damageWeaponMinX1 = (ItemValueRange)type.GetField("damageWeaponMinX1_" + resist).GetValue(item.attributesRaw);
+            ItemValueRange damageWeaponMinX1 = item.getAttributeRangeByName("damageWeaponMinX1_" + resist);
 
             return damageWeaponMinX1;
         }
@@ -173,12 +187,12 @@ namespace ZTn.BNet.D3.Calculator
 
         public static ItemValueRange getRawWeaponDamageMax(this Item item, String resist)
         {
-            ItemValueRange damageWeaponMin = (ItemValueRange)type.GetField("damageWeaponMin_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageWeaponBonusMin = (ItemValueRange)type.GetField("damageWeaponBonusMin_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageWeaponDelta = (ItemValueRange)type.GetField("damageWeaponDelta_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageWeaponBonusDelta = (ItemValueRange)type.GetField("damageWeaponBonusDelta_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageWeaponPercentBonus = (ItemValueRange)type.GetField("damageWeaponPercentBonus_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageTypePercentBonus = (ItemValueRange)type.GetField("damageTypePercentBonus_" + resist).GetValue(item.attributesRaw);
+            ItemValueRange damageWeaponMin = item.getAttributeRangeByName("damageWeaponMin_" + resist);
+            ItemValueRange damageWeaponBonusMin = item.getAttributeRangeByName("damageWeaponBonusMin_" + resist);
+            ItemValueRange damageWeaponDelta = item.getAttributeRangeByName("damageWeaponDelta_" + resist);
+            ItemValueRange damageWeaponBonusDelta = item.getAttributeRangeByName("damageWeaponBonusDelta_" + resist);
+            ItemValueRange damageWeaponPercentBonus = item.getAttributeRangeByName("damageWeaponPercentBonus_" + resist);
+            ItemValueRange damageTypePercentBonus = item.getAttributeRangeByName("damageTypePercentBonus_" + resist);
 
             ItemValueRange damage = (damageWeaponMin + damageWeaponDelta + damageWeaponBonusDelta) * (ItemValueRange.One + damageWeaponPercentBonus);
 
@@ -232,12 +246,12 @@ namespace ZTn.BNet.D3.Calculator
         /// <param name="item"></param>
         public static Item checkAndUpdateWeaponDelta(this Item item, String resist)
         {
-            ItemValueRange damageWeaponBonusMin = (ItemValueRange)type.GetField("damageWeaponBonusMin_" + resist).GetValue(item.attributesRaw);
-            ItemValueRange damageWeaponDelta = (ItemValueRange)type.GetField("damageWeaponDelta_" + resist).GetValue(item.attributesRaw);
+            ItemValueRange damageWeaponBonusMin = item.getAttributeRangeByName("damageWeaponBonusMin_" + resist);
+            ItemValueRange damageWeaponDelta = item.getAttributeRangeByName("damageWeaponDelta_" + resist);
 
             if ((damageWeaponDelta != null) && (damageWeaponBonusMin != null) && (damageWeaponDelta.min < damageWeaponBonusMin.min))
                 damageWeaponDelta = damageWeaponBonusMin + ItemValueRange.One;
-            type.GetField("damageWeaponDelta_" + resist).SetValue(item.attributesRaw, damageWeaponDelta);
+            item.setAttributeByName("damageWeaponDelta_" + resist, damageWeaponDelta);
 
             return item;
         }
@@ -252,6 +266,17 @@ namespace ZTn.BNet.D3.Calculator
         public static Boolean isWeapon(this Item item)
         {
             return (item.attributesRaw.attacksPerSecondItem != null);
+        }
+
+        /// <summary>
+        /// Sets the value of an attribute of an item given the attribute's name
+        /// </summary>
+        /// <param name="item">Source item</param>
+        /// <param name="fieldName">Name of the attribute to retrieve</param>
+        /// <param name="value">Value to set</param>
+        public static void setAttributeByName(this Item item, String fieldName, ItemValueRange value)
+        {
+            typeof(ItemAttributes).GetField(fieldName).SetValue(item.attributesRaw, value);
         }
     }
 }
