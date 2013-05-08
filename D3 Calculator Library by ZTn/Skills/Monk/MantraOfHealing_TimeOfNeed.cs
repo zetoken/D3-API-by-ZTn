@@ -10,7 +10,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
         {
             ItemAttributes attr = new ItemAttributes();
 
-            attr.hitpointsRegenPerSecond = new ItemValueRange(310);
+            attr.hitpointsRegenPerSecond = new ItemValueRange(620);
 
             attr += (new ResistancesMultiplier(multiplier)).getBonus(calculator);
 

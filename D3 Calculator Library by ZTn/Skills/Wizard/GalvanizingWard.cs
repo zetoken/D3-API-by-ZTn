@@ -6,7 +6,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Wizard
     {
         public override ItemAttributes getBonus(D3Calculator calculator)
         {
-            return new ItemAttributes() { hitpointsRegenPerSecond = new ItemValueRange(310) };
+            return new ItemAttributes() { hitpointsRegenPerSecond = new ItemValueRange(620) };
         }
     }
 }

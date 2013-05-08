@@ -218,6 +218,8 @@ namespace ZTn.BNet.D3ProfileExplorer
             List<D3SkillModifier> activeSkills = new List<D3SkillModifier>();
 
             // Barbarian active skills
+            if (guiSkillWarCry_Invigorate.Checked)
+                activeSkills.Add(new D3.Calculator.Skills.Barbarian.WarCry_Invigorate());
 
             // Demon Hunter active skills
 
@@ -267,6 +269,15 @@ namespace ZTn.BNet.D3ProfileExplorer
                             }
                             break;
                         case "mystic-ally":
+                            switch (activeSkill.rune.slug)
+                            {
+                                case "":
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        case "war-cry":
                             switch (activeSkill.rune.slug)
                             {
                                 case "":

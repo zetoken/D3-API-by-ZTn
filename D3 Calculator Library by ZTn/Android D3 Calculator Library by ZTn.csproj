@@ -57,6 +57,7 @@
     <Compile Include="Skills\Barbarian\NervesOfSteel.cs" />
     <Compile Include="Skills\Barbarian\Ruthless.cs" />
     <Compile Include="Skills\Barbarian\ToughAsNails.cs" />
+    <Compile Include="Skills\Barbarian\WarCry_Invigorate.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster_MaceAxe.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster_PolearmSpear.cs" />
