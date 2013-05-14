@@ -1,6 +1,8 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Linq;
 using ZTn.BNet.D3.Items;
+using ZTn.BNet.D3.Calculator.Sets;
 
 namespace ZTn.BNet.D3.Calculator.Helpers
 {
@@ -9,6 +11,31 @@ namespace ZTn.BNet.D3.Calculator.Helpers
     /// </summary>
     public static class ItemExtension
     {
+        public static List<Set> getActivatedSets(this List<Item> items)
+        {
+            Dictionary<String, Set> itemsOfSets = new Dictionary<string, Set>();
+
+            foreach (Set set in items.Where(item => item.set != null).Select(item => item.set))
+            {
+                if (!itemsOfSets.ContainsKey(set.slug))
+                    itemsOfSets.Add(set.slug, set);
+            }
+
+            return itemsOfSets.Values.ToList();
+        }
+
+        public static ItemAttributes getActivatedSetBonus(this List<Item> items)
+        {
+            ItemAttributes attr = new ItemAttributes();
+
+            foreach (Set set in items.getActivatedSets())
+            {
+                attr += set.getBonus(set.countItemsOfSet(items));
+            }
+
+            return attr;
+        }
+
         /// <summary>
         /// Computes armor brought by the item
         /// </summary>

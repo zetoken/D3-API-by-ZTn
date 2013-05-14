@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 using Newtonsoft.Json;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3;
 using ZTn.BNet.D3.Calculator;
+using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Sets;
 using ZTn.BNet.D3.Careers;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
+using ZTn.BNet.D3.Calculator.Skills;
 
 namespace ZTn.BNet.D3.Example
 {
@@ -19,8 +22,8 @@ namespace ZTn.BNet.D3.Example
             BattleTag battleTag = new BattleTag("Tok#2360");
 
             //writeCareer(battleTag);
-            //writeCalculation(battleTag);
-            buildGemsFile();
+            writeCalculation(battleTag);
+            //buildGemsFile();
 
             Console.WriteLine();
             Console.WriteLine("= = = = END = = = =");
@@ -66,23 +69,28 @@ namespace ZTn.BNet.D3.Example
             Console.WriteLine("Downloading {0}", "waist");
             Item waist = hero.items.waist.getFullItem();
 
-            List<Item> items = new List<Item>(new List<Item>() { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist });
+            List<Item> items = new List<Item>() { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist }.Where(i => i != null).ToList();
 
-            D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
+            List<Item> allItems = new List<Item>(items) { mainHand, offHand }.Where(i => i != null).ToList();
 
             Console.WriteLine("Loading {0} from file", "known sets");
             KnownSets knownSets = KnownSets.getKnownSetsFromJsonFile("d3set.json");
 
-            Console.WriteLine("Calculating set bonus");
-            Item setBonus = new Item(d3Calculator.heroStatsItem.getActivatedSetBonus(knownSets));
+            Console.WriteLine("Calculating activated set");
+            foreach (Set set in allItems.getActivatedSets())
+            {
+                Console.WriteLine("Activated set: {0}", set.name);
+            }
+            Item setBonus = new Item(allItems.getActivatedSetBonus());
             items.Add(setBonus);
 
-            d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
+            D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
 
             Console.WriteLine("Calculation results");
-            ItemValueRange dps = d3Calculator.getHeroDPS();
-            Console.WriteLine("Dexterity : {0}", d3Calculator.getHeroDexterity());
-            Console.WriteLine("DPS : {0}", dps);
+            ItemValueRange dps = d3Calculator.getHeroDPS(new List<D3SkillModifier>(), new List<D3SkillModifier>());
+            Console.WriteLine("Dexterity : {0}", d3Calculator.getHeroDexterity().min);
+            Console.WriteLine("DPS : {0}", dps.min);
+            Console.WriteLine("Attack speed: {0}", d3Calculator.getActualAttackSpeed().min);
         }
 
         static void writeCareer(BattleTag battleTag)

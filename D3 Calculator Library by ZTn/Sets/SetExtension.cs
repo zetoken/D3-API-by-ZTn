@@ -28,44 +28,46 @@ namespace ZTn.BNet.D3.Calculator.Sets
         }
 
         /// <summary>
+        /// Returns final attributes description (string[]) the <paramref name="set"/> give when <paramref name="count"/> items from the set are weared
+        /// </summary>
+        /// <param name="set"></param>
+        /// <param name="count">Number of items from set weared</param>
+        /// <returns></returns>
+        public static String[] getBonusAttributes(this Set set, int count)
+        {
+            List<String> attributes = new List<string>();
+
+            if (count > 1)
+            {
+                foreach (SetRank setRank in set.ranks.Where(rank => count >= rank.required))
+                    attributes.AddRange(setRank.attributes);
+            }
+
+            return attributes.ToArray();
+        }
+
+        /// <summary>
         /// Returns the list of <c>id</c> of all of the items from the <paramref name="set"/>
         /// </summary>
         /// <param name="set"></param>
         /// <returns></returns>
         public static List<String> getSetItemIds(this Set set)
         {
-            List<String> setItemIds = new List<string>();
-            foreach (ItemSummary setItem in set.items)
-            {
-                setItemIds.Add(setItem.id);
-            }
-            return setItemIds;
+            return set.items.Select(item => item.id).ToList();
         }
 
         public static List<Item> findItemsOfSet(this Set set, List<Item> items)
         {
-            List<Item> setItemsFound = new List<Item>();
             List<String> setItemIds = set.getSetItemIds();
 
-            foreach (Item item in items.Where(item => setItemIds.IndexOf(item.id) != -1))
-            {
-                setItemsFound.Add(item);
-            }
-
-            return setItemsFound;
+            return items.Where(item => setItemIds.IndexOf(item.id) != -1).ToList();
         }
 
         public static List<ItemSummary> findItemsOfSet(this Set set, List<ItemSummary> items)
         {
-            List<ItemSummary> setItemsFound = new List<ItemSummary>();
             List<String> setItemIds = set.getSetItemIds();
 
-            foreach (Item item in items.Where(item => setItemIds.IndexOf(item.id) != -1))
-            {
-                setItemsFound.Add(item);
-            }
-
-            return setItemsFound;
+            return items.Where(item => setItemIds.IndexOf(item.id) != -1).ToList(); ;
         }
 
         public static int countItemsOfSet(this Set set, List<Item> items)

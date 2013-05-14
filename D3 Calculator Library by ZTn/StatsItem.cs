@@ -119,8 +119,6 @@ namespace ZTn.BNet.D3.Calculator
             // Initialize with weapon attack speed
             weaponAttackSpeed = weapon.getWeaponAttackPerSecond(attributesRaw.attacksPerSecondItem);
 
-            weaponAttackSpeed += attributesRaw.attacksPerSecondItemPercent;
-
             weaponAttackSpeed *= ItemValueRange.One + attributesRaw.attacksPerSecondPercent;
 
             return weaponAttackSpeed;
@@ -222,14 +220,24 @@ namespace ZTn.BNet.D3.Calculator
             this.addedBonus = addedBonus;
         }
 
-        public ItemAttributes getActivatedSetBonus(KnownSets knownSets)
+        public List<Set> getActivatedSets()
         {
-            List<ItemSummary> allItems = new List<ItemSummary>();
-            foreach (ItemSummary item in items)
-                allItems.Add(item);
+            List<Item> allItems = new List<Item>();
+            allItems.AddRange(items);
             allItems.Add(mainHand);
             allItems.Add(offHand);
-            return knownSets.getActivatedSetBonus(allItems);
+
+            return allItems.getActivatedSets();
+        }
+
+        public ItemAttributes getActivatedSetBonus()
+        {
+            List<Item> allItems = new List<Item>();
+            allItems.AddRange(items);
+            allItems.Add(mainHand);
+            allItems.Add(offHand);
+
+            return allItems.getActivatedSetBonus();
         }
     }
 }

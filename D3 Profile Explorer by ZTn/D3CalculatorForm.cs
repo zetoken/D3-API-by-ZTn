@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using ZTn.BNet.D3.Calculator;
+using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Sets;
 using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Heroes;
@@ -94,6 +95,8 @@ namespace ZTn.BNet.D3ProfileExplorer
             else
                 offHand = D3Calculator.blankWeapon;
 
+            List<Item> allRawItems = new List<Item>() { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist, mainHand, offHand };
+
             guiMainHandEditor.setEditedItem(mainHand);
             guiOffHandEditor.setEditedItem(offHand);
             guiBracersEditor.setEditedItem(bracers);
@@ -108,22 +111,22 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiTorsoEditor.setEditedItem(torso);
             guiWaistEditor.setEditedItem(waist);
 
-            List<Item> items = new List<Item>();
-            items.Add(guiBracersEditor.getEditedItem());
-            items.Add(guiFeetEditor.getEditedItem());
-            items.Add(guiHandsEditor.getEditedItem());
-            items.Add(guiHeadEditor.getEditedItem());
-            items.Add(guiLeftFingerEditor.getEditedItem());
-            items.Add(guiLegsEditor.getEditedItem());
-            items.Add(guiNeckEditor.getEditedItem());
-            items.Add(guiRightFingerEditor.getEditedItem());
-            items.Add(guiShouldersEditor.getEditedItem());
-            items.Add(guiTorsoEditor.getEditedItem());
-            items.Add(guiWaistEditor.getEditedItem());
+            List<Item> items = new List<Item>()
+            {
+                guiBracersEditor.getEditedItem(),
+                guiFeetEditor.getEditedItem(),
+                guiHandsEditor.getEditedItem(),
+                guiHeadEditor.getEditedItem(),
+                guiLeftFingerEditor.getEditedItem(),
+                guiLegsEditor.getEditedItem(),
+                guiNeckEditor.getEditedItem(),
+                guiRightFingerEditor.getEditedItem(),
+                guiShouldersEditor.getEditedItem(),
+                guiTorsoEditor.getEditedItem(),
+                guiWaistEditor.getEditedItem()
+            };
 
-            D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
-            KnownSets knownSets = KnownSets.getKnownSetsFromJsonFile("d3set.json");
-            guiSetBonusEditor.setEditedItem(new Item(d3Calculator.heroStatsItem.getActivatedSetBonus(knownSets)));
+            guiSetBonusEditor.setEditedItem(new Item(allRawItems.Where(i => i != null).ToList().getActivatedSetBonus()));
 
             populatePassiveSkills();
             populateActiveSkills();
@@ -155,19 +158,21 @@ namespace ZTn.BNet.D3ProfileExplorer
             hero = getEditedHero();
 
             // Retrieve weared items from the GUI
-            List<Item> items = new List<Item>();
-            items.Add(guiBracersEditor.getEditedItem());
-            items.Add(guiFeetEditor.getEditedItem());
-            items.Add(guiHandsEditor.getEditedItem());
-            items.Add(guiHeadEditor.getEditedItem());
-            items.Add(guiLeftFingerEditor.getEditedItem());
-            items.Add(guiLegsEditor.getEditedItem());
-            items.Add(guiNeckEditor.getEditedItem());
-            items.Add(guiRightFingerEditor.getEditedItem());
-            items.Add(guiShouldersEditor.getEditedItem());
-            items.Add(guiTorsoEditor.getEditedItem());
-            items.Add(guiWaistEditor.getEditedItem());
-            items.Add(guiSetBonusEditor.getEditedItem());
+            List<Item> items = new List<Item>()
+            {
+                guiBracersEditor.getEditedItem(),
+                guiFeetEditor.getEditedItem(),
+                guiHandsEditor.getEditedItem(),
+                guiHeadEditor.getEditedItem(),
+                guiLeftFingerEditor.getEditedItem(),
+                guiLegsEditor.getEditedItem(),
+                guiNeckEditor.getEditedItem(),
+                guiRightFingerEditor.getEditedItem(),
+                guiShouldersEditor.getEditedItem(),
+                guiTorsoEditor.getEditedItem(),
+                guiWaistEditor.getEditedItem(),
+                guiSetBonusEditor.getEditedItem()
+            };
 
             Item mainHand = guiMainHandEditor.getEditedItem();
 
@@ -178,41 +183,34 @@ namespace ZTn.BNet.D3ProfileExplorer
             // Retrieve used skills from the GUI
             List<D3SkillModifier> passiveSkills = new List<D3SkillModifier>();
 
-            // Barbarian passive skills
-            if (guiSkillNervesOfSteel.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.NervesOfSteel());
-            if (guiSkillWeaponsMaster.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.WeaponsMaster());
-            if (guiSkillToughAsNails.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.ToughAsNails());
-            if (guiSkillRuthless.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Barbarian.Ruthless());
+            Dictionary<CheckBox, Type> passives = new Dictionary<CheckBox, Type>()
+            {
+                //  Barbarian passive skills
+                { guiSkillNervesOfSteel, typeof(D3.Calculator.Skills.Barbarian.NervesOfSteel) },
+                { guiSkillWeaponsMaster, typeof(D3.Calculator.Skills.Barbarian.WeaponsMaster) },
+                { guiSkillToughAsNails, typeof(D3.Calculator.Skills.Barbarian.ToughAsNails) },
+                { guiSkillRuthless, typeof(D3.Calculator.Skills.Barbarian.Ruthless) },
 
-            // Demon Hunter passive skills
-            if (guiSkillArchery.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Archery());
-            if (guiSkillSteadyAim.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.SteadyAim());
-            if (guiSkillSharpShooter.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.SharpShooter());
-            if (guiSkillPerfectionnist.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.DemonHunter.Perfectionist());
+                // Demon Hunter passive skills
+                { guiSkillArchery, typeof(D3.Calculator.Skills.DemonHunter.Archery) },
+                { guiSkillSteadyAim, typeof(D3.Calculator.Skills.DemonHunter.SteadyAim) },
+                { guiSkillSharpShooter, typeof(D3.Calculator.Skills.DemonHunter.SharpShooter) },
+                { guiSkillPerfectionnist, typeof(D3.Calculator.Skills.DemonHunter.Perfectionist) },
 
-            // Monk passive skills
-            if (guiSkillSeizeTheInitiative.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Monk.SeizeTheInitiative());
-            if (guiSkillOneWithEverything.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Monk.OneWithEverything());
+                // Monk passive skills
+                { guiSkillSeizeTheInitiative, typeof(D3.Calculator.Skills.Monk.SeizeTheInitiative) },
+                { guiSkillOneWithEverything, typeof(D3.Calculator.Skills.Monk.OneWithEverything) },
 
-            // Witch Doctor skills
-            if (guiSkillPierceTheVeil.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.WitchDoctor.PierceTheVeil());
+                // Witch Doctor skills
+                { guiSkillPierceTheVeil, typeof(D3.Calculator.Skills.WitchDoctor.PierceTheVeil) },
 
-            // Wizard skills
-            if (guiSkillGlassCannon.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Wizard.GlassCannon());
-            if (guiSkillGalvanizingWard.Checked)
-                passiveSkills.Add(new D3.Calculator.Skills.Wizard.GalvanizingWard());
+                // Wizard skills
+                { guiSkillGlassCannon, typeof(D3.Calculator.Skills.Wizard.GlassCannon) },
+                { guiSkillGalvanizingWard, typeof(D3.Calculator.Skills.Wizard.GalvanizingWard) }
+            };
+
+            foreach (KeyValuePair<CheckBox, Type> pair in passives.Where(p => p.Key.Checked))
+                passiveSkills.Add((D3SkillModifier)Activator.CreateInstance(pair.Value));
 
             // Some buffs are applied after passives skills: followers skills and active skills
             List<D3SkillModifier> activeSkills = new List<D3SkillModifier>();
