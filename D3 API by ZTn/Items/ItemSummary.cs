@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using ZTn.BNet.D3.Artisans;
 
 namespace ZTn.BNet.D3.Items
 {
@@ -18,6 +19,10 @@ namespace ZTn.BNet.D3.Items
         public String displayColor { get; set; }
         [DataMember]
         public String tooltipParams { get; set; }
+        [DataMember]
+        public Recipe recipe;
+        [DataMember]
+        public Recipe[] craftedBy;
 
         #endregion
 

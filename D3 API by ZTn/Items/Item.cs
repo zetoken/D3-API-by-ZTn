@@ -45,8 +45,6 @@ namespace ZTn.BNet.D3.Items
         public Set set;
         [DataMember]
         public SocketedGem[] gems;
-        [DataMember]
-        public Recipe[] craftedBy;
 
         #endregion
 
