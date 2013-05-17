@@ -15,7 +15,7 @@ namespace ZTn.BNet.D3.Calculator
         List<Item> gems2;
         List<Item> gems3;
 
-        List<String> weaponTypeIdList = new List<String>() { "Axe", "Axe2H", "Bow", "Crossbow", "Dagger", "Daibo", "FistWeapon", "HandCrossbow", "Mace", "Mace2H", "Polearm", "Spear", "Sword", "Sword2H" };
+        List<String> weaponTypeIdList = new List<String>() { "Axe", "Axe2H", "Bow", "Crossbow", "Dagger", "Daibo", "FistWeapon", "HandCrossbow", "HandXbow", "Mace", "Mace2H", "Polearm", "Spear", "Sword", "Sword2H" };
         List<String> helmTypeIdList = new List<String>() { "Hat", "Helm", "Mask", "SpiritStone" };
 
         public D3ItemEditor()
