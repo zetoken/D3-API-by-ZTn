@@ -116,10 +116,10 @@ namespace ZTn.BNet.D3.Calculator
         {
             ItemValueRange armor = ItemValueRange.Zero;
 
-            // Update with base gems's resistance
+            // Update with base items armor
             armor += heroStatsItem.attributesRaw.armorItem;
 
-            // Update with gems's bonus resistance
+            // Update with items bonus armor
             armor += heroStatsItem.attributesRaw.armorBonusItem;
 
             // Update with strength bonus
@@ -174,7 +174,7 @@ namespace ZTn.BNet.D3.Calculator
         {
             heroStatsItem.setLevelBonus(levelAttributes);
             heroStatsItem.setParagonLevelBonus(paragonLevelAttributes);
-            heroStatsItem.update();
+            update();
 
             return getHeroDPSAsIs();
         }
@@ -183,13 +183,18 @@ namespace ZTn.BNet.D3.Calculator
         {
             ItemAttributes itemAttributes = new ItemAttributes();
 
+            heroStatsItem.setLevelBonus(levelAttributes);
+            heroStatsItem.setParagonLevelBonus(paragonLevelAttributes);
+
+            update();
+
             // Build passive bonuses
             foreach (D3SkillModifier modifier in passives)
             {
                 itemAttributes += modifier.getBonus(this);
             }
 
-            // Compute the new unique gems state with passives
+            // Compute the new unique item state with passives
             update();
 
             // Build active bonuses
@@ -207,7 +212,7 @@ namespace ZTn.BNet.D3.Calculator
             heroStatsItem.setLevelBonus(levelAttributes);
             heroStatsItem.setParagonLevelBonus(paragonLevelAttributes);
             heroStatsItem.setSkillsBonus(addedBonus);
-            heroStatsItem.update();
+            update();
 
             return getHeroDPSAsIs();
         }
