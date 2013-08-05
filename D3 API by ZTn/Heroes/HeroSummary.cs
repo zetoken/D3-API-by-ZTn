@@ -68,5 +68,15 @@ namespace ZTn.BNet.D3.Heroes
         {
             return Hero.getHeroFromHeroId(battleTag, id);
         }
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + id + " " + name + "]";
+        }
+
+        #endregion
     }
 }

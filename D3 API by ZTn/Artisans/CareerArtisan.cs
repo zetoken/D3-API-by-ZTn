@@ -18,5 +18,15 @@ namespace ZTn.BNet.D3.Artisans
         public int stepMax;
 
         #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + slug + " lvl:" + level + "]";
+        }
+
+        #endregion
     }
 }

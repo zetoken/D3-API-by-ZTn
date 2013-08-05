@@ -13,5 +13,15 @@ namespace ZTn.BNet.D3.Skills
         public Rune rune;
 
         #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + skill + " " + rune + "]";
+        }
+
+        #endregion
     }
 }

@@ -30,5 +30,15 @@ namespace ZTn.BNet.D3.Items
         {
             return Item.getItemFromTooltipParams(tooltipParams);
         }
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + id + "]";
+        }
+
+        #endregion
     }
 }

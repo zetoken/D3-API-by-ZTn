@@ -21,5 +21,16 @@ namespace ZTn.BNet.D3.Artisans
         public ItemSummary itemProduced;
 
         #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + slug + "]";
+        }
+
+        #endregion
     }
+
 }

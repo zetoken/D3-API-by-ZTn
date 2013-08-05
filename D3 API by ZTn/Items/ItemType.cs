@@ -25,5 +25,15 @@ namespace ZTn.BNet.D3.Items
         }
 
         #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + id + "]";
+        }
+
+        #endregion
     }
 }

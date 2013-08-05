@@ -26,5 +26,15 @@ namespace ZTn.BNet.D3.Skills
         public int level;
 
         #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + slug + "]";
+        }
+
+        #endregion
     }
 }

@@ -91,7 +91,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 {
                     TreeNode newNode = new TreeNode(String.Format("[{0}]", o.GetType().Name));
                     newNode.Nodes.AddRange(createNodeFromD3Object(o).ToArray());
-                    insertContextMenu(newNode, o);
+                    insertContextMenu(newNode, (dynamic)o);
                     newNodes.Add(newNode);
                 }
             }
@@ -108,7 +108,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                     {
                         TreeNode newNode = new TreeNode(String.Format("[{0}]", o.GetType().Name));
                         newNode.Nodes.AddRange(createNodeFromD3Object(o).ToArray());
-                        insertContextMenu(newNode, o);
+                        insertContextMenu(newNode, (dynamic)o);
                         newNodes.Add(newNode);
                     }
                 }
@@ -125,7 +125,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                         {
                             TreeNode newNode = new TreeNode(propertyInfo.Name);
                             newNode.Nodes.AddRange(createNodeFromD3Object(d3ObjectValue).ToArray());
-                            insertContextMenu(newNode, d3ObjectValue);
+                            insertContextMenu(newNode, (dynamic)d3ObjectValue);
                             newNodes.Add(newNode);
                         }
                     }
@@ -137,7 +137,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                         {
                             TreeNode newNode = new TreeNode(fieldInfo.Name);
                             newNode.Nodes.AddRange(createNodeFromD3Object(d3ObjectValue).ToArray());
-                            insertContextMenu(newNode, d3ObjectValue);
+                            insertContextMenu(newNode, (dynamic)d3ObjectValue);
                             newNodes.Add(newNode);
                         }
                     }
@@ -151,39 +151,49 @@ namespace ZTn.BNet.D3ProfileExplorer
             return newNodes;
         }
 
+        #region >> insertContextMenu Overloads
+
         private void insertContextMenu(TreeNode node, Object d3Object)
         {
-            if (d3Object is Hero)
-            {
-                node.Tag = d3Object;
-                node.ContextMenuStrip = guiHeroContextMenu;
-                node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
-            }
-            else if (d3Object is HeroSummary)
-            {
-                node.Tag = new HeroSummaryInformation(D3.D3Api.host, new BattleTag(guiBattleTag.Text), (HeroSummary)d3Object);
-                node.ContextMenuStrip = guiHeroSummaryContextMenu;
-                node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
-            }
-            else if (d3Object is ItemSummary)
-            {
-                node.Tag = d3Object;
-                node.ContextMenuStrip = guiItemSummaryContextMenu;
-                node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
-            }
-            else if (d3Object is CareerArtisan)
-            {
-                node.Tag = d3Object;
-                node.ContextMenuStrip = guiCareerArtisanContextMenu;
-                node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
-            }
-            else if (d3Object is Skill)
-            {
-                node.Tag = d3Object;
-                node.ContextMenuStrip = guiSkillContextMenu;
-                node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
-            }
+            // Catch "all": no context menu
         }
+
+        private void insertContextMenu(TreeNode node, Hero d3Object)
+        {
+            node.Tag = d3Object;
+            node.ContextMenuStrip = guiHeroContextMenu;
+            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+        }
+
+        private void insertContextMenu(TreeNode node, HeroSummary d3Object)
+        {
+            node.Tag = new HeroSummaryInformation(D3.D3Api.host, new BattleTag(guiBattleTag.Text), (HeroSummary)d3Object);
+            node.ContextMenuStrip = guiHeroSummaryContextMenu;
+            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+        }
+
+        private void insertContextMenu(TreeNode node, ItemSummary d3Object)
+        {
+            node.Tag = d3Object;
+            node.ContextMenuStrip = guiItemSummaryContextMenu;
+            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+        }
+
+        private void insertContextMenu(TreeNode node, CareerArtisan d3Object)
+        {
+            node.Tag = d3Object;
+            node.ContextMenuStrip = guiCareerArtisanContextMenu;
+            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+        }
+
+        private void insertContextMenu(TreeNode node, Skill d3Object)
+        {
+            node.Tag = d3Object;
+            node.ContextMenuStrip = guiSkillContextMenu;
+            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+        }
+
+        #endregion
 
         private void guiD3ProfileTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {

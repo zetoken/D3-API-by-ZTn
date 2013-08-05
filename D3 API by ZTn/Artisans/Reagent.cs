@@ -14,5 +14,15 @@ namespace ZTn.BNet.D3.Artisans
         public ItemSummary item;
 
         #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + item + " qty:" + quantity + "]";
+        }
+
+        #endregion
     }
 }

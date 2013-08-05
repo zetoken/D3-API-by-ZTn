@@ -151,5 +151,15 @@ namespace ZTn.BNet.D3.Items
         }
 
         #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + min + "-" + max + "]";
+        }
+
+        #endregion
     }
 }

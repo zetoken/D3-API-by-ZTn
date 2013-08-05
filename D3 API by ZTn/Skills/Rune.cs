@@ -28,5 +28,15 @@ namespace ZTn.BNet.D3.Skills
         public int order;
 
         #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + slug + " lvl:" + level + "]";
+        }
+
+        #endregion
     }
 }

@@ -11,5 +11,16 @@ namespace ZTn.BNet.D3.Skills
         public Skill skill;
 
         #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + skill + "]";
+        }
+
+        #endregion
+
     }
 }

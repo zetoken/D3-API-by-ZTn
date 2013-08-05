@@ -278,5 +278,55 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         {
             typeof(ItemAttributes).GetField(fieldName).SetValue(item.attributesRaw, value);
         }
+
+        /// <summary>
+        /// Updates the <paramref name="item"/> by aggregating some raw attributes for easier editing for example.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>The <paramref name="item"/> instance.</returns>
+        public static Item simplifyItem(this Item item)
+        {
+            ItemAttributes attr = new ItemAttributes(item.attributesRaw);
+
+            List<String> resists = new List<string>() { "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison" };
+
+            // Characteristics
+            attr.armorItem = item.getArmor();
+            attr.armorBonusItem = null;
+
+            // Weapon characterics
+            attr.attacksPerSecondItem = item.getRawWeaponAttackPerSecond();
+            attr.attacksPerSecondItemPercent = null;
+
+            item.checkAndUpdateWeaponDelta();
+
+            foreach (string resist in resists)
+            {
+                ItemValueRange rawWeaponDamageMin = item.getRawWeaponDamageMin(resist);
+                attr.setAttributeByName("damageWeaponMin_" + resist, rawWeaponDamageMin);
+                attr.setAttributeByName("damageWeaponDelta_" + resist, item.getRawWeaponDamageMax(resist) - rawWeaponDamageMin);
+                attr.setAttributeByName("damageWeaponBonusDelta_" + resist, null);
+                attr.setAttributeByName("damageWeaponBonusMinX1_" + resist, null);
+                attr.setAttributeByName("damageWeaponPercentBonus_" + resist, null);
+            }
+
+            // Item damage bonuses
+            foreach (string resist in resists)
+            {
+                ItemValueRange rawDamageMin = item.getRawBonusDamageMin(resist);
+                attr.setAttributeByName("damageMin_" + resist, rawDamageMin);
+                attr.setAttributeByName("damageDelta_" + resist, item.getRawBonusDamageMax(resist) - rawDamageMin);
+                attr.setAttributeByName("damageBonusMin_" + resist, null);
+            }
+
+            foreach (string resist in resists)
+            {
+                attr.setAttributeByName("damageTypePercentBonus_" + resist, null);
+            }
+
+            item.attributesRaw = attr;
+
+            return item;
+        }
     }
 }

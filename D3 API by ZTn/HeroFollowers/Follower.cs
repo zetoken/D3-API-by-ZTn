@@ -22,5 +22,15 @@ namespace ZTn.BNet.D3.HeroFollowers
         public FollowerSkill[] skills;
 
         #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + slug + " lvl:" + level + "]";
+        }
+
+        #endregion
     }
 }

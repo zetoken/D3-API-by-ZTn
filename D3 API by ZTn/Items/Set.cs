@@ -18,5 +18,15 @@ namespace ZTn.BNet.D3.Items
         public ItemSummary[] items;
 
         #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + slug + "]";
+        }
+
+        #endregion
     }
 }

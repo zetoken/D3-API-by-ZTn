@@ -44,5 +44,15 @@ namespace ZTn.BNet.D3.Artisans
             }
             return artisan;
         }
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return "[" + slug + "]";
+        }
+
+        #endregion
     }
 }
