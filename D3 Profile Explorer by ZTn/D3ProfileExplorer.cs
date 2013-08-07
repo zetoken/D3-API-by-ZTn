@@ -92,6 +92,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                     TreeNode newNode = new TreeNode(String.Format("[{0}]", o.GetType().Name));
                     newNode.Nodes.AddRange(createNodeFromD3Object(o).ToArray());
                     insertContextMenu(newNode, (dynamic)o);
+                    updateNodeText(newNode, (dynamic)o);
                     newNodes.Add(newNode);
                 }
             }
@@ -109,6 +110,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                         TreeNode newNode = new TreeNode(String.Format("[{0}]", o.GetType().Name));
                         newNode.Nodes.AddRange(createNodeFromD3Object(o).ToArray());
                         insertContextMenu(newNode, (dynamic)o);
+                        updateNodeText(newNode, (dynamic)o);
                         newNodes.Add(newNode);
                     }
                 }
@@ -126,6 +128,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                             TreeNode newNode = new TreeNode(propertyInfo.Name);
                             newNode.Nodes.AddRange(createNodeFromD3Object(d3ObjectValue).ToArray());
                             insertContextMenu(newNode, (dynamic)d3ObjectValue);
+                            updateNodeText(newNode, (dynamic)d3ObjectValue);
                             newNodes.Add(newNode);
                         }
                     }
@@ -138,6 +141,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                             TreeNode newNode = new TreeNode(fieldInfo.Name);
                             newNode.Nodes.AddRange(createNodeFromD3Object(d3ObjectValue).ToArray());
                             insertContextMenu(newNode, (dynamic)d3ObjectValue);
+                            updateNodeText(newNode, (dynamic)d3ObjectValue);
                             newNodes.Add(newNode);
                         }
                     }
@@ -191,6 +195,39 @@ namespace ZTn.BNet.D3ProfileExplorer
             node.Tag = d3Object;
             node.ContextMenuStrip = guiSkillContextMenu;
             node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+        }
+
+        #endregion
+
+        #region >> updateNodeText Overloads
+
+        private void updateNodeText(TreeNode node, Object d3Object)
+        {
+        }
+
+        private void updateNodeText(TreeNode node, HeroSummary d3Object)
+        {
+            node.Text += " (" + d3Object.name + ")";
+        }
+
+        private void updateNodeText(TreeNode node, ItemSummary d3Object)
+        {
+            node.Text += " (" + d3Object.name + ")";
+        }
+
+        private void updateNodeText(TreeNode node, CareerArtisan d3Object)
+        {
+            node.Text += " (" + d3Object.slug + ")";
+        }
+
+        private void updateNodeText(TreeNode node, Skill d3Object)
+        {
+            node.Text += " (" + d3Object.name + ")";
+        }
+
+        private void updateNodeText(TreeNode node, Set d3Object)
+        {
+            node.Text += " (" + d3Object.name + ")";
         }
 
         #endregion
