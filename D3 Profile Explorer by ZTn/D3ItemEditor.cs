@@ -83,7 +83,7 @@ namespace ZTn.BNet.D3.Calculator
                 guiItemId.Text = item.id;
                 guiItemTypeId.Text = (item.type != null ? item.type.id : "");
 
-                item = item.simplifyItem();
+                item = item.simplify();
 
                 ItemAttributes attr = item.attributesRaw;
 

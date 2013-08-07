@@ -15,6 +15,7 @@ using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Skills;
 using ZTn.BNet.D3.Medias;
 using System.IO;
+using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Sets;
 using System.Collections;
 using ZTn.BNet.D3.Calculator.Gems;
@@ -176,6 +177,13 @@ namespace ZTn.BNet.D3ProfileExplorer
             node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
         }
 
+        private void insertContextMenu(TreeNode node, Item d3Object)
+        {
+            node.Tag = d3Object;
+            node.ContextMenuStrip = guiItemContextMenu;
+            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+        }
+
         private void insertContextMenu(TreeNode node, ItemSummary d3Object)
         {
             node.Tag = d3Object;
@@ -268,7 +276,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (itemSummary.tooltipParams != null)
             {
 
-                TreeNode node = new TreeNode("Item " + itemSummary.tooltipParams);
+                TreeNode node = new TreeNode("Item [ " + itemSummary.name + " ]");
 
                 Item item;
                 try
@@ -280,6 +288,8 @@ namespace ZTn.BNet.D3ProfileExplorer
                     MessageBox.Show("Item was not found in cache: go online to retrieve it.");
                     return;
                 }
+
+                insertContextMenu(node, item);
 
                 node.Nodes.AddRange(createNodeFromD3Object(item).ToArray());
 
@@ -491,7 +501,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             if (itemSummary.id != null)
             {
 
-                TreeNode node = new TreeNode("Item " + itemSummary.id);
+                TreeNode node = new TreeNode("Item (meta) [ " + itemSummary.name + " ]");
 
                 Item item;
                 try
@@ -508,6 +518,19 @@ namespace ZTn.BNet.D3ProfileExplorer
 
                 guiD3ProfileTreeView.Nodes.Add(node);
             }
+        }
+
+        private void simplifyItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Item simplifiedItem = ((Item)guiD3ProfileTreeView.SelectedNode.Tag).simplify();
+
+            TreeNode node = new TreeNode("Item (simplified) [ " + simplifiedItem.name + " ]");
+
+            insertContextMenu(node, simplifiedItem);
+
+            node.Nodes.AddRange(createNodeFromD3Object(simplifiedItem).ToArray());
+
+            guiD3ProfileTreeView.Nodes.Add(node);
         }
     }
 }

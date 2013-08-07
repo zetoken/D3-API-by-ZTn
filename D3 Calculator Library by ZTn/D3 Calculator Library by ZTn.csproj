@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Gems\KnownGems.cs" />
     <Compile Include="Helpers\ItemAttributesExtension.cs" />
+    <Compile Include="Helpers\ItemValueRangeExtension.cs" />
     <Compile Include="ItemAttributesFromLevel.cs" />
     <Compile Include="ItemAttributesFromParagonLevel.cs" />
     <Compile Include="Sets\SetExtension.cs" />

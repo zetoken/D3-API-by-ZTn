@@ -41,9 +41,9 @@
             this.d3CalculatorHeroSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guiItemSummaryContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exploreItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.getItemSmallIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.getItemLargeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.getMetaItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getItemSummarySmallIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getItemSummaryLargeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getMetaItemSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.guiBattleNetHostList = new System.Windows.Forms.ComboBox();
             this.guiBattleNetLanguageList = new System.Windows.Forms.ComboBox();
@@ -65,6 +65,11 @@
             this.guiD3Icon = new System.Windows.Forms.PictureBox();
             this.guiLoadKnownSets = new System.Windows.Forms.Button();
             this.guiLoadKnownGems = new System.Windows.Forms.Button();
+            this.guiItemContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.getItemSmallIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getItemLargeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getMetaItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simplifyItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -75,6 +80,7 @@
             this.guiHeroContextMenu.SuspendLayout();
             this.guiSkillContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guiD3Icon)).BeginInit();
+            this.guiItemContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // guiLabel1
@@ -158,9 +164,9 @@
             // 
             this.guiItemSummaryContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exploreItemToolStripMenuItem,
-            this.getItemSmallIconToolStripMenuItem,
-            this.getItemLargeIconToolStripMenuItem,
-            this.getMetaItemToolStripMenuItem});
+            this.getItemSummarySmallIconToolStripMenuItem,
+            this.getItemSummaryLargeIconToolStripMenuItem,
+            this.getMetaItemSummaryToolStripMenuItem});
             this.guiItemSummaryContextMenu.Name = "guiHeroSummaryContextMenu";
             this.guiItemSummaryContextMenu.Size = new System.Drawing.Size(178, 92);
             // 
@@ -171,26 +177,26 @@
             this.exploreItemToolStripMenuItem.Text = "Explore Item";
             this.exploreItemToolStripMenuItem.Click += new System.EventHandler(this.exploreItemToolStripMenuItem_Click);
             // 
-            // getItemSmallIconToolStripMenuItem
+            // getItemSummarySmallIconToolStripMenuItem
             // 
-            this.getItemSmallIconToolStripMenuItem.Name = "getItemSmallIconToolStripMenuItem";
-            this.getItemSmallIconToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.getItemSmallIconToolStripMenuItem.Text = "Get Item Small Icon";
-            this.getItemSmallIconToolStripMenuItem.Click += new System.EventHandler(this.getItemSmallIconToolStripMenuItem_Click);
+            this.getItemSummarySmallIconToolStripMenuItem.Name = "getItemSummarySmallIconToolStripMenuItem";
+            this.getItemSummarySmallIconToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.getItemSummarySmallIconToolStripMenuItem.Text = "Get Item Small Icon";
+            this.getItemSummarySmallIconToolStripMenuItem.Click += new System.EventHandler(this.getItemSmallIconToolStripMenuItem_Click);
             // 
-            // getItemLargeIconToolStripMenuItem
+            // getItemSummaryLargeIconToolStripMenuItem
             // 
-            this.getItemLargeIconToolStripMenuItem.Name = "getItemLargeIconToolStripMenuItem";
-            this.getItemLargeIconToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.getItemLargeIconToolStripMenuItem.Text = "Get Item Large Icon";
-            this.getItemLargeIconToolStripMenuItem.Click += new System.EventHandler(this.getItemLargeIconToolStripMenuItem_Click);
+            this.getItemSummaryLargeIconToolStripMenuItem.Name = "getItemSummaryLargeIconToolStripMenuItem";
+            this.getItemSummaryLargeIconToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.getItemSummaryLargeIconToolStripMenuItem.Text = "Get Item Large Icon";
+            this.getItemSummaryLargeIconToolStripMenuItem.Click += new System.EventHandler(this.getItemLargeIconToolStripMenuItem_Click);
             // 
-            // getMetaItemToolStripMenuItem
+            // getMetaItemSummaryToolStripMenuItem
             // 
-            this.getMetaItemToolStripMenuItem.Name = "getMetaItemToolStripMenuItem";
-            this.getMetaItemToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.getMetaItemToolStripMenuItem.Text = "Get Meta Item";
-            this.getMetaItemToolStripMenuItem.Click += new System.EventHandler(this.getMetaItemToolStripMenuItem_Click);
+            this.getMetaItemSummaryToolStripMenuItem.Name = "getMetaItemSummaryToolStripMenuItem";
+            this.getMetaItemSummaryToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.getMetaItemSummaryToolStripMenuItem.Text = "Get Meta Item";
+            this.getMetaItemSummaryToolStripMenuItem.Click += new System.EventHandler(this.getMetaItemToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -382,6 +388,43 @@
             this.guiLoadKnownGems.UseVisualStyleBackColor = true;
             this.guiLoadKnownGems.Click += new System.EventHandler(this.guiLoadKnownGems_Click);
             // 
+            // guiItemContextMenu
+            // 
+            this.guiItemContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.getItemSmallIconToolStripMenuItem,
+            this.getItemLargeIconToolStripMenuItem,
+            this.getMetaItemToolStripMenuItem,
+            this.simplifyItemToolStripMenuItem});
+            this.guiItemContextMenu.Name = "guiHeroSummaryContextMenu";
+            this.guiItemContextMenu.Size = new System.Drawing.Size(178, 114);
+            // 
+            // getItemSmallIconToolStripMenuItem
+            // 
+            this.getItemSmallIconToolStripMenuItem.Name = "getItemSmallIconToolStripMenuItem";
+            this.getItemSmallIconToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.getItemSmallIconToolStripMenuItem.Text = "Get Item Small Icon";
+            // 
+            // getItemLargeIconToolStripMenuItem
+            // 
+            this.getItemLargeIconToolStripMenuItem.Name = "getItemLargeIconToolStripMenuItem";
+            this.getItemLargeIconToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.getItemLargeIconToolStripMenuItem.Text = "Get Item Large Icon";
+            this.getItemLargeIconToolStripMenuItem.Click += new System.EventHandler(this.getItemLargeIconToolStripMenuItem_Click);
+            // 
+            // getMetaItemToolStripMenuItem
+            // 
+            this.getMetaItemToolStripMenuItem.Name = "getMetaItemToolStripMenuItem";
+            this.getMetaItemToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.getMetaItemToolStripMenuItem.Text = "Get Meta Item";
+            this.getMetaItemToolStripMenuItem.Click += new System.EventHandler(this.getMetaItemToolStripMenuItem_Click);
+            // 
+            // simplifyItemToolStripMenuItem
+            // 
+            this.simplifyItemToolStripMenuItem.Name = "simplifyItemToolStripMenuItem";
+            this.simplifyItemToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.simplifyItemToolStripMenuItem.Text = "Simplify Item";
+            this.simplifyItemToolStripMenuItem.Click += new System.EventHandler(this.simplifyItemToolStripMenuItem_Click);
+            // 
             // guiD3ProfileExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -410,6 +453,7 @@
             this.guiHeroContextMenu.ResumeLayout(false);
             this.guiSkillContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guiD3Icon)).EndInit();
+            this.guiItemContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -442,13 +486,18 @@
         private System.Windows.Forms.ToolStripMenuItem d3CalculatorHeroSummaryToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip guiSkillContextMenu;
         private System.Windows.Forms.ToolStripMenuItem getSkillIcon42ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem getItemSmallIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getItemSummarySmallIconToolStripMenuItem;
         private System.Windows.Forms.PictureBox guiD3Icon;
-        private System.Windows.Forms.ToolStripMenuItem getItemLargeIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getItemSummaryLargeIconToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem getSkillIcon64ToolStripMenuItem;
         private System.Windows.Forms.Button guiLoadKnownSets;
-        private System.Windows.Forms.ToolStripMenuItem getMetaItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getMetaItemSummaryToolStripMenuItem;
         private System.Windows.Forms.Button guiLoadKnownGems;
+        private System.Windows.Forms.ContextMenuStrip guiItemContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem getItemSmallIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getItemLargeIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getMetaItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem simplifyItemToolStripMenuItem;
     }
 }
 

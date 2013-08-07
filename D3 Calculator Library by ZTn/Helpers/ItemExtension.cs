@@ -11,6 +11,33 @@ namespace ZTn.BNet.D3.Calculator.Helpers
     /// </summary>
     public static class ItemExtension
     {
+
+        #region >> Reflexion Helpers
+
+        /// <summary>
+        /// Returns the value of an attribute of an item given the attribute's name
+        /// </summary>
+        /// <param name="item">Source item</param>
+        /// <param name="fieldName">Name of the attribute to retrieve</param>
+        /// <returns></returns>
+        public static ItemValueRange getAttributeByName(this Item item, String fieldName)
+        {
+            return (ItemValueRange)typeof(ItemAttributes).GetField(fieldName).GetValue(item.attributesRaw);
+        }
+
+        /// <summary>
+        /// Sets the value of an attribute of an item given the attribute's name
+        /// </summary>
+        /// <param name="item">Source item</param>
+        /// <param name="fieldName">Name of the attribute to retrieve</param>
+        /// <param name="value">Value to set</param>
+        public static void setAttributeByName(this Item item, String fieldName, ItemValueRange value)
+        {
+            typeof(ItemAttributes).GetField(fieldName).SetValue(item.attributesRaw, value);
+        }
+
+        #endregion
+
         public static List<Set> getActivatedSets(this List<Item> items)
         {
             Dictionary<String, Set> itemsOfSets = new Dictionary<string, Set>();
@@ -43,18 +70,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange getArmor(this Item item)
         {
-            return item.attributesRaw.armorItem + item.attributesRaw.armorBonusItem;
-        }
-
-        /// <summary>
-        /// Returns the value of an attribute of an item given the attribute's name
-        /// </summary>
-        /// <param name="item">Source item</param>
-        /// <param name="fieldName">Name of the attribute to retrieve</param>
-        /// <returns></returns>
-        public static ItemValueRange getAttributeByName(this Item item, String fieldName)
-        {
-            return (ItemValueRange)typeof(ItemAttributes).GetField(fieldName).GetValue(item.attributesRaw);
+            return item.attributesRaw.getArmor();
         }
 
         /// <summary>
@@ -64,26 +80,19 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange getRawBonusDamage(this Item item)
         {
-            // formula: ( min + max ) / 2
-            return (item.getRawBonusDamageMin() + item.getRawBonusDamageMax()) / 2;
+            return item.attributesRaw.getRawBonusDamage();
         }
 
         #region >> getRawBonusDamageMin *
 
         public static ItemValueRange getRawBonusDamageMin(this Item item)
         {
-            return item.getRawBonusDamageMin("Arcane") + item.getRawBonusDamageMin("Cold") + item.getRawBonusDamageMin("Fire") + item.getRawBonusDamageMin("Holy")
-                + item.getRawBonusDamageMin("Lightning") + item.getRawBonusDamageMin("Physical") + item.getRawBonusDamageMin("Poison");
+            return item.attributesRaw.getRawBonusDamageMin();
         }
 
         public static ItemValueRange getRawBonusDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
-            ItemValueRange result = item.getAttributeByName("damageMin_" + resist) + item.getAttributeByName("damageBonusMin_" + resist);
-
-            if (useDamageTypePercentBonus && resist != "Physical")
-                result += item.getRawBonusDamageMin("Physical") * item.getAttributeByName("damageTypePercentBonus_" + resist);
-
-            return result;
+            return item.attributesRaw.getRawBonusDamageMin(resist, useDamageTypePercentBonus);
         }
 
         #endregion
@@ -92,18 +101,12 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         public static ItemValueRange getRawBonusDamageMax(this Item item)
         {
-            return item.getRawBonusDamageMax("Arcane") + item.getRawBonusDamageMax("Cold") + item.getRawBonusDamageMax("Fire") + item.getRawBonusDamageMax("Holy")
-                + item.getRawBonusDamageMax("Lightning") + item.getRawBonusDamageMax("Physical") + item.getRawBonusDamageMax("Poison");
+            return item.attributesRaw.getRawBonusDamageMax();
         }
 
         public static ItemValueRange getRawBonusDamageMax(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
-            ItemValueRange result = item.getAttributeByName("damageMin_" + resist) + item.getAttributeByName("damageDelta_" + resist);
-
-            if (useDamageTypePercentBonus && resist != "Physical")
-                result += item.getRawBonusDamageMax("Physical") * item.getAttributeByName("damageTypePercentBonus_" + resist);
-
-            return result;
+            return item.attributesRaw.getRawBonusDamageMax(resist, useDamageTypePercentBonus);
         }
 
         #endregion
@@ -116,7 +119,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange getResistance(this Item item, String resist)
         {
-            return item.getAttributeByName("resistance_" + resist);
+            return item.attributesRaw.getAttributeByName("resistance_" + resist);
         }
 
         /// <summary>
@@ -126,7 +129,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange getRawWeaponAttackPerSecond(this Item item)
         {
-            return item.getWeaponAttackPerSecond(ItemValueRange.Zero);
+            return item.attributesRaw.getRawWeaponAttackPerSecond();
         }
 
         /// <summary>
@@ -136,7 +139,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange getRawWeaponDPS(this Item item)
         {
-            return item.getRawWeaponDamage() * item.getRawWeaponAttackPerSecond();
+            return item.attributesRaw.getRawWeaponDPS();
         }
 
         /// <summary>
@@ -146,28 +149,19 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange getRawWeaponDamage(this Item item)
         {
-            // formula: ( min + max ) / 2
-            return (item.getRawWeaponDamageMin() + item.getRawWeaponDamageMax()) / 2;
+            return item.attributesRaw.getRawWeaponDamage();
         }
 
         #region >> getRawWeaponDamageMin *
 
         public static ItemValueRange getRawWeaponDamageMin(this Item item)
         {
-            return item.getRawWeaponDamageMin("Arcane") + item.getRawWeaponDamageMin("Cold") + item.getRawWeaponDamageMin("Fire") + item.getRawWeaponDamageMin("Holy")
-                + item.getRawWeaponDamageMin("Lightning") + item.getRawWeaponDamageMin("Physical") + item.getRawWeaponDamageMin("Poison");
+            return item.attributesRaw.getRawWeaponDamageMin();
         }
 
         public static ItemValueRange getRawWeaponDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
-            ItemValueRange damage =
-                (item.getAttributeByName("damageWeaponMin_" + resist) + item.getAttributeByName("damageWeaponBonusMin_" + resist) + item.getAttributeByName("damageWeaponBonusMinX1_" + resist))
-                * (1 + item.getAttributeByName("damageWeaponPercentBonus_" + resist));
-
-            if (useDamageTypePercentBonus && resist != "Physical")
-                damage += item.getRawWeaponDamageMin("Physical") * item.getAttributeByName("damageTypePercentBonus_" + resist);
-
-            return damage;
+            return item.attributesRaw.getRawWeaponDamageMin(resist, useDamageTypePercentBonus);
         }
 
         /// <summary>
@@ -179,9 +173,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange getRawWeaponDamageMinX1(this Item item, String resist)
         {
-            ItemValueRange damageWeaponMinX1 = item.getAttributeByName("damageWeaponMinX1_" + resist);
-
-            return damageWeaponMinX1;
+            return item.attributesRaw.getRawWeaponDamageMinX1(resist);
         }
 
         #endregion
@@ -190,31 +182,19 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         public static ItemValueRange getRawWeaponDamageMax(this Item item)
         {
-            return item.getRawWeaponDamageMax("Arcane") + item.getRawWeaponDamageMax("Cold") + item.getRawWeaponDamageMax("Fire") + item.getRawWeaponDamageMax("Holy")
-                + item.getRawWeaponDamageMax("Lightning") + item.getRawWeaponDamageMax("Physical") + item.getRawWeaponDamageMax("Poison");
+            return item.attributesRaw.getRawWeaponDamageMax();
         }
 
         public static ItemValueRange getRawWeaponDamageMax(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
-            ItemValueRange damage =
-                (item.getAttributeByName("damageWeaponMin_" + resist) + item.getAttributeByName("damageWeaponDelta_" + resist) + item.getAttributeByName("damageWeaponBonusDelta_" + resist))
-                * (ItemValueRange.One + item.getAttributeByName("damageWeaponPercentBonus_" + resist));
-
-            if (useDamageTypePercentBonus && resist != "Physical")
-                damage += item.getRawWeaponDamageMax("Physical") * item.getAttributeByName("damageTypePercentBonus_" + resist);
-
-            return damage;
+            return item.attributesRaw.getRawWeaponDamageMax(resist, useDamageTypePercentBonus);
         }
 
         #endregion
 
         public static ItemValueRange getWeaponAttackPerSecond(this Item item, ItemValueRange increaseFromOtherItems)
         {
-            ItemValueRange weaponAttackSpeed = item.attributesRaw.attacksPerSecondItem;
-
-            weaponAttackSpeed *= 1 + item.attributesRaw.attacksPerSecondItemPercent + increaseFromOtherItems;
-
-            return weaponAttackSpeed;
+            return item.attributesRaw.getWeaponAttackPerSecond(increaseFromOtherItems);
         }
 
         #region >> checkAndUpdateWeaponDelta *
@@ -265,61 +245,39 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static Boolean isWeapon(this Item item)
         {
-            return (item.attributesRaw.attacksPerSecondItem != null);
+            return item.attributesRaw.isWeapon();
         }
 
         /// <summary>
-        /// Sets the value of an attribute of an item given the attribute's name
-        /// </summary>
-        /// <param name="item">Source item</param>
-        /// <param name="fieldName">Name of the attribute to retrieve</param>
-        /// <param name="value">Value to set</param>
-        public static void setAttributeByName(this Item item, String fieldName, ItemValueRange value)
-        {
-            typeof(ItemAttributes).GetField(fieldName).SetValue(item.attributesRaw, value);
-        }
-
-        /// <summary>
-        /// Updates the <paramref name="item"/> by aggregating some raw attributes for easier editing for example.
+        /// Simplifies the <paramref name="item"/> by aggregating some raw attributes (for easier editing for example).
         /// </summary>
         /// <param name="item"></param>
         /// <returns>The <paramref name="item"/> instance.</returns>
-        public static Item simplifyItem(this Item item)
+        public static Item simplify(this Item item)
         {
-            ItemAttributes attr = new ItemAttributes(item.attributesRaw);
+            ItemAttributes attr = item.attributesRaw.getSimplified();
 
-            List<String> resists = new List<string>() { "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison" };
-
-            // Characteristics
-            attr.armorItem = item.getArmor();
-            attr.armorBonusItem = null;
-
-            // Weapon characterics
-            attr.attacksPerSecondItem = item.getRawWeaponAttackPerSecond();
-            attr.attacksPerSecondItemPercent = null;
-
-            item.checkAndUpdateWeaponDelta();
-
-            foreach (string resist in resists)
-            {
-                ItemValueRange rawWeaponDamageMin = item.getRawWeaponDamageMin(resist);
-                attr.setAttributeByName("damageWeaponMin_" + resist, rawWeaponDamageMin);
-                attr.setAttributeByName("damageWeaponDelta_" + resist, item.getRawWeaponDamageMax(resist, false) - rawWeaponDamageMin);
-                attr.setAttributeByName("damageWeaponBonusDelta_" + resist, null);
-                attr.setAttributeByName("damageWeaponBonusMinX1_" + resist, null);
-                attr.setAttributeByName("damageWeaponPercentBonus_" + resist, null);
-            }
-
-            // Item damage bonuses
-            foreach (string resist in resists)
-            {
-                ItemValueRange rawDamageMin = item.getRawBonusDamageMin(resist);
-                attr.setAttributeByName("damageMin_" + resist, rawDamageMin);
-                attr.setAttributeByName("damageDelta_" + resist, item.getRawBonusDamageMax(resist, false) - rawDamageMin);
-                attr.setAttributeByName("damageBonusMin_" + resist, null);
-            }
-
+            // Set new attributes to item
             item.attributesRaw = attr;
+
+            return item.UpdateStats();
+        }
+
+        /// <summary>
+        /// Updates some general <paramref name="item"/> stats based on its attributesRaw.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static Item UpdateStats(this Item item)
+        {
+            ItemAttributes attr = item.attributesRaw;
+
+            // Update some item stats
+            item.armor = (attr.armorItem == null ? null : new ItemValueRange(attr.armorItem));
+            item.attacksPerSecond = (attr.attacksPerSecondItem == null ? null : new ItemValueRange(attr.attacksPerSecondItem));
+            item.minDamage = item.getRawWeaponDamageMin().nullIfZero();
+            item.maxDamage = item.getRawWeaponDamageMax().nullIfZero();
+            item.dps = item.getRawWeaponDPS().nullIfZero();
 
             return item;
         }
