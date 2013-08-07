@@ -76,11 +76,11 @@ namespace ZTn.BNet.D3.Calculator.Helpers
                 + item.getRawBonusDamageMin("Lightning") + item.getRawBonusDamageMin("Physical") + item.getRawBonusDamageMin("Poison");
         }
 
-        public static ItemValueRange getRawBonusDamageMin(this Item item, String resist)
+        public static ItemValueRange getRawBonusDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
             ItemValueRange result = item.getAttributeByName("damageMin_" + resist) + item.getAttributeByName("damageBonusMin_" + resist);
 
-            if (resist != "Physical")
+            if (useDamageTypePercentBonus && resist != "Physical")
                 result += item.getRawBonusDamageMin("Physical") * item.getAttributeByName("damageTypePercentBonus_" + resist);
 
             return result;
@@ -96,11 +96,11 @@ namespace ZTn.BNet.D3.Calculator.Helpers
                 + item.getRawBonusDamageMax("Lightning") + item.getRawBonusDamageMax("Physical") + item.getRawBonusDamageMax("Poison");
         }
 
-        public static ItemValueRange getRawBonusDamageMax(this Item item, String resist)
+        public static ItemValueRange getRawBonusDamageMax(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
             ItemValueRange result = item.getAttributeByName("damageMin_" + resist) + item.getAttributeByName("damageDelta_" + resist);
 
-            if (resist != "Physical")
+            if (useDamageTypePercentBonus && resist != "Physical")
                 result += item.getRawBonusDamageMax("Physical") * item.getAttributeByName("damageTypePercentBonus_" + resist);
 
             return result;
@@ -158,13 +158,13 @@ namespace ZTn.BNet.D3.Calculator.Helpers
                 + item.getRawWeaponDamageMin("Lightning") + item.getRawWeaponDamageMin("Physical") + item.getRawWeaponDamageMin("Poison");
         }
 
-        public static ItemValueRange getRawWeaponDamageMin(this Item item, String resist)
+        public static ItemValueRange getRawWeaponDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
             ItemValueRange damage =
                 (item.getAttributeByName("damageWeaponMin_" + resist) + item.getAttributeByName("damageWeaponBonusMin_" + resist) + item.getAttributeByName("damageWeaponBonusMinX1_" + resist))
                 * (1 + item.getAttributeByName("damageWeaponPercentBonus_" + resist));
 
-            if (resist != "Physical")
+            if (useDamageTypePercentBonus && resist != "Physical")
                 damage += item.getRawWeaponDamageMin("Physical") * item.getAttributeByName("damageTypePercentBonus_" + resist);
 
             return damage;
@@ -194,13 +194,13 @@ namespace ZTn.BNet.D3.Calculator.Helpers
                 + item.getRawWeaponDamageMax("Lightning") + item.getRawWeaponDamageMax("Physical") + item.getRawWeaponDamageMax("Poison");
         }
 
-        public static ItemValueRange getRawWeaponDamageMax(this Item item, String resist)
+        public static ItemValueRange getRawWeaponDamageMax(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
             ItemValueRange damage =
                 (item.getAttributeByName("damageWeaponMin_" + resist) + item.getAttributeByName("damageWeaponDelta_" + resist) + item.getAttributeByName("damageWeaponBonusDelta_" + resist))
                 * (ItemValueRange.One + item.getAttributeByName("damageWeaponPercentBonus_" + resist));
 
-            if (resist != "Physical")
+            if (useDamageTypePercentBonus && resist != "Physical")
                 damage += item.getRawWeaponDamageMax("Physical") * item.getAttributeByName("damageTypePercentBonus_" + resist);
 
             return damage;
@@ -304,7 +304,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             {
                 ItemValueRange rawWeaponDamageMin = item.getRawWeaponDamageMin(resist);
                 attr.setAttributeByName("damageWeaponMin_" + resist, rawWeaponDamageMin);
-                attr.setAttributeByName("damageWeaponDelta_" + resist, item.getRawWeaponDamageMax(resist) - rawWeaponDamageMin);
+                attr.setAttributeByName("damageWeaponDelta_" + resist, item.getRawWeaponDamageMax(resist, false) - rawWeaponDamageMin);
                 attr.setAttributeByName("damageWeaponBonusDelta_" + resist, null);
                 attr.setAttributeByName("damageWeaponBonusMinX1_" + resist, null);
                 attr.setAttributeByName("damageWeaponPercentBonus_" + resist, null);
@@ -315,13 +315,8 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             {
                 ItemValueRange rawDamageMin = item.getRawBonusDamageMin(resist);
                 attr.setAttributeByName("damageMin_" + resist, rawDamageMin);
-                attr.setAttributeByName("damageDelta_" + resist, item.getRawBonusDamageMax(resist) - rawDamageMin);
+                attr.setAttributeByName("damageDelta_" + resist, item.getRawBonusDamageMax(resist, false) - rawDamageMin);
                 attr.setAttributeByName("damageBonusMin_" + resist, null);
-            }
-
-            foreach (string resist in resists)
-            {
-                attr.setAttributeByName("damageTypePercentBonus_" + resist, null);
             }
 
             item.attributesRaw = attr;
