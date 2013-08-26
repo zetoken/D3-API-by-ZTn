@@ -7,16 +7,23 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Items;
+using ZTn.BNet.D3.Calculator.Helpers;
 
 namespace ZTn.BNet.D3.Calculator.Gems
 {
     public class GemHelper
     {
+        #region >> Fields
+
         private static KnownGems _knownGems;
 
         private static List<Item> _helmSocketedGems;
         private static List<Item> _otherSocketedGems;
         private static List<Item> _weaponSocketedGems;
+
+        #endregion
+
+        #region >> Properties
 
         public static KnownGems knownGems
         {
@@ -34,12 +41,7 @@ namespace ZTn.BNet.D3.Calculator.Gems
             {
                 if (_helmSocketedGems == null)
                 {
-                    _helmSocketedGems = new List<Item>();
-                    foreach (Item gem in knownGems.gems)
-                    {
-                        foreach (SocketEffect effect in gem.socketEffects.Where(effect => effect.itemTypeId == "Helm"))
-                            _helmSocketedGems.Add(new Item(effect.attributesRaw) { name = effect.attributes[0], id = gem.id });
-                    }
+                    _helmSocketedGems = filterGems("Helm");
                 }
                 return _helmSocketedGems;
             }
@@ -50,12 +52,7 @@ namespace ZTn.BNet.D3.Calculator.Gems
             {
                 if (_otherSocketedGems == null)
                 {
-                    _otherSocketedGems = new List<Item>();
-                    foreach (Item gem in knownGems.gems)
-                    {
-                        foreach (SocketEffect effect in gem.socketEffects.Where(effect => effect.itemTypeId == "All"))
-                            _otherSocketedGems.Add(new Item(effect.attributesRaw) { name = effect.attributes[0], id = gem.id });
-                    }
+                    _otherSocketedGems = filterGems("All"); ;
                 }
                 return _otherSocketedGems;
             }
@@ -66,16 +63,34 @@ namespace ZTn.BNet.D3.Calculator.Gems
             {
                 if (_weaponSocketedGems == null)
                 {
-                    _weaponSocketedGems = new List<Item>();
-
-                    foreach (Item gem in knownGems.gems)
-                    {
-                        foreach (SocketEffect effect in gem.socketEffects.Where(effect => effect.itemTypeId == "Weapon"))
-                            _weaponSocketedGems.Add(new Item(effect.attributesRaw) { name = effect.attributes[0], id = gem.id });
-                    }
+                    _weaponSocketedGems = filterGems("Weapon");
                 }
                 return _weaponSocketedGems;
             }
+        }
+
+        #endregion
+
+        private static List<Item> filterGems(String itemTypeId)
+        {
+            List<Item> filteredGems = new List<Item>();
+            foreach (Item gem in knownGems.gems)
+            {
+                filteredGems.AddRange(gem.socketEffects
+                   .Where(e => e.itemTypeId == itemTypeId)
+                   .Select(e => new Item(e.attributesRaw) { name = e.attributes[0], id = gem.id }));
+            }
+            return filteredGems;
+        }
+
+        public static List<Item> getGemsForItemTypeId(String itemTypeId)
+        {
+            if (ItemHelper.weaponTypeIds.Any(id => itemTypeId == id))
+                return GemHelper.weaponSocketedGems;
+            else if (ItemHelper.helmTypeIds.Any(id => itemTypeId.Contains(id)))
+                return GemHelper.helmSocketedGems;
+            else
+                return GemHelper.otherSocketedGems;
         }
     }
 }

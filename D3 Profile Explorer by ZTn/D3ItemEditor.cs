@@ -15,16 +15,13 @@ namespace ZTn.BNet.D3.Calculator
         List<Item> gems2;
         List<Item> gems3;
 
-        List<String> weaponTypeIdList = new List<String>() { "Axe", "Axe2H", "Bow", "Crossbow", "Dagger", "Daibo", "FistWeapon", "HandCrossbow", "HandXbow", "Mace", "Mace2H", "Polearm", "Spear", "Sword", "Sword2H" };
-        List<String> helmTypeIdList = new List<String>() { "Hat", "Helm", "Mask", "SpiritStone" };
-
         public D3ItemEditor()
         {
             InitializeComponent();
 
             List<String> typeIdSource = new List<String>() { "", "Generic Armor" };
-            typeIdSource.AddRange(weaponTypeIdList);
-            typeIdSource.AddRange(helmTypeIdList);
+            typeIdSource.AddRange(ItemHelper.weaponTypeIds);
+            typeIdSource.AddRange(ItemHelper.helmTypeIds);
             guiItemTypeId.Items.AddRange(typeIdSource.ToArray());
         }
 
@@ -163,12 +160,7 @@ namespace ZTn.BNet.D3.Calculator
                 gems1.Add(new Item(new ItemAttributes()) { name = "( no gem )" });
                 if (item.type != null)
                 {
-                    if (weaponTypeIdList.IndexOf(item.type.id) >= 0)
-                        gems1.AddRange(GemHelper.weaponSocketedGems);
-                    else if (item.type.id.Contains("Helm") || item.type.id.Contains("SpiritStone") || item.type.id.Contains("Mask") || item.type.id.Contains("Hat"))
-                        gems1.AddRange(GemHelper.helmSocketedGems);
-                    else
-                        gems1.AddRange(GemHelper.otherSocketedGems);
+                    gems1.AddRange(GemHelper.getGemsForItemTypeId(item.type.id));
                 }
                 gems2 = new List<Item>(gems1);
                 gems3 = new List<Item>(gems1);
@@ -309,12 +301,7 @@ namespace ZTn.BNet.D3.Calculator
             // re-generates data
             gems1 = new List<Item>();
             gems1.Add(new Item(new ItemAttributes()) { name = "( no gem )" });
-            if (weaponTypeIdList.IndexOf(guiItemTypeId.Text) >= 0)
-                gems1.AddRange(GemHelper.weaponSocketedGems);
-            else if (guiItemTypeId.Text.Contains("Helm") || guiItemTypeId.Text.Contains("SpiritStone") || guiItemTypeId.Text.Contains("Mask") || guiItemTypeId.Text.Contains("Hat"))
-                gems1.AddRange(GemHelper.helmSocketedGems);
-            else
-                gems1.AddRange(GemHelper.otherSocketedGems);
+            gems1.AddRange(GemHelper.getGemsForItemTypeId(guiItemTypeId.Text));
             gems2 = new List<Item>(gems1);
             gems3 = new List<Item>(gems1);
 
