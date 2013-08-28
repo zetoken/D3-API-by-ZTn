@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,22 +32,21 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libraries\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="D3Calculator.cs" />
-    <Compile Include="Gems\GemHelper.cs" />
     <Compile Include="Gems\KnownGems.cs" />
     <Compile Include="Helpers\ItemAttributesExtension.cs" />
     <Compile Include="Helpers\ItemExtension.cs" />
@@ -88,14 +88,15 @@
     <Compile Include="Skills\Wizard\GalvanizingWard.cs" />
     <Compile Include="Skills\Wizard\GlassCannon.cs" />
     <Compile Include="StatsItem.cs" />
+    <Compile Include="Helpers\ItemHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BNet API by ZTn\Android BNet API by ZTn.csproj">
-      <Project>{5305ad1d-aed6-4ccb-8f20-08353662bfc8}</Project>
+      <Project>{5305AD1D-AED6-4CCB-8F20-08353662BFC8}</Project>
       <Name>Android BNet API by ZTn</Name>
     </ProjectReference>
     <ProjectReference Include="..\D3 API by ZTn\Android D3 API by ZTn.csproj">
-      <Project>{013ab500-9996-439a-942a-e2c77b774971}</Project>
+      <Project>{013AB500-9996-439A-942A-E2C77B774971}</Project>
       <Name>Android D3 API by ZTn</Name>
     </ProjectReference>
   </ItemGroup>

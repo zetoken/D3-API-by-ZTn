@@ -238,6 +238,25 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         #endregion
 
+        #region >> isItemType*
+
+        public static Boolean isItemTypeHelm(this Item item)
+        {
+            return ItemHelper.helmTypeIds.Any(id => item.id.Contains(id));
+        }
+
+        public static Boolean isItemTypeWeapon(this Item item)
+        {
+            return ItemHelper.weaponTypeIds.Any(id => item.id == id);
+        }
+
+        public static Boolean isItemTypeOther(this Item item)
+        {
+            return !item.isItemTypeHelm() && !item.isItemTypeWeapon();
+        }
+
+        #endregion
+
         /// <summary>
         /// Informs if the gems is a ambidextryWeapon based on its characteristics
         /// </summary>

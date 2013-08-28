@@ -29,6 +29,7 @@ namespace ZTn.BNet.D3.Items
         public SocketedGem(Item item)
         {
             this.item = item;
+            this.attributes = item.attributes;
             this.attributesRaw = item.attributesRaw;
         }
 

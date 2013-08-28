@@ -11,9 +11,11 @@ namespace ZTn.BNet.D3.Calculator
 {
     public partial class D3ItemEditor : UserControl
     {
-        List<Item> gems1;
-        List<Item> gems2;
-        List<Item> gems3;
+        List<GemsListViewItem> gems1;
+        List<GemsListViewItem> gems2;
+        List<GemsListViewItem> gems3;
+
+        static KnownGems knownGems = KnownGems.getKnownGemsFromJsonFile("d3gem.json");
 
         public D3ItemEditor()
         {
@@ -24,6 +26,22 @@ namespace ZTn.BNet.D3.Calculator
             typeIdSource.AddRange(ItemHelper.helmTypeIds);
             guiItemTypeId.Items.AddRange(typeIdSource.ToArray());
         }
+
+        #region >> Inner Classes
+
+        private class GemsListViewItem
+        {
+            public Item item;
+            public string label { get; private set; }
+
+            public GemsListViewItem(Item item)
+            {
+                this.item = item;
+                this.label = item.attributes[0];
+            }
+        }
+
+        #endregion
 
         private void populateData(TextBox textBox, ItemValueRange itemValueRange)
         {
@@ -63,11 +81,11 @@ namespace ZTn.BNet.D3.Calculator
             return data;
         }
 
-        private void selectActiveGem(ComboBox comboBox, List<Item> refGems, ItemSummary equippedGem)
+        private void selectActiveGem(ComboBox comboBox, List<GemsListViewItem> refGems, ItemSummary equippedGem)
         {
             if (equippedGem != null)
             {
-                comboBox.SelectedItem = refGems.Where(g => equippedGem.id == g.id).First();
+                comboBox.SelectedItem = refGems.Where(g => equippedGem.id == g.item.id).First();
             }
         }
 
@@ -156,21 +174,21 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiShieldBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
 
                 // Gems
-                gems1 = new List<Item>();
-                gems1.Add(new Item(new ItemAttributes()) { name = "( no gem )" });
+                gems1 = new List<GemsListViewItem>();
+                gems1.Add(new GemsListViewItem(new Item(new ItemAttributes()) { attributes = new String[] { "( no gem )" } }));
                 if (item.type != null)
                 {
-                    gems1.AddRange(GemHelper.getGemsForItemTypeId(item.type.id));
+                    gems1.AddRange(knownGems.getGemsForItem(item).Select(g => new GemsListViewItem(g)));
                 }
-                gems2 = new List<Item>(gems1);
-                gems3 = new List<Item>(gems1);
+                gems2 = new List<GemsListViewItem>(gems1);
+                gems3 = new List<GemsListViewItem>(gems1);
 
                 guiGem1.DataSource = gems1;
-                guiGem1.DisplayMember = "name";
+                guiGem1.DisplayMember = "label";
                 guiGem2.DataSource = gems2;
-                guiGem2.DisplayMember = "name";
+                guiGem2.DisplayMember = "label";
                 guiGem3.DataSource = gems3;
-                guiGem3.DisplayMember = "name";
+                guiGem3.DisplayMember = "label";
 
                 guiGem1.SelectedIndex = 0;
                 guiGem2.SelectedIndex = 0;
@@ -275,15 +293,15 @@ namespace ZTn.BNet.D3.Calculator
 
             if (guiGem1.SelectedIndex > 0)
             {
-                gems.Add(new SocketedGem((Item)guiGem1.SelectedItem));
+                gems.Add(new SocketedGem(((GemsListViewItem)guiGem1.SelectedItem).item));
             }
             if (guiGem2.SelectedIndex > 0)
             {
-                gems.Add(new SocketedGem((Item)guiGem2.SelectedItem));
+                gems.Add(new SocketedGem(((GemsListViewItem)guiGem2.SelectedItem).item));
             }
             if (guiGem3.SelectedIndex > 0)
             {
-                gems.Add(new SocketedGem((Item)guiGem3.SelectedItem));
+                gems.Add(new SocketedGem(((GemsListViewItem)guiGem3.SelectedItem).item));
             }
 
             item.gems = gems.ToArray();
@@ -299,11 +317,11 @@ namespace ZTn.BNet.D3.Calculator
         private void guiItemTypeId_SelectedIndexChanged(object sender, EventArgs e)
         {
             // re-generates data
-            gems1 = new List<Item>();
-            gems1.Add(new Item(new ItemAttributes()) { name = "( no gem )" });
-            gems1.AddRange(GemHelper.getGemsForItemTypeId(guiItemTypeId.Text));
-            gems2 = new List<Item>(gems1);
-            gems3 = new List<Item>(gems1);
+            gems1 = new List<GemsListViewItem>();
+            gems1.Add(new GemsListViewItem(new Item(new ItemAttributes()) { attributes = new String[] { "( no gem )" } }));
+            gems1.AddRange(knownGems.getGemsForItemTypeId(guiItemTypeId.Text).Select(g => new GemsListViewItem(g)));
+            gems2 = new List<GemsListViewItem>(gems1);
+            gems3 = new List<GemsListViewItem>(gems1);
 
             int index = guiGem1.SelectedIndex;
             guiGem1.DataSource = gems1;

@@ -65,7 +65,6 @@
     <Compile Include="Skills\Barbarian\WeaponsMaster_SwordDagger.cs" />
     <Compile Include="Skills\D3SkillModifier.cs" />
     <Compile Include="D3Calculator.cs" />
-    <Compile Include="Gems\GemHelper.cs" />
     <Compile Include="Skills\DemonHunter\Archery.cs" />
     <Compile Include="Skills\Monk\MysticAlly_EarthAlly.cs" />
     <Compile Include="Skills\NullModifier.cs" />
