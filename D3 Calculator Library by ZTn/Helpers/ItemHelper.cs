@@ -19,6 +19,8 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             "HandXbow",
             "Mace",
             "Mace2H",
+            "MightyWeapon1H",
+            "MightyWeapon2H",
             "Polearm",
             "Spear",
             "Staff",
