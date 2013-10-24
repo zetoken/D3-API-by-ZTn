@@ -250,7 +250,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             HeroSummaryInformation heroSummaryInformation = (HeroSummaryInformation)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            TreeNode node = new TreeNode("Hero " + heroSummaryInformation.battleTag + " / " + heroSummaryInformation.heroSummary.id);
+            TreeNode node = new TreeNode("Hero " + heroSummaryInformation.battleTag + " / " + heroSummaryInformation.heroSummary.id + " (" + heroSummaryInformation.heroSummary.name + ")");
 
             Hero hero;
             try

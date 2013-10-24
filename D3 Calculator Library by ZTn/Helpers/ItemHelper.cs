@@ -11,6 +11,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             "Axe",
             "Axe2H",
             "Bow",
+            "CeremonialDagger",
             "Crossbow",
             "Dagger",
             "Daibo",

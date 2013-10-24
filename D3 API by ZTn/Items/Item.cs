@@ -18,6 +18,10 @@ namespace ZTn.BNet.D3.Items
         [DataMember]
         public int bonusAffixes;
         [DataMember(EmitDefaultValue = false)]
+        public int bonusAffixesMax;
+        [DataMember(EmitDefaultValue = false)]
+        public bool accountBound;
+        [DataMember(EmitDefaultValue = false)]
         public String flavorText;
         [DataMember]
         public String typeName;

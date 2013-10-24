@@ -277,29 +277,47 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Dexterity_Item", EmitDefaultValue = false)]
         public ItemValueRange dexterityItem;
 
+        #region >> Durability
+
         [DataMember(Name = "Durability_Cur", EmitDefaultValue = false)]
         public ItemValueRange durabilityCur;
         [DataMember(Name = "Durability_Max", EmitDefaultValue = false)]
         public ItemValueRange durability_Max;
 
+        #endregion
+
         //"DyeType"
+
+        #region >> Experience_Bonus
 
         [DataMember(Name = "Experience_Bonus", EmitDefaultValue = false)]
         public ItemValueRange experienceBonus;
         [DataMember(Name = "Experience_Bonus_Percent", EmitDefaultValue = false)]
         public ItemValueRange experienceBonusPercent;
 
+        #endregion
+
         //"GemQuality"
+
+        #region >> Gold
 
         [DataMember(Name = "Gold_Find", EmitDefaultValue = false)]
         public ItemValueRange goldFind;
         [DataMember(Name = "Gold_PickUp_Radius", EmitDefaultValue = false)]
         public ItemValueRange goldPickUpRadius;
 
+        #endregion
+
+        #region >> Health_Globe
+
         [DataMember(Name = "Health_Globe_Bonus_Chance", EmitDefaultValue = false)]
         public ItemValueRange healthGlobeBonusChance;
         [DataMember(Name = "Health_Globe_Bonus_Health", EmitDefaultValue = false)]
         public ItemValueRange healthGlobeBonusHealth;
+
+        #endregion
+
+        #region >> Hitpoints
 
         [DataMember(Name = "Hitpoints_Granted", EmitDefaultValue = false)]
         public ItemValueRange hitpointsGranted;
@@ -320,11 +338,17 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Hitpoints_Regen_Per_Second", EmitDefaultValue = false)]
         public ItemValueRange hitpointsRegenPerSecond;
 
+        #endregion
 
-        //"Intelligence"
+        #region >> Intelligence
 
+        // Blizzard workaround bug for some cases where Blizzard API uses Intelligence instead of Intelligence_Item attribute
+        [DataMember(Name = "Intelligence", EmitDefaultValue = false),]
+        private ItemValueRange intelligence { get { return intelligenceItem; } set { intelligenceItem = value; } }
         [DataMember(Name = "Intelligence_Item", EmitDefaultValue = false)]
         public ItemValueRange intelligenceItem;
+
+        #endregion
 
         [DataMember(Name = "Item_Indestructible", EmitDefaultValue = false)]
         public ItemValueRange itemIndestructible;
@@ -354,6 +378,10 @@ namespace ZTn.BNet.D3.Items
         //"Power_Crit_Percent_Bonus"
         //"Power_Damage_Percent_Bonus"
         //"Power_Duration_Increase"
+
+        [DataMember(Name = "Power_Resource_Reduction#Monk_SweepingWind", EmitDefaultValue = false)]
+        public ItemValueRange Power_Resource_Reduction_Monk_SweepingWind;
+
         //"Power_Resource_Reduction"
         //"Precision"
 
@@ -390,16 +418,28 @@ namespace ZTn.BNet.D3.Items
         //"Resource_Max_Bonus"
         //"Resource_On_Crit"
         //"Resource_On_Hit"
-        //"Resource_On_Kill"
-        //"Resource_Regen_Per_Second"
+
+        [DataMember(Name = "Resource_On_Kill#Mana", EmitDefaultValue = false)]
+        public ItemValueRange Resource_On_Kill_Mana;
+
+        #region >> "Resource_Regen_Per_Second
+
+        [DataMember(Name = "Resource_Regen_Per_Second#Mana", EmitDefaultValue = false)]
+        public ItemValueRange Resource_Regen_Per_Second_Mana;
+        [DataMember(Name = "Resource_Regen_Per_Second#Spirit", EmitDefaultValue = false)]
+        public ItemValueRange Resource_Regen_Per_Second_Spirit;
+
+        #endregion
+
         //"Resource_Set_Point_Bonus"
         //"ScrollDuration"
 
         [DataMember(Name = "Sockets", EmitDefaultValue = false)]
         public ItemValueRange sockets;
 
+        [DataMember(Name = "Spending_Resource_Heals_Percent#Spirit", EmitDefaultValue = false)]
+        public ItemValueRange Spending_Resource_Heals_Percent_Spirit;
 
-        //"Spending_Resource_Heals_Percent"
         //"Stats_All_Bonus"
 
         [DataMember(Name = "Steal_Health_Percent", EmitDefaultValue = false)]
@@ -427,10 +467,15 @@ namespace ZTn.BNet.D3.Items
 
         #endregion
 
-        //"Vitality"
+        #region >> Vitality
 
+        // Blizzard workaround bug for some cases where Blizzard API uses Vitality instead of Vitality_Item attribute
+        [DataMember(Name = "Vitality", EmitDefaultValue = false)]
+        public ItemValueRange vitality { get { return vitalityItem; } set { vitalityItem = value; } }
         [DataMember(Name = "Vitality_Item", EmitDefaultValue = false)]
         public ItemValueRange vitalityItem;
+
+        #endregion
 
         //"Weapon_On_Hit_Bleed_Proc_Chance"
         //"Weapon_On_Hit_Bleed_Proc_Damage_Base"
