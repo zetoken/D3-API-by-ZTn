@@ -202,6 +202,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Controls.Add(this.guiBattleNetHostList);
@@ -308,6 +309,7 @@
             // 
             // guiOfflineMode
             // 
+            this.guiOfflineMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.guiOfflineMode.AutoSize = true;
             this.guiOfflineMode.Location = new System.Drawing.Point(303, 17);
             this.guiOfflineMode.Name = "guiOfflineMode";
@@ -363,16 +365,18 @@
             // 
             // guiD3Icon
             // 
-            this.guiD3Icon.Location = new System.Drawing.Point(622, 350);
+            this.guiD3Icon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.guiD3Icon.Location = new System.Drawing.Point(624, 350);
             this.guiD3Icon.Name = "guiD3Icon";
-            this.guiD3Icon.Size = new System.Drawing.Size(150, 200);
+            this.guiD3Icon.Size = new System.Drawing.Size(148, 200);
             this.guiD3Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.guiD3Icon.TabIndex = 9;
             this.guiD3Icon.TabStop = false;
             // 
             // guiLoadKnownSets
             // 
-            this.guiLoadKnownSets.Location = new System.Drawing.Point(623, 72);
+            this.guiLoadKnownSets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.guiLoadKnownSets.Location = new System.Drawing.Point(623, 71);
             this.guiLoadKnownSets.Name = "guiLoadKnownSets";
             this.guiLoadKnownSets.Size = new System.Drawing.Size(149, 23);
             this.guiLoadKnownSets.TabIndex = 10;
@@ -382,7 +386,8 @@
             // 
             // guiLoadKnownGems
             // 
-            this.guiLoadKnownGems.Location = new System.Drawing.Point(623, 101);
+            this.guiLoadKnownGems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.guiLoadKnownGems.Location = new System.Drawing.Point(624, 100);
             this.guiLoadKnownGems.Name = "guiLoadKnownGems";
             this.guiLoadKnownGems.Size = new System.Drawing.Size(148, 23);
             this.guiLoadKnownGems.TabIndex = 11;
@@ -429,7 +434,8 @@
             // 
             // guiUpdateKnownGems
             // 
-            this.guiUpdateKnownGems.Location = new System.Drawing.Point(623, 130);
+            this.guiUpdateKnownGems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.guiUpdateKnownGems.Location = new System.Drawing.Point(624, 129);
             this.guiUpdateKnownGems.Name = "guiUpdateKnownGems";
             this.guiUpdateKnownGems.Size = new System.Drawing.Size(148, 23);
             this.guiUpdateKnownGems.TabIndex = 12;
