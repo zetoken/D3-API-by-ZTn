@@ -45,7 +45,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web">
-      <Private>False</Private>
+      <Private>True</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
