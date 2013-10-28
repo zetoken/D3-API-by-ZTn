@@ -20,6 +20,7 @@ using ZTn.BNet.D3.Calculator.Sets;
 using System.Collections;
 using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Helpers;
+using ZTn.BNet.D3.Progresses;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -213,14 +214,9 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
         }
 
-        private void updateNodeText(TreeNode node, HeroSummary d3Object)
+        private void updateNodeText(TreeNode node, ActProgress d3Object)
         {
-            node.Text += " (" + d3Object.name + ")";
-        }
-
-        private void updateNodeText(TreeNode node, ItemSummary d3Object)
-        {
-            node.Text += " (" + d3Object.name + ")";
+            node.Text += " (" + d3Object.completed + ")";
         }
 
         private void updateNodeText(TreeNode node, CareerArtisan d3Object)
@@ -228,12 +224,32 @@ namespace ZTn.BNet.D3ProfileExplorer
             node.Text += " (" + d3Object.slug + ")";
         }
 
-        private void updateNodeText(TreeNode node, Skill d3Object)
+        private void updateNodeText(TreeNode node, HeroSummary d3Object)
+        {
+            node.Text += String.Format(" (L:{1:D2} P:{2:D2} - {0} )", d3Object.name, d3Object.level, d3Object.paragonLevel);
+        }
+
+        private void updateNodeText(TreeNode node, ItemSummary d3Object)
         {
             node.Text += " (" + d3Object.name + ")";
         }
 
         private void updateNodeText(TreeNode node, Set d3Object)
+        {
+            node.Text += " (" + d3Object.name + ")";
+        }
+
+        private void updateNodeText(TreeNode node, Skill d3Object)
+        {
+            node.Text += " (" + d3Object.name + ")";
+        }
+
+        private void updateNodeText(TreeNode node, Quest d3Object)
+        {
+            node.Text += " (" + d3Object.name + ")";
+        }
+
+        private void updateNodeText(TreeNode node, Recipe d3Object)
         {
             node.Text += " (" + d3Object.name + ")";
         }
