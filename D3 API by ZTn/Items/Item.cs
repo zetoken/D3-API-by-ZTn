@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using ZTn.BNet.D3.Artisans;
+using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Items
 {
@@ -72,21 +73,12 @@ namespace ZTn.BNet.D3.Items
 
         public static Item getItemFromJSonStream(Stream stream)
         {
-            JsonSerializer serializer = new JsonSerializer();
-            using (StreamReader streamReader = new StreamReader(stream))
-            {
-                return (Item)serializer.Deserialize(streamReader, typeof(Item));
-            }
+            return JsonHelpers.getFromJSonStream<Item>(stream);
         }
 
         public static Item getItemFromJSonString(String json)
         {
-            Item item;
-            using (MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(json)))
-            {
-                item = getItemFromJSonStream(stream);
-            }
-            return item;
+            return JsonHelpers.getFromJSonString<Item>(json);
         }
     }
 }

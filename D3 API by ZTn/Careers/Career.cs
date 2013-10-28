@@ -6,6 +6,7 @@ using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Progresses;
+using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Careers
 {
@@ -13,7 +14,6 @@ namespace ZTn.BNet.D3.Careers
     public class Career
     {
         #region >> Fields
-
 
         [DataMember(Name = "battleTag")]
         private String s_battleTag
@@ -49,21 +49,12 @@ namespace ZTn.BNet.D3.Careers
 
         public static Career getCareerFromJSonStream(Stream stream)
         {
-            JsonSerializer serializer = new JsonSerializer();
-            using (StreamReader streamReader = new StreamReader(stream))
-            {
-                return (Career)serializer.Deserialize(streamReader, typeof(Career));
-            }
+            return JsonHelpers.getFromJSonStream<Career>(stream);
         }
 
         public static Career getCareerFromJSonString(String json)
         {
-            Career career;
-            using (MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(json)))
-            {
-                career = getCareerFromJSonStream(stream);
-            }
-            return career;
+            return JsonHelpers.getFromJSonString<Career>(json);
         }
     }
 }

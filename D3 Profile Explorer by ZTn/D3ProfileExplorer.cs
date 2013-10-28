@@ -32,11 +32,11 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             D3.D3Api.dataProvider = new CacheableDataProvider(new HttpRequestDataProvider());
 
-            List<Host> hosts = JsonHelpers.getDataFromJsonFile<Host>("hosts.json");
+            List<Host> hosts = JsonHelpers.getFromJsonFile<List<Host>>("hosts.json");
             guiBattleNetHostList.DataSource = hosts;
             guiBattleNetHostList.DisplayMember = "name";
 
-            List<Language> langs = JsonHelpers.getDataFromJsonFile<Language>("languages.json");
+            List<Language> langs = JsonHelpers.getFromJsonFile<List<Language>>("languages.json");
             guiBattleNetLanguageList.DataSource = langs;
             guiBattleNetLanguageList.DisplayMember = "name";
 
@@ -216,42 +216,57 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void updateNodeText(TreeNode node, ActProgress d3Object)
         {
-            node.Text += " (" + d3Object.completed + ")";
+            node.Text += " >> " + d3Object.completed;
         }
 
         private void updateNodeText(TreeNode node, CareerArtisan d3Object)
         {
-            node.Text += " (" + d3Object.slug + ")";
+            node.Text += " >> " + d3Object.slug;
+        }
+
+        private void updateNodeText(TreeNode node, float d3Object)
+        {
+            node.Text += " >> " + d3Object;
         }
 
         private void updateNodeText(TreeNode node, HeroSummary d3Object)
         {
-            node.Text += String.Format(" (L:{1:D2} P:{2:D2} - {0} )", d3Object.name, d3Object.level, d3Object.paragonLevel);
+            node.Text += String.Format(" >> L:{1:D2} P:{2:D2} - {0}", d3Object.name, d3Object.level, d3Object.paragonLevel);
+        }
+
+        private void updateNodeText(TreeNode node, int d3Object)
+        {
+            node.Text += " >> " + d3Object;
         }
 
         private void updateNodeText(TreeNode node, ItemSummary d3Object)
         {
-            node.Text += " (" + d3Object.name + ")";
+            node.Text += " >> " + d3Object.name;
         }
 
         private void updateNodeText(TreeNode node, Set d3Object)
         {
-            node.Text += " (" + d3Object.name + ")";
+            node.Text += " >> " + d3Object.name;
         }
 
         private void updateNodeText(TreeNode node, Skill d3Object)
         {
-            node.Text += " (" + d3Object.name + ")";
+            node.Text += " >> " + d3Object.name;
         }
 
         private void updateNodeText(TreeNode node, Quest d3Object)
         {
-            node.Text += " (" + d3Object.name + ")";
+            node.Text += " >> " + d3Object.name;
         }
 
         private void updateNodeText(TreeNode node, Recipe d3Object)
         {
-            node.Text += " (" + d3Object.name + ")";
+            node.Text += " >> " + d3Object.name;
+        }
+
+        private void updateNodeText(TreeNode node, String d3Object)
+        {
+            node.Text += " >> " + d3Object;
         }
 
         #endregion
@@ -547,6 +562,40 @@ namespace ZTn.BNet.D3ProfileExplorer
             node.Nodes.AddRange(createNodeFromD3Object(simplifiedItem).ToArray());
 
             guiD3ProfileTreeView.Nodes.Add(node);
+        }
+
+        private void guiUpdateKnownGems_Click(object sender, EventArgs e)
+        {
+            List<String> socketColors = new List<string>() { "Amethyst", "Emerald", "Ruby", "Topaz" };
+
+            List<Item> sockets = new List<Item>();
+
+            foreach (String gemColor in socketColors)
+            {
+                for (int index = 1; index < 16; index++)
+                {
+                    String id = String.Format("{0}_{1:00}", gemColor, index);
+                    sockets.Add(Item.getItemFromTooltipParams("item/" + id));
+                }
+            }
+
+            JsonHelpers.writeToJsonFile(sockets, "d3gem.json");
+
+            TreeNode node = new TreeNode("Updated Gems from battle.net (saved from d3gem.json)");
+
+            KnownGems knownSets = KnownGems.getKnownGemsFromJsonFile("d3gem.json");
+
+            node.Nodes.AddRange(createNodeFromD3Object(knownSets).ToArray());
+
+            guiD3ProfileTreeView.Nodes.Add(node);
+        }
+
+        private void guiBattleTag_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                guiProfileLookup_Click(sender, e);
+            }
         }
     }
 }

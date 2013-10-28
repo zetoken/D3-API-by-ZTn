@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using Newtonsoft.Json;
+using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.DataProviders
 {
@@ -17,10 +18,7 @@ namespace ZTn.BNet.D3.DataProviders
 
         public static FailureObject getFailedObjectFromJSonStream(Stream stream)
         {
-            JsonSerializer serializer = new JsonSerializer();
-            // Note: Do not use "using" statement, as we want the stream not to be closed to be reused !
-            StreamReader streamReader = new StreamReader(stream);
-            return (FailureObject)serializer.Deserialize(streamReader, typeof(FailureObject));
+            return JsonHelpers.getFromJSonPersistentStream<FailureObject>(stream);
         }
 
         public Stream fetchData(String url)

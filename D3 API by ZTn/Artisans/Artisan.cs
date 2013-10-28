@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Artisans
 {
@@ -28,21 +29,12 @@ namespace ZTn.BNet.D3.Artisans
 
         public static Artisan getArtisanFromJSonStream(Stream stream)
         {
-            JsonSerializer serializer = new JsonSerializer();
-            using (StreamReader streamReader = new StreamReader(stream))
-            {
-                return (Artisan)serializer.Deserialize(streamReader, typeof(Artisan));
-            }
+            return JsonHelpers.getFromJSonStream<Artisan>(stream);
         }
 
         public static Artisan getItemFromJSonString(String json)
         {
-            Artisan artisan;
-            using (MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(json)))
-            {
-                artisan = getArtisanFromJSonStream(stream);
-            }
-            return artisan;
+            return JsonHelpers.getFromJSonString<Artisan>(json);
         }
 
         #region >> Object

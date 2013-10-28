@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.HeroFollowers;
 using ZTn.BNet.D3.Progresses;
+using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Heroes
 {
@@ -35,21 +36,12 @@ namespace ZTn.BNet.D3.Heroes
 
         public static Hero getHeroFromJSonStream(Stream stream)
         {
-            JsonSerializer serializer = new JsonSerializer();
-            using (StreamReader streamReader = new StreamReader(stream))
-            {
-                return (Hero)serializer.Deserialize(streamReader, typeof(Hero));
-            }
+            return JsonHelpers.getFromJSonStream<Hero>(stream);
         }
 
         public static Hero getHeroFromJSonString(String json)
         {
-            Hero hero;
-            using (MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(json)))
-            {
-                hero = getHeroFromJSonStream(stream);
-            }
-            return hero;
+            return JsonHelpers.getFromJSonString<Hero>(json);
         }
     }
 }

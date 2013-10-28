@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using ZTn.BNet.D3.Items;
+using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Calculator.Sets
 {
@@ -52,33 +53,20 @@ namespace ZTn.BNet.D3.Calculator.Sets
 
         public static KnownSets getKnownSetsFromJSonStream(Stream stream)
         {
-            JsonSerializer serializer = new JsonSerializer();
-            Set[] sets;
-            using (StreamReader streamReader = new StreamReader(stream))
-            {
-                sets = (Set[])serializer.Deserialize(streamReader, typeof(Set[]));
-            }
+            Set[] sets = JsonHelpers.getFromJSonStream<Set[]>(stream);
             return new KnownSets(sets);
         }
 
         public static KnownSets getKnownSetsFromJSonString(String json)
         {
-            KnownSets knownSets;
-            using (MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(json)))
-            {
-                knownSets = getKnownSetsFromJSonStream(stream);
-            }
-            return knownSets;
+            Set[] sets = JsonHelpers.getFromJSonString<Set[]>(json);
+            return new KnownSets(sets);
         }
 
         public static KnownSets getKnownSetsFromJsonFile(String fileName)
         {
-            KnownSets knownSets;
-            using (FileStream fileStream = new FileStream(fileName, FileMode.Open))
-            {
-                knownSets = KnownSets.getKnownSetsFromJSonStream(fileStream);
-            }
-            return knownSets;
+            Set[] sets = JsonHelpers.getFromJsonFile<Set[]>(fileName);
+            return new KnownSets(sets);
         }
     }
 }

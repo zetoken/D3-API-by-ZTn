@@ -70,6 +70,7 @@
             this.getItemLargeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getMetaItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simplifyItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guiUpdateKnownGems = new System.Windows.Forms.Button();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -137,6 +138,7 @@
             this.guiBattleTag.Name = "guiBattleTag";
             this.guiBattleTag.Size = new System.Drawing.Size(100, 20);
             this.guiBattleTag.TabIndex = 5;
+            this.guiBattleTag.KeyDown += new System.Windows.Forms.KeyEventHandler(this.guiBattleTag_KeyDown);
             // 
             // guiHeroSummaryContextMenu
             // 
@@ -396,7 +398,7 @@
             this.getMetaItemToolStripMenuItem,
             this.simplifyItemToolStripMenuItem});
             this.guiItemContextMenu.Name = "guiHeroSummaryContextMenu";
-            this.guiItemContextMenu.Size = new System.Drawing.Size(178, 114);
+            this.guiItemContextMenu.Size = new System.Drawing.Size(178, 92);
             // 
             // getItemSmallIconToolStripMenuItem
             // 
@@ -425,11 +427,22 @@
             this.simplifyItemToolStripMenuItem.Text = "Simplify Item";
             this.simplifyItemToolStripMenuItem.Click += new System.EventHandler(this.simplifyItemToolStripMenuItem_Click);
             // 
+            // guiUpdateKnownGems
+            // 
+            this.guiUpdateKnownGems.Location = new System.Drawing.Point(623, 130);
+            this.guiUpdateKnownGems.Name = "guiUpdateKnownGems";
+            this.guiUpdateKnownGems.Size = new System.Drawing.Size(148, 23);
+            this.guiUpdateKnownGems.TabIndex = 12;
+            this.guiUpdateKnownGems.Text = "Update known gems";
+            this.guiUpdateKnownGems.UseVisualStyleBackColor = true;
+            this.guiUpdateKnownGems.Click += new System.EventHandler(this.guiUpdateKnownGems_Click);
+            // 
             // guiD3ProfileExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.guiUpdateKnownGems);
             this.Controls.Add(this.guiLoadKnownGems);
             this.Controls.Add(this.guiLoadKnownSets);
             this.Controls.Add(this.guiD3Icon);
@@ -498,6 +511,7 @@
         private System.Windows.Forms.ToolStripMenuItem getItemLargeIconToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem getMetaItemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simplifyItemToolStripMenuItem;
+        private System.Windows.Forms.Button guiUpdateKnownGems;
     }
 }
 

@@ -80,12 +80,12 @@ namespace ZTn.BNet.D3.Calculator.Gems
 
         public static KnownGems getKnownGemsFromJsonFile(String fileName)
         {
-            return new KnownGems(JsonHelpers.getDataFromJsonFile<Item>(fileName));
+            return new KnownGems(JsonHelpers.getFromJsonFile<List<Item>>(fileName));
         }
 
         public static KnownGems getKnownGemsFromJsonStream(Stream stream)
         {
-            return new KnownGems(JsonHelpers.getDataFromJSonStream<Item>(stream));
+            return new KnownGems(JsonHelpers.getFromJSonStream<List<Item>>(stream));
         }
 
         private List<Item> filterGems(String itemTypeId)
