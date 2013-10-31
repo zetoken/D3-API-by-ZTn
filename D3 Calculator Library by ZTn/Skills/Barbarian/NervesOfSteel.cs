@@ -2,11 +2,16 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
 {
-    public class NervesOfSteel : D3SkillModifier
+    public sealed class NervesOfSteel : ID3SkillModifier
     {
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             return new ItemAttributes() { armorBonusItem = new ItemValueRange(calculator.getHeroVitality()) };
         }
+
+        #endregion
     }
 }

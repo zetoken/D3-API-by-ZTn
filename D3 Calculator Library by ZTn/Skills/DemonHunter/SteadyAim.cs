@@ -2,13 +2,18 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
-    public class SteadyAim : D3SkillModifier
+    public sealed class SteadyAim : ID3SkillModifier
     {
         readonly double multiplier = 0.20;
 
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
-            return (new DamageMultiplier(multiplier)).getBonus(calculator);
+            return new DamageMultiplier(multiplier).getBonus(calculator);
         }
+
+        #endregion
     }
 }

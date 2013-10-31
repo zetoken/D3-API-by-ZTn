@@ -3,17 +3,17 @@
 namespace ZTn.BNet.D3.DataProviders
 {
     [Serializable]
-    public class BNetFailureObjectReturned : Exception
+    public sealed class BNetFailureObjectReturnedException : Exception
     {
         [NonSerialized]
         public FailureObject failureObject;
 
-        public BNetFailureObjectReturned()
+        public BNetFailureObjectReturnedException()
             : base("Battle.net returned an object indicating a failure")
         {
         }
 
-        public BNetFailureObjectReturned(FailureObject failureObject) :
+        public BNetFailureObjectReturnedException(FailureObject failureObject) :
             this()
         {
             this.failureObject = failureObject;

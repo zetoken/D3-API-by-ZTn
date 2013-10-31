@@ -64,12 +64,12 @@ namespace ZTn.BNet.D3ProfileExplorer
                 MessageBox.Show("Career was not found in cache: go online to retrieve it.");
                 return;
             }
-            catch (BNetResponseFailed)
+            catch (BNetResponseFailedException)
             {
                 MessageBox.Show("Battle.net sent an http error: try again later.");
                 return;
             }
-            catch (BNetFailureObjectReturned)
+            catch (BNetFailureObjectReturnedException)
             {
                 MessageBox.Show("Battle.net sent an error: verify the battle tag.");
                 return;

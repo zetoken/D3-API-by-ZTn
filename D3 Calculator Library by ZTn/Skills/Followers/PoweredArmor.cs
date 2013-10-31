@@ -2,11 +2,16 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.Followers
 {
-    public class PoweredArmor : D3SkillModifier
+    public sealed class PoweredArmor : ID3SkillModifier
     {
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             return new ItemAttributes() { armorBonusItem = 0.05 * calculator.getHeroArmor() };
         }
+
+        #endregion
     }
 }

@@ -1,27 +1,42 @@
 ﻿
+using ZTn.BNet.D3.Items;
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
-    public class Archery : D3SkillModifier
+    public sealed class Archery : ID3SkillModifier
     {
-        public override Items.ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
-            D3SkillModifier skillModifier;
             switch (calculator.heroStatsItem.mainHand.type.id)
             {
                 case "Bow":
-                    skillModifier = new Archery_Bow();
-                    break;
+                    return getBonus_Bow(calculator);
                 case "Crossbow":
-                    skillModifier = new Archery_Crossbow();
-                    break;
+                    return getBonus_Crossbow(calculator);
                 case "HandCrossbow":
-                    skillModifier = new Archery_HandCrossbow();
-                    break;
+                    return getBonus_HandCrossbow(calculator);
                 default:
-                    skillModifier = new NullModifier();
-                    break;
+                    return new ItemAttributes();
             }
-            return skillModifier.getBonus(calculator);
+        }
+
+        #endregion
+
+        ItemAttributes getBonus_Bow(D3Calculator calculator)
+        {
+            return new DamageMultiplier(0.15).getBonus(calculator);
+        }
+
+        ItemAttributes getBonus_Crossbow(D3Calculator calculator)
+        {
+            return new ItemAttributes() { critDamagePercent = new ItemValueRange(0.50) };
+        }
+
+        ItemAttributes getBonus_HandCrossbow(D3Calculator calculator)
+        {
+            return new ItemAttributes() { critPercentBonusCapped = new ItemValueRange(0.10) };
         }
     }
 }

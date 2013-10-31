@@ -2,9 +2,12 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
-    public class SharpShooter : D3SkillModifier
+    public sealed class SharpShooter : ID3SkillModifier
     {
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             ItemAttributes stuff = calculator.heroStatsItem.attributesRaw;
             ItemAttributes attr = new ItemAttributes();
@@ -16,5 +19,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 
             return attr;
         }
+
+        #endregion
     }
 }

@@ -6,11 +6,14 @@ using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
-    public class Perfectionist : D3SkillModifier
+    public sealed class Perfectionist : ID3SkillModifier
     {
         readonly double multiplier = 0.10;
 
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             ItemAttributes attr = new ItemAttributes();
 
@@ -22,5 +25,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 
             return attr;
         }
+
+        #endregion
     }
 }

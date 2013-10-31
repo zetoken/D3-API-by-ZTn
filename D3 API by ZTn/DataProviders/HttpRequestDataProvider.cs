@@ -27,7 +27,7 @@ namespace ZTn.BNet.D3.DataProviders
             HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
 
             if (httpWebResponse.StatusCode != HttpStatusCode.OK)
-                throw new BNetResponseFailed();
+                throw new BNetResponseFailedException();
 
             using (Stream responseStream = httpWebResponse.GetResponseStream())
             {
@@ -45,7 +45,7 @@ namespace ZTn.BNet.D3.DataProviders
                     if (failureObject.isFailureObject())
                     {
                         memoryStream.Close();
-                        throw new BNetFailureObjectReturned(failureObject);
+                        throw new BNetFailureObjectReturnedException(failureObject);
                     }
 
                     memoryStream.Position = 0;

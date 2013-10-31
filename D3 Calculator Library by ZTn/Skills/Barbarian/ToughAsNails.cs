@@ -2,20 +2,25 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
 {
-    public class ToughAsNails : D3SkillModifier
+    public sealed class ToughAsNails : ID3SkillModifier
     {
         double multiplier = 0.50;
 
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             ItemAttributes stuff = calculator.heroStatsItem.attributesRaw;
             ItemAttributes attr = new ItemAttributes();
 
             attr.armorBonusItem = 0.25 * calculator.getHeroArmor();
 
-            attr += (new ThornsMultiplier(multiplier)).getBonus(calculator);
+            attr += new ThornsMultiplier(multiplier).getBonus(calculator);
 
             return attr;
         }
+
+        #endregion
     }
 }

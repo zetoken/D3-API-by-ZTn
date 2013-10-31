@@ -2,9 +2,12 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
 {
-    public class WarCry_Invigorate : D3SkillModifier
+    public sealed class WarCry_Invigorate : ID3SkillModifier
     {
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             ItemAttributes attr = new ItemAttributes();
 
@@ -15,5 +18,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
             return attr;
 
         }
+
+        #endregion
     }
 }

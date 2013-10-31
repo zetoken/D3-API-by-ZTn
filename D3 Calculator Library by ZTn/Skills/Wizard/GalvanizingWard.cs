@@ -2,11 +2,16 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.Wizard
 {
-    public class GalvanizingWard : D3SkillModifier
+    public sealed class GalvanizingWard : ID3SkillModifier
     {
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             return new ItemAttributes() { hitpointsRegenPerSecond = new ItemValueRange(620) };
         }
+
+        #endregion
     }
 }

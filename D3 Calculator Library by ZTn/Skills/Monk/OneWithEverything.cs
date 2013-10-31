@@ -2,9 +2,12 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.Monk
 {
-    public class OneWithEverything : D3SkillModifier
+    public sealed class OneWithEverything : ID3SkillModifier
     {
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             ItemAttributes stuff = calculator.heroStatsItem.attributesRaw;
             ItemAttributes attr = new ItemAttributes();
@@ -48,5 +51,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
 
             return attr;
         }
+
+        #endregion
     }
 }

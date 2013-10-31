@@ -2,23 +2,28 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.Wizard
 {
-    public class GlassCannon : D3SkillModifier
+    public sealed class GlassCannon : ID3SkillModifier
     {
         double multiplier = 0.15;
         double malusMultiplier = -0.10;
 
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             ItemAttributes stuff = calculator.heroStatsItem.attributesRaw;
             ItemAttributes attr;
 
-            attr = (new DamageMultiplier(multiplier)).getBonus(calculator);
+            attr = new DamageMultiplier(multiplier).getBonus(calculator);
 
             attr.armorBonusItem = malusMultiplier * calculator.getHeroArmor();
 
-            attr += (new ResistancesMultiplier(malusMultiplier)).getBonus(calculator);
+            attr += new ResistancesMultiplier(malusMultiplier).getBonus(calculator);
 
             return attr;
         }
+
+        #endregion
     }
 }

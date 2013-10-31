@@ -5,7 +5,7 @@ namespace ZTn.BNet.D3.Calculator.Skills
     /// <summary>
     /// Skill modifier that brings % resistances bonus
     /// </summary>
-    public class ResistancesMultiplier : D3SkillModifier
+    public sealed class ResistancesMultiplier : ID3SkillModifier
     {
         ItemValueRange multiplier;
 
@@ -18,7 +18,10 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
         #endregion
 
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             Item stuff = calculator.heroStatsItem;
             ItemAttributes attr = new ItemAttributes();
@@ -33,5 +36,7 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
             return attr;
         }
+
+        #endregion
     }
 }

@@ -57,9 +57,9 @@
     <Compile Include="Artisans\ArtisanTier.cs" />
     <Compile Include="Artisans\ArtisanTraining.cs" />
     <Compile Include="Artisans\CareerArtisan.cs" />
-    <Compile Include="DataProviders\BNetFailureObjectReturned.cs" />
+    <Compile Include="DataProviders\BNetFailureObjectReturnedException.cs" />
     <Compile Include="DataProviders\CacheableDataProvider.cs" />
-    <Compile Include="DataProviders\BNetResponseFailed.cs" />
+    <Compile Include="DataProviders\BNetResponseFailedException.cs" />
     <Compile Include="DataProviders\OnlineMode.cs" />
     <Compile Include="DataProviders\FileNotInCacheException.cs" />
     <Compile Include="DataProviders\HttpRequestDataProvider.cs" />

@@ -87,7 +87,7 @@ namespace ZTn.BNet.D3.Example
             D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
 
             Console.WriteLine("Calculation results");
-            ItemValueRange dps = d3Calculator.getHeroDPS(new List<D3SkillModifier>(), new List<D3SkillModifier>());
+            ItemValueRange dps = d3Calculator.getHeroDPS(new List<ID3SkillModifier>(), new List<ID3SkillModifier>());
             Console.WriteLine("Dexterity : {0}", d3Calculator.getHeroDexterity().min);
             Console.WriteLine("DPS : {0}", dps.min);
             Console.WriteLine("Attack speed: {0}", d3Calculator.getActualAttackSpeed().min);

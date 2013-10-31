@@ -2,11 +2,14 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.Monk
 {
-    public class MantraOfHealing_TimeOfNeed : D3SkillModifier
+    public sealed class MantraOfHealing_TimeOfNeed : ID3SkillModifier
     {
         readonly double multiplier = 0.20;
 
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             ItemAttributes attr = new ItemAttributes();
 
@@ -16,5 +19,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
 
             return attr;
         }
+
+        #endregion
     }
 }

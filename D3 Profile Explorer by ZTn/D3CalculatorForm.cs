@@ -181,7 +181,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
 
             // Retrieve used skills from the GUI
-            List<D3SkillModifier> passiveSkills = new List<D3SkillModifier>();
+            List<ID3SkillModifier> passiveSkills = new List<ID3SkillModifier>();
 
             Dictionary<CheckBox, Type> passives = new Dictionary<CheckBox, Type>()
             {
@@ -210,10 +210,10 @@ namespace ZTn.BNet.D3ProfileExplorer
             };
 
             foreach (KeyValuePair<CheckBox, Type> pair in passives.Where(p => p.Key.Checked))
-                passiveSkills.Add((D3SkillModifier)Activator.CreateInstance(pair.Value));
+                passiveSkills.Add((ID3SkillModifier)Activator.CreateInstance(pair.Value));
 
             // Some buffs are applied after passives skills: followers skills and active skills
-            List<D3SkillModifier> activeSkills = new List<D3SkillModifier>();
+            List<ID3SkillModifier> activeSkills = new List<ID3SkillModifier>();
 
             // Barbarian active skills
             if (guiSkillWarCry_Invigorate.Checked)

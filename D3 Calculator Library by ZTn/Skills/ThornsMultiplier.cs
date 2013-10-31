@@ -5,7 +5,7 @@ using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills
 {
-    public class ThornsMultiplier : D3SkillModifier
+    public sealed class ThornsMultiplier : ID3SkillModifier
     {
         #region >> Constants
 
@@ -30,7 +30,10 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
         #endregion
 
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             Item stuff = calculator.heroStatsItem;
             ItemAttributes attr = new ItemAttributes();
@@ -46,5 +49,7 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
             return attr;
         }
+
+        #endregion
     }
 }

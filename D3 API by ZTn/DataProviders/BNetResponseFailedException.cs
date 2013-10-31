@@ -3,9 +3,9 @@
 namespace ZTn.BNet.D3.DataProviders
 {
     [Serializable]
-    public class BNetResponseFailed : Exception
+    public sealed class BNetResponseFailedException : Exception
     {
-        public BNetResponseFailed()
+        public BNetResponseFailedException()
             : base("Battle.net failed at sending back a valid response")
         {
         }

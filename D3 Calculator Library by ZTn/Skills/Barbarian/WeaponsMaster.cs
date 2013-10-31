@@ -1,33 +1,48 @@
 ﻿
+using ZTn.BNet.D3.Items;
 namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
 {
-    public class WeaponsMaster : D3SkillModifier
+    public sealed class WeaponsMaster : ID3SkillModifier
     {
-        public override Items.ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
-            D3SkillModifier skillModifier;
             switch (calculator.heroStatsItem.mainHand.type.id)
             {
                 case "Sword":
                 case "Sword2H":
                 case "Dagger":
-                    skillModifier = new WeaponsMaster_SwordDagger();
-                    break;
+                    return getBonus_SwordDagger(calculator);
                 case "Axe":
                 case "Axe2H":
                 case "Mace":
                 case "Mace2H":
-                    skillModifier = new WeaponsMaster_MaceAxe();
-                    break;
+                    return getBonus_MaceAxe(calculator);
                 case "Polearm":
                 case "Spear":
-                    skillModifier = new WeaponsMaster_PolearmSpear();
-                    break;
+                    return getBonus_PolearmSpear(calculator);
                 default:
-                    skillModifier = new NullModifier();
-                    break;
+                    return new ItemAttributes();
             }
-            return skillModifier.getBonus(calculator);
+        }
+
+        #endregion
+
+        ItemAttributes getBonus_MaceAxe(D3Calculator calculator)
+        {
+            return new ItemAttributes() { critPercentBonusCapped = new ItemValueRange(0.10) };
+        }
+
+        ItemAttributes getBonus_PolearmSpear(D3Calculator calculator)
+        {
+            return new ItemAttributes() { attacksPerSecondItem = new ItemValueRange(0.10) };
+        }
+
+        ItemAttributes getBonus_SwordDagger(D3Calculator calculator)
+        {
+            return new DamageMultiplier(0.15).getBonus(calculator);
         }
     }
 }

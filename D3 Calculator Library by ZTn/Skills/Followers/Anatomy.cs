@@ -2,11 +2,16 @@
 
 namespace ZTn.BNet.D3.Calculator.Skills.Followers
 {
-    public class Anatomy : D3SkillModifier
+    public sealed class Anatomy : ID3SkillModifier
     {
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             return new ItemAttributes() { critPercentBonusCapped = new ItemValueRange(0.03) };
         }
+
+        #endregion
     }
 }

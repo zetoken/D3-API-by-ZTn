@@ -8,7 +8,7 @@ namespace ZTn.BNet.D3.Calculator.Skills
     /// <summary>
     /// Skill modifier that brings % damage bonus
     /// </summary>
-    public class DamageMultiplier : D3SkillModifier
+    public sealed class DamageMultiplier : ID3SkillModifier
     {
         #region >> Constants
 
@@ -37,7 +37,10 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
         #endregion
 
-        public override ItemAttributes getBonus(D3Calculator calculator)
+        #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public ItemAttributes getBonus(D3Calculator calculator)
         {
             Item stuff = calculator.heroStatsItem;
             ItemAttributes attr = new ItemAttributes();
@@ -53,5 +56,7 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
             return attr;
         }
+
+        #endregion
     }
 }

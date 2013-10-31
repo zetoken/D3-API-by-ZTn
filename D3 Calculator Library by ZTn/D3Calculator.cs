@@ -179,7 +179,7 @@ namespace ZTn.BNet.D3.Calculator
             return getHeroDPSAsIs();
         }
 
-        public ItemValueRange getHeroDPS(List<D3SkillModifier> passives, List<D3SkillModifier> actives)
+        public ItemValueRange getHeroDPS(IEnumerable<ID3SkillModifier> passives, IEnumerable<ID3SkillModifier> actives)
         {
             ItemAttributes itemAttributes = new ItemAttributes();
 
@@ -189,7 +189,7 @@ namespace ZTn.BNet.D3.Calculator
             update();
 
             // Build passive bonuses
-            foreach (D3SkillModifier modifier in passives)
+            foreach (ID3SkillModifier modifier in passives)
             {
                 itemAttributes += modifier.getBonus(this);
             }
@@ -198,7 +198,7 @@ namespace ZTn.BNet.D3.Calculator
             update();
 
             // Build active bonuses
-            foreach (D3SkillModifier modifier in actives)
+            foreach (ID3SkillModifier modifier in actives)
             {
                 itemAttributes += modifier.getBonus(this);
             }
