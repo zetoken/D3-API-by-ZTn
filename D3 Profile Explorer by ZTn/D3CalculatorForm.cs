@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using ZTn.BNet.D3.Calculator;
+using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Sets;
 using ZTn.BNet.D3.Calculator.Skills;
@@ -33,6 +34,8 @@ namespace ZTn.BNet.D3ProfileExplorer
         Item mainHand;
         Item offHand;
 
+        List<CheckBox> passiveCheckBoxes;
+
         #endregion
 
         #region >> Constructors
@@ -48,6 +51,50 @@ namespace ZTn.BNet.D3ProfileExplorer
                 HeroClass.WitchDoctor.ToString(), 
                 HeroClass.Wizard.ToString()
             };
+
+            KnownGems knownGems = KnownGems.getKnownGemsFromJsonFile("d3gem.json");
+
+            guiMainHandEditor.knownGems = knownGems;
+            guiOffHandEditor.knownGems = knownGems;
+            guiBracersEditor.knownGems = knownGems;
+            guiFeetEditor.knownGems = knownGems;
+            guiHandsEditor.knownGems = knownGems;
+            guiHeadEditor.knownGems = knownGems;
+            guiLeftFingerEditor.knownGems = knownGems;
+            guiLegsEditor.knownGems = knownGems;
+            guiNeckEditor.knownGems = knownGems;
+            guiRightFingerEditor.knownGems = knownGems;
+            guiShouldersEditor.knownGems = knownGems;
+            guiTorsoEditor.knownGems = knownGems;
+            guiWaistEditor.knownGems = knownGems;
+            guiSetBonusEditor.knownGems = knownGems;
+
+            passiveCheckBoxes = new List<CheckBox>()
+            {
+                //  Barbarian passive skills
+                guiSkillNervesOfSteel,
+                guiSkillWeaponsMaster,
+                guiSkillToughAsNails,
+                guiSkillRuthless,
+
+                // Demon Hunter passive skills
+                guiSkillArchery,
+                guiSkillSteadyAim,
+                guiSkillSharpShooter,
+                guiSkillPerfectionnist,
+
+                // Monk passive skills
+                guiSkillSeizeTheInitiative,
+                guiSkillOneWithEverything,
+
+                // Witch Doctor skills
+                guiSkillPierceTheVeil,
+
+                // Wizard skills
+                guiSkillGlassCannon,
+                guiSkillGalvanizingWard
+            };
+
         }
 
         public D3CalculatorForm(Hero hero)
@@ -183,34 +230,8 @@ namespace ZTn.BNet.D3ProfileExplorer
             // Retrieve used skills from the GUI
             List<ID3SkillModifier> passiveSkills = new List<ID3SkillModifier>();
 
-            Dictionary<CheckBox, Type> passives = new Dictionary<CheckBox, Type>()
-            {
-                //  Barbarian passive skills
-                { guiSkillNervesOfSteel, typeof(D3.Calculator.Skills.Barbarian.NervesOfSteel) },
-                { guiSkillWeaponsMaster, typeof(D3.Calculator.Skills.Barbarian.WeaponsMaster) },
-                { guiSkillToughAsNails, typeof(D3.Calculator.Skills.Barbarian.ToughAsNails) },
-                { guiSkillRuthless, typeof(D3.Calculator.Skills.Barbarian.Ruthless) },
-
-                // Demon Hunter passive skills
-                { guiSkillArchery, typeof(D3.Calculator.Skills.DemonHunter.Archery) },
-                { guiSkillSteadyAim, typeof(D3.Calculator.Skills.DemonHunter.SteadyAim) },
-                { guiSkillSharpShooter, typeof(D3.Calculator.Skills.DemonHunter.SharpShooter) },
-                { guiSkillPerfectionnist, typeof(D3.Calculator.Skills.DemonHunter.Perfectionist) },
-
-                // Monk passive skills
-                { guiSkillSeizeTheInitiative, typeof(D3.Calculator.Skills.Monk.SeizeTheInitiative) },
-                { guiSkillOneWithEverything, typeof(D3.Calculator.Skills.Monk.OneWithEverything) },
-
-                // Witch Doctor skills
-                { guiSkillPierceTheVeil, typeof(D3.Calculator.Skills.WitchDoctor.PierceTheVeil) },
-
-                // Wizard skills
-                { guiSkillGlassCannon, typeof(D3.Calculator.Skills.Wizard.GlassCannon) },
-                { guiSkillGalvanizingWard, typeof(D3.Calculator.Skills.Wizard.GalvanizingWard) }
-            };
-
-            foreach (KeyValuePair<CheckBox, Type> pair in passives.Where(p => p.Key.Checked))
-                passiveSkills.Add((ID3SkillModifier)Activator.CreateInstance(pair.Value));
+            foreach (CheckBox checkBox in passiveCheckBoxes.Where(p => p.Checked))
+                passiveSkills.Add(PassiveSkillModifierFactory.getFromSlug(checkBox.Tag as string));
 
             // Some buffs are applied after passives skills: followers skills and active skills
             List<ID3SkillModifier> activeSkills = new List<ID3SkillModifier>();
@@ -309,61 +330,11 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 foreach (PassiveSkill passiveSkill in hero.skills.passive.Where(passive => passive.skill != null))
                 {
-                    switch (passiveSkill.skill.slug)
-                    {
-                        // Barbarian
-                        case "weapons-master":
-                            guiSkillWeaponsMaster.Checked = true;
-                            break;
-                        case "nerves-of-steel":
-                            guiSkillNervesOfSteel.Checked = true;
-                            break;
-                        case "ruthless":
-                            guiSkillRuthless.Checked = true;
-                            break;
-                        case "tough-as-nails":
-                            guiSkillToughAsNails.Checked = true;
-                            break;
+                    CheckBox skillCheckBox = passiveCheckBoxes
+                        .FirstOrDefault(cb => (cb.Tag as string) == passiveSkill.skill.slug);
 
-                        // Demon hunter
-                        case "archery":
-                            guiSkillArchery.Checked = true;
-                            break;
-                        case "perfectionist":
-                            guiSkillPerfectionnist.Checked = true;
-                            break;
-                        case "sharp-shooter":
-                            guiSkillSharpShooter.Checked = true;
-                            break;
-                        case "steady-aim":
-                            guiSkillSteadyAim.Checked = true;
-                            break;
-
-                        // Monk
-                        case "one-with-everything":
-                            guiSkillOneWithEverything.Checked = true;
-                            break;
-                        case "seize-the-initiative":
-                            guiSkillSeizeTheInitiative.Checked = true;
-                            break;
-                        case "the-guardians-path":
-                            break;
-                        default:
-                            break;
-
-                        // Witch doctor
-                        case "pierce-the-veil":
-                            guiSkillPierceTheVeil.Checked = true;
-                            break;
-
-                        // Wizard
-                        case "glass-cannon":
-                            guiSkillGlassCannon.Checked = true;
-                            break;
-                        case "galvanizing-ward":
-                            guiSkillGalvanizingWard.Checked = true;
-                            break;
-                    }
+                    if (skillCheckBox != null)
+                        skillCheckBox.Checked = true;
                 }
             }
         }

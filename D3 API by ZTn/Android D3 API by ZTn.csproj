@@ -59,8 +59,8 @@
     <Compile Include="Careers\CareerKills.cs" />
     <Compile Include="Careers\ClassTimePlayed.cs" />
     <Compile Include="D3Api.cs" />
-    <Compile Include="DataProviders\BNetFailureObjectReturned.cs" />
-    <Compile Include="DataProviders\BNetResponseFailed.cs" />
+    <Compile Include="DataProviders\BNetFailureObjectReturnedException.cs" />
+    <Compile Include="DataProviders\BNetResponseFailedException.cs" />
     <Compile Include="DataProviders\CacheableDataProvider.cs" />
     <Compile Include="DataProviders\FileNotInCacheException.cs" />
     <Compile Include="DataProviders\HttpRequestDataProvider.cs" />

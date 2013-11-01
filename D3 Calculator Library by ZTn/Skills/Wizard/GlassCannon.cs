@@ -1,4 +1,5 @@
-﻿using ZTn.BNet.D3.Items;
+﻿using ZTn.BNet.D3.Heroes;
+using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.Wizard
 {
@@ -8,6 +9,18 @@ namespace ZTn.BNet.D3.Calculator.Skills.Wizard
         double malusMultiplier = -0.10;
 
         #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public HeroClass heroClass
+        {
+            get { return HeroClass.Wizard; }
+        }
+
+        /// <inheritdoc />
+        public string slug
+        {
+            get { return "glass-cannon"; }
+        }
 
         /// <inheritdoc />
         public ItemAttributes getBonus(D3Calculator calculator)

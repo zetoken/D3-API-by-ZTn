@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.Monk
@@ -11,6 +12,18 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
         readonly double multiplier = 0.20;
 
         #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public HeroClass heroClass
+        {
+            get { return HeroClass.Monk; }
+        }
+
+        /// <inheritdoc />
+        public string slug
+        {
+            get { return "mantra-of-evasion-hard-target"; }
+        }
 
         /// <inheritdoc />
         public ItemAttributes getBonus(D3Calculator calculator)

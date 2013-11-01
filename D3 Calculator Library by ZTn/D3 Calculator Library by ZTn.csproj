@@ -60,11 +60,13 @@
     <Compile Include="Skills\Barbarian\ToughAsNails.cs" />
     <Compile Include="Skills\Barbarian\WarCry_Invigorate.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster.cs" />
+    <Compile Include="Skills\PassiveSkillModifierFactory.cs" />
     <Compile Include="Skills\ID3SkillModifier.cs" />
     <Compile Include="D3Calculator.cs" />
     <Compile Include="Skills\DemonHunter\Archery.cs" />
     <Compile Include="Skills\Monk\MysticAlly_EarthAlly.cs" />
     <Compile Include="Skills\NullModifier.cs" />
+    <Compile Include="Skills\UnknownSkillSlugException.cs" />
     <Compile Include="StatsItem.cs" />
     <Compile Include="Helpers\ItemExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -15,7 +15,7 @@ namespace ZTn.BNet.D3.Calculator
         List<GemsListViewItem> gems2;
         List<GemsListViewItem> gems3;
 
-        static KnownGems knownGems = KnownGems.getKnownGemsFromJsonFile("d3gem.json");
+        public KnownGems knownGems { get; set; }
 
         public D3ItemEditor()
         {

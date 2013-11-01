@@ -1,10 +1,23 @@
-﻿using ZTn.BNet.D3.Items;
+﻿using ZTn.BNet.D3.Heroes;
+using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
     public sealed class SharpShooter : ID3SkillModifier
     {
         #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public HeroClass heroClass
+        {
+            get { return HeroClass.DemonHunter; }
+        }
+
+        /// <inheritdoc />
+        public string slug
+        {
+            get { return "sharp-shooter"; }
+        }
 
         /// <inheritdoc />
         public ItemAttributes getBonus(D3Calculator calculator)
