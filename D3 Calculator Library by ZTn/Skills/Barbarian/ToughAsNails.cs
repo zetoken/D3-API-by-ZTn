@@ -1,4 +1,5 @@
-﻿using ZTn.BNet.D3.Items;
+﻿using ZTn.BNet.D3.Heroes;
+using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
 {
@@ -7,6 +8,18 @@ namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
         double multiplier = 0.50;
 
         #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public HeroClass heroClass
+        {
+            get { return HeroClass.Barbarian; }
+        }
+
+        /// <inheritdoc />
+        public string slug
+        {
+            get { return "tough-as-nails"; }
+        }
 
         /// <inheritdoc />
         public ItemAttributes getBonus(D3Calculator calculator)

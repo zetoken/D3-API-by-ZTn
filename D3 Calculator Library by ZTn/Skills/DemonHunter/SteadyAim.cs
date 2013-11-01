@@ -1,4 +1,5 @@
-﻿using ZTn.BNet.D3.Items;
+﻿using ZTn.BNet.D3.Heroes;
+using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
@@ -7,6 +8,18 @@ namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
         readonly double multiplier = 0.20;
 
         #region >> ID3SkillModifier
+
+        /// <inheritdoc />
+        public HeroClass heroClass
+        {
+            get { return HeroClass.DemonHunter; }
+        }
+
+        /// <inheritdoc />
+        public string slug
+        {
+            get { return "steady-aim"; }
+        }
 
         /// <inheritdoc />
         public ItemAttributes getBonus(D3Calculator calculator)

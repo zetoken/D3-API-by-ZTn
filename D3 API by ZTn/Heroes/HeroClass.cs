@@ -15,6 +15,13 @@ namespace ZTn.BNet.D3.Heroes
         [EnumMember(Value = "witch-doctor")]
         WitchDoctor,
         [EnumMember(Value = "wizard")]
-        Wizard
+        Wizard,
+
+        [EnumMember(Value = "templar")]
+        TemplarFollower,
+        [EnumMember(Value = "scoundrel")]
+        ScoundrelFollower,
+        [EnumMember(Value = "enchantress")]
+        EnchantressFollower
     }
 }
