@@ -1,7 +1,7 @@
 ﻿using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
-namespace ZTn.BNet.D3.Calculator
+namespace ZTn.BNet.D3.Calculator.Heroes
 {
     public class ItemAttributesFromLevel : ItemAttributes
     {

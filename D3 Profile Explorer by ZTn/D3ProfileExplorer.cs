@@ -21,6 +21,7 @@ using System.Collections;
 using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.Progresses;
+using ZTn.BNet.D3.HeroFollowers;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -206,6 +207,13 @@ namespace ZTn.BNet.D3ProfileExplorer
             node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
         }
 
+        private void insertContextMenu(TreeNode node, Follower d3Object)
+        {
+            node.Tag = d3Object;
+            node.ContextMenuStrip = guiFollowerContextMenu;
+            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+        }
+
         #endregion
 
         #region >> updateNodeText Overloads
@@ -367,9 +375,24 @@ namespace ZTn.BNet.D3ProfileExplorer
             new D3CalculatorForm(hero).Show();
         }
 
+        private void d3CalculatorFollowerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Follower follower = (Follower)guiD3ProfileTreeView.SelectedNode.Tag;
+
+            Dictionary<string, HeroClass> slugToHeroClass = new Dictionary<string,HeroClass>()
+            {
+                { "enchantress", HeroClass.EnchantressFollower },
+                { "scoundrel", HeroClass.ScoundrelFollower },
+                { "templar", HeroClass.TemplarFollower }
+            };
+
+            new D3CalculatorForm(follower, slugToHeroClass[follower.slug]).Show();
+        }
+
         private void buildUniqueItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hero hero = (Hero)guiD3ProfileTreeView.SelectedNode.Tag;
+
             List<Item> items = new List<Item>();
             if (hero.items.bracers != null)
                 items.Add(Item.getItemFromTooltipParams(hero.items.bracers.tooltipParams));
@@ -412,7 +435,40 @@ namespace ZTn.BNet.D3ProfileExplorer
             node.Nodes.AddRange(createNodeFromD3Object(heroStuff).ToArray());
 
             guiD3ProfileTreeView.Nodes.Add(node);
+        }
 
+        private void buildUniqueItemFollowerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Follower follower = (Follower)guiD3ProfileTreeView.SelectedNode.Tag;
+
+            List<Item> items = new List<Item>();
+            if (follower.items.special != null)
+                items.Add(Item.getItemFromTooltipParams(follower.items.special.tooltipParams));
+            if (follower.items.leftFinger != null)
+                items.Add(Item.getItemFromTooltipParams(follower.items.leftFinger.tooltipParams));
+            if (follower.items.neck != null)
+                items.Add(Item.getItemFromTooltipParams(follower.items.neck.tooltipParams));
+            if (follower.items.rightFinger != null)
+                items.Add(Item.getItemFromTooltipParams(follower.items.rightFinger.tooltipParams));
+
+            Item mainHand = Item.getItemFromTooltipParams(follower.items.mainHand.tooltipParams);
+
+            Item offHand = null;
+            if (follower.items.offHand != null)
+                offHand = Item.getItemFromTooltipParams(follower.items.offHand.tooltipParams);
+            else
+            {
+                offHand = new Item();
+                offHand.attributesRaw = new ItemAttributes();
+            }
+
+            StatsItem heroStuff = new StatsItem(mainHand, offHand, items.ToArray());
+            heroStuff.update();
+
+            TreeNode node = new TreeNode("Unique Item for " + follower.slug + " follower");
+            node.Nodes.AddRange(createNodeFromD3Object(heroStuff).ToArray());
+
+            guiD3ProfileTreeView.Nodes.Add(node);
         }
 
         private void d3CalculatorHeroSummaryToolStripMenuItem_Click(object sender, EventArgs e)

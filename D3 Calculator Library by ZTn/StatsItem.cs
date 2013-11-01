@@ -27,7 +27,7 @@ namespace ZTn.BNet.D3.Calculator
 
         #region >> Constructor
 
-        public StatsItem(Item mainHand, Item offHand, Item[] items)
+        public StatsItem(Item mainHand, Item offHand, IEnumerable<Item> items)
             : base()
         {
             if (mainHand != null && mainHand.isWeapon())

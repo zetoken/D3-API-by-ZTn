@@ -39,23 +39,13 @@
             System.Windows.Forms.Label label16;
             System.Windows.Forms.GroupBox groupBox5;
             System.Windows.Forms.GroupBox groupBox4;
-            System.Windows.Forms.TabControl tabControl1;
             System.Windows.Forms.GroupBox groupBoxBarbarianActiveSkills;
             System.Windows.Forms.GroupBox groupBoxMonkActiveSkills;
-            System.Windows.Forms.TabPage tabSetBonus;
             System.Windows.Forms.TabPage tabMainHand;
             System.Windows.Forms.TabPage tabOffHand;
             System.Windows.Forms.TabPage tabLeftFinger;
             System.Windows.Forms.TabPage tabRightFinger;
             System.Windows.Forms.TabPage tabNeck;
-            System.Windows.Forms.TabPage tabHead;
-            System.Windows.Forms.TabPage tabShoulders;
-            System.Windows.Forms.TabPage tabBracers;
-            System.Windows.Forms.TabPage tabHands;
-            System.Windows.Forms.TabPage tabTorso;
-            System.Windows.Forms.TabPage tabWaist;
-            System.Windows.Forms.TabPage tabLegs;
-            System.Windows.Forms.TabPage tabFeet;
             System.Windows.Forms.TabPage tabResults;
             System.Windows.Forms.GroupBox groupBox2;
             System.Windows.Forms.Label label46;
@@ -103,6 +93,7 @@
             System.Windows.Forms.Label label3;
             System.Windows.Forms.Label label5;
             System.Windows.Forms.Label label4;
+            System.Windows.Forms.TabPage tabActiveSkills;
             this.guiSkillGalvanizingWard = new System.Windows.Forms.CheckBox();
             this.guiSkillGlassCannon = new System.Windows.Forms.CheckBox();
             this.guiSkillPierceTheVeil = new System.Windows.Forms.CheckBox();
@@ -123,11 +114,33 @@
             this.guiSkillSharpShooter = new System.Windows.Forms.CheckBox();
             this.guiSkillArchery = new System.Windows.Forms.CheckBox();
             this.guiSkillSteadyAim = new System.Windows.Forms.CheckBox();
-            this.tabActiveSkills = new System.Windows.Forms.TabPage();
             this.guiSkillWarCry_Invigorate = new System.Windows.Forms.CheckBox();
             this.guiSkillMysticAlly_EarthAlly = new System.Windows.Forms.CheckBox();
             this.guiSkillMantraOfHealing_TimeOfNeed = new System.Windows.Forms.CheckBox();
             this.guiSkillMantraOfEvasion_HardTarget = new System.Windows.Forms.CheckBox();
+            this.tabSetBonus = new System.Windows.Forms.TabPage();
+            this.guiSetBonusEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiMainHandEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiOffHandEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiLeftFingerEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiRightFingerEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiNeckEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.tabHead = new System.Windows.Forms.TabPage();
+            this.guiHeadEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.tabShoulders = new System.Windows.Forms.TabPage();
+            this.guiShouldersEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.tabBracers = new System.Windows.Forms.TabPage();
+            this.guiBracersEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.tabHands = new System.Windows.Forms.TabPage();
+            this.guiHandsEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.tabTorso = new System.Windows.Forms.TabPage();
+            this.guiTorsoEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.tabWaist = new System.Windows.Forms.TabPage();
+            this.guiWaistEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.tabLegs = new System.Windows.Forms.TabPage();
+            this.guiLegsEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.tabFeet = new System.Windows.Forms.TabPage();
+            this.guiFeetEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
             this.guiCalculatedDPSEHPRatio = new System.Windows.Forms.TextBox();
             this.guiCalculatedEffectiveHitpoints = new System.Windows.Forms.TextBox();
             this.guiCalculatedResistance_All = new System.Windows.Forms.TextBox();
@@ -175,20 +188,9 @@
             this.guiItemsSpeedAttack = new System.Windows.Forms.TextBox();
             this.guiItemsStrength = new System.Windows.Forms.TextBox();
             this.guiItemsVitality = new System.Windows.Forms.TextBox();
-            this.guiSetBonusEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiMainHandEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiOffHandEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiLeftFingerEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiRightFingerEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiNeckEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiHeadEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiShouldersEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiBracersEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiHandsEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiTorsoEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiWaistEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiLegsEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiFeetEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.tacControl1 = new System.Windows.Forms.TabControl();
+            this.tabSpecial = new System.Windows.Forms.TabPage();
+            this.guiSpecialEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
             label6 = new System.Windows.Forms.Label();
             tabPassiveSkills = new System.Windows.Forms.TabPage();
             groupBox9 = new System.Windows.Forms.GroupBox();
@@ -200,23 +202,13 @@
             label16 = new System.Windows.Forms.Label();
             groupBox5 = new System.Windows.Forms.GroupBox();
             groupBox4 = new System.Windows.Forms.GroupBox();
-            tabControl1 = new System.Windows.Forms.TabControl();
             groupBoxBarbarianActiveSkills = new System.Windows.Forms.GroupBox();
             groupBoxMonkActiveSkills = new System.Windows.Forms.GroupBox();
-            tabSetBonus = new System.Windows.Forms.TabPage();
             tabMainHand = new System.Windows.Forms.TabPage();
             tabOffHand = new System.Windows.Forms.TabPage();
             tabLeftFinger = new System.Windows.Forms.TabPage();
             tabRightFinger = new System.Windows.Forms.TabPage();
             tabNeck = new System.Windows.Forms.TabPage();
-            tabHead = new System.Windows.Forms.TabPage();
-            tabShoulders = new System.Windows.Forms.TabPage();
-            tabBracers = new System.Windows.Forms.TabPage();
-            tabHands = new System.Windows.Forms.TabPage();
-            tabTorso = new System.Windows.Forms.TabPage();
-            tabWaist = new System.Windows.Forms.TabPage();
-            tabLegs = new System.Windows.Forms.TabPage();
-            tabFeet = new System.Windows.Forms.TabPage();
             tabResults = new System.Windows.Forms.TabPage();
             groupBox2 = new System.Windows.Forms.GroupBox();
             label46 = new System.Windows.Forms.Label();
@@ -264,6 +256,7 @@
             label3 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
+            tabActiveSkills = new System.Windows.Forms.TabPage();
             tabPassiveSkills.SuspendLayout();
             groupBox9.SuspendLayout();
             groupBox8.SuspendLayout();
@@ -272,28 +265,29 @@
             this.groupBox6.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox4.SuspendLayout();
-            tabControl1.SuspendLayout();
-            this.tabActiveSkills.SuspendLayout();
             groupBoxBarbarianActiveSkills.SuspendLayout();
             groupBoxMonkActiveSkills.SuspendLayout();
-            tabSetBonus.SuspendLayout();
+            this.tabSetBonus.SuspendLayout();
             tabMainHand.SuspendLayout();
             tabOffHand.SuspendLayout();
             tabLeftFinger.SuspendLayout();
             tabRightFinger.SuspendLayout();
             tabNeck.SuspendLayout();
-            tabHead.SuspendLayout();
-            tabShoulders.SuspendLayout();
-            tabBracers.SuspendLayout();
-            tabHands.SuspendLayout();
-            tabTorso.SuspendLayout();
-            tabWaist.SuspendLayout();
-            tabLegs.SuspendLayout();
-            tabFeet.SuspendLayout();
+            this.tabHead.SuspendLayout();
+            this.tabShoulders.SuspendLayout();
+            this.tabBracers.SuspendLayout();
+            this.tabHands.SuspendLayout();
+            this.tabTorso.SuspendLayout();
+            this.tabWaist.SuspendLayout();
+            this.tabLegs.SuspendLayout();
+            this.tabFeet.SuspendLayout();
             tabResults.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox10.SuspendLayout();
             groupBox1.SuspendLayout();
+            this.tacControl1.SuspendLayout();
+            tabActiveSkills.SuspendLayout();
+            this.tabSpecial.SuspendLayout();
             this.SuspendLayout();
             // 
             // label6
@@ -317,7 +311,7 @@
             tabPassiveSkills.Location = new System.Drawing.Point(4, 22);
             tabPassiveSkills.Name = "tabPassiveSkills";
             tabPassiveSkills.Padding = new System.Windows.Forms.Padding(3);
-            tabPassiveSkills.Size = new System.Drawing.Size(1002, 552);
+            tabPassiveSkills.Size = new System.Drawing.Size(1026, 576);
             tabPassiveSkills.TabIndex = 13;
             tabPassiveSkills.Text = "Passive Skills";
             tabPassiveSkills.UseVisualStyleBackColor = true;
@@ -494,6 +488,7 @@
             this.guiHeroClass.Name = "guiHeroClass";
             this.guiHeroClass.Size = new System.Drawing.Size(100, 21);
             this.guiHeroClass.TabIndex = 5;
+            this.guiHeroClass.SelectionChangeCommitted += new System.EventHandler(this.guiHeroClass_SelectionChangeCommitted);
             // 
             // guiHeroParagonLevel
             // 
@@ -637,47 +632,6 @@
             this.guiSkillSteadyAim.Text = "Steady Aim (+20% Damage)";
             this.guiSkillSteadyAim.UseVisualStyleBackColor = true;
             // 
-            // tabControl1
-            // 
-            tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            tabControl1.Controls.Add(tabPassiveSkills);
-            tabControl1.Controls.Add(this.tabActiveSkills);
-            tabControl1.Controls.Add(tabSetBonus);
-            tabControl1.Controls.Add(tabMainHand);
-            tabControl1.Controls.Add(tabOffHand);
-            tabControl1.Controls.Add(tabLeftFinger);
-            tabControl1.Controls.Add(tabRightFinger);
-            tabControl1.Controls.Add(tabNeck);
-            tabControl1.Controls.Add(tabHead);
-            tabControl1.Controls.Add(tabShoulders);
-            tabControl1.Controls.Add(tabBracers);
-            tabControl1.Controls.Add(tabHands);
-            tabControl1.Controls.Add(tabTorso);
-            tabControl1.Controls.Add(tabWaist);
-            tabControl1.Controls.Add(tabLegs);
-            tabControl1.Controls.Add(tabFeet);
-            tabControl1.Controls.Add(tabResults);
-            tabControl1.HotTrack = true;
-            tabControl1.Location = new System.Drawing.Point(12, 12);
-            tabControl1.Multiline = true;
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new System.Drawing.Size(1010, 578);
-            tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
-            tabControl1.TabIndex = 0;
-            // 
-            // tabActiveSkills
-            // 
-            this.tabActiveSkills.Controls.Add(groupBoxBarbarianActiveSkills);
-            this.tabActiveSkills.Controls.Add(groupBoxMonkActiveSkills);
-            this.tabActiveSkills.Location = new System.Drawing.Point(4, 22);
-            this.tabActiveSkills.Name = "tabActiveSkills";
-            this.tabActiveSkills.Size = new System.Drawing.Size(1002, 552);
-            this.tabActiveSkills.TabIndex = 14;
-            this.tabActiveSkills.Text = "Active Skills";
-            this.tabActiveSkills.UseVisualStyleBackColor = true;
-            // 
             // groupBoxBarbarianActiveSkills
             // 
             groupBoxBarbarianActiveSkills.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -744,14 +698,24 @@
             // 
             // tabSetBonus
             // 
-            tabSetBonus.Controls.Add(this.guiSetBonusEditor);
-            tabSetBonus.Location = new System.Drawing.Point(4, 22);
-            tabSetBonus.Name = "tabSetBonus";
-            tabSetBonus.Padding = new System.Windows.Forms.Padding(3);
-            tabSetBonus.Size = new System.Drawing.Size(1002, 552);
-            tabSetBonus.TabIndex = 16;
-            tabSetBonus.Text = "Set Bonus";
-            tabSetBonus.UseVisualStyleBackColor = true;
+            this.tabSetBonus.Controls.Add(this.guiSetBonusEditor);
+            this.tabSetBonus.Location = new System.Drawing.Point(4, 22);
+            this.tabSetBonus.Name = "tabSetBonus";
+            this.tabSetBonus.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSetBonus.Size = new System.Drawing.Size(1026, 576);
+            this.tabSetBonus.TabIndex = 16;
+            this.tabSetBonus.Text = "Set Bonus";
+            this.tabSetBonus.UseVisualStyleBackColor = true;
+            // 
+            // guiSetBonusEditor
+            // 
+            this.guiSetBonusEditor.AutoSize = true;
+            this.guiSetBonusEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiSetBonusEditor.knownGems = null;
+            this.guiSetBonusEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiSetBonusEditor.Name = "guiSetBonusEditor";
+            this.guiSetBonusEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiSetBonusEditor.TabIndex = 0;
             // 
             // tabMainHand
             // 
@@ -760,10 +724,20 @@
             tabMainHand.Location = new System.Drawing.Point(4, 22);
             tabMainHand.Name = "tabMainHand";
             tabMainHand.Padding = new System.Windows.Forms.Padding(3);
-            tabMainHand.Size = new System.Drawing.Size(1002, 552);
+            tabMainHand.Size = new System.Drawing.Size(1026, 576);
             tabMainHand.TabIndex = 0;
             tabMainHand.Text = "Main Hand";
             tabMainHand.UseVisualStyleBackColor = true;
+            // 
+            // guiMainHandEditor
+            // 
+            this.guiMainHandEditor.AutoSize = true;
+            this.guiMainHandEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiMainHandEditor.knownGems = null;
+            this.guiMainHandEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiMainHandEditor.Name = "guiMainHandEditor";
+            this.guiMainHandEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiMainHandEditor.TabIndex = 0;
             // 
             // tabOffHand
             // 
@@ -772,10 +746,20 @@
             tabOffHand.Location = new System.Drawing.Point(4, 22);
             tabOffHand.Name = "tabOffHand";
             tabOffHand.Padding = new System.Windows.Forms.Padding(3);
-            tabOffHand.Size = new System.Drawing.Size(1002, 552);
+            tabOffHand.Size = new System.Drawing.Size(1026, 576);
             tabOffHand.TabIndex = 1;
             tabOffHand.Text = "Off Hand";
             tabOffHand.UseVisualStyleBackColor = true;
+            // 
+            // guiOffHandEditor
+            // 
+            this.guiOffHandEditor.AutoSize = true;
+            this.guiOffHandEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiOffHandEditor.knownGems = null;
+            this.guiOffHandEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiOffHandEditor.Name = "guiOffHandEditor";
+            this.guiOffHandEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiOffHandEditor.TabIndex = 0;
             // 
             // tabLeftFinger
             // 
@@ -784,10 +768,20 @@
             tabLeftFinger.Location = new System.Drawing.Point(4, 22);
             tabLeftFinger.Name = "tabLeftFinger";
             tabLeftFinger.Padding = new System.Windows.Forms.Padding(3);
-            tabLeftFinger.Size = new System.Drawing.Size(1002, 552);
+            tabLeftFinger.Size = new System.Drawing.Size(1026, 576);
             tabLeftFinger.TabIndex = 6;
             tabLeftFinger.Text = "Left Finger";
             tabLeftFinger.UseVisualStyleBackColor = true;
+            // 
+            // guiLeftFingerEditor
+            // 
+            this.guiLeftFingerEditor.AutoSize = true;
+            this.guiLeftFingerEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiLeftFingerEditor.knownGems = null;
+            this.guiLeftFingerEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiLeftFingerEditor.Name = "guiLeftFingerEditor";
+            this.guiLeftFingerEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiLeftFingerEditor.TabIndex = 0;
             // 
             // tabRightFinger
             // 
@@ -796,10 +790,20 @@
             tabRightFinger.Location = new System.Drawing.Point(4, 22);
             tabRightFinger.Name = "tabRightFinger";
             tabRightFinger.Padding = new System.Windows.Forms.Padding(3);
-            tabRightFinger.Size = new System.Drawing.Size(1002, 552);
+            tabRightFinger.Size = new System.Drawing.Size(1026, 576);
             tabRightFinger.TabIndex = 9;
             tabRightFinger.Text = "Right Finger";
             tabRightFinger.UseVisualStyleBackColor = true;
+            // 
+            // guiRightFingerEditor
+            // 
+            this.guiRightFingerEditor.AutoSize = true;
+            this.guiRightFingerEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiRightFingerEditor.knownGems = null;
+            this.guiRightFingerEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiRightFingerEditor.Name = "guiRightFingerEditor";
+            this.guiRightFingerEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiRightFingerEditor.TabIndex = 0;
             // 
             // tabNeck
             // 
@@ -808,106 +812,196 @@
             tabNeck.Location = new System.Drawing.Point(4, 22);
             tabNeck.Name = "tabNeck";
             tabNeck.Padding = new System.Windows.Forms.Padding(3);
-            tabNeck.Size = new System.Drawing.Size(1002, 552);
+            tabNeck.Size = new System.Drawing.Size(1026, 576);
             tabNeck.TabIndex = 8;
             tabNeck.Text = "Neck";
             tabNeck.UseVisualStyleBackColor = true;
             // 
+            // guiNeckEditor
+            // 
+            this.guiNeckEditor.AutoSize = true;
+            this.guiNeckEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiNeckEditor.knownGems = null;
+            this.guiNeckEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiNeckEditor.Name = "guiNeckEditor";
+            this.guiNeckEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiNeckEditor.TabIndex = 0;
+            // 
             // tabHead
             // 
-            tabHead.AutoScroll = true;
-            tabHead.Controls.Add(this.guiHeadEditor);
-            tabHead.Location = new System.Drawing.Point(4, 22);
-            tabHead.Name = "tabHead";
-            tabHead.Padding = new System.Windows.Forms.Padding(3);
-            tabHead.Size = new System.Drawing.Size(1002, 552);
-            tabHead.TabIndex = 5;
-            tabHead.Text = "Head";
-            tabHead.UseVisualStyleBackColor = true;
+            this.tabHead.AutoScroll = true;
+            this.tabHead.Controls.Add(this.guiHeadEditor);
+            this.tabHead.Location = new System.Drawing.Point(4, 22);
+            this.tabHead.Name = "tabHead";
+            this.tabHead.Padding = new System.Windows.Forms.Padding(3);
+            this.tabHead.Size = new System.Drawing.Size(1026, 576);
+            this.tabHead.TabIndex = 5;
+            this.tabHead.Text = "Head";
+            this.tabHead.UseVisualStyleBackColor = true;
+            // 
+            // guiHeadEditor
+            // 
+            this.guiHeadEditor.AutoSize = true;
+            this.guiHeadEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiHeadEditor.knownGems = null;
+            this.guiHeadEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiHeadEditor.Name = "guiHeadEditor";
+            this.guiHeadEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiHeadEditor.TabIndex = 0;
             // 
             // tabShoulders
             // 
-            tabShoulders.AutoScroll = true;
-            tabShoulders.Controls.Add(this.guiShouldersEditor);
-            tabShoulders.Location = new System.Drawing.Point(4, 22);
-            tabShoulders.Name = "tabShoulders";
-            tabShoulders.Padding = new System.Windows.Forms.Padding(3);
-            tabShoulders.Size = new System.Drawing.Size(1002, 552);
-            tabShoulders.TabIndex = 10;
-            tabShoulders.Text = "Shoulders";
-            tabShoulders.UseVisualStyleBackColor = true;
+            this.tabShoulders.AutoScroll = true;
+            this.tabShoulders.Controls.Add(this.guiShouldersEditor);
+            this.tabShoulders.Location = new System.Drawing.Point(4, 22);
+            this.tabShoulders.Name = "tabShoulders";
+            this.tabShoulders.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShoulders.Size = new System.Drawing.Size(1026, 576);
+            this.tabShoulders.TabIndex = 10;
+            this.tabShoulders.Text = "Shoulders";
+            this.tabShoulders.UseVisualStyleBackColor = true;
+            // 
+            // guiShouldersEditor
+            // 
+            this.guiShouldersEditor.AutoSize = true;
+            this.guiShouldersEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiShouldersEditor.knownGems = null;
+            this.guiShouldersEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiShouldersEditor.Name = "guiShouldersEditor";
+            this.guiShouldersEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiShouldersEditor.TabIndex = 0;
             // 
             // tabBracers
             // 
-            tabBracers.AutoScroll = true;
-            tabBracers.Controls.Add(this.guiBracersEditor);
-            tabBracers.Location = new System.Drawing.Point(4, 22);
-            tabBracers.Name = "tabBracers";
-            tabBracers.Padding = new System.Windows.Forms.Padding(3);
-            tabBracers.Size = new System.Drawing.Size(1002, 552);
-            tabBracers.TabIndex = 2;
-            tabBracers.Text = "Bracers";
-            tabBracers.UseVisualStyleBackColor = true;
+            this.tabBracers.AutoScroll = true;
+            this.tabBracers.Controls.Add(this.guiBracersEditor);
+            this.tabBracers.Location = new System.Drawing.Point(4, 22);
+            this.tabBracers.Name = "tabBracers";
+            this.tabBracers.Padding = new System.Windows.Forms.Padding(3);
+            this.tabBracers.Size = new System.Drawing.Size(1026, 576);
+            this.tabBracers.TabIndex = 2;
+            this.tabBracers.Text = "Bracers";
+            this.tabBracers.UseVisualStyleBackColor = true;
+            // 
+            // guiBracersEditor
+            // 
+            this.guiBracersEditor.AutoSize = true;
+            this.guiBracersEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiBracersEditor.knownGems = null;
+            this.guiBracersEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiBracersEditor.Name = "guiBracersEditor";
+            this.guiBracersEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiBracersEditor.TabIndex = 0;
             // 
             // tabHands
             // 
-            tabHands.AutoScroll = true;
-            tabHands.Controls.Add(this.guiHandsEditor);
-            tabHands.Location = new System.Drawing.Point(4, 22);
-            tabHands.Name = "tabHands";
-            tabHands.Padding = new System.Windows.Forms.Padding(3);
-            tabHands.Size = new System.Drawing.Size(1002, 552);
-            tabHands.TabIndex = 4;
-            tabHands.Text = "Hands";
-            tabHands.UseVisualStyleBackColor = true;
+            this.tabHands.AutoScroll = true;
+            this.tabHands.Controls.Add(this.guiHandsEditor);
+            this.tabHands.Location = new System.Drawing.Point(4, 22);
+            this.tabHands.Name = "tabHands";
+            this.tabHands.Padding = new System.Windows.Forms.Padding(3);
+            this.tabHands.Size = new System.Drawing.Size(1026, 576);
+            this.tabHands.TabIndex = 4;
+            this.tabHands.Text = "Hands";
+            this.tabHands.UseVisualStyleBackColor = true;
+            // 
+            // guiHandsEditor
+            // 
+            this.guiHandsEditor.AutoSize = true;
+            this.guiHandsEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiHandsEditor.knownGems = null;
+            this.guiHandsEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiHandsEditor.Name = "guiHandsEditor";
+            this.guiHandsEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiHandsEditor.TabIndex = 0;
             // 
             // tabTorso
             // 
-            tabTorso.AutoScroll = true;
-            tabTorso.Controls.Add(this.guiTorsoEditor);
-            tabTorso.Location = new System.Drawing.Point(4, 22);
-            tabTorso.Name = "tabTorso";
-            tabTorso.Padding = new System.Windows.Forms.Padding(3);
-            tabTorso.Size = new System.Drawing.Size(1002, 552);
-            tabTorso.TabIndex = 11;
-            tabTorso.Text = "Torso";
-            tabTorso.UseVisualStyleBackColor = true;
+            this.tabTorso.AutoScroll = true;
+            this.tabTorso.Controls.Add(this.guiTorsoEditor);
+            this.tabTorso.Location = new System.Drawing.Point(4, 22);
+            this.tabTorso.Name = "tabTorso";
+            this.tabTorso.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTorso.Size = new System.Drawing.Size(1026, 576);
+            this.tabTorso.TabIndex = 11;
+            this.tabTorso.Text = "Torso";
+            this.tabTorso.UseVisualStyleBackColor = true;
+            // 
+            // guiTorsoEditor
+            // 
+            this.guiTorsoEditor.AutoSize = true;
+            this.guiTorsoEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiTorsoEditor.knownGems = null;
+            this.guiTorsoEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiTorsoEditor.Name = "guiTorsoEditor";
+            this.guiTorsoEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiTorsoEditor.TabIndex = 0;
             // 
             // tabWaist
             // 
-            tabWaist.AutoScroll = true;
-            tabWaist.Controls.Add(this.guiWaistEditor);
-            tabWaist.Location = new System.Drawing.Point(4, 22);
-            tabWaist.Name = "tabWaist";
-            tabWaist.Padding = new System.Windows.Forms.Padding(3);
-            tabWaist.Size = new System.Drawing.Size(1002, 552);
-            tabWaist.TabIndex = 12;
-            tabWaist.Text = "Waist";
-            tabWaist.UseVisualStyleBackColor = true;
+            this.tabWaist.AutoScroll = true;
+            this.tabWaist.Controls.Add(this.guiWaistEditor);
+            this.tabWaist.Location = new System.Drawing.Point(4, 22);
+            this.tabWaist.Name = "tabWaist";
+            this.tabWaist.Padding = new System.Windows.Forms.Padding(3);
+            this.tabWaist.Size = new System.Drawing.Size(1026, 576);
+            this.tabWaist.TabIndex = 12;
+            this.tabWaist.Text = "Waist";
+            this.tabWaist.UseVisualStyleBackColor = true;
+            // 
+            // guiWaistEditor
+            // 
+            this.guiWaistEditor.AutoSize = true;
+            this.guiWaistEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiWaistEditor.knownGems = null;
+            this.guiWaistEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiWaistEditor.Name = "guiWaistEditor";
+            this.guiWaistEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiWaistEditor.TabIndex = 0;
             // 
             // tabLegs
             // 
-            tabLegs.AutoScroll = true;
-            tabLegs.Controls.Add(this.guiLegsEditor);
-            tabLegs.Location = new System.Drawing.Point(4, 22);
-            tabLegs.Name = "tabLegs";
-            tabLegs.Padding = new System.Windows.Forms.Padding(3);
-            tabLegs.Size = new System.Drawing.Size(1002, 552);
-            tabLegs.TabIndex = 7;
-            tabLegs.Text = "Legs";
-            tabLegs.UseVisualStyleBackColor = true;
+            this.tabLegs.AutoScroll = true;
+            this.tabLegs.Controls.Add(this.guiLegsEditor);
+            this.tabLegs.Location = new System.Drawing.Point(4, 22);
+            this.tabLegs.Name = "tabLegs";
+            this.tabLegs.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLegs.Size = new System.Drawing.Size(1026, 576);
+            this.tabLegs.TabIndex = 7;
+            this.tabLegs.Text = "Legs";
+            this.tabLegs.UseVisualStyleBackColor = true;
+            // 
+            // guiLegsEditor
+            // 
+            this.guiLegsEditor.AutoSize = true;
+            this.guiLegsEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiLegsEditor.knownGems = null;
+            this.guiLegsEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiLegsEditor.Name = "guiLegsEditor";
+            this.guiLegsEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiLegsEditor.TabIndex = 0;
             // 
             // tabFeet
             // 
-            tabFeet.AutoScroll = true;
-            tabFeet.Controls.Add(this.guiFeetEditor);
-            tabFeet.Location = new System.Drawing.Point(4, 22);
-            tabFeet.Name = "tabFeet";
-            tabFeet.Padding = new System.Windows.Forms.Padding(3);
-            tabFeet.Size = new System.Drawing.Size(1002, 552);
-            tabFeet.TabIndex = 3;
-            tabFeet.Text = "Feet";
-            tabFeet.UseVisualStyleBackColor = true;
+            this.tabFeet.AutoScroll = true;
+            this.tabFeet.Controls.Add(this.guiFeetEditor);
+            this.tabFeet.Location = new System.Drawing.Point(4, 22);
+            this.tabFeet.Name = "tabFeet";
+            this.tabFeet.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFeet.Size = new System.Drawing.Size(1026, 576);
+            this.tabFeet.TabIndex = 3;
+            this.tabFeet.Text = "Feet";
+            this.tabFeet.UseVisualStyleBackColor = true;
+            // 
+            // guiFeetEditor
+            // 
+            this.guiFeetEditor.AutoSize = true;
+            this.guiFeetEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiFeetEditor.knownGems = null;
+            this.guiFeetEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiFeetEditor.Name = "guiFeetEditor";
+            this.guiFeetEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiFeetEditor.TabIndex = 0;
             // 
             // tabResults
             // 
@@ -917,7 +1011,7 @@
             tabResults.Controls.Add(groupBox1);
             tabResults.Location = new System.Drawing.Point(4, 22);
             tabResults.Name = "tabResults";
-            tabResults.Size = new System.Drawing.Size(1002, 552);
+            tabResults.Size = new System.Drawing.Size(1026, 576);
             tabResults.TabIndex = 15;
             tabResults.Text = "Calculation Results";
             tabResults.UseVisualStyleBackColor = true;
@@ -1812,152 +1906,73 @@
             this.guiItemsVitality.Size = new System.Drawing.Size(35, 20);
             this.guiItemsVitality.TabIndex = 7;
             // 
-            // guiSetBonusEditor
+            // tacControl1
             // 
-            this.guiSetBonusEditor.AutoSize = true;
-            this.guiSetBonusEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiSetBonusEditor.knownGems = null;
-            this.guiSetBonusEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiSetBonusEditor.Name = "guiSetBonusEditor";
-            this.guiSetBonusEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiSetBonusEditor.TabIndex = 0;
+            this.tacControl1.Controls.Add(tabPassiveSkills);
+            this.tacControl1.Controls.Add(tabActiveSkills);
+            this.tacControl1.Controls.Add(this.tabSetBonus);
+            this.tacControl1.Controls.Add(tabMainHand);
+            this.tacControl1.Controls.Add(tabOffHand);
+            this.tacControl1.Controls.Add(this.tabSpecial);
+            this.tacControl1.Controls.Add(tabLeftFinger);
+            this.tacControl1.Controls.Add(tabRightFinger);
+            this.tacControl1.Controls.Add(tabNeck);
+            this.tacControl1.Controls.Add(this.tabHead);
+            this.tacControl1.Controls.Add(this.tabShoulders);
+            this.tacControl1.Controls.Add(this.tabBracers);
+            this.tacControl1.Controls.Add(this.tabHands);
+            this.tacControl1.Controls.Add(this.tabTorso);
+            this.tacControl1.Controls.Add(this.tabWaist);
+            this.tacControl1.Controls.Add(this.tabLegs);
+            this.tacControl1.Controls.Add(this.tabFeet);
+            this.tacControl1.Controls.Add(tabResults);
+            this.tacControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tacControl1.HotTrack = true;
+            this.tacControl1.Location = new System.Drawing.Point(0, 0);
+            this.tacControl1.Multiline = true;
+            this.tacControl1.Name = "tacControl1";
+            this.tacControl1.SelectedIndex = 0;
+            this.tacControl1.Size = new System.Drawing.Size(1034, 602);
+            this.tacControl1.TabIndex = 0;
             // 
-            // guiMainHandEditor
+            // tabActiveSkills
             // 
-            this.guiMainHandEditor.AutoSize = true;
-            this.guiMainHandEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiMainHandEditor.knownGems = null;
-            this.guiMainHandEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiMainHandEditor.Name = "guiMainHandEditor";
-            this.guiMainHandEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiMainHandEditor.TabIndex = 0;
+            tabActiveSkills.Controls.Add(groupBoxBarbarianActiveSkills);
+            tabActiveSkills.Controls.Add(groupBoxMonkActiveSkills);
+            tabActiveSkills.Location = new System.Drawing.Point(4, 22);
+            tabActiveSkills.Name = "tabActiveSkills";
+            tabActiveSkills.Size = new System.Drawing.Size(1026, 576);
+            tabActiveSkills.TabIndex = 14;
+            tabActiveSkills.Text = "Active Skills";
+            tabActiveSkills.UseVisualStyleBackColor = true;
             // 
-            // guiOffHandEditor
+            // tabSpecial
             // 
-            this.guiOffHandEditor.AutoSize = true;
-            this.guiOffHandEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiOffHandEditor.knownGems = null;
-            this.guiOffHandEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiOffHandEditor.Name = "guiOffHandEditor";
-            this.guiOffHandEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiOffHandEditor.TabIndex = 0;
+            this.tabSpecial.Controls.Add(this.guiSpecialEditor);
+            this.tabSpecial.Location = new System.Drawing.Point(4, 22);
+            this.tabSpecial.Name = "tabSpecial";
+            this.tabSpecial.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSpecial.Size = new System.Drawing.Size(1026, 576);
+            this.tabSpecial.TabIndex = 17;
+            this.tabSpecial.Text = "Special";
+            this.tabSpecial.UseVisualStyleBackColor = true;
             // 
-            // guiLeftFingerEditor
+            // guiSpecialEditor
             // 
-            this.guiLeftFingerEditor.AutoSize = true;
-            this.guiLeftFingerEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiLeftFingerEditor.knownGems = null;
-            this.guiLeftFingerEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiLeftFingerEditor.Name = "guiLeftFingerEditor";
-            this.guiLeftFingerEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiLeftFingerEditor.TabIndex = 0;
-            // 
-            // guiRightFingerEditor
-            // 
-            this.guiRightFingerEditor.AutoSize = true;
-            this.guiRightFingerEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiRightFingerEditor.knownGems = null;
-            this.guiRightFingerEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiRightFingerEditor.Name = "guiRightFingerEditor";
-            this.guiRightFingerEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiRightFingerEditor.TabIndex = 0;
-            // 
-            // guiNeckEditor
-            // 
-            this.guiNeckEditor.AutoSize = true;
-            this.guiNeckEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiNeckEditor.knownGems = null;
-            this.guiNeckEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiNeckEditor.Name = "guiNeckEditor";
-            this.guiNeckEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiNeckEditor.TabIndex = 0;
-            // 
-            // guiHeadEditor
-            // 
-            this.guiHeadEditor.AutoSize = true;
-            this.guiHeadEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiHeadEditor.knownGems = null;
-            this.guiHeadEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiHeadEditor.Name = "guiHeadEditor";
-            this.guiHeadEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiHeadEditor.TabIndex = 0;
-            // 
-            // guiShouldersEditor
-            // 
-            this.guiShouldersEditor.AutoSize = true;
-            this.guiShouldersEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiShouldersEditor.knownGems = null;
-            this.guiShouldersEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiShouldersEditor.Name = "guiShouldersEditor";
-            this.guiShouldersEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiShouldersEditor.TabIndex = 0;
-            // 
-            // guiBracersEditor
-            // 
-            this.guiBracersEditor.AutoSize = true;
-            this.guiBracersEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiBracersEditor.knownGems = null;
-            this.guiBracersEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiBracersEditor.Name = "guiBracersEditor";
-            this.guiBracersEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiBracersEditor.TabIndex = 0;
-            // 
-            // guiHandsEditor
-            // 
-            this.guiHandsEditor.AutoSize = true;
-            this.guiHandsEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiHandsEditor.knownGems = null;
-            this.guiHandsEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiHandsEditor.Name = "guiHandsEditor";
-            this.guiHandsEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiHandsEditor.TabIndex = 0;
-            // 
-            // guiTorsoEditor
-            // 
-            this.guiTorsoEditor.AutoSize = true;
-            this.guiTorsoEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiTorsoEditor.knownGems = null;
-            this.guiTorsoEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiTorsoEditor.Name = "guiTorsoEditor";
-            this.guiTorsoEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiTorsoEditor.TabIndex = 0;
-            // 
-            // guiWaistEditor
-            // 
-            this.guiWaistEditor.AutoSize = true;
-            this.guiWaistEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiWaistEditor.knownGems = null;
-            this.guiWaistEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiWaistEditor.Name = "guiWaistEditor";
-            this.guiWaistEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiWaistEditor.TabIndex = 0;
-            // 
-            // guiLegsEditor
-            // 
-            this.guiLegsEditor.AutoSize = true;
-            this.guiLegsEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiLegsEditor.knownGems = null;
-            this.guiLegsEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiLegsEditor.Name = "guiLegsEditor";
-            this.guiLegsEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiLegsEditor.TabIndex = 0;
-            // 
-            // guiFeetEditor
-            // 
-            this.guiFeetEditor.AutoSize = true;
-            this.guiFeetEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiFeetEditor.knownGems = null;
-            this.guiFeetEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiFeetEditor.Name = "guiFeetEditor";
-            this.guiFeetEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiFeetEditor.TabIndex = 0;
+            this.guiSpecialEditor.AutoSize = true;
+            this.guiSpecialEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiSpecialEditor.knownGems = null;
+            this.guiSpecialEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiSpecialEditor.Name = "guiSpecialEditor";
+            this.guiSpecialEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiSpecialEditor.TabIndex = 0;
             // 
             // D3CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 602);
-            this.Controls.Add(tabControl1);
+            this.Controls.Add(this.tacControl1);
             this.Name = "D3CalculatorForm";
             this.Text = "D3 Calculator by ZTn";
             tabPassiveSkills.ResumeLayout(false);
@@ -1975,14 +1990,12 @@
             groupBox5.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
-            tabControl1.ResumeLayout(false);
-            this.tabActiveSkills.ResumeLayout(false);
             groupBoxBarbarianActiveSkills.ResumeLayout(false);
             groupBoxBarbarianActiveSkills.PerformLayout();
             groupBoxMonkActiveSkills.ResumeLayout(false);
             groupBoxMonkActiveSkills.PerformLayout();
-            tabSetBonus.ResumeLayout(false);
-            tabSetBonus.PerformLayout();
+            this.tabSetBonus.ResumeLayout(false);
+            this.tabSetBonus.PerformLayout();
             tabMainHand.ResumeLayout(false);
             tabMainHand.PerformLayout();
             tabOffHand.ResumeLayout(false);
@@ -1993,22 +2006,22 @@
             tabRightFinger.PerformLayout();
             tabNeck.ResumeLayout(false);
             tabNeck.PerformLayout();
-            tabHead.ResumeLayout(false);
-            tabHead.PerformLayout();
-            tabShoulders.ResumeLayout(false);
-            tabShoulders.PerformLayout();
-            tabBracers.ResumeLayout(false);
-            tabBracers.PerformLayout();
-            tabHands.ResumeLayout(false);
-            tabHands.PerformLayout();
-            tabTorso.ResumeLayout(false);
-            tabTorso.PerformLayout();
-            tabWaist.ResumeLayout(false);
-            tabWaist.PerformLayout();
-            tabLegs.ResumeLayout(false);
-            tabLegs.PerformLayout();
-            tabFeet.ResumeLayout(false);
-            tabFeet.PerformLayout();
+            this.tabHead.ResumeLayout(false);
+            this.tabHead.PerformLayout();
+            this.tabShoulders.ResumeLayout(false);
+            this.tabShoulders.PerformLayout();
+            this.tabBracers.ResumeLayout(false);
+            this.tabBracers.PerformLayout();
+            this.tabHands.ResumeLayout(false);
+            this.tabHands.PerformLayout();
+            this.tabTorso.ResumeLayout(false);
+            this.tabTorso.PerformLayout();
+            this.tabWaist.ResumeLayout(false);
+            this.tabWaist.PerformLayout();
+            this.tabLegs.ResumeLayout(false);
+            this.tabLegs.PerformLayout();
+            this.tabFeet.ResumeLayout(false);
+            this.tabFeet.PerformLayout();
             tabResults.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
@@ -2016,6 +2029,10 @@
             groupBox10.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            this.tacControl1.ResumeLayout(false);
+            tabActiveSkills.ResumeLayout(false);
+            this.tabSpecial.ResumeLayout(false);
+            this.tabSpecial.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2105,8 +2122,19 @@
         private System.Windows.Forms.CheckBox guiSkillMantraOfEvasion_HardTarget;
         private System.Windows.Forms.CheckBox guiSkillMysticAlly_EarthAlly;
         private System.Windows.Forms.TextBox guiItemsLifeSteal;
-        private System.Windows.Forms.TabPage tabActiveSkills;
         private D3.Calculator.D3ItemEditor guiSetBonusEditor;
         private System.Windows.Forms.CheckBox guiSkillWarCry_Invigorate;
+        private System.Windows.Forms.TabPage tabSpecial;
+        private D3.Calculator.D3ItemEditor guiSpecialEditor;
+        private System.Windows.Forms.TabControl tacControl1;
+        private System.Windows.Forms.TabPage tabSetBonus;
+        private System.Windows.Forms.TabPage tabHead;
+        private System.Windows.Forms.TabPage tabShoulders;
+        private System.Windows.Forms.TabPage tabBracers;
+        private System.Windows.Forms.TabPage tabHands;
+        private System.Windows.Forms.TabPage tabTorso;
+        private System.Windows.Forms.TabPage tabWaist;
+        private System.Windows.Forms.TabPage tabLegs;
+        private System.Windows.Forms.TabPage tabFeet;
     }
 }

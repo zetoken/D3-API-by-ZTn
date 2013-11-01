@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using ZTn.BNet.D3.Calculator;
+using ZTn.BNet.D3.Calculator.Followers;
 using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Sets;
 using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Heroes;
+using ZTn.BNet.D3.HeroFollowers;
 using ZTn.BNet.D3.Items;
 using ZTn.BNet.D3.Skills;
 
@@ -17,8 +19,9 @@ namespace ZTn.BNet.D3ProfileExplorer
     {
         #region >> Fields
 
-        Hero hero;
+        int heroLevel;
 
+        Item special;
         Item bracers;
         Item feet;
         Item hands;
@@ -49,13 +52,17 @@ namespace ZTn.BNet.D3ProfileExplorer
                 HeroClass.DemonHunter.ToString(),
                 HeroClass.Monk.ToString(), 
                 HeroClass.WitchDoctor.ToString(), 
-                HeroClass.Wizard.ToString()
+                HeroClass.Wizard.ToString(),
+                HeroClass.EnchantressFollower.ToString(),
+                HeroClass.ScoundrelFollower.ToString(),
+                HeroClass.TemplarFollower.ToString()
             };
 
             KnownGems knownGems = KnownGems.getKnownGemsFromJsonFile("d3gem.json");
 
             guiMainHandEditor.knownGems = knownGems;
             guiOffHandEditor.knownGems = knownGems;
+            guiSpecialEditor.knownGems = knownGems;
             guiBracersEditor.knownGems = knownGems;
             guiFeetEditor.knownGems = knownGems;
             guiHandsEditor.knownGems = knownGems;
@@ -100,7 +107,6 @@ namespace ZTn.BNet.D3ProfileExplorer
         public D3CalculatorForm(Hero hero)
             : this()
         {
-            this.hero = hero;
             this.Text += " [ " + hero.name + " ]";
 
             guiHeroClass.SelectedItem = hero.heroClass.ToString();
@@ -175,8 +181,61 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             guiSetBonusEditor.setEditedItem(new Item(allRawItems.Where(i => i != null).ToList().getActivatedSetBonus()));
 
-            populatePassiveSkills();
-            populateActiveSkills();
+            populatePassiveSkills(hero);
+            populateActiveSkills(hero);
+        }
+
+        public D3CalculatorForm(Follower follower, HeroClass heroClass)
+            : this()
+        {
+            this.Text += " [ " + follower.slug + " ]";
+
+            guiHeroClass.SelectedItem = heroClass.ToString();
+            guiHeroLevel.Text = follower.level.ToString();
+            guiHeroParagonLevel.Text = "0";
+
+            if (follower.items.special != null)
+                special = follower.items.special.getFullItem();
+            if (follower.items.leftFinger != null)
+                leftFinger = follower.items.leftFinger.getFullItem();
+            if (follower.items.neck != null)
+                neck = follower.items.neck.getFullItem();
+            if (follower.items.rightFinger != null)
+                rightFinger = follower.items.rightFinger.getFullItem();
+
+            // If no weapon is set in mainHand, use "naked hand" weapon
+            if (follower.items.mainHand != null)
+                mainHand = follower.items.mainHand.getFullItem();
+            else
+                mainHand = D3Calculator.nakedHandWeapon;
+
+            // If no item is set in offHand, use a blank item
+            if (follower.items.offHand != null)
+                offHand = follower.items.offHand.getFullItem();
+            else
+                offHand = D3Calculator.blankWeapon;
+
+            List<Item> allRawItems = new List<Item>() { special, leftFinger, neck, rightFinger, mainHand, offHand };
+
+            guiSpecialEditor.setEditedItem(special);
+            guiMainHandEditor.setEditedItem(mainHand);
+            guiOffHandEditor.setEditedItem(offHand);
+            guiLeftFingerEditor.setEditedItem(leftFinger);
+            guiNeckEditor.setEditedItem(neck);
+            guiRightFingerEditor.setEditedItem(rightFinger);
+
+            List<Item> items = new List<Item>()
+            {
+                guiSpecialEditor.getEditedItem(),
+                guiLeftFingerEditor.getEditedItem(),
+                guiNeckEditor.getEditedItem(),
+                guiRightFingerEditor.getEditedItem(),
+            };
+
+            guiSetBonusEditor.setEditedItem(new Item(allRawItems.Where(i => i != null).ToList().getActivatedSetBonus()));
+
+            //populatePassiveSkills();
+            //populateActiveSkills();
         }
 
         #endregion
@@ -199,12 +258,46 @@ namespace ZTn.BNet.D3ProfileExplorer
             return hero;
         }
 
+        private Follower getEditedFollower()
+        {
+            Follower follower = new Follower();
+
+            if (String.IsNullOrEmpty(guiHeroLevel.Text))
+                follower.level = 60;
+            else
+                follower.level = Int32.Parse(guiHeroLevel.Text);
+
+            return follower;
+        }
+
         private void guiDoCalculations_Click(object sender, EventArgs e)
         {
-            // Retrieve hero from the GUI
-            hero = getEditedHero();
+            HeroClass heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), (String)(guiHeroClass.SelectedItem));
 
-            // Retrieve weared items from the GUI
+            switch (heroClass)
+            {
+                case HeroClass.Barbarian:
+                case HeroClass.DemonHunter:
+                case HeroClass.Monk:
+                case HeroClass.WitchDoctor:
+                case HeroClass.Wizard:
+                    guiDoCalculationsForHero();
+                    break;
+                case HeroClass.EnchantressFollower:
+                case HeroClass.ScoundrelFollower:
+                case HeroClass.TemplarFollower:
+                    guiDoCalculationsForFollower();
+                    break;
+            }
+        }
+
+        private void guiDoCalculationsForHero()
+        {
+            // Retrieve hero from the GUI
+            Hero hero = getEditedHero();
+            heroLevel = hero.level;
+
+            // Retrieve worn items from the GUI
             List<Item> items = new List<Item>()
             {
                 guiBracersEditor.getEditedItem(),
@@ -269,7 +362,51 @@ namespace ZTn.BNet.D3ProfileExplorer
             updateCalculationResults(d3Calculator);
         }
 
-        private void populateActiveSkills()
+        private void guiDoCalculationsForFollower()
+        {
+            // Retrieve follower from the GUI
+            Follower follower = getEditedFollower();
+
+            // Retrieve worn items from the GUI
+            List<Item> items = new List<Item>()
+            {
+                guiSpecialEditor.getEditedItem(),
+                guiLeftFingerEditor.getEditedItem(),
+                guiNeckEditor.getEditedItem(),
+                guiRightFingerEditor.getEditedItem(),
+                guiSetBonusEditor.getEditedItem()
+            };
+
+            Item mainHand = guiMainHandEditor.getEditedItem();
+
+            Item offHand = guiOffHandEditor.getEditedItem();
+
+            HeroClass heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), (String)(guiHeroClass.SelectedItem));
+
+            D3Calculator d3Calculator = new D3Calculator(follower, heroClass, mainHand, offHand, items.ToArray());
+
+            // Retrieve used skills from the GUI
+            List<ID3SkillModifier> passiveSkills = new List<ID3SkillModifier>();
+
+            // Some buffs are applied after passives skills: followers skills and active skills
+            List<ID3SkillModifier> activeSkills = new List<ID3SkillModifier>();
+
+            // Followers
+            if (guiSkillAnatomy.Checked)
+                activeSkills.Add(new D3.Calculator.Skills.Followers.Anatomy());
+            if (guiSkillFocusedMind.Checked)
+                activeSkills.Add(new D3.Calculator.Skills.Followers.FocusedMind());
+            if (guiSkillPoweredArmor.Checked)
+                activeSkills.Add(new D3.Calculator.Skills.Followers.PoweredArmor());
+
+            guiCalculatedDPS.Text = d3Calculator.getHeroDPS(passiveSkills, activeSkills).min.ToString();
+
+            updateItemsSummary(d3Calculator);
+
+            updateCalculationResults(d3Calculator);
+        }
+
+        private void populateActiveSkills(Hero hero)
         {
             if (hero.skills.active != null)
             {
@@ -324,7 +461,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 textBox.Text = (100 * itemValueRange.min).ToString();
         }
 
-        private void populatePassiveSkills()
+        private void populatePassiveSkills(Hero hero)
         {
             if (hero.skills.passive != null)
             {
@@ -386,20 +523,42 @@ namespace ZTn.BNet.D3ProfileExplorer
             populateCalculatedData(guiCalculatedResistance_Poison, d3Calculator.getHeroResistance("Poison"));
             populateCalculatedData(guiCalculatedResistance_All, d3Calculator.getHeroResistance_All());
 
-            guiCalculatedDamageReduction_Armor.Text = (100 * d3Calculator.getHeroDamageReduction_Armor(hero.level)).ToString();
-            guiCalculatedDamageReduction_Arcane.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Arcane")).ToString();
-            guiCalculatedDamageReduction_Cold.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Cold")).ToString();
-            guiCalculatedDamageReduction_Fire.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Fire")).ToString();
-            guiCalculatedDamageReduction_Lightning.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Lightning")).ToString();
-            guiCalculatedDamageReduction_Physical.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Physical")).ToString();
-            guiCalculatedDamageReduction_Poison.Text = (100 * d3Calculator.getHeroDamageReduction(hero.level, "Poison")).ToString();
+            guiCalculatedDamageReduction_Armor.Text = (100 * d3Calculator.getHeroDamageReduction_Armor(heroLevel)).ToString();
+            guiCalculatedDamageReduction_Arcane.Text = (100 * d3Calculator.getHeroDamageReduction(heroLevel, "Arcane")).ToString();
+            guiCalculatedDamageReduction_Cold.Text = (100 * d3Calculator.getHeroDamageReduction(heroLevel, "Cold")).ToString();
+            guiCalculatedDamageReduction_Fire.Text = (100 * d3Calculator.getHeroDamageReduction(heroLevel, "Fire")).ToString();
+            guiCalculatedDamageReduction_Lightning.Text = (100 * d3Calculator.getHeroDamageReduction(heroLevel, "Lightning")).ToString();
+            guiCalculatedDamageReduction_Physical.Text = (100 * d3Calculator.getHeroDamageReduction(heroLevel, "Physical")).ToString();
+            guiCalculatedDamageReduction_Poison.Text = (100 * d3Calculator.getHeroDamageReduction(heroLevel, "Poison")).ToString();
 
             populateCalculatedData(guiCalculatedBlockChance, attr.blockChanceItem);
             populateCalculatedData(guiCalculatedBlockMin, attr.blockAmountItemMin);
             populateCalculatedData(guiCalculatedBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
 
-            guiCalculatedEffectiveHitpoints.Text = Math.Round(d3Calculator.getHeroEffectiveHitpoints(hero.level)).ToString();
-            guiCalculatedDPSEHPRatio.Text = Math.Round(d3Calculator.getHeroDPS().min * d3Calculator.getHeroEffectiveHitpoints(hero.level) / 1000000).ToString();
+            guiCalculatedEffectiveHitpoints.Text = Math.Round(d3Calculator.getHeroEffectiveHitpoints(heroLevel)).ToString();
+            guiCalculatedDPSEHPRatio.Text = Math.Round(d3Calculator.getHeroDPS().min * d3Calculator.getHeroEffectiveHitpoints(heroLevel) / 1000000).ToString();
+        }
+
+        private void guiHeroClass_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            HeroClass heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), guiHeroClass.SelectedItem as String);
+
+            // TODO: hide useless tabs
+            switch (heroClass)
+            {
+                case HeroClass.Barbarian:
+                case HeroClass.DemonHunter:
+                case HeroClass.Monk:
+                case HeroClass.WitchDoctor:
+                case HeroClass.Wizard:
+                    break;
+                case HeroClass.EnchantressFollower:
+                case HeroClass.ScoundrelFollower:
+                case HeroClass.TemplarFollower:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -71,6 +71,9 @@
             this.getMetaItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simplifyItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guiUpdateKnownGems = new System.Windows.Forms.Button();
+            this.guiFollowerContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.d3CalculatorFollowerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buildUniqueItemFollowerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -82,6 +85,7 @@
             this.guiSkillContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guiD3Icon)).BeginInit();
             this.guiItemContextMenu.SuspendLayout();
+            this.guiFollowerContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // guiLabel1
@@ -443,6 +447,28 @@
             this.guiUpdateKnownGems.UseVisualStyleBackColor = true;
             this.guiUpdateKnownGems.Click += new System.EventHandler(this.guiUpdateKnownGems_Click);
             // 
+            // guiFollowerContextMenu
+            // 
+            this.guiFollowerContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.d3CalculatorFollowerToolStripMenuItem,
+            this.buildUniqueItemFollowerToolStripMenuItem});
+            this.guiFollowerContextMenu.Name = "guiHeroSummaryContextMenu";
+            this.guiFollowerContextMenu.Size = new System.Drawing.Size(170, 70);
+            // 
+            // d3CalculatorFollowerToolStripMenuItem
+            // 
+            this.d3CalculatorFollowerToolStripMenuItem.Name = "d3CalculatorFollowerToolStripMenuItem";
+            this.d3CalculatorFollowerToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.d3CalculatorFollowerToolStripMenuItem.Text = "D3 Calculator";
+            this.d3CalculatorFollowerToolStripMenuItem.Click += new System.EventHandler(this.d3CalculatorFollowerToolStripMenuItem_Click);
+            // 
+            // buildUniqueItemFollowerToolStripMenuItem
+            // 
+            this.buildUniqueItemFollowerToolStripMenuItem.Name = "buildUniqueItemFollowerToolStripMenuItem";
+            this.buildUniqueItemFollowerToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.buildUniqueItemFollowerToolStripMenuItem.Text = "Build Unique Item";
+            this.buildUniqueItemFollowerToolStripMenuItem.Click += new System.EventHandler(this.buildUniqueItemFollowerToolStripMenuItem_Click);
+            // 
             // guiD3ProfileExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -473,6 +499,7 @@
             this.guiSkillContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guiD3Icon)).EndInit();
             this.guiItemContextMenu.ResumeLayout(false);
+            this.guiFollowerContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -518,6 +545,9 @@
         private System.Windows.Forms.ToolStripMenuItem getMetaItemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simplifyItemToolStripMenuItem;
         private System.Windows.Forms.Button guiUpdateKnownGems;
+        private System.Windows.Forms.ContextMenuStrip guiFollowerContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem d3CalculatorFollowerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem buildUniqueItemFollowerToolStripMenuItem;
     }
 }
 

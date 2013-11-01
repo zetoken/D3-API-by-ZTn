@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-
+using System.Linq;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Heroes;
+using ZTn.BNet.D3.HeroFollowers;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator
@@ -11,7 +12,9 @@ namespace ZTn.BNet.D3.Calculator
     {
         #region >> Fields
 
-        public Hero hero;
+        public HeroClass heroClass;
+        public int heroLevel;
+
         public StatsItem heroStatsItem;
 
         ItemAttributes levelAttributes;
@@ -25,24 +28,105 @@ namespace ZTn.BNet.D3.Calculator
 
         public static readonly Item blankWeapon = new Item(new ItemAttributes() { });
 
+        readonly string[] damagePrefixes = new string[] { 
+            "damageMin_", "damageBonusMin_",
+            "damageDelta_", 
+            "damageWeaponMin_", "damageWeaponBonusMin_",
+            "damageWeaponDelta_", "damageWeaponBonusDelta_"
+        };
+
+        readonly string[] damageResists = new string[] {
+            "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison"
+        };
+
         #endregion
 
         #region >> Constructors
 
-        public D3Calculator(Hero hero, Item mainHand, Item offHand, Item[] items)
+        public D3Calculator(Hero hero, Item mainHand, Item offHand, IEnumerable<Item> items)
         {
-            this.hero = hero;
+            this.heroClass = hero.heroClass;
+            this.heroLevel = hero.level;
 
-            // Build unique gems equivalent to items weared
+            // Build unique item equivalent to items worn
             heroStatsItem = new StatsItem(mainHand, offHand, items);
 
-            levelAttributes = new ItemAttributesFromLevel(hero);
-            paragonLevelAttributes = new ItemAttributesFromParagonLevel(hero);
+            levelAttributes = new Heroes.ItemAttributesFromLevel(hero);
+            paragonLevelAttributes = new Heroes.ItemAttributesFromParagonLevel(hero);
+
+            update();
+        }
+
+        public D3Calculator(Follower follower, HeroClass heroClass, Item mainHand, Item offHand, IEnumerable<Item> items)
+        {
+            this.heroClass = heroClass;
+            this.heroLevel = follower.level;
+
+            foreach (Item item in items.Union(new List<Item>() { mainHand, offHand }))
+            {
+                applyFollowersBonusMalusOnItem(item, heroClass);
+                if (item.gems != null)
+                {
+                    for (int i = 0; i < item.gems.Count(); i++)
+                    {
+                        Item gemItem = new Item()
+                       {
+                           id = item.gems[i].item.id,
+                           attributes = item.gems[i].attributes,
+                           attributesRaw = new ItemAttributes(item.gems[i].attributesRaw),
+                           name = item.gems[i].item.name,
+                           icon = item.gems[i].item.icon
+                       };
+                        item.gems[i] = new SocketedGem(applyFollowersBonusMalusOnItem(gemItem, heroClass));
+                    }
+                }
+            }
+
+            // Build unique item equivalent to items worn
+            heroStatsItem = new StatsItem(mainHand, offHand, items);
+
+            levelAttributes = new Followers.ItemAttributesFromLevel(follower, heroClass);
 
             update();
         }
 
         #endregion
+
+        private Item applyFollowersBonusMalusOnItem(Item item, HeroClass heroClass)
+        {
+            double damagePercent = 1;
+            switch (heroClass)
+            {
+                case HeroClass.EnchantressFollower:
+                    damagePercent = 0.20;
+                    break;
+                case HeroClass.ScoundrelFollower:
+                    damagePercent = 0.25;
+                    break;
+                case HeroClass.TemplarFollower:
+                    damagePercent = 0.15;
+                    break;
+                default:
+                    break;
+            }
+
+            ItemAttributes attr = item.attributesRaw;
+            attr.dexterityItem *= 2.5;
+            attr.intelligenceItem *= 2.5;
+            attr.strengthItem *= 2.5;
+            attr.vitalityItem *= 2.5;
+
+            foreach (string resist in damageResists)
+            {
+                foreach (string damage in damagePrefixes)
+                {
+                    ItemValueRange value = attr.getAttributeByName(damage + resist);
+                    attr.setAttributeByName(damage + resist, damagePercent * value);
+                }
+            }
+
+            return item;
+        }
 
         /// <summary>
         /// Return damage multiplier when the non critical hit (normal)
@@ -172,11 +256,7 @@ namespace ZTn.BNet.D3.Calculator
 
         public ItemValueRange getHeroDPS()
         {
-            heroStatsItem.setLevelBonus(levelAttributes);
-            heroStatsItem.setParagonLevelBonus(paragonLevelAttributes);
-            update();
-
-            return getHeroDPSAsIs();
+            return getHeroDPS(new List<ID3SkillModifier>(), new List<ID3SkillModifier>());
         }
 
         public ItemValueRange getHeroDPS(IEnumerable<ID3SkillModifier> passives, IEnumerable<ID3SkillModifier> actives)
@@ -234,7 +314,7 @@ namespace ZTn.BNet.D3.Calculator
             ehp /= (1 - resistance);
 
             // Update with class reduction
-            if ((hero.heroClass == HeroClass.Monk) || (hero.heroClass == HeroClass.Barbarian))
+            if ((heroClass == HeroClass.Monk) || (heroClass == HeroClass.Barbarian))
                 ehp /= (1 - 0.30);
 
             return ehp;
@@ -244,10 +324,32 @@ namespace ZTn.BNet.D3.Calculator
         {
             // Use hitpoints formula
             ItemValueRange hitpoints;
-            if (hero.level < 35)
-                hitpoints = 36 + 4 * hero.level + 10 * getHeroVitality();
-            else
-                hitpoints = 36 + 4 * hero.level + (hero.level - 25) * getHeroVitality();
+
+            switch (heroClass)
+            {
+                case HeroClass.Barbarian:
+                case HeroClass.DemonHunter:
+                case HeroClass.Monk:
+                case HeroClass.WitchDoctor:
+                case HeroClass.Wizard:
+                    if (heroLevel < 35)
+                        hitpoints = 36 + 4 * heroLevel + 10 * getHeroVitality();
+                    else
+                        hitpoints = 36 + 4 * heroLevel + (heroLevel - 25) * getHeroVitality();
+                    break;
+                case HeroClass.EnchantressFollower:
+                case HeroClass.ScoundrelFollower:
+                    // Missing leveling
+                    hitpoints = 6219 + 35 * getHeroVitality();
+                    break;
+                case HeroClass.TemplarFollower:
+                    // Missing leveling
+                    hitpoints = 7752 + 35 * getHeroVitality();
+                    break;
+                default:
+                    hitpoints = ItemValueRange.Zero;
+                    break;
+            }
 
             // Update with +% Life bonus
             if (heroStatsItem.attributesRaw.hitpointsMaxPercentBonusItem != null)
@@ -301,19 +403,22 @@ namespace ZTn.BNet.D3.Calculator
         {
             ItemValueRange result = ItemValueRange.Zero;
 
-            switch (hero.heroClass)
+            switch (heroClass)
             {
                 case HeroClass.Monk:
                 case HeroClass.DemonHunter:
+                case HeroClass.ScoundrelFollower:
                     if (heroStatsItem.attributesRaw.dexterityItem != null)
                         result = heroStatsItem.attributesRaw.dexterityItem;
                     break;
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
+                case HeroClass.EnchantressFollower:
                     if (heroStatsItem.attributesRaw.intelligenceItem != null)
                         result = heroStatsItem.attributesRaw.intelligenceItem;
                     break;
                 case HeroClass.Barbarian:
+                case HeroClass.TemplarFollower:
                     if (heroStatsItem.attributesRaw.strengthItem != null)
                         result = heroStatsItem.attributesRaw.strengthItem;
                     break;
