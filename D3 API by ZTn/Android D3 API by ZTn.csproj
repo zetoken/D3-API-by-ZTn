@@ -35,14 +35,12 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Json" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.Xml" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\Libraries\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -67,6 +65,7 @@
     <Compile Include="DataProviders\ID3DataProvider.cs" />
     <Compile Include="DataProviders\OnlineMode.cs" />
     <Compile Include="FailureObject.cs" />
+    <Compile Include="Helpers\D3DeepCopy.cs" />
     <Compile Include="Helpers\JsonHelpers.cs" />
     <Compile Include="Heroes\Hero.cs" />
     <Compile Include="Heroes\HeroClass.cs" />
