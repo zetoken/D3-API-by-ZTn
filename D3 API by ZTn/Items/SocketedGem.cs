@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Items
 {
@@ -24,6 +25,15 @@ namespace ZTn.BNet.D3.Items
 
         public SocketedGem()
         {
+        }
+
+        /// <summary>
+        /// Creates a new instance by copying fields of <paramref name="socketedGem"/> (deep copy).
+        /// </summary>
+        /// <param name="socketedGem"></param>
+        public SocketedGem(SocketedGem socketedGem)
+        {
+            D3DeepCopy.deepCopy<SocketedGem>(socketedGem, this);
         }
 
         public SocketedGem(Item item)

@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Helpers;
+using System.Reflection;
 
 namespace ZTn.BNet.D3.Items
 {
@@ -15,41 +16,41 @@ namespace ZTn.BNet.D3.Items
         [DataMember]
         public int requiredLevel { get; set; }
         [DataMember]
-        public int itemLevel;
+        public int itemLevel { get; set; }
         [DataMember]
-        public int bonusAffixes;
+        public int bonusAffixes { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public int bonusAffixesMax;
+        public int bonusAffixesMax { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public bool accountBound;
+        public bool accountBound { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public String flavorText;
+        public String flavorText { get; set; }
         [DataMember]
-        public String typeName;
+        public String typeName { get; set; }
         [DataMember]
-        public ItemType type;
+        public ItemType type { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public ItemValueRange dps;
+        public ItemValueRange dps { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public ItemValueRange attacksPerSecond;
+        public ItemValueRange attacksPerSecond { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public ItemValueRange minDamage;
+        public ItemValueRange minDamage { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public ItemValueRange maxDamage;
+        public ItemValueRange maxDamage { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public ItemValueRange armor;
+        public ItemValueRange armor { get; set; }
         [DataMember]
-        public String[] attributes;
+        public String[] attributes { get; set; }
         [DataMember]
-        public ItemAttributes attributesRaw;
+        public ItemAttributes attributesRaw { get; set; }
         [DataMember]
-        public SocketEffect[] socketEffects;
+        public SocketEffect[] socketEffects { get; set; }
         [DataMember]
-        public ItemSalvageComponent[] salvage;
+        public ItemSalvageComponent[] salvage { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public Set set;
+        public Set set { get; set; }
         [DataMember]
-        public SocketedGem[] gems;
+        public SocketedGem[] gems { get; set; }
 
         #endregion
 
@@ -57,6 +58,15 @@ namespace ZTn.BNet.D3.Items
 
         public Item()
         {
+        }
+
+        /// <summary>
+        /// Creates a new instance by copying fields of <paramref name="item"/> (deep copy).
+        /// </summary>
+        /// <param name="item"></param>
+        public Item(Item item)
+        {
+            D3DeepCopy.deepCopy<Item>(item, this);
         }
 
         public Item(ItemAttributes itemAttributes)

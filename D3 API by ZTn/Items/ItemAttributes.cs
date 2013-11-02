@@ -498,8 +498,7 @@ namespace ZTn.BNet.D3.Items
         }
 
         /// <summary>
-        /// Copy constructor.
-        /// Ensures all fields are properly copied by value.
+        /// Creates a new instance by copying fields of <paramref name="itemAttributes"/> (deep copy).
         /// </summary>
         /// <param name="itemAttributes"></param>
         public ItemAttributes(ItemAttributes itemAttributes)
@@ -508,13 +507,10 @@ namespace ZTn.BNet.D3.Items
 
             foreach (FieldInfo fieldInfo in type.GetFields())
             {
-                if (fieldInfo.GetValue(itemAttributes) != null)
+                ItemValueRange valueRange = fieldInfo.GetValue(itemAttributes) as ItemValueRange;
+                if (valueRange != null)
                 {
-                    ItemValueRange rightValueRange = (ItemValueRange)fieldInfo.GetValue(itemAttributes);
-                    ItemValueRange valueRange = new ItemValueRange();
-                    valueRange.min += rightValueRange.min;
-                    valueRange.max += rightValueRange.max;
-                    fieldInfo.SetValue(this, valueRange);
+                    fieldInfo.SetValue(this, new ItemValueRange(valueRange));
                 }
             }
         }

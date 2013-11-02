@@ -68,6 +68,7 @@
     <Compile Include="Careers\ClassTimePlayed.cs" />
     <Compile Include="DataProviders\ID3DataProvider.cs" />
     <Compile Include="FailureObject.cs" />
+    <Compile Include="Helpers\D3DeepCopy.cs" />
     <Compile Include="Helpers\JsonHelpers.cs" />
     <Compile Include="Heroes\HeroClass.cs" />
     <Compile Include="Heroes\HeroGender.cs" />

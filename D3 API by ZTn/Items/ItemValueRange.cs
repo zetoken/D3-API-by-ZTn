@@ -24,6 +24,10 @@ namespace ZTn.BNet.D3.Items
         {
         }
 
+        /// <summary>
+        /// Creates a new instance by copying fields of <paramref name="valueRange"/> (deep copy).
+        /// </summary>
+        /// <param name="valueRange"></param>
         public ItemValueRange(ItemValueRange valueRange)
         {
             if (valueRange != null)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Skills;
@@ -64,21 +65,11 @@ namespace ZTn.BNet.D3.Calculator
 
             foreach (Item item in items.Union(new List<Item>() { mainHand, offHand }))
             {
-                applyFollowersBonusMalusOnItem(item, heroClass);
+                applyFollowersBonusMalusOnItemAttributes(item.attributesRaw, heroClass);
                 if (item.gems != null)
                 {
-                    for (int i = 0; i < item.gems.Count(); i++)
-                    {
-                        Item gemItem = new Item()
-                       {
-                           id = item.gems[i].item.id,
-                           attributes = item.gems[i].attributes,
-                           attributesRaw = new ItemAttributes(item.gems[i].attributesRaw),
-                           name = item.gems[i].item.name,
-                           icon = item.gems[i].item.icon
-                       };
-                        item.gems[i] = new SocketedGem(applyFollowersBonusMalusOnItem(gemItem, heroClass));
-                    }
+                    foreach (SocketedGem gem in item.gems)
+                        applyFollowersBonusMalusOnItemAttributes(gem.attributesRaw, heroClass);
                 }
             }
 
@@ -92,9 +83,9 @@ namespace ZTn.BNet.D3.Calculator
 
         #endregion
 
-        private Item applyFollowersBonusMalusOnItem(Item item, HeroClass heroClass)
+        private ItemAttributes applyFollowersBonusMalusOnItemAttributes(ItemAttributes itemAttributes, HeroClass heroClass)
         {
-            double damagePercent = 1;
+            double damagePercent;
             switch (heroClass)
             {
                 case HeroClass.EnchantressFollower:
@@ -107,25 +98,24 @@ namespace ZTn.BNet.D3.Calculator
                     damagePercent = 0.15;
                     break;
                 default:
-                    break;
+                    throw new ArgumentOutOfRangeException("This class " + heroClass + " is not a follower");
             }
 
-            ItemAttributes attr = item.attributesRaw;
-            attr.dexterityItem *= 2.5;
-            attr.intelligenceItem *= 2.5;
-            attr.strengthItem *= 2.5;
-            attr.vitalityItem *= 2.5;
+            itemAttributes.dexterityItem *= 2.5;
+            itemAttributes.intelligenceItem *= 2.5;
+            itemAttributes.strengthItem *= 2.5;
+            itemAttributes.vitalityItem *= 2.5;
 
             foreach (string resist in damageResists)
             {
                 foreach (string damage in damagePrefixes)
                 {
-                    ItemValueRange value = attr.getAttributeByName(damage + resist);
-                    attr.setAttributeByName(damage + resist, damagePercent * value);
+                    ItemValueRange value = itemAttributes.getAttributeByName(damage + resist);
+                    itemAttributes.setAttributeByName(damage + resist, damagePercent * value);
                 }
             }
 
-            return item;
+            return itemAttributes;
         }
 
         /// <summary>
@@ -381,22 +371,30 @@ namespace ZTn.BNet.D3.Calculator
 
         public ItemValueRange getHeroDexterity()
         {
-            return heroStatsItem.attributesRaw.dexterityItem;
+            if (heroStatsItem.attributesRaw.dexterityItem != null)
+                return heroStatsItem.attributesRaw.dexterityItem;
+            return ItemValueRange.Zero;
         }
 
         public ItemValueRange getHeroIntelligence()
         {
-            return heroStatsItem.attributesRaw.intelligenceItem;
+            if (heroStatsItem.attributesRaw.intelligenceItem != null)
+                return heroStatsItem.attributesRaw.intelligenceItem;
+            return ItemValueRange.Zero;
         }
 
         public ItemValueRange getHeroStrength()
         {
-            return heroStatsItem.attributesRaw.strengthItem;
+            if (heroStatsItem.attributesRaw.strengthItem != null)
+                return heroStatsItem.attributesRaw.strengthItem;
+            return ItemValueRange.Zero;
         }
 
         public ItemValueRange getHeroVitality()
         {
-            return heroStatsItem.attributesRaw.vitalityItem;
+            if (heroStatsItem.attributesRaw.vitalityItem != null)
+                return heroStatsItem.attributesRaw.vitalityItem;
+            return ItemValueRange.Zero;
         }
 
         public ItemValueRange getMainCharacteristic()
@@ -408,20 +406,17 @@ namespace ZTn.BNet.D3.Calculator
                 case HeroClass.Monk:
                 case HeroClass.DemonHunter:
                 case HeroClass.ScoundrelFollower:
-                    if (heroStatsItem.attributesRaw.dexterityItem != null)
-                        result = heroStatsItem.attributesRaw.dexterityItem;
-                    break;
+                    return getHeroDexterity();
+
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
                 case HeroClass.EnchantressFollower:
-                    if (heroStatsItem.attributesRaw.intelligenceItem != null)
-                        result = heroStatsItem.attributesRaw.intelligenceItem;
-                    break;
+                    return getHeroIntelligence();
+
                 case HeroClass.Barbarian:
                 case HeroClass.TemplarFollower:
-                    if (heroStatsItem.attributesRaw.strengthItem != null)
-                        result = heroStatsItem.attributesRaw.strengthItem;
-                    break;
+                    return getHeroStrength();
+
                 default:
                     break;
             }

@@ -37,7 +37,7 @@ namespace ZTn.BNet.D3.Calculator
             public GemsListViewItem(Item item)
             {
                 this.item = item;
-                this.label = item.attributes[0];
+                this.label = item.attributes.FirstOrDefault();
             }
         }
 
@@ -293,15 +293,15 @@ namespace ZTn.BNet.D3.Calculator
 
             if (guiGem1.SelectedIndex > 0)
             {
-                gems.Add(new SocketedGem(((GemsListViewItem)guiGem1.SelectedItem).item));
+                gems.Add(new SocketedGem(new Item(((GemsListViewItem)guiGem1.SelectedItem).item)));
             }
             if (guiGem2.SelectedIndex > 0)
             {
-                gems.Add(new SocketedGem(((GemsListViewItem)guiGem2.SelectedItem).item));
+                gems.Add(new SocketedGem(new Item(((GemsListViewItem)guiGem2.SelectedItem).item)));
             }
             if (guiGem3.SelectedIndex > 0)
             {
-                gems.Add(new SocketedGem(((GemsListViewItem)guiGem3.SelectedItem).item));
+                gems.Add(new SocketedGem(new Item(((GemsListViewItem)guiGem3.SelectedItem).item)));
             }
 
             item.gems = gems.ToArray();

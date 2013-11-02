@@ -18,6 +18,19 @@ namespace ZTn.BNet.D3.Items
         {
         }
 
+        /// <summary>
+        /// Creates a new instance by copying fields of <paramref name="itemType"/> (deep copy).
+        /// </summary>
+        /// <param name="itemType"></param>
+        public ItemType(ItemType itemType)
+        {
+            if (itemType != null)
+            {
+                this.id = itemType.id;
+                this.twoHanded = itemType.twoHanded;
+            }
+        }
+
         public ItemType(String id, bool twoHanded)
         {
             this.id = id;

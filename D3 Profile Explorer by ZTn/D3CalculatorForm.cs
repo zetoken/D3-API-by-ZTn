@@ -37,6 +37,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         Item mainHand;
         Item offHand;
 
+        List<D3ItemEditor> d3ItemEditors;
         List<CheckBox> passiveCheckBoxes;
 
         #endregion
@@ -60,21 +61,24 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             KnownGems knownGems = KnownGems.getKnownGemsFromJsonFile("d3gem.json");
 
-            guiMainHandEditor.knownGems = knownGems;
-            guiOffHandEditor.knownGems = knownGems;
-            guiSpecialEditor.knownGems = knownGems;
-            guiBracersEditor.knownGems = knownGems;
-            guiFeetEditor.knownGems = knownGems;
-            guiHandsEditor.knownGems = knownGems;
-            guiHeadEditor.knownGems = knownGems;
-            guiLeftFingerEditor.knownGems = knownGems;
-            guiLegsEditor.knownGems = knownGems;
-            guiNeckEditor.knownGems = knownGems;
-            guiRightFingerEditor.knownGems = knownGems;
-            guiShouldersEditor.knownGems = knownGems;
-            guiTorsoEditor.knownGems = knownGems;
-            guiWaistEditor.knownGems = knownGems;
-            guiSetBonusEditor.knownGems = knownGems;
+            d3ItemEditors = new List<D3ItemEditor>()
+            {
+                guiMainHandEditor,
+                guiOffHandEditor,
+                guiSpecialEditor,
+                guiBracersEditor,
+                guiFeetEditor,
+                guiHandsEditor,
+                guiHeadEditor,
+                guiLeftFingerEditor,
+                guiLegsEditor,
+                guiNeckEditor,
+                guiRightFingerEditor,
+                guiShouldersEditor,
+                guiTorsoEditor,
+                guiWaistEditor,
+                guiSetBonusEditor
+            };
 
             passiveCheckBoxes = new List<CheckBox>()
             {
@@ -101,6 +105,11 @@ namespace ZTn.BNet.D3ProfileExplorer
                 guiSkillGlassCannon,
                 guiSkillGalvanizingWard
             };
+
+            foreach (var d3ItemEditor in d3ItemEditors)
+            {
+                d3ItemEditor.knownGems = knownGems;
+            }
 
         }
 
