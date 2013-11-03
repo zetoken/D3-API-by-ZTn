@@ -98,9 +98,6 @@ namespace ZTn.BNet.D3.Calculator
                 guiItemId.Text = item.id;
                 guiItemTypeId.Text = (item.type != null ? item.type.id : "");
 
-                // We need to keep this information to update values of ruby gemd on weapons
-                ItemValueRange damageWeaponPercentBonus_Physical = item.attributesRaw.damageWeaponPercentBonus_Physical;
-
                 item = item.simplify();
 
                 ItemAttributes attr = item.attributesRaw;
@@ -126,7 +123,7 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiWeaponDamageMinFire, attr.damageWeaponMin_Fire);
                 populateData(guiWeaponDamageMinHoly, attr.damageWeaponMin_Holy);
                 populateData(guiWeaponDamageMinLightning, attr.damageWeaponMin_Lightning);
-                populateData(guiWeaponDamageMinPhysical, attr.damageWeaponMin_Physical);
+                populateData(guiWeaponDamageMinPhysical, attr.damageWeaponMin_Physical * (1 + attr.damageWeaponPercentBonus_Physical));
                 populateData(guiWeaponDamageMinPoison, attr.damageWeaponMin_Poison);
 
                 populateData(guiWeaponDamageMaxArcane, attr.damageWeaponMin_Arcane + attr.damageWeaponDelta_Arcane);
@@ -134,10 +131,10 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiWeaponDamageMaxFire, attr.damageWeaponMin_Fire + attr.damageWeaponDelta_Fire);
                 populateData(guiWeaponDamageMaxHoly, attr.damageWeaponMin_Holy + attr.damageWeaponDelta_Holy);
                 populateData(guiWeaponDamageMaxLightning, attr.damageWeaponMin_Lightning + attr.damageWeaponDelta_Lightning);
-                populateData(guiWeaponDamageMaxPhysical, attr.damageWeaponMin_Physical + attr.damageWeaponDelta_Physical);
+                populateData(guiWeaponDamageMaxPhysical, (attr.damageWeaponMin_Physical + attr.damageWeaponDelta_Physical) * (1 + attr.damageWeaponPercentBonus_Physical));
                 populateData(guiWeaponDamageMaxPoison, attr.damageWeaponMin_Poison + attr.damageWeaponDelta_Poison);
 
-                populateDataPercent(guiWeaponDamagePercentBonus, damageWeaponPercentBonus_Physical);
+                populateDataPercent(guiWeaponDamagePercentBonus, attr.damageWeaponPercentBonus_Physical);
 
                 // Item damage bonuses
                 populateData(guiBonusDamageMinArcane, attr.damageMin_Arcane);
@@ -240,12 +237,15 @@ namespace ZTn.BNet.D3.Calculator
 
             attr.attacksPerSecondItem = getData(guiWeaponAttackPerSecond);
 
+            attr.damageWeaponPercentBonus_Physical = getDataPercent(guiWeaponDamagePercentBonus);
+            double damageWeaponPercentBonus_Physical = (attr.damageWeaponPercentBonus_Physical == null ? 0 : attr.damageWeaponPercentBonus_Physical.min);
+
             attr.damageWeaponMin_Arcane = getData(guiWeaponDamageMinArcane);
             attr.damageWeaponMin_Cold = getData(guiWeaponDamageMinCold);
             attr.damageWeaponMin_Fire = getData(guiWeaponDamageMinFire);
             attr.damageWeaponMin_Holy = getData(guiWeaponDamageMinHoly);
             attr.damageWeaponMin_Lightning = getData(guiWeaponDamageMinLightning);
-            attr.damageWeaponMin_Physical = getData(guiWeaponDamageMinPhysical);
+            attr.damageWeaponMin_Physical = getData(guiWeaponDamageMinPhysical) / (1 + damageWeaponPercentBonus_Physical);
             attr.damageWeaponMin_Poison = getData(guiWeaponDamageMinPoison);
 
             attr.damageWeaponDelta_Arcane = getData(guiWeaponDamageMaxArcane) - attr.damageWeaponMin_Arcane;
@@ -253,7 +253,7 @@ namespace ZTn.BNet.D3.Calculator
             attr.damageWeaponDelta_Fire = getData(guiWeaponDamageMaxFire) - attr.damageWeaponMin_Fire;
             attr.damageWeaponDelta_Holy = getData(guiWeaponDamageMaxHoly) - attr.damageWeaponMin_Holy;
             attr.damageWeaponDelta_Lightning = getData(guiWeaponDamageMaxLightning) - attr.damageWeaponMin_Lightning;
-            attr.damageWeaponDelta_Physical = getData(guiWeaponDamageMaxPhysical) - attr.damageWeaponMin_Physical;
+            attr.damageWeaponDelta_Physical = getData(guiWeaponDamageMaxPhysical) / (1 + damageWeaponPercentBonus_Physical) - attr.damageWeaponMin_Physical;
             attr.damageWeaponDelta_Poison = getData(guiWeaponDamageMaxPoison) - attr.damageWeaponMin_Poison;
 
             attr.damageMin_Arcane = getData(guiBonusDamageMinArcane);
@@ -296,35 +296,19 @@ namespace ZTn.BNet.D3.Calculator
             item.attributesRaw = attr;
             List<SocketedGem> gems = new List<SocketedGem>();
 
-            ItemValueRange weaponDamagePercentBonus = getDataPercent(guiWeaponDamagePercentBonus);
             if (guiGem1.SelectedIndex > 0)
             {
                 SocketedGem gem = new SocketedGem(new Item(((GemsListViewItem)guiGem1.SelectedItem).item));
-                if (weaponDamagePercentBonus != null)
-                {
-                    gem.attributesRaw.damageWeaponBonusMinX1_Physical *= 1 + weaponDamagePercentBonus.min;
-                    gem.attributesRaw.damageWeaponBonusDelta_Physical *= 1 + weaponDamagePercentBonus.min;
-                }
                 gems.Add(gem);
             }
             if (guiGem2.SelectedIndex > 0)
             {
                 SocketedGem gem = new SocketedGem(new Item(((GemsListViewItem)guiGem2.SelectedItem).item));
-                if (weaponDamagePercentBonus != null)
-                {
-                    gem.attributesRaw.damageWeaponBonusMinX1_Physical *= weaponDamagePercentBonus.min;
-                    gem.attributesRaw.damageWeaponBonusDelta_Physical *= weaponDamagePercentBonus.min;
-                }
                 gems.Add(gem);
             }
             if (guiGem3.SelectedIndex > 0)
             {
                 SocketedGem gem = new SocketedGem(new Item(((GemsListViewItem)guiGem3.SelectedItem).item));
-                if (weaponDamagePercentBonus != null)
-                {
-                    gem.attributesRaw.damageWeaponBonusMinX1_Physical *= weaponDamagePercentBonus.min;
-                    gem.attributesRaw.damageWeaponBonusDelta_Physical *= weaponDamagePercentBonus.min;
-                }
                 gems.Add(gem);
             }
 

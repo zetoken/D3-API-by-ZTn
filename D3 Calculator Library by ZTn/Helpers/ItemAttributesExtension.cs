@@ -144,6 +144,14 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             return (itemAttr.getRawWeaponDamageMin() + itemAttr.getRawWeaponDamageMax()) / 2;
         }
 
+        public static ItemValueRange getBaseWeaponDamageMin(this ItemAttributes itemAttr, String resist)
+        {
+            ItemValueRange damage =
+                (itemAttr.getAttributeByName("damageWeaponMin_" + resist) + itemAttr.getAttributeByName("damageWeaponBonusMin_" + resist) + itemAttr.getAttributeByName("damageWeaponBonusMinX1_" + resist));
+
+            return damage;
+        }
+
         #region >> getRawWeaponDamageMin *
 
         public static ItemValueRange getRawWeaponDamageMin(this ItemAttributes itemAttr)
@@ -181,6 +189,14 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         }
 
         #endregion
+
+        public static ItemValueRange getBaseWeaponDamageMax(this ItemAttributes itemAttr, String resist)
+        {
+            ItemValueRange damage =
+                (itemAttr.getAttributeByName("damageWeaponMin_" + resist) + itemAttr.getAttributeByName("damageWeaponDelta_" + resist) + itemAttr.getAttributeByName("damageWeaponBonusDelta_" + resist));
+
+            return damage;
+        }
 
         #region >> getRawWeaponDamageMax *
 
@@ -289,6 +305,54 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
             foreach (string resist in resists)
             {
+                ItemValueRange rawWeaponDamageMin = itemAttr.getBaseWeaponDamageMin(resist);
+                ItemValueRange rawWeaponDamageDelta = itemAttr.getBaseWeaponDamageMax(resist) - rawWeaponDamageMin;
+
+                attr.setAttributeByName("damageWeaponMin_" + resist, rawWeaponDamageMin.nullIfZero());
+                attr.setAttributeByName("damageWeaponDelta_" + resist, rawWeaponDamageDelta.nullIfZero());
+                attr.setAttributeByName("damageWeaponBonusMin_" + resist, null);
+                attr.setAttributeByName("damageWeaponBonusDelta_" + resist, null);
+                attr.setAttributeByName("damageWeaponBonusMinX1_" + resist, null);
+            }
+
+            // Item damage bonuses
+            foreach (string resist in resists)
+            {
+                ItemValueRange rawDamageMin = itemAttr.getRawBonusDamageMin(resist);
+                ItemValueRange rawDamageDelta = itemAttr.getRawBonusDamageMax(resist, false) - rawDamageMin;
+
+                attr.setAttributeByName("damageMin_" + resist, rawDamageMin.nullIfZero());
+                attr.setAttributeByName("damageDelta_" + resist, rawDamageDelta.nullIfZero());
+                attr.setAttributeByName("damageBonusMin_" + resist, null);
+            }
+
+            return attr;
+        }
+
+
+        /// <summary>
+        /// Returns a new <see cref="ItemAttributes"/> by aggregating most raw attributes of <paramref name="itemAttr"/> (for easier editing for example).
+        /// </summary>
+        /// <param name="itemAttr"></param>
+        /// <returns>The <paramref name="itemAttr"/> instance.</returns>
+        public static ItemAttributes getVerySimplified(this ItemAttributes itemAttr)
+        {
+            ItemAttributes attr = new ItemAttributes(itemAttr);
+
+            List<String> resists = new List<string>() { "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison" };
+
+            // Characteristics
+            attr.armorItem = itemAttr.getArmor().nullIfZero();
+            attr.armorBonusItem = null;
+
+            // Weapon characterics
+            attr.attacksPerSecondItem = itemAttr.getRawWeaponAttackPerSecond().nullIfZero();
+            attr.attacksPerSecondItemPercent = null;
+
+            itemAttr.checkAndUpdateWeaponDelta();
+
+            foreach (string resist in resists)
+            {
                 ItemValueRange rawWeaponDamageMin = itemAttr.getRawWeaponDamageMin(resist);
                 ItemValueRange rawWeaponDamageDelta = itemAttr.getRawWeaponDamageMax(resist, false) - rawWeaponDamageMin;
 
@@ -313,5 +377,6 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
             return attr;
         }
+
     }
 }
