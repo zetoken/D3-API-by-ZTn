@@ -175,7 +175,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange getRawWeaponDamageMinX1(this ItemAttributes itemAttr, String resist)
         {
-            ItemValueRange damageWeaponMinX1 = itemAttr.getAttributeByName("damageWeaponMinX1_" + resist);
+            ItemValueRange damageWeaponMinX1 = itemAttr.getAttributeByName("damageWeaponBonusMinX1_" + resist);
 
             return damageWeaponMinX1;
         }
@@ -235,7 +235,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         }
 
         /// <summary>
-        /// Check a specific case of "invalid" ambidextryWeapon damage values (based on a specific resist):
+        /// Check a specific case of "invalid" Weapon damage values (based on a specific resist):
         /// If bonus min > delta, then delta should be replaced by bonus min + 1
         /// </summary>
         /// <param name="itemAttr"></param>
@@ -257,7 +257,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         #endregion
 
         /// <summary>
-        /// Informs if the gems is a ambidextryWeapon based on its characteristics
+        /// Informs if the gems is a Weapon based on its characteristics
         /// </summary>
         /// <param name="gems"></param>
         /// <returns></returns>

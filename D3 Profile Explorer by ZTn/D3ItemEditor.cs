@@ -98,6 +98,9 @@ namespace ZTn.BNet.D3.Calculator
                 guiItemId.Text = item.id;
                 guiItemTypeId.Text = (item.type != null ? item.type.id : "");
 
+                // We need to keep this information to update values of ruby gemd on weapons
+                ItemValueRange damageWeaponPercentBonus_Physical = item.attributesRaw.damageWeaponPercentBonus_Physical;
+
                 item = item.simplify();
 
                 ItemAttributes attr = item.attributesRaw;
@@ -133,6 +136,8 @@ namespace ZTn.BNet.D3.Calculator
                 populateData(guiWeaponDamageMaxLightning, attr.damageWeaponMin_Lightning + attr.damageWeaponDelta_Lightning);
                 populateData(guiWeaponDamageMaxPhysical, attr.damageWeaponMin_Physical + attr.damageWeaponDelta_Physical);
                 populateData(guiWeaponDamageMaxPoison, attr.damageWeaponMin_Poison + attr.damageWeaponDelta_Poison);
+
+                populateDataPercent(guiWeaponDamagePercentBonus, damageWeaponPercentBonus_Physical);
 
                 // Item damage bonuses
                 populateData(guiBonusDamageMinArcane, attr.damageMin_Arcane);
@@ -291,17 +296,36 @@ namespace ZTn.BNet.D3.Calculator
             item.attributesRaw = attr;
             List<SocketedGem> gems = new List<SocketedGem>();
 
+            ItemValueRange weaponDamagePercentBonus = getDataPercent(guiWeaponDamagePercentBonus);
             if (guiGem1.SelectedIndex > 0)
             {
-                gems.Add(new SocketedGem(new Item(((GemsListViewItem)guiGem1.SelectedItem).item)));
+                SocketedGem gem = new SocketedGem(new Item(((GemsListViewItem)guiGem1.SelectedItem).item));
+                if (weaponDamagePercentBonus != null)
+                {
+                    gem.attributesRaw.damageWeaponBonusMinX1_Physical *= 1 + weaponDamagePercentBonus.min;
+                    gem.attributesRaw.damageWeaponBonusDelta_Physical *= 1 + weaponDamagePercentBonus.min;
+                }
+                gems.Add(gem);
             }
             if (guiGem2.SelectedIndex > 0)
             {
-                gems.Add(new SocketedGem(new Item(((GemsListViewItem)guiGem2.SelectedItem).item)));
+                SocketedGem gem = new SocketedGem(new Item(((GemsListViewItem)guiGem2.SelectedItem).item));
+                if (weaponDamagePercentBonus != null)
+                {
+                    gem.attributesRaw.damageWeaponBonusMinX1_Physical *= weaponDamagePercentBonus.min;
+                    gem.attributesRaw.damageWeaponBonusDelta_Physical *= weaponDamagePercentBonus.min;
+                }
+                gems.Add(gem);
             }
             if (guiGem3.SelectedIndex > 0)
             {
-                gems.Add(new SocketedGem(new Item(((GemsListViewItem)guiGem3.SelectedItem).item)));
+                SocketedGem gem = new SocketedGem(new Item(((GemsListViewItem)guiGem3.SelectedItem).item));
+                if (weaponDamagePercentBonus != null)
+                {
+                    gem.attributesRaw.damageWeaponBonusMinX1_Physical *= weaponDamagePercentBonus.min;
+                    gem.attributesRaw.damageWeaponBonusDelta_Physical *= weaponDamagePercentBonus.min;
+                }
+                gems.Add(gem);
             }
 
             item.gems = gems.ToArray();

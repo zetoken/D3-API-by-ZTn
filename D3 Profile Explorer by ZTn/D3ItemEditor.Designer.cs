@@ -77,6 +77,7 @@
             System.Windows.Forms.Label label40;
             System.Windows.Forms.Label label42;
             System.Windows.Forms.Label label43;
+            System.Windows.Forms.Label label44;
             this.guiLifeSteal = new System.Windows.Forms.TextBox();
             this.guiHitpointsRegenPerSecond = new System.Windows.Forms.TextBox();
             this.guiHitpointsOnHit = new System.Windows.Forms.TextBox();
@@ -142,6 +143,7 @@
             this.guiItemName = new System.Windows.Forms.TextBox();
             this.guiItemId = new System.Windows.Forms.TextBox();
             this.guiItemTypeId = new System.Windows.Forms.ComboBox();
+            this.guiWeaponDamagePercentBonus = new System.Windows.Forms.TextBox();
             label23 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
@@ -191,6 +193,7 @@
             label40 = new System.Windows.Forms.Label();
             label42 = new System.Windows.Forms.Label();
             label43 = new System.Windows.Forms.Label();
+            label44 = new System.Windows.Forms.Label();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -789,6 +792,8 @@
             // 
             groupBox1.AutoSize = true;
             groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox1.Controls.Add(label44);
+            groupBox1.Controls.Add(this.guiWeaponDamagePercentBonus);
             groupBox1.Controls.Add(label25);
             groupBox1.Controls.Add(this.guiWeaponDamageMaxHoly);
             groupBox1.Controls.Add(this.guiWeaponDamageMinHoly);
@@ -816,7 +821,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new System.Drawing.Point(3, 55);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new System.Drawing.Size(156, 266);
+            groupBox1.Size = new System.Drawing.Size(156, 292);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Weapon Only Damages";
@@ -1220,6 +1225,22 @@
             this.guiItemTypeId.Text = "Item Type Id";
             this.guiItemTypeId.SelectedIndexChanged += new System.EventHandler(this.guiItemTypeId_SelectedIndexChanged);
             // 
+            // label44
+            // 
+            label44.AutoSize = true;
+            label44.Location = new System.Drawing.Point(42, 256);
+            label44.Name = "label44";
+            label44.Size = new System.Drawing.Size(67, 13);
+            label44.TabIndex = 25;
+            label44.Text = "+ % Damage";
+            // 
+            // guiWeaponDamagePercentBonus
+            // 
+            this.guiWeaponDamagePercentBonus.Location = new System.Drawing.Point(115, 253);
+            this.guiWeaponDamagePercentBonus.Name = "guiWeaponDamagePercentBonus";
+            this.guiWeaponDamagePercentBonus.Size = new System.Drawing.Size(35, 20);
+            this.guiWeaponDamagePercentBonus.TabIndex = 26;
+            // 
             // D3ItemEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1323,6 +1344,7 @@
         private System.Windows.Forms.TextBox guiItemName;
         private System.Windows.Forms.TextBox guiItemId;
         private System.Windows.Forms.ComboBox guiItemTypeId;
+        public System.Windows.Forms.TextBox guiWeaponDamagePercentBonus;
 
 
     }

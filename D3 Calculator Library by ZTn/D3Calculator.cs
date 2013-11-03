@@ -31,7 +31,8 @@ namespace ZTn.BNet.D3.Calculator
 
         readonly string[] damagePrefixes = new string[] { 
             "damageMin_", "damageBonusMin_",
-            "damageDelta_", 
+            "damageDelta_",
+            "damageWeaponBonusMinX1_",
             "damageWeaponMin_", "damageWeaponBonusMin_",
             "damageWeaponDelta_", "damageWeaponBonusDelta_"
         };
@@ -92,7 +93,7 @@ namespace ZTn.BNet.D3.Calculator
                     damagePercent = 0.20;
                     break;
                 case HeroClass.ScoundrelFollower:
-                    damagePercent = 0.25;
+                    damagePercent = 0.40;
                     break;
                 case HeroClass.TemplarFollower:
                     damagePercent = 0.15;
