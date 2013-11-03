@@ -64,7 +64,7 @@ namespace ZTn.BNet.D3.Calculator
         protected ItemAttributes computeAmbidextryWeaponAttributes()
         {
             List<String> resists = new List<string>() { "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison" };
-            List<String> fields = new List<string>() { "damageWeaponBonusDelta_", "damageWeaponBonusMin_", "damageWeaponDelta_", "damageWeaponMin_" };
+            List<String> fields = new List<string>() { "damageWeaponBonusDelta_", "damageWeaponBonusMin_", "damageWeaponDelta_", "damageWeaponMin_", "damageWeaponBonusMinX1_" };
 
             ItemAttributes attr = mainHand.attributesRaw + offHand.attributesRaw;
             ItemAttributes mattr = mainHand.attributesRaw;
@@ -74,7 +74,7 @@ namespace ZTn.BNet.D3.Calculator
             attr.attacksPerSecondItem = computeWeaponAttackPerSecondForAmbidextry();
             attr.attacksPerSecondItemPercent = null;
 
-            // Calculate damages of ambidextryWeapon
+            // Calculate damages of weapon
             foreach (String resist in resists)
             {
                 ItemValueRange mainHandWeaponPercentBonus = mainHand.getAttributeByName("damageWeaponPercentBonus_" + resist);
@@ -126,7 +126,7 @@ namespace ZTn.BNet.D3.Calculator
 
         public ItemValueRange getWeaponDamage()
         {
-            return this.getRawWeaponDamage() + this.getRawBonusDamage();
+            return this.getRawAverageWeaponDamage() + this.getRawAverageBonusDamage();
         }
 
         public ItemValueRange getWeaponDamageMin()
@@ -163,23 +163,18 @@ namespace ZTn.BNet.D3.Calculator
                 attributesRaw += addedBonus;
             }
 
-            // Add gems on items 
+            // Merge gems with their items
             foreach (Item item in items.Where(item => item.gems != null))
             {
-                foreach (SocketedGem gem in item.gems)
-                    attributesRaw += gem.attributesRaw;
+                item.mergeSocketedGems();
             }
-
-            // Add gems on weapons
             if (mainHand.gems != null)
             {
-                foreach (SocketedGem gem in mainHand.gems)
-                    attributesRaw += gem.attributesRaw;
+                mainHand.mergeSocketedGems();
             }
             if (offHand.gems != null)
             {
-                foreach (SocketedGem gem in offHand.gems)
-                    attributesRaw += gem.attributesRaw;
+                offHand.mergeSocketedGems();
             }
 
             // Add items

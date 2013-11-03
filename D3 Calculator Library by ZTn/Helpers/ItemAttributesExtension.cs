@@ -11,7 +11,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
     /// </summary>
     public static class ItemAttributesExtension
     {
-        #region >> Reflexion Helpers
+        #region >> Reflection Helpers
 
         /// <summary>
         /// Returns the value of an attribute of an item given the attribute's name
@@ -38,21 +38,21 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         #endregion
 
         /// <summary>
-        /// Computes armor brought by the item
+        /// Computes armor brought by an item.
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="itemAttr">Attributes of an item.</param>
         /// <returns></returns>
-        public static ItemValueRange getArmor(this ItemAttributes attributesRaw)
+        public static ItemValueRange getArmor(this ItemAttributes itemAttr)
         {
-            return attributesRaw.armorItem + attributesRaw.armorBonusItem;
+            return itemAttr.armorItem + itemAttr.armorBonusItem;
         }
 
         /// <summary>
-        /// Computes damages other than ambidextryWeapon damages (on rings, amulets, ...)
+        /// Computes damages other than weapon damages (on rings, amulets, ...).
         /// </summary>
-        /// <param name="gems"></param>
+        /// <param name="itemAttr">Attributes of an item.</param>
         /// <returns></returns>
-        public static ItemValueRange getRawBonusDamage(this ItemAttributes itemAttr)
+        public static ItemValueRange getRawAverageBonusDamage(this ItemAttributes itemAttr)
         {
             // formula: ( min + max ) / 2
             return (itemAttr.getRawBonusDamageMin() + itemAttr.getRawBonusDamageMax()) / 2;
@@ -60,6 +60,11 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         #region >> getRawBonusDamageMin *
 
+        /// <summary>
+        /// Computes min damage of the item.
+        /// </summary>
+        /// <param name="itemAttr">Attributes of an item.</param>
+        /// <returns></returns>
         public static ItemValueRange getRawBonusDamageMin(this ItemAttributes itemAttr)
         {
             return itemAttr.getRawBonusDamageMin("Arcane") + itemAttr.getRawBonusDamageMin("Cold")
@@ -68,6 +73,13 @@ namespace ZTn.BNet.D3.Calculator.Helpers
                 + itemAttr.getRawBonusDamageMin("Poison");
         }
 
+        /// <summary>
+        /// Computes min damage of the item (based on a specific resist).
+        /// </summary>
+        /// <param name="itemAttr">Attributes of an item.</param>
+        /// <param name="resist">Name of the resist.</param>
+        /// <param name="useDamageTypePercentBonus"></param>
+        /// <returns></returns>
         public static ItemValueRange getRawBonusDamageMin(this ItemAttributes itemAttr, String resist, bool useDamageTypePercentBonus = true)
         {
             ItemValueRange result = itemAttr.getAttributeByName("damageMin_" + resist) + itemAttr.getAttributeByName("damageBonusMin_" + resist);
@@ -82,20 +94,32 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         #region >> getRawBonusDamageMax *
 
-        public static ItemValueRange getRawBonusDamageMax(this ItemAttributes itemAttributes)
+        /// <summary>
+        /// Computes max damage of the item.
+        /// </summary>
+        /// <param name="itemAttr">Attributes of an item.</param>
+        /// <returns></returns>
+        public static ItemValueRange getRawBonusDamageMax(this ItemAttributes itemAttr)
         {
-            return itemAttributes.getRawBonusDamageMax("Arcane") + itemAttributes.getRawBonusDamageMax("Cold")
-                + itemAttributes.getRawBonusDamageMax("Fire") + itemAttributes.getRawBonusDamageMax("Holy")
-                + itemAttributes.getRawBonusDamageMax("Lightning") + itemAttributes.getRawBonusDamageMax("Physical")
-                + itemAttributes.getRawBonusDamageMax("Poison");
+            return itemAttr.getRawBonusDamageMax("Arcane") + itemAttr.getRawBonusDamageMax("Cold")
+                + itemAttr.getRawBonusDamageMax("Fire") + itemAttr.getRawBonusDamageMax("Holy")
+                + itemAttr.getRawBonusDamageMax("Lightning") + itemAttr.getRawBonusDamageMax("Physical")
+                + itemAttr.getRawBonusDamageMax("Poison");
         }
 
-        public static ItemValueRange getRawBonusDamageMax(this ItemAttributes itemAttributes, String resist, bool useDamageTypePercentBonus = true)
+        /// <summary>
+        /// Computes max damage of the item (based on a specific resist).
+        /// </summary>
+        /// <param name="itemAttr">Attributes of an item.</param>
+        /// <param name="resist">Name of the resist.</param>
+        /// <param name="useDamageTypePercentBonus"></param>
+        /// <returns></returns>
+        public static ItemValueRange getRawBonusDamageMax(this ItemAttributes itemAttr, String resist, bool useDamageTypePercentBonus = true)
         {
-            ItemValueRange result = itemAttributes.getAttributeByName("damageMin_" + resist) + itemAttributes.getAttributeByName("damageDelta_" + resist);
+            ItemValueRange result = itemAttr.getAttributeByName("damageMin_" + resist) + itemAttr.getAttributeByName("damageDelta_" + resist);
 
             if (useDamageTypePercentBonus && resist != "Physical")
-                result += itemAttributes.getRawBonusDamageMax("Physical") * itemAttributes.getAttributeByName("damageTypePercentBonus_" + resist);
+                result += itemAttr.getRawBonusDamageMax("Physical") * itemAttr.getAttributeByName("damageTypePercentBonus_" + resist);
 
             return result;
         }
@@ -114,7 +138,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         }
 
         /// <summary>
-        /// Computes ambidextryWeapon attack speed (attack per second).
+        /// Computes weapon attack speed (attack per second).
         /// </summary>
         /// <param name="gems"></param>
         /// <returns></returns>
@@ -124,26 +148,31 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         }
 
         /// <summary>
-        /// Computes raw ambidextryWeapon dps ie before all multipliers ( = average damage * attack per second )
+        /// Computes raw weapon dps ie before all multipliers ( = average damage * attack per second )
         /// </summary>
         /// <param name="gems"></param>
         /// <returns></returns>
         public static ItemValueRange getRawWeaponDPS(this ItemAttributes itemAttr)
         {
-            return itemAttr.getRawWeaponDamage() * itemAttr.getRawWeaponAttackPerSecond();
+            return itemAttr.getRawAverageWeaponDamage() * itemAttr.getRawWeaponAttackPerSecond();
         }
 
         /// <summary>
-        /// Computes ambidextryWeapon only damages
+        /// Computes weapon only damages
         /// </summary>
         /// <param name="gems"></param>
         /// <returns></returns>
-        public static ItemValueRange getRawWeaponDamage(this ItemAttributes itemAttr)
+        public static ItemValueRange getRawAverageWeaponDamage(this ItemAttributes itemAttr)
         {
             // formula: ( min + max ) / 2
             return (itemAttr.getRawWeaponDamageMin() + itemAttr.getRawWeaponDamageMax()) / 2;
         }
 
+        /// <summary>
+        /// Computes min damage of the weapon without taking account of "+% weapon damage".
+        /// </summary>
+        /// <param name="weaponAttr">Attributes of a weapon.</param>
+        /// <returns></returns>
         public static ItemValueRange getBaseWeaponDamageMin(this ItemAttributes itemAttr, String resist)
         {
             ItemValueRange damage =
@@ -154,79 +183,100 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         #region >> getRawWeaponDamageMin *
 
-        public static ItemValueRange getRawWeaponDamageMin(this ItemAttributes itemAttr)
+        /// <summary>
+        /// Computes min damage of the weapon.
+        /// </summary>
+        /// <param name="weaponAttr">Attributes of a weapon.</param>
+        /// <returns></returns>
+        public static ItemValueRange getRawWeaponDamageMin(this ItemAttributes weaponAttr)
         {
-            return itemAttr.getRawWeaponDamageMin("Arcane") + itemAttr.getRawWeaponDamageMin("Cold")
-                + itemAttr.getRawWeaponDamageMin("Fire") + itemAttr.getRawWeaponDamageMin("Holy")
-                + itemAttr.getRawWeaponDamageMin("Lightning") + itemAttr.getRawWeaponDamageMin("Physical")
-                + itemAttr.getRawWeaponDamageMin("Poison");
+            return weaponAttr.getRawWeaponDamageMin("Arcane") + weaponAttr.getRawWeaponDamageMin("Cold")
+                + weaponAttr.getRawWeaponDamageMin("Fire") + weaponAttr.getRawWeaponDamageMin("Holy")
+                + weaponAttr.getRawWeaponDamageMin("Lightning") + weaponAttr.getRawWeaponDamageMin("Physical")
+                + weaponAttr.getRawWeaponDamageMin("Poison");
         }
 
-        public static ItemValueRange getRawWeaponDamageMin(this ItemAttributes itemAttr, String resist, bool useDamageTypePercentBonus = true)
+        /// <summary>
+        /// Computes min damage of the weapon (based on a specific resist).
+        /// </summary>
+        /// <param name="weaponAttr">Attributes of a weapon.</param>
+        /// <param name="resist">Name of the resist.</param>
+        /// <param name="useDamageTypePercentBonus"></param>
+        /// <returns></returns>
+        public static ItemValueRange getRawWeaponDamageMin(this ItemAttributes weaponAttr, String resist, bool useDamageTypePercentBonus = true)
         {
             ItemValueRange damage =
-                (itemAttr.getAttributeByName("damageWeaponMin_" + resist) + itemAttr.getAttributeByName("damageWeaponBonusMin_" + resist) + itemAttr.getAttributeByName("damageWeaponBonusMinX1_" + resist))
-                * (1 + itemAttr.getAttributeByName("damageWeaponPercentBonus_" + resist));
+                (weaponAttr.getAttributeByName("damageWeaponMin_" + resist) + weaponAttr.getAttributeByName("damageWeaponBonusMin_" + resist) + weaponAttr.getAttributeByName("damageWeaponBonusMinX1_" + resist))
+                * (1 + weaponAttr.getAttributeByName("damageWeaponPercentBonus_" + resist));
 
             if (useDamageTypePercentBonus && resist != "Physical")
-                damage += itemAttr.getRawWeaponDamageMin("Physical") * itemAttr.getAttributeByName("damageTypePercentBonus_" + resist);
+                damage += weaponAttr.getRawWeaponDamageMin("Physical") * weaponAttr.getAttributeByName("damageTypePercentBonus_" + resist);
 
             return damage;
         }
 
-        /// <summary>
-        /// D3 Patch 1.0.7: new weapon min attribute added for Ruby Gems
-        /// It is not increased by weapon multipliers nor taken into account for min>max comparison
-        /// </summary>
-        /// <param name="itemAttr"></param>
-        /// <param name="resist"></param>
-        /// <returns></returns>
-        public static ItemValueRange getRawWeaponDamageMinX1(this ItemAttributes itemAttr, String resist)
-        {
-            ItemValueRange damageWeaponMinX1 = itemAttr.getAttributeByName("damageWeaponBonusMinX1_" + resist);
-
-            return damageWeaponMinX1;
-        }
-
         #endregion
 
-        public static ItemValueRange getBaseWeaponDamageMax(this ItemAttributes itemAttr, String resist)
+        /// <summary>
+        /// Computes max damage of the weapon without taking account of "+% weapon damage".
+        /// </summary>
+        /// <param name="weaponAttr">Attributes of a weapon.</param>
+        /// <returns></returns>
+        public static ItemValueRange getBaseWeaponDamageMax(this ItemAttributes weaponAttr, String resist)
         {
             ItemValueRange damage =
-                (itemAttr.getAttributeByName("damageWeaponMin_" + resist) + itemAttr.getAttributeByName("damageWeaponDelta_" + resist) + itemAttr.getAttributeByName("damageWeaponBonusDelta_" + resist));
+                (weaponAttr.getAttributeByName("damageWeaponMin_" + resist) + weaponAttr.getAttributeByName("damageWeaponDelta_" + resist) + weaponAttr.getAttributeByName("damageWeaponBonusDelta_" + resist));
 
             return damage;
         }
 
         #region >> getRawWeaponDamageMax *
 
-        public static ItemValueRange getRawWeaponDamageMax(this ItemAttributes itemAttr)
+        /// <summary>
+        /// Computes max damage of the weapon.
+        /// </summary>
+        /// <param name="weaponAttr">Attributes of a weapon.</param>
+        /// <returns></returns>
+        public static ItemValueRange getRawWeaponDamageMax(this ItemAttributes weaponAttr)
         {
-            return itemAttr.getRawWeaponDamageMax("Arcane") + itemAttr.getRawWeaponDamageMax("Cold")
-                + itemAttr.getRawWeaponDamageMax("Fire") + itemAttr.getRawWeaponDamageMax("Holy")
-                + itemAttr.getRawWeaponDamageMax("Lightning") + itemAttr.getRawWeaponDamageMax("Physical")
-                + itemAttr.getRawWeaponDamageMax("Poison");
+            return weaponAttr.getRawWeaponDamageMax("Arcane") + weaponAttr.getRawWeaponDamageMax("Cold")
+                + weaponAttr.getRawWeaponDamageMax("Fire") + weaponAttr.getRawWeaponDamageMax("Holy")
+                + weaponAttr.getRawWeaponDamageMax("Lightning") + weaponAttr.getRawWeaponDamageMax("Physical")
+                + weaponAttr.getRawWeaponDamageMax("Poison");
         }
 
-        public static ItemValueRange getRawWeaponDamageMax(this ItemAttributes itemAttr, String resist, bool useDamageTypePercentBonus = true)
+        /// <summary>
+        /// Computes max damage of the weapon (based on a specific resist).
+        /// </summary>
+        /// <param name="weaponAttr">Attributes of a weapon.</param>
+        /// <param name="resist">Name of the resist.</param>
+        /// <param name="useDamageTypePercentBonus"></param>
+        /// <returns></returns>
+        public static ItemValueRange getRawWeaponDamageMax(this ItemAttributes weaponAttr, String resist, bool useDamageTypePercentBonus = true)
         {
             ItemValueRange damage =
-                (itemAttr.getAttributeByName("damageWeaponMin_" + resist) + itemAttr.getAttributeByName("damageWeaponDelta_" + resist) + itemAttr.getAttributeByName("damageWeaponBonusDelta_" + resist))
-                * (ItemValueRange.One + itemAttr.getAttributeByName("damageWeaponPercentBonus_" + resist));
+                (weaponAttr.getAttributeByName("damageWeaponMin_" + resist) + weaponAttr.getAttributeByName("damageWeaponDelta_" + resist) + weaponAttr.getAttributeByName("damageWeaponBonusDelta_" + resist))
+                * (ItemValueRange.One + weaponAttr.getAttributeByName("damageWeaponPercentBonus_" + resist));
 
             if (useDamageTypePercentBonus && resist != "Physical")
-                damage += itemAttr.getRawWeaponDamageMax("Physical") * itemAttr.getAttributeByName("damageTypePercentBonus_" + resist);
+                damage += weaponAttr.getRawWeaponDamageMax("Physical") * weaponAttr.getAttributeByName("damageTypePercentBonus_" + resist);
 
             return damage;
         }
 
         #endregion
 
-        public static ItemValueRange getWeaponAttackPerSecond(this ItemAttributes itemAttr, ItemValueRange increaseFromOtherItems)
+        /// <summary>
+        /// Computes weapon attack speed.
+        /// </summary>
+        /// <param name="weaponAttr">Attributes of used weapon.</param>
+        /// <param name="increaseFromOtherItems">Increase Attack Speed from items other than the weapon.</param>
+        /// <returns></returns>
+        public static ItemValueRange getWeaponAttackPerSecond(this ItemAttributes weaponAttr, ItemValueRange increaseFromOtherItems)
         {
-            ItemValueRange weaponAttackSpeed = itemAttr.attacksPerSecondItem;
+            ItemValueRange weaponAttackSpeed = weaponAttr.attacksPerSecondItem;
 
-            weaponAttackSpeed *= 1 + itemAttr.attacksPerSecondItemPercent + increaseFromOtherItems;
+            weaponAttackSpeed *= 1 + weaponAttr.attacksPerSecondItemPercent + increaseFromOtherItems;
 
             return weaponAttackSpeed;
         }
@@ -234,7 +284,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         #region >> checkAndUpdateWeaponDelta *
 
         /// <summary>
-        /// Check a specific case of "invalid" ambidextryWeapon damage values:
+        /// Check a specific case of "invalid" weapon damage values:
         /// If bonus min > delta, then delta should be replaced by bonus min + 1
         /// </summary>
         /// <param name="itemAttr"></param>
@@ -273,9 +323,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         #endregion
 
         /// <summary>
-        /// Informs if the gems is a Weapon based on its characteristics
+        /// Informs if the item is a weapon based on its attributes
         /// </summary>
-        /// <param name="gems"></param>
+        /// <param name="itemAttr">Attributes of the item.</param>
         /// <returns></returns>
         public static Boolean isWeapon(this ItemAttributes itemAttr)
         {
@@ -328,55 +378,5 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
             return attr;
         }
-
-
-        /// <summary>
-        /// Returns a new <see cref="ItemAttributes"/> by aggregating most raw attributes of <paramref name="itemAttr"/> (for easier editing for example).
-        /// </summary>
-        /// <param name="itemAttr"></param>
-        /// <returns>The <paramref name="itemAttr"/> instance.</returns>
-        public static ItemAttributes getVerySimplified(this ItemAttributes itemAttr)
-        {
-            ItemAttributes attr = new ItemAttributes(itemAttr);
-
-            List<String> resists = new List<string>() { "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison" };
-
-            // Characteristics
-            attr.armorItem = itemAttr.getArmor().nullIfZero();
-            attr.armorBonusItem = null;
-
-            // Weapon characterics
-            attr.attacksPerSecondItem = itemAttr.getRawWeaponAttackPerSecond().nullIfZero();
-            attr.attacksPerSecondItemPercent = null;
-
-            itemAttr.checkAndUpdateWeaponDelta();
-
-            foreach (string resist in resists)
-            {
-                ItemValueRange rawWeaponDamageMin = itemAttr.getRawWeaponDamageMin(resist);
-                ItemValueRange rawWeaponDamageDelta = itemAttr.getRawWeaponDamageMax(resist, false) - rawWeaponDamageMin;
-
-                attr.setAttributeByName("damageWeaponMin_" + resist, rawWeaponDamageMin.nullIfZero());
-                attr.setAttributeByName("damageWeaponDelta_" + resist, rawWeaponDamageDelta.nullIfZero());
-                attr.setAttributeByName("damageWeaponBonusMin_" + resist, null);
-                attr.setAttributeByName("damageWeaponBonusDelta_" + resist, null);
-                attr.setAttributeByName("damageWeaponBonusMinX1_" + resist, null);
-                attr.setAttributeByName("damageWeaponPercentBonus_" + resist, null);
-            }
-
-            // Item damage bonuses
-            foreach (string resist in resists)
-            {
-                ItemValueRange rawDamageMin = itemAttr.getRawBonusDamageMin(resist);
-                ItemValueRange rawDamageDelta = itemAttr.getRawBonusDamageMax(resist, false) - rawDamageMin;
-
-                attr.setAttributeByName("damageMin_" + resist, rawDamageMin.nullIfZero());
-                attr.setAttributeByName("damageDelta_" + resist, rawDamageDelta.nullIfZero());
-                attr.setAttributeByName("damageBonusMin_" + resist, null);
-            }
-
-            return attr;
-        }
-
     }
 }

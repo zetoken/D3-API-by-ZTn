@@ -11,8 +11,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
     /// </summary>
     public static class ItemExtension
     {
-
-        #region >> Reflexion Helpers
+        #region >> Reflection Helpers
 
         /// <summary>
         /// Returns the value of an attribute of an item given the attribute's name
@@ -38,6 +37,11 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         #endregion
 
+        /// <summary>
+        /// Computes the list of <see cref="Set"/> actually worn.
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         public static List<Set> getActivatedSets(this List<Item> items)
         {
             Dictionary<String, Set> itemsOfSets = new Dictionary<string, Set>();
@@ -51,6 +55,11 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             return itemsOfSets.Values.ToList();
         }
 
+        /// <summary>
+        /// Computes the <see cref=" ItemAttributes"/> brought by the set bonuses.
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         public static ItemAttributes getActivatedSetBonus(this List<Item> items)
         {
             ItemAttributes attr = new ItemAttributes();
@@ -74,13 +83,13 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         }
 
         /// <summary>
-        /// Computes damages other than ambidextryWeapon damages (on rings, amulets, ...)
+        /// Computes damages other than weapon damages (on rings, amulets, ...)
         /// </summary>
         /// <param name="gems"></param>
         /// <returns></returns>
-        public static ItemValueRange getRawBonusDamage(this Item item)
+        public static ItemValueRange getRawAverageBonusDamage(this Item item)
         {
-            return item.attributesRaw.getRawBonusDamage();
+            return item.attributesRaw.getRawAverageBonusDamage();
         }
 
         #region >> getRawBonusDamageMin *
@@ -104,9 +113,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             return item.attributesRaw.getRawBonusDamageMax();
         }
 
-        public static ItemValueRange getRawBonusDamageMax(this Item item, String resist, bool useDamageTypePercentBonus = true)
+        public static ItemValueRange getRawBonusDamageMax(this Item item, String resist)
         {
-            return item.attributesRaw.getRawBonusDamageMax(resist, useDamageTypePercentBonus);
+            return item.attributesRaw.getRawBonusDamageMax(resist);
         }
 
         #endregion
@@ -123,7 +132,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         }
 
         /// <summary>
-        /// Computes ambidextryWeapon attack speed (attack per second).
+        /// Computes weapon attack speed (attack per second).
         /// </summary>
         /// <param name="gems"></param>
         /// <returns></returns>
@@ -133,7 +142,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         }
 
         /// <summary>
-        /// Computes raw ambidextryWeapon dps ie before all multipliers ( = average damage * attack per second )
+        /// Computes raw weapon dps ie before all multipliers ( = average damage * attack per second )
         /// </summary>
         /// <param name="gems"></param>
         /// <returns></returns>
@@ -143,13 +152,13 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         }
 
         /// <summary>
-        /// Computes ambidextryWeapon only damages
+        /// Computes weapon only damages
         /// </summary>
         /// <param name="gems"></param>
         /// <returns></returns>
-        public static ItemValueRange getRawWeaponDamage(this Item item)
+        public static ItemValueRange getRawAverageWeaponDamage(this Item item)
         {
-            return item.attributesRaw.getRawWeaponDamage();
+            return item.attributesRaw.getRawAverageWeaponDamage();
         }
 
         #region >> getRawWeaponDamageMin *
@@ -162,18 +171,6 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         public static ItemValueRange getRawWeaponDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
             return item.attributesRaw.getRawWeaponDamageMin(resist, useDamageTypePercentBonus);
-        }
-
-        /// <summary>
-        /// D3 Patch 1.0.7: new weapon min attribute added for Ruby Gems
-        /// It is not increased by weapon multipliers nor taken into account for min>max comparison
-        /// </summary>
-        /// <param name="item"></param>
-        /// <param name="resist"></param>
-        /// <returns></returns>
-        public static ItemValueRange getRawWeaponDamageMinX1(this Item item, String resist)
-        {
-            return item.attributesRaw.getRawWeaponDamageMinX1(resist);
         }
 
         #endregion
@@ -200,7 +197,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         #region >> checkAndUpdateWeaponDelta *
 
         /// <summary>
-        /// Check a specific case of "invalid" ambidextryWeapon damage values:
+        /// Check a specific case of "invalid" weapon damage values:
         /// If bonus min > delta, then delta should be replaced by bonus min + 1
         /// </summary>
         /// <param name="item"></param>
@@ -217,7 +214,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         }
 
         /// <summary>
-        /// Check a specific case of "invalid" ambidextryWeapon damage values (based on a specific resist):
+        /// Check a specific case of "invalid" weapon damage values (based on a specific resist):
         /// If bonus min > delta, then delta should be replaced by bonus min + 1
         /// </summary>
         /// <param name="item"></param>
@@ -258,13 +255,29 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         #endregion
 
         /// <summary>
-        /// Informs if the gems is a ambidextryWeapon based on its characteristics
+        /// Informs if the gems is a weapon based on its characteristics
         /// </summary>
         /// <param name="gems"></param>
         /// <returns></returns>
         public static Boolean isWeapon(this Item item)
         {
             return item.attributesRaw.isWeapon();
+        }
+
+        /// <summary>
+        /// Merge socketed gems in the <paramref name="item"/>.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static Item mergeSocketedGems(this Item item)
+        {
+            foreach (SocketedGem gem in item.gems)
+            {
+                item.attributesRaw += gem.attributesRaw;
+            }
+            item.gems = null;
+
+            return item;
         }
 
         /// <summary>
