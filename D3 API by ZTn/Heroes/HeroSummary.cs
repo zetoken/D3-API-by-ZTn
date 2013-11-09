@@ -56,8 +56,8 @@ namespace ZTn.BNet.D3.Heroes
         [DataMember(Name = "last-updated")]
         protected long s_lastUpdated
         {
-            set { lastUpdated = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(value); }
-            get { return lastUpdated.Ticks - (new DateTime(1970, 1, 1, 0, 0, 0, 0)).Ticks; }
+            set { lastUpdated = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(value).ToLocalTime(); }
+            get { return lastUpdated.Second - new DateTime(1970, 1, 1, 0, 0, 0, 0).Second; }
         }
         [IgnoreDataMember]
         public DateTime lastUpdated;
