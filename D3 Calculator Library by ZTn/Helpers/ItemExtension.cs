@@ -249,7 +249,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         public static Boolean isItemTypeOther(this Item item)
         {
-            return !item.isItemTypeHelm() && !item.isItemTypeWeapon();
+            return !item.isItemTypeHelm() && !item.isWeapon();
         }
 
         #endregion

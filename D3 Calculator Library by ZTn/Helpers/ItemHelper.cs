@@ -26,7 +26,8 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             "Spear",
             "Staff",
             "Sword",
-            "Sword2H"
+            "Sword2H",
+            "Wand"
         };
 
         static public List<String> helmTypeIds = new List<String>() { 
