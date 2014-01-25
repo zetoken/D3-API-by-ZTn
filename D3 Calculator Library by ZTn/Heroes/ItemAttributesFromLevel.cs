@@ -26,8 +26,6 @@ namespace ZTn.BNet.D3.Calculator.Heroes
                     intelligenceItem = new ItemValueRange(7 + 1 * hero.level);
                     strengthItem = new ItemValueRange(7 + 3 * hero.level);
                     break;
-                default:
-                    break;
             }
 
             vitalityItem = new ItemValueRange(7 + 2 * hero.level);

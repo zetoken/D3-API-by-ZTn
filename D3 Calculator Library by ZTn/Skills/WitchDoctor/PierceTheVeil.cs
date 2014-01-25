@@ -5,26 +5,26 @@ namespace ZTn.BNet.D3.Calculator.Skills.WitchDoctor
 {
     public sealed class PierceTheVeil : ID3SkillModifier
     {
-        readonly double multiplier = 0.20;
+        private const double multiplier = 0.20;
 
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.WitchDoctor; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "pierce-the-veil"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            return new DamageMultiplier(multiplier).getBonus(calculator);
+            return new DamageMultiplier(multiplier).GetBonus(calculator);
         }
 
         #endregion

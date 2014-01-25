@@ -64,9 +64,9 @@ namespace ZTn.BNet.D3.Heroes
 
         #endregion
 
-        public Hero getHeroFromBattleTag(BattleTag battleTag)
+        public Hero GetHeroFromBattleTag(BattleTag battleTag)
         {
-            return Hero.getHeroFromHeroId(battleTag, id);
+            return Hero.CreateFromHeroId(battleTag, id);
         }
 
         #region >> Object

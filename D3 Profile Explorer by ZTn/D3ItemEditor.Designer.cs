@@ -1,4 +1,4 @@
-﻿namespace ZTn.BNet.D3.Calculator
+﻿namespace ZTn.BNet.D3ProfileExplorer
 {
     partial class D3ItemEditor
     {

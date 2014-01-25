@@ -7,21 +7,35 @@ using System.Threading.Tasks;
 
 namespace ZTn.BNet.D3
 {
+    /// <summary>
+    /// Represents a battle.net response when an error occured.
+    /// </summary>
     [DataContract]
     public class FailureObject
     {
         #region >> Fields
 
+        /// <summary>
+        /// Response field containing an error code.
+        /// </summary>
         [DataMember]
-        public String code;
+        public String Code { get; set; }
+
+        /// <summary>
+        /// Response field containing an error description.
+        /// </summary>
         [DataMember]
-        public String reason;
+        public String Reason { get; set; }
 
         #endregion
 
-        public Boolean isFailureObject()
+        /// <summary>
+        /// Returns true if the object indicates that a previous request failed.
+        /// </summary>
+        /// <returns></returns>
+        public Boolean IsFailureObject()
         {
-            return (code != null || reason != null);
+            return (Code != null || Reason != null);
         }
     }
 }

@@ -8,21 +8,21 @@ namespace ZTn.BNet.D3.Calculator.Skills.Followers
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.EnchantressFollower; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "powered-armor"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            return new ItemAttributes() { armorBonusItem = 0.05 * calculator.getHeroArmor() };
+            return new ItemAttributes { armorBonusItem = 0.05 * calculator.GetHeroArmor() };
         }
 
         #endregion

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ZTn.BNet.D3.Heroes;
+﻿using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.Monk
@@ -12,21 +8,21 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Monk; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "mystic-ally-earth-ally"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            return new ItemAttributes() { hitpointsMaxPercentBonusItem = new ItemValueRange(0.10) };
+            return new ItemAttributes { hitpointsMaxPercentBonusItem = new ItemValueRange(0.10) };
         }
 
         #endregion

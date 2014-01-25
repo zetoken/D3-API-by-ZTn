@@ -14,56 +14,56 @@ namespace ZTn.BNet.D3.Calculator.Gems
     {
         #region >> Fields
 
-        [DataMember]
-        public List<Item> gems;
+        [DataMember(Name = "gems")]
+        public List<Item> Gems;
 
         [IgnoreDataMember]
-        private List<Item> _helmSocketedGems;
+        private List<Item> helmSocketedGems;
         [IgnoreDataMember]
-        private List<Item> _otherSocketedGems;
+        private List<Item> otherSocketedGems;
         [IgnoreDataMember]
-        private List<Item> _weaponSocketedGems;
+        private List<Item> weaponSocketedGems;
 
         #endregion
 
         #region >> Properties
 
         [IgnoreDataMember]
-        public List<Item> helmSocketedGems
+        public List<Item> HelmSocketedGems
         {
             get
             {
-                if (_helmSocketedGems == null)
+                if (helmSocketedGems == null)
                 {
-                    _helmSocketedGems = filterGems("Helm");
+                    helmSocketedGems = FilterGems("Helm");
                 }
-                return _helmSocketedGems;
+                return helmSocketedGems;
             }
         }
 
         [IgnoreDataMember]
-        public List<Item> otherSocketedGems
+        public List<Item> OtherSocketedGems
         {
             get
             {
-                if (_otherSocketedGems == null)
+                if (otherSocketedGems == null)
                 {
-                    _otherSocketedGems = filterGems("All"); ;
+                    otherSocketedGems = FilterGems("All");
                 }
-                return _otherSocketedGems;
+                return otherSocketedGems;
             }
         }
 
         [IgnoreDataMember]
-        public List<Item> weaponSocketedGems
+        public List<Item> WeaponSocketedGems
         {
             get
             {
-                if (_weaponSocketedGems == null)
+                if (weaponSocketedGems == null)
                 {
-                    _weaponSocketedGems = filterGems("Weapon");
+                    weaponSocketedGems = FilterGems("Weapon");
                 }
-                return _weaponSocketedGems;
+                return weaponSocketedGems;
             }
         }
 
@@ -73,29 +73,29 @@ namespace ZTn.BNet.D3.Calculator.Gems
 
         public KnownGems(List<Item> gems)
         {
-            this.gems = gems;
+            Gems = gems;
         }
 
         #endregion
 
-        public static KnownGems getKnownGemsFromJsonFile(String fileName)
+        public static KnownGems GetKnownGemsFromJsonFile(String fileName)
         {
-            return new KnownGems(JsonHelpers.getFromJsonFile<List<Item>>(fileName));
+            return new KnownGems(fileName.CreateFromJsonFile<List<Item>>());
         }
 
-        public static KnownGems getKnownGemsFromJsonStream(Stream stream)
+        public static KnownGems GetKnownGemsFromJsonStream(Stream stream)
         {
-            return new KnownGems(JsonHelpers.getFromJSonStream<List<Item>>(stream));
+            return new KnownGems(stream.CreateFromJsonStream<List<Item>>());
         }
 
-        private List<Item> filterGems(String itemTypeId)
+        private List<Item> FilterGems(String itemTypeId)
         {
-            List<Item> filteredGems = new List<Item>();
-            foreach (Item gem in gems)
+            var filteredGems = new List<Item>();
+            foreach (var gem in Gems)
             {
                 filteredGems.AddRange(gem.socketEffects
                    .Where(e => e.itemTypeId == itemTypeId)
-                   .Select(e => new Item()
+                   .Select(e => new Item
                    {
                        id = gem.id,
                        attributes = e.attributes,
@@ -107,19 +107,24 @@ namespace ZTn.BNet.D3.Calculator.Gems
             return filteredGems;
         }
 
-        public List<Item> getGemsForItem(Item item)
+        public List<Item> GetGemsForItem(Item item)
         {
-            return getGemsForItemTypeId(item.type.id);
+            return GetGemsForItemTypeId(item.type.id);
         }
 
-        public List<Item> getGemsForItemTypeId(String itemTypeId)
+        public List<Item> GetGemsForItemTypeId(String itemTypeId)
         {
-            if (ItemHelper.weaponTypeIds.Any(id => itemTypeId == id))
-                return weaponSocketedGems;
-            else if (ItemHelper.helmTypeIds.Any(id => itemTypeId.Contains(id)))
-                return helmSocketedGems;
-            else
-                return otherSocketedGems;
+            if (ItemHelper.WeaponTypeIds.Any(id => itemTypeId == id))
+            {
+                return WeaponSocketedGems;
+            }
+
+            if (ItemHelper.HelmTypeIds.Any(id => itemTypeId.Contains(id)))
+            {
+                return HelmSocketedGems;
+            }
+
+            return OtherSocketedGems;
         }
     }
 }

@@ -8,25 +8,25 @@ namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Barbarian; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "warcry-invigorate"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            ItemAttributes attr = new ItemAttributes();
-
-            attr.armorBonusItem = 0.20 * calculator.getHeroArmor();
-
-            attr.hitpointsRegenPerSecond = new ItemValueRange(620);
+            var attr = new ItemAttributes
+            {
+                armorBonusItem = 0.20 * calculator.GetHeroArmor(),
+                hitpointsRegenPerSecond = new ItemValueRange(620)
+            };
 
             return attr;
 

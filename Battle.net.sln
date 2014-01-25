@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 API by ZTn", "D3 API by ZTn\D3 API by ZTn.csproj", "{A62CFAEA-60E1-4586-B306-7D606E6AA4D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNet API by ZTn", "BNet API by ZTn\BNet API by ZTn.csproj", "{865B78CA-5EE6-4580-A5DE-E74F0303F70B}"
@@ -10,6 +12,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Profile Explorer by ZTn", "D3 Profile Explorer by ZTn\D3 Profile Explorer by ZTn.csproj", "{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Calculator Library by ZTn", "D3 Calculator Library by ZTn\D3 Calculator Library by ZTn.csproj", "{F6E135DD-87C5-49C1-A560-07C2653B69A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Tests", "Unit Tests", "{026E4CEE-2A22-44F2-8D86-9ED8C5C87246}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNet API by ZTn Unit Tests", "BNet API by ZTn Unit Tests\BNet API by ZTn Unit Tests.csproj", "{28A0939F-269F-451B-93E5-E938FBB9B11A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 API by ZTn Unit Tests", "D3 API by ZTn Unit Tests\D3 API by ZTn Unit Tests.csproj", "{725895DE-B6EA-4C91-ADE3-26795C6BF04E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Calculator Library by ZTn Unit Tests", "D3 Calculator Library by ZTn Unit Tests\D3 Calculator Library by ZTn Unit Tests.csproj", "{D832893E-F2F2-4A28-8EFB-E881D141EA7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,8 +47,25 @@ Global
 		{F6E135DD-87C5-49C1-A560-07C2653B69A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6E135DD-87C5-49C1-A560-07C2653B69A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6E135DD-87C5-49C1-A560-07C2653B69A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28A0939F-269F-451B-93E5-E938FBB9B11A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28A0939F-269F-451B-93E5-E938FBB9B11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28A0939F-269F-451B-93E5-E938FBB9B11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28A0939F-269F-451B-93E5-E938FBB9B11A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{725895DE-B6EA-4C91-ADE3-26795C6BF04E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{725895DE-B6EA-4C91-ADE3-26795C6BF04E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{725895DE-B6EA-4C91-ADE3-26795C6BF04E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{725895DE-B6EA-4C91-ADE3-26795C6BF04E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D832893E-F2F2-4A28-8EFB-E881D141EA7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D832893E-F2F2-4A28-8EFB-E881D141EA7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D832893E-F2F2-4A28-8EFB-E881D141EA7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D832893E-F2F2-4A28-8EFB-E881D141EA7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28A0939F-269F-451B-93E5-E938FBB9B11A} = {026E4CEE-2A22-44F2-8D86-9ED8C5C87246}
+		{725895DE-B6EA-4C91-ADE3-26795C6BF04E} = {026E4CEE-2A22-44F2-8D86-9ED8C5C87246}
+		{D832893E-F2F2-4A28-8EFB-E881D141EA7D} = {026E4CEE-2A22-44F2-8D86-9ED8C5C87246}
 	EndGlobalSection
 EndGlobal

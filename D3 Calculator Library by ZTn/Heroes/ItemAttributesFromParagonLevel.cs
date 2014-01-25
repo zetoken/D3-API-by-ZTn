@@ -1,5 +1,4 @@
 ﻿using ZTn.BNet.D3.Heroes;
-using ZTn.BNet.D3.HeroFollowers;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Heroes
@@ -26,8 +25,6 @@ namespace ZTn.BNet.D3.Calculator.Heroes
                     dexterityItem = new ItemValueRange(1 * hero.paragonLevel);
                     intelligenceItem = new ItemValueRange(1 * hero.paragonLevel);
                     strengthItem = new ItemValueRange(3 * hero.paragonLevel);
-                    break;
-                default:
                     break;
             }
 

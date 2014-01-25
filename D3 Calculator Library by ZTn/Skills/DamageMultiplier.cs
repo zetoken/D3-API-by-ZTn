@@ -12,7 +12,8 @@ namespace ZTn.BNet.D3.Calculator.Skills
     {
         #region >> Constants
 
-        readonly String[] damagePrefixes = new String[] { 
+        readonly String[] damagePrefixes =
+        { 
             "damageMin_", "damageBonusMin_",
             "damageDelta_", 
             "damageWeaponMin_", "damageWeaponBonusMin_",
@@ -20,13 +21,14 @@ namespace ZTn.BNet.D3.Calculator.Skills
             "damageWeaponPercentBonus_"
         };
 
-        readonly String[] damageResists = new String[] {
+        readonly String[] damageResists =
+        {
             "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison"
         };
 
         #endregion
 
-        ItemValueRange multiplier;
+        readonly ItemValueRange multiplier;
 
         #region >> Constructors
 
@@ -40,29 +42,29 @@ namespace ZTn.BNet.D3.Calculator.Skills
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Unknown; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return ""; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            Item stuff = calculator.heroStatsItem;
-            ItemAttributes attr = new ItemAttributes();
+            Item stuff = calculator.HeroStatsItem;
+            var attr = new ItemAttributes();
 
-            foreach (String resist in damageResists)
+            foreach (var resist in damageResists)
             {
-                foreach (String damage in damagePrefixes)
+                foreach (var damage in damagePrefixes)
                 {
-                    ItemValueRange value = stuff.getAttributeByName(damage + resist);
-                    attr.setAttributeByName(damage + resist, multiplier * value);
+                    var value = stuff.GetAttributeByName(damage + resist);
+                    attr.SetAttributeByName(damage + resist, multiplier * value);
                 }
             }
 

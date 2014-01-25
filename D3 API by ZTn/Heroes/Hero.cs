@@ -29,19 +29,19 @@ namespace ZTn.BNet.D3.Heroes
 
         #endregion
 
-        public static Hero getHeroFromHeroId(BattleTag battleTag, String heroId)
+        public static Hero CreateFromHeroId(BattleTag battleTag, String heroId)
         {
-            return D3Api.getHeroFromHeroID(battleTag, heroId);
+            return D3Api.GetHeroFromHeroId(battleTag, heroId);
         }
 
-        public static Hero getHeroFromJSonStream(Stream stream)
+        public static Hero CreateFromJSonStream(Stream stream)
         {
-            return JsonHelpers.getFromJSonStream<Hero>(stream);
+            return stream.CreateFromJsonStream<Hero>();
         }
 
-        public static Hero getHeroFromJSonString(String json)
+        public static Hero CreateFromJSonString(String json)
         {
-            return JsonHelpers.getFromJSonString<Hero>(json);
+            return json.CreateFromJsonString<Hero>();
         }
     }
 }

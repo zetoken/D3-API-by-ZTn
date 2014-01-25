@@ -60,6 +60,8 @@
     <Compile Include="DataProviders\BNetFailureObjectReturnedException.cs" />
     <Compile Include="DataProviders\CacheableDataProvider.cs" />
     <Compile Include="DataProviders\BNetResponseFailedException.cs" />
+    <Compile Include="DataProviders\FakeDataProvider.cs" />
+    <Compile Include="DataProviders\FakeFailureDataProvider.cs" />
     <Compile Include="DataProviders\OnlineMode.cs" />
     <Compile Include="DataProviders\FileNotInCacheException.cs" />
     <Compile Include="DataProviders\HttpRequestDataProvider.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="Progresses\DifficultyProgress.cs" />
     <Compile Include="Progresses\Progress.cs" />
     <Compile Include="Progresses\Quest.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Skills\ActiveSkill.cs" />
     <Compile Include="Heroes\Hero.cs" />
     <Compile Include="Skills\PassiveSkill.cs" />

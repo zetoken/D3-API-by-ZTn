@@ -1,21 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace ZTn.BNet.D3.Medias
 {
+    /// <summary>
+    /// Represents a picture retrieved from battle.net servers.
+    /// </summary>
     public class D3Picture
     {
-        public Byte[] bytes;
+        public Byte[] Bytes { get; set; }
 
+        /// <summary>
+        /// Creates a new empty <see cref="D3Picture"/> instance.
+        /// </summary>
+        public D3Picture()
+        {
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="D3Picture"/> instance from a <see cref="Stream"/>.
+        /// </summary>
+        /// <param name="stream"></param>
         public D3Picture(Stream stream)
         {
-            using (MemoryStream ms = new MemoryStream())
+            using (var ms = new MemoryStream())
             {
                 stream.CopyTo(ms);
-                bytes = ms.ToArray();
+                Bytes = ms.ToArray();
             }
         }
     }

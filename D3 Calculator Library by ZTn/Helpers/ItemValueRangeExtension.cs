@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using ZTn.BNet.D3.Items;
-using ZTn.BNet.D3.Calculator.Sets;
 
 namespace ZTn.BNet.D3.Calculator.Helpers
 {
@@ -16,11 +12,11 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static ItemValueRange nullIfZero(this ItemValueRange value)
+        public static ItemValueRange NullIfZero(this ItemValueRange value)
         {
             if (value == null)
                 return null;
-            if (value.min == 0 && value.max == 0)
+            if (value.Min == 0 && value.Max == 0)
                 return null;
             return value;
         }

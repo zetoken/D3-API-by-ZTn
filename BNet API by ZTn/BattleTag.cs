@@ -8,24 +8,35 @@ namespace ZTn.BNet.BattleNet
     {
         #region >> Properties
 
+        /// <summary>
+        /// Name part of battle tag (before #).
+        /// </summary>
         [IgnoreDataMember]
-        public String name;
+        public String Name { get; private set; }
+
+        /// <summary>
+        /// Code part of battle tag (after #).
+        /// </summary>
         [IgnoreDataMember]
-        public String code;
+        public String Code { get; private set; }
+
+        /// <summary>
+        /// Formatted battle tag (Name#eCode).
+        /// </summary>
         [DataMember]
-        public String id
+        public String Id
         {
-            get { return name + "#" + code; }
-            set
+            get { return Name + "#" + Code; }
+            private set
             {
-                String[] splitted = value.Split('#');
-                if (splitted.Length == 2)
+                var splitted = value.Split('#');
+                if (splitted.Length == 2 && !String.IsNullOrWhiteSpace(splitted[0]) && !String.IsNullOrWhiteSpace(splitted[1]))
                 {
-                    name = splitted[0];
-                    code = splitted[1];
+                    Name = splitted[0];
+                    Code = splitted[1];
                 }
                 else
-                    throw new Exception("Battle tag bad format: " + value);
+                    throw new ArgumentException("Battle tag format error: " + value);
             }
         }
 
@@ -33,16 +44,25 @@ namespace ZTn.BNet.BattleNet
 
         #region >> Constructors
 
+        /// <summary>
+        /// Creates a new <see cref="BattleTag"/> instance.
+        /// </summary>
+        /// <param name="battleTag">Battle tag (Name#Code).</param>
         public BattleTag(String battleTag)
         {
-            this.id = battleTag;
+            Id = battleTag;
         }
 
         #endregion
 
+        #region >> Object
+
+        /// <inheritdoc />
         public override string ToString()
         {
-            return id;
+            return Id;
         }
+
+        #endregion
     }
 }

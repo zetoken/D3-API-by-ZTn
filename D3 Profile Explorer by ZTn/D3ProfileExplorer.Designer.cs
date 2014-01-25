@@ -1,6 +1,6 @@
 ﻿namespace ZTn.BNet.D3ProfileExplorer
 {
-    partial class guiD3ProfileExplorer
+    partial class GuiD3ProfileExplorer
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -32,7 +32,7 @@
             System.Windows.Forms.Label guiLabel1;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(guiD3ProfileExplorer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuiD3ProfileExplorer));
             this.guiD3ProfileTreeView = new System.Windows.Forms.TreeView();
             this.guiProfileLookup = new System.Windows.Forms.Button();
             this.guiBattleTag = new System.Windows.Forms.TextBox();
@@ -488,7 +488,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.guiD3ProfileTreeView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "guiD3ProfileExplorer";
+            this.Name = "GuiD3ProfileExplorer";
             this.Text = "D3 Profile Explorer by ZTn";
             this.guiHeroSummaryContextMenu.ResumeLayout(false);
             this.guiItemSummaryContextMenu.ResumeLayout(false);

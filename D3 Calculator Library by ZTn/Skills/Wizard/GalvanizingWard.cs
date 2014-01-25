@@ -8,21 +8,21 @@ namespace ZTn.BNet.D3.Calculator.Skills.Wizard
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Wizard; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "galvanizing-ward"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            return new ItemAttributes() { hitpointsRegenPerSecond = new ItemValueRange(620) };
+            return new ItemAttributes { hitpointsRegenPerSecond = new ItemValueRange(620) };
         }
 
         #endregion

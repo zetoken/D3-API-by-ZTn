@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
 using ZTn.BNet.D3.Items;
 using ZTn.BNet.D3.Helpers;
 
@@ -14,7 +13,7 @@ namespace ZTn.BNet.D3.Calculator.Sets
         #region >> Fields
 
         [DataMember]
-        public Set[] sets;
+        public Set[] Sets;
 
         #endregion
 
@@ -22,50 +21,50 @@ namespace ZTn.BNet.D3.Calculator.Sets
 
         public KnownSets(Set[] sets)
         {
-            this.sets = sets;
+            Sets = sets;
         }
 
         #endregion
 
-        public ItemAttributes getActivatedSetBonus(List<Item> items)
+        public ItemAttributes GetActivatedSetBonus(List<Item> items)
         {
-            ItemAttributes attr = new ItemAttributes();
+            var attr = new ItemAttributes();
 
-            foreach (Set set in sets)
+            foreach (var set in Sets)
             {
-                attr += set.getBonus(set.countItemsOfSet(items));
+                attr += set.GetBonus(set.CountItemsOfSet(items));
             }
 
             return attr;
         }
 
-        public ItemAttributes getActivatedSetBonus(List<ItemSummary> items)
+        public ItemAttributes GetActivatedSetBonus(List<ItemSummary> items)
         {
-            ItemAttributes attr = new ItemAttributes();
+            var attr = new ItemAttributes();
 
-            foreach (Set set in sets)
+            foreach (var set in Sets)
             {
-                attr += set.getBonus(set.countItemsOfSet(items));
+                attr += set.GetBonus(set.CountItemsOfSet(items));
             }
 
             return attr;
         }
 
-        public static KnownSets getKnownSetsFromJSonStream(Stream stream)
+        public static KnownSets CreateFromJSonStream(Stream stream)
         {
-            Set[] sets = JsonHelpers.getFromJSonStream<Set[]>(stream);
+            var sets = stream.CreateFromJsonStream<Set[]>();
             return new KnownSets(sets);
         }
 
-        public static KnownSets getKnownSetsFromJSonString(String json)
+        public static KnownSets CreateFromJSonString(String json)
         {
-            Set[] sets = JsonHelpers.getFromJSonString<Set[]>(json);
+            var sets = json.CreateFromJsonString<Set[]>();
             return new KnownSets(sets);
         }
 
-        public static KnownSets getKnownSetsFromJsonFile(String fileName)
+        public static KnownSets CreateFromJsonFile(String fileName)
         {
-            Set[] sets = JsonHelpers.getFromJsonFile<Set[]>(fileName);
+            var sets = fileName.CreateFromJsonFile<Set[]>();
             return new KnownSets(sets);
         }
     }

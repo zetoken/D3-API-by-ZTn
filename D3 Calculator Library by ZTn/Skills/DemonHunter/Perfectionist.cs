@@ -1,40 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ZTn.BNet.D3.Heroes;
+﻿using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
     public sealed class Perfectionist : ID3SkillModifier
     {
-        readonly double multiplier = 0.10;
+        private const double multiplier = 0.10;
 
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.DemonHunter; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "perfectionist"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            ItemAttributes attr = new ItemAttributes();
+            var attr = new ItemAttributes
+            {
+                hitpointsMaxPercentBonusItem = new ItemValueRange(0.10),
+                armorBonusItem = multiplier * calculator.GetHeroArmor()
+            };
 
-            attr.hitpointsMaxPercentBonusItem = new ItemValueRange(0.10);
-
-            attr.armorBonusItem = multiplier * calculator.getHeroArmor();
-
-            attr += (new ResistancesMultiplier(multiplier)).getBonus(calculator);
+            attr += (new ResistancesMultiplier(multiplier)).GetBonus(calculator);
 
             return attr;
         }

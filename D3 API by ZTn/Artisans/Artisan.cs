@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
 using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Artisans
@@ -11,30 +10,30 @@ namespace ZTn.BNet.D3.Artisans
     {
         #region >> Fields
 
-        [DataMember]
-        public String slug;
-        [DataMember]
-        public String name;
-        [DataMember]
-        public String portrait;
-        [DataMember]
-        public ArtisanTraining training;
+        [DataMember(Name = "slug")]
+        public String Slug;
+        [DataMember(Name = "name")]
+        public String Name;
+        [DataMember(Name = "portrait")]
+        public String Portrait;
+        [DataMember(Name = "training")]
+        public ArtisanTraining Training;
 
         #endregion
 
-        public static Artisan getArtisanFromSlug(String slug)
+        public static Artisan CreateFromSlug(String slug)
         {
-            return D3Api.getArtisanFromSlug(slug);
+            return D3Api.GetArtisanFromSlug(slug);
         }
 
-        public static Artisan getArtisanFromJSonStream(Stream stream)
+        public static Artisan CreateFromJSonStream(Stream stream)
         {
-            return JsonHelpers.getFromJSonStream<Artisan>(stream);
+            return stream.CreateFromJsonStream<Artisan>();
         }
 
-        public static Artisan getItemFromJSonString(String json)
+        public static Artisan CreateFromJSonString(String json)
         {
-            return JsonHelpers.getFromJSonString<Artisan>(json);
+            return json.CreateFromJsonString<Artisan>();
         }
 
         #region >> Object
@@ -42,7 +41,7 @@ namespace ZTn.BNet.D3.Artisans
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + slug + "]";
+            return "[" + Slug + "]";
         }
 
         #endregion

@@ -28,9 +28,9 @@ namespace ZTn.BNet.D3.Items
 
         #endregion
 
-        public Item getFullItem()
+        public Item GetFullItem()
         {
-            return Item.getItemFromTooltipParams(tooltipParams);
+            return Item.CreateFromTooltipParams(tooltipParams);
         }
 
         #region >> Constructor
@@ -45,7 +45,7 @@ namespace ZTn.BNet.D3.Items
         /// <param name="itemSummary"></param>
         public ItemSummary(ItemSummary itemSummary)
         {
-            D3DeepCopy.deepCopy<ItemSummary>(itemSummary, this);
+            D3DeepCopy.DeepCopy<ItemSummary>(itemSummary, this);
         }
 
         #endregion

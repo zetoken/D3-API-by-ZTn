@@ -8,7 +8,7 @@ namespace ZTn.BNet.D3.Calculator.Skills
     /// </summary>
     public sealed class ResistancesMultiplier : ID3SkillModifier
     {
-        ItemValueRange multiplier;
+        readonly ItemValueRange multiplier;
 
         #region >> Constructors
 
@@ -22,30 +22,31 @@ namespace ZTn.BNet.D3.Calculator.Skills
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Unknown; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return ""; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            Item stuff = calculator.heroStatsItem;
-            ItemAttributes attr = new ItemAttributes();
-
-            attr.resistance_All = multiplier * stuff.attributesRaw.resistance_All;
-            attr.resistance_Arcane = multiplier * stuff.attributesRaw.resistance_Arcane;
-            attr.resistance_Cold = multiplier * stuff.attributesRaw.resistance_Cold;
-            attr.resistance_Fire = multiplier * stuff.attributesRaw.resistance_Fire;
-            attr.resistance_Lightning = multiplier * stuff.attributesRaw.resistance_Lightning;
-            attr.resistance_Physical = multiplier * stuff.attributesRaw.resistance_Physical;
-            attr.resistance_Poison = multiplier * stuff.attributesRaw.resistance_Poison;
+            Item stuff = calculator.HeroStatsItem;
+            var attr = new ItemAttributes
+            {
+                resistance_All = multiplier*stuff.attributesRaw.resistance_All,
+                resistance_Arcane = multiplier*stuff.attributesRaw.resistance_Arcane,
+                resistance_Cold = multiplier*stuff.attributesRaw.resistance_Cold,
+                resistance_Fire = multiplier*stuff.attributesRaw.resistance_Fire,
+                resistance_Lightning = multiplier*stuff.attributesRaw.resistance_Lightning,
+                resistance_Physical = multiplier*stuff.attributesRaw.resistance_Physical,
+                resistance_Poison = multiplier*stuff.attributesRaw.resistance_Poison
+            };
 
             return attr;
         }

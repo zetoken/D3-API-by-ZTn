@@ -8,25 +8,40 @@ namespace ZTn.BNet.BattleNet
     {
         #region >> Properties
 
+        /// <summary>
+        /// Name of the host.
+        /// </summary>
         [DataMember]
-        public String name { get; set; }
+        public String Name { get; set; }
+
+        /// <summary>
+        /// Url of the host.
+        /// </summary>
         [DataMember]
-        public String url { get; set; }
+        public String Url { get; set; }
 
         #endregion
 
         #region >> Constructors
 
+        /// <summary>
+        /// Creates a new empty <see cref="Host"/> instance.
+        /// </summary>
         public Host()
         {
-            name = "";
-            url = "";
+            Name = "";
+            Url = "";
         }
 
+        /// <summary>
+        /// Creates a new <see cref="Host"/> instance.
+        /// </summary>
+        /// <param name="name">Name of the host.</param>
+        /// <param name="url">Url of the host.</param>
         public Host(String name, String url)
         {
-            this.name = name;
-            this.url = url;
+            Name = name;
+            Url = url;
         }
 
         #endregion

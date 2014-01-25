@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Net;
 using System.Web;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
@@ -14,130 +12,123 @@ namespace ZTn.BNet.D3
 {
     public class D3Api
     {
-        #region >> Fields
+        public static String ProtocolPrefix = "http://";
+        public static String Host = "eu.battle.net";
+        public static String ApiPath = "/api/d3/";
+        public static String Locale = "en";
+        public static String MediaPath = "http://media.blizzard.com/d3/";
 
-        public static String protocolPrefix = "http://";
-        public static String host = "eu.battle.net";
-        public static String apiPath = "/api/d3/";
-        public static String locale = "en";
-        public static String mediaPath = "http://media.blizzard.com/d3/";
+        public static ID3DataProvider DataProvider = new HttpRequestDataProvider();
 
-        public static ID3DataProvider dataProvider = new HttpRequestDataProvider();
-
-        #endregion
-
-        #region >> Properties
-
-        public static String apiUrl
+        public static String ApiUrl
         {
-            get { return protocolPrefix + host + apiPath; }
-        }
-        public static String apiLocaleSuffix
-        {
-            get { return "?locale=" + locale; }
+            get { return ProtocolPrefix + Host + ApiPath; }
         }
 
-        #endregion
+        public static String ApiLocaleSuffix
+        {
+            get { return "?locale=" + Locale; }
+        }
 
-        public static Artisan getArtisanFromSlug(String slug)
+        public static Artisan GetArtisanFromSlug(String slug)
         {
             Artisan artisan;
-            using (Stream stream = dataProvider.fetchData(D3Api.getArtisanUrlFromSlug(slug) + apiLocaleSuffix))
+            using (var stream = DataProvider.fetchData(GetArtisanUrlFromSlug(slug) + ApiLocaleSuffix))
             {
-                artisan = Artisan.getArtisanFromJSonStream(stream);
+                artisan = Artisan.CreateFromJSonStream(stream);
             }
             return artisan;
         }
 
-        public static String getArtisanUrlFromSlug(String slug)
+        public static String GetArtisanUrlFromSlug(String slug)
         {
-            return apiUrl + "data/artisan/" + slug;
+            return ApiUrl + "data/artisan/" + slug;
         }
 
-        public static Career getCareerFromBattleTag(BattleTag battleTag)
+        public static Career GetCareerFromBattleTag(BattleTag battleTag)
         {
             Career career;
-            using (Stream stream = dataProvider.fetchData(getCareerUrl(battleTag) + "/index" + apiLocaleSuffix))
+            using (var stream = DataProvider.fetchData(GetCareerUrl(battleTag) + "/index" + ApiLocaleSuffix))
             {
-                career = Career.getCareerFromJSonStream(stream);
+                career = Career.CreateFromJSonStream(stream);
             }
             return career;
         }
 
-        public static String getCareerUrl(BattleTag battleTag)
+        public static String GetCareerUrl(BattleTag battleTag)
         {
-            return apiUrl + "profile/" + HttpUtility.UrlEncode(battleTag.name) + "-" + battleTag.code + "/";
+            return ApiUrl + "profile/" + HttpUtility.UrlEncode(battleTag.Name) + "-" + battleTag.Code + "/";
         }
 
-        public static Hero getHeroFromHeroID(BattleTag battleTag, String heroId)
+        public static Hero GetHeroFromHeroId(BattleTag battleTag, String heroId)
         {
             Hero hero;
-            using (Stream stream = dataProvider.fetchData(D3Api.getHeroUrlFromHeroId(battleTag, heroId) + apiLocaleSuffix))
+            using (var stream = DataProvider.fetchData(GetHeroUrlFromHeroId(battleTag, heroId) + ApiLocaleSuffix))
             {
-                hero = Hero.getHeroFromJSonStream(stream);
+                hero = Hero.CreateFromJSonStream(stream);
             }
             return hero;
         }
 
-        public static String getHeroUrlFromHeroId(BattleTag battleTag, String heroId)
+        public static String GetHeroUrlFromHeroId(BattleTag battleTag, String heroId)
         {
-            return getCareerUrl(battleTag) + "hero/" + heroId;
+            return GetCareerUrl(battleTag) + "hero/" + heroId;
         }
 
-        public static Item getItemFromTooltipParams(String tooltipParams)
+        public static Item GetItemFromTooltipParams(String tooltipParams)
         {
             Item item;
-            using (Stream stream = dataProvider.fetchData(D3Api.getItemUrlFromTooltipParams(tooltipParams) + apiLocaleSuffix))
+            using (var stream = DataProvider.fetchData(GetItemUrlFromTooltipParams(tooltipParams) + ApiLocaleSuffix))
             {
-                item = Item.getItemFromJSonStream(stream);
+                item = Item.CreateFromJSonStream(stream);
             }
             return item;
         }
 
-        public static String getItemUrlFromTooltipParams(String tooltipParams)
+        public static String GetItemUrlFromTooltipParams(String tooltipParams)
         {
-            return apiUrl + "data/" + tooltipParams;
+            return ApiUrl + "data/" + tooltipParams;
         }
 
-        public static String getItemIconUrl(String icon, String size)
+        public static String GetItemIconUrl(String icon, String size)
         {
-            return mediaPath + "icons/items/" + size + "/" + icon + ".png";
+            return MediaPath + "icons/items/" + size + "/" + icon + ".png";
         }
 
-        public static D3Picture getItemIcon(String icon)
+        public static D3Picture GetItemIcon(String icon)
         {
             D3Picture picture;
-            using (Stream stream = dataProvider.fetchData(D3Api.getItemIconUrl(icon, "small")))
+            using (var stream = DataProvider.fetchData(GetItemIconUrl(icon, "small")))
             {
                 picture = new D3Picture(stream);
             }
             return picture;
         }
 
-        public static D3Picture getItemIcon(String icon, String size)
+        public static D3Picture GetItemIcon(String icon, String size)
         {
             D3Picture picture;
-            using (Stream stream = dataProvider.fetchData(D3Api.getItemIconUrl(icon, size)))
+            using (var stream = DataProvider.fetchData(GetItemIconUrl(icon, size)))
             {
                 picture = new D3Picture(stream);
             }
             return picture;
         }
 
-        public static String getSkillIconUrl(String icon, String size)
+        public static String GetSkillIconUrl(String icon, String size)
         {
-            return mediaPath + "icons/skills/" + size + "/" + icon + ".png";
+            return MediaPath + "icons/skills/" + size + "/" + icon + ".png";
         }
 
-        public static D3Picture getSkillIcon(String icon)
+        public static D3Picture GetSkillIcon(String icon)
         {
-            return getSkillIcon(icon, "42");
+            return GetSkillIcon(icon, "42");
         }
 
-        public static D3Picture getSkillIcon(String icon, String size)
+        public static D3Picture GetSkillIcon(String icon, String size)
         {
             D3Picture picture;
-            using (Stream stream = dataProvider.fetchData(D3Api.getSkillIconUrl(icon, size)))
+            using (var stream = DataProvider.fetchData(GetSkillIconUrl(icon, size)))
             {
                 picture = new D3Picture(stream);
             }

@@ -28,8 +28,6 @@ namespace ZTn.BNet.D3.Calculator.Followers
                     strengthItem = new ItemValueRange(7 + 3 * follower.level);
                     vitalityItem = new ItemValueRange(9 + 2 * follower.level);
                     break;
-                default:
-                    break;
             }
 
             critDamagePercent = new ItemValueRange(0.5);

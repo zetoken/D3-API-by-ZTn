@@ -26,8 +26,8 @@ namespace ZTn.BNet.D3.Items
         {
             if (itemType != null)
             {
-                this.id = itemType.id;
-                this.twoHanded = itemType.twoHanded;
+                id = itemType.id;
+                twoHanded = itemType.twoHanded;
             }
         }
 

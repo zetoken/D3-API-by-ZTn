@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using ZTn.BNet.D3.Calculator.Helpers;
-using ZTn.BNet.D3.Calculator.Sets;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator
@@ -12,85 +11,85 @@ namespace ZTn.BNet.D3.Calculator
     {
         #region >> Fields
 
-        List<Item> items;
-        public Item mainHand;
-        Item offHand;
+        private readonly List<Item> items;
+        public Item MainHand;
+        private readonly Item offHand;
 
-        Item ambidextryWeapon;
+        private Item ambidexterityWeapon;
 
-        ItemAttributes attrLevel;
-        ItemAttributes attrParagonLevel;
+        private ItemAttributes levelAttr;
+        private ItemAttributes attrParagonLevel;
 
-        ItemAttributes addedBonus;
+        private ItemAttributes addedBonus;
 
         #endregion
 
         #region >> Constructor
 
+        /// <summary>
+        /// Creates a new <see cref="StatsItem"/> instance using existing items.
+        /// </summary>
+        /// <param name="mainHand"></param>
+        /// <param name="offHand"></param>
+        /// <param name="items"></param>
         public StatsItem(Item mainHand, Item offHand, IEnumerable<Item> items)
-            : base()
         {
-            if (mainHand != null && mainHand.isWeapon())
-                mainHand.checkAndUpdateWeaponDelta();
-            if (offHand != null && offHand.isWeapon())
-                offHand.checkAndUpdateWeaponDelta();
+            if (mainHand != null && mainHand.IsWeapon())
+            {
+                mainHand.CheckAndUpdateWeaponDelta();
+            }
+            if (offHand != null && offHand.IsWeapon())
+            {
+                offHand.CheckAndUpdateWeaponDelta();
+            }
 
             // If no mainHand is used, then use default "naked hand" weapon
-            if (mainHand != null)
-                this.mainHand = mainHand;
-            else
-                this.mainHand = D3Calculator.nakedHandWeapon;
+            MainHand = mainHand ?? D3Calculator.NakedHandWeapon;
 
             // If no offHand is used, then use default "blank" weapon
-            if (offHand != null)
-                this.offHand = offHand;
-            else
-                this.offHand = D3Calculator.blankWeapon;
+            this.offHand = offHand ?? D3Calculator.BlankWeapon;
 
             this.items = new List<Item>(items);
         }
 
         #endregion
 
-        protected ItemValueRange computeWeaponAttackPerSecondForAmbidextry()
+        private ItemValueRange ComputeWeaponAttackPerSecondForAmbidextry()
         {
-            ItemValueRange weaponAttackSpeed;
             // Right formula: 2 * 1 / ( 1 / main + 1 / off ) [found by ZTn, nowhere else at that time]
-            weaponAttackSpeed = 2 * 1 / (1 / mainHand.getRawWeaponAttackPerSecond() + 1 / offHand.getRawWeaponAttackPerSecond());
+            var weaponAttackSpeed = 2 * 1 / (1 / MainHand.GetRawWeaponAttackPerSecond() + 1 / offHand.GetRawWeaponAttackPerSecond());
 
             return weaponAttackSpeed;
         }
 
-        protected ItemAttributes computeAmbidextryWeaponAttributes()
+        protected ItemAttributes ComputeAmbidexterityWeaponAttributes()
         {
-            List<String> resists = new List<string>() { "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison" };
-            List<String> fields = new List<string>() { "damageWeaponBonusDelta_", "damageWeaponBonusMin_", "damageWeaponDelta_", "damageWeaponMin_", "damageWeaponBonusMinX1_" };
+            var resists = new List<string> { "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison" };
+            var fields = new List<string> { "damageWeaponBonusDelta_", "damageWeaponBonusMin_", "damageWeaponDelta_", "damageWeaponMin_", "damageWeaponBonusMinX1_" };
 
-            ItemAttributes attr = mainHand.attributesRaw + offHand.attributesRaw;
-            ItemAttributes mattr = mainHand.attributesRaw;
-            ItemAttributes oattr = offHand.attributesRaw;
+            var attr = MainHand.attributesRaw + offHand.attributesRaw;
 
             // Calculate attack per second
-            attr.attacksPerSecondItem = computeWeaponAttackPerSecondForAmbidextry();
+            attr.attacksPerSecondItem = ComputeWeaponAttackPerSecondForAmbidextry();
             attr.attacksPerSecondItemPercent = null;
 
             // Calculate damages of weapon
-            foreach (String resist in resists)
+            foreach (var resist in resists)
             {
-                ItemValueRange mainHandWeaponPercentBonus = mainHand.getAttributeByName("damageWeaponPercentBonus_" + resist);
-                ItemValueRange offHandWeaponPercentBonus = offHand.getAttributeByName("damageWeaponPercentBonus_" + resist);
-                foreach (String field in fields)
+                var mainHandWeaponPercentBonus = MainHand.GetAttributeByName("damageWeaponPercentBonus_" + resist);
+                var offHandWeaponPercentBonus = offHand.GetAttributeByName("damageWeaponPercentBonus_" + resist);
+                foreach (var field in fields)
                 {
-                    ItemValueRange mainHandField = mainHand.getAttributeByName(field + resist);
-                    ItemValueRange offHandField = offHand.getAttributeByName(field + resist);
-                    ItemValueRange newValue = 0.5 *
+                    var mainHandField = MainHand.GetAttributeByName(field + resist);
+                    var offHandField = offHand.GetAttributeByName(field + resist);
+                    var newValue = 0.5 *
                         (
                             mainHandField * (ItemValueRange.One + mainHandWeaponPercentBonus)
                             + offHandField * (ItemValueRange.One + offHandWeaponPercentBonus)
                         );
-                    if (newValue.min == 0)
+                    if (newValue.Min == 0)
                         newValue = null;
-                    attr.setAttributeByName(field + resist, newValue);
+                    attr.SetAttributeByName(field + resist, newValue);
                 }
             }
 
@@ -106,56 +105,50 @@ namespace ZTn.BNet.D3.Calculator
             return attr;
         }
 
-        public ItemValueRange getWeaponAttackPerSecond()
+        public ItemValueRange GetWeaponAttackPerSecond()
         {
-            ItemValueRange weaponAttackSpeed = ItemValueRange.Zero;
-            Item weapon;
-
-            if (isAmbidextry())
-                weapon = ambidextryWeapon;
-            else
-                weapon = mainHand;
+            var weapon = IsAmbidexterity() ? ambidexterityWeapon : MainHand;
 
             // Initialize with weapon attack speed
-            weaponAttackSpeed = weapon.getWeaponAttackPerSecond(attributesRaw.attacksPerSecondItem);
+            var weaponAttackSpeed = weapon.GetWeaponAttackPerSecond(attributesRaw.attacksPerSecondItem);
 
             weaponAttackSpeed *= ItemValueRange.One + attributesRaw.attacksPerSecondPercent;
 
             return weaponAttackSpeed;
         }
 
-        public ItemValueRange getWeaponDamage()
+        public ItemValueRange GetWeaponDamage()
         {
-            return this.getRawAverageWeaponDamage() + this.getRawAverageBonusDamage();
+            return this.GetRawAverageWeaponDamage() + this.GetRawAverageBonusDamage();
         }
 
-        public ItemValueRange getWeaponDamageMin()
+        public ItemValueRange GetWeaponDamageMin()
         {
-            return this.getRawWeaponDamageMin() + this.getRawBonusDamageMin();
+            return this.GetRawWeaponDamageMin() + this.GetRawBonusDamageMin();
         }
 
-        public ItemValueRange getWeaponDamageMax()
+        public ItemValueRange GetWeaponDamageMax()
         {
-            return mainHand.getRawWeaponDamageMax() + this.getRawWeaponDamageMax() + this.getRawBonusDamageMax();
+            return MainHand.GetRawWeaponDamageMax() + this.GetRawWeaponDamageMax() + this.GetRawBonusDamageMax();
         }
 
-        public Boolean isAmbidextry()
+        public Boolean IsAmbidexterity()
         {
-            return offHand.isWeapon();
+            return offHand.IsWeapon();
         }
 
-        public void update()
+        public void Update()
         {
             attributesRaw = new ItemAttributes();
 
             // Add bonus from level and paragon
-            if (attrLevel != null)
-                attributesRaw += attrLevel;
+            if (levelAttr != null)
+                attributesRaw += levelAttr;
             if (attrParagonLevel != null)
                 attributesRaw += attrParagonLevel;
 
             // Build a list of all items with fields
-            List<Item> stuff = new List<Item>(items);
+            var stuff = new List<Item>(items);
 
             // Add bonus (skills, buffs)
             if (addedBonus != null)
@@ -164,75 +157,75 @@ namespace ZTn.BNet.D3.Calculator
             }
 
             // Merge gems with their items
-            foreach (Item item in items.Where(item => item.gems != null))
+            foreach (var item in items.Where(item => item.gems != null))
             {
-                item.mergeSocketedGems();
+                item.MergeSocketedGems();
             }
-            if (mainHand.gems != null)
+            if (MainHand.gems != null)
             {
-                mainHand.mergeSocketedGems();
+                MainHand.MergeSocketedGems();
             }
             if (offHand.gems != null)
             {
-                offHand.mergeSocketedGems();
+                offHand.MergeSocketedGems();
             }
 
             // Add items
-            foreach (Item item in stuff)
+            foreach (var item in stuff)
             {
                 attributesRaw += item.attributesRaw;
             }
 
             // Add weapons - Note: we don't want attackPerSecondItem to include weapon's value, only stuff or skills bonuses
-            ItemValueRange attackPerSecondItem = attributesRaw.attacksPerSecondItem;
-            if (isAmbidextry())
+            var attackPerSecondItem = attributesRaw.attacksPerSecondItem;
+            if (IsAmbidexterity())
             {
-                ambidextryWeapon = new Item(computeAmbidextryWeaponAttributes());
-                attributesRaw += ambidextryWeapon.attributesRaw;
+                ambidexterityWeapon = new Item(ComputeAmbidexterityWeaponAttributes());
+                attributesRaw += ambidexterityWeapon.attributesRaw;
                 // Ambidextry gets a 15% attack speed bonus
-                attributesRaw += new ItemAttributes() { attacksPerSecondPercent = new ItemValueRange(0.15) };
+                attributesRaw += new ItemAttributes { attacksPerSecondPercent = new ItemValueRange(0.15) };
             }
             else
             {
-                attributesRaw += mainHand.attributesRaw;
+                attributesRaw += MainHand.attributesRaw;
                 attributesRaw += offHand.attributesRaw;
             }
             attributesRaw.attacksPerSecondItem = attackPerSecondItem;
         }
 
-        public void setLevelBonus(ItemAttributes itemLevel)
+        public void SetLevelBonus(ItemAttributes levelAttr)
         {
-            this.attrLevel = itemLevel;
+            this.levelAttr = levelAttr;
         }
 
-        public void setParagonLevelBonus(ItemAttributes itemParagonLevel)
+        public void SetParagonLevelBonus(ItemAttributes itemParagonLevel)
         {
-            this.attrParagonLevel = itemParagonLevel;
+            attrParagonLevel = itemParagonLevel;
         }
 
-        public void setSkillsBonus(ItemAttributes addedBonus)
+        public void SetSkillsBonus(ItemAttributes addedBonus)
         {
             this.addedBonus = addedBonus;
         }
 
-        public List<Set> getActivatedSets()
+        public List<Set> GetActivatedSets()
         {
-            List<Item> allItems = new List<Item>();
+            var allItems = new List<Item>();
             allItems.AddRange(items);
-            allItems.Add(mainHand);
+            allItems.Add(MainHand);
             allItems.Add(offHand);
 
-            return allItems.getActivatedSets();
+            return allItems.GetActivatedSets();
         }
 
-        public ItemAttributes getActivatedSetBonus()
+        public ItemAttributes GetActivatedSetBonus()
         {
-            List<Item> allItems = new List<Item>();
+            var allItems = new List<Item>();
             allItems.AddRange(items);
-            allItems.Add(mainHand);
+            allItems.Add(MainHand);
             allItems.Add(offHand);
 
-            return allItems.getActivatedSetBonus();
+            return allItems.GetActivatedSetBonus();
         }
     }
 }

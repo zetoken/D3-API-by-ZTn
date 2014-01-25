@@ -3,6 +3,9 @@ using System.Runtime.Serialization;
 
 namespace ZTn.BNet.D3.Items
 {
+    /// <summary>
+    /// Represents a range of values from <see cref="Min"/> to <see cref="Max"/>.
+    /// </summary>
     [DataContract]
     public class ItemValueRange
     {
@@ -11,10 +14,11 @@ namespace ZTn.BNet.D3.Items
 
         #region >> Properties
 
-        [DataMember]
-        public double min;
-        [DataMember]
-        public double max;
+        [DataMember(Name = "min")]
+        public double Min;
+
+        [DataMember(Name = "max")]
+        public double Max;
 
         #endregion
 
@@ -25,28 +29,37 @@ namespace ZTn.BNet.D3.Items
         }
 
         /// <summary>
-        /// Creates a new instance by copying fields of <paramref name="valueRange"/> (deep copy).
+        /// Creates a new <see cref="ItemValueRange"/> instance by copying fields of <paramref name="valueRange"/> (deep copy).
         /// </summary>
         /// <param name="valueRange"></param>
         public ItemValueRange(ItemValueRange valueRange)
         {
             if (valueRange != null)
             {
-                this.min = valueRange.min;
-                this.max = valueRange.max;
+                Min = valueRange.Min;
+                Max = valueRange.Max;
             }
         }
 
+        /// <summary>
+        /// Creates a new <see cref="ItemValueRange"/> instance using <paramref name="value"/> as Min and Max.
+        /// </summary>
+        /// <param name="value"></param>
         public ItemValueRange(double value)
         {
-            this.min = value;
-            this.max = value;
+            Min = value;
+            Max = value;
         }
 
+        /// <summary>
+        /// Creates a new <see cref="ItemValueRange"/> instance with given Min and Max.
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
         public ItemValueRange(double min, double max)
         {
-            this.min = min;
-            this.max = max;
+            Min = min;
+            Max = max;
         }
 
         #endregion
@@ -56,71 +69,56 @@ namespace ZTn.BNet.D3.Items
         public static ItemValueRange operator +(ItemValueRange left, ItemValueRange right)
         {
             if (left == null)
+            {
                 return right;
-            else if (right == null)
-                return left;
-            else
-                return new ItemValueRange(left.min + right.min, left.max + right.max);
+            }
+
+            return right == null ? left : new ItemValueRange(left.Min + right.Min, left.Max + right.Max);
         }
 
         public static ItemValueRange operator +(ItemValueRange left, double right)
         {
-            if (left == null)
-                return new ItemValueRange(right);
-            else
-                return new ItemValueRange(left.min + right, left.max + right);
+            return left == null ? new ItemValueRange(right) : new ItemValueRange(left.Min + right, left.Max + right);
         }
 
         public static ItemValueRange operator +(double left, ItemValueRange right)
         {
-            if (right == null)
-                return new ItemValueRange(left);
-            else
-                return new ItemValueRange(left + right.min, left + right.max);
+            return right == null ? new ItemValueRange(left) : new ItemValueRange(left + right.Min, left + right.Max);
         }
 
         public static ItemValueRange operator -(ItemValueRange left, ItemValueRange right)
         {
             if (left == null)
-                return ItemValueRange.Zero - right;
-            else if (right == null)
-                return new ItemValueRange(left);
-            else
-                return new ItemValueRange(left.min - right.min, left.max - right.max);
+            {
+                return Zero - right;
+            }
+
+            return right == null ? new ItemValueRange(left) : new ItemValueRange(left.Min - right.Min, left.Max - right.Max);
         }
 
         public static ItemValueRange operator -(ItemValueRange left, double right)
         {
-            if (left == null)
-                return new ItemValueRange(0 - right);
-            else
-                return new ItemValueRange(left.min - right, left.max - right);
+            return left == null ? new ItemValueRange(0 - right) : new ItemValueRange(left.Min - right, left.Max - right);
         }
 
         public static ItemValueRange operator -(double left, ItemValueRange right)
         {
-            if (right == null)
-                return new ItemValueRange(right);
-            else
-                return new ItemValueRange(left - right.min, left - right.max);
+            return right == null ? new ItemValueRange(left) : new ItemValueRange(left - right.Min, left - right.Max);
         }
 
         public static ItemValueRange operator *(ItemValueRange left, ItemValueRange right)
         {
             if (left == null)
+            {
                 return Zero;
-            else if (right == null)
-                return Zero;
-            else
-                return new ItemValueRange(left.min * right.min, left.max * right.max);
+            }
+
+            return right == null ? Zero : new ItemValueRange(left.Min * right.Min, left.Max * right.Max);
         }
 
         public static ItemValueRange operator *(ItemValueRange left, double right)
         {
-            if (left == null)
-                return Zero;
-            else
-                return new ItemValueRange(left.min * right, left.max * right);
+            return left == null ? Zero : new ItemValueRange(left.Min * right, left.Max * right);
         }
 
         public static ItemValueRange operator *(double left, ItemValueRange right)
@@ -131,27 +129,31 @@ namespace ZTn.BNet.D3.Items
         public static ItemValueRange operator /(ItemValueRange left, ItemValueRange right)
         {
             if (left == null)
+            {
                 return Zero;
-            else if (right == null)
-                throw new DivideByZeroException();
-            else
-                return new ItemValueRange(left.min / right.min, left.max / right.max);
+            }
+
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
+
+            return new ItemValueRange(left.Min / right.Min, left.Max / right.Max);
         }
 
         public static ItemValueRange operator /(ItemValueRange left, double right)
         {
-            if (left == null)
-                return Zero;
-            else
-                return new ItemValueRange(left.min / right, left.max / right);
+            return left == null ? Zero : new ItemValueRange(left.Min / right, left.Max / right);
         }
 
         public static ItemValueRange operator /(double left, ItemValueRange right)
         {
             if (right == null)
-                throw new DivideByZeroException();
-            else
-                return new ItemValueRange(left / right.min, left / right.max);
+            {
+                throw new ArgumentNullException("right");
+            }
+
+            return new ItemValueRange(left / right.Min, left / right.Max);
         }
 
         #endregion
@@ -161,7 +163,7 @@ namespace ZTn.BNet.D3.Items
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + min + "-" + max + "]";
+            return "[" + Min + "-" + Max + "]";
         }
 
         #endregion

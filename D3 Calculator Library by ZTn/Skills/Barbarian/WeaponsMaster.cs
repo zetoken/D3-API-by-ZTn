@@ -1,6 +1,6 @@
-﻿
-using ZTn.BNet.D3.Heroes;
+﻿using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
+
 namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
 {
     public sealed class WeaponsMaster : ID3SkillModifier
@@ -8,21 +8,21 @@ namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Barbarian; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "weapons-master"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            switch (calculator.heroStatsItem.mainHand.type.id)
+            switch (calculator.HeroStatsItem.MainHand.type.id)
             {
                 case "Sword":
                 case "Sword2H":
@@ -32,10 +32,10 @@ namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
                 case "Axe2H":
                 case "Mace":
                 case "Mace2H":
-                    return getBonus_MaceAxe(calculator);
+                    return getBonus_MaceAxe();
                 case "Polearm":
                 case "Spear":
-                    return getBonus_PolearmSpear(calculator);
+                    return getBonus_PolearmSpear();
                 default:
                     return new ItemAttributes();
             }
@@ -43,19 +43,19 @@ namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
 
         #endregion
 
-        ItemAttributes getBonus_MaceAxe(D3Calculator calculator)
+        static ItemAttributes getBonus_MaceAxe()
         {
-            return new ItemAttributes() { critPercentBonusCapped = new ItemValueRange(0.10) };
+            return new ItemAttributes { critPercentBonusCapped = new ItemValueRange(0.10) };
         }
 
-        ItemAttributes getBonus_PolearmSpear(D3Calculator calculator)
+        static ItemAttributes getBonus_PolearmSpear()
         {
-            return new ItemAttributes() { attacksPerSecondItem = new ItemValueRange(0.10) };
+            return new ItemAttributes { attacksPerSecondItem = new ItemValueRange(0.10) };
         }
 
-        ItemAttributes getBonus_SwordDagger(D3Calculator calculator)
+        static ItemAttributes getBonus_SwordDagger(D3Calculator calculator)
         {
-            return new DamageMultiplier(0.15).getBonus(calculator);
+            return new DamageMultiplier(0.15).GetBonus(calculator);
         }
     }
 }

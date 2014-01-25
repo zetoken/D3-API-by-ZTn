@@ -8,22 +8,22 @@ namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.DemonHunter; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "sharp-shooter"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            ItemAttributes stuff = calculator.heroStatsItem.attributesRaw;
-            ItemAttributes attr = new ItemAttributes();
+            var stuff = calculator.HeroStatsItem.attributesRaw;
+            var attr = new ItemAttributes();
 
             if (stuff.critPercentBonusCapped != null)
                 attr.critPercentBonusCapped = ItemValueRange.One - stuff.critPercentBonusCapped;

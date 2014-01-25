@@ -66,29 +66,29 @@ namespace ZTn.BNet.D3.Items
         /// <param name="item"></param>
         public Item(Item item)
         {
-            D3DeepCopy.deepCopy<Item>(item, this);
+            D3DeepCopy.DeepCopy<Item>(item, this);
         }
 
         public Item(ItemAttributes itemAttributes)
         {
-            this.attributesRaw = itemAttributes;
+            attributesRaw = itemAttributes;
         }
 
         #endregion
 
-        public static Item getItemFromTooltipParams(String tooltipParams)
+        public static Item CreateFromTooltipParams(String tooltipParams)
         {
-            return D3Api.getItemFromTooltipParams(tooltipParams);
+            return D3Api.GetItemFromTooltipParams(tooltipParams);
         }
 
-        public static Item getItemFromJSonStream(Stream stream)
+        public static Item CreateFromJSonStream(Stream stream)
         {
-            return JsonHelpers.getFromJSonStream<Item>(stream);
+            return stream.CreateFromJsonStream<Item>();
         }
 
-        public static Item getItemFromJSonString(String json)
+        public static Item CreateFromJSonString(String json)
         {
-            return JsonHelpers.getFromJSonString<Item>(json);
+            return json.CreateFromJsonString<Item>();
         }
     }
 }

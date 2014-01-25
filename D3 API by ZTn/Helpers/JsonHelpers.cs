@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace ZTn.BNet.D3.Helpers
 {
-    public sealed class JsonHelpers
+    public static class JsonHelpers
     {
+        #region >> Obsolete methods
+
         /// <summary>
         /// Deserialize the object of type <typeparamref name="T"/> from the <paramref name="stream"/>.
         /// The stream is safely disposed by the method.
@@ -14,11 +16,12 @@ namespace ZTn.BNet.D3.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="stream"></param>
         /// <returns></returns>
-        public static T getFromJSonStream<T>(Stream stream)
+        [Obsolete("Use CreateFromJsonStream<T>")]
+        public static T GetFromJSonStream<T>(Stream stream)
         {
-            JsonSerializer serializer = new JsonSerializer();
+            var serializer = new JsonSerializer();
             T data;
-            using (StreamReader streamReader = new StreamReader(stream))
+            using (var streamReader = new StreamReader(stream))
             {
                 data = (T)serializer.Deserialize(streamReader, typeof(T));
             }
@@ -32,9 +35,10 @@ namespace ZTn.BNet.D3.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="stream"></param>
         /// <returns></returns>
-        public static T getFromJSonPersistentStream<T>(Stream stream)
+        [Obsolete("Use CreateFromJsonPersistentStream<T>")]
+        public static T GetFromJSonPersistentStream<T>(Stream stream)
         {
-            JsonSerializer serializer = new JsonSerializer();
+            var serializer = new JsonSerializer();
             return (T)serializer.Deserialize(new StreamReader(stream), typeof(T));
         }
 
@@ -44,12 +48,13 @@ namespace ZTn.BNet.D3.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="json">Json formatted string of type <typeparamref name="T"/>.</param>
         /// <returns></returns>
-        public static T getFromJSonString<T>(String json)
+        [Obsolete("Use CreateFromJsonString<T>")]
+        public static T GetFromJSonString<T>(String json)
         {
             T datas;
-            using (MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(json)))
+            using (var stream = new MemoryStream(Encoding.Default.GetBytes(json)))
             {
-                datas = getFromJSonStream<T>(stream);
+                datas = GetFromJSonStream<T>(stream);
             }
             return datas;
         }
@@ -60,51 +65,139 @@ namespace ZTn.BNet.D3.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="fileName">File path and name containing json formatted string of type <typeparamref name="T"/>.</param>
         /// <returns></returns>
-        public static T getFromJsonFile<T>(String fileName)
+        [Obsolete("Use CreateFromJsonFile<T>")]
+        public static T GetFromJsonFile<T>(String fileName)
         {
             T datas;
-            using (FileStream fileStream = new FileStream(fileName, FileMode.Open))
+            using (var fileStream = new FileStream(fileName, FileMode.Open))
             {
-                datas = getFromJSonStream<T>(fileStream);
+                datas = GetFromJSonStream<T>(fileStream);
             }
             return datas;
         }
 
+        #endregion
+
         /// <summary>
-        /// Writes (serializes) an instance to a new json formatted file.
+        /// Reads (deserializes) an instance of type <typeparamref Name="T"/> from a JSON stream.
+        /// The stream is safely disposed by the method.
+        /// </summary>
+        /// <typeparam name="T">Target instance type.</typeparam>
+        /// <param name="stream">JSON source stream.</param>
+        /// <returns>A new instance of <typeparamref Name="T"/> read from <paramref Name="stream"/>.</returns>
+        public static T CreateFromJsonStream<T>(this Stream stream)
+        {
+            var serializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.Auto };
+            T data;
+
+            using (var streamReader = new StreamReader(stream))
+            {
+                data = (T)serializer.Deserialize(streamReader, typeof(T));
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// Reads (deserializes) an instance of type <typeparamref Name="T"/> from a JSON stream.
+        /// Warning: the stream is not closed and must be disposed by the caller.
+        /// </summary>
+        /// <typeparam name="T">Target instance type.</typeparam>
+        /// <param name="stream">JSON source stream.</param>
+        /// <returns>A new instance of <typeparamref Name="T"/> read from <paramref Name="stream"/>.</returns>
+        public static T CreateFromJsonPersistentStream<T>(this Stream stream)
+        {
+            var serializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.Auto };
+
+            var streamReader = new StreamReader(stream);
+            var data = (T)serializer.Deserialize(streamReader, typeof(T));
+
+            return data;
+        }
+
+        /// <summary>
+        /// Reads (deserializes) an instance of type <typeparamref Name="T"/> from a JSON string.
+        /// </summary>
+        /// <typeparam name="T">Target instance type.</typeparam>
+        /// <param name="json">JSON source string.</param>
+        /// <returns>A new instance of <typeparamref Name="T"/> read from <paramref Name="json"/>.</returns>
+        public static T CreateFromJsonString<T>(this String json)
+        {
+            T data;
+
+            using (var stream = new MemoryStream(Encoding.Default.GetBytes(json)))
+            {
+                data = CreateFromJsonStream<T>(stream);
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// Reads (deserializes) an instance of type <typeparamref Name="T"/> from a JSON file.
+        /// </summary>
+        /// <typeparam name="T">Target instance type.</typeparam>
+        /// <param name="fileName">JSON source path and filename.</param>
+        /// <returns>A new instance of <typeparamref Name="T"/> read from <paramref Name="fileName"/>.</returns>
+        public static T CreateFromJsonFile<T>(this String fileName)
+        {
+            T data;
+
+            using (var fileStream = new FileStream(fileName, FileMode.Open))
+            {
+                data = CreateFromJsonStream<T>(fileStream);
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// Writes (serializes) an instance to a JSON file.
         /// </summary>
         /// <param name="instance"></param>
         /// <param name="fileName"></param>
-        public static void writeToJsonFile(Object instance, String fileName)
+        public static void WriteToJsonFile(this Object instance, String fileName)
         {
-            JsonSerializer serializer = new JsonSerializer() { Formatting = Formatting.Indented };
+            instance.WriteToJsonFile(fileName, false);
+        }
 
-            using (StreamWriter streamWriter = new StreamWriter(fileName))
+        /// <summary>
+        /// Writes (serializes) an instance to a JSON file.
+        /// </summary>
+        /// <param name="instance"></param>
+        /// <param name="fileName"></param>
+        /// <param name="indented"></param>
+        public static void WriteToJsonFile(this Object instance, String fileName, bool indented)
+        {
+            var formatting = (indented ? Formatting.Indented : Formatting.None);
+
+            var serializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.Auto, Formatting = formatting };
+
+            using (var streamWriter = new StreamWriter(fileName))
             {
                 serializer.Serialize(streamWriter, instance);
             }
         }
 
-        #region >> Deprecated methods
-
-        [Obsolete("Deprecated - Prefer JsonHelpers.getFromJSonStream<T>(Stream)")]
-        public static List<T> getDataFromJSonStream<T>(Stream stream)
+        /// <summary>
+        /// Writes (serializes) an instance to a json string.
+        /// </summary>
+        /// <param name="instance"></param>
+        public static string WriteToJsonString(this Object instance)
         {
-            return getFromJSonStream<List<T>>(stream);
+            return instance.WriteToJsonString(false);
         }
 
-        [Obsolete("Deprecated - Prefer JsonHelpers.getFromJSonString<T>(String)")]
-        public static List<T> getDataFromJSonString<T>(String json)
+        /// <summary>
+        /// Writes (serializes) an instance to a json string.
+        /// </summary>
+        /// <param name="instance"></param>
+        /// <param name="indented"></param>
+        public static string WriteToJsonString(this Object instance, bool indented)
         {
-            return getFromJSonString<List<T>>(json);
-        }
+            var formatting = (indented ? Formatting.Indented : Formatting.None);
 
-        [Obsolete("Deprecated - Prefer JsonHelpers.getFromJSonFile<T>(String)")]
-        public static List<T> getDataFromJsonFile<T>(String fileName)
-        {
-            return getFromJsonFile<List<T>>(fileName);
+            return JsonConvert.SerializeObject(instance, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, Formatting = formatting });
         }
-
-        #endregion
     }
 }

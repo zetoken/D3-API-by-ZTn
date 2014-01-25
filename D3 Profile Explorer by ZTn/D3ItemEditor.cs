@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-
 using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Items;
 
-namespace ZTn.BNet.D3.Calculator
+namespace ZTn.BNet.D3ProfileExplorer
 {
     public partial class D3ItemEditor : UserControl
     {
@@ -15,15 +14,15 @@ namespace ZTn.BNet.D3.Calculator
         List<GemsListViewItem> gems2;
         List<GemsListViewItem> gems3;
 
-        public KnownGems knownGems { get; set; }
+        public KnownGems KnownGems { get; set; }
 
         public D3ItemEditor()
         {
             InitializeComponent();
 
-            List<String> typeIdSource = new List<String>() { "", "Generic Armor" };
-            typeIdSource.AddRange(ItemHelper.weaponTypeIds);
-            typeIdSource.AddRange(ItemHelper.helmTypeIds);
+            var typeIdSource = new List<String> { "", "Generic Armor" };
+            typeIdSource.AddRange(ItemHelper.WeaponTypeIds);
+            typeIdSource.AddRange(ItemHelper.HelmTypeIds);
             guiItemTypeId.Items.AddRange(typeIdSource.ToArray());
         }
 
@@ -31,246 +30,245 @@ namespace ZTn.BNet.D3.Calculator
 
         private class GemsListViewItem
         {
-            public Item item;
-            public string label { get; private set; }
+            public readonly Item Item;
+            public string Label { get; private set; }
 
             public GemsListViewItem(Item item)
             {
-                this.item = item;
-                this.label = item.attributes.FirstOrDefault();
+                Item = item;
+                Label = item.attributes.FirstOrDefault();
             }
         }
 
         #endregion
 
-        private void populateData(TextBox textBox, ItemValueRange itemValueRange)
+        private static void PopulateData(TextBox textBox, ItemValueRange itemValueRange)
         {
-            if (itemValueRange != null && itemValueRange.min != 0)
-                textBox.Text = itemValueRange.min.ToString();
+            if (itemValueRange != null && itemValueRange.Min != 0)
+            {
+                textBox.Text = itemValueRange.Min.ToString();
+            }
             else
+            {
                 textBox.Text = String.Empty;
+            }
         }
 
-        private void populateDataPercent(TextBox textBox, ItemValueRange itemValueRange)
+        private static void PopulateDataPercent(TextBox textBox, ItemValueRange itemValueRange)
         {
-            if (itemValueRange != null && itemValueRange.min != 0)
-                textBox.Text = (100 * itemValueRange.min).ToString();
+            if (itemValueRange != null && itemValueRange.Min != 0)
+            {
+                textBox.Text = (100 * itemValueRange.Min).ToString();
+            }
             else
+            {
                 textBox.Text = String.Empty;
+            }
         }
 
-        private ItemValueRange getData(TextBox textBox)
+        private static ItemValueRange GetData(TextBox textBox)
         {
-            ItemValueRange data;
-
-            if (String.IsNullOrEmpty(textBox.Text))
-                data = null;
-            else
-                data = new ItemValueRange(Double.Parse(textBox.Text));
-            return data;
+            return String.IsNullOrEmpty(textBox.Text) ? null : new ItemValueRange(Double.Parse(textBox.Text));
         }
 
         private ItemValueRange getDataPercent(TextBox textBox)
         {
-            ItemValueRange data;
-
-            if (String.IsNullOrEmpty(textBox.Text))
-                data = null;
-            else
-                data = new ItemValueRange(Double.Parse(textBox.Text) / 100);
-            return data;
+            return String.IsNullOrEmpty(textBox.Text) ? null : new ItemValueRange(Double.Parse(textBox.Text) / 100);
         }
 
-        private void selectActiveGem(ComboBox comboBox, List<GemsListViewItem> refGems, ItemSummary equippedGem)
+        private void selectActiveGem(ComboBox comboBox, IEnumerable<GemsListViewItem> refGems, ItemSummary equippedGem)
         {
             if (equippedGem != null)
             {
-                comboBox.SelectedItem = refGems.Where(g => equippedGem.id == g.item.id).First();
+                comboBox.SelectedItem = refGems.First(g => equippedGem.id == g.Item.id);
             }
         }
 
-        public void setEditedItem(Item item)
+        public void SetEditedItem(Item item)
         {
             Tag = item;
-            if (item != null)
+
+            if (item == null)
             {
-                guiItemName.Text = item.name;
-                guiItemId.Text = item.id;
-                guiItemTypeId.Text = (item.type != null ? item.type.id : "");
+                return;
+            }
 
-                item = item.simplify();
+            guiItemName.Text = item.name;
+            guiItemId.Text = item.id;
+            guiItemTypeId.Text = (item.type != null ? item.type.id : "");
 
-                ItemAttributes attr = item.attributesRaw;
+            item = item.Simplify();
 
-                // Characteristics
-                populateData(guiDexterity, attr.dexterityItem);
-                populateData(guiIntelligence, attr.intelligenceItem);
-                populateData(guiStrength, attr.strengthItem);
-                populateData(guiVitality, attr.vitalityItem);
-                populateDataPercent(guiAttackSpeed, attr.attacksPerSecondPercent);
-                populateDataPercent(guiCriticDamage, attr.critDamagePercent);
-                populateDataPercent(guiCriticChance, attr.critPercentBonusCapped);
-                populateDataPercent(guiHitpointsMaxPercent, attr.hitpointsMaxPercentBonusItem);
-                populateData(guiArmor, attr.armorItem);
-                populateData(guiHitpointsOnHit, attr.hitpointsOnHit);
-                populateData(guiHitpointsRegenPerSecond, attr.hitpointsRegenPerSecond);
-                populateDataPercent(guiLifeSteal, attr.stealHealthPercent);
+            var attr = item.attributesRaw;
 
-                // Weapon characterics
-                populateData(guiWeaponAttackPerSecond, attr.attacksPerSecondItem);
-                populateData(guiWeaponDamageMinArcane, attr.damageWeaponMin_Arcane);
-                populateData(guiWeaponDamageMinCold, attr.damageWeaponMin_Cold);
-                populateData(guiWeaponDamageMinFire, attr.damageWeaponMin_Fire);
-                populateData(guiWeaponDamageMinHoly, attr.damageWeaponMin_Holy);
-                populateData(guiWeaponDamageMinLightning, attr.damageWeaponMin_Lightning);
-                populateData(guiWeaponDamageMinPhysical, attr.damageWeaponMin_Physical * (1 + attr.damageWeaponPercentBonus_Physical));
-                populateData(guiWeaponDamageMinPoison, attr.damageWeaponMin_Poison);
+            // Characteristics
+            PopulateData(guiDexterity, attr.dexterityItem);
+            PopulateData(guiIntelligence, attr.intelligenceItem);
+            PopulateData(guiStrength, attr.strengthItem);
+            PopulateData(guiVitality, attr.vitalityItem);
+            PopulateDataPercent(guiAttackSpeed, attr.attacksPerSecondPercent);
+            PopulateDataPercent(guiCriticDamage, attr.critDamagePercent);
+            PopulateDataPercent(guiCriticChance, attr.critPercentBonusCapped);
+            PopulateDataPercent(guiHitpointsMaxPercent, attr.hitpointsMaxPercentBonusItem);
+            PopulateData(guiArmor, attr.armorItem);
+            PopulateData(guiHitpointsOnHit, attr.hitpointsOnHit);
+            PopulateData(guiHitpointsRegenPerSecond, attr.hitpointsRegenPerSecond);
+            PopulateDataPercent(guiLifeSteal, attr.stealHealthPercent);
 
-                populateData(guiWeaponDamageMaxArcane, attr.damageWeaponMin_Arcane + attr.damageWeaponDelta_Arcane);
-                populateData(guiWeaponDamageMaxCold, attr.damageWeaponMin_Cold + attr.damageWeaponDelta_Cold);
-                populateData(guiWeaponDamageMaxFire, attr.damageWeaponMin_Fire + attr.damageWeaponDelta_Fire);
-                populateData(guiWeaponDamageMaxHoly, attr.damageWeaponMin_Holy + attr.damageWeaponDelta_Holy);
-                populateData(guiWeaponDamageMaxLightning, attr.damageWeaponMin_Lightning + attr.damageWeaponDelta_Lightning);
-                populateData(guiWeaponDamageMaxPhysical, (attr.damageWeaponMin_Physical + attr.damageWeaponDelta_Physical) * (1 + attr.damageWeaponPercentBonus_Physical));
-                populateData(guiWeaponDamageMaxPoison, attr.damageWeaponMin_Poison + attr.damageWeaponDelta_Poison);
+            // Weapon characterics
+            PopulateData(guiWeaponAttackPerSecond, attr.attacksPerSecondItem);
+            PopulateData(guiWeaponDamageMinArcane, attr.damageWeaponMin_Arcane);
+            PopulateData(guiWeaponDamageMinCold, attr.damageWeaponMin_Cold);
+            PopulateData(guiWeaponDamageMinFire, attr.damageWeaponMin_Fire);
+            PopulateData(guiWeaponDamageMinHoly, attr.damageWeaponMin_Holy);
+            PopulateData(guiWeaponDamageMinLightning, attr.damageWeaponMin_Lightning);
+            PopulateData(guiWeaponDamageMinPhysical, attr.damageWeaponMin_Physical * (1 + attr.damageWeaponPercentBonus_Physical));
+            PopulateData(guiWeaponDamageMinPoison, attr.damageWeaponMin_Poison);
 
-                populateDataPercent(guiWeaponDamagePercentBonus, attr.damageWeaponPercentBonus_Physical);
+            PopulateData(guiWeaponDamageMaxArcane, attr.damageWeaponMin_Arcane + attr.damageWeaponDelta_Arcane);
+            PopulateData(guiWeaponDamageMaxCold, attr.damageWeaponMin_Cold + attr.damageWeaponDelta_Cold);
+            PopulateData(guiWeaponDamageMaxFire, attr.damageWeaponMin_Fire + attr.damageWeaponDelta_Fire);
+            PopulateData(guiWeaponDamageMaxHoly, attr.damageWeaponMin_Holy + attr.damageWeaponDelta_Holy);
+            PopulateData(guiWeaponDamageMaxLightning, attr.damageWeaponMin_Lightning + attr.damageWeaponDelta_Lightning);
+            PopulateData(guiWeaponDamageMaxPhysical, (attr.damageWeaponMin_Physical + attr.damageWeaponDelta_Physical) * (1 + attr.damageWeaponPercentBonus_Physical));
+            PopulateData(guiWeaponDamageMaxPoison, attr.damageWeaponMin_Poison + attr.damageWeaponDelta_Poison);
 
-                // Item damage bonuses
-                populateData(guiBonusDamageMinArcane, attr.damageMin_Arcane);
-                populateData(guiBonusDamageMinCold, attr.damageMin_Cold);
-                populateData(guiBonusDamageMinFire, attr.damageMin_Fire);
-                populateData(guiBonusDamageMinHoly, attr.damageMin_Holy);
-                populateData(guiBonusDamageMinLightning, attr.damageMin_Lightning);
-                populateData(guiBonusDamageMinPhysical, attr.damageMin_Physical);
-                populateData(guiBonusDamageMinPoison, attr.damageMin_Poison);
+            PopulateDataPercent(guiWeaponDamagePercentBonus, attr.damageWeaponPercentBonus_Physical);
 
-                populateData(guiBonusDamageMaxArcane, attr.damageMin_Arcane + attr.damageDelta_Arcane);
-                populateData(guiBonusDamageMaxCold, attr.damageMin_Cold + attr.damageDelta_Cold);
-                populateData(guiBonusDamageMaxFire, attr.damageMin_Fire + attr.damageDelta_Fire);
-                populateData(guiBonusDamageMaxHoly, attr.damageMin_Holy + attr.damageDelta_Holy);
-                populateData(guiBonusDamageMaxLightning, attr.damageMin_Lightning + attr.damageDelta_Lightning);
-                populateData(guiBonusDamageMaxPhysical, attr.damageMin_Physical + attr.damageDelta_Physical);
-                populateData(guiBonusDamageMaxPoison, attr.damageMin_Poison + attr.damageDelta_Poison);
+            // Item damage bonuses
+            PopulateData(guiBonusDamageMinArcane, attr.damageMin_Arcane);
+            PopulateData(guiBonusDamageMinCold, attr.damageMin_Cold);
+            PopulateData(guiBonusDamageMinFire, attr.damageMin_Fire);
+            PopulateData(guiBonusDamageMinHoly, attr.damageMin_Holy);
+            PopulateData(guiBonusDamageMinLightning, attr.damageMin_Lightning);
+            PopulateData(guiBonusDamageMinPhysical, attr.damageMin_Physical);
+            PopulateData(guiBonusDamageMinPoison, attr.damageMin_Poison);
 
-                populateDataPercent(guiBonusDamagePercentArcane, attr.damageTypePercentBonus_Arcane);
-                populateDataPercent(guiBonusDamagePercentCold, attr.damageTypePercentBonus_Cold);
-                populateDataPercent(guiBonusDamagePercentFire, attr.damageTypePercentBonus_Fire);
-                populateDataPercent(guiBonusDamagePercentHoly, attr.damageTypePercentBonus_Holy);
-                populateDataPercent(guiBonusDamagePercentLightning, attr.damageTypePercentBonus_Lightning);
-                populateDataPercent(guiBonusDamagePercentPhysical, attr.damageTypePercentBonus_Physical);
-                populateDataPercent(guiBonusDamagePercentPoison, attr.damageTypePercentBonus_Poison);
+            PopulateData(guiBonusDamageMaxArcane, attr.damageMin_Arcane + attr.damageDelta_Arcane);
+            PopulateData(guiBonusDamageMaxCold, attr.damageMin_Cold + attr.damageDelta_Cold);
+            PopulateData(guiBonusDamageMaxFire, attr.damageMin_Fire + attr.damageDelta_Fire);
+            PopulateData(guiBonusDamageMaxHoly, attr.damageMin_Holy + attr.damageDelta_Holy);
+            PopulateData(guiBonusDamageMaxLightning, attr.damageMin_Lightning + attr.damageDelta_Lightning);
+            PopulateData(guiBonusDamageMaxPhysical, attr.damageMin_Physical + attr.damageDelta_Physical);
+            PopulateData(guiBonusDamageMaxPoison, attr.damageMin_Poison + attr.damageDelta_Poison);
 
-                // Resistances
-                populateData(guiResistance_All, attr.resistance_All);
-                populateData(guiResistance_Arcane, attr.resistance_Arcane);
-                populateData(guiResistance_Cold, attr.resistance_Cold);
-                populateData(guiResistance_Fire, attr.resistance_Fire);
-                populateData(guiResistance_Lightning, attr.resistance_Lightning);
-                populateData(guiResistance_Physical, attr.resistance_Physical);
-                populateData(guiResistance_Poison, attr.resistance_Poison);
+            PopulateDataPercent(guiBonusDamagePercentArcane, attr.damageTypePercentBonus_Arcane);
+            PopulateDataPercent(guiBonusDamagePercentCold, attr.damageTypePercentBonus_Cold);
+            PopulateDataPercent(guiBonusDamagePercentFire, attr.damageTypePercentBonus_Fire);
+            PopulateDataPercent(guiBonusDamagePercentHoly, attr.damageTypePercentBonus_Holy);
+            PopulateDataPercent(guiBonusDamagePercentLightning, attr.damageTypePercentBonus_Lightning);
+            PopulateDataPercent(guiBonusDamagePercentPhysical, attr.damageTypePercentBonus_Physical);
+            PopulateDataPercent(guiBonusDamagePercentPoison, attr.damageTypePercentBonus_Poison);
 
-                // Shield
-                populateDataPercent(guiShieldBlockPercent, attr.blockChanceItem + attr.blockChanceBonusItem);
-                populateData(guiShieldBlockMin, attr.blockAmountItemMin);
-                populateData(guiShieldBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
+            // Resistances
+            PopulateData(guiResistance_All, attr.resistance_All);
+            PopulateData(guiResistance_Arcane, attr.resistance_Arcane);
+            PopulateData(guiResistance_Cold, attr.resistance_Cold);
+            PopulateData(guiResistance_Fire, attr.resistance_Fire);
+            PopulateData(guiResistance_Lightning, attr.resistance_Lightning);
+            PopulateData(guiResistance_Physical, attr.resistance_Physical);
+            PopulateData(guiResistance_Poison, attr.resistance_Poison);
 
-                // Gems
-                gems1 = new List<GemsListViewItem>();
-                gems1.Add(new GemsListViewItem(new Item(new ItemAttributes()) { attributes = new String[] { "( no gem )" } }));
-                if (item.type != null)
+            // Shield
+            PopulateDataPercent(guiShieldBlockPercent, attr.blockChanceItem + attr.blockChanceBonusItem);
+            PopulateData(guiShieldBlockMin, attr.blockAmountItemMin);
+            PopulateData(guiShieldBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
+
+            // Gems
+            gems1 = new List<GemsListViewItem>();
+            gems1.Add(new GemsListViewItem(new Item(new ItemAttributes()) { attributes = new[] { "( no gem )" } }));
+            if (item.type != null)
+            {
+                gems1.AddRange(KnownGems.GetGemsForItem(item).Select(g => new GemsListViewItem(g)));
+            }
+            gems2 = new List<GemsListViewItem>(gems1);
+            gems3 = new List<GemsListViewItem>(gems1);
+
+            guiGem1.DataSource = gems1;
+            guiGem1.DisplayMember = "label";
+            guiGem2.DataSource = gems2;
+            guiGem2.DisplayMember = "label";
+            guiGem3.DataSource = gems3;
+            guiGem3.DisplayMember = "label";
+
+            guiGem1.SelectedIndex = 0;
+            guiGem2.SelectedIndex = 0;
+            guiGem3.SelectedIndex = 0;
+            if (item.gems != null)
+            {
+                if (item.gems.Length >= 1)
                 {
-                    gems1.AddRange(knownGems.getGemsForItem(item).Select(g => new GemsListViewItem(g)));
+                    selectActiveGem(guiGem1, gems1, item.gems[0].item);
                 }
-                gems2 = new List<GemsListViewItem>(gems1);
-                gems3 = new List<GemsListViewItem>(gems1);
-
-                guiGem1.DataSource = gems1;
-                guiGem1.DisplayMember = "label";
-                guiGem2.DataSource = gems2;
-                guiGem2.DisplayMember = "label";
-                guiGem3.DataSource = gems3;
-                guiGem3.DisplayMember = "label";
-
-                guiGem1.SelectedIndex = 0;
-                guiGem2.SelectedIndex = 0;
-                guiGem3.SelectedIndex = 0;
-                if (item.gems != null)
+                if (item.gems.Length >= 2)
                 {
-                    if (item.gems.Length >= 1)
-                    {
-                        selectActiveGem(guiGem1, gems1, item.gems[0].item);
-                    }
-                    if (item.gems.Length >= 2)
-                    {
-                        selectActiveGem(guiGem2, gems2, item.gems[1].item);
-                    }
-                    if (item.gems.Length >= 3)
-                    {
-                        selectActiveGem(guiGem3, gems3, item.gems[2].item);
-                    }
+                    selectActiveGem(guiGem2, gems2, item.gems[1].item);
+                }
+                if (item.gems.Length >= 3)
+                {
+                    selectActiveGem(guiGem3, gems3, item.gems[2].item);
                 }
             }
         }
 
-        public Item getEditedItem()
+        public Item GetEditedItem()
         {
-            Item item = new Item();
-            ItemAttributes attr = new ItemAttributes();
+            var item = new Item();
+            var attr = new ItemAttributes();
 
             item.name = guiItemName.Text;
             item.id = guiItemId.Text;
             item.type = new ItemType(guiItemTypeId.Text, false);
 
-            attr.dexterityItem = getData(guiDexterity);
-            attr.intelligenceItem = getData(guiIntelligence);
-            attr.strengthItem = getData(guiStrength);
-            attr.vitalityItem = getData(guiVitality);
+            attr.dexterityItem = GetData(guiDexterity);
+            attr.intelligenceItem = GetData(guiIntelligence);
+            attr.strengthItem = GetData(guiStrength);
+            attr.vitalityItem = GetData(guiVitality);
             attr.attacksPerSecondPercent = getDataPercent(guiAttackSpeed);
             attr.critDamagePercent = getDataPercent(guiCriticDamage);
             attr.critPercentBonusCapped = getDataPercent(guiCriticChance);
             attr.hitpointsMaxPercentBonusItem = getDataPercent(guiHitpointsMaxPercent);
-            attr.armorItem = getData(guiArmor);
-            attr.hitpointsOnHit = getData(guiHitpointsOnHit);
-            attr.hitpointsRegenPerSecond = getData(guiHitpointsRegenPerSecond);
+            attr.armorItem = GetData(guiArmor);
+            attr.hitpointsOnHit = GetData(guiHitpointsOnHit);
+            attr.hitpointsRegenPerSecond = GetData(guiHitpointsRegenPerSecond);
             attr.stealHealthPercent = getDataPercent(guiLifeSteal);
 
-            attr.attacksPerSecondItem = getData(guiWeaponAttackPerSecond);
+            attr.attacksPerSecondItem = GetData(guiWeaponAttackPerSecond);
 
             attr.damageWeaponPercentBonus_Physical = getDataPercent(guiWeaponDamagePercentBonus);
-            double damageWeaponPercentBonus_Physical = (attr.damageWeaponPercentBonus_Physical == null ? 0 : attr.damageWeaponPercentBonus_Physical.min);
+            var damageWeaponPercentBonus_Physical = (attr.damageWeaponPercentBonus_Physical == null ? 0 : attr.damageWeaponPercentBonus_Physical.Min);
 
-            attr.damageWeaponMin_Arcane = getData(guiWeaponDamageMinArcane);
-            attr.damageWeaponMin_Cold = getData(guiWeaponDamageMinCold);
-            attr.damageWeaponMin_Fire = getData(guiWeaponDamageMinFire);
-            attr.damageWeaponMin_Holy = getData(guiWeaponDamageMinHoly);
-            attr.damageWeaponMin_Lightning = getData(guiWeaponDamageMinLightning);
-            attr.damageWeaponMin_Physical = getData(guiWeaponDamageMinPhysical) / (1 + damageWeaponPercentBonus_Physical);
-            attr.damageWeaponMin_Poison = getData(guiWeaponDamageMinPoison);
+            attr.damageWeaponMin_Arcane = GetData(guiWeaponDamageMinArcane);
+            attr.damageWeaponMin_Cold = GetData(guiWeaponDamageMinCold);
+            attr.damageWeaponMin_Fire = GetData(guiWeaponDamageMinFire);
+            attr.damageWeaponMin_Holy = GetData(guiWeaponDamageMinHoly);
+            attr.damageWeaponMin_Lightning = GetData(guiWeaponDamageMinLightning);
+            attr.damageWeaponMin_Physical = GetData(guiWeaponDamageMinPhysical) / (1 + damageWeaponPercentBonus_Physical);
+            attr.damageWeaponMin_Poison = GetData(guiWeaponDamageMinPoison);
 
-            attr.damageWeaponDelta_Arcane = getData(guiWeaponDamageMaxArcane) - attr.damageWeaponMin_Arcane;
-            attr.damageWeaponDelta_Cold = getData(guiWeaponDamageMaxCold) - attr.damageWeaponMin_Cold;
-            attr.damageWeaponDelta_Fire = getData(guiWeaponDamageMaxFire) - attr.damageWeaponMin_Fire;
-            attr.damageWeaponDelta_Holy = getData(guiWeaponDamageMaxHoly) - attr.damageWeaponMin_Holy;
-            attr.damageWeaponDelta_Lightning = getData(guiWeaponDamageMaxLightning) - attr.damageWeaponMin_Lightning;
-            attr.damageWeaponDelta_Physical = getData(guiWeaponDamageMaxPhysical) / (1 + damageWeaponPercentBonus_Physical) - attr.damageWeaponMin_Physical;
-            attr.damageWeaponDelta_Poison = getData(guiWeaponDamageMaxPoison) - attr.damageWeaponMin_Poison;
+            attr.damageWeaponDelta_Arcane = GetData(guiWeaponDamageMaxArcane) - attr.damageWeaponMin_Arcane;
+            attr.damageWeaponDelta_Cold = GetData(guiWeaponDamageMaxCold) - attr.damageWeaponMin_Cold;
+            attr.damageWeaponDelta_Fire = GetData(guiWeaponDamageMaxFire) - attr.damageWeaponMin_Fire;
+            attr.damageWeaponDelta_Holy = GetData(guiWeaponDamageMaxHoly) - attr.damageWeaponMin_Holy;
+            attr.damageWeaponDelta_Lightning = GetData(guiWeaponDamageMaxLightning) - attr.damageWeaponMin_Lightning;
+            attr.damageWeaponDelta_Physical = GetData(guiWeaponDamageMaxPhysical) / (1 + damageWeaponPercentBonus_Physical) - attr.damageWeaponMin_Physical;
+            attr.damageWeaponDelta_Poison = GetData(guiWeaponDamageMaxPoison) - attr.damageWeaponMin_Poison;
 
-            attr.damageMin_Arcane = getData(guiBonusDamageMinArcane);
-            attr.damageMin_Cold = getData(guiBonusDamageMinCold);
-            attr.damageMin_Fire = getData(guiBonusDamageMinFire);
-            attr.damageMin_Holy = getData(guiBonusDamageMinHoly);
-            attr.damageMin_Lightning = getData(guiBonusDamageMinLightning);
-            attr.damageMin_Physical = getData(guiBonusDamageMinPhysical);
-            attr.damageMin_Poison = getData(guiBonusDamageMinPoison);
+            attr.damageMin_Arcane = GetData(guiBonusDamageMinArcane);
+            attr.damageMin_Cold = GetData(guiBonusDamageMinCold);
+            attr.damageMin_Fire = GetData(guiBonusDamageMinFire);
+            attr.damageMin_Holy = GetData(guiBonusDamageMinHoly);
+            attr.damageMin_Lightning = GetData(guiBonusDamageMinLightning);
+            attr.damageMin_Physical = GetData(guiBonusDamageMinPhysical);
+            attr.damageMin_Poison = GetData(guiBonusDamageMinPoison);
 
-            attr.damageDelta_Arcane = getData(guiBonusDamageMaxArcane) - attr.damageMin_Arcane;
-            attr.damageDelta_Cold = getData(guiBonusDamageMaxCold) - attr.damageMin_Cold;
-            attr.damageDelta_Fire = getData(guiBonusDamageMaxFire) - attr.damageMin_Fire;
-            attr.damageDelta_Holy = getData(guiBonusDamageMaxHoly) - attr.damageMin_Holy;
-            attr.damageDelta_Lightning = getData(guiBonusDamageMaxLightning) - attr.damageMin_Lightning;
-            attr.damageDelta_Physical = getData(guiBonusDamageMaxPhysical) - attr.damageMin_Physical;
-            attr.damageDelta_Poison = getData(guiBonusDamageMaxPoison) - attr.damageMin_Poison;
+            attr.damageDelta_Arcane = GetData(guiBonusDamageMaxArcane) - attr.damageMin_Arcane;
+            attr.damageDelta_Cold = GetData(guiBonusDamageMaxCold) - attr.damageMin_Cold;
+            attr.damageDelta_Fire = GetData(guiBonusDamageMaxFire) - attr.damageMin_Fire;
+            attr.damageDelta_Holy = GetData(guiBonusDamageMaxHoly) - attr.damageMin_Holy;
+            attr.damageDelta_Lightning = GetData(guiBonusDamageMaxLightning) - attr.damageMin_Lightning;
+            attr.damageDelta_Physical = GetData(guiBonusDamageMaxPhysical) - attr.damageMin_Physical;
+            attr.damageDelta_Poison = GetData(guiBonusDamageMaxPoison) - attr.damageMin_Poison;
 
             attr.damageTypePercentBonus_Arcane = getDataPercent(guiBonusDamagePercentArcane);
             attr.damageTypePercentBonus_Cold = getDataPercent(guiBonusDamagePercentCold);
@@ -280,35 +278,35 @@ namespace ZTn.BNet.D3.Calculator
             attr.damageTypePercentBonus_Physical = getDataPercent(guiBonusDamagePercentPhysical);
             attr.damageTypePercentBonus_Poison = getDataPercent(guiBonusDamagePercentPoison);
 
-            attr.resistance_All = getData(guiResistance_All);
-            attr.resistance_Arcane = getData(guiResistance_Arcane);
-            attr.resistance_Cold = getData(guiResistance_Cold);
-            attr.resistance_Fire = getData(guiResistance_Fire);
-            attr.resistance_Lightning = getData(guiResistance_Lightning);
-            attr.resistance_Physical = getData(guiResistance_Physical);
-            attr.resistance_Poison = getData(guiResistance_Poison);
+            attr.resistance_All = GetData(guiResistance_All);
+            attr.resistance_Arcane = GetData(guiResistance_Arcane);
+            attr.resistance_Cold = GetData(guiResistance_Cold);
+            attr.resistance_Fire = GetData(guiResistance_Fire);
+            attr.resistance_Lightning = GetData(guiResistance_Lightning);
+            attr.resistance_Physical = GetData(guiResistance_Physical);
+            attr.resistance_Poison = GetData(guiResistance_Poison);
 
             // Shield
-            attr.blockChanceItem = getData(guiShieldBlockPercent);
-            attr.blockAmountItemMin = getData(guiShieldBlockMin);
-            attr.blockAmountItemDelta = getData(guiShieldBlockMax) - attr.blockAmountItemMin;
+            attr.blockChanceItem = GetData(guiShieldBlockPercent);
+            attr.blockAmountItemMin = GetData(guiShieldBlockMin);
+            attr.blockAmountItemDelta = GetData(guiShieldBlockMax) - attr.blockAmountItemMin;
 
             item.attributesRaw = attr;
-            List<SocketedGem> gems = new List<SocketedGem>();
+            var gems = new List<SocketedGem>();
 
             if (guiGem1.SelectedIndex > 0)
             {
-                SocketedGem gem = new SocketedGem(new Item(((GemsListViewItem)guiGem1.SelectedItem).item));
+                var gem = new SocketedGem(new Item(((GemsListViewItem)guiGem1.SelectedItem).Item));
                 gems.Add(gem);
             }
             if (guiGem2.SelectedIndex > 0)
             {
-                SocketedGem gem = new SocketedGem(new Item(((GemsListViewItem)guiGem2.SelectedItem).item));
+                var gem = new SocketedGem(new Item(((GemsListViewItem)guiGem2.SelectedItem).Item));
                 gems.Add(gem);
             }
             if (guiGem3.SelectedIndex > 0)
             {
-                SocketedGem gem = new SocketedGem(new Item(((GemsListViewItem)guiGem3.SelectedItem).item));
+                var gem = new SocketedGem(new Item(((GemsListViewItem)guiGem3.SelectedItem).Item));
                 gems.Add(gem);
             }
 
@@ -319,19 +317,19 @@ namespace ZTn.BNet.D3.Calculator
 
         private void GuiReset_Click(object sender, EventArgs e)
         {
-            setEditedItem((Item)Tag);
+            SetEditedItem((Item)Tag);
         }
 
         private void guiItemTypeId_SelectedIndexChanged(object sender, EventArgs e)
         {
             // re-generates data
             gems1 = new List<GemsListViewItem>();
-            gems1.Add(new GemsListViewItem(new Item(new ItemAttributes()) { attributes = new String[] { "( no gem )" } }));
-            gems1.AddRange(knownGems.getGemsForItemTypeId(guiItemTypeId.Text).Select(g => new GemsListViewItem(g)));
+            gems1.Add(new GemsListViewItem(new Item(new ItemAttributes()) { attributes = new[] { "( no gem )" } }));
+            gems1.AddRange(KnownGems.GetGemsForItemTypeId(guiItemTypeId.Text).Select(g => new GemsListViewItem(g)));
             gems2 = new List<GemsListViewItem>(gems1);
             gems3 = new List<GemsListViewItem>(gems1);
 
-            int index = guiGem1.SelectedIndex;
+            var index = guiGem1.SelectedIndex;
             guiGem1.DataSource = gems1;
             guiGem1.SelectedIndex = index;
             index = guiGem2.SelectedIndex;

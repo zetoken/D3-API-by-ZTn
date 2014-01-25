@@ -11,18 +11,18 @@ namespace ZTn.BNet.D3.Calculator.Skills
         /// <summary>
         /// 
         /// </summary>
-        HeroClass heroClass { get; }
+        HeroClass HeroClass { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        string slug { get; }
+        string Slug { get; }
 
         /// <summary>
         /// Computes bonus based on calculator
         /// </summary>
         /// <param name="calculator"></param>
         /// <returns></returns>
-        ItemAttributes getBonus(D3Calculator calculator);
+        ItemAttributes GetBonus(D3Calculator calculator);
     }
 }

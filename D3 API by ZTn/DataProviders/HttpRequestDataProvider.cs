@@ -18,31 +18,31 @@ namespace ZTn.BNet.D3.DataProviders
 
         public static FailureObject getFailedObjectFromJSonStream(Stream stream)
         {
-            return JsonHelpers.getFromJSonPersistentStream<FailureObject>(stream);
+            return stream.CreateFromJsonPersistentStream<FailureObject>();
         }
 
         public Stream fetchData(String url)
         {
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
 
             if (httpWebResponse.StatusCode != HttpStatusCode.OK)
                 throw new BNetResponseFailedException();
 
-            using (Stream responseStream = httpWebResponse.GetResponseStream())
+            using (var responseStream = httpWebResponse.GetResponseStream())
             {
                 // Get the response an try to detect if server returned an object indicating a failure
                 // Note: Do not use "using" statement, as we want the stream not to be closed to be used outside !
-                MemoryStream memoryStream = new MemoryStream();
+                var memoryStream = new MemoryStream();
                 responseStream.CopyTo(memoryStream);
                 memoryStream.Position = 0;
 
                 // if json object is returned, test if it is an error message
                 if (httpWebResponse.ContentType.Contains("application/json"))
                 {
-                    FailureObject failureObject = getFailedObjectFromJSonStream(memoryStream);
+                    var failureObject = getFailedObjectFromJSonStream(memoryStream);
 
-                    if (failureObject.isFailureObject())
+                    if (failureObject.IsFailureObject())
                     {
                         memoryStream.Close();
                         throw new BNetFailureObjectReturnedException(failureObject);

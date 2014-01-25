@@ -33,14 +33,14 @@ namespace ZTn.BNet.D3.Items
         /// <param name="socketedGem"></param>
         public SocketedGem(SocketedGem socketedGem)
         {
-            D3DeepCopy.deepCopy<SocketedGem>(socketedGem, this);
+            D3DeepCopy.DeepCopy<SocketedGem>(socketedGem, this);
         }
 
         public SocketedGem(Item item)
         {
             this.item = item;
-            this.attributes = item.attributes;
-            this.attributesRaw = item.attributesRaw;
+            attributes = item.attributes;
+            attributesRaw = item.attributesRaw;
         }
 
         #endregion

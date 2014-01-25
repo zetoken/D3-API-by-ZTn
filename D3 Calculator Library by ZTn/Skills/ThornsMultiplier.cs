@@ -9,17 +9,19 @@ namespace ZTn.BNet.D3.Calculator.Skills
     {
         #region >> Constants
 
-        readonly String[] thornsPrefixes = new String[] { 
+        readonly String[] thornsPrefixes =
+        { 
             "thornsFixed_"
         };
 
-        readonly String[] damageResists = new String[] {
+        readonly String[] damageResists =
+        {
             "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison"
         };
 
         #endregion
 
-        ItemValueRange multiplier;
+        readonly ItemValueRange multiplier;
 
         #region >> Constructors
 
@@ -33,29 +35,29 @@ namespace ZTn.BNet.D3.Calculator.Skills
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Unknown; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return ""; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            Item stuff = calculator.heroStatsItem;
-            ItemAttributes attr = new ItemAttributes();
+            Item stuff = calculator.HeroStatsItem;
+            var attr = new ItemAttributes();
 
-            foreach (String resist in damageResists)
+            foreach (var resist in damageResists)
             {
-                foreach (String thorns in thornsPrefixes)
+                foreach (var thorns in thornsPrefixes)
                 {
-                    ItemValueRange value = stuff.getAttributeByName(thorns + resist);
-                    attr.setAttributeByName(thorns + resist, multiplier * value);
+                    var value = stuff.GetAttributeByName(thorns + resist);
+                    attr.SetAttributeByName(thorns + resist, multiplier * value);
                 }
             }
 

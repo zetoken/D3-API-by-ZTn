@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Heroes;
@@ -18,11 +17,11 @@ namespace ZTn.BNet.D3.Careers
         [DataMember(Name = "battleTag")]
         private String s_battleTag
         {
-            set { battleTag = new BattleNet.BattleTag(value); }
-            get { return battleTag.id; }
+            set { battleTag = new BattleTag(value); }
+            get { return battleTag.Id; }
         }
         [IgnoreDataMember]
-        public BattleNet.BattleTag battleTag = new BattleNet.BattleTag("undefined#0000");
+        public BattleTag battleTag = new BattleTag("undefined#0000");
         [DataMember]
         public HeroSummary[] heroes;
         [DataMember]
@@ -42,19 +41,19 @@ namespace ZTn.BNet.D3.Careers
 
         #endregion
 
-        public static Career getCareerFromBattleTag(BattleTag battleTag)
+        public static Career CreateFromBattleTag(BattleTag battleTag)
         {
-            return D3Api.getCareerFromBattleTag(battleTag);
+            return D3Api.GetCareerFromBattleTag(battleTag);
         }
 
-        public static Career getCareerFromJSonStream(Stream stream)
+        public static Career CreateFromJSonStream(Stream stream)
         {
-            return JsonHelpers.getFromJSonStream<Career>(stream);
+            return stream.CreateFromJsonStream<Career>();
         }
 
-        public static Career getCareerFromJSonString(String json)
+        public static Career CreateFromJSonString(String json)
         {
-            return JsonHelpers.getFromJSonString<Career>(json);
+            return json.CreateFromJsonString<Career>();
         }
     }
 }

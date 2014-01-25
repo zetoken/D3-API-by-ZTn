@@ -12,7 +12,7 @@ namespace ZTn.BNet.D3.DataProviders
     {
         #region >> Fields
 
-        ID3DataProvider dataProvider;
+        readonly ID3DataProvider dataProvider;
 
         public OnlineMode onlineMode = OnlineMode.Online;
 
@@ -35,23 +35,23 @@ namespace ZTn.BNet.D3.DataProviders
 
         public String getCachedFileName(String url)
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
 
-            Uri uri = new Uri(url);
+            var uri = new Uri(url);
 
             stringBuilder.Append(uri.Host + "/");
 
             if (uri.LocalPath.Contains("/profile/"))
             {
                 // Example: http://eu.battle.net/api/d3/profile/Tok-2360 >> eu.battle.net/Tok-2360.json
-                String[] splitted = uri.LocalPath.Split(new String[] { "/profile/" }, StringSplitOptions.None);
+                var splitted = uri.LocalPath.Split(new String[] { "/profile/" }, StringSplitOptions.None);
                 stringBuilder.Append(splitted[1]);
                 stringBuilder.Append(".json");
             }
             else if (uri.LocalPath.Contains("/hero/"))
             {
                 // Example: http://eu.battle.net/api/d3/profile/Tok-2360/hero/17023 >> eu.battle.net/Tok-2360/hero/17023.json
-                String[] splitted = uri.LocalPath.Split(new String[] { "/hero/" }, StringSplitOptions.None);
+                var splitted = uri.LocalPath.Split(new String[] { "/hero/" }, StringSplitOptions.None);
                 stringBuilder.Append(splitted[1]);
                 stringBuilder.Append(".json");
             }
@@ -59,7 +59,7 @@ namespace ZTn.BNet.D3.DataProviders
             {
                 // Example: http://eu.battle.net/api/d3/data/item/Amethyst_14 >> eu.battle.net/items/Amethyst_14.json (or a hash)
                 stringBuilder.Append("items/");
-                String[] splitted = uri.LocalPath.Split(new String[] { "/item/" }, StringSplitOptions.None);
+                var splitted = uri.LocalPath.Split(new String[] { "/item/" }, StringSplitOptions.None);
                 if (splitted[1].Length < 32)
                 {
                     stringBuilder.Append(splitted[1]);
@@ -67,10 +67,10 @@ namespace ZTn.BNet.D3.DataProviders
                 }
                 else
                 {
-                    using (MD5 md5 = MD5.Create())
+                    using (var md5 = MD5.Create())
                     {
-                        Byte[] hash = md5.ComputeHash(Encoding.Default.GetBytes(url));
-                        foreach (Byte hashByte in hash)
+                        var hash = md5.ComputeHash(Encoding.Default.GetBytes(url));
+                        foreach (var hashByte in hash)
                             stringBuilder.Append(hashByte.ToString("x2"));
                     }
                 }
@@ -80,15 +80,15 @@ namespace ZTn.BNet.D3.DataProviders
             {
                 // Example: http://media.blizzard.com/d3/icons/items/small/amethyst_12_demonhunter_male.png >> media.blizzard.com/icons/items/small/amethyst_12_demonhunter_male.png
                 stringBuilder.Append("icons/");
-                String[] splitted = uri.LocalPath.Split(new String[] { "/icons/" }, StringSplitOptions.None);
+                var splitted = uri.LocalPath.Split(new String[] { "/icons/" }, StringSplitOptions.None);
                 stringBuilder.Append(splitted[1]);
             }
             else
             {
-                using (MD5 md5 = MD5.Create())
+                using (var md5 = MD5.Create())
                 {
-                    Byte[] hash = md5.ComputeHash(Encoding.Default.GetBytes(url));
-                    foreach (Byte hashByte in hash)
+                    var hash = md5.ComputeHash(Encoding.Default.GetBytes(url));
+                    foreach (var hashByte in hash)
                         stringBuilder.Append(hashByte.ToString("x2"));
                 }
 
@@ -105,15 +105,15 @@ namespace ZTn.BNet.D3.DataProviders
 
         public Stream fetchData(string url)
         {
-            String cachedFilePath = getCacheStoragePath() + getCachedFileName(url);
+            var cachedFilePath = getCacheStoragePath() + getCachedFileName(url);
 
             if ((onlineMode == OnlineMode.Online) || ((onlineMode == OnlineMode.OnlineIfMissing) && !File.Exists(cachedFilePath)))
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(cachedFilePath));
 
-                using (BinaryReader binaryReader = new BinaryReader(dataProvider.fetchData(url)))
+                using (var binaryReader = new BinaryReader(dataProvider.fetchData(url)))
                 {
-                    using (FileStream fileStream = File.Create(cachedFilePath))
+                    using (var fileStream = File.Create(cachedFilePath))
                     {
                         binaryReader.BaseStream.CopyTo(fileStream);
                     }

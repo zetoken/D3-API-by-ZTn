@@ -1,37 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ZTn.BNet.D3.Heroes;
+﻿using System.Linq;
+using ZTn.BNet.D3.Calculator.Skills.Barbarian;
+using ZTn.BNet.D3.Calculator.Skills.DemonHunter;
+using ZTn.BNet.D3.Calculator.Skills.Monk;
+using ZTn.BNet.D3.Calculator.Skills.WitchDoctor;
+using ZTn.BNet.D3.Calculator.Skills.Wizard;
 
 namespace ZTn.BNet.D3.Calculator.Skills
 {
     public class PassiveSkillModifierFactory
     {
-        static List<ID3SkillModifier> skills = new List<ID3SkillModifier>()
+        static readonly ID3SkillModifier[] Skills = 
         {
-            new Skills.Barbarian.NervesOfSteel(),
-            new Skills.Barbarian.Ruthless(),
-            new Skills.Barbarian.ToughAsNails(),
-            new Skills.Barbarian.WeaponsMaster(),
+            new NervesOfSteel(),
+            new Ruthless(),
+            new ToughAsNails(),
+            new WeaponsMaster(),
 
-            new Skills.DemonHunter.Archery(),
-            new Skills.DemonHunter.Perfectionist(),
-            new Skills.DemonHunter.SharpShooter(),
-            new Skills.DemonHunter.SteadyAim(),
+            new Archery(),
+            new Perfectionist(),
+            new SharpShooter(),
+            new SteadyAim(),
 
-            new Skills.Monk.OneWithEverything(),
-            new Skills.Monk.SeizeTheInitiative(),
+            new OneWithEverything(),
+            new SeizeTheInitiative(),
 
-            new Skills.WitchDoctor.PierceTheVeil(),
+            new PierceTheVeil(),
 
-            new Skills.Wizard.GalvanizingWard(),
-            new Skills.Wizard.GlassCannon()
+            new GalvanizingWard(),
+            new GlassCannon()
         };
 
-        public static ID3SkillModifier getFromSlug(string slug)
+        public static ID3SkillModifier GetFromSlug(string slug)
         {
-            ID3SkillModifier skillModifier = skills.FirstOrDefault(s => s.slug == slug);
+            var skillModifier = Skills.FirstOrDefault(s => s.Slug == slug);
 
             if (skillModifier == null)
             {

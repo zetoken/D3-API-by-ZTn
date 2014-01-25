@@ -5,30 +5,28 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
 {
     public sealed class MantraOfHealing_TimeOfNeed : ID3SkillModifier
     {
-        readonly double multiplier = 0.20;
+        private const double multiplier = 0.20;
 
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Monk; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "mantra-of-healing-time-of-need"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            ItemAttributes attr = new ItemAttributes();
+            var attr = new ItemAttributes { hitpointsRegenPerSecond = new ItemValueRange(620) };
 
-            attr.hitpointsRegenPerSecond = new ItemValueRange(620);
-
-            attr += (new ResistancesMultiplier(multiplier)).getBonus(calculator);
+            attr += (new ResistancesMultiplier(multiplier)).GetBonus(calculator);
 
             return attr;
         }

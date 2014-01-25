@@ -5,34 +5,31 @@ namespace ZTn.BNet.D3.Calculator.Skills.Wizard
 {
     public sealed class GlassCannon : ID3SkillModifier
     {
-        double multiplier = 0.15;
-        double malusMultiplier = -0.10;
+        private const double multiplier = 0.15;
+        private const double malusMultiplier = -0.10;
 
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Wizard; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "glass-cannon"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            ItemAttributes stuff = calculator.heroStatsItem.attributesRaw;
-            ItemAttributes attr;
+            var attr = new DamageMultiplier(multiplier).GetBonus(calculator);
 
-            attr = new DamageMultiplier(multiplier).getBonus(calculator);
+            attr.armorBonusItem = malusMultiplier * calculator.GetHeroArmor();
 
-            attr.armorBonusItem = malusMultiplier * calculator.getHeroArmor();
-
-            attr += new ResistancesMultiplier(malusMultiplier).getBonus(calculator);
+            attr += new ResistancesMultiplier(malusMultiplier).GetBonus(calculator);
 
             return attr;
         }

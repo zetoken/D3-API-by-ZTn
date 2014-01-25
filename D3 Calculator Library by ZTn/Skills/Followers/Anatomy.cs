@@ -8,21 +8,21 @@ namespace ZTn.BNet.D3.Calculator.Skills.Followers
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.ScoundrelFollower; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "anatomy"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            return new ItemAttributes() { critPercentBonusCapped = new ItemValueRange(0.03) };
+            return new ItemAttributes { critPercentBonusCapped = new ItemValueRange(0.03) };
         }
 
         #endregion

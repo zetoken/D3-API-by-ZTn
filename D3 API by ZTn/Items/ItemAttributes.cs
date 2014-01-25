@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace ZTn.BNet.D3.Items
 {
@@ -503,11 +501,11 @@ namespace ZTn.BNet.D3.Items
         /// <param name="itemAttributes"></param>
         public ItemAttributes(ItemAttributes itemAttributes)
         {
-            Type type = this.GetType();
+            var type = GetType();
 
-            foreach (FieldInfo fieldInfo in type.GetFields())
+            foreach (var fieldInfo in type.GetFields())
             {
-                ItemValueRange valueRange = fieldInfo.GetValue(itemAttributes) as ItemValueRange;
+                var valueRange = fieldInfo.GetValue(itemAttributes) as ItemValueRange;
                 if (valueRange != null)
                 {
                     fieldInfo.SetValue(this, new ItemValueRange(valueRange));
@@ -521,18 +519,20 @@ namespace ZTn.BNet.D3.Items
 
         public static ItemAttributes operator +(ItemAttributes left, ItemAttributes right)
         {
-            ItemAttributes target = new ItemAttributes(left);
+            var target = new ItemAttributes(left);
 
-            Type type = target.GetType();
+            var type = target.GetType();
 
-            foreach (FieldInfo fieldInfo in type.GetFields())
+            foreach (var fieldInfo in type.GetFields())
             {
                 if (fieldInfo.GetValue(right) != null)
                 {
-                    ItemValueRange targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
-                    ItemValueRange rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
+                    var targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
+                    var rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
                     if (targetValueRange == null)
+                    {
                         targetValueRange = new ItemValueRange();
+                    }
                     fieldInfo.SetValue(target, targetValueRange + rightValueRange);
                 }
             }
@@ -542,21 +542,25 @@ namespace ZTn.BNet.D3.Items
 
         public static ItemAttributes operator -(ItemAttributes left, ItemAttributes right)
         {
-            ItemAttributes target = new ItemAttributes(left);
+            var target = new ItemAttributes(left);
 
-            Type type = target.GetType();
+            var type = target.GetType();
 
-            foreach (FieldInfo fieldInfo in type.GetFields())
+            foreach (var fieldInfo in type.GetFields())
             {
                 if (fieldInfo.GetValue(right) != null)
                 {
-                    ItemValueRange targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
-                    ItemValueRange rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
+                    var targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
+                    var rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
                     if (targetValueRange == null)
+                    {
                         targetValueRange = new ItemValueRange();
+                    }
                     targetValueRange -= rightValueRange;
-                    if ((targetValueRange.min) == 0 && (targetValueRange.max == 0))
+                    if (targetValueRange.Min == 0 && targetValueRange.Max == 0)
+                    {
                         targetValueRange = null;
+                    }
                     fieldInfo.SetValue(target, targetValueRange - rightValueRange);
                 }
             }
@@ -566,18 +570,20 @@ namespace ZTn.BNet.D3.Items
 
         public static ItemAttributes operator *(ItemAttributes left, ItemAttributes right)
         {
-            ItemAttributes target = new ItemAttributes(left);
+            var target = new ItemAttributes(left);
 
-            Type type = target.GetType();
+            var type = target.GetType();
 
-            foreach (FieldInfo fieldInfo in type.GetFields())
+            foreach (var fieldInfo in type.GetFields())
             {
                 if (fieldInfo.GetValue(right) != null)
                 {
-                    ItemValueRange targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
-                    ItemValueRange rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
+                    var targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
+                    var rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
                     if (targetValueRange == null)
+                    {
                         targetValueRange = new ItemValueRange(1);
+                    }
                     fieldInfo.SetValue(target, targetValueRange * rightValueRange);
                 }
             }

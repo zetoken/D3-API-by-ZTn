@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ZTn.BNet.D3.Calculator.Helpers
 {
     public static class ItemHelper
     {
-        static public List<String> weaponTypeIds = new List<String>() { 
+        static public List<String> WeaponTypeIds = new List<String>
+        { 
             "Axe",
             "Axe2H",
             "Bow",
@@ -30,7 +29,8 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             "Wand"
         };
 
-        static public List<String> helmTypeIds = new List<String>() { 
+        static public List<String> HelmTypeIds = new List<String>
+        { 
             "Hat",
             "Helm",
             "Mask",

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using Newtonsoft.Json;
+using System.Text;
 using ZTn.BNet.BattleNet;
-using ZTn.BNet.D3;
 using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Sets;
@@ -19,91 +18,91 @@ namespace ZTn.BNet.D3.Example
     {
         static void Main(string[] args)
         {
-            BattleTag battleTag = new BattleTag("Tok#2360");
+            var battleTag = new BattleTag("Tok#2360");
 
-            //writeCareer(battleTag);
-            writeCalculation(battleTag);
-            //buildGemsFile();
+            // WriteCareer(battleTag);
+            WriteCalculation(battleTag);
+            // BuildGemsFile();
 
             Console.WriteLine();
             Console.WriteLine("= = = = END = = = =");
             Console.ReadLine();
         }
 
-        static void writeCalculation(BattleTag battleTag)
+        static void WriteCalculation(BattleTag battleTag)
         {
             Console.WriteLine("= = = = Calculator of {0} = = = =", battleTag);
 
             Console.WriteLine("Downloading {0}", "career");
-            Career career = Career.getCareerFromBattleTag(battleTag);
+            var career = Career.CreateFromBattleTag(battleTag);
             if (career == null || career.heroes.Length == 0)
                 return;
             Console.WriteLine("Downloading Hero {0}/{1}", battleTag, career.heroes[0].name);
-            Hero hero = Hero.getHeroFromHeroId(battleTag, career.heroes[0].id);
+            var hero = Hero.CreateFromHeroId(battleTag, career.heroes[0].id);
             if (hero == null || hero.items == null)
                 return;
             Console.WriteLine("Downloading {0}", "bracers");
-            Item bracers = hero.items.bracers.getFullItem();
+            var bracers = hero.items.bracers.GetFullItem();
             Console.WriteLine("Downloading {0}", "feet");
-            Item feet = hero.items.feet.getFullItem();
+            var feet = hero.items.feet.GetFullItem();
             Console.WriteLine("Downloading {0}", "hands");
-            Item hands = hero.items.hands.getFullItem();
+            var hands = hero.items.hands.GetFullItem();
             Console.WriteLine("Downloading {0}", "head");
-            Item head = hero.items.head.getFullItem();
+            var head = hero.items.head.GetFullItem();
             Console.WriteLine("Downloading {0}", "leftFinger");
-            Item leftFinger = hero.items.leftFinger.getFullItem();
+            var leftFinger = hero.items.leftFinger.GetFullItem();
             Console.WriteLine("Downloading {0}", "legs");
-            Item legs = hero.items.legs.getFullItem();
+            var legs = hero.items.legs.GetFullItem();
             Console.WriteLine("Downloading {0}", "mainHand");
-            Item mainHand = hero.items.mainHand.getFullItem();
+            var mainHand = hero.items.mainHand.GetFullItem();
             Console.WriteLine("Downloading {0}", "neck");
-            Item neck = hero.items.neck.getFullItem();
+            var neck = hero.items.neck.GetFullItem();
             Console.WriteLine("Downloading {0}", "offHand");
-            Item offHand = hero.items.offHand.getFullItem();
+            var offHand = hero.items.offHand.GetFullItem();
             Console.WriteLine("Downloading {0}", "rightFinger");
-            Item rightFinger = hero.items.rightFinger.getFullItem();
+            var rightFinger = hero.items.rightFinger.GetFullItem();
             Console.WriteLine("Downloading {0}", "shoulders");
-            Item shoulders = hero.items.shoulders.getFullItem();
+            var shoulders = hero.items.shoulders.GetFullItem();
             Console.WriteLine("Downloading {0}", "torso");
-            Item torso = hero.items.torso.getFullItem();
+            var torso = hero.items.torso.GetFullItem();
             Console.WriteLine("Downloading {0}", "waist");
-            Item waist = hero.items.waist.getFullItem();
+            var waist = hero.items.waist.GetFullItem();
 
-            List<Item> items = new List<Item>() { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist }.Where(i => i != null).ToList();
+            var items = new List<Item> { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist }.Where(i => i != null).ToList();
 
-            List<Item> allItems = new List<Item>(items) { mainHand, offHand }.Where(i => i != null).ToList();
+            var allItems = new List<Item>(items) { mainHand, offHand }.Where(i => i != null).ToList();
 
             Console.WriteLine("Loading {0} from file", "known sets");
-            KnownSets knownSets = KnownSets.getKnownSetsFromJsonFile("d3set.json");
+            var knownSets = KnownSets.CreateFromJsonFile("d3set.json");
 
             Console.WriteLine("Calculating activated set");
-            foreach (Set set in allItems.getActivatedSets())
+            foreach (var set in allItems.GetActivatedSets())
             {
                 Console.WriteLine("Activated set: {0}", set.name);
             }
-            Item setBonus = new Item(allItems.getActivatedSetBonus());
+            var setBonus = new Item(allItems.GetActivatedSetBonus());
             items.Add(setBonus);
 
-            D3Calculator d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
+            var d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
 
             Console.WriteLine("Calculation results");
-            ItemValueRange dps = d3Calculator.getHeroDPS(new List<ID3SkillModifier>(), new List<ID3SkillModifier>());
-            Console.WriteLine("Dexterity : {0}", d3Calculator.getHeroDexterity().min);
-            Console.WriteLine("DPS : {0}", dps.min);
-            Console.WriteLine("Attack speed: {0}", d3Calculator.getActualAttackSpeed().min);
+            var dps = d3Calculator.GetHeroDps(new List<ID3SkillModifier>(), new List<ID3SkillModifier>());
+            Console.WriteLine("Dexterity : {0}", d3Calculator.GetHeroDexterity().Min);
+            Console.WriteLine("DPS : {0}", dps.Min);
+            Console.WriteLine("Attack speed: {0}", d3Calculator.GetActualAttackSpeed().Min);
         }
 
-        static void writeCareer(BattleTag battleTag)
+        static void WriteCareer(BattleTag battleTag)
         {
-            Career career = Career.getCareerFromBattleTag(battleTag);
+            var career = Career.CreateFromBattleTag(battleTag);
 
-            Console.WriteLine("BattleTag: " + career.battleTag.id);
+            Console.WriteLine("BattleTag: " + career.battleTag.Id);
             Console.WriteLine("Last hero played: {0}", career.lastHeroPlayed);
             Console.WriteLine("Time played on Monk is {0}", career.timePlayed.monk);
             Console.WriteLine("Kills: monsters={0} / elites={1} / hardcore monsters={2}", career.kills.monsters, career.kills.elites, career.kills.hardcoreMonsters);
             Console.WriteLine();
             Console.WriteLine("Heroes count: " + career.heroes.Length);
-            foreach (HeroSummary heroDigest in career.heroes)
+            foreach (var heroDigest in career.heroes)
             {
                 Console.WriteLine("Hero {0}: {1} is {2} level {3} + {4} last updated {5}",
                     heroDigest.id,
@@ -112,53 +111,53 @@ namespace ZTn.BNet.D3.Example
                     heroDigest.level,
                     heroDigest.paragonLevel, heroDigest.lastUpdated);
 
-                Hero heroFull = heroDigest.getHeroFromBattleTag(battleTag);
+                var heroFull = heroDigest.GetHeroFromBattleTag(battleTag);
 
-                Item mainHand = Item.getItemFromTooltipParams(heroFull.items.mainHand.tooltipParams);
+                var mainHand = Item.CreateFromTooltipParams(heroFull.items.mainHand.tooltipParams);
                 Console.WriteLine("Hero main hand: level {0} {1} (DPS {2}-{3}) salvages into {4} different components",
                     mainHand.itemLevel,
                     mainHand.name,
-                    mainHand.dps.min, mainHand.dps.max,
+                    mainHand.dps.Min, mainHand.dps.Max,
                     mainHand.salvage.Length);
 
-                Item torso = Item.getItemFromTooltipParams(heroFull.items.torso.tooltipParams);
+                var torso = Item.CreateFromTooltipParams(heroFull.items.torso.tooltipParams);
                 Console.WriteLine("Hero torso: level {0} {1} (armor {2}-{3}) salvages into {4} different components",
                     torso.itemLevel,
                     torso.name,
-                    torso.armor.min, torso.armor.max,
+                    torso.armor.Min, torso.armor.Max,
                     torso.salvage.Length);
                 Console.WriteLine("Hero DPS {0}", heroFull.stats.damage);
 
             }
             Console.WriteLine();
             Console.WriteLine("Fallen Heroes count: " + career.fallenHeroes.Length);
-            foreach (HeroSummary heroDigest in career.fallenHeroes)
+            foreach (var heroDigest in career.fallenHeroes)
             {
                 Console.WriteLine("Hero {0}: {1} is {2} level {3} + {4} ", heroDigest.id, heroDigest.name, heroDigest.heroClass, heroDigest.level, heroDigest.paragonLevel);
             }
         }
 
-        static void buildGemsFile()
+        static void BuildGemsFile()
         {
-            List<String> socketColors = new List<string>() { "Amethyst", "Emerald", "Ruby", "Topaz" };
+            var socketColors = new List<string> { "Amethyst", "Emerald", "Ruby", "Topaz" };
 
-            System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
-            Byte[] jsonArrayStart = encoding.GetBytes("[");
-            Byte[] jsonArraySeparator = encoding.GetBytes(",");
-            Byte[] jsonArrayStop = encoding.GetBytes("]");
-            Boolean starting = true;
+            var encoding = new ASCIIEncoding();
+            var jsonArrayStart = encoding.GetBytes("[");
+            var jsonArraySeparator = encoding.GetBytes(",");
+            var jsonArrayStop = encoding.GetBytes("]");
+            var starting = true;
 
-            using (FileStream fileStream = File.Create("d3gem.json"))
+            using (var fileStream = File.Create("d3gem.json"))
             {
                 fileStream.Write(jsonArrayStart, 0, jsonArrayStart.Length);
 
-                foreach (String gemColor in socketColors)
+                foreach (var gemColor in socketColors)
                 {
-                    for (int index = 1; index < 15; index++)
+                    for (var index = 1; index < 15; index++)
                     {
-                        String id = String.Format("{0}_{1:00}", gemColor, index);
+                        var id = String.Format("{0}_{1:00}", gemColor, index);
                         Console.WriteLine("Retrieving " + id);
-                        Stream gemStream = D3Api.dataProvider.fetchData(D3Api.getItemUrlFromTooltipParams("item/" + id));
+                        var gemStream = D3Api.DataProvider.fetchData(D3Api.GetItemUrlFromTooltipParams("item/" + id));
                         if (!starting)
                             fileStream.Write(jsonArraySeparator, 0, jsonArraySeparator.Length);
                         starting = false;

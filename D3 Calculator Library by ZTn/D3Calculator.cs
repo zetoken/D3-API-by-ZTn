@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ZTn.BNet.D3.Calculator.Helpers;
+using ZTn.BNet.D3.Calculator.Heroes;
 using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.HeroFollowers;
@@ -13,23 +14,20 @@ namespace ZTn.BNet.D3.Calculator
     {
         #region >> Fields
 
-        public HeroClass heroClass;
-        public int heroLevel;
+        public HeroClass HeroClass;
+        public int HeroLevel;
 
-        public StatsItem heroStatsItem;
+        public StatsItem HeroStatsItem;
 
-        ItemAttributes levelAttributes;
-        ItemAttributes paragonLevelAttributes;
+        private readonly ItemAttributes levelAttributes;
+        private readonly ItemAttributes paragonLevelAttributes;
 
         #endregion
 
         #region >> Constants
 
-        public static readonly Item nakedHandWeapon = new Item(new ItemAttributes() { attacksPerSecondItem = ItemValueRange.One });
-
-        public static readonly Item blankWeapon = new Item(new ItemAttributes() { });
-
-        readonly string[] damagePrefixes = new string[] { 
+        readonly string[] damagePrefixes =
+        { 
             "damageMin_", "damageBonusMin_",
             "damageDelta_",
             "damageWeaponBonusMinX1_",
@@ -37,54 +35,71 @@ namespace ZTn.BNet.D3.Calculator
             "damageWeaponDelta_", "damageWeaponBonusDelta_"
         };
 
-        readonly string[] damageResists = new string[] {
+        readonly string[] damageResists =
+        {
             "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison"
         };
 
         #endregion
 
+        public static Item NakedHandWeapon
+        {
+            get
+            {
+                return new Item(new ItemAttributes { attacksPerSecondItem = ItemValueRange.One });
+            }
+        }
+
+        public static Item BlankWeapon
+        {
+            get
+            {
+                return new Item(new ItemAttributes());
+            }
+        }
+
         #region >> Constructors
 
         public D3Calculator(Hero hero, Item mainHand, Item offHand, IEnumerable<Item> items)
         {
-            this.heroClass = hero.heroClass;
-            this.heroLevel = hero.level;
+            HeroClass = hero.heroClass;
+            HeroLevel = hero.level;
 
             // Build unique item equivalent to items worn
-            heroStatsItem = new StatsItem(mainHand, offHand, items);
+            HeroStatsItem = new StatsItem(mainHand, offHand, items);
 
-            levelAttributes = new Heroes.ItemAttributesFromLevel(hero);
-            paragonLevelAttributes = new Heroes.ItemAttributesFromParagonLevel(hero);
+            levelAttributes = new ItemAttributesFromLevel(hero);
+            paragonLevelAttributes = new ItemAttributesFromParagonLevel(hero);
 
-            update();
+            Update();
         }
 
         public D3Calculator(Follower follower, HeroClass heroClass, Item mainHand, Item offHand, IEnumerable<Item> items)
         {
-            this.heroClass = heroClass;
-            this.heroLevel = follower.level;
+            HeroClass = heroClass;
+            HeroLevel = follower.level;
 
-            foreach (Item item in items.Union(new List<Item>() { mainHand, offHand }))
+            foreach (var item in items.Union(new[] { mainHand, offHand }))
             {
-                applyFollowersBonusMalusOnItemAttributes(item.attributesRaw, heroClass);
+                ApplyFollowersBonusMalusOnItemAttributes(item.attributesRaw, heroClass);
                 if (item.gems != null)
                 {
-                    foreach (SocketedGem gem in item.gems)
-                        applyFollowersBonusMalusOnItemAttributes(gem.attributesRaw, heroClass);
+                    foreach (var gem in item.gems)
+                        ApplyFollowersBonusMalusOnItemAttributes(gem.attributesRaw, heroClass);
                 }
             }
 
             // Build unique item equivalent to items worn
-            heroStatsItem = new StatsItem(mainHand, offHand, items);
+            HeroStatsItem = new StatsItem(mainHand, offHand, items);
 
             levelAttributes = new Followers.ItemAttributesFromLevel(follower, heroClass);
 
-            update();
+            Update();
         }
 
         #endregion
 
-        private ItemAttributes applyFollowersBonusMalusOnItemAttributes(ItemAttributes itemAttributes, HeroClass heroClass)
+        private void ApplyFollowersBonusMalusOnItemAttributes(ItemAttributes itemAttributes, HeroClass heroClass)
         {
             double damagePercent;
             switch (heroClass)
@@ -107,28 +122,26 @@ namespace ZTn.BNet.D3.Calculator
             itemAttributes.strengthItem *= 2.5;
             itemAttributes.vitalityItem *= 2.5;
 
-            foreach (string resist in damageResists)
+            foreach (var resist in damageResists)
             {
-                foreach (string damage in damagePrefixes)
+                foreach (var damage in damagePrefixes)
                 {
-                    ItemValueRange value = itemAttributes.getAttributeByName(damage + resist);
-                    itemAttributes.setAttributeByName(damage + resist, damagePercent * value);
+                    var value = itemAttributes.GetAttributeByName(damage + resist);
+                    itemAttributes.SetAttributeByName(damage + resist, damagePercent * value);
                 }
             }
-
-            return itemAttributes;
         }
 
         /// <summary>
         /// Return damage multiplier when the non critical hit (normal)
         /// </summary>
         /// <returns></returns>
-        public double getDamageMultiplierNormal()
+        public double GetDamageMultiplierNormal()
         {
             double multiplier = 1;
 
             // Update dps with main statistic
-            multiplier *= 1 + getMainCharacteristic().min / 100;
+            multiplier *= 1 + GetMainCharacteristic().Min / 100;
 
             return multiplier;
         }
@@ -137,18 +150,18 @@ namespace ZTn.BNet.D3.Calculator
         /// Return damage multiplier for critical hit
         /// </summary>
         /// <returns></returns>
-        public double getDamageMultiplierCritic()
+        public double GetDamageMultiplierCritic()
         {
             double multiplier = 1;
 
             // Update dps with Critic
             double critDamagePercent = 0;
-            if (heroStatsItem.attributesRaw.critDamagePercent != null)
-                critDamagePercent += heroStatsItem.attributesRaw.critDamagePercent.min;
+            if (HeroStatsItem.attributesRaw.critDamagePercent != null)
+                critDamagePercent += HeroStatsItem.attributesRaw.critDamagePercent.Min;
             multiplier *= 1 + critDamagePercent;
 
             // Update dps with main statistic
-            multiplier *= 1 + getMainCharacteristic().min / 100;
+            multiplier *= 1 + GetMainCharacteristic().Min / 100;
 
             return multiplier;
         }
@@ -157,185 +170,184 @@ namespace ZTn.BNet.D3.Calculator
         /// Return average damage multiplier (taking care of critical and normal hits)
         /// </summary>
         /// <returns></returns>
-        public ItemValueRange getDamageMultiplier()
+        public ItemValueRange GetDamageMultiplier()
         {
-            ItemValueRange multiplier = ItemValueRange.One;
+            var multiplier = ItemValueRange.One;
 
             // Update dps with Critic
-            ItemValueRange critPercentBonusCapped = ItemValueRange.Zero;
-            if (heroStatsItem.attributesRaw.critPercentBonusCapped != null)
-                critPercentBonusCapped += heroStatsItem.attributesRaw.critPercentBonusCapped;
-            ItemValueRange critDamagePercent = ItemValueRange.Zero;
-            if (heroStatsItem.attributesRaw.critDamagePercent != null)
-                critDamagePercent += heroStatsItem.attributesRaw.critDamagePercent;
+            var critPercentBonusCapped = ItemValueRange.Zero;
+            if (HeroStatsItem.attributesRaw.critPercentBonusCapped != null)
+                critPercentBonusCapped += HeroStatsItem.attributesRaw.critPercentBonusCapped;
+            var critDamagePercent = ItemValueRange.Zero;
+            if (HeroStatsItem.attributesRaw.critDamagePercent != null)
+                critDamagePercent += HeroStatsItem.attributesRaw.critDamagePercent;
             multiplier *= ItemValueRange.One + critPercentBonusCapped * critDamagePercent;
 
             // Update dps with main statistic
-            ItemValueRange characteristic = getMainCharacteristic();
+            var characteristic = GetMainCharacteristic();
             multiplier *= ItemValueRange.One + characteristic / 100.0;
 
             return multiplier;
         }
 
-        public ItemValueRange getActualAttackSpeed()
+        public ItemValueRange GetActualAttackSpeed()
         {
-            ItemValueRange multiplier = ItemValueRange.One;
+            var multiplier = ItemValueRange.One;
 
             // Update malusMultiplier with Weapon Attack Speed
-            multiplier *= heroStatsItem.getWeaponAttackPerSecond();
+            multiplier *= HeroStatsItem.GetWeaponAttackPerSecond();
 
             return multiplier;
         }
 
-        public ItemValueRange getHeroArmor()
+        public ItemValueRange GetHeroArmor()
         {
-            ItemValueRange armor = ItemValueRange.Zero;
+            var armor = ItemValueRange.Zero;
 
             // Update with base items armor
-            armor += heroStatsItem.attributesRaw.armorItem;
+            armor += HeroStatsItem.attributesRaw.armorItem;
 
             // Update with items bonus armor
-            armor += heroStatsItem.attributesRaw.armorBonusItem;
+            armor += HeroStatsItem.attributesRaw.armorBonusItem;
 
             // Update with strength bonus
-            armor += getHeroStrength();
+            armor += GetHeroStrength();
 
             return armor;
         }
 
-        public double getHeroDamageReduction_Armor(int mobLevel)
+        public double GetHeroDamageReduction_Armor(int mobLevel)
         {
-            double armor = getHeroArmor().min;
+            var armor = GetHeroArmor().Min;
 
             return armor / (armor + 50 * mobLevel);
         }
 
-        public double getHeroDamageReduction(int mobLevel, string resist)
+        public double GetHeroDamageReduction(int mobLevel, string resist)
         {
-            double resistance = getHeroResistance(resist).min;
+            var resistance = GetHeroResistance(resist).Min;
 
             return resistance / (resistance + 5 * mobLevel);
         }
 
-        public double getHeroDodge()
+        public double GetHeroDodge()
         {
-            double dogde = 0;
-            double dexterity = getHeroDexterity().min;
+            var dexterity = GetHeroDexterity().Min;
 
-            double dex0_100 = (dexterity > 100 ? 100 : dexterity);
-            double dex101_500 = (dexterity > 500 ? 500 - 100 : (dexterity > 100 ? dexterity - 100 : 0));
-            double dex501_1000 = (dexterity > 1000 ? 1000 - 500 : (dexterity > 500 ? dexterity - 500 : 0));
-            double dex1001_8000 = (dexterity > 8000 ? 8000 - 1000 : (dexterity > 1000 ? dexterity - 1000 : 0));
+            var dex0To100 = (dexterity > 100 ? 100 : dexterity);
+            var dex101To500 = (dexterity > 500 ? 500 - 100 : (dexterity > 100 ? dexterity - 100 : 0));
+            var dex501To1000 = (dexterity > 1000 ? 1000 - 500 : (dexterity > 500 ? dexterity - 500 : 0));
+            var dex1001To8000 = (dexterity > 8000 ? 8000 - 1000 : (dexterity > 1000 ? dexterity - 1000 : 0));
 
-            dogde = 0.100 * dex0_100 + 0.025 * dex101_500 + 0.020 * dex501_1000 + 0.010 * dex1001_8000;
+            var dogde = 0.100 * dex0To100 + 0.025 * dex101To500 + 0.020 * dex501To1000 + 0.010 * dex1001To8000;
 
             return dogde;
         }
 
-        private ItemValueRange getHeroDPSAsIs()
+        private ItemValueRange GetHeroDpsAsIs()
         {
-            ItemValueRange dps = heroStatsItem.getWeaponDamage();
+            var dps = HeroStatsItem.GetWeaponDamage();
 
             // Update Damage Multiplier
-            dps *= getDamageMultiplier();
+            dps *= GetDamageMultiplier();
 
             // Update Attack Speed Multiplier
-            dps *= getActualAttackSpeed();
+            dps *= GetActualAttackSpeed();
 
             return dps;
         }
 
-        public ItemValueRange getHeroDPS()
+        public ItemValueRange GetHeroDps()
         {
-            return getHeroDPS(new List<ID3SkillModifier>(), new List<ID3SkillModifier>());
+            return GetHeroDps(new List<ID3SkillModifier>(), new List<ID3SkillModifier>());
         }
 
-        public ItemValueRange getHeroDPS(IEnumerable<ID3SkillModifier> passives, IEnumerable<ID3SkillModifier> actives)
+        public ItemValueRange GetHeroDps(IEnumerable<ID3SkillModifier> passives, IEnumerable<ID3SkillModifier> actives)
         {
-            ItemAttributes itemAttributes = new ItemAttributes();
+            var itemAttributes = new ItemAttributes();
 
-            heroStatsItem.setLevelBonus(levelAttributes);
-            heroStatsItem.setParagonLevelBonus(paragonLevelAttributes);
+            HeroStatsItem.SetLevelBonus(levelAttributes);
+            HeroStatsItem.SetParagonLevelBonus(paragonLevelAttributes);
 
-            update();
+            Update();
 
             // Build passive bonuses
-            foreach (ID3SkillModifier modifier in passives)
+            foreach (var modifier in passives)
             {
-                itemAttributes += modifier.getBonus(this);
+                itemAttributes += modifier.GetBonus(this);
             }
 
             // Compute the new unique item state with passives
-            update();
+            Update();
 
             // Build active bonuses
-            foreach (ID3SkillModifier modifier in actives)
+            foreach (var modifier in actives)
             {
-                itemAttributes += modifier.getBonus(this);
+                itemAttributes += modifier.GetBonus(this);
             }
 
             // Finally, return the dps
-            return getHeroDPS(itemAttributes);
+            return GetHeroDps(itemAttributes);
         }
 
-        public ItemValueRange getHeroDPS(ItemAttributes addedBonus)
+        public ItemValueRange GetHeroDps(ItemAttributes addedBonus)
         {
-            heroStatsItem.setLevelBonus(levelAttributes);
-            heroStatsItem.setParagonLevelBonus(paragonLevelAttributes);
-            heroStatsItem.setSkillsBonus(addedBonus);
-            update();
+            HeroStatsItem.SetLevelBonus(levelAttributes);
+            HeroStatsItem.SetParagonLevelBonus(paragonLevelAttributes);
+            HeroStatsItem.SetSkillsBonus(addedBonus);
+            Update();
 
-            return getHeroDPSAsIs();
+            return GetHeroDpsAsIs();
         }
 
-        public double getHeroEffectiveHitpoints(int mobLevel)
+        public double GetHeroEffectiveHitpoints(int mobLevel)
         {
-            double ehp = getHeroHitpoints().min;
+            var ehp = GetHeroHitpoints().Min;
 
             // Update with armor reduction
-            ehp /= (1 - getHeroDamageReduction_Armor(mobLevel));
+            ehp /= (1 - GetHeroDamageReduction_Armor(mobLevel));
 
             // Update with lowest resistance reduction
-            double resistance = getHeroDamageReduction(mobLevel, "Arcane");
-            if (getHeroDamageReduction(mobLevel, "Cold") < resistance) resistance = getHeroDamageReduction(mobLevel, "Cold");
-            if (getHeroDamageReduction(mobLevel, "Fire") < resistance) resistance = getHeroDamageReduction(mobLevel, "Fire");
-            if (getHeroDamageReduction(mobLevel, "Lightning") < resistance) resistance = getHeroDamageReduction(mobLevel, "Lightning");
-            if (getHeroDamageReduction(mobLevel, "Physical") < resistance) resistance = getHeroDamageReduction(mobLevel, "Physical");
-            if (getHeroDamageReduction(mobLevel, "Poison") < resistance) resistance = getHeroDamageReduction(mobLevel, "Poison");
+            var resistance = GetHeroDamageReduction(mobLevel, "Arcane");
+            if (GetHeroDamageReduction(mobLevel, "Cold") < resistance) resistance = GetHeroDamageReduction(mobLevel, "Cold");
+            if (GetHeroDamageReduction(mobLevel, "Fire") < resistance) resistance = GetHeroDamageReduction(mobLevel, "Fire");
+            if (GetHeroDamageReduction(mobLevel, "Lightning") < resistance) resistance = GetHeroDamageReduction(mobLevel, "Lightning");
+            if (GetHeroDamageReduction(mobLevel, "Physical") < resistance) resistance = GetHeroDamageReduction(mobLevel, "Physical");
+            if (GetHeroDamageReduction(mobLevel, "Poison") < resistance) resistance = GetHeroDamageReduction(mobLevel, "Poison");
             ehp /= (1 - resistance);
 
             // Update with class reduction
-            if ((heroClass == HeroClass.Monk) || (heroClass == HeroClass.Barbarian))
+            if ((HeroClass == HeroClass.Monk) || (HeroClass == HeroClass.Barbarian))
                 ehp /= (1 - 0.30);
 
             return ehp;
         }
 
-        public ItemValueRange getHeroHitpoints()
+        public ItemValueRange GetHeroHitpoints()
         {
             // Use hitpoints formula
             ItemValueRange hitpoints;
 
-            switch (heroClass)
+            switch (HeroClass)
             {
                 case HeroClass.Barbarian:
                 case HeroClass.DemonHunter:
                 case HeroClass.Monk:
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
-                    if (heroLevel < 35)
-                        hitpoints = 36 + 4 * heroLevel + 10 * getHeroVitality();
+                    if (HeroLevel < 35)
+                        hitpoints = 36 + 4 * HeroLevel + 10 * GetHeroVitality();
                     else
-                        hitpoints = 36 + 4 * heroLevel + (heroLevel - 25) * getHeroVitality();
+                        hitpoints = 36 + 4 * HeroLevel + (HeroLevel - 25) * GetHeroVitality();
                     break;
                 case HeroClass.EnchantressFollower:
                 case HeroClass.ScoundrelFollower:
                     // Missing leveling
-                    hitpoints = 6219 + 35 * getHeroVitality();
+                    hitpoints = 6219 + 35 * GetHeroVitality();
                     break;
                 case HeroClass.TemplarFollower:
                     // Missing leveling
-                    hitpoints = 7752 + 35 * getHeroVitality();
+                    hitpoints = 7752 + 35 * GetHeroVitality();
                     break;
                 default:
                     hitpoints = ItemValueRange.Zero;
@@ -343,91 +355,88 @@ namespace ZTn.BNet.D3.Calculator
             }
 
             // Update with +% Life bonus
-            if (heroStatsItem.attributesRaw.hitpointsMaxPercentBonusItem != null)
-                hitpoints *= 1 + heroStatsItem.attributesRaw.hitpointsMaxPercentBonusItem.min;
+            if (HeroStatsItem.attributesRaw.hitpointsMaxPercentBonusItem != null)
+                hitpoints *= 1 + HeroStatsItem.attributesRaw.hitpointsMaxPercentBonusItem.Min;
 
             return hitpoints;
         }
 
         public ItemValueRange getHeroResistance_All()
         {
-            ItemValueRange resist = ItemValueRange.Zero;
+            var resist = ItemValueRange.Zero;
 
-            resist += heroStatsItem.getResistance("All");
+            resist += HeroStatsItem.GetResistance("All");
 
             // Update with intelligence bonus
-            resist += getHeroIntelligence() / 10;
+            resist += GetHeroIntelligence() / 10;
 
             return resist;
         }
 
-        public ItemValueRange getHeroResistance(string resist)
+        public ItemValueRange GetHeroResistance(string resist)
         {
-            ItemValueRange resistance = getHeroResistance_All();
+            var resistance = getHeroResistance_All();
 
-            resistance += heroStatsItem.getResistance(resist);
+            resistance += HeroStatsItem.GetResistance(resist);
 
             return resistance;
         }
 
-        public ItemValueRange getHeroDexterity()
+        public ItemValueRange GetHeroDexterity()
         {
-            if (heroStatsItem.attributesRaw.dexterityItem != null)
-                return heroStatsItem.attributesRaw.dexterityItem;
+            if (HeroStatsItem.attributesRaw.dexterityItem != null)
+                return HeroStatsItem.attributesRaw.dexterityItem;
             return ItemValueRange.Zero;
         }
 
-        public ItemValueRange getHeroIntelligence()
+        public ItemValueRange GetHeroIntelligence()
         {
-            if (heroStatsItem.attributesRaw.intelligenceItem != null)
-                return heroStatsItem.attributesRaw.intelligenceItem;
+            if (HeroStatsItem.attributesRaw.intelligenceItem != null)
+                return HeroStatsItem.attributesRaw.intelligenceItem;
             return ItemValueRange.Zero;
         }
 
-        public ItemValueRange getHeroStrength()
+        public ItemValueRange GetHeroStrength()
         {
-            if (heroStatsItem.attributesRaw.strengthItem != null)
-                return heroStatsItem.attributesRaw.strengthItem;
+            if (HeroStatsItem.attributesRaw.strengthItem != null)
+                return HeroStatsItem.attributesRaw.strengthItem;
             return ItemValueRange.Zero;
         }
 
-        public ItemValueRange getHeroVitality()
+        public ItemValueRange GetHeroVitality()
         {
-            if (heroStatsItem.attributesRaw.vitalityItem != null)
-                return heroStatsItem.attributesRaw.vitalityItem;
+            if (HeroStatsItem.attributesRaw.vitalityItem != null)
+                return HeroStatsItem.attributesRaw.vitalityItem;
             return ItemValueRange.Zero;
         }
 
-        public ItemValueRange getMainCharacteristic()
+        public ItemValueRange GetMainCharacteristic()
         {
-            ItemValueRange result = ItemValueRange.Zero;
+            var result = ItemValueRange.Zero;
 
-            switch (heroClass)
+            switch (HeroClass)
             {
                 case HeroClass.Monk:
                 case HeroClass.DemonHunter:
                 case HeroClass.ScoundrelFollower:
-                    return getHeroDexterity();
+                    return GetHeroDexterity();
 
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
                 case HeroClass.EnchantressFollower:
-                    return getHeroIntelligence();
+                    return GetHeroIntelligence();
 
                 case HeroClass.Barbarian:
                 case HeroClass.TemplarFollower:
-                    return getHeroStrength();
-
-                default:
-                    break;
+                    return GetHeroStrength();
             }
 
             return result;
         }
 
-        public void update()
+        public void Update()
         {
-            heroStatsItem.update();
+            HeroStatsItem.Update();
         }
     }
 }

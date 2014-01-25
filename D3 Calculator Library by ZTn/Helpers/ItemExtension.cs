@@ -19,7 +19,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <param name="item">Source item</param>
         /// <param name="fieldName">Name of the attribute to retrieve</param>
         /// <returns></returns>
-        public static ItemValueRange getAttributeByName(this Item item, String fieldName)
+        public static ItemValueRange GetAttributeByName(this Item item, String fieldName)
         {
             return (ItemValueRange)typeof(ItemAttributes).GetField(fieldName).GetValue(item.attributesRaw);
         }
@@ -30,7 +30,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <param name="item">Source item</param>
         /// <param name="fieldName">Name of the attribute to retrieve</param>
         /// <param name="value">Value to set</param>
-        public static void setAttributeByName(this Item item, String fieldName, ItemValueRange value)
+        public static void SetAttributeByName(this Item item, String fieldName, ItemValueRange value)
         {
             typeof(ItemAttributes).GetField(fieldName).SetValue(item.attributesRaw, value);
         }
@@ -42,14 +42,16 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        public static List<Set> getActivatedSets(this List<Item> items)
+        public static List<Set> GetActivatedSets(this List<Item> items)
         {
-            Dictionary<String, Set> itemsOfSets = new Dictionary<string, Set>();
+            var itemsOfSets = new Dictionary<string, Set>();
 
-            foreach (Set set in items.Where(item => item.set != null).Select(item => item.set))
+            foreach (var set in items.Where(item => item.set != null).Select(item => item.set))
             {
                 if (!itemsOfSets.ContainsKey(set.slug))
+                {
                     itemsOfSets.Add(set.slug, set);
+                }
             }
 
             return itemsOfSets.Values.ToList();
@@ -60,16 +62,14 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        public static ItemAttributes getActivatedSetBonus(this List<Item> items)
+        public static ItemAttributes GetActivatedSetBonus(this List<Item> items)
         {
-            ItemAttributes attr = new ItemAttributes();
-
-            foreach (Set set in items.getActivatedSets())
+            if (items == null)
             {
-                attr += set.getBonus(set.countItemsOfSet(items));
+                throw new ArgumentNullException("items");
             }
 
-            return attr;
+            return items.GetActivatedSets().Aggregate(new ItemAttributes(), (current, set) => current + set.GetBonus(set.CountItemsOfSet(items)));
         }
 
         /// <summary>
@@ -77,45 +77,45 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static ItemValueRange getArmor(this Item item)
+        public static ItemValueRange GetArmor(this Item item)
         {
-            return item.attributesRaw.getArmor();
+            return item.attributesRaw.GetArmor();
         }
 
         /// <summary>
         /// Computes damages other than weapon damages (on rings, amulets, ...)
         /// </summary>
-        /// <param name="gems"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
-        public static ItemValueRange getRawAverageBonusDamage(this Item item)
+        public static ItemValueRange GetRawAverageBonusDamage(this Item item)
         {
-            return item.attributesRaw.getRawAverageBonusDamage();
+            return item.attributesRaw.GetRawAverageBonusDamage();
         }
 
         #region >> getRawBonusDamageMin *
 
-        public static ItemValueRange getRawBonusDamageMin(this Item item)
+        public static ItemValueRange GetRawBonusDamageMin(this Item item)
         {
-            return item.attributesRaw.getRawBonusDamageMin();
+            return item.attributesRaw.GetRawBonusDamageMin();
         }
 
-        public static ItemValueRange getRawBonusDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
+        public static ItemValueRange GetRawBonusDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
-            return item.attributesRaw.getRawBonusDamageMin(resist, useDamageTypePercentBonus);
+            return item.attributesRaw.GetRawBonusDamageMin(resist, useDamageTypePercentBonus);
         }
 
         #endregion
 
         #region >> getRawBonusDamageMax *
 
-        public static ItemValueRange getRawBonusDamageMax(this Item item)
+        public static ItemValueRange GetRawBonusDamageMax(this Item item)
         {
-            return item.attributesRaw.getRawBonusDamageMax();
+            return item.attributesRaw.GetRawBonusDamageMax();
         }
 
-        public static ItemValueRange getRawBonusDamageMax(this Item item, String resist)
+        public static ItemValueRange GetRawBonusDamageMax(this Item item, String resist)
         {
-            return item.attributesRaw.getRawBonusDamageMax(resist);
+            return item.attributesRaw.GetRawBonusDamageMax(resist);
         }
 
         #endregion
@@ -123,75 +123,75 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <summary>
         /// Returns the resistance value given by the gems for the given resist
         /// </summary>
-        /// <param name="gems"></param>
+        /// <param name="item"></param>
         /// <param name="resist"></param>
         /// <returns></returns>
-        public static ItemValueRange getResistance(this Item item, String resist)
+        public static ItemValueRange GetResistance(this Item item, String resist)
         {
-            return item.attributesRaw.getAttributeByName("resistance_" + resist);
+            return item.attributesRaw.GetAttributeByName("resistance_" + resist);
         }
 
         /// <summary>
         /// Computes weapon attack speed (attack per second).
         /// </summary>
-        /// <param name="gems"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
-        public static ItemValueRange getRawWeaponAttackPerSecond(this Item item)
+        public static ItemValueRange GetRawWeaponAttackPerSecond(this Item item)
         {
-            return item.attributesRaw.getRawWeaponAttackPerSecond();
+            return item.attributesRaw.GetRawWeaponAttackPerSecond();
         }
 
         /// <summary>
         /// Computes raw weapon dps ie before all multipliers ( = average damage * attack per second )
         /// </summary>
-        /// <param name="gems"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
-        public static ItemValueRange getRawWeaponDPS(this Item item)
+        public static ItemValueRange GetRawWeaponDps(this Item item)
         {
-            return item.attributesRaw.getRawWeaponDPS();
+            return item.attributesRaw.GetRawWeaponDps();
         }
 
         /// <summary>
         /// Computes weapon only damages
         /// </summary>
-        /// <param name="gems"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
-        public static ItemValueRange getRawAverageWeaponDamage(this Item item)
+        public static ItemValueRange GetRawAverageWeaponDamage(this Item item)
         {
-            return item.attributesRaw.getRawAverageWeaponDamage();
+            return item.attributesRaw.GetRawAverageWeaponDamage();
         }
 
         #region >> getRawWeaponDamageMin *
 
-        public static ItemValueRange getRawWeaponDamageMin(this Item item)
+        public static ItemValueRange GetRawWeaponDamageMin(this Item item)
         {
-            return item.attributesRaw.getRawWeaponDamageMin();
+            return item.attributesRaw.GetRawWeaponDamageMin();
         }
 
-        public static ItemValueRange getRawWeaponDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
+        public static ItemValueRange GetRawWeaponDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
-            return item.attributesRaw.getRawWeaponDamageMin(resist, useDamageTypePercentBonus);
+            return item.attributesRaw.GetRawWeaponDamageMin(resist, useDamageTypePercentBonus);
         }
 
         #endregion
 
         #region >> getRawWeaponDamageMax *
 
-        public static ItemValueRange getRawWeaponDamageMax(this Item item)
+        public static ItemValueRange GetRawWeaponDamageMax(this Item item)
         {
-            return item.attributesRaw.getRawWeaponDamageMax();
+            return item.attributesRaw.GetRawWeaponDamageMax();
         }
 
-        public static ItemValueRange getRawWeaponDamageMax(this Item item, String resist, bool useDamageTypePercentBonus = true)
+        public static ItemValueRange GetRawWeaponDamageMax(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
-            return item.attributesRaw.getRawWeaponDamageMax(resist, useDamageTypePercentBonus);
+            return item.attributesRaw.GetRawWeaponDamageMax(resist, useDamageTypePercentBonus);
         }
 
         #endregion
 
-        public static ItemValueRange getWeaponAttackPerSecond(this Item item, ItemValueRange increaseFromOtherItems)
+        public static ItemValueRange GetWeaponAttackPerSecond(this Item item, ItemValueRange increaseFromOtherItems)
         {
-            return item.attributesRaw.getWeaponAttackPerSecond(increaseFromOtherItems);
+            return item.attributesRaw.GetWeaponAttackPerSecond(increaseFromOtherItems);
         }
 
         #region >> checkAndUpdateWeaponDelta *
@@ -201,16 +201,16 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// If bonus min > delta, then delta should be replaced by bonus min + 1
         /// </summary>
         /// <param name="item"></param>
-        public static Item checkAndUpdateWeaponDelta(this Item item)
+        public static Item CheckAndUpdateWeaponDelta(this Item item)
         {
             return item
-                .checkAndUpdateWeaponDelta("Arcane")
-                .checkAndUpdateWeaponDelta("Cold")
-                .checkAndUpdateWeaponDelta("Fire")
-                .checkAndUpdateWeaponDelta("Holy")
-                .checkAndUpdateWeaponDelta("Lightning")
-                .checkAndUpdateWeaponDelta("Physical")
-                .checkAndUpdateWeaponDelta("Poison");
+                .CheckAndUpdateWeaponDelta("Arcane")
+                .CheckAndUpdateWeaponDelta("Cold")
+                .CheckAndUpdateWeaponDelta("Fire")
+                .CheckAndUpdateWeaponDelta("Holy")
+                .CheckAndUpdateWeaponDelta("Lightning")
+                .CheckAndUpdateWeaponDelta("Physical")
+                .CheckAndUpdateWeaponDelta("Poison");
         }
 
         /// <summary>
@@ -218,17 +218,18 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// If bonus min > delta, then delta should be replaced by bonus min + 1
         /// </summary>
         /// <param name="item"></param>
-        public static Item checkAndUpdateWeaponDelta(this Item item, String resist)
+        /// <param name="resist"></param>
+        public static Item CheckAndUpdateWeaponDelta(this Item item, String resist)
         {
-            ItemValueRange damageWeaponBonusMin = item.getAttributeByName("damageWeaponBonusMin_" + resist);
-            ItemValueRange damageWeaponDelta = item.getAttributeByName("damageWeaponDelta_" + resist);
+            var damageWeaponBonusMin = item.GetAttributeByName("damageWeaponBonusMin_" + resist);
+            var damageWeaponDelta = item.GetAttributeByName("damageWeaponDelta_" + resist);
 
             // Check "black weapon bug"
-            if ((damageWeaponDelta != null) && (damageWeaponBonusMin != null) && (damageWeaponDelta.min < damageWeaponBonusMin.min))
+            if ((damageWeaponDelta != null) && (damageWeaponBonusMin != null) && (damageWeaponDelta.Min < damageWeaponBonusMin.Min))
                 damageWeaponDelta = damageWeaponBonusMin + 1;
 
             // Store new values
-            item.setAttributeByName("damageWeaponDelta_" + resist, damageWeaponDelta);
+            item.SetAttributeByName("damageWeaponDelta_" + resist, damageWeaponDelta);
 
             return item;
         }
@@ -237,19 +238,19 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         #region >> isItemType*
 
-        public static Boolean isItemTypeHelm(this Item item)
+        public static Boolean IsItemTypeHelm(this Item item)
         {
-            return ItemHelper.helmTypeIds.Any(id => item.id.Contains(id));
+            return ItemHelper.HelmTypeIds.Any(id => item.id.Contains(id));
         }
 
-        public static Boolean isItemTypeWeapon(this Item item)
+        public static Boolean IsItemTypeWeapon(this Item item)
         {
-            return ItemHelper.weaponTypeIds.Any(id => item.id == id);
+            return ItemHelper.WeaponTypeIds.Any(id => item.id == id);
         }
 
-        public static Boolean isItemTypeOther(this Item item)
+        public static Boolean IsItemTypeOther(this Item item)
         {
-            return !item.isItemTypeHelm() && !item.isWeapon();
+            return !item.IsItemTypeHelm() && !item.IsWeapon();
         }
 
         #endregion
@@ -257,11 +258,11 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <summary>
         /// Informs if the gems is a weapon based on its characteristics
         /// </summary>
-        /// <param name="gems"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
-        public static Boolean isWeapon(this Item item)
+        public static Boolean IsWeapon(this Item item)
         {
-            return item.attributesRaw.isWeapon();
+            return item.attributesRaw.IsWeapon();
         }
 
         /// <summary>
@@ -269,12 +270,10 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static Item mergeSocketedGems(this Item item)
+        public static Item MergeSocketedGems(this Item item)
         {
-            foreach (SocketedGem gem in item.gems)
-            {
-                item.attributesRaw += gem.attributesRaw;
-            }
+            item.attributesRaw += item.gems.Aggregate(new ItemAttributes(), (current, gem) => current + gem.attributesRaw);
+
             item.gems = null;
 
             return item;
@@ -285,9 +284,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// </summary>
         /// <param name="item"></param>
         /// <returns>The <paramref name="item"/> instance.</returns>
-        public static Item simplify(this Item item)
+        public static Item Simplify(this Item item)
         {
-            ItemAttributes attr = item.attributesRaw.getSimplified();
+            var attr = item.attributesRaw.GetSimplified();
 
             // Set new attributes to item
             item.attributesRaw = attr;
@@ -302,14 +301,14 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static Item UpdateStats(this Item item)
         {
-            ItemAttributes attr = item.attributesRaw;
+            var attr = item.attributesRaw;
 
             // Update some item stats
             item.armor = (attr.armorItem == null ? null : new ItemValueRange(attr.armorItem));
             item.attacksPerSecond = (attr.attacksPerSecondItem == null ? null : new ItemValueRange(attr.attacksPerSecondItem));
-            item.minDamage = item.getRawWeaponDamageMin().nullIfZero();
-            item.maxDamage = item.getRawWeaponDamageMax().nullIfZero();
-            item.dps = item.getRawWeaponDPS().nullIfZero();
+            item.minDamage = item.GetRawWeaponDamageMin().NullIfZero();
+            item.maxDamage = item.GetRawWeaponDamageMax().NullIfZero();
+            item.dps = item.GetRawWeaponDps().NullIfZero();
 
             return item;
         }

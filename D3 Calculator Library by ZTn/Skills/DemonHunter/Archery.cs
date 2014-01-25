@@ -1,6 +1,6 @@
-﻿
-using ZTn.BNet.D3.Heroes;
+﻿using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
+
 namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
     public sealed class Archery : ID3SkillModifier
@@ -8,28 +8,28 @@ namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.DemonHunter; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "archery"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            switch (calculator.heroStatsItem.mainHand.type.id)
+            switch (calculator.HeroStatsItem.MainHand.type.id)
             {
                 case "Bow":
                     return getBonus_Bow(calculator);
                 case "Crossbow":
-                    return getBonus_Crossbow(calculator);
+                    return getBonus_Crossbow();
                 case "HandCrossbow":
-                    return getBonus_HandCrossbow(calculator);
+                    return getBonus_HandCrossbow();
                 default:
                     return new ItemAttributes();
             }
@@ -37,19 +37,19 @@ namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 
         #endregion
 
-        ItemAttributes getBonus_Bow(D3Calculator calculator)
+        static ItemAttributes getBonus_Bow(D3Calculator calculator)
         {
-            return new DamageMultiplier(0.15).getBonus(calculator);
+            return new DamageMultiplier(0.15).GetBonus(calculator);
         }
 
-        ItemAttributes getBonus_Crossbow(D3Calculator calculator)
+        static ItemAttributes getBonus_Crossbow()
         {
-            return new ItemAttributes() { critDamagePercent = new ItemValueRange(0.50) };
+            return new ItemAttributes { critDamagePercent = new ItemValueRange(0.50) };
         }
 
-        ItemAttributes getBonus_HandCrossbow(D3Calculator calculator)
+        static ItemAttributes getBonus_HandCrossbow()
         {
-            return new ItemAttributes() { critPercentBonusCapped = new ItemValueRange(0.10) };
+            return new ItemAttributes { critPercentBonusCapped = new ItemValueRange(0.10) };
         }
     }
 }

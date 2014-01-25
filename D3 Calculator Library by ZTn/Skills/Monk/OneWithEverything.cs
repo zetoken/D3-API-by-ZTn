@@ -8,44 +8,42 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Monk; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "one-with-everything"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            ItemAttributes stuff = calculator.heroStatsItem.attributesRaw;
-            ItemAttributes attr = new ItemAttributes();
+            var stuff = calculator.HeroStatsItem.attributesRaw;
+            var attr = new ItemAttributes();
 
             double maxResist = 0;
 
-            double resistanceArcane = calculator.getHeroResistance("Arcane").min;
+            var resistanceArcane = calculator.GetHeroResistance("Arcane").Min;
             if (resistanceArcane > maxResist) maxResist = resistanceArcane;
 
-            double resistanceCold = calculator.getHeroResistance("Cold").min;
+            var resistanceCold = calculator.GetHeroResistance("Cold").Min;
             if (resistanceCold > maxResist) maxResist = resistanceCold;
 
-            double resistanceFire = calculator.getHeroResistance("Fire").min;
+            var resistanceFire = calculator.GetHeroResistance("Fire").Min;
             if (resistanceFire > maxResist) maxResist = resistanceFire;
 
-            double resistanceLightning = calculator.getHeroResistance("Lightning").min;
+            var resistanceLightning = calculator.GetHeroResistance("Lightning").Min;
             if (resistanceLightning > maxResist) maxResist = resistanceLightning;
 
-            double resistancePhysical = calculator.getHeroResistance("Physical").min;
+            var resistancePhysical = calculator.GetHeroResistance("Physical").Min;
             if (resistancePhysical > maxResist) maxResist = resistancePhysical;
 
-            double resistancePoison = calculator.getHeroResistance("Poison").min;
+            var resistancePoison = calculator.GetHeroResistance("Poison").Min;
             if (resistancePoison > maxResist) maxResist = resistancePoison;
-
-            double resistanceAll = calculator.getHeroResistance_All().min;
 
             if (stuff.resistance_Arcane != null)
                 attr.resistance_Arcane = ItemValueRange.Zero - stuff.resistance_Arcane;

@@ -11,19 +11,19 @@ namespace ZTn.BNet.D3.Calculator.Skills
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Unknown; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return ""; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
             return new ItemAttributes();
         }

@@ -119,28 +119,28 @@
             this.guiSkillMantraOfHealing_TimeOfNeed = new System.Windows.Forms.CheckBox();
             this.guiSkillMantraOfEvasion_HardTarget = new System.Windows.Forms.CheckBox();
             this.tabSetBonus = new System.Windows.Forms.TabPage();
-            this.guiSetBonusEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiMainHandEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiOffHandEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiLeftFingerEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiRightFingerEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
-            this.guiNeckEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiSetBonusEditor = new D3ItemEditor();
+            this.guiMainHandEditor = new D3ItemEditor();
+            this.guiOffHandEditor = new D3ItemEditor();
+            this.guiLeftFingerEditor = new D3ItemEditor();
+            this.guiRightFingerEditor = new D3ItemEditor();
+            this.guiNeckEditor = new D3ItemEditor();
             this.tabHead = new System.Windows.Forms.TabPage();
-            this.guiHeadEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiHeadEditor = new D3ItemEditor();
             this.tabShoulders = new System.Windows.Forms.TabPage();
-            this.guiShouldersEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiShouldersEditor = new D3ItemEditor();
             this.tabBracers = new System.Windows.Forms.TabPage();
-            this.guiBracersEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiBracersEditor = new D3ItemEditor();
             this.tabHands = new System.Windows.Forms.TabPage();
-            this.guiHandsEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiHandsEditor = new D3ItemEditor();
             this.tabTorso = new System.Windows.Forms.TabPage();
-            this.guiTorsoEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiTorsoEditor = new D3ItemEditor();
             this.tabWaist = new System.Windows.Forms.TabPage();
-            this.guiWaistEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiWaistEditor = new D3ItemEditor();
             this.tabLegs = new System.Windows.Forms.TabPage();
-            this.guiLegsEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiLegsEditor = new D3ItemEditor();
             this.tabFeet = new System.Windows.Forms.TabPage();
-            this.guiFeetEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiFeetEditor = new D3ItemEditor();
             this.guiCalculatedDPSEHPRatio = new System.Windows.Forms.TextBox();
             this.guiCalculatedEffectiveHitpoints = new System.Windows.Forms.TextBox();
             this.guiCalculatedResistance_All = new System.Windows.Forms.TextBox();
@@ -190,7 +190,7 @@
             this.guiItemsVitality = new System.Windows.Forms.TextBox();
             this.tacControl1 = new System.Windows.Forms.TabControl();
             this.tabSpecial = new System.Windows.Forms.TabPage();
-            this.guiSpecialEditor = new ZTn.BNet.D3.Calculator.D3ItemEditor();
+            this.guiSpecialEditor = new D3ItemEditor();
             label6 = new System.Windows.Forms.Label();
             tabPassiveSkills = new System.Windows.Forms.TabPage();
             groupBox9 = new System.Windows.Forms.GroupBox();
@@ -711,7 +711,7 @@
             // 
             this.guiSetBonusEditor.AutoSize = true;
             this.guiSetBonusEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiSetBonusEditor.knownGems = null;
+            this.guiSetBonusEditor.KnownGems = null;
             this.guiSetBonusEditor.Location = new System.Drawing.Point(6, 6);
             this.guiSetBonusEditor.Name = "guiSetBonusEditor";
             this.guiSetBonusEditor.Size = new System.Drawing.Size(708, 531);
@@ -733,7 +733,7 @@
             // 
             this.guiMainHandEditor.AutoSize = true;
             this.guiMainHandEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiMainHandEditor.knownGems = null;
+            this.guiMainHandEditor.KnownGems = null;
             this.guiMainHandEditor.Location = new System.Drawing.Point(6, 6);
             this.guiMainHandEditor.Name = "guiMainHandEditor";
             this.guiMainHandEditor.Size = new System.Drawing.Size(708, 531);
@@ -755,7 +755,7 @@
             // 
             this.guiOffHandEditor.AutoSize = true;
             this.guiOffHandEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiOffHandEditor.knownGems = null;
+            this.guiOffHandEditor.KnownGems = null;
             this.guiOffHandEditor.Location = new System.Drawing.Point(6, 6);
             this.guiOffHandEditor.Name = "guiOffHandEditor";
             this.guiOffHandEditor.Size = new System.Drawing.Size(708, 531);
@@ -777,7 +777,7 @@
             // 
             this.guiLeftFingerEditor.AutoSize = true;
             this.guiLeftFingerEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiLeftFingerEditor.knownGems = null;
+            this.guiLeftFingerEditor.KnownGems = null;
             this.guiLeftFingerEditor.Location = new System.Drawing.Point(6, 6);
             this.guiLeftFingerEditor.Name = "guiLeftFingerEditor";
             this.guiLeftFingerEditor.Size = new System.Drawing.Size(708, 531);
@@ -799,7 +799,7 @@
             // 
             this.guiRightFingerEditor.AutoSize = true;
             this.guiRightFingerEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiRightFingerEditor.knownGems = null;
+            this.guiRightFingerEditor.KnownGems = null;
             this.guiRightFingerEditor.Location = new System.Drawing.Point(6, 6);
             this.guiRightFingerEditor.Name = "guiRightFingerEditor";
             this.guiRightFingerEditor.Size = new System.Drawing.Size(708, 531);
@@ -821,7 +821,7 @@
             // 
             this.guiNeckEditor.AutoSize = true;
             this.guiNeckEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiNeckEditor.knownGems = null;
+            this.guiNeckEditor.KnownGems = null;
             this.guiNeckEditor.Location = new System.Drawing.Point(6, 6);
             this.guiNeckEditor.Name = "guiNeckEditor";
             this.guiNeckEditor.Size = new System.Drawing.Size(708, 531);
@@ -843,7 +843,7 @@
             // 
             this.guiHeadEditor.AutoSize = true;
             this.guiHeadEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiHeadEditor.knownGems = null;
+            this.guiHeadEditor.KnownGems = null;
             this.guiHeadEditor.Location = new System.Drawing.Point(6, 6);
             this.guiHeadEditor.Name = "guiHeadEditor";
             this.guiHeadEditor.Size = new System.Drawing.Size(708, 531);
@@ -865,7 +865,7 @@
             // 
             this.guiShouldersEditor.AutoSize = true;
             this.guiShouldersEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiShouldersEditor.knownGems = null;
+            this.guiShouldersEditor.KnownGems = null;
             this.guiShouldersEditor.Location = new System.Drawing.Point(6, 6);
             this.guiShouldersEditor.Name = "guiShouldersEditor";
             this.guiShouldersEditor.Size = new System.Drawing.Size(708, 531);
@@ -887,7 +887,7 @@
             // 
             this.guiBracersEditor.AutoSize = true;
             this.guiBracersEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiBracersEditor.knownGems = null;
+            this.guiBracersEditor.KnownGems = null;
             this.guiBracersEditor.Location = new System.Drawing.Point(6, 6);
             this.guiBracersEditor.Name = "guiBracersEditor";
             this.guiBracersEditor.Size = new System.Drawing.Size(708, 531);
@@ -909,7 +909,7 @@
             // 
             this.guiHandsEditor.AutoSize = true;
             this.guiHandsEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiHandsEditor.knownGems = null;
+            this.guiHandsEditor.KnownGems = null;
             this.guiHandsEditor.Location = new System.Drawing.Point(6, 6);
             this.guiHandsEditor.Name = "guiHandsEditor";
             this.guiHandsEditor.Size = new System.Drawing.Size(708, 531);
@@ -931,7 +931,7 @@
             // 
             this.guiTorsoEditor.AutoSize = true;
             this.guiTorsoEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiTorsoEditor.knownGems = null;
+            this.guiTorsoEditor.KnownGems = null;
             this.guiTorsoEditor.Location = new System.Drawing.Point(6, 6);
             this.guiTorsoEditor.Name = "guiTorsoEditor";
             this.guiTorsoEditor.Size = new System.Drawing.Size(708, 531);
@@ -953,7 +953,7 @@
             // 
             this.guiWaistEditor.AutoSize = true;
             this.guiWaistEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiWaistEditor.knownGems = null;
+            this.guiWaistEditor.KnownGems = null;
             this.guiWaistEditor.Location = new System.Drawing.Point(6, 6);
             this.guiWaistEditor.Name = "guiWaistEditor";
             this.guiWaistEditor.Size = new System.Drawing.Size(708, 531);
@@ -975,7 +975,7 @@
             // 
             this.guiLegsEditor.AutoSize = true;
             this.guiLegsEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiLegsEditor.knownGems = null;
+            this.guiLegsEditor.KnownGems = null;
             this.guiLegsEditor.Location = new System.Drawing.Point(6, 6);
             this.guiLegsEditor.Name = "guiLegsEditor";
             this.guiLegsEditor.Size = new System.Drawing.Size(708, 531);
@@ -997,7 +997,7 @@
             // 
             this.guiFeetEditor.AutoSize = true;
             this.guiFeetEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiFeetEditor.knownGems = null;
+            this.guiFeetEditor.KnownGems = null;
             this.guiFeetEditor.Location = new System.Drawing.Point(6, 6);
             this.guiFeetEditor.Name = "guiFeetEditor";
             this.guiFeetEditor.Size = new System.Drawing.Size(708, 531);
@@ -1961,7 +1961,7 @@
             // 
             this.guiSpecialEditor.AutoSize = true;
             this.guiSpecialEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiSpecialEditor.knownGems = null;
+            this.guiSpecialEditor.KnownGems = null;
             this.guiSpecialEditor.Location = new System.Drawing.Point(6, 6);
             this.guiSpecialEditor.Name = "guiSpecialEditor";
             this.guiSpecialEditor.Size = new System.Drawing.Size(708, 531);
@@ -2040,19 +2040,19 @@
         #endregion
 
         private System.Windows.Forms.Button guiDoCalculations;
-        private D3.Calculator.D3ItemEditor guiBracersEditor;
-        private D3.Calculator.D3ItemEditor guiFeetEditor;
-        private D3.Calculator.D3ItemEditor guiHandsEditor;
-        private D3.Calculator.D3ItemEditor guiHeadEditor;
-        private D3.Calculator.D3ItemEditor guiLeftFingerEditor;
-        private D3.Calculator.D3ItemEditor guiLegsEditor;
-        private D3.Calculator.D3ItemEditor guiNeckEditor;
-        private D3.Calculator.D3ItemEditor guiRightFingerEditor;
-        private D3.Calculator.D3ItemEditor guiShouldersEditor;
-        private D3.Calculator.D3ItemEditor guiTorsoEditor;
-        private D3.Calculator.D3ItemEditor guiWaistEditor;
-        public D3.Calculator.D3ItemEditor guiMainHandEditor;
-        public D3.Calculator.D3ItemEditor guiOffHandEditor;
+        private D3ItemEditor guiBracersEditor;
+        private D3ItemEditor guiFeetEditor;
+        private D3ItemEditor guiHandsEditor;
+        private D3ItemEditor guiHeadEditor;
+        private D3ItemEditor guiLeftFingerEditor;
+        private D3ItemEditor guiLegsEditor;
+        private D3ItemEditor guiNeckEditor;
+        private D3ItemEditor guiRightFingerEditor;
+        private D3ItemEditor guiShouldersEditor;
+        private D3ItemEditor guiTorsoEditor;
+        private D3ItemEditor guiWaistEditor;
+        public D3ItemEditor guiMainHandEditor;
+        public D3ItemEditor guiOffHandEditor;
         private System.Windows.Forms.TextBox guiItemsDexterity;
         private System.Windows.Forms.TextBox guiItemsIntelligence;
         private System.Windows.Forms.TextBox guiItemsStrength;
@@ -2122,10 +2122,10 @@
         private System.Windows.Forms.CheckBox guiSkillMantraOfEvasion_HardTarget;
         private System.Windows.Forms.CheckBox guiSkillMysticAlly_EarthAlly;
         private System.Windows.Forms.TextBox guiItemsLifeSteal;
-        private D3.Calculator.D3ItemEditor guiSetBonusEditor;
+        private D3ItemEditor guiSetBonusEditor;
         private System.Windows.Forms.CheckBox guiSkillWarCry_Invigorate;
         private System.Windows.Forms.TabPage tabSpecial;
-        private D3.Calculator.D3ItemEditor guiSpecialEditor;
+        private D3ItemEditor guiSpecialEditor;
         private System.Windows.Forms.TabControl tacControl1;
         private System.Windows.Forms.TabPage tabSetBonus;
         private System.Windows.Forms.TabPage tabHead;

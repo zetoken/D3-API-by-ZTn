@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+﻿using System.Reflection;
+using ZTn.BNet.D3.Annotations;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Helpers
@@ -27,34 +24,38 @@ namespace ZTn.BNet.D3.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <param name="target"></param>
-        public static void deepCopy<T>(this T source, T target) where T : class
+        public static void DeepCopy<T>(this T source, T target) where T : class
         {
-            foreach (PropertyInfo info in typeof(T).GetProperties())
+            foreach (var info in typeof(T).GetProperties())
             {
-                object value = info.GetValue(source, null);
+                var value = info.GetValue(source, null);
                 if (value != null)
                 {
-                    D3DeepCopy.copyValue(info, target, (dynamic)value);
+                    CopyValue(info, target, value);
                 }
             }
         }
 
-        static void copyValue(PropertyInfo info, object target, bool value)
+        [UsedImplicitly]
+        static void CopyValue(PropertyInfo info, object target, bool value)
         {
             info.SetValue(target, value, null);
         }
 
-        static void copyValue(PropertyInfo info, object target, double value)
+        [UsedImplicitly]
+        static void CopyValue(PropertyInfo info, object target, double value)
         {
             info.SetValue(target, value, null);
         }
 
-        static void copyValue(PropertyInfo info, object target, float value)
+        [UsedImplicitly]
+        static void CopyValue(PropertyInfo info, object target, float value)
         {
             info.SetValue(target, value, null);
         }
 
-        static void copyValue(PropertyInfo info, object target, int value)
+        [UsedImplicitly]
+        static void CopyValue(PropertyInfo info, object target, int value)
         {
             info.SetValue(target, value, null);
         }
@@ -65,27 +66,31 @@ namespace ZTn.BNet.D3.Helpers
         /// <param name="info"></param>
         /// <param name="target"></param>
         /// <param name="value"></param>
-        static void copyValue(PropertyInfo info, object target, object value)
+        static void CopyValue(PropertyInfo info, object target, object value)
         {
             info.SetValue(target, value, null);
         }
 
-        static void copyValue(PropertyInfo info, object target, Item value)
+        [UsedImplicitly]
+        static void CopyValue(PropertyInfo info, object target, Item value)
         {
             info.SetValue(target, new Item(value), null);
         }
 
-        static void copyValue(PropertyInfo info, object target, ItemAttributes value)
+        [UsedImplicitly]
+        static void CopyValue(PropertyInfo info, object target, ItemAttributes value)
         {
             info.SetValue(target, new ItemAttributes(value), null);
         }
 
-        static void copyValue(PropertyInfo info, object target, ItemType value)
+        [UsedImplicitly]
+        static void CopyValue(PropertyInfo info, object target, ItemType value)
         {
             info.SetValue(target, new ItemType(value), null);
         }
 
-        static void copyValue(PropertyInfo info, object target, ItemValueRange value)
+        [UsedImplicitly]
+        static void CopyValue(PropertyInfo info, object target, ItemValueRange value)
         {
             info.SetValue(target, new ItemValueRange(value), null);
         }

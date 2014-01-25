@@ -8,21 +8,21 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
-        public HeroClass heroClass
+        public HeroClass HeroClass
         {
             get { return HeroClass.Monk; }
         }
 
         /// <inheritdoc />
-        public string slug
+        public string Slug
         {
             get { return "seize-the-initiative"; }
         }
 
         /// <inheritdoc />
-        public ItemAttributes getBonus(D3Calculator calculator)
+        public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            return new ItemAttributes() { armorBonusItem = new ItemValueRange(calculator.getHeroDexterity()) * (new ItemValueRange(0.5)) };
+            return new ItemAttributes { armorBonusItem = new ItemValueRange(calculator.GetHeroDexterity()) * (new ItemValueRange(0.5)) };
         }
 
         #endregion
