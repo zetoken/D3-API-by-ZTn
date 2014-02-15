@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.HeroFollowers;
 using ZTn.BNet.D3.Progresses;

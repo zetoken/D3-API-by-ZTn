@@ -1,27 +1,26 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3;
-using ZTn.BNet.D3.Careers;
-using ZTn.BNet.D3.Heroes;
-using ZTn.BNet.D3.Items;
 using ZTn.BNet.D3.Artisans;
-using ZTn.BNet.D3.DataProviders;
 using ZTn.BNet.D3.Calculator;
-using ZTn.BNet.D3.Skills;
-using System.IO;
+using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Sets;
-using System.Collections;
-using ZTn.BNet.D3.Calculator.Gems;
+using ZTn.BNet.D3.Careers;
+using ZTn.BNet.D3.DataProviders;
 using ZTn.BNet.D3.Helpers;
-using ZTn.BNet.D3.Progresses;
+using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.HeroFollowers;
+using ZTn.BNet.D3.Items;
+using ZTn.BNet.D3.Progresses;
+using ZTn.BNet.D3.Skills;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -363,11 +362,13 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void guiOfflineMode_CheckStateChanged(object sender, EventArgs e)
         {
-            if (D3Api.DataProvider is CacheableDataProvider)
+            var dataProvider = D3Api.DataProvider as CacheableDataProvider;
+            if (dataProvider == null)
             {
-                var dataProvider = (CacheableDataProvider)D3Api.DataProvider;
-                dataProvider.onlineMode = (guiOfflineMode.Checked ? OnlineMode.Offline : OnlineMode.Online);
+                return;
             }
+
+            dataProvider.FetchMode = (guiOfflineMode.Checked ? FetchMode.Offline : FetchMode.Online);
         }
 
         private void d3CalculatorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -395,29 +396,25 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var hero = (Hero)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            var items = new List<Item>();
-            if (hero.items.bracers != null)
-                items.Add(Item.CreateFromTooltipParams(hero.items.bracers.tooltipParams));
-            if (hero.items.feet != null)
-                items.Add(Item.CreateFromTooltipParams(hero.items.feet.tooltipParams));
-            if (hero.items.hands != null)
-                items.Add(Item.CreateFromTooltipParams(hero.items.hands.tooltipParams));
-            if (hero.items.head != null)
-                items.Add(Item.CreateFromTooltipParams(hero.items.head.tooltipParams));
-            if (hero.items.leftFinger != null)
-                items.Add(Item.CreateFromTooltipParams(hero.items.leftFinger.tooltipParams));
-            if (hero.items.legs != null)
-                items.Add(Item.CreateFromTooltipParams(hero.items.legs.tooltipParams));
-            if (hero.items.neck != null)
-                items.Add(Item.CreateFromTooltipParams(hero.items.neck.tooltipParams));
-            if (hero.items.rightFinger != null)
-                items.Add(Item.CreateFromTooltipParams(hero.items.rightFinger.tooltipParams));
-            if (hero.items.shoulders != null)
-                items.Add(Item.CreateFromTooltipParams(hero.items.shoulders.tooltipParams));
-            if (hero.items.torso != null)
-                items.Add(Item.CreateFromTooltipParams(hero.items.torso.tooltipParams));
-            if (hero.items.waist != null)
-                items.Add(Item.CreateFromTooltipParams(hero.items.waist.tooltipParams));
+            var heroItems = new[]
+            {
+                hero.items.bracers,
+                hero.items.feet,
+                hero.items.hands,
+                hero.items.head,
+                hero.items.leftFinger,
+                hero.items.legs,
+                hero.items.neck,
+                hero.items.rightFinger,
+                hero.items.shoulders,
+                hero.items.torso,
+                hero.items.waist 
+            };
+
+            var items = heroItems
+                .Where(hi => hi != null)
+                .Select(hi => Item.CreateFromTooltipParams(hi.tooltipParams))
+                .ToList();
 
             var mainHand = Item.CreateFromTooltipParams(hero.items.mainHand.tooltipParams);
 
@@ -444,15 +441,18 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var follower = (Follower)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            var items = new List<Item>();
-            if (follower.items.special != null)
-                items.Add(Item.CreateFromTooltipParams(follower.items.special.tooltipParams));
-            if (follower.items.leftFinger != null)
-                items.Add(Item.CreateFromTooltipParams(follower.items.leftFinger.tooltipParams));
-            if (follower.items.neck != null)
-                items.Add(Item.CreateFromTooltipParams(follower.items.neck.tooltipParams));
-            if (follower.items.rightFinger != null)
-                items.Add(Item.CreateFromTooltipParams(follower.items.rightFinger.tooltipParams));
+            var followerItems = new[]
+            {
+                follower.items.special,
+                follower.items.leftFinger,
+                follower.items.neck,
+                follower.items.rightFinger
+            };
+
+            var items = followerItems
+                .Where(fi => fi != null)
+                .Select(fi => Item.CreateFromTooltipParams(fi.tooltipParams))
+                .ToList();
 
             var mainHand = Item.CreateFromTooltipParams(follower.items.mainHand.tooltipParams);
 

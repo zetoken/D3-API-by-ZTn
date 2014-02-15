@@ -15,7 +15,7 @@ using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
-    public partial class D3CalculatorForm : Form
+    public sealed partial class D3CalculatorForm : Form
     {
         #region >> Fields
 
@@ -34,10 +34,6 @@ namespace ZTn.BNet.D3ProfileExplorer
         readonly Item torso;
         readonly Item waist;
 
-        Item mainHand;
-        Item offHand;
-
-        List<D3ItemEditor> d3ItemEditors;
         readonly List<CheckBox> passiveCheckBoxes;
 
         #endregion
@@ -61,7 +57,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             var knownGems = KnownGems.GetKnownGemsFromJsonFile("d3gem.json");
 
-            d3ItemEditors = new List<D3ItemEditor>
+            List<D3ItemEditor> d3ItemEditors = new List<D3ItemEditor>
             {
                 guiMainHandEditor,
                 guiOffHandEditor,
@@ -116,6 +112,8 @@ namespace ZTn.BNet.D3ProfileExplorer
         public D3CalculatorForm(Hero hero)
             : this()
         {
+            Item offHand;
+            Item mainHand;
             Text += " [ " + hero.name + " ]";
 
             guiHeroClass.SelectedItem = hero.heroClass.ToString();
@@ -173,21 +171,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiTorsoEditor.SetEditedItem(torso);
             guiWaistEditor.SetEditedItem(waist);
 
-            var items = new List<Item>
-            {
-                guiBracersEditor.GetEditedItem(),
-                guiFeetEditor.GetEditedItem(),
-                guiHandsEditor.GetEditedItem(),
-                guiHeadEditor.GetEditedItem(),
-                guiLeftFingerEditor.GetEditedItem(),
-                guiLegsEditor.GetEditedItem(),
-                guiNeckEditor.GetEditedItem(),
-                guiRightFingerEditor.GetEditedItem(),
-                guiShouldersEditor.GetEditedItem(),
-                guiTorsoEditor.GetEditedItem(),
-                guiWaistEditor.GetEditedItem()
-            };
-
             guiSetBonusEditor.SetEditedItem(new Item(allRawItems.Where(i => i != null).ToList().GetActivatedSetBonus()));
 
             PopulatePassiveSkills(hero);
@@ -197,6 +180,8 @@ namespace ZTn.BNet.D3ProfileExplorer
         public D3CalculatorForm(Follower follower, HeroClass heroClass)
             : this()
         {
+            Item offHand;
+            Item mainHand;
             Text += " [ " + follower.slug + " ]";
 
             guiHeroClass.SelectedItem = heroClass.ToString();
@@ -232,14 +217,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiLeftFingerEditor.SetEditedItem(leftFinger);
             guiNeckEditor.SetEditedItem(neck);
             guiRightFingerEditor.SetEditedItem(rightFinger);
-
-            var items = new List<Item>
-            {
-                guiSpecialEditor.GetEditedItem(),
-                guiLeftFingerEditor.GetEditedItem(),
-                guiNeckEditor.GetEditedItem(),
-                guiRightFingerEditor.GetEditedItem(),
-            };
 
             guiSetBonusEditor.SetEditedItem(new Item(allRawItems.Where(i => i != null).ToList().GetActivatedSetBonus()));
 
@@ -450,13 +427,13 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
         }
 
-        private static void PopulateCalculatedData(TextBox textBox, ItemValueRange itemValueRange)
+        private static void PopulateCalculatedData(Control textBox, ItemValueRange itemValueRange)
         {
             if (itemValueRange != null && itemValueRange.Min != 0)
                 textBox.Text = itemValueRange.Min.ToString();
         }
 
-        private static void PopulateCalculatedDataPercent(TextBox textBox, ItemValueRange itemValueRange)
+        private static void PopulateCalculatedDataPercent(Control textBox, ItemValueRange itemValueRange)
         {
             if (itemValueRange != null && itemValueRange.Min != 0)
                 textBox.Text = (100 * itemValueRange.Min).ToString();

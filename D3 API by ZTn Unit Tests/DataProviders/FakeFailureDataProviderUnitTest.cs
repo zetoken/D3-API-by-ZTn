@@ -12,7 +12,7 @@ namespace ZTn.BNet.D3.DataProviders
         public void FetchData()
         {
             var provider = new FakeFailureDataProvider();
-            var stream = provider.fetchData(url);
+            var stream = provider.FetchData(url);
             Assert.IsNotNull(stream);
             Assert.AreNotEqual(0, stream.Length);
             var response = stream.CreateFromJsonStream<FailureObject>();

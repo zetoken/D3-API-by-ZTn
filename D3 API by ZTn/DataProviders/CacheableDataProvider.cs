@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ZTn.BNet.D3.DataProviders
 {
@@ -14,7 +10,7 @@ namespace ZTn.BNet.D3.DataProviders
 
         readonly ID3DataProvider dataProvider;
 
-        public OnlineMode onlineMode = OnlineMode.Online;
+        public FetchMode FetchMode = FetchMode.Online;
 
         #endregion
 
@@ -33,7 +29,7 @@ namespace ZTn.BNet.D3.DataProviders
 
         #endregion
 
-        public String getCachedFileName(String url)
+        public String GetCachedFileName(String url)
         {
             var stringBuilder = new StringBuilder();
 
@@ -44,14 +40,14 @@ namespace ZTn.BNet.D3.DataProviders
             if (uri.LocalPath.Contains("/profile/"))
             {
                 // Example: http://eu.battle.net/api/d3/profile/Tok-2360 >> eu.battle.net/Tok-2360.json
-                var splitted = uri.LocalPath.Split(new String[] { "/profile/" }, StringSplitOptions.None);
+                var splitted = uri.LocalPath.Split(new[] { "/profile/" }, StringSplitOptions.None);
                 stringBuilder.Append(splitted[1]);
                 stringBuilder.Append(".json");
             }
             else if (uri.LocalPath.Contains("/hero/"))
             {
                 // Example: http://eu.battle.net/api/d3/profile/Tok-2360/hero/17023 >> eu.battle.net/Tok-2360/hero/17023.json
-                var splitted = uri.LocalPath.Split(new String[] { "/hero/" }, StringSplitOptions.None);
+                var splitted = uri.LocalPath.Split(new[] { "/hero/" }, StringSplitOptions.None);
                 stringBuilder.Append(splitted[1]);
                 stringBuilder.Append(".json");
             }
@@ -59,7 +55,7 @@ namespace ZTn.BNet.D3.DataProviders
             {
                 // Example: http://eu.battle.net/api/d3/data/item/Amethyst_14 >> eu.battle.net/items/Amethyst_14.json (or a hash)
                 stringBuilder.Append("items/");
-                var splitted = uri.LocalPath.Split(new String[] { "/item/" }, StringSplitOptions.None);
+                var splitted = uri.LocalPath.Split(new[] { "/item/" }, StringSplitOptions.None);
                 if (splitted[1].Length < 32)
                 {
                     stringBuilder.Append(splitted[1]);
@@ -67,12 +63,9 @@ namespace ZTn.BNet.D3.DataProviders
                 }
                 else
                 {
-                    using (var md5 = MD5.Create())
-                    {
-                        var hash = md5.ComputeHash(Encoding.Default.GetBytes(url));
-                        foreach (var hashByte in hash)
-                            stringBuilder.Append(hashByte.ToString("x2"));
-                    }
+                    var hash = MD5Digest.ComputeMD5(Encoding.Default.GetBytes(url));
+                    foreach (var hashByte in hash)
+                        stringBuilder.Append(hashByte.ToString("x2"));
                 }
                 stringBuilder.Append(".json");
             }
@@ -80,17 +73,14 @@ namespace ZTn.BNet.D3.DataProviders
             {
                 // Example: http://media.blizzard.com/d3/icons/items/small/amethyst_12_demonhunter_male.png >> media.blizzard.com/icons/items/small/amethyst_12_demonhunter_male.png
                 stringBuilder.Append("icons/");
-                var splitted = uri.LocalPath.Split(new String[] { "/icons/" }, StringSplitOptions.None);
+                var splitted = uri.LocalPath.Split(new[] { "/icons/" }, StringSplitOptions.None);
                 stringBuilder.Append(splitted[1]);
             }
             else
             {
-                using (var md5 = MD5.Create())
-                {
-                    var hash = md5.ComputeHash(Encoding.Default.GetBytes(url));
-                    foreach (var hashByte in hash)
-                        stringBuilder.Append(hashByte.ToString("x2"));
-                }
+                var hash = MD5Digest.ComputeMD5(Encoding.Default.GetBytes(url));
+                foreach (var hashByte in hash)
+                    stringBuilder.Append(hashByte.ToString("x2"));
 
                 stringBuilder.Append(".json");
             }
@@ -98,20 +88,24 @@ namespace ZTn.BNet.D3.DataProviders
             return stringBuilder.ToString();
         }
 
-        public virtual String getCacheStoragePath()
+        public virtual String GetCacheStoragePath()
         {
             return "cache/";
         }
 
-        public Stream fetchData(string url)
+        public Stream FetchData(string url)
         {
-            var cachedFilePath = getCacheStoragePath() + getCachedFileName(url);
+            var cachedFilePath = GetCacheStoragePath() + GetCachedFileName(url);
 
-            if ((onlineMode == OnlineMode.Online) || ((onlineMode == OnlineMode.OnlineIfMissing) && !File.Exists(cachedFilePath)))
+            if ((FetchMode == FetchMode.Online) || ((FetchMode == FetchMode.OnlineIfMissing) && !File.Exists(cachedFilePath)))
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(cachedFilePath));
+                var directoryName = Path.GetDirectoryName(cachedFilePath);
+                if (!String.IsNullOrWhiteSpace(directoryName))
+                {
+                    Directory.CreateDirectory(directoryName);
+                }
 
-                using (var binaryReader = new BinaryReader(dataProvider.fetchData(url)))
+                using (var binaryReader = new BinaryReader(dataProvider.FetchData(url)))
                 {
                     using (var fileStream = File.Create(cachedFilePath))
                     {
@@ -121,7 +115,9 @@ namespace ZTn.BNet.D3.DataProviders
             }
 
             if (!File.Exists(cachedFilePath))
+            {
                 throw new FileNotInCacheException();
+            }
 
             return new FileStream(cachedFilePath, FileMode.Open);
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Runtime.Serialization;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Helpers;
@@ -40,12 +39,12 @@ namespace ZTn.BNet.D3.Items
         }
 
         /// <summary>
-        /// Creates a new instance by copying fields of <paramref name="item"/> (deep copy).
+        /// Creates a new instance by copying fields of <paramref name="itemSummary"/> (deep copy).
         /// </summary>
         /// <param name="itemSummary"></param>
         public ItemSummary(ItemSummary itemSummary)
         {
-            D3DeepCopy.DeepCopy<ItemSummary>(itemSummary, this);
+            itemSummary.DeepCopy(this);
         }
 
         #endregion

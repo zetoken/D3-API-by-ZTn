@@ -157,7 +157,7 @@ namespace ZTn.BNet.D3.Example
                     {
                         var id = String.Format("{0}_{1:00}", gemColor, index);
                         Console.WriteLine("Retrieving " + id);
-                        var gemStream = D3Api.DataProvider.fetchData(D3Api.GetItemUrlFromTooltipParams("item/" + id));
+                        var gemStream = D3Api.DataProvider.FetchData(D3Api.GetItemUrlFromTooltipParams("item/" + id));
                         if (!starting)
                             fileStream.Write(jsonArraySeparator, 0, jsonArraySeparator.Length);
                         starting = false;

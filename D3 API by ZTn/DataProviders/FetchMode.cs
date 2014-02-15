@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ZTn.BNet.D3.DataProviders
+﻿namespace ZTn.BNet.D3.DataProviders
 {
     /// <summary>
     /// Enumeration representing the condition to go online
     /// </summary>
-    public enum OnlineMode
+    public enum FetchMode
     {
         /// <summary>
         /// Never go online

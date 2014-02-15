@@ -1,5 +1,7 @@
 ﻿using System;
+#if !PORTABLE
 using System.Web;
+#endif
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Careers;
@@ -33,7 +35,7 @@ namespace ZTn.BNet.D3
         public static Artisan GetArtisanFromSlug(String slug)
         {
             Artisan artisan;
-            using (var stream = DataProvider.fetchData(GetArtisanUrlFromSlug(slug) + ApiLocaleSuffix))
+            using (var stream = DataProvider.FetchData(GetArtisanUrlFromSlug(slug) + ApiLocaleSuffix))
             {
                 artisan = Artisan.CreateFromJSonStream(stream);
             }
@@ -48,7 +50,7 @@ namespace ZTn.BNet.D3
         public static Career GetCareerFromBattleTag(BattleTag battleTag)
         {
             Career career;
-            using (var stream = DataProvider.fetchData(GetCareerUrl(battleTag) + "/index" + ApiLocaleSuffix))
+            using (var stream = DataProvider.FetchData(GetCareerUrl(battleTag) + "/index" + ApiLocaleSuffix))
             {
                 career = Career.CreateFromJSonStream(stream);
             }
@@ -63,7 +65,7 @@ namespace ZTn.BNet.D3
         public static Hero GetHeroFromHeroId(BattleTag battleTag, String heroId)
         {
             Hero hero;
-            using (var stream = DataProvider.fetchData(GetHeroUrlFromHeroId(battleTag, heroId) + ApiLocaleSuffix))
+            using (var stream = DataProvider.FetchData(GetHeroUrlFromHeroId(battleTag, heroId) + ApiLocaleSuffix))
             {
                 hero = Hero.CreateFromJSonStream(stream);
             }
@@ -78,7 +80,7 @@ namespace ZTn.BNet.D3
         public static Item GetItemFromTooltipParams(String tooltipParams)
         {
             Item item;
-            using (var stream = DataProvider.fetchData(GetItemUrlFromTooltipParams(tooltipParams) + ApiLocaleSuffix))
+            using (var stream = DataProvider.FetchData(GetItemUrlFromTooltipParams(tooltipParams) + ApiLocaleSuffix))
             {
                 item = Item.CreateFromJSonStream(stream);
             }
@@ -98,7 +100,7 @@ namespace ZTn.BNet.D3
         public static D3Picture GetItemIcon(String icon)
         {
             D3Picture picture;
-            using (var stream = DataProvider.fetchData(GetItemIconUrl(icon, "small")))
+            using (var stream = DataProvider.FetchData(GetItemIconUrl(icon, "small")))
             {
                 picture = new D3Picture(stream);
             }
@@ -108,7 +110,7 @@ namespace ZTn.BNet.D3
         public static D3Picture GetItemIcon(String icon, String size)
         {
             D3Picture picture;
-            using (var stream = DataProvider.fetchData(GetItemIconUrl(icon, size)))
+            using (var stream = DataProvider.FetchData(GetItemIconUrl(icon, size)))
             {
                 picture = new D3Picture(stream);
             }
@@ -128,7 +130,7 @@ namespace ZTn.BNet.D3
         public static D3Picture GetSkillIcon(String icon, String size)
         {
             D3Picture picture;
-            using (var stream = DataProvider.fetchData(GetSkillIconUrl(icon, size)))
+            using (var stream = DataProvider.FetchData(GetSkillIconUrl(icon, size)))
             {
                 picture = new D3Picture(stream);
             }

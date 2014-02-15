@@ -6,7 +6,7 @@ namespace ZTn.BNet.D3.DataProviders
     public sealed class BNetFailureObjectReturnedException : Exception
     {
         [NonSerialized]
-        public FailureObject failureObject;
+        public FailureObject FailureObject;
 
         public BNetFailureObjectReturnedException()
             : base("Battle.net returned an object indicating a failure")
@@ -16,7 +16,7 @@ namespace ZTn.BNet.D3.DataProviders
         public BNetFailureObjectReturnedException(FailureObject failureObject) :
             this()
         {
-            this.failureObject = failureObject;
+            FailureObject = failureObject;
         }
     }
 }

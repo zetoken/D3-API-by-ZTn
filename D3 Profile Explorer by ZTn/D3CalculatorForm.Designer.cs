@@ -1,6 +1,6 @@
 ﻿namespace ZTn.BNet.D3ProfileExplorer
 {
-    partial class D3CalculatorForm
+    sealed partial class D3CalculatorForm
     {
         /// <summary>
         /// Required designer variable.

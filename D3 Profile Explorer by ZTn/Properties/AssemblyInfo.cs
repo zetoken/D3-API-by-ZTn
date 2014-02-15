@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ZeToken.net")]
 [assembly: AssemblyProduct("D3 Profile Explorer by ZTn")]
-[assembly: AssemblyCopyright("Copyright © ZeToken.net 2012")]
+[assembly: AssemblyCopyright("Copyright © ZeToken.net 2012-2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut 
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.7.0.*")]
-[assembly: AssemblyFileVersion("1.7.0.0")]
+[assembly: AssemblyVersion("2.0.0.*")]
+[assembly: AssemblyFileVersion("2.0.0.0")]

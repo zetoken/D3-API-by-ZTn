@@ -1,27 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using Newtonsoft.Json;
 using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.DataProviders
 {
     public class HttpRequestDataProvider : ID3DataProvider
     {
-        #region >> Constructors
-
-        public HttpRequestDataProvider()
-        {
-        }
-
-        #endregion
-
-        public static FailureObject getFailedObjectFromJSonStream(Stream stream)
+        public static FailureObject GetFailedObjectFromJSonStream(Stream stream)
         {
             return stream.CreateFromJsonPersistentStream<FailureObject>();
         }
 
-        public Stream fetchData(String url)
+        public Stream FetchData(String url)
         {
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -40,7 +31,7 @@ namespace ZTn.BNet.D3.DataProviders
                 // if json object is returned, test if it is an error message
                 if (httpWebResponse.ContentType.Contains("application/json"))
                 {
-                    var failureObject = getFailedObjectFromJSonStream(memoryStream);
+                    var failureObject = GetFailedObjectFromJSonStream(memoryStream);
 
                     if (failureObject.IsFailureObject())
                     {

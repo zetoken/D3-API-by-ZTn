@@ -12,7 +12,7 @@ namespace ZTn.BNet.D3.DataProviders
         #region >> ID3DataProvider
 
         /// <inheritdoc />
-        public Stream fetchData(string url)
+        public Stream FetchData(string url)
         {
             var responseObject = new T();
 

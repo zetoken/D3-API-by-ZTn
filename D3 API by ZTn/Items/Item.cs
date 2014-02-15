@@ -1,10 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Helpers;
-using System.Reflection;
 
 namespace ZTn.BNet.D3.Items
 {
@@ -66,7 +63,7 @@ namespace ZTn.BNet.D3.Items
         /// <param name="item"></param>
         public Item(Item item)
         {
-            D3DeepCopy.DeepCopy<Item>(item, this);
+            item.DeepCopy(this);
         }
 
         public Item(ItemAttributes itemAttributes)

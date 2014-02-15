@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Items
@@ -33,7 +30,7 @@ namespace ZTn.BNet.D3.Items
         /// <param name="socketedGem"></param>
         public SocketedGem(SocketedGem socketedGem)
         {
-            D3DeepCopy.DeepCopy<SocketedGem>(socketedGem, this);
+            socketedGem.DeepCopy(this);
         }
 
         public SocketedGem(Item item)

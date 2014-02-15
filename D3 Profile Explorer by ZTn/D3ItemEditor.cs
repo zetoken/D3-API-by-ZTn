@@ -42,7 +42,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         #endregion
 
-        private static void PopulateData(TextBox textBox, ItemValueRange itemValueRange)
+        private static void PopulateData(Control textBox, ItemValueRange itemValueRange)
         {
             if (itemValueRange != null && itemValueRange.Min != 0)
             {
@@ -54,7 +54,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
         }
 
-        private static void PopulateDataPercent(TextBox textBox, ItemValueRange itemValueRange)
+        private static void PopulateDataPercent(Control textBox, ItemValueRange itemValueRange)
         {
             if (itemValueRange != null && itemValueRange.Min != 0)
             {
@@ -66,17 +66,17 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
         }
 
-        private static ItemValueRange GetData(TextBox textBox)
+        private static ItemValueRange GetData(Control textBox)
         {
             return String.IsNullOrEmpty(textBox.Text) ? null : new ItemValueRange(Double.Parse(textBox.Text));
         }
 
-        private ItemValueRange getDataPercent(TextBox textBox)
+        private static ItemValueRange GetDataPercent(Control textBox)
         {
             return String.IsNullOrEmpty(textBox.Text) ? null : new ItemValueRange(Double.Parse(textBox.Text) / 100);
         }
 
-        private void selectActiveGem(ComboBox comboBox, IEnumerable<GemsListViewItem> refGems, ItemSummary equippedGem)
+        private static void SelectActiveGem(ComboBox comboBox, IEnumerable<GemsListViewItem> refGems, ItemSummary equippedGem)
         {
             if (equippedGem != null)
             {
@@ -198,15 +198,15 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 if (item.gems.Length >= 1)
                 {
-                    selectActiveGem(guiGem1, gems1, item.gems[0].item);
+                    SelectActiveGem(guiGem1, gems1, item.gems[0].item);
                 }
                 if (item.gems.Length >= 2)
                 {
-                    selectActiveGem(guiGem2, gems2, item.gems[1].item);
+                    SelectActiveGem(guiGem2, gems2, item.gems[1].item);
                 }
                 if (item.gems.Length >= 3)
                 {
-                    selectActiveGem(guiGem3, gems3, item.gems[2].item);
+                    SelectActiveGem(guiGem3, gems3, item.gems[2].item);
                 }
             }
         }
@@ -224,18 +224,18 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.intelligenceItem = GetData(guiIntelligence);
             attr.strengthItem = GetData(guiStrength);
             attr.vitalityItem = GetData(guiVitality);
-            attr.attacksPerSecondPercent = getDataPercent(guiAttackSpeed);
-            attr.critDamagePercent = getDataPercent(guiCriticDamage);
-            attr.critPercentBonusCapped = getDataPercent(guiCriticChance);
-            attr.hitpointsMaxPercentBonusItem = getDataPercent(guiHitpointsMaxPercent);
+            attr.attacksPerSecondPercent = GetDataPercent(guiAttackSpeed);
+            attr.critDamagePercent = GetDataPercent(guiCriticDamage);
+            attr.critPercentBonusCapped = GetDataPercent(guiCriticChance);
+            attr.hitpointsMaxPercentBonusItem = GetDataPercent(guiHitpointsMaxPercent);
             attr.armorItem = GetData(guiArmor);
             attr.hitpointsOnHit = GetData(guiHitpointsOnHit);
             attr.hitpointsRegenPerSecond = GetData(guiHitpointsRegenPerSecond);
-            attr.stealHealthPercent = getDataPercent(guiLifeSteal);
+            attr.stealHealthPercent = GetDataPercent(guiLifeSteal);
 
             attr.attacksPerSecondItem = GetData(guiWeaponAttackPerSecond);
 
-            attr.damageWeaponPercentBonus_Physical = getDataPercent(guiWeaponDamagePercentBonus);
+            attr.damageWeaponPercentBonus_Physical = GetDataPercent(guiWeaponDamagePercentBonus);
             var damageWeaponPercentBonus_Physical = (attr.damageWeaponPercentBonus_Physical == null ? 0 : attr.damageWeaponPercentBonus_Physical.Min);
 
             attr.damageWeaponMin_Arcane = GetData(guiWeaponDamageMinArcane);
@@ -270,13 +270,13 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.damageDelta_Physical = GetData(guiBonusDamageMaxPhysical) - attr.damageMin_Physical;
             attr.damageDelta_Poison = GetData(guiBonusDamageMaxPoison) - attr.damageMin_Poison;
 
-            attr.damageTypePercentBonus_Arcane = getDataPercent(guiBonusDamagePercentArcane);
-            attr.damageTypePercentBonus_Cold = getDataPercent(guiBonusDamagePercentCold);
-            attr.damageTypePercentBonus_Fire = getDataPercent(guiBonusDamagePercentFire);
-            attr.damageTypePercentBonus_Holy = getDataPercent(guiBonusDamagePercentHoly);
-            attr.damageTypePercentBonus_Lightning = getDataPercent(guiBonusDamagePercentLightning);
-            attr.damageTypePercentBonus_Physical = getDataPercent(guiBonusDamagePercentPhysical);
-            attr.damageTypePercentBonus_Poison = getDataPercent(guiBonusDamagePercentPoison);
+            attr.damageTypePercentBonus_Arcane = GetDataPercent(guiBonusDamagePercentArcane);
+            attr.damageTypePercentBonus_Cold = GetDataPercent(guiBonusDamagePercentCold);
+            attr.damageTypePercentBonus_Fire = GetDataPercent(guiBonusDamagePercentFire);
+            attr.damageTypePercentBonus_Holy = GetDataPercent(guiBonusDamagePercentHoly);
+            attr.damageTypePercentBonus_Lightning = GetDataPercent(guiBonusDamagePercentLightning);
+            attr.damageTypePercentBonus_Physical = GetDataPercent(guiBonusDamagePercentPhysical);
+            attr.damageTypePercentBonus_Poison = GetDataPercent(guiBonusDamagePercentPoison);
 
             attr.resistance_All = GetData(guiResistance_All);
             attr.resistance_Arcane = GetData(guiResistance_Arcane);
