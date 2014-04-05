@@ -2,10 +2,11 @@
 using System.IO;
 using System.Runtime.Serialization;
 using ZTn.BNet.BattleNet;
+using ZTn.BNet.D3.Annotations;
 using ZTn.BNet.D3.Artisans;
+using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Progresses;
-using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Careers
 {
@@ -14,30 +15,45 @@ namespace ZTn.BNet.D3.Careers
     {
         #region >> Fields
 
-        [DataMember(Name = "battleTag")]
-        private String s_battleTag
+        [DataMember(Name = "battleTag"), UsedImplicitly]
+        private String SBattleTag
         {
-            set { battleTag = new BattleTag(value); }
-            get { return battleTag.Id; }
+            set { BattleTag = new BattleTag(value); }
+            get { return BattleTag.Id; }
         }
+
         [IgnoreDataMember]
-        public BattleTag battleTag = new BattleTag("undefined#0000");
-        [DataMember]
-        public HeroSummary[] heroes;
-        [DataMember]
-        public String lastHeroPlayed;
-        [DataMember]
-        public CareerArtisan[] artisans;
-        [DataMember]
-        public CareerArtisan[] hardcoreArtisans;
-        [DataMember]
-        public CareerKills kills;
-        [DataMember]
-        public ClassTimePlayed timePlayed;
-        [DataMember]
-        public HeroSummary[] fallenHeroes;
-        [DataMember]
-        public Progress progression;
+        public BattleTag BattleTag = new BattleTag("undefined#0000");
+
+        [DataMember(Name = "heroes")]
+        public HeroSummary[] Heroes;
+
+        [DataMember(Name = "lastHeroPlayed")]
+        public String LastHeroPlayed;
+
+        [DataMember(Name = "artisans")]
+        public CareerArtisan[] Artisans;
+
+        [DataMember(Name = "hardcoreArtisans")]
+        public CareerArtisan[] HardcoreArtisans;
+
+        [DataMember(Name = "kills")]
+        public CareerKills Kills;
+
+        [DataMember(Name = "timePlayed")]
+        public ClassTimePlayed TimePlayed;
+
+        [DataMember(Name = "fallenHeroes")]
+        public HeroSummary[] FallenHeroes;
+
+        [DataMember(Name = "paragonLevel")]
+        public int ParagonLevel;
+
+        [DataMember(Name = "paragonLevelHardcore")]
+        public int ParagonLevelHardcore;
+
+        [DataMember(Name = "progression")]
+        public Progress Progression;
 
         #endregion
 

@@ -9,11 +9,13 @@ namespace ZTn.BNet.D3.Items
         #region >> Fields
 
         [DataMember]
-        public int required;
+        public int Required;
+
         [DataMember]
-        public String[] attributes;
+        public ItemTextAttributes Attributes;
+
         [DataMember]
-        public ItemAttributes attributesRaw;
+        public ItemAttributes AttributesRaw;
 
         #endregion
     }

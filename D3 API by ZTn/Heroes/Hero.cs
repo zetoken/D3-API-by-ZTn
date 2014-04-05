@@ -2,9 +2,9 @@
 using System.IO;
 using System.Runtime.Serialization;
 using ZTn.BNet.BattleNet;
+using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.HeroFollowers;
 using ZTn.BNet.D3.Progresses;
-using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Heroes
 {
@@ -15,14 +15,19 @@ namespace ZTn.BNet.D3.Heroes
 
         [DataMember]
         public HeroSkills skills;
+
         [DataMember]
         public HeroItems items;
+
         [DataMember]
         public Followers followers;
+
         [DataMember]
         public HeroStats stats;
+
         [DataMember]
         public HeroKills kills;
+
         [DataMember]
         public Progress progress;
 

@@ -21,6 +21,5 @@ namespace ZTn.BNet.D3.Skills
         }
 
         #endregion
-
     }
 }

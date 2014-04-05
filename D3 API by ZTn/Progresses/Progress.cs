@@ -8,13 +8,19 @@ namespace ZTn.BNet.D3.Progresses
         #region >> Fields
 
         [DataMember]
-        public DifficultyProgress normal;
+        public bool Act1;
+
         [DataMember]
-        public DifficultyProgress nightmare;
+        public bool Act2;
+
         [DataMember]
-        public DifficultyProgress hell;
+        public bool Act3;
+
         [DataMember]
-        public DifficultyProgress inferno;
+        public bool Act4;
+
+        [DataMember]
+        public bool Act5;
 
         #endregion
     }

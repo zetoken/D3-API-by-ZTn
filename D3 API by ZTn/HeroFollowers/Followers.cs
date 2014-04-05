@@ -9,8 +9,10 @@ namespace ZTn.BNet.D3.HeroFollowers
 
         [DataMember]
         public Follower templar;
+
         [DataMember]
         public Follower scoundrel;
+
         [DataMember]
         public Follower enchantress;
 

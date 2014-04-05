@@ -2,7 +2,9 @@
 
 namespace ZTn.BNet.D3.DataProviders
 {
+#if !PORTABLE
     [Serializable]
+#endif
     public sealed class BNetResponseFailedException : Exception
     {
         public BNetResponseFailedException()

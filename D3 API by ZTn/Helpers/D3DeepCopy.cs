@@ -37,25 +37,25 @@ namespace ZTn.BNet.D3.Helpers
         }
 
         [UsedImplicitly]
-        static void CopyValue(PropertyInfo info, object target, bool value)
+        private static void CopyValue(PropertyInfo info, object target, bool value)
         {
             info.SetValue(target, value, null);
         }
 
         [UsedImplicitly]
-        static void CopyValue(PropertyInfo info, object target, double value)
+        private static void CopyValue(PropertyInfo info, object target, double value)
         {
             info.SetValue(target, value, null);
         }
 
         [UsedImplicitly]
-        static void CopyValue(PropertyInfo info, object target, float value)
+        private static void CopyValue(PropertyInfo info, object target, float value)
         {
             info.SetValue(target, value, null);
         }
 
         [UsedImplicitly]
-        static void CopyValue(PropertyInfo info, object target, int value)
+        private static void CopyValue(PropertyInfo info, object target, int value)
         {
             info.SetValue(target, value, null);
         }
@@ -66,31 +66,31 @@ namespace ZTn.BNet.D3.Helpers
         /// <param name="info"></param>
         /// <param name="target"></param>
         /// <param name="value"></param>
-        static void CopyValue(PropertyInfo info, object target, object value)
+        private static void CopyValue(PropertyInfo info, object target, object value)
         {
             info.SetValue(target, value, null);
         }
 
         [UsedImplicitly]
-        static void CopyValue(PropertyInfo info, object target, Item value)
+        private static void CopyValue(PropertyInfo info, object target, Item value)
         {
             info.SetValue(target, new Item(value), null);
         }
 
         [UsedImplicitly]
-        static void CopyValue(PropertyInfo info, object target, ItemAttributes value)
+        private static void CopyValue(PropertyInfo info, object target, ItemAttributes value)
         {
             info.SetValue(target, new ItemAttributes(value), null);
         }
 
         [UsedImplicitly]
-        static void CopyValue(PropertyInfo info, object target, ItemType value)
+        private static void CopyValue(PropertyInfo info, object target, ItemType value)
         {
             info.SetValue(target, new ItemType(value), null);
         }
 
         [UsedImplicitly]
-        static void CopyValue(PropertyInfo info, object target, ItemValueRange value)
+        private static void CopyValue(PropertyInfo info, object target, ItemValueRange value)
         {
             info.SetValue(target, new ItemValueRange(value), null);
         }

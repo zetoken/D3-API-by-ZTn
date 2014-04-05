@@ -10,10 +10,13 @@ namespace ZTn.BNet.D3.Artisans
 
         [DataMember]
         public String slug;
+
         [DataMember]
         public int level;
+
         [DataMember]
         public int stepCurrent;
+
         [DataMember]
         public int stepMax;
 

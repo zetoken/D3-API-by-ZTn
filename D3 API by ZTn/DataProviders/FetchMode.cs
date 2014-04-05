@@ -9,10 +9,12 @@
         /// Never go online
         /// </summary>
         Offline,
+
         /// <summary>
         /// Always go online
         /// </summary>
         Online,
+
         /// <summary>
         /// Go online only if looked up data is missing in cache
         /// </summary>

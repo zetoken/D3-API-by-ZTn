@@ -11,25 +11,34 @@ namespace ZTn.BNet.D3.Items
         #region >> Properties
 
         [DataMember]
-        public String id { get; set; }
+        public String Id { get; set; }
+
         [DataMember]
-        public String name { get; set; }
+        public String Name { get; set; }
+
         [DataMember]
-        public String icon { get; set; }
+        public String Icon { get; set; }
+
         [DataMember]
-        public String displayColor { get; set; }
+        public String DisplayColor { get; set; }
+
         [DataMember]
-        public String tooltipParams { get; set; }
+        public String TooltipParams { get; set; }
+
         [DataMember]
-        public Recipe recipe { get; set; }
+        public Recipe Recipe { get; set; }
+
         [DataMember]
-        public Recipe[] craftedBy { get; set; }
+        public Object[] RandomAffixes { get; set; }
+
+        [DataMember]
+        public Recipe[] CraftedBy { get; set; }
 
         #endregion
 
         public Item GetFullItem()
         {
-            return Item.CreateFromTooltipParams(tooltipParams);
+            return Item.CreateFromTooltipParams(TooltipParams);
         }
 
         #region >> Constructor
@@ -54,7 +63,7 @@ namespace ZTn.BNet.D3.Items
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + id + "]";
+            return "[" + Id + "]";
         }
 
         #endregion

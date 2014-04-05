@@ -11,12 +11,16 @@ namespace ZTn.BNet.D3.Artisans
 
         [DataMember]
         public String slug;
+
         [DataMember]
         public String name;
+
         [DataMember]
         public int cost;
+
         [DataMember]
         public Reagent[] reagents;
+
         [DataMember]
         public ItemSummary itemProduced;
 
@@ -32,5 +36,4 @@ namespace ZTn.BNet.D3.Artisans
 
         #endregion
     }
-
 }

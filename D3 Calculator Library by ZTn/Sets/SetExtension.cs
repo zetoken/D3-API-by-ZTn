@@ -20,8 +20,8 @@ namespace ZTn.BNet.D3.Calculator.Sets
             if (count > 1)
             {
                 attr = set.ranks
-                    .Where(rank => count >= rank.required)
-                    .Aggregate(attr, (current, setRank) => current + setRank.attributesRaw);
+                    .Where(rank => count >= rank.Required)
+                    .Aggregate(attr, (current, setRank) => current + setRank.AttributesRaw);
             }
 
             return attr;
@@ -39,8 +39,10 @@ namespace ZTn.BNet.D3.Calculator.Sets
 
             if (count > 1)
             {
-                foreach (var setRank in set.ranks.Where(rank => count >= rank.required))
-                    attributes.AddRange(setRank.attributes);
+                foreach (var setRank in set.ranks.Where(rank => count >= rank.Required))
+                {
+                    attributes.AddRange(setRank.Attributes.Primary.Select(p => p.Text));
+                }
             }
 
             return attributes.ToArray();
@@ -53,21 +55,21 @@ namespace ZTn.BNet.D3.Calculator.Sets
         /// <returns></returns>
         public static List<String> GetSetItemIds(this Set set)
         {
-            return set.items.Select(item => item.id).ToList();
+            return set.items.Select(item => item.Id).ToList();
         }
 
         public static List<Item> FindItemsOfSet(this Set set, List<Item> items)
         {
             var setItemIds = set.GetSetItemIds();
 
-            return items.Where(item => setItemIds.IndexOf(item.id) != -1).ToList();
+            return items.Where(item => setItemIds.IndexOf(item.Id) != -1).ToList();
         }
 
         public static List<ItemSummary> FindItemsOfSet(this Set set, List<ItemSummary> items)
         {
             var setItemIds = set.GetSetItemIds();
 
-            return items.Where(item => setItemIds.IndexOf(item.id) != -1).ToList();
+            return items.Where(item => setItemIds.IndexOf(item.Id) != -1).ToList();
         }
 
         public static int CountItemsOfSet(this Set set, List<Item> items)

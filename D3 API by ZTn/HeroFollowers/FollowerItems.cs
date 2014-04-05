@@ -1,5 +1,4 @@
 ﻿using System.Runtime.Serialization;
-
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.HeroFollowers
@@ -11,14 +10,19 @@ namespace ZTn.BNet.D3.HeroFollowers
 
         [DataMember]
         public ItemSummary special;
+
         [DataMember]
         public ItemSummary mainHand;
+
         [DataMember]
         public ItemSummary offHand;
+
         [DataMember]
         public ItemSummary rightFinger;
+
         [DataMember]
         public ItemSummary leftFinger;
+
         [DataMember]
         public ItemSummary neck;
 

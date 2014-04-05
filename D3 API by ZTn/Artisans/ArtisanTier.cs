@@ -9,6 +9,7 @@ namespace ZTn.BNet.D3.Artisans
 
         [DataMember]
         public int tier;
+
         [DataMember]
         public ArtisanLevel[] levels;
 

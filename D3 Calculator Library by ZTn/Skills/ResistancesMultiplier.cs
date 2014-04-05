@@ -39,13 +39,13 @@ namespace ZTn.BNet.D3.Calculator.Skills
             Item stuff = calculator.HeroStatsItem;
             var attr = new ItemAttributes
             {
-                resistance_All = multiplier*stuff.attributesRaw.resistance_All,
-                resistance_Arcane = multiplier*stuff.attributesRaw.resistance_Arcane,
-                resistance_Cold = multiplier*stuff.attributesRaw.resistance_Cold,
-                resistance_Fire = multiplier*stuff.attributesRaw.resistance_Fire,
-                resistance_Lightning = multiplier*stuff.attributesRaw.resistance_Lightning,
-                resistance_Physical = multiplier*stuff.attributesRaw.resistance_Physical,
-                resistance_Poison = multiplier*stuff.attributesRaw.resistance_Poison
+                resistance_All = multiplier*stuff.AttributesRaw.resistance_All,
+                resistance_Arcane = multiplier*stuff.AttributesRaw.resistance_Arcane,
+                resistance_Cold = multiplier*stuff.AttributesRaw.resistance_Cold,
+                resistance_Fire = multiplier*stuff.AttributesRaw.resistance_Fire,
+                resistance_Lightning = multiplier*stuff.AttributesRaw.resistance_Lightning,
+                resistance_Physical = multiplier*stuff.AttributesRaw.resistance_Physical,
+                resistance_Poison = multiplier*stuff.AttributesRaw.resistance_Poison
             };
 
             return attr;

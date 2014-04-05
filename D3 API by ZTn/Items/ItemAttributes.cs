@@ -13,6 +13,7 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Armor_Item", EmitDefaultValue = false)]
         public ItemValueRange armorItem;
+
         [DataMember(Name = "Armor_Bonus_Item", EmitDefaultValue = false)]
         public ItemValueRange armorBonusItem;
 
@@ -34,10 +35,13 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Block_Amount_Item_Delta", EmitDefaultValue = false)]
         public ItemValueRange blockAmountItemDelta;
+
         [DataMember(Name = "Block_Amount_Item_Min", EmitDefaultValue = false)]
         public ItemValueRange blockAmountItemMin;
+
         [DataMember(Name = "Block_Chance_Bonus_Item", EmitDefaultValue = false)]
         public ItemValueRange blockChanceBonusItem;
+
         [DataMember(Name = "Block_Chance_Item", EmitDefaultValue = false)]
         public ItemValueRange blockChanceItem;
 
@@ -46,8 +50,10 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Crit_Damage_Percent", EmitDefaultValue = false)]
         public ItemValueRange critDamagePercent;
+
         [DataMember(Name = "Crit_Percent_Bonus_Capped", EmitDefaultValue = false)]
         public ItemValueRange critPercentBonusCapped;
+
         // Find how it's used ?
         [DataMember(Name = "Crit_Percent_Bonus_Uncapped", EmitDefaultValue = false)]
         public ItemValueRange critPercentBonusUncapped;
@@ -62,16 +68,22 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Damage_Bonus_Min#Arcane", EmitDefaultValue = false)]
         public ItemValueRange damageBonusMin_Arcane;
+
         [DataMember(Name = "Damage_Bonus_Min#Cold", EmitDefaultValue = false)]
         public ItemValueRange damageBonusMin_Cold;
+
         [DataMember(Name = "Damage_Bonus_Min#Fire", EmitDefaultValue = false)]
         public ItemValueRange damageBonusMin_Fire;
+
         [DataMember(Name = "Damage_Bonus_Min#Holy", EmitDefaultValue = false)]
         public ItemValueRange damageBonusMin_Holy;
+
         [DataMember(Name = "Damage_Bonus_Min#Lightning", EmitDefaultValue = false)]
         public ItemValueRange damageBonusMin_Lightning;
+
         [DataMember(Name = "Damage_Bonus_Min#Physical", EmitDefaultValue = false)]
         public ItemValueRange damageBonusMin_Physical;
+
         [DataMember(Name = "Damage_Bonus_Min#Poison", EmitDefaultValue = false)]
         public ItemValueRange damageBonusMin_Poison;
 
@@ -85,16 +97,22 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Damage_Delta#Arcane", EmitDefaultValue = false)]
         public ItemValueRange damageDelta_Arcane;
+
         [DataMember(Name = "Damage_Delta#Cold", EmitDefaultValue = false)]
         public ItemValueRange damageDelta_Cold;
+
         [DataMember(Name = "Damage_Delta#Fire", EmitDefaultValue = false)]
         public ItemValueRange damageDelta_Fire;
+
         [DataMember(Name = "Damage_Delta#Holy", EmitDefaultValue = false)]
         public ItemValueRange damageDelta_Holy;
+
         [DataMember(Name = "Damage_Delta#Lightning", EmitDefaultValue = false)]
         public ItemValueRange damageDelta_Lightning;
+
         [DataMember(Name = "Damage_Delta#Physical", EmitDefaultValue = false)]
         public ItemValueRange damageDelta_Physical;
+
         [DataMember(Name = "Damage_Delta#Poison", EmitDefaultValue = false)]
         public ItemValueRange damageDelta_Poison;
 
@@ -104,16 +122,22 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Damage_Min#Arcane", EmitDefaultValue = false)]
         public ItemValueRange damageMin_Arcane;
+
         [DataMember(Name = "Damage_Min#Cold", EmitDefaultValue = false)]
         public ItemValueRange damageMin_Cold;
+
         [DataMember(Name = "Damage_Min#Fire", EmitDefaultValue = false)]
         public ItemValueRange damageMin_Fire;
+
         [DataMember(Name = "Damage_Min#Holy", EmitDefaultValue = false)]
         public ItemValueRange damageMin_Holy;
+
         [DataMember(Name = "Damage_Min#Lightning", EmitDefaultValue = false)]
         public ItemValueRange damageMin_Lightning;
+
         [DataMember(Name = "Damage_Min#Physical", EmitDefaultValue = false)]
         public ItemValueRange damageMin_Physical;
+
         [DataMember(Name = "Damage_Min#Poison", EmitDefaultValue = false)]
         public ItemValueRange damageMin_Poison;
 
@@ -122,16 +146,22 @@ namespace ZTn.BNet.D3.Items
         // Find how it's used ?
         [DataMember(Name = "Damage_Percent_Bonus_Vs_Elites", EmitDefaultValue = false)]
         public ItemValueRange damagePercentBonusVsElites;
+
         [DataMember(Name = "Damage_Percent_Bonus_Vs_Monster_Type", EmitDefaultValue = false)]
         public ItemValueRange damagePercentBonusVsMonsterType;
+
         [DataMember(Name = "Damage_Percent_Reduction_From_Elites", EmitDefaultValue = false)]
         public ItemValueRange damagePercentReductionFromElites;
+
         [DataMember(Name = "Damage_Percent_Reduction_From_Melee", EmitDefaultValue = false)]
         public ItemValueRange damagePercentReductionFromMelee;
+
         [DataMember(Name = "Damage_Percent_Reduction_From_Ranged", EmitDefaultValue = false)]
         public ItemValueRange damagePercentReductionFromRanged;
+
         [DataMember(Name = "Damage_Percent_Reduction_From_Type", EmitDefaultValue = false)]
         public ItemValueRange damagePercentReductionFromType;
+
         [DataMember(Name = "Damage_Percent_Reduction_Turns_Into_Heal", EmitDefaultValue = false)]
         public ItemValueRange damagePercentReductionTurnsIntoHeal;
 
@@ -139,16 +169,22 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Damage_Type_Percent_Bonus#Arcane", EmitDefaultValue = false)]
         public ItemValueRange damageTypePercentBonus_Arcane;
+
         [DataMember(Name = "Damage_Type_Percent_Bonus#Cold", EmitDefaultValue = false)]
         public ItemValueRange damageTypePercentBonus_Cold;
+
         [DataMember(Name = "Damage_Type_Percent_Bonus#Fire", EmitDefaultValue = false)]
         public ItemValueRange damageTypePercentBonus_Fire;
+
         [DataMember(Name = "Damage_Type_Percent_Bonus#Holy", EmitDefaultValue = false)]
         public ItemValueRange damageTypePercentBonus_Holy;
+
         [DataMember(Name = "Damage_Type_Percent_Bonus#Lightning", EmitDefaultValue = false)]
         public ItemValueRange damageTypePercentBonus_Lightning;
+
         [DataMember(Name = "Damage_Type_Percent_Bonus#Physical", EmitDefaultValue = false)]
         public ItemValueRange damageTypePercentBonus_Physical;
+
         [DataMember(Name = "Damage_Type_Percent_Bonus#Poison", EmitDefaultValue = false)]
         public ItemValueRange damageTypePercentBonus_Poison;
 
@@ -158,16 +194,22 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Damage_Weapon_Bonus_Delta#Arcane", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusDelta_Arcane;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Delta#Cold", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusDelta_Cold;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Delta#Fire", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusDelta_Fire;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Delta#Holy", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusDelta_Holy;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Delta#Lightning", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusDelta_Lightning;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Delta#Physical", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusDelta_Physical;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Delta#Poison", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusDelta_Poison;
 
@@ -177,16 +219,22 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Damage_Weapon_Bonus_Min#Arcane", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMin_Arcane;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min#Cold", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMin_Cold;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min#Fire", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMin_Fire;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min#Holy", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMin_Holy;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min#Lightning", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMin_Lightning;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min#Physical", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMin_Physical;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min#Poison", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMin_Poison;
 
@@ -196,16 +244,22 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Arcane", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMinX1_Arcane;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Cold", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMinX1_Cold;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Fire", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMinX1_Fire;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Holy", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMinX1_Holy;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Lightning", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMinX1_Lightning;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Physical", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMinX1_Physical;
+
         [DataMember(Name = "Damage_Weapon_Bonus_Min_X1#Poison", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponBonusMinX1_Poison;
 
@@ -215,16 +269,22 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Damage_Weapon_Delta#Arcane", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponDelta_Arcane;
+
         [DataMember(Name = "Damage_Weapon_Delta#Cold", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponDelta_Cold;
+
         [DataMember(Name = "Damage_Weapon_Delta#Fire", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponDelta_Fire;
+
         [DataMember(Name = "Damage_Weapon_Delta#Holy", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponDelta_Holy;
+
         [DataMember(Name = "Damage_Weapon_Delta#Lightning", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponDelta_Lightning;
+
         [DataMember(Name = "Damage_Weapon_Delta#Physical", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponDelta_Physical;
+
         [DataMember(Name = "Damage_Weapon_Delta#Poison", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponDelta_Poison;
 
@@ -234,16 +294,22 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Damage_Weapon_Min#Arcane", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponMin_Arcane;
+
         [DataMember(Name = "Damage_Weapon_Min#Cold", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponMin_Cold;
+
         [DataMember(Name = "Damage_Weapon_Min#Fire", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponMin_Fire;
+
         [DataMember(Name = "Damage_Weapon_Min#Holy", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponMin_Holy;
+
         [DataMember(Name = "Damage_Weapon_Min#Lightning", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponMin_Lightning;
+
         [DataMember(Name = "Damage_Weapon_Min#Physical", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponMin_Physical;
+
         [DataMember(Name = "Damage_Weapon_Min#Poison", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponMin_Poison;
 
@@ -253,16 +319,22 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Damage_Weapon_Percent_Bonus#Arcane", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponPercentBonus_Arcane;
+
         [DataMember(Name = "Damage_Weapon_Percent_Bonus#Cold", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponPercentBonus_Cold;
+
         [DataMember(Name = "Damage_Weapon_Percent_Bonus#Fire", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponPercentBonus_Fire;
+
         [DataMember(Name = "Damage_Weapon_Percent_Bonus#Holy", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponPercentBonus_Holy;
+
         [DataMember(Name = "Damage_Weapon_Percent_Bonus#Lightning", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponPercentBonus_Lightning;
+
         [DataMember(Name = "Damage_Weapon_Percent_Bonus#Physical", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponPercentBonus_Physical;
+
         [DataMember(Name = "Damage_Weapon_Percent_Bonus#Poison", EmitDefaultValue = false)]
         public ItemValueRange damageWeaponPercentBonus_Poison;
 
@@ -277,10 +349,14 @@ namespace ZTn.BNet.D3.Items
 
         #region >> Durability
 
+        [DataMember(Name = "Durability_Max_Before_Reforge", EmitDefaultValue = false)]
+        public ItemValueRange DurabilityMaxBeforeReforge;
+
         [DataMember(Name = "Durability_Cur", EmitDefaultValue = false)]
-        public ItemValueRange durabilityCur;
+        public ItemValueRange DurabilityCur;
+
         [DataMember(Name = "Durability_Max", EmitDefaultValue = false)]
-        public ItemValueRange durability_Max;
+        public ItemValueRange DurabilityMax;
 
         #endregion
 
@@ -290,8 +366,10 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Experience_Bonus", EmitDefaultValue = false)]
         public ItemValueRange experienceBonus;
+
         [DataMember(Name = "Experience_Bonus_Percent", EmitDefaultValue = false)]
-        public ItemValueRange experienceBonusPercent;
+        public ItemValueRange
+            experienceBonusPercent;
 
         #endregion
 
@@ -301,6 +379,7 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Gold_Find", EmitDefaultValue = false)]
         public ItemValueRange goldFind;
+
         [DataMember(Name = "Gold_PickUp_Radius", EmitDefaultValue = false)]
         public ItemValueRange goldPickUpRadius;
 
@@ -310,6 +389,7 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Health_Globe_Bonus_Chance", EmitDefaultValue = false)]
         public ItemValueRange healthGlobeBonusChance;
+
         [DataMember(Name = "Health_Globe_Bonus_Health", EmitDefaultValue = false)]
         public ItemValueRange healthGlobeBonusHealth;
 
@@ -319,6 +399,7 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Hitpoints_Granted", EmitDefaultValue = false)]
         public ItemValueRange hitpointsGranted;
+
         [DataMember(Name = "Hitpoints_Granted_Duration", EmitDefaultValue = false)]
         public ItemValueRange hitpointsGrantedDuration;
 
@@ -327,6 +408,7 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Hitpoints_On_Hit", EmitDefaultValue = false)]
         public ItemValueRange hitpointsOnHit;
+
         [DataMember(Name = "Hitpoints_On_Kill", EmitDefaultValue = false)]
         public ItemValueRange hitpointsOnKill;
 
@@ -342,7 +424,12 @@ namespace ZTn.BNet.D3.Items
 
         // Blizzard workaround bug for some cases where Blizzard API uses Intelligence instead of Intelligence_Item attribute
         [DataMember(Name = "Intelligence", EmitDefaultValue = false),]
-        private ItemValueRange intelligence { get { return intelligenceItem; } set { intelligenceItem = value; } }
+        private ItemValueRange intelligence
+        {
+            get { return intelligenceItem; }
+            set { intelligenceItem = value; }
+        }
+
         [DataMember(Name = "Intelligence_Item", EmitDefaultValue = false)]
         public ItemValueRange intelligenceItem;
 
@@ -378,7 +465,8 @@ namespace ZTn.BNet.D3.Items
         //"Power_Duration_Increase"
 
         [DataMember(Name = "Power_Resource_Reduction#Monk_SweepingWind", EmitDefaultValue = false)]
-        public ItemValueRange Power_Resource_Reduction_Monk_SweepingWind;
+        public
+            ItemValueRange Power_Resource_Reduction_Monk_SweepingWind;
 
         //"Power_Resource_Reduction"
         //"Precision"
@@ -396,14 +484,19 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Resistance#Arcane", EmitDefaultValue = false)]
         public ItemValueRange resistance_Arcane;
+
         [DataMember(Name = "Resistance#Cold", EmitDefaultValue = false)]
         public ItemValueRange resistance_Cold;
+
         [DataMember(Name = "Resistance#Fire", EmitDefaultValue = false)]
         public ItemValueRange resistance_Fire;
+
         [DataMember(Name = "Resistance#Lightning", EmitDefaultValue = false)]
         public ItemValueRange resistance_Lightning;
+
         [DataMember(Name = "Resistance#Physical", EmitDefaultValue = false)]
         public ItemValueRange resistance_Physical;
+
         [DataMember(Name = "Resistance#Poison", EmitDefaultValue = false)]
         public ItemValueRange resistance_Poison;
 
@@ -423,11 +516,17 @@ namespace ZTn.BNet.D3.Items
         #region >> "Resource_Regen_Per_Second
 
         [DataMember(Name = "Resource_Regen_Per_Second#Mana", EmitDefaultValue = false)]
-        public ItemValueRange Resource_Regen_Per_Second_Mana;
+        public ItemValueRange
+            Resource_Regen_Per_Second_Mana;
+
         [DataMember(Name = "Resource_Regen_Per_Second#Spirit", EmitDefaultValue = false)]
-        public ItemValueRange Resource_Regen_Per_Second_Spirit;
+        public ItemValueRange
+            Resource_Regen_Per_Second_Spirit;
 
         #endregion
+
+        [DataMember(Name = "Season")]
+        public ItemValueRange Season;
 
         //"Resource_Set_Point_Bonus"
         //"ScrollDuration"
@@ -450,16 +549,22 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember(Name = "Thorns_Fixed#Arcane", EmitDefaultValue = false)]
         public ItemValueRange thornsFixed_Arcane;
+
         [DataMember(Name = "Thorns_Fixed#Cold", EmitDefaultValue = false)]
         public ItemValueRange thornsFixed_Cold;
+
         [DataMember(Name = "Thorns_Fixed#Fire", EmitDefaultValue = false)]
         public ItemValueRange thornsFixed_Fire;
+
         [DataMember(Name = "Thorns_Fixed#Holy", EmitDefaultValue = false)]
         public ItemValueRange thornsFixed_Holy;
+
         [DataMember(Name = "Thorns_Fixed#Lightning", EmitDefaultValue = false)]
         public ItemValueRange thornsFixed_Lightning;
+
         [DataMember(Name = "Thorns_Fixed#Physical", EmitDefaultValue = false)]
         public ItemValueRange thornsFixed_Physical;
+
         [DataMember(Name = "Thorns_Fixed#Poison", EmitDefaultValue = false)]
         public ItemValueRange thornsFixed_Poison;
 
@@ -469,7 +574,12 @@ namespace ZTn.BNet.D3.Items
 
         // Blizzard workaround bug for some cases where Blizzard API uses Vitality instead of Vitality_Item attribute
         [DataMember(Name = "Vitality", EmitDefaultValue = false)]
-        public ItemValueRange vitality { get { return vitalityItem; } set { vitalityItem = value; } }
+        public ItemValueRange vitality
+        {
+            get { return vitalityItem; }
+            set { vitalityItem = value; }
+        }
+
         [DataMember(Name = "Vitality_Item", EmitDefaultValue = false)]
         public ItemValueRange vitalityItem;
 

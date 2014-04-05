@@ -35,10 +35,10 @@ namespace ZTn.BNet.D3.Example
 
             Console.WriteLine("Downloading {0}", "career");
             var career = Career.CreateFromBattleTag(battleTag);
-            if (career == null || career.heroes.Length == 0)
+            if (career == null || career.Heroes.Length == 0)
                 return;
-            Console.WriteLine("Downloading Hero {0}/{1}", battleTag, career.heroes[0].name);
-            var hero = Hero.CreateFromHeroId(battleTag, career.heroes[0].id);
+            Console.WriteLine("Downloading Hero {0}/{1}", battleTag, career.Heroes[0].name);
+            var hero = Hero.CreateFromHeroId(battleTag, career.Heroes[0].id);
             if (hero == null || hero.items == null)
                 return;
             Console.WriteLine("Downloading {0}", "bracers");
@@ -96,13 +96,13 @@ namespace ZTn.BNet.D3.Example
         {
             var career = Career.CreateFromBattleTag(battleTag);
 
-            Console.WriteLine("BattleTag: " + career.battleTag.Id);
-            Console.WriteLine("Last hero played: {0}", career.lastHeroPlayed);
-            Console.WriteLine("Time played on Monk is {0}", career.timePlayed.monk);
-            Console.WriteLine("Kills: monsters={0} / elites={1} / hardcore monsters={2}", career.kills.monsters, career.kills.elites, career.kills.hardcoreMonsters);
+            Console.WriteLine("BattleTag: " + career.BattleTag.Id);
+            Console.WriteLine("Last hero played: {0}", career.LastHeroPlayed);
+            Console.WriteLine("Time played on Monk is {0}", career.TimePlayed.Monk);
+            Console.WriteLine("Kills: monsters={0} / elites={1} / hardcore monsters={2}", career.Kills.monsters, career.Kills.elites, career.Kills.hardcoreMonsters);
             Console.WriteLine();
-            Console.WriteLine("Heroes count: " + career.heroes.Length);
-            foreach (var heroDigest in career.heroes)
+            Console.WriteLine("Heroes count: " + career.Heroes.Length);
+            foreach (var heroDigest in career.Heroes)
             {
                 Console.WriteLine("Hero {0}: {1} is {2} level {3} + {4} last updated {5}",
                     heroDigest.id,
@@ -113,25 +113,25 @@ namespace ZTn.BNet.D3.Example
 
                 var heroFull = heroDigest.GetHeroFromBattleTag(battleTag);
 
-                var mainHand = Item.CreateFromTooltipParams(heroFull.items.mainHand.tooltipParams);
+                var mainHand = Item.CreateFromTooltipParams(heroFull.items.mainHand.TooltipParams);
                 Console.WriteLine("Hero main hand: level {0} {1} (DPS {2}-{3}) salvages into {4} different components",
-                    mainHand.itemLevel,
-                    mainHand.name,
-                    mainHand.dps.Min, mainHand.dps.Max,
-                    mainHand.salvage.Length);
+                    mainHand.ItemLevel,
+                    mainHand.Name,
+                    mainHand.Dps.Min, mainHand.Dps.Max,
+                    mainHand.Salvage.Length);
 
-                var torso = Item.CreateFromTooltipParams(heroFull.items.torso.tooltipParams);
+                var torso = Item.CreateFromTooltipParams(heroFull.items.torso.TooltipParams);
                 Console.WriteLine("Hero torso: level {0} {1} (armor {2}-{3}) salvages into {4} different components",
-                    torso.itemLevel,
-                    torso.name,
-                    torso.armor.Min, torso.armor.Max,
-                    torso.salvage.Length);
+                    torso.ItemLevel,
+                    torso.Name,
+                    torso.Armor.Min, torso.Armor.Max,
+                    torso.Salvage.Length);
                 Console.WriteLine("Hero DPS {0}", heroFull.stats.damage);
 
             }
             Console.WriteLine();
-            Console.WriteLine("Fallen Heroes count: " + career.fallenHeroes.Length);
-            foreach (var heroDigest in career.fallenHeroes)
+            Console.WriteLine("Fallen Heroes count: " + career.FallenHeroes.Length);
+            foreach (var heroDigest in career.FallenHeroes)
             {
                 Console.WriteLine("Hero {0}: {1} is {2} level {3} + {4} ", heroDigest.id, heroDigest.name, heroDigest.heroClass, heroDigest.level, heroDigest.paragonLevel);
             }

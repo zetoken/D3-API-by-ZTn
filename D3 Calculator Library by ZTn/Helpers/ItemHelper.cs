@@ -5,12 +5,13 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 {
     public static class ItemHelper
     {
-        static public List<String> WeaponTypeIds = new List<String>
-        { 
+        public static List<string> WeaponTypeIds = new List<string>
+        {
             "Axe",
             "Axe2H",
             "Bow",
             "CeremonialDagger",
+            "CombatStaff",
             "Crossbow",
             "Dagger",
             "Daibo",
@@ -29,8 +30,8 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             "Wand"
         };
 
-        static public List<String> HelmTypeIds = new List<String>
-        { 
+        public static List<string> HelmTypeIds = new List<string>
+        {
             "Hat",
             "Helm",
             "Mask",

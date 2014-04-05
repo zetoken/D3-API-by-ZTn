@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -48,7 +49,7 @@ namespace ZTn.BNet.D3.Calculator.Gems
             {
                 if (otherSocketedGems == null)
                 {
-                    otherSocketedGems = FilterGems("All");
+                    otherSocketedGems = FilterGems("Other");
                 }
                 return otherSocketedGems;
             }
@@ -93,15 +94,15 @@ namespace ZTn.BNet.D3.Calculator.Gems
             var filteredGems = new List<Item>();
             foreach (var gem in Gems)
             {
-                filteredGems.AddRange(gem.socketEffects
-                   .Where(e => e.itemTypeId == itemTypeId)
+                filteredGems.AddRange(gem.SocketEffects
+                   .Where(e => e.ItemTypeId == itemTypeId)
                    .Select(e => new Item
                    {
-                       id = gem.id,
-                       attributes = e.attributes,
-                       attributesRaw = e.attributesRaw,
-                       name = gem.name,
-                       icon = gem.icon
+                       Id = gem.Id,
+                       Attributes = e.Attributes,
+                       AttributesRaw = e.AttributesRaw,
+                       Name = gem.Name,
+                       Icon = gem.Icon
                    }));
             }
             return filteredGems;
@@ -109,7 +110,7 @@ namespace ZTn.BNet.D3.Calculator.Gems
 
         public List<Item> GetGemsForItem(Item item)
         {
-            return GetGemsForItemTypeId(item.type.id);
+            return GetGemsForItemTypeId(item.Type.id);
         }
 
         public List<Item> GetGemsForItemTypeId(String itemTypeId)
@@ -119,7 +120,7 @@ namespace ZTn.BNet.D3.Calculator.Gems
                 return WeaponSocketedGems;
             }
 
-            if (ItemHelper.HelmTypeIds.Any(id => itemTypeId.Contains(id)))
+            if (ItemHelper.HelmTypeIds.Any(itemTypeId.Contains))
             {
                 return HelmSocketedGems;
             }

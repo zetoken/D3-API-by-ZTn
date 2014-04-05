@@ -67,7 +67,7 @@ namespace ZTn.BNet.D3.Calculator
             var resists = new List<string> { "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison" };
             var fields = new List<string> { "damageWeaponBonusDelta_", "damageWeaponBonusMin_", "damageWeaponDelta_", "damageWeaponMin_", "damageWeaponBonusMinX1_" };
 
-            var attr = MainHand.attributesRaw + offHand.attributesRaw;
+            var attr = MainHand.AttributesRaw + offHand.AttributesRaw;
 
             // Calculate attack per second
             attr.attacksPerSecondItem = ComputeWeaponAttackPerSecondForAmbidextry();
@@ -110,9 +110,9 @@ namespace ZTn.BNet.D3.Calculator
             var weapon = IsAmbidexterity() ? ambidexterityWeapon : MainHand;
 
             // Initialize with weapon attack speed
-            var weaponAttackSpeed = weapon.GetWeaponAttackPerSecond(attributesRaw.attacksPerSecondItem);
+            var weaponAttackSpeed = weapon.GetWeaponAttackPerSecond(AttributesRaw.attacksPerSecondItem);
 
-            weaponAttackSpeed *= ItemValueRange.One + attributesRaw.attacksPerSecondPercent;
+            weaponAttackSpeed *= ItemValueRange.One + AttributesRaw.attacksPerSecondPercent;
 
             return weaponAttackSpeed;
         }
@@ -139,13 +139,13 @@ namespace ZTn.BNet.D3.Calculator
 
         public void Update()
         {
-            attributesRaw = new ItemAttributes();
+            AttributesRaw = new ItemAttributes();
 
             // Add bonus from level and paragon
             if (levelAttr != null)
-                attributesRaw += levelAttr;
+                AttributesRaw += levelAttr;
             if (attrParagonLevel != null)
-                attributesRaw += attrParagonLevel;
+                AttributesRaw += attrParagonLevel;
 
             // Build a list of all items with fields
             var stuff = new List<Item>(items);
@@ -153,19 +153,19 @@ namespace ZTn.BNet.D3.Calculator
             // Add bonus (skills, buffs)
             if (addedBonus != null)
             {
-                attributesRaw += addedBonus;
+                AttributesRaw += addedBonus;
             }
 
             // Merge gems with their items
-            foreach (var item in items.Where(item => item.gems != null))
+            foreach (var item in items.Where(item => item.Gems != null))
             {
                 item.MergeSocketedGems();
             }
-            if (MainHand.gems != null)
+            if (MainHand.Gems != null)
             {
                 MainHand.MergeSocketedGems();
             }
-            if (offHand.gems != null)
+            if (offHand.Gems != null)
             {
                 offHand.MergeSocketedGems();
             }
@@ -173,24 +173,24 @@ namespace ZTn.BNet.D3.Calculator
             // Add items
             foreach (var item in stuff)
             {
-                attributesRaw += item.attributesRaw;
+                AttributesRaw += item.AttributesRaw;
             }
 
             // Add weapons - Note: we don't want attackPerSecondItem to include weapon's value, only stuff or skills bonuses
-            var attackPerSecondItem = attributesRaw.attacksPerSecondItem;
+            var attackPerSecondItem = AttributesRaw.attacksPerSecondItem;
             if (IsAmbidexterity())
             {
                 ambidexterityWeapon = new Item(ComputeAmbidexterityWeaponAttributes());
-                attributesRaw += ambidexterityWeapon.attributesRaw;
+                AttributesRaw += ambidexterityWeapon.AttributesRaw;
                 // Ambidextry gets a 15% attack speed bonus
-                attributesRaw += new ItemAttributes { attacksPerSecondPercent = new ItemValueRange(0.15) };
+                AttributesRaw += new ItemAttributes { attacksPerSecondPercent = new ItemValueRange(0.15) };
             }
             else
             {
-                attributesRaw += MainHand.attributesRaw;
-                attributesRaw += offHand.attributesRaw;
+                AttributesRaw += MainHand.AttributesRaw;
+                AttributesRaw += offHand.AttributesRaw;
             }
-            attributesRaw.attacksPerSecondItem = attackPerSecondItem;
+            AttributesRaw.attacksPerSecondItem = attackPerSecondItem;
         }
 
         public void SetLevelBonus(ItemAttributes levelAttr)

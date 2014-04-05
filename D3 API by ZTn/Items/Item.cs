@@ -11,43 +11,61 @@ namespace ZTn.BNet.D3.Items
         #region >> Properties
 
         [DataMember]
-        public int requiredLevel { get; set; }
+        public int RequiredLevel { get; set; }
+
         [DataMember]
-        public int itemLevel { get; set; }
+        public int ItemLevel { get; set; }
+
         [DataMember]
-        public int bonusAffixes { get; set; }
+        public int BonusAffixes { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
-        public int bonusAffixesMax { get; set; }
+        public int BonusAffixesMax { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
-        public bool accountBound { get; set; }
+        public bool AccountBound { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
-        public String flavorText { get; set; }
+        public String FlavorText { get; set; }
+
         [DataMember]
-        public String typeName { get; set; }
+        public String TypeName { get; set; }
+
         [DataMember]
-        public ItemType type { get; set; }
+        public ItemType Type { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
-        public ItemValueRange dps { get; set; }
+        public ItemValueRange Dps { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
-        public ItemValueRange attacksPerSecond { get; set; }
+        public ItemValueRange AttacksPerSecond { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
-        public ItemValueRange minDamage { get; set; }
+        public ItemValueRange MinDamage { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
-        public ItemValueRange maxDamage { get; set; }
+        public ItemValueRange MaxDamage { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
-        public ItemValueRange armor { get; set; }
+        public ItemValueRange Armor { get; set; }
+
         [DataMember]
-        public String[] attributes { get; set; }
+        public ItemTextAttributes Attributes { get; set; }
+
         [DataMember]
-        public ItemAttributes attributesRaw { get; set; }
+        public ItemAttributes AttributesRaw { get; set; }
+
         [DataMember]
-        public SocketEffect[] socketEffects { get; set; }
+        public SocketEffect[] SocketEffects { get; set; }
+
         [DataMember]
-        public ItemSalvageComponent[] salvage { get; set; }
+        public ItemSalvageComponent[] Salvage { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
-        public Set set { get; set; }
+        public Set Set { get; set; }
+
         [DataMember]
-        public SocketedGem[] gems { get; set; }
+        public SocketedGem[] Gems { get; set; }
 
         #endregion
 
@@ -68,7 +86,7 @@ namespace ZTn.BNet.D3.Items
 
         public Item(ItemAttributes itemAttributes)
         {
-            attributesRaw = itemAttributes;
+            AttributesRaw = itemAttributes;
         }
 
         #endregion

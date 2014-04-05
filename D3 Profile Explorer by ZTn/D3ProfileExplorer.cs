@@ -52,7 +52,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var battleTag = new BattleTag(guiBattleTag.Text);
 
-            var node = new TreeNode("Career of " + battleTag + " on " + D3Api.Host);
+            var node = new TreeNode("Career of " + battleTag + " on " + D3Api.Host) { Tag = battleTag };
 
             Career career;
             try
@@ -250,7 +250,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private static void UpdateNodeText(TreeNode node, ItemSummary d3Object)
         {
-            node.Text += " >> " + d3Object.name;
+            node.Text += " >> " + d3Object.Name;
         }
 
         private static void UpdateNodeText(TreeNode node, Set d3Object)
@@ -280,22 +280,75 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         #endregion
 
+        #region >> UpdateLiveUrl Overloads
+
+        private void UpdateLiveUrl(Object d3Object)
+        {
+            D3ObjectLiveUrl.Text = "";
+        }
+
+        private void UpdateLiveUrl(BattleTag d3Object)
+        {
+            D3ObjectLiveUrl.Text = D3Api.GetCareerUrl(d3Object);
+        }
+
+        private void UpdateLiveUrl(Hero d3Object)
+        {
+            D3ObjectLiveUrl.Text = "Hero"; // D3Api.GetHeroUrlFromHeroId( d3Object.id);
+        }
+
+        private void UpdateLiveUrl(HeroSummaryInformation d3Object)
+        {
+            D3ObjectLiveUrl.Text = D3Api.GetHeroUrlFromHeroId(d3Object.BattleTag, d3Object.HeroSummary.id);
+        }
+
+        private void UpdateLiveUrl(Item d3Object)
+        {
+            D3ObjectLiveUrl.Text = D3Api.GetItemUrlFromTooltipParams(d3Object.TooltipParams);
+        }
+
+        private void UpdateLiveUrl(ItemSummary d3Object)
+        {
+            D3ObjectLiveUrl.Text = D3Api.GetItemUrlFromTooltipParams(d3Object.TooltipParams);
+        }
+
+        private void UpdateLiveUrl(CareerArtisan d3Object)
+        {
+            D3ObjectLiveUrl.Text = D3Api.GetArtisanUrlFromSlug(d3Object.slug);
+        }
+
+        #endregion
+
+        private void guiD3ProfileTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node != null && e.Node.Tag != null)
+            {
+                UpdateLiveUrl((dynamic)e.Node.Tag);
+            }
+            else
+            {
+                UpdateLiveUrl((Object)null);
+            }
+        }
+
         private void guiD3ProfileTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
+            {
                 guiD3ProfileTreeView.SelectedNode = e.Node;
+            }
         }
 
         private void exploreHeroToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var heroSummaryInformation = (HeroSummaryInformation)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            var node = new TreeNode("Hero " + heroSummaryInformation.battleTag + " / " + heroSummaryInformation.heroSummary.id + " (" + heroSummaryInformation.heroSummary.name + ")");
+            var node = new TreeNode("Hero " + heroSummaryInformation.BattleTag + " / " + heroSummaryInformation.HeroSummary.id + " (" + heroSummaryInformation.HeroSummary.name + ")");
 
             Hero hero;
             try
             {
-                hero = Hero.CreateFromHeroId(heroSummaryInformation.battleTag, heroSummaryInformation.heroSummary.id);
+                hero = Hero.CreateFromHeroId(heroSummaryInformation.BattleTag, heroSummaryInformation.HeroSummary.id);
             }
             catch (FileNotInCacheException)
             {
@@ -313,15 +366,14 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var itemSummary = (ItemSummary)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            if (itemSummary.tooltipParams != null)
+            if (itemSummary.TooltipParams != null)
             {
-
-                var node = new TreeNode("Item [ " + itemSummary.name + " ]");
+                var node = new TreeNode("Item [ " + itemSummary.Name + " ]");
 
                 Item item;
                 try
                 {
-                    item = Item.CreateFromTooltipParams(itemSummary.tooltipParams);
+                    item = Item.CreateFromTooltipParams(itemSummary.TooltipParams);
                 }
                 catch (FileNotInCacheException)
                 {
@@ -408,24 +460,24 @@ namespace ZTn.BNet.D3ProfileExplorer
                 hero.items.rightFinger,
                 hero.items.shoulders,
                 hero.items.torso,
-                hero.items.waist 
+                hero.items.waist
             };
 
             var items = heroItems
                 .Where(hi => hi != null)
-                .Select(hi => Item.CreateFromTooltipParams(hi.tooltipParams))
+                .Select(hi => Item.CreateFromTooltipParams(hi.TooltipParams))
                 .ToList();
 
-            var mainHand = Item.CreateFromTooltipParams(hero.items.mainHand.tooltipParams);
+            var mainHand = Item.CreateFromTooltipParams(hero.items.mainHand.TooltipParams);
 
             Item offHand;
             if (hero.items.offHand != null)
             {
-                offHand = Item.CreateFromTooltipParams(hero.items.offHand.tooltipParams);
+                offHand = Item.CreateFromTooltipParams(hero.items.offHand.TooltipParams);
             }
             else
             {
-                offHand = new Item { attributesRaw = new ItemAttributes() };
+                offHand = new Item { AttributesRaw = new ItemAttributes() };
             }
 
             var heroStuff = new StatsItem(mainHand, offHand, items.ToArray());
@@ -451,15 +503,15 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             var items = followerItems
                 .Where(fi => fi != null)
-                .Select(fi => Item.CreateFromTooltipParams(fi.tooltipParams))
+                .Select(fi => Item.CreateFromTooltipParams(fi.TooltipParams))
                 .ToList();
 
-            var mainHand = Item.CreateFromTooltipParams(follower.items.mainHand.tooltipParams);
+            var mainHand = Item.CreateFromTooltipParams(follower.items.mainHand.TooltipParams);
 
             Item offHand;
             if (follower.items.offHand != null)
             {
-                offHand = Item.CreateFromTooltipParams(follower.items.offHand.tooltipParams);
+                offHand = Item.CreateFromTooltipParams(follower.items.offHand.TooltipParams);
             }
             else
             {
@@ -482,7 +534,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             Hero hero;
             try
             {
-                hero = Hero.CreateFromHeroId(heroSummaryInformation.battleTag, heroSummaryInformation.heroSummary.id);
+                hero = Hero.CreateFromHeroId(heroSummaryInformation.BattleTag, heroSummaryInformation.HeroSummary.id);
             }
             catch (FileNotInCacheException)
             {
@@ -496,9 +548,9 @@ namespace ZTn.BNet.D3ProfileExplorer
         private void getItemLargeIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var itemSummary = (ItemSummary)guiD3ProfileTreeView.SelectedNode.Tag;
-            if (itemSummary.icon != null)
+            if (itemSummary.Icon != null)
             {
-                var picture = D3Api.GetItemIcon(itemSummary.icon, "large");
+                var picture = D3Api.GetItemIcon(itemSummary.Icon, "large");
                 using (var imageStream = new MemoryStream(picture.Bytes))
                 {
                     guiD3Icon.Image = Image.FromStream(imageStream);
@@ -509,9 +561,9 @@ namespace ZTn.BNet.D3ProfileExplorer
         private void getItemSmallIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var itemSummary = (ItemSummary)guiD3ProfileTreeView.SelectedNode.Tag;
-            if (itemSummary.icon != null)
+            if (itemSummary.Icon != null)
             {
-                var picture = D3Api.GetItemIcon(itemSummary.icon);
+                var picture = D3Api.GetItemIcon(itemSummary.Icon);
                 using (var imageStream = new MemoryStream(picture.Bytes))
                 {
                     guiD3Icon.Image = Image.FromStream(imageStream);
@@ -589,15 +641,14 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var itemSummary = (ItemSummary)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            if (itemSummary.id != null)
+            if (itemSummary.Id != null)
             {
-
-                var node = new TreeNode("Item (meta) [ " + itemSummary.name + " ]");
+                var node = new TreeNode("Item (meta) [ " + itemSummary.Name + " ]");
 
                 Item item;
                 try
                 {
-                    item = Item.CreateFromTooltipParams("item/" + itemSummary.id);
+                    item = Item.CreateFromTooltipParams("item/" + itemSummary.Id);
                 }
                 catch (FileNotInCacheException)
                 {
@@ -615,7 +666,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var simplifiedItem = ((Item)guiD3ProfileTreeView.SelectedNode.Tag).Simplify();
 
-            var node = new TreeNode("Item (simplified) [ " + simplifiedItem.name + " ]");
+            var node = new TreeNode("Item (simplified) [ " + simplifiedItem.Name + " ]");
 
             InsertContextMenu(node, simplifiedItem);
 
@@ -626,13 +677,13 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void guiUpdateKnownGems_Click(object sender, EventArgs e)
         {
-            var socketColors = new List<string> { "Amethyst", "Emerald", "Ruby", "Topaz" };
+            var socketColors = new List<string> { "Amethyst", "Diamond", "Emerald", "Ruby", "Topaz" };
 
             var sockets = new List<Item>();
 
             foreach (var gemColor in socketColors)
             {
-                for (var index = 1; index < 16; index++)
+                for (var index = 1; index < 20; index++)
                 {
                     var id = String.Format("{0}_{1:00}", gemColor, index);
                     sockets.Add(Item.CreateFromTooltipParams("item/" + id));

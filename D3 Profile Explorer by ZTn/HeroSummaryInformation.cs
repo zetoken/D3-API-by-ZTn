@@ -12,9 +12,9 @@ namespace ZTn.BNet.D3ProfileExplorer
     {
         #region >> Fields
 
-        public String host;
-        public BattleTag battleTag;
-        public HeroSummary heroSummary;
+        public String Host;
+        public BattleTag BattleTag;
+        public HeroSummary HeroSummary;
 
         #endregion
 
@@ -22,9 +22,9 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         public HeroSummaryInformation(String host, BattleTag battleTag, HeroSummary heroSummary)
         {
-            this.host = host;
-            this.battleTag = battleTag;
-            this.heroSummary = heroSummary;
+            this.Host = host;
+            this.BattleTag = battleTag;
+            this.HeroSummary = heroSummary;
         }
 
         #endregion

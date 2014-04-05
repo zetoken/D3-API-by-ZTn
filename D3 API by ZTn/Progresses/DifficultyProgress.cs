@@ -9,10 +9,13 @@ namespace ZTn.BNet.D3.Progresses
 
         [DataMember]
         public ActProgress act1;
+
         [DataMember]
         public ActProgress act2;
+
         [DataMember]
         public ActProgress act3;
+
         [DataMember]
         public ActProgress act4;
 

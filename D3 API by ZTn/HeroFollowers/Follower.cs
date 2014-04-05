@@ -10,12 +10,16 @@ namespace ZTn.BNet.D3.HeroFollowers
 
         [DataMember]
         public String slug;
+
         [DataMember]
         public int level;
+
         [DataMember]
         public FollowerItems items;
+
         [DataMember]
         public FollowerStats stats;
+
         [DataMember]
         public FollowerSkill[] skills;
 

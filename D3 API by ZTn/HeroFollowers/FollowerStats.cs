@@ -9,8 +9,10 @@ namespace ZTn.BNet.D3.HeroFollowers
 
         [DataMember]
         public int goldFind;
+
         [DataMember]
         public int magicFind;
+
         [DataMember]
         public int experienceBonus;
 

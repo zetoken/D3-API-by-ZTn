@@ -9,8 +9,10 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember]
         public double chance;
+
         [DataMember]
         public ItemSummary item;
+
         [DataMember]
         public int quantity;
 

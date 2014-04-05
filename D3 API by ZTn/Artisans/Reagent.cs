@@ -10,6 +10,7 @@ namespace ZTn.BNet.D3.Artisans
 
         [DataMember]
         public int quantity;
+
         [DataMember]
         public ItemSummary item;
 

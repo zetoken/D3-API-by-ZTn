@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using ZTn.BNet.D3.Annotations;
 using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Items;
@@ -10,9 +11,9 @@ namespace ZTn.BNet.D3ProfileExplorer
 {
     public partial class D3ItemEditor : UserControl
     {
-        List<GemsListViewItem> gems1;
-        List<GemsListViewItem> gems2;
-        List<GemsListViewItem> gems3;
+        private List<GemsListViewItem> gems1;
+        private List<GemsListViewItem> gems2;
+        private List<GemsListViewItem> gems3;
 
         public KnownGems KnownGems { get; set; }
 
@@ -31,12 +32,28 @@ namespace ZTn.BNet.D3ProfileExplorer
         private class GemsListViewItem
         {
             public readonly Item Item;
-            public string Label { get; private set; }
+            public string Label { [UsedImplicitly] get; private set; }
 
             public GemsListViewItem(Item item)
             {
                 Item = item;
-                Label = item.attributes.FirstOrDefault();
+                var primary = item.Attributes.Primary.FirstOrDefault();
+                if (primary != null)
+                {
+                    Label = primary.Text;
+                    return;
+                }
+                var secondary = item.Attributes.Secondary.FirstOrDefault();
+                if (secondary != null)
+                {
+                    Label = secondary.Text;
+                    return;
+                }
+                var passive = item.Attributes.Passive.FirstOrDefault();
+                if (passive != null)
+                {
+                    Label = passive.Text;
+                }
             }
         }
 
@@ -58,7 +75,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             if (itemValueRange != null && itemValueRange.Min != 0)
             {
-                textBox.Text = (100 * itemValueRange.Min).ToString();
+                textBox.Text = (100*itemValueRange.Min).ToString();
             }
             else
             {
@@ -73,14 +90,14 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private static ItemValueRange GetDataPercent(Control textBox)
         {
-            return String.IsNullOrEmpty(textBox.Text) ? null : new ItemValueRange(Double.Parse(textBox.Text) / 100);
+            return String.IsNullOrEmpty(textBox.Text) ? null : new ItemValueRange(Double.Parse(textBox.Text)/100);
         }
 
         private static void SelectActiveGem(ComboBox comboBox, IEnumerable<GemsListViewItem> refGems, ItemSummary equippedGem)
         {
             if (equippedGem != null)
             {
-                comboBox.SelectedItem = refGems.First(g => equippedGem.id == g.Item.id);
+                comboBox.SelectedItem = refGems.First(g => equippedGem.Id == g.Item.Id);
             }
         }
 
@@ -93,13 +110,13 @@ namespace ZTn.BNet.D3ProfileExplorer
                 return;
             }
 
-            guiItemName.Text = item.name;
-            guiItemId.Text = item.id;
-            guiItemTypeId.Text = (item.type != null ? item.type.id : "");
+            guiItemName.Text = item.Name;
+            guiItemId.Text = item.Id;
+            guiItemTypeId.Text = (item.Type != null ? item.Type.id : "");
 
             item = item.Simplify();
 
-            var attr = item.attributesRaw;
+            var attr = item.AttributesRaw;
 
             // Characteristics
             PopulateData(guiDexterity, attr.dexterityItem);
@@ -122,7 +139,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateData(guiWeaponDamageMinFire, attr.damageWeaponMin_Fire);
             PopulateData(guiWeaponDamageMinHoly, attr.damageWeaponMin_Holy);
             PopulateData(guiWeaponDamageMinLightning, attr.damageWeaponMin_Lightning);
-            PopulateData(guiWeaponDamageMinPhysical, attr.damageWeaponMin_Physical * (1 + attr.damageWeaponPercentBonus_Physical));
+            PopulateData(guiWeaponDamageMinPhysical, attr.damageWeaponMin_Physical*(1 + attr.damageWeaponPercentBonus_Physical));
             PopulateData(guiWeaponDamageMinPoison, attr.damageWeaponMin_Poison);
 
             PopulateData(guiWeaponDamageMaxArcane, attr.damageWeaponMin_Arcane + attr.damageWeaponDelta_Arcane);
@@ -130,7 +147,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateData(guiWeaponDamageMaxFire, attr.damageWeaponMin_Fire + attr.damageWeaponDelta_Fire);
             PopulateData(guiWeaponDamageMaxHoly, attr.damageWeaponMin_Holy + attr.damageWeaponDelta_Holy);
             PopulateData(guiWeaponDamageMaxLightning, attr.damageWeaponMin_Lightning + attr.damageWeaponDelta_Lightning);
-            PopulateData(guiWeaponDamageMaxPhysical, (attr.damageWeaponMin_Physical + attr.damageWeaponDelta_Physical) * (1 + attr.damageWeaponPercentBonus_Physical));
+            PopulateData(guiWeaponDamageMaxPhysical, (attr.damageWeaponMin_Physical + attr.damageWeaponDelta_Physical)*(1 + attr.damageWeaponPercentBonus_Physical));
             PopulateData(guiWeaponDamageMaxPoison, attr.damageWeaponMin_Poison + attr.damageWeaponDelta_Poison);
 
             PopulateDataPercent(guiWeaponDamagePercentBonus, attr.damageWeaponPercentBonus_Physical);
@@ -176,8 +193,8 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             // Gems
             gems1 = new List<GemsListViewItem>();
-            gems1.Add(new GemsListViewItem(new Item(new ItemAttributes()) { attributes = new[] { "( no gem )" } }));
-            if (item.type != null)
+            gems1.Add(new GemsListViewItem(new Item(new ItemAttributes()) { Attributes = new ItemTextAttributes { Primary = new[] { new ItemTextAttribute { Text = "( no gem )" } } } }));
+            if (item.Type != null)
             {
                 gems1.AddRange(KnownGems.GetGemsForItem(item).Select(g => new GemsListViewItem(g)));
             }
@@ -185,28 +202,28 @@ namespace ZTn.BNet.D3ProfileExplorer
             gems3 = new List<GemsListViewItem>(gems1);
 
             guiGem1.DataSource = gems1;
-            guiGem1.DisplayMember = "label";
+            guiGem1.DisplayMember = "Label";
             guiGem2.DataSource = gems2;
-            guiGem2.DisplayMember = "label";
+            guiGem2.DisplayMember = "Label";
             guiGem3.DataSource = gems3;
-            guiGem3.DisplayMember = "label";
+            guiGem3.DisplayMember = "Label";
 
             guiGem1.SelectedIndex = 0;
             guiGem2.SelectedIndex = 0;
             guiGem3.SelectedIndex = 0;
-            if (item.gems != null)
+            if (item.Gems != null)
             {
-                if (item.gems.Length >= 1)
+                if (item.Gems.Length >= 1)
                 {
-                    SelectActiveGem(guiGem1, gems1, item.gems[0].item);
+                    SelectActiveGem(guiGem1, gems1, item.Gems[0].Item);
                 }
-                if (item.gems.Length >= 2)
+                if (item.Gems.Length >= 2)
                 {
-                    SelectActiveGem(guiGem2, gems2, item.gems[1].item);
+                    SelectActiveGem(guiGem2, gems2, item.Gems[1].Item);
                 }
-                if (item.gems.Length >= 3)
+                if (item.Gems.Length >= 3)
                 {
-                    SelectActiveGem(guiGem3, gems3, item.gems[2].item);
+                    SelectActiveGem(guiGem3, gems3, item.Gems[2].Item);
                 }
             }
         }
@@ -216,9 +233,9 @@ namespace ZTn.BNet.D3ProfileExplorer
             var item = new Item();
             var attr = new ItemAttributes();
 
-            item.name = guiItemName.Text;
-            item.id = guiItemId.Text;
-            item.type = new ItemType(guiItemTypeId.Text, false);
+            item.Name = guiItemName.Text;
+            item.Id = guiItemId.Text;
+            item.Type = new ItemType(guiItemTypeId.Text, false);
 
             attr.dexterityItem = GetData(guiDexterity);
             attr.intelligenceItem = GetData(guiIntelligence);
@@ -243,7 +260,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.damageWeaponMin_Fire = GetData(guiWeaponDamageMinFire);
             attr.damageWeaponMin_Holy = GetData(guiWeaponDamageMinHoly);
             attr.damageWeaponMin_Lightning = GetData(guiWeaponDamageMinLightning);
-            attr.damageWeaponMin_Physical = GetData(guiWeaponDamageMinPhysical) / (1 + damageWeaponPercentBonus_Physical);
+            attr.damageWeaponMin_Physical = GetData(guiWeaponDamageMinPhysical)/(1 + damageWeaponPercentBonus_Physical);
             attr.damageWeaponMin_Poison = GetData(guiWeaponDamageMinPoison);
 
             attr.damageWeaponDelta_Arcane = GetData(guiWeaponDamageMaxArcane) - attr.damageWeaponMin_Arcane;
@@ -251,7 +268,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.damageWeaponDelta_Fire = GetData(guiWeaponDamageMaxFire) - attr.damageWeaponMin_Fire;
             attr.damageWeaponDelta_Holy = GetData(guiWeaponDamageMaxHoly) - attr.damageWeaponMin_Holy;
             attr.damageWeaponDelta_Lightning = GetData(guiWeaponDamageMaxLightning) - attr.damageWeaponMin_Lightning;
-            attr.damageWeaponDelta_Physical = GetData(guiWeaponDamageMaxPhysical) / (1 + damageWeaponPercentBonus_Physical) - attr.damageWeaponMin_Physical;
+            attr.damageWeaponDelta_Physical = GetData(guiWeaponDamageMaxPhysical)/(1 + damageWeaponPercentBonus_Physical) - attr.damageWeaponMin_Physical;
             attr.damageWeaponDelta_Poison = GetData(guiWeaponDamageMaxPoison) - attr.damageWeaponMin_Poison;
 
             attr.damageMin_Arcane = GetData(guiBonusDamageMinArcane);
@@ -291,7 +308,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.blockAmountItemMin = GetData(guiShieldBlockMin);
             attr.blockAmountItemDelta = GetData(guiShieldBlockMax) - attr.blockAmountItemMin;
 
-            item.attributesRaw = attr;
+            item.AttributesRaw = attr;
             var gems = new List<SocketedGem>();
 
             if (guiGem1.SelectedIndex > 0)
@@ -310,7 +327,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 gems.Add(gem);
             }
 
-            item.gems = gems.ToArray();
+            item.Gems = gems.ToArray();
 
             return item;
         }
@@ -324,7 +341,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             // re-generates data
             gems1 = new List<GemsListViewItem>();
-            gems1.Add(new GemsListViewItem(new Item(new ItemAttributes()) { attributes = new[] { "( no gem )" } }));
+            gems1.Add(new GemsListViewItem(new Item(new ItemAttributes()) { Attributes = new ItemTextAttributes { Primary = new[] { new ItemTextAttribute { Text = "( no gem )" } } } }));
             gems1.AddRange(KnownGems.GetGemsForItemTypeId(guiItemTypeId.Text).Select(g => new GemsListViewItem(g)));
             gems2 = new List<GemsListViewItem>(gems1);
             gems3 = new List<GemsListViewItem>(gems1);

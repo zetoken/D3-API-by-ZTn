@@ -7,6 +7,7 @@ namespace ZTn.BNet.D3.Heroes
     {
         [EnumMember(Value = "0")]
         Male,
+
         [EnumMember(Value = "1")]
         Female
     }

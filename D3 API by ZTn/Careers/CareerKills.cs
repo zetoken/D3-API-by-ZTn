@@ -9,8 +9,10 @@ namespace ZTn.BNet.D3.Careers
 
         [DataMember]
         public int monsters;
+
         [DataMember]
         public int elites;
+
         [DataMember]
         public int hardcoreMonsters;
 

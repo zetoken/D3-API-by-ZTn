@@ -93,7 +93,9 @@ namespace ZTn.BNet.D3.Items
                 return Zero - right;
             }
 
-            return right == null ? new ItemValueRange(left) : new ItemValueRange(left.Min - right.Min, left.Max - right.Max);
+            return right == null
+                ? new ItemValueRange(left)
+                : new ItemValueRange(left.Min - right.Min, left.Max - right.Max);
         }
 
         public static ItemValueRange operator -(ItemValueRange left, double right)
@@ -113,17 +115,17 @@ namespace ZTn.BNet.D3.Items
                 return Zero;
             }
 
-            return right == null ? Zero : new ItemValueRange(left.Min * right.Min, left.Max * right.Max);
+            return right == null ? Zero : new ItemValueRange(left.Min*right.Min, left.Max*right.Max);
         }
 
         public static ItemValueRange operator *(ItemValueRange left, double right)
         {
-            return left == null ? Zero : new ItemValueRange(left.Min * right, left.Max * right);
+            return left == null ? Zero : new ItemValueRange(left.Min*right, left.Max*right);
         }
 
         public static ItemValueRange operator *(double left, ItemValueRange right)
         {
-            return right * left;
+            return right*left;
         }
 
         public static ItemValueRange operator /(ItemValueRange left, ItemValueRange right)
@@ -138,12 +140,12 @@ namespace ZTn.BNet.D3.Items
                 throw new ArgumentNullException("right");
             }
 
-            return new ItemValueRange(left.Min / right.Min, left.Max / right.Max);
+            return new ItemValueRange(left.Min/right.Min, left.Max/right.Max);
         }
 
         public static ItemValueRange operator /(ItemValueRange left, double right)
         {
-            return left == null ? Zero : new ItemValueRange(left.Min / right, left.Max / right);
+            return left == null ? Zero : new ItemValueRange(left.Min/right, left.Max/right);
         }
 
         public static ItemValueRange operator /(double left, ItemValueRange right)
@@ -153,7 +155,7 @@ namespace ZTn.BNet.D3.Items
                 throw new ArgumentNullException("right");
             }
 
-            return new ItemValueRange(left / right.Min, left / right.Max);
+            return new ItemValueRange(left/right.Min, left/right.Max);
         }
 
         #endregion

@@ -87,6 +87,8 @@
     <Compile Include="Items\ItemAttributes.cs" />
     <Compile Include="Items\ItemSalvageComponent.cs" />
     <Compile Include="Items\ItemSummary.cs" />
+    <Compile Include="Items\ItemTextAttribute.cs" />
+    <Compile Include="Items\ItemTextAttributes.cs" />
     <Compile Include="Items\ItemType.cs" />
     <Compile Include="Items\ItemValueRange.cs" />
     <Compile Include="Items\Set.cs" />

@@ -22,7 +22,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
         /// <inheritdoc />
         public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            var stuff = calculator.HeroStatsItem.attributesRaw;
+            var stuff = calculator.HeroStatsItem.AttributesRaw;
             var attr = new ItemAttributes();
 
             double maxResist = 0;

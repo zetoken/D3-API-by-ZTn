@@ -104,7 +104,10 @@ namespace ZTn.BNet.D3.DataProviders
             // add the pad bytes.
             Update(128);
 
-            while (xBufOff != 0) Update(0);
+            while (xBufOff != 0)
+            {
+                Update(0);
+            }
             ProcessLength(bitLength);
             ProcessBlock();
         }
@@ -372,9 +375,9 @@ namespace ZTn.BNet.D3.DataProviders
         private static uint LE_To_UInt32(byte[] bs, int off)
         {
             return bs[off]
-                | (uint)bs[off + 1] << 8
-                | (uint)bs[off + 2] << 16
-                | (uint)bs[off + 3] << 24;
+                   | (uint)bs[off + 1] << 8
+                   | (uint)bs[off + 2] << 16
+                   | (uint)bs[off + 3] << 24;
         }
     }
 }

@@ -1,7 +1,4 @@
 ﻿using System;
-#if !PORTABLE
-using System.Web;
-#endif
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Careers;
@@ -59,7 +56,7 @@ namespace ZTn.BNet.D3
 
         public static String GetCareerUrl(BattleTag battleTag)
         {
-            return ApiUrl + "profile/" + HttpUtility.UrlEncode(battleTag.Name) + "-" + battleTag.Code + "/";
+            return ApiUrl + "profile/" + Uri.EscapeUriString(battleTag.Name) + "-" + battleTag.Code + "/";
         }
 
         public static Hero GetHeroFromHeroId(BattleTag battleTag, String heroId)

@@ -22,6 +22,7 @@ namespace ZTn.BNet.D3.Calculator.Heroes
                     strengthItem = new ItemValueRange(7 + 1 * hero.level);
                     break;
                 case HeroClass.Barbarian:
+                case HeroClass.Crusader:
                     dexterityItem = new ItemValueRange(7 + 1 * hero.level);
                     intelligenceItem = new ItemValueRange(7 + 1 * hero.level);
                     strengthItem = new ItemValueRange(7 + 3 * hero.level);

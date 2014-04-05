@@ -8,7 +8,7 @@ namespace ZTn.BNet.D3.DataProviders
     {
         #region >> Fields
 
-        readonly ID3DataProvider dataProvider;
+        private readonly ID3DataProvider dataProvider;
 
         public FetchMode FetchMode = FetchMode.Online;
 
@@ -65,7 +65,9 @@ namespace ZTn.BNet.D3.DataProviders
                 {
                     var hash = MD5Digest.ComputeMD5(Encoding.Default.GetBytes(url));
                     foreach (var hashByte in hash)
+                    {
                         stringBuilder.Append(hashByte.ToString("x2"));
+                    }
                 }
                 stringBuilder.Append(".json");
             }
@@ -80,7 +82,9 @@ namespace ZTn.BNet.D3.DataProviders
             {
                 var hash = MD5Digest.ComputeMD5(Encoding.Default.GetBytes(url));
                 foreach (var hashByte in hash)
+                {
                     stringBuilder.Append(hashByte.ToString("x2"));
+                }
 
                 stringBuilder.Append(".json");
             }
@@ -97,7 +101,8 @@ namespace ZTn.BNet.D3.DataProviders
         {
             var cachedFilePath = GetCacheStoragePath() + GetCachedFileName(url);
 
-            if ((FetchMode == FetchMode.Online) || ((FetchMode == FetchMode.OnlineIfMissing) && !File.Exists(cachedFilePath)))
+            if ((FetchMode == FetchMode.Online) ||
+                ((FetchMode == FetchMode.OnlineIfMissing) && !File.Exists(cachedFilePath)))
             {
                 var directoryName = Path.GetDirectoryName(cachedFilePath);
                 if (!String.IsNullOrWhiteSpace(directoryName))

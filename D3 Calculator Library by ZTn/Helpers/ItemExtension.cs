@@ -21,7 +21,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetAttributeByName(this Item item, String fieldName)
         {
-            return (ItemValueRange)typeof(ItemAttributes).GetField(fieldName).GetValue(item.attributesRaw);
+            return (ItemValueRange)typeof(ItemAttributes).GetField(fieldName).GetValue(item.AttributesRaw);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <param name="value">Value to set</param>
         public static void SetAttributeByName(this Item item, String fieldName, ItemValueRange value)
         {
-            typeof(ItemAttributes).GetField(fieldName).SetValue(item.attributesRaw, value);
+            typeof(ItemAttributes).GetField(fieldName).SetValue(item.AttributesRaw, value);
         }
 
         #endregion
@@ -46,7 +46,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         {
             var itemsOfSets = new Dictionary<string, Set>();
 
-            foreach (var set in items.Where(item => item.set != null).Select(item => item.set))
+            foreach (var set in items.Where(item => item.Set != null).Select(item => item.Set))
             {
                 if (!itemsOfSets.ContainsKey(set.slug))
                 {
@@ -79,7 +79,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetArmor(this Item item)
         {
-            return item.attributesRaw.GetArmor();
+            return item.AttributesRaw.GetArmor();
         }
 
         /// <summary>
@@ -89,19 +89,19 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetRawAverageBonusDamage(this Item item)
         {
-            return item.attributesRaw.GetRawAverageBonusDamage();
+            return item.AttributesRaw.GetRawAverageBonusDamage();
         }
 
         #region >> getRawBonusDamageMin *
 
         public static ItemValueRange GetRawBonusDamageMin(this Item item)
         {
-            return item.attributesRaw.GetRawBonusDamageMin();
+            return item.AttributesRaw.GetRawBonusDamageMin();
         }
 
         public static ItemValueRange GetRawBonusDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
-            return item.attributesRaw.GetRawBonusDamageMin(resist, useDamageTypePercentBonus);
+            return item.AttributesRaw.GetRawBonusDamageMin(resist, useDamageTypePercentBonus);
         }
 
         #endregion
@@ -110,12 +110,12 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         public static ItemValueRange GetRawBonusDamageMax(this Item item)
         {
-            return item.attributesRaw.GetRawBonusDamageMax();
+            return item.AttributesRaw.GetRawBonusDamageMax();
         }
 
         public static ItemValueRange GetRawBonusDamageMax(this Item item, String resist)
         {
-            return item.attributesRaw.GetRawBonusDamageMax(resist);
+            return item.AttributesRaw.GetRawBonusDamageMax(resist);
         }
 
         #endregion
@@ -128,7 +128,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetResistance(this Item item, String resist)
         {
-            return item.attributesRaw.GetAttributeByName("resistance_" + resist);
+            return item.AttributesRaw.GetAttributeByName("resistance_" + resist);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetRawWeaponAttackPerSecond(this Item item)
         {
-            return item.attributesRaw.GetRawWeaponAttackPerSecond();
+            return item.AttributesRaw.GetRawWeaponAttackPerSecond();
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetRawWeaponDps(this Item item)
         {
-            return item.attributesRaw.GetRawWeaponDps();
+            return item.AttributesRaw.GetRawWeaponDps();
         }
 
         /// <summary>
@@ -158,19 +158,19 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetRawAverageWeaponDamage(this Item item)
         {
-            return item.attributesRaw.GetRawAverageWeaponDamage();
+            return item.AttributesRaw.GetRawAverageWeaponDamage();
         }
 
         #region >> getRawWeaponDamageMin *
 
         public static ItemValueRange GetRawWeaponDamageMin(this Item item)
         {
-            return item.attributesRaw.GetRawWeaponDamageMin();
+            return item.AttributesRaw.GetRawWeaponDamageMin();
         }
 
         public static ItemValueRange GetRawWeaponDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
-            return item.attributesRaw.GetRawWeaponDamageMin(resist, useDamageTypePercentBonus);
+            return item.AttributesRaw.GetRawWeaponDamageMin(resist, useDamageTypePercentBonus);
         }
 
         #endregion
@@ -179,19 +179,19 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         public static ItemValueRange GetRawWeaponDamageMax(this Item item)
         {
-            return item.attributesRaw.GetRawWeaponDamageMax();
+            return item.AttributesRaw.GetRawWeaponDamageMax();
         }
 
         public static ItemValueRange GetRawWeaponDamageMax(this Item item, String resist, bool useDamageTypePercentBonus = true)
         {
-            return item.attributesRaw.GetRawWeaponDamageMax(resist, useDamageTypePercentBonus);
+            return item.AttributesRaw.GetRawWeaponDamageMax(resist, useDamageTypePercentBonus);
         }
 
         #endregion
 
         public static ItemValueRange GetWeaponAttackPerSecond(this Item item, ItemValueRange increaseFromOtherItems)
         {
-            return item.attributesRaw.GetWeaponAttackPerSecond(increaseFromOtherItems);
+            return item.AttributesRaw.GetWeaponAttackPerSecond(increaseFromOtherItems);
         }
 
         #region >> checkAndUpdateWeaponDelta *
@@ -240,12 +240,12 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         public static Boolean IsItemTypeHelm(this Item item)
         {
-            return ItemHelper.HelmTypeIds.Any(id => item.id.Contains(id));
+            return ItemHelper.HelmTypeIds.Any(id => item.Id.Contains(id));
         }
 
         public static Boolean IsItemTypeWeapon(this Item item)
         {
-            return ItemHelper.WeaponTypeIds.Any(id => item.id == id);
+            return ItemHelper.WeaponTypeIds.Any(id => item.Id == id);
         }
 
         public static Boolean IsItemTypeOther(this Item item)
@@ -262,7 +262,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static Boolean IsWeapon(this Item item)
         {
-            return item.attributesRaw.IsWeapon();
+            return item.AttributesRaw.IsWeapon();
         }
 
         /// <summary>
@@ -272,9 +272,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static Item MergeSocketedGems(this Item item)
         {
-            item.attributesRaw += item.gems.Aggregate(new ItemAttributes(), (current, gem) => current + gem.attributesRaw);
+            item.AttributesRaw += item.Gems.Aggregate(new ItemAttributes(), (current, gem) => current + gem.AttributesRaw);
 
-            item.gems = null;
+            item.Gems = null;
 
             return item;
         }
@@ -286,10 +286,10 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns>The <paramref name="item"/> instance.</returns>
         public static Item Simplify(this Item item)
         {
-            var attr = item.attributesRaw.GetSimplified();
+            var attr = item.AttributesRaw.GetSimplified();
 
             // Set new attributes to item
-            item.attributesRaw = attr;
+            item.AttributesRaw = attr;
 
             return item.UpdateStats();
         }
@@ -301,14 +301,14 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static Item UpdateStats(this Item item)
         {
-            var attr = item.attributesRaw;
+            var attr = item.AttributesRaw;
 
             // Update some item stats
-            item.armor = (attr.armorItem == null ? null : new ItemValueRange(attr.armorItem));
-            item.attacksPerSecond = (attr.attacksPerSecondItem == null ? null : new ItemValueRange(attr.attacksPerSecondItem));
-            item.minDamage = item.GetRawWeaponDamageMin().NullIfZero();
-            item.maxDamage = item.GetRawWeaponDamageMax().NullIfZero();
-            item.dps = item.GetRawWeaponDps().NullIfZero();
+            item.Armor = (attr.armorItem == null ? null : new ItemValueRange(attr.armorItem));
+            item.AttacksPerSecond = (attr.attacksPerSecondItem == null ? null : new ItemValueRange(attr.attacksPerSecondItem));
+            item.MinDamage = item.GetRawWeaponDamageMin().NullIfZero();
+            item.MaxDamage = item.GetRawWeaponDamageMax().NullIfZero();
+            item.Dps = item.GetRawWeaponDps().NullIfZero();
 
             return item;
         }

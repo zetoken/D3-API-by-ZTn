@@ -9,13 +9,16 @@ namespace ZTn.BNet.D3.Items
         #region >> Fields
 
         [DataMember]
-        public String itemTypeId;
+        public String ItemTypeId;
+
         [DataMember]
-        public String itemTypeName;
+        public String ItemTypeName;
+
         [DataMember]
-        public ItemAttributes attributesRaw;
+        public ItemAttributes AttributesRaw;
+
         [DataMember]
-        public String[] attributes;
+        public ItemTextAttributes Attributes;
 
         #endregion
     }

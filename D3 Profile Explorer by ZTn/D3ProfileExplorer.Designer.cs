@@ -74,6 +74,7 @@
             this.guiFollowerContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.d3CalculatorFollowerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buildUniqueItemFollowerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.D3ObjectLiveUrl = new System.Windows.Forms.TextBox();
             guiLabel1 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -122,8 +123,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.guiD3ProfileTreeView.Location = new System.Drawing.Point(12, 71);
             this.guiD3ProfileTreeView.Name = "guiD3ProfileTreeView";
-            this.guiD3ProfileTreeView.Size = new System.Drawing.Size(604, 479);
+            this.guiD3ProfileTreeView.Size = new System.Drawing.Size(604, 453);
             this.guiD3ProfileTreeView.TabIndex = 1;
+            this.guiD3ProfileTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.guiD3ProfileTreeView_AfterSelect);
             this.guiD3ProfileTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.guiD3ProfileTreeView_NodeMouseClick);
             // 
             // guiProfileLookup
@@ -453,7 +455,7 @@
             this.d3CalculatorFollowerToolStripMenuItem,
             this.buildUniqueItemFollowerToolStripMenuItem});
             this.guiFollowerContextMenu.Name = "guiHeroSummaryContextMenu";
-            this.guiFollowerContextMenu.Size = new System.Drawing.Size(170, 70);
+            this.guiFollowerContextMenu.Size = new System.Drawing.Size(170, 48);
             // 
             // d3CalculatorFollowerToolStripMenuItem
             // 
@@ -469,11 +471,20 @@
             this.buildUniqueItemFollowerToolStripMenuItem.Text = "Build Unique Item";
             this.buildUniqueItemFollowerToolStripMenuItem.Click += new System.EventHandler(this.buildUniqueItemFollowerToolStripMenuItem_Click);
             // 
-            // guiD3ProfileExplorer
+            // D3ObjectLiveUrl
+            // 
+            this.D3ObjectLiveUrl.Location = new System.Drawing.Point(12, 530);
+            this.D3ObjectLiveUrl.Name = "D3ObjectLiveUrl";
+            this.D3ObjectLiveUrl.ReadOnly = true;
+            this.D3ObjectLiveUrl.Size = new System.Drawing.Size(606, 20);
+            this.D3ObjectLiveUrl.TabIndex = 13;
+            // 
+            // GuiD3ProfileExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.D3ObjectLiveUrl);
             this.Controls.Add(this.guiUpdateKnownGems);
             this.Controls.Add(this.guiLoadKnownGems);
             this.Controls.Add(this.guiLoadKnownSets);
@@ -548,6 +559,7 @@
         private System.Windows.Forms.ContextMenuStrip guiFollowerContextMenu;
         private System.Windows.Forms.ToolStripMenuItem d3CalculatorFollowerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem buildUniqueItemFollowerToolStripMenuItem;
+        private System.Windows.Forms.TextBox D3ObjectLiveUrl;
     }
 }
 

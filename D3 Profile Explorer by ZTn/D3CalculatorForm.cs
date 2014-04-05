@@ -19,22 +19,22 @@ namespace ZTn.BNet.D3ProfileExplorer
     {
         #region >> Fields
 
-        int heroLevel;
+        private int heroLevel;
 
-        readonly Item special;
-        readonly Item bracers;
-        readonly Item feet;
-        readonly Item hands;
-        readonly Item head;
-        readonly Item leftFinger;
-        readonly Item legs;
-        readonly Item neck;
-        readonly Item rightFinger;
-        readonly Item shoulders;
-        readonly Item torso;
-        readonly Item waist;
+        private readonly Item special;
+        private readonly Item bracers;
+        private readonly Item feet;
+        private readonly Item hands;
+        private readonly Item head;
+        private readonly Item leftFinger;
+        private readonly Item legs;
+        private readonly Item neck;
+        private readonly Item rightFinger;
+        private readonly Item shoulders;
+        private readonly Item torso;
+        private readonly Item waist;
 
-        readonly List<CheckBox> passiveCheckBoxes;
+        private readonly List<CheckBox> passiveCheckBoxes;
 
         #endregion
 
@@ -44,11 +44,13 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             InitializeComponent();
 
-            guiHeroClass.DataSource = new List<String> {
+            guiHeroClass.DataSource = new List<String>
+            {
                 HeroClass.Barbarian.ToString(),
+                HeroClass.Crusader.ToString(),
                 HeroClass.DemonHunter.ToString(),
-                HeroClass.Monk.ToString(), 
-                HeroClass.WitchDoctor.ToString(), 
+                HeroClass.Monk.ToString(),
+                HeroClass.WitchDoctor.ToString(),
                 HeroClass.Wizard.ToString(),
                 HeroClass.EnchantressFollower.ToString(),
                 HeroClass.ScoundrelFollower.ToString(),
@@ -57,7 +59,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             var knownGems = KnownGems.GetKnownGemsFromJsonFile("d3gem.json");
 
-            List<D3ItemEditor> d3ItemEditors = new List<D3ItemEditor>
+            var d3ItemEditors = new List<D3ItemEditor>
             {
                 guiMainHandEditor,
                 guiOffHandEditor,
@@ -106,7 +108,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 d3ItemEditor.KnownGems = knownGems;
             }
-
         }
 
         public D3CalculatorForm(Hero hero)
@@ -121,39 +122,62 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiHeroParagonLevel.Text = hero.paragonLevel.ToString();
 
             if (hero.items.bracers != null)
+            {
                 bracers = hero.items.bracers.GetFullItem();
+            }
             if (hero.items.feet != null)
+            {
                 feet = hero.items.feet.GetFullItem();
+            }
             if (hero.items.hands != null)
+            {
                 hands = hero.items.hands.GetFullItem();
+            }
             if (hero.items.head != null)
+            {
                 head = hero.items.head.GetFullItem();
+            }
             if (hero.items.leftFinger != null)
+            {
                 leftFinger = hero.items.leftFinger.GetFullItem();
+            }
             if (hero.items.legs != null)
+            {
                 legs = hero.items.legs.GetFullItem();
+            }
             if (hero.items.neck != null)
+            {
                 neck = hero.items.neck.GetFullItem();
+            }
             if (hero.items.rightFinger != null)
+            {
                 rightFinger = hero.items.rightFinger.GetFullItem();
+            }
             if (hero.items.shoulders != null)
+            {
                 shoulders = hero.items.shoulders.GetFullItem();
+            }
             if (hero.items.torso != null)
+            {
                 torso = hero.items.torso.GetFullItem();
+            }
             if (hero.items.waist != null)
+            {
                 waist = hero.items.waist.GetFullItem();
+            }
 
             // If no weapon is set in mainHand, use "naked hand" weapon
-            if (hero.items.mainHand != null)
-                mainHand = hero.items.mainHand.GetFullItem();
-            else
-                mainHand = D3Calculator.NakedHandWeapon;
+            mainHand = (hero.items.mainHand != null ? hero.items.mainHand.GetFullItem() : D3Calculator.NakedHandWeapon);
 
             // If no item is set in offHand, use a blank item
             if (hero.items.offHand != null)
+            {
                 offHand = hero.items.offHand.GetFullItem();
+            }
             else
+            {
                 offHand = D3Calculator.BlankWeapon;
+            }
 
             var allRawItems = new List<Item> { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist, mainHand, offHand };
 
@@ -189,25 +213,41 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiHeroParagonLevel.Text = "0";
 
             if (follower.items.special != null)
+            {
                 special = follower.items.special.GetFullItem();
+            }
             if (follower.items.leftFinger != null)
+            {
                 leftFinger = follower.items.leftFinger.GetFullItem();
+            }
             if (follower.items.neck != null)
+            {
                 neck = follower.items.neck.GetFullItem();
+            }
             if (follower.items.rightFinger != null)
+            {
                 rightFinger = follower.items.rightFinger.GetFullItem();
+            }
 
             // If no weapon is set in mainHand, use "naked hand" weapon
             if (follower.items.mainHand != null)
+            {
                 mainHand = follower.items.mainHand.GetFullItem();
+            }
             else
+            {
                 mainHand = D3Calculator.NakedHandWeapon;
+            }
 
             // If no item is set in offHand, use a blank item
             if (follower.items.offHand != null)
+            {
                 offHand = follower.items.offHand.GetFullItem();
+            }
             else
+            {
                 offHand = D3Calculator.BlankWeapon;
+            }
 
             var allRawItems = new List<Item> { special, leftFinger, neck, rightFinger, mainHand, offHand };
 
@@ -232,14 +272,22 @@ namespace ZTn.BNet.D3ProfileExplorer
             hero.heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), (String)(guiHeroClass.SelectedItem));
 
             if (String.IsNullOrEmpty(guiHeroLevel.Text))
+            {
                 hero.level = 60;
+            }
             else
+            {
                 hero.level = Int32.Parse(guiHeroLevel.Text);
+            }
 
             if (String.IsNullOrEmpty(guiHeroParagonLevel.Text))
+            {
                 hero.paragonLevel = 0;
+            }
             else
+            {
                 hero.paragonLevel = Int32.Parse(guiHeroParagonLevel.Text);
+            }
 
             return hero;
         }
@@ -249,9 +297,13 @@ namespace ZTn.BNet.D3ProfileExplorer
             var follower = new Follower();
 
             if (String.IsNullOrEmpty(guiHeroLevel.Text))
+            {
                 follower.level = 60;
+            }
             else
+            {
                 follower.level = Int32.Parse(guiHeroLevel.Text);
+            }
 
             return follower;
         }
@@ -263,6 +315,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             switch (heroClass)
             {
                 case HeroClass.Barbarian:
+                case HeroClass.Crusader:
                 case HeroClass.DemonHunter:
                 case HeroClass.Monk:
                 case HeroClass.WitchDoctor:
@@ -317,17 +370,25 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             // Barbarian active skills
             if (guiSkillWarCry_Invigorate.Checked)
+            {
                 activeSkills.Add(new WarCry_Invigorate());
+            }
 
             // Demon Hunter active skills
 
             // Monk active skills
             if (guiSkillMantraOfHealing_TimeOfNeed.Checked)
+            {
                 activeSkills.Add(new MantraOfHealing_TimeOfNeed());
+            }
             if (guiSkillMantraOfEvasion_HardTarget.Checked)
+            {
                 activeSkills.Add(new MantraOfEvasion_HardTarget());
+            }
             if (guiSkillMysticAlly_EarthAlly.Checked)
+            {
                 activeSkills.Add(new MysticAlly_EarthAlly());
+            }
 
             // Witch Doctor active skills
 
@@ -335,11 +396,17 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             // Followers
             if (guiSkillAnatomy.Checked)
+            {
                 activeSkills.Add(new Anatomy());
+            }
             if (guiSkillFocusedMind.Checked)
+            {
                 activeSkills.Add(new FocusedMind());
+            }
             if (guiSkillPoweredArmor.Checked)
+            {
                 activeSkills.Add(new PoweredArmor());
+            }
 
             guiCalculatedDPS.Text = d3Calculator.GetHeroDps(passiveSkills, activeSkills).Min.ToString();
 
@@ -379,11 +446,17 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             // Followers
             if (guiSkillAnatomy.Checked)
+            {
                 activeSkills.Add(new Anatomy());
+            }
             if (guiSkillFocusedMind.Checked)
+            {
                 activeSkills.Add(new FocusedMind());
+            }
             if (guiSkillPoweredArmor.Checked)
+            {
                 activeSkills.Add(new PoweredArmor());
+            }
 
             guiCalculatedDPS.Text = d3Calculator.GetHeroDps(passiveSkills, activeSkills).Min.ToString();
 
@@ -430,13 +503,17 @@ namespace ZTn.BNet.D3ProfileExplorer
         private static void PopulateCalculatedData(Control textBox, ItemValueRange itemValueRange)
         {
             if (itemValueRange != null && itemValueRange.Min != 0)
+            {
                 textBox.Text = itemValueRange.Min.ToString();
+            }
         }
 
         private static void PopulateCalculatedDataPercent(Control textBox, ItemValueRange itemValueRange)
         {
             if (itemValueRange != null && itemValueRange.Min != 0)
+            {
                 textBox.Text = (100 * itemValueRange.Min).ToString();
+            }
         }
 
         private void PopulatePassiveSkills(Hero hero)
@@ -449,14 +526,16 @@ namespace ZTn.BNet.D3ProfileExplorer
                         .FirstOrDefault(cb => (cb.Tag as string) == passiveSkill.skill.slug);
 
                     if (skillCheckBox != null)
+                    {
                         skillCheckBox.Checked = true;
+                    }
                 }
             }
         }
 
         private void UpdateItemsSummary(D3Calculator d3Calculator)
         {
-            var attr = d3Calculator.HeroStatsItem.attributesRaw;
+            var attr = d3Calculator.HeroStatsItem.AttributesRaw;
 
             PopulateCalculatedData(guiItemsDexterity, attr.dexterityItem);
             PopulateCalculatedData(guiItemsIntelligence, attr.intelligenceItem);
@@ -482,7 +561,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void UpdateCalculationResults(D3Calculator d3Calculator)
         {
-            var attr = d3Calculator.HeroStatsItem.attributesRaw;
+            var attr = d3Calculator.HeroStatsItem.AttributesRaw;
 
             guiCalculatedAttackPerSecond.Text = d3Calculator.GetActualAttackSpeed().Min.ToString();
             PopulateCalculatedData(guiCalcultatedDamageMin, d3Calculator.HeroStatsItem.GetWeaponDamageMin() * d3Calculator.GetDamageMultiplierNormal());
@@ -525,6 +604,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             switch (heroClass)
             {
                 case HeroClass.Barbarian:
+                case HeroClass.Crusader:
                 case HeroClass.DemonHunter:
                 case HeroClass.Monk:
                 case HeroClass.WitchDoctor:

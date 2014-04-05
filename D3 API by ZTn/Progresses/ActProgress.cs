@@ -10,6 +10,7 @@ namespace ZTn.BNet.D3.Progresses
 
         [DataMember]
         public Boolean completed;
+
         [DataMember]
         public Quest[] completedQuests;
 

@@ -44,10 +44,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Artisans\Artisan.cs" />
@@ -81,6 +77,8 @@
     <Compile Include="HeroFollowers\Followers.cs" />
     <Compile Include="HeroFollowers\FollowerSkill.cs" />
     <Compile Include="HeroFollowers\FollowerStats.cs" />
+    <Compile Include="Items\ItemTextAttribute.cs" />
+    <Compile Include="Items\ItemTextAttributes.cs" />
     <Compile Include="Items\SocketEffect.cs" />
     <Compile Include="Items\SocketedGem.cs" />
     <Compile Include="Items\Set.cs" />

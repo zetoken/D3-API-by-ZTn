@@ -10,6 +10,7 @@ namespace ZTn.BNet.D3.Progresses
 
         [DataMember]
         public String slug;
+
         [DataMember]
         public String name;
 

@@ -18,7 +18,9 @@ namespace ZTn.BNet.D3.DataProviders
             var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
 
             if (httpWebResponse.StatusCode != HttpStatusCode.OK)
+            {
                 throw new BNetResponseFailedException();
+            }
 
             using (var responseStream = httpWebResponse.GetResponseStream())
             {

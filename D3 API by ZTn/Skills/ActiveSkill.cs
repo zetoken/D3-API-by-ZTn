@@ -9,6 +9,7 @@ namespace ZTn.BNet.D3.Skills
 
         [DataMember]
         public Skill skill;
+
         [DataMember]
         public Rune rune;
 

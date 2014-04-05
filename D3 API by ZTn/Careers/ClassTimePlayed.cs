@@ -8,15 +8,22 @@ namespace ZTn.BNet.D3.Careers
         #region >> Fields
 
         [DataMember]
-        public double barbarian;
-        [DataMember(Name="demon-hunter")]
-        public double demonHunter;
+        public double Barbarian;
+
         [DataMember]
-        public double monk;
+        public double Crusader;
+
+        [DataMember(Name = "demon-hunter")]
+        public double DemonHunter;
+
+        [DataMember]
+        public double Monk;
+
         [DataMember(Name = "witch-doctor")]
-        public double witchDoctor;
+        public double WitchDoctor;
+
         [DataMember]
-        public double wizard;
+        public double Wizard;
 
         #endregion
     }

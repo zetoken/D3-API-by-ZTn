@@ -197,7 +197,8 @@ namespace ZTn.BNet.D3.Helpers
         {
             var formatting = (indented ? Formatting.Indented : Formatting.None);
 
-            return JsonConvert.SerializeObject(instance, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, Formatting = formatting });
+            return JsonConvert.SerializeObject(instance,
+                new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, Formatting = formatting });
         }
     }
 }

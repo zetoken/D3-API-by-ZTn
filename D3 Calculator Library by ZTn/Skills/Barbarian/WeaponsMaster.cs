@@ -22,7 +22,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
         /// <inheritdoc />
         public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            switch (calculator.HeroStatsItem.MainHand.type.id)
+            switch (calculator.HeroStatsItem.MainHand.Type.id)
             {
                 case "Sword":
                 case "Sword2H":

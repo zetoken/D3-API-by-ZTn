@@ -81,11 +81,11 @@ namespace ZTn.BNet.D3.Calculator
 
             foreach (var item in items.Union(new[] { mainHand, offHand }))
             {
-                ApplyFollowersBonusMalusOnItemAttributes(item.attributesRaw, heroClass);
-                if (item.gems != null)
+                ApplyFollowersBonusMalusOnItemAttributes(item.AttributesRaw, heroClass);
+                if (item.Gems != null)
                 {
-                    foreach (var gem in item.gems)
-                        ApplyFollowersBonusMalusOnItemAttributes(gem.attributesRaw, heroClass);
+                    foreach (var gem in item.Gems)
+                        ApplyFollowersBonusMalusOnItemAttributes(gem.AttributesRaw, heroClass);
                 }
             }
 
@@ -156,8 +156,8 @@ namespace ZTn.BNet.D3.Calculator
 
             // Update dps with Critic
             double critDamagePercent = 0;
-            if (HeroStatsItem.attributesRaw.critDamagePercent != null)
-                critDamagePercent += HeroStatsItem.attributesRaw.critDamagePercent.Min;
+            if (HeroStatsItem.AttributesRaw.critDamagePercent != null)
+                critDamagePercent += HeroStatsItem.AttributesRaw.critDamagePercent.Min;
             multiplier *= 1 + critDamagePercent;
 
             // Update dps with main statistic
@@ -176,11 +176,11 @@ namespace ZTn.BNet.D3.Calculator
 
             // Update dps with Critic
             var critPercentBonusCapped = ItemValueRange.Zero;
-            if (HeroStatsItem.attributesRaw.critPercentBonusCapped != null)
-                critPercentBonusCapped += HeroStatsItem.attributesRaw.critPercentBonusCapped;
+            if (HeroStatsItem.AttributesRaw.critPercentBonusCapped != null)
+                critPercentBonusCapped += HeroStatsItem.AttributesRaw.critPercentBonusCapped;
             var critDamagePercent = ItemValueRange.Zero;
-            if (HeroStatsItem.attributesRaw.critDamagePercent != null)
-                critDamagePercent += HeroStatsItem.attributesRaw.critDamagePercent;
+            if (HeroStatsItem.AttributesRaw.critDamagePercent != null)
+                critDamagePercent += HeroStatsItem.AttributesRaw.critDamagePercent;
             multiplier *= ItemValueRange.One + critPercentBonusCapped * critDamagePercent;
 
             // Update dps with main statistic
@@ -205,10 +205,10 @@ namespace ZTn.BNet.D3.Calculator
             var armor = ItemValueRange.Zero;
 
             // Update with base items armor
-            armor += HeroStatsItem.attributesRaw.armorItem;
+            armor += HeroStatsItem.AttributesRaw.armorItem;
 
             // Update with items bonus armor
-            armor += HeroStatsItem.attributesRaw.armorBonusItem;
+            armor += HeroStatsItem.AttributesRaw.armorBonusItem;
 
             // Update with strength bonus
             armor += GetHeroStrength();
@@ -331,6 +331,7 @@ namespace ZTn.BNet.D3.Calculator
             switch (HeroClass)
             {
                 case HeroClass.Barbarian:
+                case HeroClass.Crusader:
                 case HeroClass.DemonHunter:
                 case HeroClass.Monk:
                 case HeroClass.WitchDoctor:
@@ -355,8 +356,8 @@ namespace ZTn.BNet.D3.Calculator
             }
 
             // Update with +% Life bonus
-            if (HeroStatsItem.attributesRaw.hitpointsMaxPercentBonusItem != null)
-                hitpoints *= 1 + HeroStatsItem.attributesRaw.hitpointsMaxPercentBonusItem.Min;
+            if (HeroStatsItem.AttributesRaw.hitpointsMaxPercentBonusItem != null)
+                hitpoints *= 1 + HeroStatsItem.AttributesRaw.hitpointsMaxPercentBonusItem.Min;
 
             return hitpoints;
         }
@@ -384,29 +385,29 @@ namespace ZTn.BNet.D3.Calculator
 
         public ItemValueRange GetHeroDexterity()
         {
-            if (HeroStatsItem.attributesRaw.dexterityItem != null)
-                return HeroStatsItem.attributesRaw.dexterityItem;
+            if (HeroStatsItem.AttributesRaw.dexterityItem != null)
+                return HeroStatsItem.AttributesRaw.dexterityItem;
             return ItemValueRange.Zero;
         }
 
         public ItemValueRange GetHeroIntelligence()
         {
-            if (HeroStatsItem.attributesRaw.intelligenceItem != null)
-                return HeroStatsItem.attributesRaw.intelligenceItem;
+            if (HeroStatsItem.AttributesRaw.intelligenceItem != null)
+                return HeroStatsItem.AttributesRaw.intelligenceItem;
             return ItemValueRange.Zero;
         }
 
         public ItemValueRange GetHeroStrength()
         {
-            if (HeroStatsItem.attributesRaw.strengthItem != null)
-                return HeroStatsItem.attributesRaw.strengthItem;
+            if (HeroStatsItem.AttributesRaw.strengthItem != null)
+                return HeroStatsItem.AttributesRaw.strengthItem;
             return ItemValueRange.Zero;
         }
 
         public ItemValueRange GetHeroVitality()
         {
-            if (HeroStatsItem.attributesRaw.vitalityItem != null)
-                return HeroStatsItem.attributesRaw.vitalityItem;
+            if (HeroStatsItem.AttributesRaw.vitalityItem != null)
+                return HeroStatsItem.AttributesRaw.vitalityItem;
             return ItemValueRange.Zero;
         }
 
@@ -427,6 +428,7 @@ namespace ZTn.BNet.D3.Calculator
                     return GetHeroIntelligence();
 
                 case HeroClass.Barbarian:
+                case HeroClass.Crusader:
                 case HeroClass.TemplarFollower:
                     return GetHeroStrength();
             }

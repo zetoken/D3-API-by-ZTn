@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Items
@@ -10,11 +9,13 @@ namespace ZTn.BNet.D3.Items
         #region >> Fields
 
         [DataMember]
-        public ItemSummary item;
+        public ItemSummary Item { get; set; }
+
         [DataMember]
-        public ItemAttributes attributesRaw;
+        public ItemAttributes AttributesRaw { get; set; }
+
         [DataMember]
-        public String[] attributes;
+        public ItemTextAttributes Attributes { get; set; }
 
         #endregion
 
@@ -35,9 +36,9 @@ namespace ZTn.BNet.D3.Items
 
         public SocketedGem(Item item)
         {
-            this.item = item;
-            attributes = item.attributes;
-            attributesRaw = item.attributesRaw;
+            Item = item;
+            Attributes = item.Attributes;
+            AttributesRaw = item.AttributesRaw;
         }
 
         #endregion
