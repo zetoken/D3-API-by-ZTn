@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Heroes;
@@ -26,8 +25,8 @@ namespace ZTn.BNet.D3.Calculator
 
         #region >> Constants
 
-        readonly string[] damagePrefixes =
-        { 
+        private readonly string[] damagePrefixes =
+        {
             "damageMin_", "damageBonusMin_",
             "damageDelta_",
             "damageWeaponBonusMinX1_",
@@ -35,7 +34,7 @@ namespace ZTn.BNet.D3.Calculator
             "damageWeaponDelta_", "damageWeaponBonusDelta_"
         };
 
-        readonly string[] damageResists =
+        private readonly string[] damageResists =
         {
             "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison"
         };
@@ -44,18 +43,12 @@ namespace ZTn.BNet.D3.Calculator
 
         public static Item NakedHandWeapon
         {
-            get
-            {
-                return new Item(new ItemAttributes { attacksPerSecondItem = ItemValueRange.One });
-            }
+            get { return new Item(new ItemAttributes { attacksPerSecondItem = ItemValueRange.One }); }
         }
 
         public static Item BlankWeapon
         {
-            get
-            {
-                return new Item(new ItemAttributes());
-            }
+            get { return new Item(new ItemAttributes()); }
         }
 
         #region >> Constructors
@@ -85,7 +78,9 @@ namespace ZTn.BNet.D3.Calculator
                 if (item.Gems != null)
                 {
                     foreach (var gem in item.Gems)
+                    {
                         ApplyFollowersBonusMalusOnItemAttributes(gem.AttributesRaw, heroClass);
+                    }
                 }
             }
 
@@ -99,24 +94,14 @@ namespace ZTn.BNet.D3.Calculator
 
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="itemAttributes"></param>
+        /// <param name="heroClass"></param>
+        /// <remarks>No more damage malus applied on followers since Reaper of Souls.</remarks>
         private void ApplyFollowersBonusMalusOnItemAttributes(ItemAttributes itemAttributes, HeroClass heroClass)
         {
-            double damagePercent;
-            switch (heroClass)
-            {
-                case HeroClass.EnchantressFollower:
-                    damagePercent = 0.20;
-                    break;
-                case HeroClass.ScoundrelFollower:
-                    damagePercent = 0.40;
-                    break;
-                case HeroClass.TemplarFollower:
-                    damagePercent = 0.15;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("This class " + heroClass + " is not a follower");
-            }
-
             itemAttributes.dexterityItem *= 2.5;
             itemAttributes.intelligenceItem *= 2.5;
             itemAttributes.strengthItem *= 2.5;
@@ -127,7 +112,7 @@ namespace ZTn.BNet.D3.Calculator
                 foreach (var damage in damagePrefixes)
                 {
                     var value = itemAttributes.GetAttributeByName(damage + resist);
-                    itemAttributes.SetAttributeByName(damage + resist, damagePercent * value);
+                    itemAttributes.SetAttributeByName(damage + resist, value);
                 }
             }
         }
@@ -157,7 +142,9 @@ namespace ZTn.BNet.D3.Calculator
             // Update dps with Critic
             double critDamagePercent = 0;
             if (HeroStatsItem.AttributesRaw.critDamagePercent != null)
+            {
                 critDamagePercent += HeroStatsItem.AttributesRaw.critDamagePercent.Min;
+            }
             multiplier *= 1 + critDamagePercent;
 
             // Update dps with main statistic
@@ -177,10 +164,14 @@ namespace ZTn.BNet.D3.Calculator
             // Update dps with Critic
             var critPercentBonusCapped = ItemValueRange.Zero;
             if (HeroStatsItem.AttributesRaw.critPercentBonusCapped != null)
+            {
                 critPercentBonusCapped += HeroStatsItem.AttributesRaw.critPercentBonusCapped;
+            }
             var critDamagePercent = ItemValueRange.Zero;
             if (HeroStatsItem.AttributesRaw.critDamagePercent != null)
+            {
                 critDamagePercent += HeroStatsItem.AttributesRaw.critDamagePercent;
+            }
             multiplier *= ItemValueRange.One + critPercentBonusCapped * critDamagePercent;
 
             // Update dps with main statistic
@@ -309,16 +300,33 @@ namespace ZTn.BNet.D3.Calculator
 
             // Update with lowest resistance reduction
             var resistance = GetHeroDamageReduction(mobLevel, "Arcane");
-            if (GetHeroDamageReduction(mobLevel, "Cold") < resistance) resistance = GetHeroDamageReduction(mobLevel, "Cold");
-            if (GetHeroDamageReduction(mobLevel, "Fire") < resistance) resistance = GetHeroDamageReduction(mobLevel, "Fire");
-            if (GetHeroDamageReduction(mobLevel, "Lightning") < resistance) resistance = GetHeroDamageReduction(mobLevel, "Lightning");
-            if (GetHeroDamageReduction(mobLevel, "Physical") < resistance) resistance = GetHeroDamageReduction(mobLevel, "Physical");
-            if (GetHeroDamageReduction(mobLevel, "Poison") < resistance) resistance = GetHeroDamageReduction(mobLevel, "Poison");
+            if (GetHeroDamageReduction(mobLevel, "Cold") < resistance)
+            {
+                resistance = GetHeroDamageReduction(mobLevel, "Cold");
+            }
+            if (GetHeroDamageReduction(mobLevel, "Fire") < resistance)
+            {
+                resistance = GetHeroDamageReduction(mobLevel, "Fire");
+            }
+            if (GetHeroDamageReduction(mobLevel, "Lightning") < resistance)
+            {
+                resistance = GetHeroDamageReduction(mobLevel, "Lightning");
+            }
+            if (GetHeroDamageReduction(mobLevel, "Physical") < resistance)
+            {
+                resistance = GetHeroDamageReduction(mobLevel, "Physical");
+            }
+            if (GetHeroDamageReduction(mobLevel, "Poison") < resistance)
+            {
+                resistance = GetHeroDamageReduction(mobLevel, "Poison");
+            }
             ehp /= (1 - resistance);
 
             // Update with class reduction
-            if ((HeroClass == HeroClass.Monk) || (HeroClass == HeroClass.Barbarian))
+            if ((HeroClass == HeroClass.Monk) || (HeroClass == HeroClass.Barbarian) || (HeroClass == HeroClass.Crusader))
+            {
                 ehp /= (1 - 0.30);
+            }
 
             return ehp;
         }
@@ -337,18 +345,28 @@ namespace ZTn.BNet.D3.Calculator
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
                     if (HeroLevel < 35)
+                    {
                         hitpoints = 36 + 4 * HeroLevel + 10 * GetHeroVitality();
-                    else
+                    }
+                    else if (HeroLevel <= 60)
+                    {
                         hitpoints = 36 + 4 * HeroLevel + (HeroLevel - 25) * GetHeroVitality();
+                    }
+                    else
+                    {
+                        hitpoints = 36 + 4 * HeroLevel + 35 * GetHeroVitality() + 5 * (HeroLevel - 61) * GetHeroVitality();
+                    }
                     break;
                 case HeroClass.EnchantressFollower:
                 case HeroClass.ScoundrelFollower:
                     // Missing leveling
-                    hitpoints = 6219 + 35 * GetHeroVitality();
+                    // 60: hitpoints = 6219 + 35 * GetHeroVitality() + 5 * (HeroLevel - 61) * GetHeroVitality();
+                    hitpoints = 54685 + 35 * GetHeroVitality() + 5 * (HeroLevel - 61) * GetHeroVitality();
                     break;
                 case HeroClass.TemplarFollower:
                     // Missing leveling
-                    hitpoints = 7752 + 35 * GetHeroVitality();
+                    // 60: hitpoints = 7752 + 35 * GetHeroVitality() + 5 * (HeroLevel - 61) * GetHeroVitality();
+                    hitpoints = 68346 + 35 * GetHeroVitality() + 5 * (HeroLevel - 61) * GetHeroVitality();
                     break;
                 default:
                     hitpoints = ItemValueRange.Zero;
@@ -357,7 +375,9 @@ namespace ZTn.BNet.D3.Calculator
 
             // Update with +% Life bonus
             if (HeroStatsItem.AttributesRaw.hitpointsMaxPercentBonusItem != null)
+            {
                 hitpoints *= 1 + HeroStatsItem.AttributesRaw.hitpointsMaxPercentBonusItem.Min;
+            }
 
             return hitpoints;
         }
@@ -386,28 +406,36 @@ namespace ZTn.BNet.D3.Calculator
         public ItemValueRange GetHeroDexterity()
         {
             if (HeroStatsItem.AttributesRaw.dexterityItem != null)
+            {
                 return HeroStatsItem.AttributesRaw.dexterityItem;
+            }
             return ItemValueRange.Zero;
         }
 
         public ItemValueRange GetHeroIntelligence()
         {
             if (HeroStatsItem.AttributesRaw.intelligenceItem != null)
+            {
                 return HeroStatsItem.AttributesRaw.intelligenceItem;
+            }
             return ItemValueRange.Zero;
         }
 
         public ItemValueRange GetHeroStrength()
         {
             if (HeroStatsItem.AttributesRaw.strengthItem != null)
+            {
                 return HeroStatsItem.AttributesRaw.strengthItem;
+            }
             return ItemValueRange.Zero;
         }
 
         public ItemValueRange GetHeroVitality()
         {
             if (HeroStatsItem.AttributesRaw.vitalityItem != null)
+            {
                 return HeroStatsItem.AttributesRaw.vitalityItem;
+            }
             return ItemValueRange.Zero;
         }
 
