@@ -265,6 +265,31 @@ namespace ZTn.BNet.D3.Items
 
         #endregion
 
+        #region >> Damage_Weapon_Bonus_Flat
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Flat#Arcane", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusFlat_Arcane;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Flat#Cold", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusFlat_Cold;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Flat#Fire", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusFlat_Fire;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Flat#Holy", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusFlat_Holy;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Flat#Lightning", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusFlat_Lightning;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Flat#Physical", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusFlat_Physical;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Flat#Poison", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusFlat_Poison;
+
+        #endregion
+
         #region >> Damage_Weapon_Delta
 
         [DataMember(Name = "Damage_Weapon_Delta#Arcane", EmitDefaultValue = false)]

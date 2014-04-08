@@ -29,7 +29,7 @@ namespace ZTn.BNet.D3.Heroes
         public HeroKills kills;
 
         [DataMember]
-        public Progress progress;
+        public HeroProgress progression;
 
         #endregion
 

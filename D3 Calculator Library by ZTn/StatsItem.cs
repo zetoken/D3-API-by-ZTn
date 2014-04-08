@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Items;
 
@@ -64,8 +63,8 @@ namespace ZTn.BNet.D3.Calculator
 
         protected ItemAttributes ComputeAmbidexterityWeaponAttributes()
         {
-            var resists = new List<string> { "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison" };
-            var fields = new List<string> { "damageWeaponBonusDelta_", "damageWeaponBonusMin_", "damageWeaponDelta_", "damageWeaponMin_", "damageWeaponBonusMinX1_" };
+            var resists = D3Calculator.DamageResists;
+            var fields = new List<string> { "damageWeaponBonusDelta_", "damageWeaponBonusMin_", "damageWeaponDelta_", "damageWeaponMin_", "damageWeaponBonusMinX1_", "damageWeaponBonusFlat_" };
 
             var attr = MainHand.AttributesRaw + offHand.AttributesRaw;
 
@@ -83,12 +82,14 @@ namespace ZTn.BNet.D3.Calculator
                     var mainHandField = MainHand.GetAttributeByName(field + resist);
                     var offHandField = offHand.GetAttributeByName(field + resist);
                     var newValue = 0.5 *
-                        (
-                            mainHandField * (ItemValueRange.One + mainHandWeaponPercentBonus)
-                            + offHandField * (ItemValueRange.One + offHandWeaponPercentBonus)
-                        );
+                                   (
+                                       mainHandField * (ItemValueRange.One + mainHandWeaponPercentBonus)
+                                       + offHandField * (ItemValueRange.One + offHandWeaponPercentBonus)
+                                       );
                     if (newValue.Min == 0)
+                    {
                         newValue = null;
+                    }
                     attr.SetAttributeByName(field + resist, newValue);
                 }
             }
@@ -143,9 +144,13 @@ namespace ZTn.BNet.D3.Calculator
 
             // Add bonus from level and paragon
             if (levelAttr != null)
+            {
                 AttributesRaw += levelAttr;
+            }
             if (attrParagonLevel != null)
+            {
                 AttributesRaw += attrParagonLevel;
+            }
 
             // Build a list of all items with fields
             var stuff = new List<Item>(items);

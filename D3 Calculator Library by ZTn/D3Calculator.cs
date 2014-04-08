@@ -25,16 +25,17 @@ namespace ZTn.BNet.D3.Calculator
 
         #region >> Constants
 
-        private readonly string[] damagePrefixes =
+        public static readonly string[] DamagePrefixes =
         {
             "damageMin_", "damageBonusMin_",
             "damageDelta_",
             "damageWeaponBonusMinX1_",
+            "damageWeaponBonusFlat_",
             "damageWeaponMin_", "damageWeaponBonusMin_",
             "damageWeaponDelta_", "damageWeaponBonusDelta_"
         };
 
-        private readonly string[] damageResists =
+        public static readonly string[] DamageResists =
         {
             "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison"
         };
@@ -107,9 +108,9 @@ namespace ZTn.BNet.D3.Calculator
             itemAttributes.strengthItem *= 2.5;
             itemAttributes.vitalityItem *= 2.5;
 
-            foreach (var resist in damageResists)
+            foreach (var resist in DamageResists)
             {
-                foreach (var damage in damagePrefixes)
+                foreach (var damage in DamagePrefixes)
                 {
                     var value = itemAttributes.GetAttributeByName(damage + resist);
                     itemAttributes.SetAttributeByName(damage + resist, value);

@@ -53,7 +53,7 @@ namespace ZTn.BNet.D3.Careers
         public int ParagonLevelHardcore;
 
         [DataMember(Name = "progression")]
-        public Progress Progression;
+        public CareerProgress Progression;
 
         #endregion
 

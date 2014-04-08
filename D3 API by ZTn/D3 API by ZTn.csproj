@@ -86,7 +86,8 @@
     <Compile Include="Medias\D3Picture.cs" />
     <Compile Include="Progresses\ActProgress.cs" />
     <Compile Include="Progresses\DifficultyProgress.cs" />
-    <Compile Include="Progresses\Progress.cs" />
+    <Compile Include="Progresses\CareerProgress.cs" />
+    <Compile Include="Progresses\HeroProgress.cs" />
     <Compile Include="Progresses\Quest.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Skills\ActiveSkill.cs" />

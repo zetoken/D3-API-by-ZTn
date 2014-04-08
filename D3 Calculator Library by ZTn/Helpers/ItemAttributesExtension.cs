@@ -66,9 +66,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         public static ItemValueRange GetRawBonusDamageMin(this ItemAttributes itemAttr)
         {
             return itemAttr.GetRawBonusDamageMin("Arcane") + itemAttr.GetRawBonusDamageMin("Cold")
-                + itemAttr.GetRawBonusDamageMin("Fire") + itemAttr.GetRawBonusDamageMin("Holy")
-                + itemAttr.GetRawBonusDamageMin("Lightning") + itemAttr.GetRawBonusDamageMin("Physical")
-                + itemAttr.GetRawBonusDamageMin("Poison");
+                   + itemAttr.GetRawBonusDamageMin("Fire") + itemAttr.GetRawBonusDamageMin("Holy")
+                   + itemAttr.GetRawBonusDamageMin("Lightning") + itemAttr.GetRawBonusDamageMin("Physical")
+                   + itemAttr.GetRawBonusDamageMin("Poison");
         }
 
         /// <summary>
@@ -83,7 +83,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             var result = itemAttr.GetAttributeByName("damageMin_" + resist) + itemAttr.GetAttributeByName("damageBonusMin_" + resist);
 
             if (useDamageTypePercentBonus && resist != "Physical")
+            {
                 result += itemAttr.GetRawBonusDamageMin("Physical") * itemAttr.GetAttributeByName("damageTypePercentBonus_" + resist);
+            }
 
             return result;
         }
@@ -100,9 +102,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         public static ItemValueRange GetRawBonusDamageMax(this ItemAttributes itemAttr)
         {
             return itemAttr.GetRawBonusDamageMax("Arcane") + itemAttr.GetRawBonusDamageMax("Cold")
-                + itemAttr.GetRawBonusDamageMax("Fire") + itemAttr.GetRawBonusDamageMax("Holy")
-                + itemAttr.GetRawBonusDamageMax("Lightning") + itemAttr.GetRawBonusDamageMax("Physical")
-                + itemAttr.GetRawBonusDamageMax("Poison");
+                   + itemAttr.GetRawBonusDamageMax("Fire") + itemAttr.GetRawBonusDamageMax("Holy")
+                   + itemAttr.GetRawBonusDamageMax("Lightning") + itemAttr.GetRawBonusDamageMax("Physical")
+                   + itemAttr.GetRawBonusDamageMax("Poison");
         }
 
         /// <summary>
@@ -117,7 +119,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             var result = itemAttr.GetAttributeByName("damageMin_" + resist) + itemAttr.GetAttributeByName("damageDelta_" + resist);
 
             if (useDamageTypePercentBonus && resist != "Physical")
+            {
                 result += itemAttr.GetRawBonusDamageMax("Physical") * itemAttr.GetAttributeByName("damageTypePercentBonus_" + resist);
+            }
 
             return result;
         }
@@ -175,7 +179,10 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         public static ItemValueRange GetBaseWeaponDamageMin(this ItemAttributes itemAttr, String resist)
         {
             var damage =
-                (itemAttr.GetAttributeByName("damageWeaponMin_" + resist) + itemAttr.GetAttributeByName("damageWeaponBonusMin_" + resist) + itemAttr.GetAttributeByName("damageWeaponBonusMinX1_" + resist));
+                (itemAttr.GetAttributeByName("damageWeaponMin_" + resist) +
+                 itemAttr.GetAttributeByName("damageWeaponBonusMin_" + resist) +
+                 itemAttr.GetAttributeByName("damageWeaponBonusMinX1_" + resist) +
+                 itemAttr.GetAttributeByName("damageWeaponBonusFlat_" + resist));
 
             return damage;
         }
@@ -190,9 +197,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         public static ItemValueRange GetRawWeaponDamageMin(this ItemAttributes weaponAttr)
         {
             return weaponAttr.GetRawWeaponDamageMin("Arcane") + weaponAttr.GetRawWeaponDamageMin("Cold")
-                + weaponAttr.GetRawWeaponDamageMin("Fire") + weaponAttr.GetRawWeaponDamageMin("Holy")
-                + weaponAttr.GetRawWeaponDamageMin("Lightning") + weaponAttr.GetRawWeaponDamageMin("Physical")
-                + weaponAttr.GetRawWeaponDamageMin("Poison");
+                   + weaponAttr.GetRawWeaponDamageMin("Fire") + weaponAttr.GetRawWeaponDamageMin("Holy")
+                   + weaponAttr.GetRawWeaponDamageMin("Lightning") + weaponAttr.GetRawWeaponDamageMin("Physical")
+                   + weaponAttr.GetRawWeaponDamageMin("Poison");
         }
 
         /// <summary>
@@ -205,11 +212,16 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         public static ItemValueRange GetRawWeaponDamageMin(this ItemAttributes weaponAttr, String resist, bool useDamageTypePercentBonus = true)
         {
             var damage =
-                (weaponAttr.GetAttributeByName("damageWeaponMin_" + resist) + weaponAttr.GetAttributeByName("damageWeaponBonusMin_" + resist) + weaponAttr.GetAttributeByName("damageWeaponBonusMinX1_" + resist))
+                (weaponAttr.GetAttributeByName("damageWeaponMin_" + resist) +
+                 weaponAttr.GetAttributeByName("damageWeaponBonusMin_" + resist) +
+                 weaponAttr.GetAttributeByName("damageWeaponBonusMinX1_" + resist) +
+                 weaponAttr.GetAttributeByName("damageWeaponBonusFlat_" + resist))
                 * (1 + weaponAttr.GetAttributeByName("damageWeaponPercentBonus_" + resist));
 
             if (useDamageTypePercentBonus && resist != "Physical")
+            {
                 damage += weaponAttr.GetRawWeaponDamageMin("Physical") * weaponAttr.GetAttributeByName("damageTypePercentBonus_" + resist);
+            }
 
             return damage;
         }
@@ -225,7 +237,10 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         public static ItemValueRange GetBaseWeaponDamageMax(this ItemAttributes weaponAttr, String resist)
         {
             var damage =
-                (weaponAttr.GetAttributeByName("damageWeaponMin_" + resist) + weaponAttr.GetAttributeByName("damageWeaponDelta_" + resist) + weaponAttr.GetAttributeByName("damageWeaponBonusDelta_" + resist));
+                (weaponAttr.GetAttributeByName("damageWeaponMin_" + resist) +
+                 weaponAttr.GetAttributeByName("damageWeaponDelta_" + resist) +
+                 weaponAttr.GetAttributeByName("damageWeaponBonusDelta_" + resist) +
+                 weaponAttr.GetAttributeByName("damageWeaponBonusFlat_" + resist));
 
             return damage;
         }
@@ -240,9 +255,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         public static ItemValueRange GetRawWeaponDamageMax(this ItemAttributes weaponAttr)
         {
             return weaponAttr.GetRawWeaponDamageMax("Arcane") + weaponAttr.GetRawWeaponDamageMax("Cold")
-                + weaponAttr.GetRawWeaponDamageMax("Fire") + weaponAttr.GetRawWeaponDamageMax("Holy")
-                + weaponAttr.GetRawWeaponDamageMax("Lightning") + weaponAttr.GetRawWeaponDamageMax("Physical")
-                + weaponAttr.GetRawWeaponDamageMax("Poison");
+                   + weaponAttr.GetRawWeaponDamageMax("Fire") + weaponAttr.GetRawWeaponDamageMax("Holy")
+                   + weaponAttr.GetRawWeaponDamageMax("Lightning") + weaponAttr.GetRawWeaponDamageMax("Physical")
+                   + weaponAttr.GetRawWeaponDamageMax("Poison");
         }
 
         /// <summary>
@@ -255,11 +270,16 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         public static ItemValueRange GetRawWeaponDamageMax(this ItemAttributes weaponAttr, String resist, bool useDamageTypePercentBonus = true)
         {
             var damage =
-                (weaponAttr.GetAttributeByName("damageWeaponMin_" + resist) + weaponAttr.GetAttributeByName("damageWeaponDelta_" + resist) + weaponAttr.GetAttributeByName("damageWeaponBonusDelta_" + resist))
+                (weaponAttr.GetAttributeByName("damageWeaponMin_" + resist) +
+                 weaponAttr.GetAttributeByName("damageWeaponDelta_" + resist) +
+                 weaponAttr.GetAttributeByName("damageWeaponBonusDelta_" + resist) +
+                 weaponAttr.GetAttributeByName("damageWeaponBonusFlat_" + resist))
                 * (ItemValueRange.One + weaponAttr.GetAttributeByName("damageWeaponPercentBonus_" + resist));
 
             if (useDamageTypePercentBonus && resist != "Physical")
+            {
                 damage += weaponAttr.GetRawWeaponDamageMax("Physical") * weaponAttr.GetAttributeByName("damageTypePercentBonus_" + resist);
+            }
 
             return damage;
         }
@@ -313,7 +333,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
             // Check "black weapon bug"
             if ((damageWeaponDelta != null) && (damageWeaponBonusMin != null) && (damageWeaponDelta.Min < damageWeaponBonusMin.Min))
+            {
                 damageWeaponDelta = damageWeaponBonusMin + 1;
+            }
 
             // Store new values
             itemAttr.SetAttributeByName("damageWeaponDelta_" + resist, damageWeaponDelta);
@@ -342,7 +364,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         {
             var attr = new ItemAttributes(itemAttr);
 
-            var resists = new List<string> { "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison" };
+            var resists = D3Calculator.DamageResists;
 
             // Characteristics
             attr.armorItem = itemAttr.GetArmor().NullIfZero();
@@ -364,6 +386,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
                 attr.SetAttributeByName("damageWeaponBonusMin_" + resist, null);
                 attr.SetAttributeByName("damageWeaponBonusDelta_" + resist, null);
                 attr.SetAttributeByName("damageWeaponBonusMinX1_" + resist, null);
+                attr.SetAttributeByName("damageWeaponBonusFlat_" + resist, null);
             }
 
             // Item damage bonuses
