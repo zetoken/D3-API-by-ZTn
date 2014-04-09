@@ -1,4 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System.IO;
+using System.Text;
+using Moq;
+using Newtonsoft.Json;
+using NUnit.Framework;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Careers;
@@ -24,8 +28,13 @@ namespace ZTn.BNet.D3
         [Test]
         public void GetArtisanFromSlug()
         {
-            D3Api.DataProvider = new FakeDataProvider<Artisan>();
+            var mock = new Mock<ID3DataProvider>();
+            mock.Setup(p => p.FetchData("http://eu.battle.net/api/d3/data/artisan/whatsoever?locale=en"))
+                .Returns<string>(p => new MemoryStream(Encoding.Default.GetBytes(JsonConvert.SerializeObject(new Artisan()))));
+            D3Api.DataProvider = mock.Object;
+
             var obj = D3Api.GetArtisanFromSlug("whatsoever");
+
             Assert.IsNotNull(obj);
         }
 
@@ -39,8 +48,13 @@ namespace ZTn.BNet.D3
         [Test]
         public void GetCareerFromBattleTag()
         {
-            D3Api.DataProvider = new FakeDataProvider<Career>();
+            var mock = new Mock<ID3DataProvider>();
+            mock.Setup(p => p.FetchData("http://eu.battle.net/api/d3/profile/tok-2360//index?locale=en"))
+                .Returns<string>(p => new MemoryStream(Encoding.Default.GetBytes(JsonConvert.SerializeObject(new Career()))));
+            D3Api.DataProvider = mock.Object;
+
             var obj = D3Api.GetCareerFromBattleTag(battleTag);
+
             Assert.IsNotNull(obj);
         }
 
@@ -54,8 +68,13 @@ namespace ZTn.BNet.D3
         [Test]
         public void GetHeroFromHeroId()
         {
-            D3Api.DataProvider = new FakeDataProvider<Hero>();
+            var mock = new Mock<ID3DataProvider>();
+            mock.Setup(p => p.FetchData("http://eu.battle.net/api/d3/profile/tok-2360/hero/whatsoever?locale=en"))
+                .Returns<string>(p => new MemoryStream(Encoding.Default.GetBytes(JsonConvert.SerializeObject(new Hero()))));
+            D3Api.DataProvider = mock.Object;
+
             var obj = D3Api.GetHeroFromHeroId(battleTag, "whatsoever");
+
             Assert.IsNotNull(obj);
         }
 
@@ -69,8 +88,13 @@ namespace ZTn.BNet.D3
         [Test]
         public void GetItemIcon()
         {
-            D3Api.DataProvider = new FakeDataProvider<D3Picture>();
+            var mock = new Mock<ID3DataProvider>();
+            mock.Setup(p => p.FetchData("http://media.blizzard.com/d3/icons/items/64/whatsoever.png"))
+                .Returns<string>(p => new MemoryStream(Encoding.Default.GetBytes(JsonConvert.SerializeObject(new D3Picture()))));
+            D3Api.DataProvider = mock.Object;
+
             var obj = D3Api.GetItemIcon("whatsoever", "64");
+
             Assert.IsNotNull(obj);
         }
 
@@ -84,8 +108,13 @@ namespace ZTn.BNet.D3
         [Test]
         public void GetItemFromTooltipParams()
         {
-            D3Api.DataProvider = new FakeDataProvider<Item>();
+            var mock = new Mock<ID3DataProvider>();
+            mock.Setup(p => p.FetchData("http://eu.battle.net/api/d3/data/whatsoever?locale=en"))
+                .Returns<string>(p => new MemoryStream(Encoding.Default.GetBytes(JsonConvert.SerializeObject(new Item()))));
+            D3Api.DataProvider = mock.Object;
+
             var obj = D3Api.GetItemFromTooltipParams("whatsoever");
+
             Assert.IsNotNull(obj);
         }
 
@@ -99,8 +128,13 @@ namespace ZTn.BNet.D3
         [Test]
         public void GetSkillIcon()
         {
-            D3Api.DataProvider = new FakeDataProvider<D3Picture>();
+            var mock = new Mock<ID3DataProvider>();
+            mock.Setup(p => p.FetchData("http://media.blizzard.com/d3/icons/skills/64/whatsoever.png"))
+                .Returns<string>(p => new MemoryStream(Encoding.Default.GetBytes(JsonConvert.SerializeObject(new D3Picture()))));
+            D3Api.DataProvider = mock.Object;
+
             var obj = D3Api.GetSkillIcon("whatsoever", "64");
+
             Assert.IsNotNull(obj);
         }
     }
