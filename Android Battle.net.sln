@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android BNet API by ZTn", "BNet API by ZTn\Android BNet API by ZTn.csproj", "{5305AD1D-AED6-4CCB-8F20-08353662BFC8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android D3 API by ZTn", "D3 API by ZTn\Android D3 API by ZTn.csproj", "{013AB500-9996-439A-942A-E2C77B774971}"

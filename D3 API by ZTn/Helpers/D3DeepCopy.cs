@@ -36,6 +36,21 @@ namespace ZTn.BNet.D3.Helpers
             }
         }
 
+        /// <summary>
+        /// Deep copy the <paramref name="source"/> instance to a new instance using reflection.
+        /// "Deep" is limited by known types of DeepCopy.
+        /// Use this helper only with complex types like <see cref="Item"/> or <see cref="ItemAttributes"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static T DeepClone<T>(this T source) where T : class, new()
+        {
+            var target = new T();
+            source.DeepCopy(target);
+            return target;
+        }
+
         [UsedImplicitly]
         private static void CopyValue(PropertyInfo info, object target, bool value)
         {
