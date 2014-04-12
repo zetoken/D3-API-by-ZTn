@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ZTn.BNet.D3.Items;
 using ZTn.BNet.D3.Calculator.Sets;
+using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Helpers
 {
@@ -30,9 +30,11 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <param name="item">Source item</param>
         /// <param name="fieldName">Name of the attribute to retrieve</param>
         /// <param name="value">Value to set</param>
-        public static void SetAttributeByName(this Item item, String fieldName, ItemValueRange value)
+        public static Item SetAttributeByName(this Item item, String fieldName, ItemValueRange value)
         {
             typeof(ItemAttributes).GetField(fieldName).SetValue(item.AttributesRaw, value);
+
+            return item;
         }
 
         #endregion
@@ -92,33 +94,15 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             return item.AttributesRaw.GetRawAverageBonusDamage();
         }
 
-        #region >> getRawBonusDamageMin *
-
         public static ItemValueRange GetRawBonusDamageMin(this Item item)
         {
             return item.AttributesRaw.GetRawBonusDamageMin();
         }
 
-        public static ItemValueRange GetRawBonusDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
-        {
-            return item.AttributesRaw.GetRawBonusDamageMin(resist, useDamageTypePercentBonus);
-        }
-
-        #endregion
-
-        #region >> getRawBonusDamageMax *
-
         public static ItemValueRange GetRawBonusDamageMax(this Item item)
         {
             return item.AttributesRaw.GetRawBonusDamageMax();
         }
-
-        public static ItemValueRange GetRawBonusDamageMax(this Item item, String resist)
-        {
-            return item.AttributesRaw.GetRawBonusDamageMax(resist);
-        }
-
-        #endregion
 
         /// <summary>
         /// Returns the resistance value given by the gems for the given resist
@@ -161,40 +145,20 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             return item.AttributesRaw.GetRawAverageWeaponDamage();
         }
 
-        #region >> getRawWeaponDamageMin *
-
         public static ItemValueRange GetRawWeaponDamageMin(this Item item)
         {
             return item.AttributesRaw.GetRawWeaponDamageMin();
         }
-
-        public static ItemValueRange GetRawWeaponDamageMin(this Item item, String resist, bool useDamageTypePercentBonus = true)
-        {
-            return item.AttributesRaw.GetRawWeaponDamageMin(resist, useDamageTypePercentBonus);
-        }
-
-        #endregion
-
-        #region >> getRawWeaponDamageMax *
 
         public static ItemValueRange GetRawWeaponDamageMax(this Item item)
         {
             return item.AttributesRaw.GetRawWeaponDamageMax();
         }
 
-        public static ItemValueRange GetRawWeaponDamageMax(this Item item, String resist, bool useDamageTypePercentBonus = true)
-        {
-            return item.AttributesRaw.GetRawWeaponDamageMax(resist, useDamageTypePercentBonus);
-        }
-
-        #endregion
-
         public static ItemValueRange GetWeaponAttackPerSecond(this Item item, ItemValueRange increaseFromOtherItems)
         {
             return item.AttributesRaw.GetWeaponAttackPerSecond(increaseFromOtherItems);
         }
-
-        #region >> checkAndUpdateWeaponDelta *
 
         /// <summary>
         /// Check a specific case of "invalid" weapon damage values:
@@ -203,38 +167,10 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <param name="item"></param>
         public static Item CheckAndUpdateWeaponDelta(this Item item)
         {
-            return item
-                .CheckAndUpdateWeaponDelta("Arcane")
-                .CheckAndUpdateWeaponDelta("Cold")
-                .CheckAndUpdateWeaponDelta("Fire")
-                .CheckAndUpdateWeaponDelta("Holy")
-                .CheckAndUpdateWeaponDelta("Lightning")
-                .CheckAndUpdateWeaponDelta("Physical")
-                .CheckAndUpdateWeaponDelta("Poison");
-        }
-
-        /// <summary>
-        /// Check a specific case of "invalid" weapon damage values (based on a specific resist):
-        /// If bonus min > delta, then delta should be replaced by bonus min + 1
-        /// </summary>
-        /// <param name="item"></param>
-        /// <param name="resist"></param>
-        public static Item CheckAndUpdateWeaponDelta(this Item item, String resist)
-        {
-            var damageWeaponBonusMin = item.GetAttributeByName("damageWeaponBonusMin_" + resist);
-            var damageWeaponDelta = item.GetAttributeByName("damageWeaponDelta_" + resist);
-
-            // Check "black weapon bug"
-            if ((damageWeaponDelta != null) && (damageWeaponBonusMin != null) && (damageWeaponDelta.Min < damageWeaponBonusMin.Min))
-                damageWeaponDelta = damageWeaponBonusMin + 1;
-
-            // Store new values
-            item.SetAttributeByName("damageWeaponDelta_" + resist, damageWeaponDelta);
+            item.AttributesRaw.CheckAndUpdateWeaponDelta();
 
             return item;
         }
-
-        #endregion
 
         #region >> isItemType*
 

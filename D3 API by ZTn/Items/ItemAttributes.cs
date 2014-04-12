@@ -1,10 +1,16 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ZTn.BNet.D3.Items
 {
     [DataContract]
     public class ItemAttributes
     {
+        [JsonExtensionData]
+        public IDictionary<string, JToken> UnmanagedAttributes;
+
         #region >> Fields
 
         // Find how it's used ?
@@ -89,9 +95,30 @@ namespace ZTn.BNet.D3.Items
 
         #endregion
 
-        // Find how it's used ?
-        [DataMember(Name = "Damage_Dealt_Percent_Bonus", EmitDefaultValue = false)]
-        public ItemValueRange damageDealtPercentBonus;
+        #region >> Damage_Dealt_Percent_Bonus
+
+        [DataMember(Name = "Damage_Dealt_Percent_Bonus#Arcane", EmitDefaultValue = false)]
+        public ItemValueRange damageDealtPercentBonusArcane;
+
+        [DataMember(Name = "Damage_Dealt_Percent_Bonus#Cold", EmitDefaultValue = false)]
+        public ItemValueRange damageDealtPercentBonusCold;
+
+        [DataMember(Name = "Damage_Dealt_Percent_Bonus#Fire", EmitDefaultValue = false)]
+        public ItemValueRange damageDealtPercentBonusFire;
+
+        [DataMember(Name = "Damage_Dealt_Percent_Bonus#Holy", EmitDefaultValue = false)]
+        public ItemValueRange damageDealtPercentBonusHoly;
+
+        [DataMember(Name = "Damage_Dealt_Percent_Bonus#Lightning", EmitDefaultValue = false)]
+        public ItemValueRange damageDealtPercentBonusLightning;
+
+        [DataMember(Name = "Damage_Dealt_Percent_Bonus#Physical", EmitDefaultValue = false)]
+        public ItemValueRange damageDealtPercentBonusPhysical;
+
+        [DataMember(Name = "Damage_Dealt_Percent_Bonus#Poison", EmitDefaultValue = false)]
+        public ItemValueRange damageDealtPercentBonusPoison;
+
+        #endregion
 
         #region >> Damage_Delta
 
@@ -143,7 +170,6 @@ namespace ZTn.BNet.D3.Items
 
         #endregion
 
-        // Find how it's used ?
         [DataMember(Name = "Damage_Percent_Bonus_Vs_Elites", EmitDefaultValue = false)]
         public ItemValueRange damagePercentBonusVsElites;
 
@@ -490,8 +516,7 @@ namespace ZTn.BNet.D3.Items
         //"Power_Duration_Increase"
 
         [DataMember(Name = "Power_Resource_Reduction#Monk_SweepingWind", EmitDefaultValue = false)]
-        public
-            ItemValueRange Power_Resource_Reduction_Monk_SweepingWind;
+        public ItemValueRange PowerResourceReductionMonkSweepingWind;
 
         //"Power_Resource_Reduction"
         //"Precision"
@@ -536,7 +561,7 @@ namespace ZTn.BNet.D3.Items
         //"Resource_On_Hit"
 
         [DataMember(Name = "Resource_On_Kill#Mana", EmitDefaultValue = false)]
-        public ItemValueRange Resource_On_Kill_Mana;
+        public ItemValueRange ResourceOnKillMana;
 
         #region >> "Resource_Regen_Per_Second
 
@@ -560,7 +585,7 @@ namespace ZTn.BNet.D3.Items
         public ItemValueRange sockets;
 
         [DataMember(Name = "Spending_Resource_Heals_Percent#Spirit", EmitDefaultValue = false)]
-        public ItemValueRange Spending_Resource_Heals_Percent_Spirit;
+        public ItemValueRange SpendingResourceHealsPercentSpirit;
 
         //"Stats_All_Bonus"
 

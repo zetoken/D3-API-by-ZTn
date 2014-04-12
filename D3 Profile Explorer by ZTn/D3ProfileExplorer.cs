@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3;
 using ZTn.BNet.D3.Artisans;
@@ -93,8 +94,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             if (type.IsArray)
             {
-                var array = (Object[])d3Object;
-                foreach (var o in array)
+                foreach (var o in (Object[])d3Object)
                 {
                     var newNode = new TreeNode(String.Format("[{0}]", o.GetType().Name));
                     newNode.Nodes.AddRange(CreateNodeFromD3Object(o).ToArray());
@@ -119,43 +119,50 @@ namespace ZTn.BNet.D3ProfileExplorer
                     newNodes.Add(newNode);
                 }
             }
-            else
+            else if (type == typeof(Dictionary<string, JToken>))
             {
-                if (type.FullName.Contains("ZTn.BNet.D3"))
+                foreach (var o in (Dictionary<string, JToken>)d3Object)
                 {
-                    var propertyInfos = type.GetProperties();
-                    foreach (var propertyInfo in propertyInfos)
-                    {
-                        var d3ObjectValue = propertyInfo.GetValue(d3Object, null);
-                        if ((d3ObjectValue != null))
-                        {
-                            var newNode = new TreeNode(propertyInfo.Name);
-                            newNode.Nodes.AddRange(CreateNodeFromD3Object(d3ObjectValue).ToArray());
-                            InsertContextMenu(newNode, (dynamic)d3ObjectValue);
-                            UpdateNodeText(newNode, (dynamic)d3ObjectValue);
-                            newNodes.Add(newNode);
-                        }
-                    }
-                    var fieldInfos = type.GetFields();
-                    foreach (var fieldInfo in fieldInfos.Where(info => !info.IsStatic))
-                    {
-                        var d3ObjectValue = fieldInfo.GetValue(d3Object);
-                        if (d3ObjectValue != null)
-                        {
-                            var newNode = new TreeNode(fieldInfo.Name);
-                            newNode.Nodes.AddRange(CreateNodeFromD3Object(d3ObjectValue).ToArray());
-                            InsertContextMenu(newNode, (dynamic)d3ObjectValue);
-                            UpdateNodeText(newNode, (dynamic)d3ObjectValue);
-                            newNodes.Add(newNode);
-                        }
-                    }
-                }
-                else
-                {
-                    var newNode = new TreeNode(d3Object.ToString());
+                    var newNode = new TreeNode(String.Format("{0}: {1}", o.Key, o.Value));
+                    InsertContextMenu(newNode, (dynamic)o);
+                    UpdateNodeText(newNode, (dynamic)o);
                     newNodes.Add(newNode);
                 }
             }
+            else if (type.FullName.Contains("ZTn.BNet.D3"))
+            {
+                foreach (var propertyInfo in type.GetProperties())
+                {
+                    var d3ObjectValue = propertyInfo.GetValue(d3Object, null);
+                    if ((d3ObjectValue != null))
+                    {
+                        var newNode = new TreeNode(propertyInfo.Name);
+                        newNode.Nodes.AddRange(CreateNodeFromD3Object(d3ObjectValue).ToArray());
+                        InsertContextMenu(newNode, (dynamic)d3ObjectValue);
+                        UpdateNodeText(newNode, (dynamic)d3ObjectValue);
+                        newNodes.Add(newNode);
+                    }
+                }
+                var fieldInfos = type.GetFields();
+                foreach (var fieldInfo in fieldInfos.Where(info => !info.IsStatic))
+                {
+                    var d3ObjectValue = fieldInfo.GetValue(d3Object);
+                    if (d3ObjectValue != null)
+                    {
+                        var newNode = new TreeNode(fieldInfo.Name);
+                        newNode.Nodes.AddRange(CreateNodeFromD3Object(d3ObjectValue).ToArray());
+                        InsertContextMenu(newNode, (dynamic)d3ObjectValue);
+                        UpdateNodeText(newNode, (dynamic)d3ObjectValue);
+                        newNodes.Add(newNode);
+                    }
+                }
+            }
+            else
+            {
+                var newNode = new TreeNode(d3Object.ToString());
+                newNodes.Add(newNode);
+            }
+
             return newNodes;
         }
 

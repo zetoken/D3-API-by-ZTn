@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Helpers
@@ -28,9 +27,11 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <param name="itemAttributes">Source attributes</param>
         /// <param name="fieldName">Name of the attribute to retrieve</param>
         /// <param name="value">Value to set</param>
-        public static void SetAttributeByName(this ItemAttributes itemAttributes, String fieldName, ItemValueRange value)
+        public static ItemAttributes SetAttributeByName(this ItemAttributes itemAttributes, string fieldName, ItemValueRange value)
         {
             typeof(ItemAttributes).GetField(fieldName).SetValue(itemAttributes, value);
+
+            return itemAttributes;
         }
 
         #endregion
@@ -178,13 +179,10 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetBaseWeaponDamageMin(this ItemAttributes itemAttr, String resist)
         {
-            var damage =
-                (itemAttr.GetAttributeByName("damageWeaponMin_" + resist) +
-                 itemAttr.GetAttributeByName("damageWeaponBonusMin_" + resist) +
-                 itemAttr.GetAttributeByName("damageWeaponBonusMinX1_" + resist) +
-                 itemAttr.GetAttributeByName("damageWeaponBonusFlat_" + resist));
-
-            return damage;
+            return itemAttr.GetAttributeByName("damageWeaponMin_" + resist) +
+                   itemAttr.GetAttributeByName("damageWeaponBonusMin_" + resist) +
+                   itemAttr.GetAttributeByName("damageWeaponBonusMinX1_" + resist) +
+                   itemAttr.GetAttributeByName("damageWeaponBonusFlat_" + resist);
         }
 
         #region >> getRawWeaponDamageMin *
@@ -211,12 +209,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetRawWeaponDamageMin(this ItemAttributes weaponAttr, String resist, bool useDamageTypePercentBonus = true)
         {
-            var damage =
-                (weaponAttr.GetAttributeByName("damageWeaponMin_" + resist) +
-                 weaponAttr.GetAttributeByName("damageWeaponBonusMin_" + resist) +
-                 weaponAttr.GetAttributeByName("damageWeaponBonusMinX1_" + resist) +
-                 weaponAttr.GetAttributeByName("damageWeaponBonusFlat_" + resist))
-                * (1 + weaponAttr.GetAttributeByName("damageWeaponPercentBonus_" + resist));
+            var damage = weaponAttr.GetBaseWeaponDamageMin(resist);
+
+            damage *= 1 + weaponAttr.GetAttributeByName("damageWeaponPercentBonus_" + resist);
 
             if (useDamageTypePercentBonus && resist != "Physical")
             {
@@ -236,13 +231,10 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetBaseWeaponDamageMax(this ItemAttributes weaponAttr, String resist)
         {
-            var damage =
-                (weaponAttr.GetAttributeByName("damageWeaponMin_" + resist) +
-                 weaponAttr.GetAttributeByName("damageWeaponDelta_" + resist) +
-                 weaponAttr.GetAttributeByName("damageWeaponBonusDelta_" + resist) +
-                 weaponAttr.GetAttributeByName("damageWeaponBonusFlat_" + resist));
-
-            return damage;
+            return weaponAttr.GetAttributeByName("damageWeaponMin_" + resist) +
+                   weaponAttr.GetAttributeByName("damageWeaponDelta_" + resist) +
+                   weaponAttr.GetAttributeByName("damageWeaponBonusDelta_" + resist) +
+                   weaponAttr.GetAttributeByName("damageWeaponBonusFlat_" + resist);
         }
 
         #region >> getRawWeaponDamageMax *
@@ -269,12 +261,9 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetRawWeaponDamageMax(this ItemAttributes weaponAttr, String resist, bool useDamageTypePercentBonus = true)
         {
-            var damage =
-                (weaponAttr.GetAttributeByName("damageWeaponMin_" + resist) +
-                 weaponAttr.GetAttributeByName("damageWeaponDelta_" + resist) +
-                 weaponAttr.GetAttributeByName("damageWeaponBonusDelta_" + resist) +
-                 weaponAttr.GetAttributeByName("damageWeaponBonusFlat_" + resist))
-                * (ItemValueRange.One + weaponAttr.GetAttributeByName("damageWeaponPercentBonus_" + resist));
+            var damage = weaponAttr.GetBaseWeaponDamageMax(resist);
+
+            damage *= ItemValueRange.One + weaponAttr.GetAttributeByName("damageWeaponPercentBonus_" + resist);
 
             if (useDamageTypePercentBonus && resist != "Physical")
             {
@@ -364,8 +353,6 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         {
             var attr = new ItemAttributes(itemAttr);
 
-            var resists = D3Calculator.DamageResists;
-
             // Characteristics
             attr.armorItem = itemAttr.GetArmor().NullIfZero();
             attr.armorBonusItem = null;
@@ -376,28 +363,28 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
             itemAttr.CheckAndUpdateWeaponDelta();
 
-            foreach (var resist in resists)
+            foreach (var resist in D3Calculator.DamageResists)
             {
-                var rawWeaponDamageMin = itemAttr.GetBaseWeaponDamageMin(resist);
-                var rawWeaponDamageDelta = itemAttr.GetBaseWeaponDamageMax(resist) - rawWeaponDamageMin;
+                var baseWeaponDamageMin = itemAttr.GetBaseWeaponDamageMin(resist);
+                var baseWeaponDamageDelta = itemAttr.GetBaseWeaponDamageMax(resist) - baseWeaponDamageMin;
 
-                attr.SetAttributeByName("damageWeaponMin_" + resist, rawWeaponDamageMin.NullIfZero());
-                attr.SetAttributeByName("damageWeaponDelta_" + resist, rawWeaponDamageDelta.NullIfZero());
-                attr.SetAttributeByName("damageWeaponBonusMin_" + resist, null);
-                attr.SetAttributeByName("damageWeaponBonusDelta_" + resist, null);
-                attr.SetAttributeByName("damageWeaponBonusMinX1_" + resist, null);
-                attr.SetAttributeByName("damageWeaponBonusFlat_" + resist, null);
+                attr.SetAttributeByName("damageWeaponMin_" + resist, baseWeaponDamageMin.NullIfZero())
+                    .SetAttributeByName("damageWeaponDelta_" + resist, baseWeaponDamageDelta.NullIfZero())
+                    .SetAttributeByName("damageWeaponBonusMin_" + resist, null)
+                    .SetAttributeByName("damageWeaponBonusDelta_" + resist, null)
+                    .SetAttributeByName("damageWeaponBonusMinX1_" + resist, null)
+                    .SetAttributeByName("damageWeaponBonusFlat_" + resist, null);
             }
 
             // Item damage bonuses
-            foreach (var resist in resists)
+            foreach (var resist in D3Calculator.DamageResists)
             {
-                var rawDamageMin = itemAttr.GetRawBonusDamageMin(resist);
+                var rawDamageMin = itemAttr.GetRawBonusDamageMin(resist, false);
                 var rawDamageDelta = itemAttr.GetRawBonusDamageMax(resist, false) - rawDamageMin;
 
-                attr.SetAttributeByName("damageMin_" + resist, rawDamageMin.NullIfZero());
-                attr.SetAttributeByName("damageDelta_" + resist, rawDamageDelta.NullIfZero());
-                attr.SetAttributeByName("damageBonusMin_" + resist, null);
+                attr.SetAttributeByName("damageMin_" + resist, rawDamageMin.NullIfZero())
+                    .SetAttributeByName("damageDelta_" + resist, rawDamageDelta.NullIfZero())
+                    .SetAttributeByName("damageBonusMin_" + resist, null);
             }
 
             return attr;

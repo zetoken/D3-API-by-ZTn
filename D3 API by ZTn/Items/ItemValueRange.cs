@@ -12,6 +12,8 @@ namespace ZTn.BNet.D3.Items
         public static readonly ItemValueRange Zero = new ItemValueRange(0);
         public static readonly ItemValueRange One = new ItemValueRange(1);
 
+        private const double Tolerance = 0.0001;
+
         #region >> Properties
 
         [DataMember(Name = "min")]
@@ -115,17 +117,17 @@ namespace ZTn.BNet.D3.Items
                 return Zero;
             }
 
-            return right == null ? Zero : new ItemValueRange(left.Min*right.Min, left.Max*right.Max);
+            return right == null ? Zero : new ItemValueRange(left.Min * right.Min, left.Max * right.Max);
         }
 
         public static ItemValueRange operator *(ItemValueRange left, double right)
         {
-            return left == null ? Zero : new ItemValueRange(left.Min*right, left.Max*right);
+            return left == null ? Zero : new ItemValueRange(left.Min * right, left.Max * right);
         }
 
         public static ItemValueRange operator *(double left, ItemValueRange right)
         {
-            return right*left;
+            return right * left;
         }
 
         public static ItemValueRange operator /(ItemValueRange left, ItemValueRange right)
@@ -140,12 +142,12 @@ namespace ZTn.BNet.D3.Items
                 throw new ArgumentNullException("right");
             }
 
-            return new ItemValueRange(left.Min/right.Min, left.Max/right.Max);
+            return new ItemValueRange(left.Min / right.Min, left.Max / right.Max);
         }
 
         public static ItemValueRange operator /(ItemValueRange left, double right)
         {
-            return left == null ? Zero : new ItemValueRange(left.Min/right, left.Max/right);
+            return left == null ? Zero : new ItemValueRange(left.Min / right, left.Max / right);
         }
 
         public static ItemValueRange operator /(double left, ItemValueRange right)
@@ -155,12 +157,35 @@ namespace ZTn.BNet.D3.Items
                 throw new ArgumentNullException("right");
             }
 
-            return new ItemValueRange(left/right.Min, left/right.Max);
+            return new ItemValueRange(left / right.Min, left / right.Max);
         }
 
         #endregion
 
+        /// <inheritdoc cref="Equals(Object)" />
+        public bool Equals(ItemValueRange value)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+
+            return Math.Abs(Min - value.Min) < Tolerance && Math.Abs(Max - value.Max) < Tolerance;
+        }
+
         #region >> Object
+
+        /// <inheritdoc />
+        public override bool Equals(Object value)
+        {
+            return value != null && Equals(value as ItemValueRange);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            return Min.GetHashCode() ^ Max.GetHashCode();
+        }
 
         /// <inheritdoc />
         public override string ToString()

@@ -53,7 +53,7 @@ namespace ZTn.BNet.D3.Calculator
 
         #endregion
 
-        private ItemValueRange ComputeWeaponAttackPerSecondForAmbidextry()
+        private ItemValueRange ComputeWeaponAttackPerSecondForAmbidexterity()
         {
             // Right formula: 2 * 1 / ( 1 / main + 1 / off ) [found by ZTn, nowhere else at that time]
             var weaponAttackSpeed = 2 * 1 / (1 / MainHand.GetRawWeaponAttackPerSecond() + 1 / offHand.GetRawWeaponAttackPerSecond());
@@ -61,7 +61,7 @@ namespace ZTn.BNet.D3.Calculator
             return weaponAttackSpeed;
         }
 
-        protected ItemAttributes ComputeAmbidexterityWeaponAttributes()
+        private ItemAttributes ComputeAmbidexterityWeaponAttributes()
         {
             var resists = D3Calculator.DamageResists;
             var fields = new List<string> { "damageWeaponBonusDelta_", "damageWeaponBonusMin_", "damageWeaponDelta_", "damageWeaponMin_", "damageWeaponBonusMinX1_", "damageWeaponBonusFlat_" };
@@ -69,7 +69,7 @@ namespace ZTn.BNet.D3.Calculator
             var attr = MainHand.AttributesRaw + offHand.AttributesRaw;
 
             // Calculate attack per second
-            attr.attacksPerSecondItem = ComputeWeaponAttackPerSecondForAmbidextry();
+            attr.attacksPerSecondItem = ComputeWeaponAttackPerSecondForAmbidexterity();
             attr.attacksPerSecondItemPercent = null;
 
             // Calculate damages of weapon
@@ -95,13 +95,10 @@ namespace ZTn.BNet.D3.Calculator
             }
 
             // Remove % damage bonus as they are taken into account in previous step
-            attr.damageWeaponPercentBonus_Arcane = null;
-            attr.damageWeaponPercentBonus_Cold = null;
-            attr.damageWeaponPercentBonus_Fire = null;
-            attr.damageWeaponPercentBonus_Holy = null;
-            attr.damageWeaponPercentBonus_Lightning = null;
-            attr.damageWeaponPercentBonus_Physical = null;
-            attr.damageWeaponPercentBonus_Poison = null;
+            foreach (var resist in resists)
+            {
+                attr.SetAttributeByName("damageWeaponPercentBonus_" + resist, null);
+            }
 
             return attr;
         }
