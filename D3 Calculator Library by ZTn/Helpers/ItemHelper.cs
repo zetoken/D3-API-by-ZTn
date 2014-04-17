@@ -16,6 +16,8 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             "Dagger",
             "Daibo",
             "FistWeapon",
+            "Flail1H",
+            "Flail2H",
             "HandCrossbow",
             "HandXbow",
             "Mace",
