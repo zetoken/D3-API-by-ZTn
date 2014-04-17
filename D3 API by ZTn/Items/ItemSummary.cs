@@ -29,7 +29,7 @@ namespace ZTn.BNet.D3.Items
         public Recipe Recipe { get; set; }
 
         [DataMember]
-        public Object[] RandomAffixes { get; set; }
+        public RandomAffix[] RandomAffixes { get; set; }
 
         [DataMember]
         public Recipe[] CraftedBy { get; set; }
