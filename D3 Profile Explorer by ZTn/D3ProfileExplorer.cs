@@ -27,13 +27,20 @@ namespace ZTn.BNet.D3ProfileExplorer
 {
     public partial class GuiD3ProfileExplorer : Form
     {
+        #region >> Fields
+
+        private readonly Font defaultNodeFont;
+        private readonly List<Host> hosts;
+
+        #endregion
+
         public GuiD3ProfileExplorer()
         {
             InitializeComponent();
 
             D3Api.DataProvider = new CacheableDataProvider(new HttpRequestDataProvider());
 
-            var hosts = "hosts.json".CreateFromJsonFile<List<Host>>();
+            hosts = "hosts.json".CreateFromJsonFile<List<Host>>();
             guiBattleNetHostList.DataSource = hosts;
             guiBattleNetHostList.DisplayMember = "name";
 
@@ -47,13 +54,14 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiBattleNetVersion.Text = typeof(BattleTag).Assembly.GetName().Version.ToString();
             guiD3APIDllName.Text = typeof(D3Api).Assembly.GetName().Name;
             guiD3APIVersion.Text = typeof(D3Api).Assembly.GetName().Version.ToString();
+            defaultNodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
         }
 
         private void guiProfileLookup_Click(object sender, EventArgs e)
         {
             var battleTag = new BattleTag(guiBattleTag.Text);
 
-            var node = new TreeNode("Career of " + battleTag + " on " + D3Api.Host) { Tag = battleTag };
+            var node = new TreeNode("Career of " + battleTag + " on " + D3Api.Host);
 
             Career career;
             try
@@ -75,6 +83,8 @@ namespace ZTn.BNet.D3ProfileExplorer
                 MessageBox.Show("Battle.net sent an error: verify the battle tag.");
                 return;
             }
+
+            node.Tag = new BNetContext<Career>(D3Api.Host, battleTag, career);
 
             node.Nodes.AddRange(CreateNodeFromD3Object(career).ToArray());
 
@@ -175,51 +185,51 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void InsertContextMenu(TreeNode node, Hero d3Object)
         {
-            node.Tag = d3Object;
+            node.Tag = new BNetContext<Hero>(D3Api.Host, new BattleTag(guiBattleTag.Text), d3Object);
             node.ContextMenuStrip = guiHeroContextMenu;
-            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+            node.NodeFont = defaultNodeFont;
         }
 
         private void InsertContextMenu(TreeNode node, HeroSummary d3Object)
         {
-            node.Tag = new HeroSummaryInformation(D3Api.Host, new BattleTag(guiBattleTag.Text), d3Object);
+            node.Tag = new BNetContext<HeroSummary>(D3Api.Host, new BattleTag(guiBattleTag.Text), d3Object);
             node.ContextMenuStrip = guiHeroSummaryContextMenu;
-            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+            node.NodeFont = defaultNodeFont;
         }
 
         private void InsertContextMenu(TreeNode node, Item d3Object)
         {
             node.Tag = d3Object;
             node.ContextMenuStrip = guiItemContextMenu;
-            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+            node.NodeFont = defaultNodeFont;
         }
 
         private void InsertContextMenu(TreeNode node, ItemSummary d3Object)
         {
             node.Tag = d3Object;
             node.ContextMenuStrip = guiItemSummaryContextMenu;
-            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+            node.NodeFont = defaultNodeFont;
         }
 
         private void InsertContextMenu(TreeNode node, CareerArtisan d3Object)
         {
             node.Tag = d3Object;
             node.ContextMenuStrip = guiCareerArtisanContextMenu;
-            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+            node.NodeFont = defaultNodeFont;
         }
 
         private void InsertContextMenu(TreeNode node, Skill d3Object)
         {
             node.Tag = d3Object;
             node.ContextMenuStrip = guiSkillContextMenu;
-            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+            node.NodeFont = defaultNodeFont;
         }
 
         private void InsertContextMenu(TreeNode node, Follower d3Object)
         {
             node.Tag = d3Object;
             node.ContextMenuStrip = guiFollowerContextMenu;
-            node.NodeFont = new Font(guiD3ProfileTreeView.Font, FontStyle.Underline);
+            node.NodeFont = defaultNodeFont;
         }
 
         #endregion
@@ -230,9 +240,29 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
         }
 
+        private static void UpdateNodeText(TreeNode node, Affix d3Object)
+        {
+            var sources = new[] { d3Object.Attributes.Primary, d3Object.Attributes.Secondary, d3Object.Attributes.Passive };
+            var text = sources.Where(s => s != null)
+                .SelectMany(s => s)
+                .Select(s => "[" + s.Text + "]")
+                .Aggregate((c, s) => c + s);
+            node.Text += " >> " + text;
+        }
+
         private static void UpdateNodeText(TreeNode node, ActProgress d3Object)
         {
             node.Text += " >> " + d3Object.completed;
+        }
+
+        private static void UpdateNodeText(TreeNode node, bool d3Object)
+        {
+            node.Text += " >> " + d3Object;
+        }
+
+        private static void UpdateNodeText(TreeNode node, ItemTextAttribute d3Object)
+        {
+            node.Text += " >> " + d3Object.Text;
         }
 
         private static void UpdateNodeText(TreeNode node, CareerArtisan d3Object)
@@ -258,6 +288,11 @@ namespace ZTn.BNet.D3ProfileExplorer
         private static void UpdateNodeText(TreeNode node, ItemSummary d3Object)
         {
             node.Text += " >> " + d3Object.Name;
+        }
+
+        private static void UpdateNodeText(TreeNode node, ItemValueRange d3Object)
+        {
+            node.Text += " >> [ " + d3Object.Min + " - " + d3Object.Max + "]";
         }
 
         private static void UpdateNodeText(TreeNode node, Set d3Object)
@@ -287,39 +322,45 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         #endregion
 
-        #region >> UpdateLiveUrl Overloads
+        #region >> OnNodeClick Overloads
 
-        private void UpdateLiveUrl(Object d3Object)
+        private void OnNodeClick(Object d3Object)
         {
             D3ObjectLiveUrl.Text = "";
         }
 
-        private void UpdateLiveUrl(BattleTag d3Object)
+        private void OnNodeClick(BNetContext<Career> d3Object)
         {
-            D3ObjectLiveUrl.Text = D3Api.GetCareerUrl(d3Object);
+            guiBattleNetHostList.SelectedItem = hosts.FirstOrDefault(h => h.Url == d3Object.Host);
+            guiBattleTag.Text = d3Object.BattleTag.ToString();
+            D3ObjectLiveUrl.Text = D3Api.GetCareerUrl(d3Object.BattleTag);
         }
 
-        private void UpdateLiveUrl(Hero d3Object)
+        private void OnNodeClick(BNetContext<Hero> d3Object)
         {
-            D3ObjectLiveUrl.Text = "Hero"; // D3Api.GetHeroUrlFromHeroId( d3Object.id);
+            guiBattleNetHostList.SelectedItem = hosts.FirstOrDefault(h => h.Url == d3Object.Host);
+            guiBattleTag.Text = d3Object.BattleTag.ToString();
+            D3ObjectLiveUrl.Text = D3Api.GetHeroUrlFromHeroId(d3Object.BattleTag, d3Object.Data.id);
         }
 
-        private void UpdateLiveUrl(HeroSummaryInformation d3Object)
+        private void OnNodeClick(BNetContext<HeroSummary> d3Object)
         {
-            D3ObjectLiveUrl.Text = D3Api.GetHeroUrlFromHeroId(d3Object.BattleTag, d3Object.HeroSummary.id);
+            guiBattleNetHostList.SelectedItem = hosts.FirstOrDefault(h => h.Url == d3Object.Host);
+            guiBattleTag.Text = d3Object.BattleTag.ToString();
+            D3ObjectLiveUrl.Text = D3Api.GetHeroUrlFromHeroId(d3Object.BattleTag, d3Object.Data.id);
         }
 
-        private void UpdateLiveUrl(Item d3Object)
+        private void OnNodeClick(Item d3Object)
         {
             D3ObjectLiveUrl.Text = D3Api.GetItemUrlFromTooltipParams(d3Object.TooltipParams);
         }
 
-        private void UpdateLiveUrl(ItemSummary d3Object)
+        private void OnNodeClick(ItemSummary d3Object)
         {
             D3ObjectLiveUrl.Text = D3Api.GetItemUrlFromTooltipParams(d3Object.TooltipParams);
         }
 
-        private void UpdateLiveUrl(CareerArtisan d3Object)
+        private void OnNodeClick(CareerArtisan d3Object)
         {
             D3ObjectLiveUrl.Text = D3Api.GetArtisanUrlFromSlug(d3Object.slug);
         }
@@ -330,11 +371,11 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             if (e.Node != null && e.Node.Tag != null)
             {
-                UpdateLiveUrl((dynamic)e.Node.Tag);
+                OnNodeClick((dynamic)e.Node.Tag);
             }
             else
             {
-                UpdateLiveUrl((Object)null);
+                OnNodeClick((Object)null);
             }
         }
 
@@ -348,14 +389,14 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void exploreHeroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var heroSummaryInformation = (HeroSummaryInformation)guiD3ProfileTreeView.SelectedNode.Tag;
+            var heroSummaryInformation = (BNetContext<HeroSummary>)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            var node = new TreeNode("Hero " + heroSummaryInformation.BattleTag + " / " + heroSummaryInformation.HeroSummary.id + " (" + heroSummaryInformation.HeroSummary.name + ")");
+            var node = new TreeNode("Hero " + heroSummaryInformation.BattleTag + " / " + heroSummaryInformation.Data.id + " (" + heroSummaryInformation.Data.name + ")");
 
             Hero hero;
             try
             {
-                hero = Hero.CreateFromHeroId(heroSummaryInformation.BattleTag, heroSummaryInformation.HeroSummary.id);
+                hero = Hero.CreateFromHeroId(heroSummaryInformation.BattleTag, heroSummaryInformation.Data.id);
             }
             catch (FileNotInCacheException)
             {
@@ -432,7 +473,8 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void d3CalculatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var hero = (Hero)guiD3ProfileTreeView.SelectedNode.Tag;
+            var heroInformation = (BNetContext<Hero>)guiD3ProfileTreeView.SelectedNode.Tag;
+            var hero = heroInformation.Data;
 
             new D3CalculatorForm(hero).Show();
         }
@@ -453,7 +495,8 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void buildUniqueItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var hero = (Hero)guiD3ProfileTreeView.SelectedNode.Tag;
+            var heroInformation = (BNetContext<Hero>)guiD3ProfileTreeView.SelectedNode.Tag;
+            var hero = heroInformation.Data;
 
             var heroItems = new[]
             {
@@ -536,12 +579,12 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void d3CalculatorHeroSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var heroSummaryInformation = (HeroSummaryInformation)guiD3ProfileTreeView.SelectedNode.Tag;
+            var heroSummaryInformation = (BNetContext<HeroSummary>)guiD3ProfileTreeView.SelectedNode.Tag;
 
             Hero hero;
             try
             {
-                hero = Hero.CreateFromHeroId(heroSummaryInformation.BattleTag, heroSummaryInformation.HeroSummary.id);
+                hero = Hero.CreateFromHeroId(heroSummaryInformation.BattleTag, heroSummaryInformation.Data.id);
             }
             catch (FileNotInCacheException)
             {
