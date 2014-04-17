@@ -473,6 +473,8 @@
             // 
             // D3ObjectLiveUrl
             // 
+            this.D3ObjectLiveUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.D3ObjectLiveUrl.Location = new System.Drawing.Point(12, 530);
             this.D3ObjectLiveUrl.Name = "D3ObjectLiveUrl";
             this.D3ObjectLiveUrl.ReadOnly = true;
