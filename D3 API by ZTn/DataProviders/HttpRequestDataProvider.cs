@@ -2,6 +2,9 @@
 using System.IO;
 using System.Net;
 using ZTn.BNet.D3.Helpers;
+#if PORTABLE
+using ZTn.Bnet.Portable;
+#endif
 
 namespace ZTn.BNet.D3.DataProviders
 {
@@ -37,7 +40,7 @@ namespace ZTn.BNet.D3.DataProviders
 
                     if (failureObject.IsFailureObject())
                     {
-                        memoryStream.Close();
+                        memoryStream.Dispose();
                         throw new BNetFailureObjectReturnedException(failureObject);
                     }
 

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ZTn.BNet.D3.Calculator</RootNamespace>
     <AssemblyName>D3 Calculator Library by ZTn</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,16 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Portable|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug Portable\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -43,6 +54,7 @@
     <Compile Include="Helpers\ItemValueRangeExtension.cs" />
     <Compile Include="Heroes\ItemAttributesFromLevel.cs" />
     <Compile Include="Heroes\ItemAttributesFromParagonLevel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sets\SetExtension.cs" />
     <Compile Include="Sets\KnownSets.cs" />
     <Compile Include="Skills\Barbarian\NervesOfSteel.cs" />
@@ -59,7 +71,6 @@
     <Compile Include="Skills\UnknownSkillSlugException.cs" />
     <Compile Include="StatsItem.cs" />
     <Compile Include="Helpers\ItemExtension.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skills\DamageMultiplier.cs" />
     <Compile Include="Skills\DemonHunter\Perfectionist.cs" />
     <Compile Include="Skills\DemonHunter\SharpShooter.cs" />

@@ -1,6 +1,10 @@
 ﻿using System.IO;
-using System.Text;
 using Newtonsoft.Json;
+#if PORTABLE
+using ZTn.Bnet.Portable;
+#else
+using System.Text;
+#endif
 
 namespace ZTn.BNet.D3.DataProviders
 {
@@ -18,7 +22,11 @@ namespace ZTn.BNet.D3.DataProviders
 
             var json = JsonConvert.SerializeObject(responseObject);
 
+#if PORTABLE
+            return new MemoryStream(PortableEncoding.Default.GetBytes(json));
+#else
             return new MemoryStream(Encoding.Default.GetBytes(json));
+#endif
         }
 
         #endregion

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using ZTn.BNet.D3.Calculator.Sets;
 using ZTn.BNet.D3.Items;
 
@@ -21,7 +22,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetAttributeByName(this Item item, String fieldName)
         {
-            return (ItemValueRange)typeof(ItemAttributes).GetField(fieldName).GetValue(item.AttributesRaw);
+            return (ItemValueRange)typeof(ItemAttributes).GetTypeInfo().GetDeclaredField(fieldName).GetValue(item.AttributesRaw);
         }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <param name="value">Value to set</param>
         public static Item SetAttributeByName(this Item item, String fieldName, ItemValueRange value)
         {
-            typeof(ItemAttributes).GetField(fieldName).SetValue(item.AttributesRaw, value);
+            typeof(ItemAttributes).GetTypeInfo().GetDeclaredField(fieldName).SetValue(item.AttributesRaw, value);
 
             return item;
         }

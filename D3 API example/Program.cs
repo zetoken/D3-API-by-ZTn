@@ -1,23 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using System.Text;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Calculator.Helpers;
-using ZTn.BNet.D3.Calculator.Sets;
+using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Careers;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
-using ZTn.BNet.D3.Calculator.Skills;
+using ZTn.Bnet.Portable.Windows;
 
 namespace ZTn.BNet.D3.Example
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            RegisterPcl.Register();
+
             var battleTag = new BattleTag("Tok#2360");
 
             // WriteCareer(battleTag);
@@ -29,18 +31,24 @@ namespace ZTn.BNet.D3.Example
             Console.ReadLine();
         }
 
-        static void WriteCalculation(BattleTag battleTag)
+        private static void WriteCalculation(BattleTag battleTag)
         {
             Console.WriteLine("= = = = Calculator of {0} = = = =", battleTag);
 
             Console.WriteLine("Downloading {0}", "career");
             var career = Career.CreateFromBattleTag(battleTag);
             if (career == null || career.Heroes.Length == 0)
+            {
                 return;
+            }
+
             Console.WriteLine("Downloading Hero {0}/{1}", battleTag, career.Heroes[0].name);
             var hero = Hero.CreateFromHeroId(battleTag, career.Heroes[0].id);
             if (hero == null || hero.items == null)
+            {
                 return;
+            }
+
             Console.WriteLine("Downloading {0}", "bracers");
             var bracers = hero.items.bracers.GetFullItem();
             Console.WriteLine("Downloading {0}", "feet");
@@ -72,9 +80,6 @@ namespace ZTn.BNet.D3.Example
 
             var allItems = new List<Item>(items) { mainHand, offHand }.Where(i => i != null).ToList();
 
-            Console.WriteLine("Loading {0} from file", "known sets");
-            var knownSets = KnownSets.CreateFromJsonFile("d3set.json");
-
             Console.WriteLine("Calculating activated set");
             foreach (var set in allItems.GetActivatedSets())
             {
@@ -92,7 +97,7 @@ namespace ZTn.BNet.D3.Example
             Console.WriteLine("Attack speed: {0}", d3Calculator.GetActualAttackSpeed().Min);
         }
 
-        static void WriteCareer(BattleTag battleTag)
+        private static void WriteCareer(BattleTag battleTag)
         {
             var career = Career.CreateFromBattleTag(battleTag);
 
@@ -113,21 +118,27 @@ namespace ZTn.BNet.D3.Example
 
                 var heroFull = heroDigest.GetHeroFromBattleTag(battleTag);
 
-                var mainHand = Item.CreateFromTooltipParams(heroFull.items.mainHand.TooltipParams);
-                Console.WriteLine("Hero main hand: level {0} {1} (DPS {2}-{3}) salvages into {4} different components",
-                    mainHand.ItemLevel,
-                    mainHand.Name,
-                    mainHand.Dps.Min, mainHand.Dps.Max,
-                    mainHand.Salvage.Length);
+                if (heroFull.items.mainHand != null)
+                {
+                    var mainHand = Item.CreateFromTooltipParams(heroFull.items.mainHand.TooltipParams);
+                    Console.WriteLine("Hero main hand: level {0} {1} (DPS {2}-{3}) is of type {4}",
+                        mainHand.ItemLevel,
+                        mainHand.Name,
+                        mainHand.Dps.Min, mainHand.Dps.Max,
+                        mainHand.TypeName);
+                }
 
-                var torso = Item.CreateFromTooltipParams(heroFull.items.torso.TooltipParams);
-                Console.WriteLine("Hero torso: level {0} {1} (armor {2}-{3}) salvages into {4} different components",
-                    torso.ItemLevel,
-                    torso.Name,
-                    torso.Armor.Min, torso.Armor.Max,
-                    torso.Salvage.Length);
+                if (heroFull.items.torso != null)
+                {
+                    var torso = Item.CreateFromTooltipParams(heroFull.items.torso.TooltipParams);
+                    Console.WriteLine("Hero torso: level {0} {1} (armor {2}-{3}) is of type {4}",
+                        torso.ItemLevel,
+                        torso.Name,
+                        torso.Armor.Min, torso.Armor.Max,
+                        torso.TypeName);
+                }
+
                 Console.WriteLine("Hero DPS {0}", heroFull.stats.damage);
-
             }
             Console.WriteLine();
             Console.WriteLine("Fallen Heroes count: " + career.FallenHeroes.Length);
@@ -137,7 +148,7 @@ namespace ZTn.BNet.D3.Example
             }
         }
 
-        static void BuildGemsFile()
+        private static void BuildGemsFile()
         {
             var socketColors = new List<string> { "Amethyst", "Emerald", "Ruby", "Topaz" };
 
@@ -159,7 +170,9 @@ namespace ZTn.BNet.D3.Example
                         Console.WriteLine("Retrieving " + id);
                         var gemStream = D3Api.DataProvider.FetchData(D3Api.GetItemUrlFromTooltipParams("item/" + id));
                         if (!starting)
+                        {
                             fileStream.Write(jsonArraySeparator, 0, jsonArraySeparator.Length);
+                        }
                         starting = false;
                         gemStream.CopyTo(fileStream);
                     }

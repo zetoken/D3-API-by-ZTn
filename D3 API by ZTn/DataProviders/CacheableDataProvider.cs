@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+#if PORTABLE
+using ZTn.Bnet.Portable;
+#endif
 
 namespace ZTn.BNet.D3.DataProviders
 {
@@ -24,7 +27,11 @@ namespace ZTn.BNet.D3.DataProviders
 
         public CacheableDataProvider()
         {
+#if PORTABLE
+            PortableDirectory.CreateDirectory(@"cache");
+#else
             Directory.CreateDirectory(@"cache");
+#endif
         }
 
         #endregion
@@ -63,7 +70,11 @@ namespace ZTn.BNet.D3.DataProviders
                 }
                 else
                 {
+#if PORTABLE
+                    var hash = MD5Digest.ComputeMD5(PortableEncoding.Default.GetBytes(url));
+#else
                     var hash = MD5Digest.ComputeMD5(Encoding.Default.GetBytes(url));
+#endif
                     foreach (var hashByte in hash)
                     {
                         stringBuilder.Append(hashByte.ToString("x2"));
@@ -80,7 +91,11 @@ namespace ZTn.BNet.D3.DataProviders
             }
             else
             {
+#if PORTABLE
+                var hash = MD5Digest.ComputeMD5(PortableEncoding.Default.GetBytes(url));
+#else
                 var hash = MD5Digest.ComputeMD5(Encoding.Default.GetBytes(url));
+#endif
                 foreach (var hashByte in hash)
                 {
                     stringBuilder.Append(hashByte.ToString("x2"));
@@ -100,31 +115,53 @@ namespace ZTn.BNet.D3.DataProviders
         public Stream FetchData(string url)
         {
             var cachedFilePath = GetCacheStoragePath() + GetCachedFileName(url);
+#if PORTABLE
+            var cachedFilePathExists = PortableFile.Exists(cachedFilePath);
+#else
+            var cachedFilePathExists = File.Exists(cachedFilePath);
+#endif
 
             if ((FetchMode == FetchMode.Online) ||
-                ((FetchMode == FetchMode.OnlineIfMissing) && !File.Exists(cachedFilePath)))
+                ((FetchMode == FetchMode.OnlineIfMissing) && !cachedFilePathExists))
             {
                 var directoryName = Path.GetDirectoryName(cachedFilePath);
                 if (!String.IsNullOrWhiteSpace(directoryName))
                 {
+#if PORTABLE
+                    PortableDirectory.CreateDirectory(directoryName);
+#else
                     Directory.CreateDirectory(directoryName);
+#endif
                 }
 
                 using (var binaryReader = new BinaryReader(dataProvider.FetchData(url)))
                 {
+#if PORTABLE
+                    using (var fileStream = PortableFile.Create(cachedFilePath))
+#else
                     using (var fileStream = File.Create(cachedFilePath))
+#endif
                     {
                         binaryReader.BaseStream.CopyTo(fileStream);
                     }
                 }
             }
 
-            if (!File.Exists(cachedFilePath))
+#if PORTABLE
+            cachedFilePathExists = PortableFile.Exists(cachedFilePath);
+#else
+            cachedFilePathExists = File.Exists(cachedFilePath);
+#endif
+
+            if (!cachedFilePathExists)
             {
                 throw new FileNotInCacheException();
             }
-
+#if PORTABLE
+            return PortableFile.Open(cachedFilePath, PortableFileMode.Open);
+#else
             return new FileStream(cachedFilePath, FileMode.Open);
+#endif
         }
     }
 }

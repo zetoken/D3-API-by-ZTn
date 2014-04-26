@@ -26,7 +26,7 @@ namespace ZTn.BNet.D3.Helpers
         /// <param name="target"></param>
         public static void DeepCopy<T>(this T source, T target) where T : class
         {
-            foreach (var info in typeof(T).GetProperties())
+            foreach (var info in typeof(T).GetTypeInfo().DeclaredProperties)
             {
                 var value = info.GetValue(source, null);
                 if (value != null)

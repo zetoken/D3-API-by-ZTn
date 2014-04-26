@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1EA51BFB-96BE-4E12-8DAB-0546AEB15674}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZTn.BNet.D3</RootNamespace>
+    <AssemblyName>D3 API by ZTn Portable</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Portable|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug Portable\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PORTABLE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\BNet API by ZTn Portable\BNet API by ZTn Portable.csproj">
+      <Project>{da274160-7440-4f6b-b5e6-906b7115d49b}</Project>
+      <Name>BNet API by ZTn Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PCL Adapter\PCL Adapter.csproj">
+      <Project>{22de4d3a-231f-40df-af26-976e5fd9b31f}</Project>
+      <Name>PCL Adapter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\D3 API by ZTn\Artisans\Artisan.cs">
+      <Link>Artisans\Artisan.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Artisans\ArtisanLevel.cs">
+      <Link>Artisans\ArtisanLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Artisans\ArtisanTier.cs">
+      <Link>Artisans\ArtisanTier.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Artisans\ArtisanTraining.cs">
+      <Link>Artisans\ArtisanTraining.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Artisans\CareerArtisan.cs">
+      <Link>Artisans\CareerArtisan.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Artisans\Reagent.cs">
+      <Link>Artisans\Reagent.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Artisans\Recipe.cs">
+      <Link>Artisans\Recipe.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Careers\Career.cs">
+      <Link>Careers\Career.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Careers\CareerKills.cs">
+      <Link>Careers\CareerKills.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Careers\ClassTimePlayed.cs">
+      <Link>Careers\ClassTimePlayed.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\D3Api.cs">
+      <Link>D3Api.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\DataProviders\BNetFailureObjectReturnedException.cs">
+      <Link>DataProviders\BNetFailureObjectReturnedException.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\DataProviders\BNetResponseFailedException.cs">
+      <Link>DataProviders\BNetResponseFailedException.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\DataProviders\CacheableDataProvider.cs">
+      <Link>DataProviders\CacheableDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\DataProviders\FakeDataProvider.cs">
+      <Link>DataProviders\FakeDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\DataProviders\FakeFailureDataProvider.cs">
+      <Link>DataProviders\FakeFailureDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\DataProviders\FetchMode.cs">
+      <Link>DataProviders\FetchMode.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\DataProviders\FileNotInCacheException.cs">
+      <Link>DataProviders\FileNotInCacheException.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\DataProviders\HttpRequestDataProvider.cs">
+      <Link>DataProviders\HttpRequestDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\DataProviders\ID3DataProvider.cs">
+      <Link>DataProviders\ID3DataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\DataProviders\MD5Digest.cs">
+      <Link>DataProviders\MD5Digest.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\FailureObject.cs">
+      <Link>FailureObject.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Helpers\D3DeepCopy.cs">
+      <Link>Helpers\D3DeepCopy.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Helpers\JsonHelpers.cs">
+      <Link>Helpers\JsonHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Heroes\Hero.cs">
+      <Link>Heroes\Hero.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Heroes\HeroClass.cs">
+      <Link>Heroes\HeroClass.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Heroes\HeroGender.cs">
+      <Link>Heroes\HeroGender.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Heroes\HeroItems.cs">
+      <Link>Heroes\HeroItems.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Heroes\HeroKills.cs">
+      <Link>Heroes\HeroKills.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Heroes\HeroSkills.cs">
+      <Link>Heroes\HeroSkills.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Heroes\HeroStats.cs">
+      <Link>Heroes\HeroStats.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Heroes\HeroSummary.cs">
+      <Link>Heroes\HeroSummary.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\HeroFollowers\Follower.cs">
+      <Link>HeroFollowers\Follower.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\HeroFollowers\FollowerItems.cs">
+      <Link>HeroFollowers\FollowerItems.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\HeroFollowers\Followers.cs">
+      <Link>HeroFollowers\Followers.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\HeroFollowers\FollowerSkill.cs">
+      <Link>HeroFollowers\FollowerSkill.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\HeroFollowers\FollowerStats.cs">
+      <Link>HeroFollowers\FollowerStats.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\Affix.cs">
+      <Link>Items\Affix.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\Item.cs">
+      <Link>Items\Item.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\ItemAttributes.cs">
+      <Link>Items\ItemAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\ItemSalvageComponent.cs">
+      <Link>Items\ItemSalvageComponent.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\ItemSummary.cs">
+      <Link>Items\ItemSummary.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\ItemTextAttribute.cs">
+      <Link>Items\ItemTextAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\ItemTextAttributes.cs">
+      <Link>Items\ItemTextAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\ItemType.cs">
+      <Link>Items\ItemType.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\ItemValueRange.cs">
+      <Link>Items\ItemValueRange.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\RandomAffix.cs">
+      <Link>Items\RandomAffix.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\Set.cs">
+      <Link>Items\Set.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\SetRank.cs">
+      <Link>Items\SetRank.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\SocketedGem.cs">
+      <Link>Items\SocketedGem.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Items\SocketEffect.cs">
+      <Link>Items\SocketEffect.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Medias\D3Picture.cs">
+      <Link>Medias\D3Picture.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Progresses\ActProgress.cs">
+      <Link>Progresses\ActProgress.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Progresses\CareerProgress.cs">
+      <Link>Progresses\CareerProgress.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Progresses\DifficultyProgress.cs">
+      <Link>Progresses\DifficultyProgress.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Progresses\HeroProgress.cs">
+      <Link>Progresses\HeroProgress.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Progresses\Quest.cs">
+      <Link>Progresses\Quest.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Properties\Annotations.cs">
+      <Link>Properties\Annotations.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Skills\ActiveSkill.cs">
+      <Link>Skills\ActiveSkill.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Skills\PassiveSkill.cs">
+      <Link>Skills\PassiveSkill.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Skills\Rune.cs">
+      <Link>Skills\Rune.cs</Link>
+    </Compile>
+    <Compile Include="..\D3 API by ZTn\Skills\Skill.cs">
+      <Link>Skills\Skill.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Activez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est le suivant : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

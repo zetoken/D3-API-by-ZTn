@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4695E039-C388-48CF-89EC-6DF9515E2E16}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{C097A16B-03D4-4AD0-ADFA-D35E3B9575F2}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZTn.BNet.D3.Example</RootNamespace>
-    <AssemblyName>D3 API example</AssemblyName>
+    <RootNamespace>ZTn.Bnet.Portable.Windows</RootNamespace>
+    <AssemblyName>PCL Adapter for Windows</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>ZTn.BNet.D3.Example.Program</StartupObject>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Portable|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug Portable\</OutputPath>
@@ -47,35 +44,22 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="PortableDirectory.cs" />
+    <Compile Include="PortableEncoding.cs" />
+    <Compile Include="PortableFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterPcl.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="d3set.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BNet API by ZTn Portable\BNet API by ZTn Portable.csproj">
-      <Project>{da274160-7440-4f6b-b5e6-906b7115d49b}</Project>
-      <Name>BNet API by ZTn Portable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\D3 API by ZTn Portable\D3 API by ZTn Portable.csproj">
-      <Project>{1ea51bfb-96be-4e12-8dab-0546aeb15674}</Project>
-      <Name>D3 API by ZTn Portable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\D3 Calculator Library by ZTn Portable\D3 Calculator Library by ZTn Portable.csproj">
-      <Project>{78516ce1-496f-4591-ad69-3164694d4555}</Project>
-      <Name>D3 Calculator Library by ZTn Portable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PCL Adapter for Windows\PCL Adapter for Windows.csproj">
-      <Project>{c097a16b-03d4-4ad0-adfa-d35e3b9575f2}</Project>
-      <Name>PCL Adapter for Windows</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PCL Adapter\PCL Adapter.csproj">
-      <Project>{22de4d3a-231f-40df-af26-976e5fd9b31f}</Project>
+      <Project>{22DE4D3A-231F-40DF-AF26-976E5FD9B31F}</Project>
       <Name>PCL Adapter</Name>
     </ProjectReference>
   </ItemGroup>

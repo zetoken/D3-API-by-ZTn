@@ -1,7 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using Newtonsoft.Json;
+#if PORTABLE
+using ZTn.Bnet.Portable;
+#else
+using System.Text;
+#endif
 
 namespace ZTn.BNet.D3.Helpers
 {
@@ -52,7 +56,11 @@ namespace ZTn.BNet.D3.Helpers
         public static T GetFromJSonString<T>(String json)
         {
             T datas;
+#if PORTABLE
+            using (var stream = new MemoryStream(PortableEncoding.Default.GetBytes(json)))
+#else
             using (var stream = new MemoryStream(Encoding.Default.GetBytes(json)))
+#endif
             {
                 datas = GetFromJSonStream<T>(stream);
             }
@@ -69,10 +77,16 @@ namespace ZTn.BNet.D3.Helpers
         public static T GetFromJsonFile<T>(String fileName)
         {
             T datas;
+
+#if PORTABLE
+            using (var fileStream = PortableFile.Open(fileName, PortableFileMode.Open))
+#else
             using (var fileStream = new FileStream(fileName, FileMode.Open))
+#endif
             {
                 datas = GetFromJSonStream<T>(fileStream);
             }
+
             return datas;
         }
 
@@ -125,7 +139,11 @@ namespace ZTn.BNet.D3.Helpers
         {
             T data;
 
+#if PORTABLE
+            using (var stream = new MemoryStream(PortableEncoding.Default.GetBytes(json)))
+#else
             using (var stream = new MemoryStream(Encoding.Default.GetBytes(json)))
+#endif
             {
                 data = CreateFromJsonStream<T>(stream);
             }
@@ -142,11 +160,17 @@ namespace ZTn.BNet.D3.Helpers
         public static T CreateFromJsonFile<T>(this String fileName)
         {
             T data;
-
+#if PORTABLE
+            using (var fileStream = PortableFile.Open(fileName, PortableFileMode.Open))
+            {
+                data = CreateFromJsonStream<T>(fileStream);
+            }
+#else
             using (var fileStream = new FileStream(fileName, FileMode.Open))
             {
                 data = CreateFromJsonStream<T>(fileStream);
             }
+#endif
 
             return data;
         }
@@ -173,7 +197,11 @@ namespace ZTn.BNet.D3.Helpers
 
             var serializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.Auto, Formatting = formatting };
 
+#if PORTABLE
+            using (var streamWriter = new StreamWriter(PortableFile.Open(fileName, PortableFileMode.OpenOrCreate)))
+#else
             using (var streamWriter = new StreamWriter(fileName))
+#endif
             {
                 serializer.Serialize(streamWriter, instance);
             }

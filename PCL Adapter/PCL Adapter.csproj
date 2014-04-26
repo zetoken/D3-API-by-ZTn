@@ -1,17 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4695E039-C388-48CF-89EC-6DF9515E2E16}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{22DE4D3A-231F-40DF-AF26-976E5FD9B31F}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZTn.BNet.D3.Example</RootNamespace>
-    <AssemblyName>D3 API example</AssemblyName>
+    <RootNamespace>ZTn.Bnet.Portable</RootNamespace>
+    <AssemblyName>PCL Adapter</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +23,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,10 +31,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>ZTn.BNet.D3.Example.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Portable|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -45,41 +42,21 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="HttpWebResponseExtension.cs" />
+    <Compile Include="IPortableDirectory.cs" />
+    <Compile Include="IPortableEncoding.cs" />
+    <Compile Include="IPortableFile.cs" />
+    <Compile Include="PortableDirectory.cs" />
+    <Compile Include="PortableEncoding.cs" />
+    <Compile Include="PortableFile.cs" />
+    <Compile Include="PortableFileMode.cs" />
+    <Compile Include="PortableInjector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="d3set.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BNet API by ZTn Portable\BNet API by ZTn Portable.csproj">
-      <Project>{da274160-7440-4f6b-b5e6-906b7115d49b}</Project>
-      <Name>BNet API by ZTn Portable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\D3 API by ZTn Portable\D3 API by ZTn Portable.csproj">
-      <Project>{1ea51bfb-96be-4e12-8dab-0546aeb15674}</Project>
-      <Name>D3 API by ZTn Portable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\D3 Calculator Library by ZTn Portable\D3 Calculator Library by ZTn Portable.csproj">
-      <Project>{78516ce1-496f-4591-ad69-3164694d4555}</Project>
-      <Name>D3 Calculator Library by ZTn Portable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PCL Adapter for Windows\PCL Adapter for Windows.csproj">
-      <Project>{c097a16b-03d4-4ad0-adfa-d35e3b9575f2}</Project>
-      <Name>PCL Adapter for Windows</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PCL Adapter\PCL Adapter.csproj">
-      <Project>{22de4d3a-231f-40df-af26-976e5fd9b31f}</Project>
-      <Name>PCL Adapter</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

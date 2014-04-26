@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -663,7 +664,7 @@ namespace ZTn.BNet.D3.Items
         {
             var type = GetType();
 
-            foreach (var fieldInfo in type.GetFields())
+            foreach (var fieldInfo in type.GetTypeInfo().DeclaredFields)
             {
                 var valueRange = fieldInfo.GetValue(itemAttributes) as ItemValueRange;
                 if (valueRange != null)
@@ -683,7 +684,7 @@ namespace ZTn.BNet.D3.Items
 
             var type = target.GetType();
 
-            foreach (var fieldInfo in type.GetFields())
+            foreach (var fieldInfo in type.GetTypeInfo().DeclaredFields)
             {
                 if (fieldInfo.GetValue(right) != null)
                 {
@@ -706,7 +707,7 @@ namespace ZTn.BNet.D3.Items
 
             var type = target.GetType();
 
-            foreach (var fieldInfo in type.GetFields())
+            foreach (var fieldInfo in type.GetTypeInfo().DeclaredFields)
             {
                 if (fieldInfo.GetValue(right) != null)
                 {
@@ -734,7 +735,7 @@ namespace ZTn.BNet.D3.Items
 
             var type = target.GetType();
 
-            foreach (var fieldInfo in type.GetFields())
+            foreach (var fieldInfo in type.GetTypeInfo().DeclaredFields)
             {
                 if (fieldInfo.GetValue(right) != null)
                 {
