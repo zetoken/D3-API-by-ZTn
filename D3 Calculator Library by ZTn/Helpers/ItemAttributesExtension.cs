@@ -233,8 +233,10 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         public static ItemValueRange GetBaseWeaponDamageMax(this ItemAttributes weaponAttr, String resist)
         {
             return weaponAttr.GetAttributeByName("damageWeaponMin_" + resist) +
+                   weaponAttr.GetAttributeByName("damageWeaponBonusMinX1_" + resist) +
                    weaponAttr.GetAttributeByName("damageWeaponDelta_" + resist) +
                    weaponAttr.GetAttributeByName("damageWeaponBonusDelta_" + resist) +
+                   weaponAttr.GetAttributeByName("damageWeaponBonusDeltaX1_" + resist) +
                    weaponAttr.GetAttributeByName("damageWeaponBonusFlat_" + resist);
         }
 

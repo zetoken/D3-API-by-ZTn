@@ -242,6 +242,31 @@ namespace ZTn.BNet.D3.Items
 
         #endregion
 
+        #region >> Damage_Weapon_Bonus_Delta_X1
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Delta_X1#Arcane", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusDeltaX1_Arcane;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Delta_X1#Cold", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusDeltaX1_Cold;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Delta_X1#Fire", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusDeltaX1_Fire;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Delta_X1#Holy", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusDeltaX1_Holy;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Delta_X1#Lightning", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusDeltaX1_Lightning;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Delta_X1#Physical", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusDeltaX1_Physical;
+
+        [DataMember(Name = "Damage_Weapon_Bonus_Delta_X1#Poison", EmitDefaultValue = false)]
+        public ItemValueRange damageWeaponBonusDeltaX1_Poison;
+
+        #endregion
+
         #region >> Damage_Weapon_Bonus_Min
 
         [DataMember(Name = "Damage_Weapon_Bonus_Min#Arcane", EmitDefaultValue = false)]
@@ -399,19 +424,6 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Dexterity_Item", EmitDefaultValue = false)]
         public ItemValueRange dexterityItem;
 
-        #region >> Durability
-
-        [DataMember(Name = "Durability_Max_Before_Reforge", EmitDefaultValue = false)]
-        public ItemValueRange DurabilityMaxBeforeReforge;
-
-        [DataMember(Name = "Durability_Cur", EmitDefaultValue = false)]
-        public ItemValueRange DurabilityCur;
-
-        [DataMember(Name = "Durability_Max", EmitDefaultValue = false)]
-        public ItemValueRange DurabilityMax;
-
-        #endregion
-
         //"DyeType"
 
         #region >> Experience_Bonus
@@ -420,8 +432,7 @@ namespace ZTn.BNet.D3.Items
         public ItemValueRange experienceBonus;
 
         [DataMember(Name = "Experience_Bonus_Percent", EmitDefaultValue = false)]
-        public ItemValueRange
-            experienceBonusPercent;
+        public ItemValueRange experienceBonusPercent;
 
         #endregion
 
@@ -493,9 +504,7 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Item_Level_Requirement_Reduction", EmitDefaultValue = false)]
         public ItemValueRange itemLevelRequirementReduction;
 
-        // Find how it's used
-        [DataMember(Name = "Item_Power_Passive", EmitDefaultValue = false)]
-        public ItemValueRange itemPowerPassive;
+        //"Item_Power_Passive"
 
         [DataMember(Name = "Magic_Find", EmitDefaultValue = false)]
         public ItemValueRange magicFind;
@@ -525,8 +534,7 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Quiver", EmitDefaultValue = false)]
         public ItemValueRange quiver;
 
-        [DataMember(Name = "Requirement_When_Equipped", EmitDefaultValue = false)]
-        public ItemValueRange requirementWhenEquipped;
+        //Requirement_When_Equipped"
 
         [DataMember(Name = "Resistance_All", EmitDefaultValue = false)]
         public ItemValueRange resistance_All;
@@ -560,19 +568,15 @@ namespace ZTn.BNet.D3.Items
         //"Resource_Max_Bonus"
         //"Resource_On_Crit"
         //"Resource_On_Hit"
-
-        [DataMember(Name = "Resource_On_Kill#Mana", EmitDefaultValue = false)]
-        public ItemValueRange ResourceOnKillMana;
+        //"Resource_On_Kill#Mana"
 
         #region >> "Resource_Regen_Per_Second
 
         [DataMember(Name = "Resource_Regen_Per_Second#Mana", EmitDefaultValue = false)]
-        public ItemValueRange
-            Resource_Regen_Per_Second_Mana;
+        public ItemValueRange Resource_Regen_Per_Second_Mana;
 
         [DataMember(Name = "Resource_Regen_Per_Second#Spirit", EmitDefaultValue = false)]
-        public ItemValueRange
-            Resource_Regen_Per_Second_Spirit;
+        public ItemValueRange Resource_Regen_Per_Second_Spirit;
 
         #endregion
 
@@ -585,9 +589,7 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Sockets", EmitDefaultValue = false)]
         public ItemValueRange sockets;
 
-        [DataMember(Name = "Spending_Resource_Heals_Percent#Spirit", EmitDefaultValue = false)]
-        public ItemValueRange SpendingResourceHealsPercentSpirit;
-
+        //"Spending_Resource_Heals_Percent#Spirit"
         //"Stats_All_Bonus"
 
         [DataMember(Name = "Steal_Health_Percent", EmitDefaultValue = false)]
