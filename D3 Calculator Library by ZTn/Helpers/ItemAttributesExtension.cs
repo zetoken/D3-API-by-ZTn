@@ -376,6 +376,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
                     .SetAttributeByName("damageWeaponBonusMin_" + resist, null)
                     .SetAttributeByName("damageWeaponBonusDelta_" + resist, null)
                     .SetAttributeByName("damageWeaponBonusMinX1_" + resist, null)
+                    .SetAttributeByName("damageWeaponBonusDeltaX1_" + resist, null)
                     .SetAttributeByName("damageWeaponBonusFlat_" + resist, null);
             }
 

@@ -64,7 +64,16 @@ namespace ZTn.BNet.D3.Calculator
         private ItemAttributes ComputeAmbidexterityWeaponAttributes()
         {
             var resists = D3Calculator.DamageResists;
-            var fields = new List<string> { "damageWeaponBonusDelta_", "damageWeaponBonusMin_", "damageWeaponDelta_", "damageWeaponMin_", "damageWeaponBonusMinX1_", "damageWeaponBonusFlat_" };
+            var fields = new List<string>
+            {
+                "damageWeaponBonusDelta_", 
+                "damageWeaponBonusMin_", 
+                "damageWeaponDelta_", 
+                "damageWeaponMin_", 
+                "damageWeaponBonusMinX1_", 
+                "damageWeaponBonusDeltaX1_", 
+                "damageWeaponBonusFlat_"
+            };
 
             var attr = MainHand.AttributesRaw + offHand.AttributesRaw;
 
