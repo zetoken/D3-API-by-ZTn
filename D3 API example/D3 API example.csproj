@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Portable\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Portable\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -34,15 +34,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>ZTn.BNet.D3.Example.Program</StartupObject>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Portable|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug Portable\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -58,15 +49,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BNet API by ZTn Portable\BNet API by ZTn Portable.csproj">
+    <ProjectReference Include="..\BNet API by ZTn\BNet API by ZTn Portable.csproj">
       <Project>{da274160-7440-4f6b-b5e6-906b7115d49b}</Project>
       <Name>BNet API by ZTn Portable</Name>
     </ProjectReference>
-    <ProjectReference Include="..\D3 API by ZTn Portable\D3 API by ZTn Portable.csproj">
+    <ProjectReference Include="..\D3 API by ZTn\D3 API by ZTn Portable.csproj">
       <Project>{1ea51bfb-96be-4e12-8dab-0546aeb15674}</Project>
       <Name>D3 API by ZTn Portable</Name>
     </ProjectReference>
-    <ProjectReference Include="..\D3 Calculator Library by ZTn Portable\D3 Calculator Library by ZTn Portable.csproj">
+    <ProjectReference Include="..\D3 Calculator Library by ZTn\D3 Calculator Library by ZTn Portable.csproj">
       <Project>{78516ce1-496f-4591-ad69-3164694d4555}</Project>
       <Name>D3 Calculator Library by ZTn Portable</Name>
     </ProjectReference>
