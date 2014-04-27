@@ -54,8 +54,8 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         [Test]
         public void GetBaseWeaponDamageMax()
         {
-            Assert.AreEqual(new ItemValueRange(16, 160), weaponAttr.GetBaseWeaponDamageMax("Arcane"));
-            Assert.AreEqual(new ItemValueRange(32, 320), weaponAttr.GetBaseWeaponDamageMax("Physical"));
+            Assert.AreEqual(new ItemValueRange(18, 180), weaponAttr.GetBaseWeaponDamageMax("Arcane"));
+            Assert.AreEqual(new ItemValueRange(36, 360), weaponAttr.GetBaseWeaponDamageMax("Physical"));
         }
 
         [Test]
@@ -68,8 +68,8 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         [Test]
         public void GetRawWeaponDamageMax()
         {
-            Assert.AreEqual(new ItemValueRange(22.4, 224), weaponAttr.GetRawWeaponDamageMax("Arcane"));
-            Assert.AreEqual(new ItemValueRange(32, 320), weaponAttr.GetRawWeaponDamageMax("Physical"));
+            Assert.AreEqual(new ItemValueRange(25.2, 252), weaponAttr.GetRawWeaponDamageMax("Arcane"));
+            Assert.AreEqual(new ItemValueRange(36, 360), weaponAttr.GetRawWeaponDamageMax("Physical"));
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             Assert.AreNotSame(weaponAttr, attr);
 
             Assert.AreEqual(new ItemValueRange(12, 120), attr.damageWeaponMin_Arcane);
-            Assert.AreEqual(new ItemValueRange(4, 40), attr.damageWeaponDelta_Arcane);
+            Assert.AreEqual(new ItemValueRange(6, 60), attr.damageWeaponDelta_Arcane);
             Assert.IsNull(attr.damageWeaponBonusMin_Arcane);
             Assert.IsNull(attr.damageWeaponBonusDelta_Arcane);
             Assert.IsNull(attr.damageWeaponBonusMinX1_Arcane);
@@ -107,7 +107,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             Assert.AreEqual(weaponAttr.damageTypePercentBonus_Arcane, attr.damageTypePercentBonus_Arcane);
 
             Assert.AreEqual(new ItemValueRange(24, 240), attr.damageWeaponMin_Physical);
-            Assert.AreEqual(new ItemValueRange(8, 80), attr.damageWeaponDelta_Physical);
+            Assert.AreEqual(new ItemValueRange(12, 120), attr.damageWeaponDelta_Physical);
             Assert.IsNull(attr.damageWeaponBonusMin_Physical);
             Assert.IsNull(attr.damageWeaponBonusDelta_Physical);
             Assert.IsNull(attr.damageWeaponBonusMinX1_Physical);
@@ -148,7 +148,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             Assert.AreNotSame(weaponAttr, attr);
 
             Assert.AreEqual(new ItemValueRange(12, 120), attr.damageWeaponMin_Arcane);
-            Assert.AreEqual(new ItemValueRange(4, 40), attr.damageWeaponDelta_Arcane);
+            Assert.AreEqual(new ItemValueRange(6, 60), attr.damageWeaponDelta_Arcane);
             Assert.IsNull(attr.damageWeaponBonusMin_Arcane);
             Assert.IsNull(attr.damageWeaponBonusDelta_Arcane);
             Assert.IsNull(attr.damageWeaponBonusMinX1_Arcane);
@@ -156,7 +156,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             Assert.AreEqual(weaponAttr.damageTypePercentBonus_Arcane, attr.damageTypePercentBonus_Arcane);
 
             Assert.AreEqual(new ItemValueRange(24, 240), attr.damageWeaponMin_Physical);
-            Assert.AreEqual(new ItemValueRange(8, 80), attr.damageWeaponDelta_Physical);
+            Assert.AreEqual(new ItemValueRange(12, 120), attr.damageWeaponDelta_Physical);
             Assert.IsNull(attr.damageWeaponBonusMin_Physical);
             Assert.IsNull(attr.damageWeaponBonusDelta_Physical);
             Assert.IsNull(attr.damageWeaponBonusMinX1_Physical);
