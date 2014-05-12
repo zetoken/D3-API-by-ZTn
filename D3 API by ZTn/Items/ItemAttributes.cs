@@ -688,7 +688,7 @@ namespace ZTn.BNet.D3.Items
 
             foreach (var fieldInfo in type.GetTypeInfo().DeclaredFields)
             {
-                if (fieldInfo.GetValue(right) != null)
+                if (fieldInfo.Name != "UnmanagedAttributes" && fieldInfo.GetValue(right) != null)
                 {
                     var targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
                     var rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
@@ -711,7 +711,7 @@ namespace ZTn.BNet.D3.Items
 
             foreach (var fieldInfo in type.GetTypeInfo().DeclaredFields)
             {
-                if (fieldInfo.GetValue(right) != null)
+                if (fieldInfo.Name != "UnmanagedAttributes" && fieldInfo.GetValue(right) != null)
                 {
                     var targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
                     var rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
@@ -739,7 +739,7 @@ namespace ZTn.BNet.D3.Items
 
             foreach (var fieldInfo in type.GetTypeInfo().DeclaredFields)
             {
-                if (fieldInfo.GetValue(right) != null)
+                if (fieldInfo.Name != "UnmanagedAttributes" && fieldInfo.GetValue(right) != null)
                 {
                     var targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
                     var rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);

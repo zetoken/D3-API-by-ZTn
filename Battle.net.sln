@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 API by ZTn", "D3 API by ZTn\D3 API by ZTn.csproj", "{A62CFAEA-60E1-4586-B306-7D606E6AA4D2}"
 EndProject
@@ -18,6 +18,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 API by ZTn Unit Tests", "D3 API by ZTn Unit Tests\D3 API by ZTn Unit Tests.csproj", "{725895DE-B6EA-4C91-ADE3-26795C6BF04E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Calculator Library by ZTn Unit Tests", "D3 Calculator Library by ZTn Unit Tests\D3 Calculator Library by ZTn Unit Tests.csproj", "{D832893E-F2F2-4A28-8EFB-E881D141EA7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A85E18A1-0ECB-42E8-8ADB-D97B6E64B19F}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
