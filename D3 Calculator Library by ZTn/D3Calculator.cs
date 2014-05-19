@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Heroes;
 using ZTn.BNet.D3.Calculator.Skills;
@@ -352,6 +353,10 @@ namespace ZTn.BNet.D3.Calculator
                     else if (HeroLevel <= 60)
                     {
                         hitpoints = 36 + 4 * HeroLevel + (HeroLevel - 25) * GetHeroVitality();
+                    }
+                    else if (HeroLevel <= 65)
+                    {
+                        hitpoints = 36 + 4 * HeroLevel + 35 * GetHeroVitality() + 4 * (HeroLevel - 60) * GetHeroVitality();
                     }
                     else
                     {
