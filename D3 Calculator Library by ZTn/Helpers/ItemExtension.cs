@@ -49,19 +49,16 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         {
             var itemsOfSets = new Dictionary<string, Set>();
 
-            foreach (var set in items.Where(item => item.Set != null).Select(item => item.Set))
+            foreach (var set in items.Where(item => item.Set != null).Select(item => item.Set).Where(set => !itemsOfSets.ContainsKey(set.slug)))
             {
-                if (!itemsOfSets.ContainsKey(set.slug))
-                {
-                    itemsOfSets.Add(set.slug, set);
-                }
+                itemsOfSets.Add(set.slug, set);
             }
 
             return itemsOfSets.Values.ToList();
         }
 
         /// <summary>
-        /// Computes the <see cref=" ItemAttributes"/> brought by the set bonuses.
+        /// Computes the <see cref="ItemAttributes"/> brought by the set bonuses.
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
@@ -72,7 +69,23 @@ namespace ZTn.BNet.D3.Calculator.Helpers
                 throw new ArgumentNullException("items");
             }
 
-            return items.GetActivatedSets().Aggregate(new ItemAttributes(), (current, set) => current + set.GetBonus(set.CountItemsOfSet(items)));
+            var attributeSetItemDiscount = items
+                .Select(i => i.AttributesRaw.AttributeSetItemDiscount)
+                .Where(asid => asid != null)
+                .Aggregate(ItemValueRange.Zero, (asid, current) => current + asid);
+
+            var result = new ItemAttributes();
+            foreach (var set in items.GetActivatedSets())
+            {
+                var setItemsCount = set.CountItemsOfSet(items);
+                if (setItemsCount >= 2)
+                {
+                    setItemsCount += (int)Math.Round(attributeSetItemDiscount.Min);
+                }
+                result += set.GetBonus(setItemsCount);
+            }
+
+            return result;
         }
 
         /// <summary>

@@ -63,7 +63,6 @@
             this.getSkillIcon42ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getSkillIcon64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guiD3Icon = new System.Windows.Forms.PictureBox();
-            this.guiLoadKnownSets = new System.Windows.Forms.Button();
             this.guiLoadKnownGems = new System.Windows.Forms.Button();
             this.guiItemContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.getItemSmallIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -379,21 +378,10 @@
             this.guiD3Icon.TabIndex = 9;
             this.guiD3Icon.TabStop = false;
             // 
-            // guiLoadKnownSets
-            // 
-            this.guiLoadKnownSets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guiLoadKnownSets.Location = new System.Drawing.Point(623, 71);
-            this.guiLoadKnownSets.Name = "guiLoadKnownSets";
-            this.guiLoadKnownSets.Size = new System.Drawing.Size(149, 23);
-            this.guiLoadKnownSets.TabIndex = 10;
-            this.guiLoadKnownSets.Text = "Load known sets";
-            this.guiLoadKnownSets.UseVisualStyleBackColor = true;
-            this.guiLoadKnownSets.Click += new System.EventHandler(this.guiLoadKnownSets_Click);
-            // 
             // guiLoadKnownGems
             // 
             this.guiLoadKnownGems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guiLoadKnownGems.Location = new System.Drawing.Point(624, 100);
+            this.guiLoadKnownGems.Location = new System.Drawing.Point(624, 71);
             this.guiLoadKnownGems.Name = "guiLoadKnownGems";
             this.guiLoadKnownGems.Size = new System.Drawing.Size(148, 23);
             this.guiLoadKnownGems.TabIndex = 11;
@@ -441,7 +429,7 @@
             // guiUpdateKnownGems
             // 
             this.guiUpdateKnownGems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guiUpdateKnownGems.Location = new System.Drawing.Point(624, 129);
+            this.guiUpdateKnownGems.Location = new System.Drawing.Point(624, 100);
             this.guiUpdateKnownGems.Name = "guiUpdateKnownGems";
             this.guiUpdateKnownGems.Size = new System.Drawing.Size(148, 23);
             this.guiUpdateKnownGems.TabIndex = 12;
@@ -489,7 +477,6 @@
             this.Controls.Add(this.D3ObjectLiveUrl);
             this.Controls.Add(this.guiUpdateKnownGems);
             this.Controls.Add(this.guiLoadKnownGems);
-            this.Controls.Add(this.guiLoadKnownSets);
             this.Controls.Add(this.guiD3Icon);
             this.Controls.Add(this.guiOfflineMode);
             this.Controls.Add(this.guiD3ProfileExplorerVersion);
@@ -549,7 +536,6 @@
         private System.Windows.Forms.PictureBox guiD3Icon;
         private System.Windows.Forms.ToolStripMenuItem getItemSummaryLargeIconToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem getSkillIcon64ToolStripMenuItem;
-        private System.Windows.Forms.Button guiLoadKnownSets;
         private System.Windows.Forms.ToolStripMenuItem getMetaItemSummaryToolStripMenuItem;
         private System.Windows.Forms.Button guiLoadKnownGems;
         private System.Windows.Forms.ContextMenuStrip guiItemContextMenu;

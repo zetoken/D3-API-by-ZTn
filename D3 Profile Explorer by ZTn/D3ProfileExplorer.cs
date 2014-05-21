@@ -647,26 +647,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
         }
 
-        private void guiLoadKnownSets_Click(object sender, EventArgs e)
-        {
-            var node = new TreeNode("Known Sets (loaded from d3set.json)");
-
-            KnownSets knownSets;
-            try
-            {
-                knownSets = KnownSets.CreateFromJsonFile("d3set.json");
-            }
-            catch (FileNotInCacheException)
-            {
-                MessageBox.Show("Known sets file was not found");
-                return;
-            }
-
-            node.Nodes.AddRange(CreateNodeFromD3Object(knownSets).ToArray());
-
-            guiD3ProfileTreeView.Nodes.Add(node);
-        }
-
         private void guiLoadKnownGems_Click(object sender, EventArgs e)
         {
             var node = new TreeNode("Known Gems (loaded from d3gem.json)");

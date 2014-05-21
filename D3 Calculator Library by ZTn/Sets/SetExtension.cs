@@ -28,27 +28,6 @@ namespace ZTn.BNet.D3.Calculator.Sets
         }
 
         /// <summary>
-        /// Returns final attributes description (string[]) the <paramref name="set"/> give when <paramref name="count"/> items from the set are weared
-        /// </summary>
-        /// <param name="set"></param>
-        /// <param name="count">Number of items from set weared</param>
-        /// <returns></returns>
-        public static String[] GetBonusAttributes(this Set set, int count)
-        {
-            var attributes = new List<string>();
-
-            if (count > 1)
-            {
-                foreach (var setRank in set.ranks.Where(rank => count >= rank.Required))
-                {
-                    attributes.AddRange(setRank.Attributes.Primary.Select(p => p.Text));
-                }
-            }
-
-            return attributes.ToArray();
-        }
-
-        /// <summary>
         /// Returns the list of <c>id</c> of all of the items from the <paramref name="set"/>
         /// </summary>
         /// <param name="set"></param>

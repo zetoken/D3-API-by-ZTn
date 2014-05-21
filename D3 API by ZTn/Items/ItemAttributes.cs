@@ -40,6 +40,10 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Attacks_Per_Second_Percent", EmitDefaultValue = false)]
         public ItemValueRange attacksPerSecondPercent;
 
+        // "Ring of Royal Grandeur" like (+1 to bonus set with a minimum of 2)
+        [DataMember(Name = "Attribute_Set_Item_Discount", EmitDefaultValue = false)]
+        public ItemValueRange AttributeSetItemDiscount;
+
         [DataMember(Name = "Block_Amount_Item_Delta", EmitDefaultValue = false)]
         public ItemValueRange blockAmountItemDelta;
 

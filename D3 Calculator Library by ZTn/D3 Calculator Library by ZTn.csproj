@@ -47,7 +47,6 @@
     <Compile Include="Heroes\ItemAttributesFromParagonLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sets\SetExtension.cs" />
-    <Compile Include="Sets\KnownSets.cs" />
     <Compile Include="Skills\Barbarian\NervesOfSteel.cs" />
     <Compile Include="Skills\Barbarian\Ruthless.cs" />
     <Compile Include="Skills\Barbarian\ToughAsNails.cs" />
