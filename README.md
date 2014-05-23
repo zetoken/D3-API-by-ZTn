@@ -1,3 +1,5 @@
+Note: I'm working on an update for new extension. Waiting for the Blizzard API to be updated.
+
 D3-API-by-ZTn
 =============
 
