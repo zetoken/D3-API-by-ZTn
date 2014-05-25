@@ -226,12 +226,7 @@ namespace ZTn.BNet.D3.Calculator
         {
             var dexterity = GetHeroDexterity().Min;
 
-            var dex0To100 = (dexterity > 100 ? 100 : dexterity);
-            var dex101To500 = (dexterity > 500 ? 500 - 100 : (dexterity > 100 ? dexterity - 100 : 0));
-            var dex501To1000 = (dexterity > 1000 ? 1000 - 500 : (dexterity > 500 ? dexterity - 500 : 0));
-            var dex1001To8000 = (dexterity > 8000 ? 8000 - 1000 : (dexterity > 1000 ? dexterity - 1000 : 0));
-
-            var dogde = 0.100 * dex0To100 + 0.025 * dex101To500 + 0.020 * dex501To1000 + 0.010 * dex1001To8000;
+            var dogde = dexterity / (0.00031 * HeroLevel * HeroLevel * HeroLevel + 0.0186 * HeroLevel * HeroLevel + 0.25 * HeroLevel + 1.93);
 
             return dogde;
         }
