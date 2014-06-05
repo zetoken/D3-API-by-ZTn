@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Threading;
 
 namespace ZTn.Bnet.Portable
 {
@@ -6,8 +7,22 @@ namespace ZTn.Bnet.Portable
     {
         public static WebResponse GetResponse(this HttpWebRequest request)
         {
-            var result = request.BeginGetResponse(null, null);
-            return request.EndGetResponse(result);
+            WebResponse response = null;
+
+            var gotResponse = new AutoResetEvent(false);
+
+            request.BeginGetResponse(
+                a =>
+                {
+                    response = request.EndGetResponse(a);
+                    gotResponse.Set();
+                },
+                request
+                );
+
+            gotResponse.WaitOne();
+
+            return response;
         }
     }
 }
