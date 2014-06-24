@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using ZTn.BNet.D3.Annotations;
 using ZTn.BNet.D3.Items;
 
@@ -46,8 +47,14 @@ namespace ZTn.BNet.D3.Helpers
         /// <returns></returns>
         public static T DeepClone<T>(this T source) where T : class, new()
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             var target = new T();
             source.DeepCopy(target);
+
             return target;
         }
 
