@@ -95,6 +95,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 // Monk passive skills
                 guiSkillSeizeTheInitiative,
                 guiSkillOneWithEverything,
+                guiSkillUnity,
 
                 // Witch Doctor skills
                 guiSkillPierceTheVeil,
@@ -298,7 +299,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             if (String.IsNullOrEmpty(guiHeroLevel.Text))
             {
-                follower.level = 60;
+                follower.level = 70;
             }
             else
             {
@@ -385,9 +386,17 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 activeSkills.Add(new MantraOfEvasion_HardTarget());
             }
+            if (guiSkillMantraOfRetribution_Transgression.Checked)
+            {
+                activeSkills.Add(new MantraOfRetribution_Transgression());
+            }
             if (guiSkillMysticAlly_EarthAlly.Checked)
             {
                 activeSkills.Add(new MysticAlly_EarthAlly());
+            }
+            if (guiSkillMysticAlly_FireAlly.Checked)
+            {
+                activeSkills.Add(new MysticAlly_FireAlly());
             }
 
             // Witch Doctor active skills

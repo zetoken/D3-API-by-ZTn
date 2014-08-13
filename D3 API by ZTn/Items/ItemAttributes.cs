@@ -425,8 +425,19 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Defense", EmitDefaultValue = false)]
         public ItemValueRange defense;
 
+        #region >> Dexterity
+
+        // Blizzard workaround bug for some cases where Blizzard API uses Dexterity instead of Dexterity_Item attribute
+        [DataMember(Name = "Dexterity", EmitDefaultValue = false),]
+        private ItemValueRange Dexterity
+        {
+            set { dexterityItem = value; }
+        }
+
         [DataMember(Name = "Dexterity_Item", EmitDefaultValue = false)]
         public ItemValueRange dexterityItem;
+
+        #endregion
 
         //"DyeType"
 
@@ -491,9 +502,8 @@ namespace ZTn.BNet.D3.Items
 
         // Blizzard workaround bug for some cases where Blizzard API uses Intelligence instead of Intelligence_Item attribute
         [DataMember(Name = "Intelligence", EmitDefaultValue = false),]
-        private ItemValueRange intelligence
+        private ItemValueRange Intelligence
         {
-            get { return intelligenceItem; }
             set { intelligenceItem = value; }
         }
 
@@ -599,8 +609,19 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Steal_Health_Percent", EmitDefaultValue = false)]
         public ItemValueRange stealHealthPercent;
 
+        #region >> Strength
+
+        // Blizzard workaround bug for some cases where Blizzard API uses Strength instead of Strength_Item attribute
+        [DataMember(Name = "Strength", EmitDefaultValue = false),]
+        private ItemValueRange Strength
+        {
+            set { strengthItem = value; }
+        }
+
         [DataMember(Name = "Strength_Item", EmitDefaultValue = false)]
         public ItemValueRange strengthItem;
+
+        #endregion
 
         #region >> Thorns_Fixed
 
@@ -631,9 +652,8 @@ namespace ZTn.BNet.D3.Items
 
         // Blizzard workaround bug for some cases where Blizzard API uses Vitality instead of Vitality_Item attribute
         [DataMember(Name = "Vitality", EmitDefaultValue = false)]
-        public ItemValueRange vitality
+        private ItemValueRange Vitality
         {
-            get { return vitalityItem; }
             set { vitalityItem = value; }
         }
 

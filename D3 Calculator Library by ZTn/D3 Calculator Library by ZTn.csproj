@@ -52,6 +52,9 @@
     <Compile Include="Skills\Barbarian\ToughAsNails.cs" />
     <Compile Include="Skills\Barbarian\WarCry_Invigorate.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster.cs" />
+    <Compile Include="Skills\Monk\MantraOfRetribution_Transgression.cs" />
+    <Compile Include="Skills\Monk\MysticAlly_FireAlly.cs" />
+    <Compile Include="Skills\Monk\Unity.cs" />
     <Compile Include="Skills\PassiveSkillModifierFactory.cs" />
     <Compile Include="Skills\ID3SkillModifier.cs" />
     <Compile Include="D3Calculator.cs" />

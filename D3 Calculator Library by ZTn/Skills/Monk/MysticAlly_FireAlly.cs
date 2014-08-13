@@ -1,28 +1,28 @@
 ﻿using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
-namespace ZTn.BNet.D3.Calculator.Skills.Followers
+namespace ZTn.BNet.D3.Calculator.Skills.Monk
 {
-    public sealed class Anatomy : ID3SkillModifier
+    public sealed class MysticAlly_FireAlly : ID3SkillModifier
     {
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
         public HeroClass HeroClass
         {
-            get { return HeroClass.ScoundrelFollower; }
+            get { return HeroClass.Monk; }
         }
 
         /// <inheritdoc />
         public string Slug
         {
-            get { return "anatomy"; }
+            get { return "mystic-ally-fire-ally"; }
         }
 
         /// <inheritdoc />
         public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            return new ItemAttributes { critPercentBonusCapped = new ItemValueRange(0.018) };
+            return new DamageMultiplier(0.10).GetBonus(calculator);
         }
 
         #endregion

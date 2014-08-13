@@ -22,7 +22,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Followers
         /// <inheritdoc />
         public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            return new ItemAttributes { armorBonusItem = 0.05 * calculator.GetHeroArmor() };
+            return new ItemAttributes { armorBonusItem = 0.03 * calculator.GetHeroArmor() };
         }
 
         #endregion

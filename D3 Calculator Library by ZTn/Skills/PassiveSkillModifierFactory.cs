@@ -23,6 +23,7 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
             new OneWithEverything(),
             new SeizeTheInitiative(),
+            new Unity(), 
 
             new PierceTheVeil(),
 

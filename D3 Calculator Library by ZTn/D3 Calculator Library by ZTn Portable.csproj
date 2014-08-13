@@ -60,9 +60,12 @@
     <Compile Include="Skills\ID3SkillModifier.cs" />
     <Compile Include="Skills\Monk\MantraOfEvasion_HardTarget.cs" />
     <Compile Include="Skills\Monk\MantraOfHealing_TimeOfNeed.cs" />
+    <Compile Include="Skills\Monk\MantraOfRetribution_Transgression.cs" />
     <Compile Include="Skills\Monk\MysticAlly_EarthAlly.cs" />
+    <Compile Include="Skills\Monk\MysticAlly_FireAlly.cs" />
     <Compile Include="Skills\Monk\OneWithEverything.cs" />
     <Compile Include="Skills\Monk\SeizeTheInitiative.cs" />
+    <Compile Include="Skills\Monk\Unity.cs" />
     <Compile Include="Skills\NullModifier.cs" />
     <Compile Include="Skills\PassiveSkillModifierFactory.cs" />
     <Compile Include="Skills\ResistancesMultiplier.cs" />
