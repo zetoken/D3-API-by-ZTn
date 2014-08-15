@@ -75,7 +75,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             if (itemValueRange != null && itemValueRange.Min != 0)
             {
-                textBox.Text = (100*itemValueRange.Min).ToString();
+                textBox.Text = (100 * itemValueRange.Min).ToString("N1");
             }
             else
             {
@@ -90,7 +90,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private static ItemValueRange GetDataPercent(Control textBox)
         {
-            return String.IsNullOrEmpty(textBox.Text) ? null : new ItemValueRange(Double.Parse(textBox.Text)/100);
+            return String.IsNullOrEmpty(textBox.Text) ? null : new ItemValueRange(Double.Parse(textBox.Text) / 100);
         }
 
         private static void SelectActiveGem(ComboBox comboBox, IEnumerable<GemsListViewItem> refGems, ItemSummary equippedGem)
@@ -114,7 +114,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiItemId.Text = item.Id;
             guiItemTypeId.Text = (item.Type != null ? item.Type.id : "");
 
-            item = item.Simplify();
+            item.Simplify();
 
             var attr = item.AttributesRaw;
 
@@ -139,7 +139,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateData(guiWeaponDamageMinFire, attr.damageWeaponMin_Fire);
             PopulateData(guiWeaponDamageMinHoly, attr.damageWeaponMin_Holy);
             PopulateData(guiWeaponDamageMinLightning, attr.damageWeaponMin_Lightning);
-            PopulateData(guiWeaponDamageMinPhysical, attr.damageWeaponMin_Physical*(1 + attr.damageWeaponPercentBonus_Physical));
+            PopulateData(guiWeaponDamageMinPhysical, attr.damageWeaponMin_Physical * (1 + attr.damageWeaponPercentBonus_Physical));
             PopulateData(guiWeaponDamageMinPoison, attr.damageWeaponMin_Poison);
 
             PopulateData(guiWeaponDamageMaxArcane, attr.damageWeaponMin_Arcane + attr.damageWeaponDelta_Arcane);
@@ -147,7 +147,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateData(guiWeaponDamageMaxFire, attr.damageWeaponMin_Fire + attr.damageWeaponDelta_Fire);
             PopulateData(guiWeaponDamageMaxHoly, attr.damageWeaponMin_Holy + attr.damageWeaponDelta_Holy);
             PopulateData(guiWeaponDamageMaxLightning, attr.damageWeaponMin_Lightning + attr.damageWeaponDelta_Lightning);
-            PopulateData(guiWeaponDamageMaxPhysical, (attr.damageWeaponMin_Physical + attr.damageWeaponDelta_Physical)*(1 + attr.damageWeaponPercentBonus_Physical));
+            PopulateData(guiWeaponDamageMaxPhysical, (attr.damageWeaponMin_Physical + attr.damageWeaponDelta_Physical) * (1 + attr.damageWeaponPercentBonus_Physical));
             PopulateData(guiWeaponDamageMaxPoison, attr.damageWeaponMin_Poison + attr.damageWeaponDelta_Poison);
 
             PopulateDataPercent(guiWeaponDamagePercentBonus, attr.damageWeaponPercentBonus_Physical);
@@ -176,6 +176,15 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateDataPercent(guiBonusDamagePercentLightning, attr.damageTypePercentBonus_Lightning);
             PopulateDataPercent(guiBonusDamagePercentPhysical, attr.damageTypePercentBonus_Physical);
             PopulateDataPercent(guiBonusDamagePercentPoison, attr.damageTypePercentBonus_Poison);
+
+            // Skill bonus
+            PopulateDataPercent(guiSkillBonusPercentArcane, attr.damageDealtPercentBonusArcane);
+            PopulateDataPercent(guiSkillBonusPercentCold, attr.damageDealtPercentBonusCold);
+            PopulateDataPercent(guiSkillBonusPercentFire, attr.damageDealtPercentBonusFire);
+            PopulateDataPercent(guiSkillBonusPercentHoly, attr.damageDealtPercentBonusHoly);
+            PopulateDataPercent(guiSkillBonusPercentLightning, attr.damageDealtPercentBonusLightning);
+            PopulateDataPercent(guiSkillBonusPercentPhysical, attr.damageDealtPercentBonusPhysical);
+            PopulateDataPercent(guiSkillBonusPercentPoison, attr.damageDealtPercentBonusPoison);
 
             // Resistances
             PopulateData(guiResistance_All, attr.resistance_All);
@@ -260,7 +269,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.damageWeaponMin_Fire = GetData(guiWeaponDamageMinFire);
             attr.damageWeaponMin_Holy = GetData(guiWeaponDamageMinHoly);
             attr.damageWeaponMin_Lightning = GetData(guiWeaponDamageMinLightning);
-            attr.damageWeaponMin_Physical = GetData(guiWeaponDamageMinPhysical)/(1 + damageWeaponPercentBonus_Physical);
+            attr.damageWeaponMin_Physical = GetData(guiWeaponDamageMinPhysical) / (1 + damageWeaponPercentBonus_Physical);
             attr.damageWeaponMin_Poison = GetData(guiWeaponDamageMinPoison);
 
             attr.damageWeaponDelta_Arcane = GetData(guiWeaponDamageMaxArcane) - attr.damageWeaponMin_Arcane;
@@ -268,7 +277,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.damageWeaponDelta_Fire = GetData(guiWeaponDamageMaxFire) - attr.damageWeaponMin_Fire;
             attr.damageWeaponDelta_Holy = GetData(guiWeaponDamageMaxHoly) - attr.damageWeaponMin_Holy;
             attr.damageWeaponDelta_Lightning = GetData(guiWeaponDamageMaxLightning) - attr.damageWeaponMin_Lightning;
-            attr.damageWeaponDelta_Physical = GetData(guiWeaponDamageMaxPhysical)/(1 + damageWeaponPercentBonus_Physical) - attr.damageWeaponMin_Physical;
+            attr.damageWeaponDelta_Physical = GetData(guiWeaponDamageMaxPhysical) / (1 + damageWeaponPercentBonus_Physical) - attr.damageWeaponMin_Physical;
             attr.damageWeaponDelta_Poison = GetData(guiWeaponDamageMaxPoison) - attr.damageWeaponMin_Poison;
 
             attr.damageMin_Arcane = GetData(guiBonusDamageMinArcane);
@@ -294,6 +303,14 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.damageTypePercentBonus_Lightning = GetDataPercent(guiBonusDamagePercentLightning);
             attr.damageTypePercentBonus_Physical = GetDataPercent(guiBonusDamagePercentPhysical);
             attr.damageTypePercentBonus_Poison = GetDataPercent(guiBonusDamagePercentPoison);
+
+            attr.damageDealtPercentBonusArcane = GetDataPercent(guiSkillBonusPercentArcane);
+            attr.damageDealtPercentBonusCold = GetDataPercent(guiSkillBonusPercentCold);
+            attr.damageDealtPercentBonusFire = GetDataPercent(guiSkillBonusPercentFire);
+            attr.damageDealtPercentBonusHoly = GetDataPercent(guiSkillBonusPercentHoly);
+            attr.damageDealtPercentBonusLightning = GetDataPercent(guiSkillBonusPercentLightning);
+            attr.damageDealtPercentBonusPhysical = GetDataPercent(guiSkillBonusPercentPhysical);
+            attr.damageDealtPercentBonusPoison = GetDataPercent(guiSkillBonusPercentPoison);
 
             attr.resistance_All = GetData(guiResistance_All);
             attr.resistance_Arcane = GetData(guiResistance_Arcane);

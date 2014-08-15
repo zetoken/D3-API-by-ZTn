@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using ZTn.BNet.D3.Calculator;
@@ -36,6 +37,11 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private readonly List<CheckBox> passiveCheckBoxes;
 
+        private ItemValueRange calculatedDps;
+
+        private Button lastItemButton;
+        private Button currentItemButton;
+
         #endregion
 
         #region >> Constructors
@@ -58,25 +64,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             };
 
             var knownGems = KnownGems.GetKnownGemsFromJsonFile("d3gem.json");
-
-            var d3ItemEditors = new List<D3ItemEditor>
-            {
-                guiMainHandEditor,
-                guiOffHandEditor,
-                guiSpecialEditor,
-                guiBracersEditor,
-                guiFeetEditor,
-                guiHandsEditor,
-                guiHeadEditor,
-                guiLeftFingerEditor,
-                guiLegsEditor,
-                guiNeckEditor,
-                guiRightFingerEditor,
-                guiShouldersEditor,
-                guiTorsoEditor,
-                guiWaistEditor,
-                guiSetBonusEditor
-            };
 
             passiveCheckBoxes = new List<CheckBox>
             {
@@ -105,17 +92,14 @@ namespace ZTn.BNet.D3ProfileExplorer
                 guiSkillGalvanizingWard
             };
 
-            foreach (var d3ItemEditor in d3ItemEditors)
-            {
-                d3ItemEditor.KnownGems = knownGems;
-            }
+            guiSetBonusEditor.KnownGems = knownGems;
+
+            guiItemEditor.KnownGems = knownGems;
         }
 
         public D3CalculatorForm(Hero hero)
             : this()
         {
-            Item offHand;
-            Item mainHand;
             Text += " [ " + hero.name + " ]";
 
             guiHeroClass.SelectedItem = hero.heroClass.ToString();
@@ -168,9 +152,10 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
 
             // If no weapon is set in mainHand, use "naked hand" weapon
-            mainHand = (hero.items.mainHand != null ? hero.items.mainHand.GetFullItem() : D3Calculator.NakedHandWeapon);
+            var mainHand = (hero.items.mainHand != null ? hero.items.mainHand.GetFullItem() : D3Calculator.NakedHandWeapon);
 
             // If no item is set in offHand, use a blank item
+            Item offHand;
             if (hero.items.offHand != null)
             {
                 offHand = hero.items.offHand.GetFullItem();
@@ -182,21 +167,24 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             var allRawItems = new List<Item> { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist, mainHand, offHand };
 
-            guiMainHandEditor.SetEditedItem(mainHand);
-            guiOffHandEditor.SetEditedItem(offHand);
-            guiBracersEditor.SetEditedItem(bracers);
-            guiFeetEditor.SetEditedItem(feet);
-            guiHandsEditor.SetEditedItem(hands);
-            guiHeadEditor.SetEditedItem(head);
-            guiLeftFingerEditor.SetEditedItem(leftFinger);
-            guiLegsEditor.SetEditedItem(legs);
-            guiNeckEditor.SetEditedItem(neck);
-            guiRightFingerEditor.SetEditedItem(rightFinger);
-            guiShouldersEditor.SetEditedItem(shoulders);
-            guiTorsoEditor.SetEditedItem(torso);
-            guiWaistEditor.SetEditedItem(waist);
+            guiItemChoiceMainHand.Tag = mainHand;
+            guiItemChoiceOffHand.Tag = offHand;
+            guiItemChoiceBracers.Tag = bracers;
+            guiItemChoiceFeet.Tag = feet;
+            guiItemChoiceHands.Tag = hands;
+            guiItemChoiceHead.Tag = head;
+            guiItemChoiceLeftFinger.Tag = leftFinger;
+            guiItemChoiceLegs.Tag = legs;
+            guiItemChoiceNeck.Tag = neck;
+            guiItemChoiceRightFinger.Tag = rightFinger;
+            guiItemChoiceShoulders.Tag = shoulders;
+            guiItemChoiceTorso.Tag = torso;
+            guiItemChoiceWaist.Tag = waist;
 
             guiSetBonusEditor.SetEditedItem(new Item(allRawItems.Where(i => i != null).ToList().GetActivatedSetBonus()));
+
+            // Main hand item selected by default
+            guiItemChoices_Click(guiItemChoiceMainHand, null);
 
             PopulatePassiveSkills(hero);
             PopulateActiveSkills(hero);
@@ -252,17 +240,17 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             var allRawItems = new List<Item> { special, leftFinger, neck, rightFinger, mainHand, offHand };
 
-            guiSpecialEditor.SetEditedItem(special);
-            guiMainHandEditor.SetEditedItem(mainHand);
-            guiOffHandEditor.SetEditedItem(offHand);
-            guiLeftFingerEditor.SetEditedItem(leftFinger);
-            guiNeckEditor.SetEditedItem(neck);
-            guiRightFingerEditor.SetEditedItem(rightFinger);
+            guiItemChoiceSpecial.Tag = special;
+            guiItemChoiceMainHand.Tag = mainHand;
+            guiItemChoiceOffHand.Tag = offHand;
+            guiItemChoiceLeftFinger.Tag = leftFinger;
+            guiItemChoiceNeck.Tag = neck;
+            guiItemChoiceRightFinger.Tag = rightFinger;
 
             guiSetBonusEditor.SetEditedItem(new Item(allRawItems.Where(i => i != null).ToList().GetActivatedSetBonus()));
 
-            //populatePassiveSkills();
-            //populateActiveSkills();
+            // Main hand item selected by default
+            guiItemChoices_Click(guiItemChoiceMainHand, null);
         }
 
         #endregion
@@ -311,6 +299,12 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void guiDoCalculations_Click(object sender, EventArgs e)
         {
+            // Force save of current editing item
+            if (currentItemButton != null)
+            {
+                guiItemChoices_Click(currentItemButton, null);
+            }
+
             var heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), (String)(guiHeroClass.SelectedItem));
 
             switch (heroClass)
@@ -340,23 +334,23 @@ namespace ZTn.BNet.D3ProfileExplorer
             // Retrieve worn items from the GUI
             var items = new List<Item>
             {
-                guiBracersEditor.GetEditedItem(),
-                guiFeetEditor.GetEditedItem(),
-                guiHandsEditor.GetEditedItem(),
-                guiHeadEditor.GetEditedItem(),
-                guiLeftFingerEditor.GetEditedItem(),
-                guiLegsEditor.GetEditedItem(),
-                guiNeckEditor.GetEditedItem(),
-                guiRightFingerEditor.GetEditedItem(),
-                guiShouldersEditor.GetEditedItem(),
-                guiTorsoEditor.GetEditedItem(),
-                guiWaistEditor.GetEditedItem(),
+                guiItemChoiceBracers.Tag as Item,
+                guiItemChoiceFeet.Tag as Item,
+                guiItemChoiceHands.Tag as Item,
+                guiItemChoiceHead.Tag as Item,
+                guiItemChoiceLeftFinger.Tag as Item,
+                guiItemChoiceLegs.Tag as Item,
+                guiItemChoiceNeck.Tag as Item,
+                guiItemChoiceRightFinger.Tag as Item,
+                guiItemChoiceShoulders.Tag as Item,
+                guiItemChoiceTorso.Tag as Item,
+                guiItemChoiceWaist.Tag as Item,
                 guiSetBonusEditor.GetEditedItem()
             };
 
-            var mainHand = guiMainHandEditor.GetEditedItem();
+            var mainHand = guiItemChoiceMainHand.Tag as Item;
 
-            var offHand = guiOffHandEditor.GetEditedItem();
+            var offHand = guiItemChoiceOffHand.Tag as Item;
 
             var d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
 
@@ -417,7 +411,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 activeSkills.Add(new PoweredArmor());
             }
 
-            guiCalculatedDPS.Text = d3Calculator.GetHeroDps(passiveSkills, activeSkills).Min.ToString();
+            calculatedDps = d3Calculator.GetHeroDps(passiveSkills, activeSkills);
 
             UpdateItemsSummary(d3Calculator);
 
@@ -432,16 +426,16 @@ namespace ZTn.BNet.D3ProfileExplorer
             // Retrieve worn items from the GUI
             var items = new List<Item>
             {
-                guiSpecialEditor.GetEditedItem(),
-                guiLeftFingerEditor.GetEditedItem(),
-                guiNeckEditor.GetEditedItem(),
-                guiRightFingerEditor.GetEditedItem(),
+                guiItemChoiceSpecial.Tag as Item,
+                guiItemChoiceLeftFinger.Tag as Item,
+                guiItemChoiceNeck.Tag as Item,
+                guiItemChoiceRightFinger.Tag as Item,
                 guiSetBonusEditor.GetEditedItem()
             };
 
-            var mainHand = guiMainHandEditor.GetEditedItem();
+            var mainHand = guiItemChoiceMainHand.Tag as Item;
 
-            var offHand = guiOffHandEditor.GetEditedItem();
+            var offHand = guiItemChoiceOffHand.Tag as Item;
 
             var heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), (String)(guiHeroClass.SelectedItem));
 
@@ -511,9 +505,17 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private static void PopulateCalculatedData(Control textBox, ItemValueRange itemValueRange)
         {
-            if (itemValueRange != null && itemValueRange.Min != 0)
+            if (itemValueRange != null && !itemValueRange.IsZero())
             {
-                textBox.Text = itemValueRange.Min.ToString();
+                var round = Math.Round(itemValueRange.Min);
+                if (Math.Abs(itemValueRange.Min - round) < 0.0001)
+                {
+                    textBox.Text = itemValueRange.Min.ToString("N0");
+                }
+                else
+                {
+                    textBox.Text = itemValueRange.Min.ToString("N2");
+                }
             }
         }
 
@@ -521,7 +523,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             if (itemValueRange != null && itemValueRange.Min != 0)
             {
-                textBox.Text = (100 * itemValueRange.Min).ToString();
+                textBox.Text = (100 * itemValueRange.Min).ToString("N2");
             }
         }
 
@@ -572,11 +574,30 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var attr = d3Calculator.HeroStatsItem.AttributesRaw;
 
-            guiCalculatedAttackPerSecond.Text = d3Calculator.GetActualAttackSpeed().Min.ToString();
+            guiCalculatedDPS.Text = calculatedDps.Min.ToString("N");
+
+            guiCalculatedAttackPerSecond.Text = d3Calculator.GetActualAttackSpeed().Min.ToString("N2");
             PopulateCalculatedData(guiCalcultatedDamageMin, d3Calculator.HeroStatsItem.GetWeaponDamageMin() * d3Calculator.GetDamageMultiplierNormal());
             PopulateCalculatedData(guiCalcultatedDamageMax, d3Calculator.HeroStatsItem.GetWeaponDamageMax() * d3Calculator.GetDamageMultiplierNormal());
             PopulateCalculatedData(guiCalcultatedDamageCriticMin, d3Calculator.HeroStatsItem.GetWeaponDamageMin() * d3Calculator.GetDamageMultiplierCritic());
             PopulateCalculatedData(guiCalcultatedDamageCriticMax, d3Calculator.HeroStatsItem.GetWeaponDamageMax() * d3Calculator.GetDamageMultiplierCritic());
+
+            PopulateCalculatedDataPercent(guiCalculatedSkillBonusPercent_Arcane, attr.damageDealtPercentBonusArcane);
+            PopulateCalculatedDataPercent(guiCalculatedSkillBonusPercent_Cold, attr.damageDealtPercentBonusCold);
+            PopulateCalculatedDataPercent(guiCalculatedSkillBonusPercent_Fire, attr.damageDealtPercentBonusFire);
+            PopulateCalculatedDataPercent(guiCalculatedSkillBonusPercent_Holy, attr.damageDealtPercentBonusHoly);
+            PopulateCalculatedDataPercent(guiCalculatedSkillBonusPercent_Lightning, attr.damageDealtPercentBonusLightning);
+            PopulateCalculatedDataPercent(guiCalculatedSkillBonusPercent_Physical, attr.damageDealtPercentBonusPhysical);
+            PopulateCalculatedDataPercent(guiCalculatedSkillBonusPercent_Poison, attr.damageDealtPercentBonusPoison);
+
+            PopulateCalculatedData(guiCalculatedSkillDamage_Arcane, calculatedDps * attr.damageDealtPercentBonusArcane);
+            PopulateCalculatedData(guiCalculatedSkillDamage_Cold, calculatedDps * attr.damageDealtPercentBonusCold);
+            PopulateCalculatedData(guiCalculatedSkillDamage_Fire, calculatedDps * attr.damageDealtPercentBonusFire);
+            PopulateCalculatedData(guiCalculatedSkillDamage_Holy, calculatedDps * attr.damageDealtPercentBonusHoly);
+            PopulateCalculatedData(guiCalculatedSkillDamage_Lightning, calculatedDps * attr.damageDealtPercentBonusLightning);
+            PopulateCalculatedData(guiCalculatedSkillDamage_Physical, calculatedDps * attr.damageDealtPercentBonusPhysical);
+            PopulateCalculatedData(guiCalculatedSkillDamage_Poison, calculatedDps * attr.damageDealtPercentBonusPoison);
+
             PopulateCalculatedData(guiCalculatedHitpoints, d3Calculator.GetHeroHitpoints());
             guiCalculatedDodge.Text = d3Calculator.GetHeroDodge().ToString();
 
@@ -589,20 +610,20 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateCalculatedData(guiCalculatedResistance_Poison, d3Calculator.GetHeroResistance("Poison"));
             PopulateCalculatedData(guiCalculatedResistance_All, d3Calculator.getHeroResistance_All());
 
-            guiCalculatedDamageReduction_Armor.Text = (100 * d3Calculator.GetHeroDamageReduction_Armor(heroLevel)).ToString();
-            guiCalculatedDamageReduction_Arcane.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Arcane")).ToString();
-            guiCalculatedDamageReduction_Cold.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Cold")).ToString();
-            guiCalculatedDamageReduction_Fire.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Fire")).ToString();
-            guiCalculatedDamageReduction_Lightning.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Lightning")).ToString();
-            guiCalculatedDamageReduction_Physical.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Physical")).ToString();
-            guiCalculatedDamageReduction_Poison.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Poison")).ToString();
+            guiCalculatedDamageReduction_Armor.Text = (100 * d3Calculator.GetHeroDamageReduction_Armor(heroLevel)).ToString("N2");
+            guiCalculatedDamageReduction_Arcane.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Arcane")).ToString("N2");
+            guiCalculatedDamageReduction_Cold.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Cold")).ToString("N2");
+            guiCalculatedDamageReduction_Fire.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Fire")).ToString("N2");
+            guiCalculatedDamageReduction_Lightning.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Lightning")).ToString("N2");
+            guiCalculatedDamageReduction_Physical.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Physical")).ToString("N2");
+            guiCalculatedDamageReduction_Poison.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Poison")).ToString("N2");
 
             PopulateCalculatedData(guiCalculatedBlockChance, attr.blockChanceItem);
             PopulateCalculatedData(guiCalculatedBlockMin, attr.blockAmountItemMin);
             PopulateCalculatedData(guiCalculatedBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
 
-            guiCalculatedEffectiveHitpoints.Text = Math.Round(d3Calculator.GetHeroEffectiveHitpoints(heroLevel)).ToString();
-            guiCalculatedDPSEHPRatio.Text = Math.Round(d3Calculator.GetHeroDps().Min * d3Calculator.GetHeroEffectiveHitpoints(heroLevel) / 1000000).ToString();
+            guiCalculatedEffectiveHitpoints.Text = Math.Round(d3Calculator.GetHeroEffectiveHitpoints(heroLevel)).ToString("N0");
+            guiCalculatedDPSEHPRatio.Text = Math.Round(d3Calculator.GetHeroDps().Min * d3Calculator.GetHeroEffectiveHitpoints(heroLevel) / 1000000).ToString("N0");
         }
 
         private void guiHeroClass_SelectionChangeCommitted(object sender, EventArgs e)
@@ -624,6 +645,32 @@ namespace ZTn.BNet.D3ProfileExplorer
                 case HeroClass.TemplarFollower:
                     break;
             }
+        }
+
+        private void guiItemChoices_Click(object sender, EventArgs e)
+        {
+            currentItemButton = sender as Button;
+            if (currentItemButton == null)
+            {
+                return;
+            }
+
+            if (lastItemButton != null)
+            {
+                lastItemButton.BackColor = Color.Transparent;
+                lastItemButton.Tag = guiItemEditor.GetEditedItem();
+            }
+
+            currentItemButton.FlatAppearance.MouseOverBackColor = Color.PaleGreen;
+            currentItemButton.BackColor = Color.LimeGreen;
+            var currentItem = currentItemButton.Tag as Item;
+            if (currentItem == null)
+            {
+                currentItem = new Item(new ItemAttributes());
+            }
+            guiItemEditor.SetEditedItem(currentItem);
+
+            lastItemButton = currentItemButton;
         }
     }
 }
