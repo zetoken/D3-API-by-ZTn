@@ -27,7 +27,7 @@ namespace ZTn.BNet.D3.Calculator.Skills
 
             new PierceTheVeil(),
 
-            new GalvanizingWard(),
+            new UnwaveringWill(),
             new GlassCannon()
         };
 

@@ -91,6 +91,7 @@
             System.Windows.Forms.Label label47;
             System.Windows.Forms.Label label46;
             System.Windows.Forms.GroupBox groupBox7;
+            System.Windows.Forms.Label label57;
             this.guiArmor = new System.Windows.Forms.TextBox();
             this.guiHitpointsMaxPercent = new System.Windows.Forms.TextBox();
             this.guiCriticDamage = new System.Windows.Forms.TextBox();
@@ -168,6 +169,7 @@
             this.guiItemName = new System.Windows.Forms.TextBox();
             this.guiItemId = new System.Windows.Forms.TextBox();
             this.guiItemTypeId = new System.Windows.Forms.ComboBox();
+            this.guiSkillCooldownReductionAll = new System.Windows.Forms.TextBox();
             label23 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
@@ -231,6 +233,7 @@
             label47 = new System.Windows.Forms.Label();
             label46 = new System.Windows.Forms.Label();
             groupBox7 = new System.Windows.Forms.GroupBox();
+            label57 = new System.Windows.Forms.Label();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -280,8 +283,6 @@
             // 
             groupBox3.AutoSize = true;
             groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            groupBox3.Controls.Add(label35);
-            groupBox3.Controls.Add(this.guiArmor);
             groupBox3.Controls.Add(label27);
             groupBox3.Controls.Add(this.guiHitpointsMaxPercent);
             groupBox3.Controls.Add(label18);
@@ -298,9 +299,9 @@
             groupBox3.Controls.Add(this.guiVitality);
             groupBox3.Controls.Add(label21);
             groupBox3.Controls.Add(this.guiDexterity);
-            groupBox3.Location = new System.Drawing.Point(693, 55);
+            groupBox3.Location = new System.Drawing.Point(694, 55);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new System.Drawing.Size(156, 266);
+            groupBox3.Size = new System.Drawing.Size(156, 240);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Characteristics";
@@ -308,7 +309,7 @@
             // label35
             // 
             label35.AutoSize = true;
-            label35.Location = new System.Drawing.Point(75, 230);
+            label35.Location = new System.Drawing.Point(77, 25);
             label35.Name = "label35";
             label35.Size = new System.Drawing.Size(34, 13);
             label35.TabIndex = 16;
@@ -316,7 +317,7 @@
             // 
             // guiArmor
             // 
-            this.guiArmor.Location = new System.Drawing.Point(115, 227);
+            this.guiArmor.Location = new System.Drawing.Point(117, 22);
             this.guiArmor.Name = "guiArmor";
             this.guiArmor.Size = new System.Drawing.Size(35, 20);
             this.guiArmor.TabIndex = 17;
@@ -434,7 +435,7 @@
             // label41
             // 
             label41.AutoSize = true;
-            label41.Location = new System.Drawing.Point(48, 129);
+            label41.Location = new System.Drawing.Point(49, 155);
             label41.Name = "label41";
             label41.Size = new System.Drawing.Size(62, 13);
             label41.TabIndex = 22;
@@ -443,7 +444,7 @@
             // label37
             // 
             label37.AutoSize = true;
-            label37.Location = new System.Drawing.Point(28, 103);
+            label37.Location = new System.Drawing.Point(29, 129);
             label37.Name = "label37";
             label37.Size = new System.Drawing.Size(82, 13);
             label37.TabIndex = 20;
@@ -452,7 +453,7 @@
             // label36
             // 
             label36.AutoSize = true;
-            label36.Location = new System.Drawing.Point(55, 77);
+            label36.Location = new System.Drawing.Point(56, 103);
             label36.Name = "label36";
             label36.Size = new System.Drawing.Size(55, 13);
             label36.TabIndex = 18;
@@ -1166,8 +1167,10 @@
             // 
             groupBox6.AutoSize = true;
             groupBox6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox6.Controls.Add(label35);
             groupBox6.Controls.Add(label56);
             groupBox6.Controls.Add(this.guiReductionFromRangedPercent);
+            groupBox6.Controls.Add(this.guiArmor);
             groupBox6.Controls.Add(label54);
             groupBox6.Controls.Add(this.guiReductionFromMeleePercent);
             groupBox6.Controls.Add(label52);
@@ -1185,7 +1188,7 @@
             groupBox6.Controls.Add(label36);
             groupBox6.Location = new System.Drawing.Point(489, 55);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new System.Drawing.Size(198, 243);
+            groupBox6.Size = new System.Drawing.Size(199, 269);
             groupBox6.TabIndex = 6;
             groupBox6.TabStop = false;
             groupBox6.Text = "Defense Bonus";
@@ -1193,7 +1196,7 @@
             // label56
             // 
             label56.AutoSize = true;
-            label56.Location = new System.Drawing.Point(2, 208);
+            label56.Location = new System.Drawing.Point(3, 234);
             label56.Name = "label56";
             label56.Size = new System.Drawing.Size(108, 13);
             label56.TabIndex = 40;
@@ -1201,7 +1204,7 @@
             // 
             // guiReductionFromRangedPercent
             // 
-            this.guiReductionFromRangedPercent.Location = new System.Drawing.Point(116, 204);
+            this.guiReductionFromRangedPercent.Location = new System.Drawing.Point(117, 230);
             this.guiReductionFromRangedPercent.Name = "guiReductionFromRangedPercent";
             this.guiReductionFromRangedPercent.Size = new System.Drawing.Size(35, 20);
             this.guiReductionFromRangedPercent.TabIndex = 41;
@@ -1209,7 +1212,7 @@
             // label54
             // 
             label54.AutoSize = true;
-            label54.Location = new System.Drawing.Point(11, 181);
+            label54.Location = new System.Drawing.Point(12, 207);
             label54.Name = "label54";
             label54.Size = new System.Drawing.Size(99, 13);
             label54.TabIndex = 38;
@@ -1217,7 +1220,7 @@
             // 
             // guiReductionFromMeleePercent
             // 
-            this.guiReductionFromMeleePercent.Location = new System.Drawing.Point(116, 178);
+            this.guiReductionFromMeleePercent.Location = new System.Drawing.Point(117, 204);
             this.guiReductionFromMeleePercent.Name = "guiReductionFromMeleePercent";
             this.guiReductionFromMeleePercent.Size = new System.Drawing.Size(35, 20);
             this.guiReductionFromMeleePercent.TabIndex = 39;
@@ -1225,7 +1228,7 @@
             // label52
             // 
             label52.AutoSize = true;
-            label52.Location = new System.Drawing.Point(15, 155);
+            label52.Location = new System.Drawing.Point(16, 181);
             label52.Name = "label52";
             label52.Size = new System.Drawing.Size(95, 13);
             label52.TabIndex = 36;
@@ -1233,7 +1236,7 @@
             // 
             // guiReductionFromElitesPercent
             // 
-            this.guiReductionFromElitesPercent.Location = new System.Drawing.Point(116, 152);
+            this.guiReductionFromElitesPercent.Location = new System.Drawing.Point(117, 178);
             this.guiReductionFromElitesPercent.Name = "guiReductionFromElitesPercent";
             this.guiReductionFromElitesPercent.Size = new System.Drawing.Size(35, 20);
             this.guiReductionFromElitesPercent.TabIndex = 37;
@@ -1241,7 +1244,7 @@
             // label39
             // 
             label39.AutoSize = true;
-            label39.Location = new System.Drawing.Point(65, 51);
+            label39.Location = new System.Drawing.Point(66, 77);
             label39.Name = "label39";
             label39.Size = new System.Drawing.Size(45, 13);
             label39.TabIndex = 33;
@@ -1249,21 +1252,21 @@
             // 
             // guiShieldBlockPercent
             // 
-            this.guiShieldBlockPercent.Location = new System.Drawing.Point(116, 22);
+            this.guiShieldBlockPercent.Location = new System.Drawing.Point(117, 48);
             this.guiShieldBlockPercent.Name = "guiShieldBlockPercent";
             this.guiShieldBlockPercent.Size = new System.Drawing.Size(35, 20);
             this.guiShieldBlockPercent.TabIndex = 32;
             // 
             // guiLifeSteal
             // 
-            this.guiLifeSteal.Location = new System.Drawing.Point(116, 126);
+            this.guiLifeSteal.Location = new System.Drawing.Point(117, 152);
             this.guiLifeSteal.Name = "guiLifeSteal";
             this.guiLifeSteal.Size = new System.Drawing.Size(35, 20);
             this.guiLifeSteal.TabIndex = 23;
             // 
             // guiShieldBlockMax
             // 
-            this.guiShieldBlockMax.Location = new System.Drawing.Point(157, 48);
+            this.guiShieldBlockMax.Location = new System.Drawing.Point(158, 74);
             this.guiShieldBlockMax.Name = "guiShieldBlockMax";
             this.guiShieldBlockMax.Size = new System.Drawing.Size(35, 20);
             this.guiShieldBlockMax.TabIndex = 35;
@@ -1271,7 +1274,7 @@
             // label40
             // 
             label40.AutoSize = true;
-            label40.Location = new System.Drawing.Point(66, 25);
+            label40.Location = new System.Drawing.Point(67, 55);
             label40.Name = "label40";
             label40.Size = new System.Drawing.Size(44, 13);
             label40.TabIndex = 31;
@@ -1279,21 +1282,21 @@
             // 
             // guiShieldBlockMin
             // 
-            this.guiShieldBlockMin.Location = new System.Drawing.Point(116, 48);
+            this.guiShieldBlockMin.Location = new System.Drawing.Point(117, 74);
             this.guiShieldBlockMin.Name = "guiShieldBlockMin";
             this.guiShieldBlockMin.Size = new System.Drawing.Size(35, 20);
             this.guiShieldBlockMin.TabIndex = 34;
             // 
             // guiHitpointsOnHit
             // 
-            this.guiHitpointsOnHit.Location = new System.Drawing.Point(116, 74);
+            this.guiHitpointsOnHit.Location = new System.Drawing.Point(117, 100);
             this.guiHitpointsOnHit.Name = "guiHitpointsOnHit";
             this.guiHitpointsOnHit.Size = new System.Drawing.Size(35, 20);
             this.guiHitpointsOnHit.TabIndex = 19;
             // 
             // guiHitpointsRegenPerSecond
             // 
-            this.guiHitpointsRegenPerSecond.Location = new System.Drawing.Point(116, 100);
+            this.guiHitpointsRegenPerSecond.Location = new System.Drawing.Point(117, 126);
             this.guiHitpointsRegenPerSecond.Name = "guiHitpointsRegenPerSecond";
             this.guiHitpointsRegenPerSecond.Size = new System.Drawing.Size(35, 20);
             this.guiHitpointsRegenPerSecond.TabIndex = 21;
@@ -1392,6 +1395,8 @@
             // 
             groupBox7.AutoSize = true;
             groupBox7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox7.Controls.Add(label57);
+            groupBox7.Controls.Add(this.guiSkillCooldownReductionAll);
             groupBox7.Controls.Add(label46);
             groupBox7.Controls.Add(this.guiSkillBonusPercentHoly);
             groupBox7.Controls.Add(label47);
@@ -1409,7 +1414,7 @@
             groupBox7.Controls.Add(label55);
             groupBox7.Location = new System.Drawing.Point(368, 55);
             groupBox7.Name = "groupBox7";
-            groupBox7.Size = new System.Drawing.Size(115, 240);
+            groupBox7.Size = new System.Drawing.Size(115, 266);
             groupBox7.TabIndex = 29;
             groupBox7.TabStop = false;
             groupBox7.Text = "Skill Bonus";
@@ -1500,6 +1505,22 @@
             this.guiItemTypeId.Text = "Item Type Id";
             this.guiItemTypeId.SelectedIndexChanged += new System.EventHandler(this.guiItemTypeId_SelectedIndexChanged);
             // 
+            // label57
+            // 
+            label57.AutoSize = true;
+            label57.Location = new System.Drawing.Point(4, 230);
+            label57.Name = "label57";
+            label57.Size = new System.Drawing.Size(64, 13);
+            label57.TabIndex = 33;
+            label57.Text = "% cooldown";
+            // 
+            // guiSkillCooldownReductionAll
+            // 
+            this.guiSkillCooldownReductionAll.Location = new System.Drawing.Point(74, 227);
+            this.guiSkillCooldownReductionAll.Name = "guiSkillCooldownReductionAll";
+            this.guiSkillCooldownReductionAll.Size = new System.Drawing.Size(35, 20);
+            this.guiSkillCooldownReductionAll.TabIndex = 34;
+            // 
             // D3ItemEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1520,7 +1541,7 @@
             this.Controls.Add(groupBox2);
             this.Controls.Add(groupBox1);
             this.Name = "D3ItemEditor";
-            this.Size = new System.Drawing.Size(852, 531);
+            this.Size = new System.Drawing.Size(853, 531);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -1618,6 +1639,7 @@
         public System.Windows.Forms.TextBox guiReductionFromElitesPercent;
         public System.Windows.Forms.TextBox guiReductionFromMeleePercent;
         public System.Windows.Forms.TextBox guiReductionFromRangedPercent;
+        public System.Windows.Forms.TextBox guiSkillCooldownReductionAll;
 
 
     }

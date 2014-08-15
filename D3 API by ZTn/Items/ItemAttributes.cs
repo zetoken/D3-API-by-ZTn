@@ -535,6 +535,10 @@ namespace ZTn.BNet.D3.Items
         //"On_Hit_Slow_Proc_Chance"
         //"On_Hit_Stun_Proc_Chance"
         //"Power_Cooldown_Reduction"
+
+        [DataMember(Name = "Power_Cooldown_Reduction_Percent_All", EmitDefaultValue = false)]
+        public ItemValueRange powerCooldownReductionPercentAll;
+
         //"Power_Crit_Percent_Bonus"
         //"Power_Damage_Percent_Bonus"
         //"Power_Duration_Increase"

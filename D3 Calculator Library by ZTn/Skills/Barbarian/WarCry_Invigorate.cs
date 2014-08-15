@@ -25,7 +25,8 @@ namespace ZTn.BNet.D3.Calculator.Skills.Barbarian
             var attr = new ItemAttributes
             {
                 armorBonusItem = 0.20 * calculator.GetHeroArmor(),
-                hitpointsRegenPerSecond = new ItemValueRange(620)
+                hitpointsMaxPercentBonusItem = new ItemValueRange(0.10),
+                hitpointsRegenPerSecond = new ItemValueRange(8253)
             };
 
             return attr;

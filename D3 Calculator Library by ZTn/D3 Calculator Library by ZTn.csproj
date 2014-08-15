@@ -52,6 +52,7 @@
     <Compile Include="Skills\Barbarian\ToughAsNails.cs" />
     <Compile Include="Skills\Barbarian\WarCry_Invigorate.cs" />
     <Compile Include="Skills\Barbarian\WeaponsMaster.cs" />
+    <Compile Include="Skills\DemonHunter\Companion_BoarCompanion.cs" />
     <Compile Include="Skills\Monk\MantraOfRetribution_Transgression.cs" />
     <Compile Include="Skills\Monk\MysticAlly_FireAlly.cs" />
     <Compile Include="Skills\Monk\Unity.cs" />
@@ -78,7 +79,7 @@
     <Compile Include="Skills\ResistancesMultiplier.cs" />
     <Compile Include="Skills\ThornsMultiplier.cs" />
     <Compile Include="Skills\WitchDoctor\PierceTheVeil.cs" />
-    <Compile Include="Skills\Wizard\GalvanizingWard.cs" />
+    <Compile Include="Skills\Wizard\UnwaveringWill.cs" />
     <Compile Include="Skills\Wizard\GlassCannon.cs" />
   </ItemGroup>
   <ItemGroup>

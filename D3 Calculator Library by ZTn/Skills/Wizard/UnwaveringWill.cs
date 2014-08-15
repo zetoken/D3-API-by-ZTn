@@ -3,7 +3,7 @@ using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.Wizard
 {
-    public sealed class GalvanizingWard : ID3SkillModifier
+    public sealed class UnwaveringWill : ID3SkillModifier
     {
         #region >> ID3SkillModifier
 
@@ -16,13 +16,19 @@ namespace ZTn.BNet.D3.Calculator.Skills.Wizard
         /// <inheritdoc />
         public string Slug
         {
-            get { return "galvanizing-ward"; }
+            get { return "unwavering-will"; }
         }
 
         /// <inheritdoc />
         public ItemAttributes GetBonus(D3Calculator calculator)
         {
-            return new ItemAttributes { hitpointsRegenPerSecond = new ItemValueRange(620) };
+            var attr = new DamageMultiplier(0.10).GetBonus(calculator);
+
+            attr.armorBonusItem = 0.20 * calculator.GetHeroArmor();
+
+            attr += new ResistancesMultiplier(0.20).GetBonus(calculator);
+
+            return attr;
         }
 
         #endregion

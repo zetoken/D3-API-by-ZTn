@@ -110,8 +110,12 @@
             System.Windows.Forms.Label label5;
             System.Windows.Forms.Label label4;
             System.Windows.Forms.TabPage tabActiveSkills;
+            System.Windows.Forms.GroupBox groupBox12;
             System.Windows.Forms.GroupBox groupBox11;
             System.Windows.Forms.TabControl tacControl1;
+            System.Windows.Forms.Label label70;
+            System.Windows.Forms.GroupBox groupBox13;
+            System.Windows.Forms.Label label71;
             this.guiSkillGalvanizingWard = new System.Windows.Forms.CheckBox();
             this.guiSkillGlassCannon = new System.Windows.Forms.CheckBox();
             this.guiSkillPierceTheVeil = new System.Windows.Forms.CheckBox();
@@ -139,7 +143,6 @@
             this.guiSkillMysticAlly_EarthAlly = new System.Windows.Forms.CheckBox();
             this.guiSkillMantraOfHealing_TimeOfNeed = new System.Windows.Forms.CheckBox();
             this.guiSkillMantraOfEvasion_HardTarget = new System.Windows.Forms.CheckBox();
-            this.tabResults = new System.Windows.Forms.TabPage();
             this.guiCalculatedReductionFromRangedPercent = new System.Windows.Forms.TextBox();
             this.guiCalculatedReductionFromMeleePercent = new System.Windows.Forms.TextBox();
             this.guiCalculatedReductionFromElitesPercent = new System.Windows.Forms.TextBox();
@@ -165,7 +168,6 @@
             this.guiCalculatedResistance_Fire = new System.Windows.Forms.TextBox();
             this.guiCalculatedResistance_Cold = new System.Windows.Forms.TextBox();
             this.guiCalculatedResistance_Arcane = new System.Windows.Forms.TextBox();
-            this.guiDoCalculations = new System.Windows.Forms.Button();
             this.guiCalculatedBonusEliteDamagePercent = new System.Windows.Forms.TextBox();
             this.guiCalculatedSkillDamage_Poison = new System.Windows.Forms.TextBox();
             this.guiCalculatedSkillDamage_Physical = new System.Windows.Forms.TextBox();
@@ -205,6 +207,7 @@
             this.guiItemsSpeedAttack = new System.Windows.Forms.TextBox();
             this.guiItemsStrength = new System.Windows.Forms.TextBox();
             this.guiItemsVitality = new System.Windows.Forms.TextBox();
+            this.guiSkillCompanion_BoarCompanion = new System.Windows.Forms.CheckBox();
             this.guiItemChoiceFeet = new System.Windows.Forms.Button();
             this.guiItemChoiceLegs = new System.Windows.Forms.Button();
             this.guiItemChoiceWaist = new System.Windows.Forms.Button();
@@ -219,9 +222,12 @@
             this.guiItemChoiceSpecial = new System.Windows.Forms.Button();
             this.guiItemChoiceOffHand = new System.Windows.Forms.Button();
             this.guiItemChoiceMainHand = new System.Windows.Forms.Button();
+            this.tabResults = new System.Windows.Forms.TabPage();
+            this.guiDoCalculations = new System.Windows.Forms.Button();
             this.tabItemEditor = new System.Windows.Forms.TabPage();
-            this.guiItemEditor = new ZTn.BNet.D3ProfileExplorer.D3ItemEditor();
             this.tabSetBonus = new System.Windows.Forms.TabPage();
+            this.guiSkillCooldownReductionAll = new System.Windows.Forms.TextBox();
+            this.guiItemEditor = new ZTn.BNet.D3ProfileExplorer.D3ItemEditor();
             this.guiSetBonusEditor = new ZTn.BNet.D3ProfileExplorer.D3ItemEditor();
             label6 = new System.Windows.Forms.Label();
             tabPassiveSkills = new System.Windows.Forms.TabPage();
@@ -305,8 +311,12 @@
             label5 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             tabActiveSkills = new System.Windows.Forms.TabPage();
+            groupBox12 = new System.Windows.Forms.GroupBox();
             groupBox11 = new System.Windows.Forms.GroupBox();
             tacControl1 = new System.Windows.Forms.TabControl();
+            label70 = new System.Windows.Forms.Label();
+            groupBox13 = new System.Windows.Forms.GroupBox();
+            label71 = new System.Windows.Forms.Label();
             tabPassiveSkills.SuspendLayout();
             groupBox9.SuspendLayout();
             groupBox8.SuspendLayout();
@@ -317,15 +327,17 @@
             groupBox4.SuspendLayout();
             groupBoxBarbarianActiveSkills.SuspendLayout();
             groupBoxMonkActiveSkills.SuspendLayout();
-            this.tabResults.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox10.SuspendLayout();
             groupBox1.SuspendLayout();
             tabActiveSkills.SuspendLayout();
+            groupBox12.SuspendLayout();
             groupBox11.SuspendLayout();
             tacControl1.SuspendLayout();
+            this.tabResults.SuspendLayout();
             this.tabItemEditor.SuspendLayout();
             this.tabSetBonus.SuspendLayout();
+            groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
             // label6
@@ -371,10 +383,10 @@
             this.guiSkillGalvanizingWard.AutoSize = true;
             this.guiSkillGalvanizingWard.Location = new System.Drawing.Point(6, 42);
             this.guiSkillGalvanizingWard.Name = "guiSkillGalvanizingWard";
-            this.guiSkillGalvanizingWard.Size = new System.Drawing.Size(194, 17);
+            this.guiSkillGalvanizingWard.Size = new System.Drawing.Size(275, 17);
             this.guiSkillGalvanizingWard.TabIndex = 1;
-            this.guiSkillGalvanizingWard.Tag = "galvanizing-ward";
-            this.guiSkillGalvanizingWard.Text = "Galvanizing Ward (+life per second)";
+            this.guiSkillGalvanizingWard.Tag = "unwavering-will";
+            this.guiSkillGalvanizingWard.Text = "Unwavering Will (+10% damage +20% Armor Resists)";
             this.guiSkillGalvanizingWard.UseVisualStyleBackColor = true;
             // 
             // guiSkillGlassCannon
@@ -698,9 +710,9 @@
             this.guiSkillWarCry_Invigorate.AutoSize = true;
             this.guiSkillWarCry_Invigorate.Location = new System.Drawing.Point(6, 19);
             this.guiSkillWarCry_Invigorate.Name = "guiSkillWarCry_Invigorate";
-            this.guiSkillWarCry_Invigorate.Size = new System.Drawing.Size(239, 17);
+            this.guiSkillWarCry_Invigorate.Size = new System.Drawing.Size(263, 17);
             this.guiSkillWarCry_Invigorate.TabIndex = 4;
-            this.guiSkillWarCry_Invigorate.Text = "War Cry / Invigorate (+20% armor +610 life/s)";
+            this.guiSkillWarCry_Invigorate.Text = "War Cry / Invigorate (+20% armor +10% life +life/s)";
             this.guiSkillWarCry_Invigorate.UseVisualStyleBackColor = true;
             // 
             // groupBoxMonkActiveSkills
@@ -767,19 +779,6 @@
             this.guiSkillMantraOfEvasion_HardTarget.TabIndex = 5;
             this.guiSkillMantraOfEvasion_HardTarget.Text = "Mantra of Evasion / Hard Targer (+20% Armor)";
             this.guiSkillMantraOfEvasion_HardTarget.UseVisualStyleBackColor = true;
-            // 
-            // tabResults
-            // 
-            this.tabResults.Controls.Add(groupBox2);
-            this.tabResults.Controls.Add(this.guiDoCalculations);
-            this.tabResults.Controls.Add(groupBox10);
-            this.tabResults.Controls.Add(groupBox1);
-            this.tabResults.Location = new System.Drawing.Point(4, 22);
-            this.tabResults.Name = "tabResults";
-            this.tabResults.Size = new System.Drawing.Size(1026, 576);
-            this.tabResults.TabIndex = 15;
-            this.tabResults.Text = "Calculation Results";
-            this.tabResults.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -1300,53 +1299,16 @@
             label21.TabIndex = 24;
             label21.Text = "arcane resist";
             // 
-            // guiDoCalculations
-            // 
-            this.guiDoCalculations.Location = new System.Drawing.Point(3, 3);
-            this.guiDoCalculations.Name = "guiDoCalculations";
-            this.guiDoCalculations.Size = new System.Drawing.Size(100, 23);
-            this.guiDoCalculations.TabIndex = 1;
-            this.guiDoCalculations.Text = "Do Calculations";
-            this.guiDoCalculations.UseVisualStyleBackColor = true;
-            this.guiDoCalculations.Click += new System.EventHandler(this.guiDoCalculations_Click);
-            // 
             // groupBox10
             // 
+            groupBox10.AutoSize = true;
             groupBox10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             groupBox10.Controls.Add(label62);
-            groupBox10.Controls.Add(this.guiCalculatedBonusEliteDamagePercent);
-            groupBox10.Controls.Add(label63);
-            groupBox10.Controls.Add(label48);
-            groupBox10.Controls.Add(label49);
-            groupBox10.Controls.Add(label50);
-            groupBox10.Controls.Add(label51);
-            groupBox10.Controls.Add(label52);
-            groupBox10.Controls.Add(label53);
-            groupBox10.Controls.Add(label54);
-            groupBox10.Controls.Add(label55);
-            groupBox10.Controls.Add(this.guiCalculatedSkillDamage_Poison);
-            groupBox10.Controls.Add(this.guiCalculatedSkillDamage_Physical);
-            groupBox10.Controls.Add(this.guiCalculatedSkillDamage_Lightning);
-            groupBox10.Controls.Add(this.guiCalculatedSkillDamage_Holy);
-            groupBox10.Controls.Add(this.guiCalculatedSkillDamage_Fire);
-            groupBox10.Controls.Add(this.guiCalculatedSkillDamage_Cold);
-            groupBox10.Controls.Add(this.guiCalculatedSkillDamage_Arcane);
-            groupBox10.Controls.Add(this.guiCalculatedSkillBonusPercent_Arcane);
-            groupBox10.Controls.Add(this.guiCalculatedSkillBonusPercent_Poison);
-            groupBox10.Controls.Add(label56);
-            groupBox10.Controls.Add(this.guiCalculatedSkillBonusPercent_Physical);
-            groupBox10.Controls.Add(label57);
-            groupBox10.Controls.Add(this.guiCalculatedSkillBonusPercent_Lightning);
-            groupBox10.Controls.Add(label58);
-            groupBox10.Controls.Add(this.guiCalculatedSkillBonusPercent_Holy);
-            groupBox10.Controls.Add(label59);
-            groupBox10.Controls.Add(this.guiCalculatedSkillBonusPercent_Fire);
-            groupBox10.Controls.Add(label60);
-            groupBox10.Controls.Add(this.guiCalculatedSkillBonusPercent_Cold);
-            groupBox10.Controls.Add(label61);
             groupBox10.Controls.Add(this.guiCalculatedDPS);
             groupBox10.Controls.Add(label8);
+            groupBox10.Controls.Add(this.guiCalculatedBonusEliteDamagePercent);
             groupBox10.Controls.Add(label10);
+            groupBox10.Controls.Add(label63);
             groupBox10.Controls.Add(this.guiCalculatedAttackPerSecond);
             groupBox10.Controls.Add(label13);
             groupBox10.Controls.Add(this.guiCalcultatedDamageMax);
@@ -1356,7 +1318,7 @@
             groupBox10.Controls.Add(this.guiCalcultatedDamageCriticMin);
             groupBox10.Location = new System.Drawing.Point(175, 32);
             groupBox10.Name = "groupBox10";
-            groupBox10.Size = new System.Drawing.Size(278, 344);
+            groupBox10.Size = new System.Drawing.Size(278, 162);
             groupBox10.TabIndex = 4;
             groupBox10.TabStop = false;
             groupBox10.Text = "Calculation: Damage";
@@ -1364,7 +1326,7 @@
             // label62
             // 
             label62.AutoSize = true;
-            label62.Location = new System.Drawing.Point(177, 308);
+            label62.Location = new System.Drawing.Point(177, 126);
             label62.Name = "label62";
             label62.Size = new System.Drawing.Size(15, 13);
             label62.TabIndex = 80;
@@ -1372,7 +1334,7 @@
             // 
             // guiCalculatedBonusEliteDamagePercent
             // 
-            this.guiCalculatedBonusEliteDamagePercent.Location = new System.Drawing.Point(126, 305);
+            this.guiCalculatedBonusEliteDamagePercent.Location = new System.Drawing.Point(126, 123);
             this.guiCalculatedBonusEliteDamagePercent.Name = "guiCalculatedBonusEliteDamagePercent";
             this.guiCalculatedBonusEliteDamagePercent.ReadOnly = true;
             this.guiCalculatedBonusEliteDamagePercent.Size = new System.Drawing.Size(45, 20);
@@ -1381,7 +1343,7 @@
             // label63
             // 
             label63.AutoSize = true;
-            label63.Location = new System.Drawing.Point(48, 308);
+            label63.Location = new System.Drawing.Point(48, 126);
             label63.Name = "label63";
             label63.Size = new System.Drawing.Size(72, 13);
             label63.TabIndex = 78;
@@ -1390,7 +1352,7 @@
             // label48
             // 
             label48.AutoSize = true;
-            label48.Location = new System.Drawing.Point(177, 282);
+            label48.Location = new System.Drawing.Point(135, 178);
             label48.Name = "label48";
             label48.Size = new System.Drawing.Size(15, 13);
             label48.TabIndex = 76;
@@ -1399,16 +1361,16 @@
             // label49
             // 
             label49.AutoSize = true;
-            label49.Location = new System.Drawing.Point(55, 127);
+            label49.Location = new System.Drawing.Point(29, 23);
             label49.Name = "label49";
-            label49.Size = new System.Drawing.Size(65, 13);
+            label49.Size = new System.Drawing.Size(49, 13);
             label49.TabIndex = 77;
-            label49.Text = "arcane skills";
+            label49.Text = "+ arcane";
             // 
             // label50
             // 
             label50.AutoSize = true;
-            label50.Location = new System.Drawing.Point(177, 256);
+            label50.Location = new System.Drawing.Point(135, 152);
             label50.Name = "label50";
             label50.Size = new System.Drawing.Size(15, 13);
             label50.TabIndex = 72;
@@ -1417,7 +1379,7 @@
             // label51
             // 
             label51.AutoSize = true;
-            label51.Location = new System.Drawing.Point(177, 230);
+            label51.Location = new System.Drawing.Point(135, 126);
             label51.Name = "label51";
             label51.Size = new System.Drawing.Size(15, 13);
             label51.TabIndex = 68;
@@ -1426,7 +1388,7 @@
             // label52
             // 
             label52.AutoSize = true;
-            label52.Location = new System.Drawing.Point(177, 204);
+            label52.Location = new System.Drawing.Point(135, 100);
             label52.Name = "label52";
             label52.Size = new System.Drawing.Size(15, 13);
             label52.TabIndex = 64;
@@ -1435,7 +1397,7 @@
             // label53
             // 
             label53.AutoSize = true;
-            label53.Location = new System.Drawing.Point(177, 178);
+            label53.Location = new System.Drawing.Point(135, 74);
             label53.Name = "label53";
             label53.Size = new System.Drawing.Size(15, 13);
             label53.TabIndex = 60;
@@ -1444,7 +1406,7 @@
             // label54
             // 
             label54.AutoSize = true;
-            label54.Location = new System.Drawing.Point(177, 152);
+            label54.Location = new System.Drawing.Point(135, 48);
             label54.Name = "label54";
             label54.Size = new System.Drawing.Size(15, 13);
             label54.TabIndex = 56;
@@ -1453,7 +1415,7 @@
             // label55
             // 
             label55.AutoSize = true;
-            label55.Location = new System.Drawing.Point(177, 127);
+            label55.Location = new System.Drawing.Point(135, 23);
             label55.Name = "label55";
             label55.Size = new System.Drawing.Size(15, 13);
             label55.TabIndex = 52;
@@ -1461,7 +1423,7 @@
             // 
             // guiCalculatedSkillDamage_Poison
             // 
-            this.guiCalculatedSkillDamage_Poison.Location = new System.Drawing.Point(202, 279);
+            this.guiCalculatedSkillDamage_Poison.Location = new System.Drawing.Point(160, 175);
             this.guiCalculatedSkillDamage_Poison.Name = "guiCalculatedSkillDamage_Poison";
             this.guiCalculatedSkillDamage_Poison.ReadOnly = true;
             this.guiCalculatedSkillDamage_Poison.Size = new System.Drawing.Size(70, 20);
@@ -1469,7 +1431,7 @@
             // 
             // guiCalculatedSkillDamage_Physical
             // 
-            this.guiCalculatedSkillDamage_Physical.Location = new System.Drawing.Point(202, 253);
+            this.guiCalculatedSkillDamage_Physical.Location = new System.Drawing.Point(160, 149);
             this.guiCalculatedSkillDamage_Physical.Name = "guiCalculatedSkillDamage_Physical";
             this.guiCalculatedSkillDamage_Physical.ReadOnly = true;
             this.guiCalculatedSkillDamage_Physical.Size = new System.Drawing.Size(70, 20);
@@ -1477,7 +1439,7 @@
             // 
             // guiCalculatedSkillDamage_Lightning
             // 
-            this.guiCalculatedSkillDamage_Lightning.Location = new System.Drawing.Point(202, 227);
+            this.guiCalculatedSkillDamage_Lightning.Location = new System.Drawing.Point(160, 123);
             this.guiCalculatedSkillDamage_Lightning.Name = "guiCalculatedSkillDamage_Lightning";
             this.guiCalculatedSkillDamage_Lightning.ReadOnly = true;
             this.guiCalculatedSkillDamage_Lightning.Size = new System.Drawing.Size(70, 20);
@@ -1485,7 +1447,7 @@
             // 
             // guiCalculatedSkillDamage_Holy
             // 
-            this.guiCalculatedSkillDamage_Holy.Location = new System.Drawing.Point(202, 201);
+            this.guiCalculatedSkillDamage_Holy.Location = new System.Drawing.Point(160, 97);
             this.guiCalculatedSkillDamage_Holy.Name = "guiCalculatedSkillDamage_Holy";
             this.guiCalculatedSkillDamage_Holy.ReadOnly = true;
             this.guiCalculatedSkillDamage_Holy.Size = new System.Drawing.Size(70, 20);
@@ -1493,7 +1455,7 @@
             // 
             // guiCalculatedSkillDamage_Fire
             // 
-            this.guiCalculatedSkillDamage_Fire.Location = new System.Drawing.Point(202, 175);
+            this.guiCalculatedSkillDamage_Fire.Location = new System.Drawing.Point(160, 71);
             this.guiCalculatedSkillDamage_Fire.Name = "guiCalculatedSkillDamage_Fire";
             this.guiCalculatedSkillDamage_Fire.ReadOnly = true;
             this.guiCalculatedSkillDamage_Fire.Size = new System.Drawing.Size(70, 20);
@@ -1501,7 +1463,7 @@
             // 
             // guiCalculatedSkillDamage_Cold
             // 
-            this.guiCalculatedSkillDamage_Cold.Location = new System.Drawing.Point(202, 149);
+            this.guiCalculatedSkillDamage_Cold.Location = new System.Drawing.Point(160, 45);
             this.guiCalculatedSkillDamage_Cold.Name = "guiCalculatedSkillDamage_Cold";
             this.guiCalculatedSkillDamage_Cold.ReadOnly = true;
             this.guiCalculatedSkillDamage_Cold.Size = new System.Drawing.Size(70, 20);
@@ -1509,7 +1471,7 @@
             // 
             // guiCalculatedSkillDamage_Arcane
             // 
-            this.guiCalculatedSkillDamage_Arcane.Location = new System.Drawing.Point(202, 124);
+            this.guiCalculatedSkillDamage_Arcane.Location = new System.Drawing.Point(160, 20);
             this.guiCalculatedSkillDamage_Arcane.Name = "guiCalculatedSkillDamage_Arcane";
             this.guiCalculatedSkillDamage_Arcane.ReadOnly = true;
             this.guiCalculatedSkillDamage_Arcane.Size = new System.Drawing.Size(70, 20);
@@ -1517,7 +1479,7 @@
             // 
             // guiCalculatedSkillBonusPercent_Arcane
             // 
-            this.guiCalculatedSkillBonusPercent_Arcane.Location = new System.Drawing.Point(126, 123);
+            this.guiCalculatedSkillBonusPercent_Arcane.Location = new System.Drawing.Point(84, 19);
             this.guiCalculatedSkillBonusPercent_Arcane.Name = "guiCalculatedSkillBonusPercent_Arcane";
             this.guiCalculatedSkillBonusPercent_Arcane.ReadOnly = true;
             this.guiCalculatedSkillBonusPercent_Arcane.Size = new System.Drawing.Size(45, 20);
@@ -1525,7 +1487,7 @@
             // 
             // guiCalculatedSkillBonusPercent_Poison
             // 
-            this.guiCalculatedSkillBonusPercent_Poison.Location = new System.Drawing.Point(126, 279);
+            this.guiCalculatedSkillBonusPercent_Poison.Location = new System.Drawing.Point(84, 175);
             this.guiCalculatedSkillBonusPercent_Poison.Name = "guiCalculatedSkillBonusPercent_Poison";
             this.guiCalculatedSkillBonusPercent_Poison.ReadOnly = true;
             this.guiCalculatedSkillBonusPercent_Poison.Size = new System.Drawing.Size(45, 20);
@@ -1534,15 +1496,15 @@
             // label56
             // 
             label56.AutoSize = true;
-            label56.Location = new System.Drawing.Point(57, 282);
+            label56.Location = new System.Drawing.Point(31, 178);
             label56.Name = "label56";
-            label56.Size = new System.Drawing.Size(63, 13);
+            label56.Size = new System.Drawing.Size(47, 13);
             label56.TabIndex = 73;
-            label56.Text = "poison skills";
+            label56.Text = "+ poison";
             // 
             // guiCalculatedSkillBonusPercent_Physical
             // 
-            this.guiCalculatedSkillBonusPercent_Physical.Location = new System.Drawing.Point(126, 253);
+            this.guiCalculatedSkillBonusPercent_Physical.Location = new System.Drawing.Point(84, 149);
             this.guiCalculatedSkillBonusPercent_Physical.Name = "guiCalculatedSkillBonusPercent_Physical";
             this.guiCalculatedSkillBonusPercent_Physical.ReadOnly = true;
             this.guiCalculatedSkillBonusPercent_Physical.Size = new System.Drawing.Size(45, 20);
@@ -1551,15 +1513,15 @@
             // label57
             // 
             label57.AutoSize = true;
-            label57.Location = new System.Drawing.Point(50, 256);
+            label57.Location = new System.Drawing.Point(24, 152);
             label57.Name = "label57";
-            label57.Size = new System.Drawing.Size(70, 13);
+            label57.Size = new System.Drawing.Size(54, 13);
             label57.TabIndex = 69;
-            label57.Text = "physical skills";
+            label57.Text = "+ physical";
             // 
             // guiCalculatedSkillBonusPercent_Lightning
             // 
-            this.guiCalculatedSkillBonusPercent_Lightning.Location = new System.Drawing.Point(126, 227);
+            this.guiCalculatedSkillBonusPercent_Lightning.Location = new System.Drawing.Point(84, 123);
             this.guiCalculatedSkillBonusPercent_Lightning.Name = "guiCalculatedSkillBonusPercent_Lightning";
             this.guiCalculatedSkillBonusPercent_Lightning.ReadOnly = true;
             this.guiCalculatedSkillBonusPercent_Lightning.Size = new System.Drawing.Size(45, 20);
@@ -1568,15 +1530,15 @@
             // label58
             // 
             label58.AutoSize = true;
-            label58.Location = new System.Drawing.Point(49, 230);
+            label58.Location = new System.Drawing.Point(23, 126);
             label58.Name = "label58";
-            label58.Size = new System.Drawing.Size(71, 13);
+            label58.Size = new System.Drawing.Size(55, 13);
             label58.TabIndex = 65;
-            label58.Text = "lightning skills";
+            label58.Text = "+ lightning";
             // 
             // guiCalculatedSkillBonusPercent_Holy
             // 
-            this.guiCalculatedSkillBonusPercent_Holy.Location = new System.Drawing.Point(126, 201);
+            this.guiCalculatedSkillBonusPercent_Holy.Location = new System.Drawing.Point(84, 97);
             this.guiCalculatedSkillBonusPercent_Holy.Name = "guiCalculatedSkillBonusPercent_Holy";
             this.guiCalculatedSkillBonusPercent_Holy.ReadOnly = true;
             this.guiCalculatedSkillBonusPercent_Holy.Size = new System.Drawing.Size(45, 20);
@@ -1585,15 +1547,15 @@
             // label59
             // 
             label59.AutoSize = true;
-            label59.Location = new System.Drawing.Point(69, 204);
+            label59.Location = new System.Drawing.Point(43, 100);
             label59.Name = "label59";
-            label59.Size = new System.Drawing.Size(51, 13);
+            label59.Size = new System.Drawing.Size(35, 13);
             label59.TabIndex = 61;
-            label59.Text = "holy skills";
+            label59.Text = "+ holy";
             // 
             // guiCalculatedSkillBonusPercent_Fire
             // 
-            this.guiCalculatedSkillBonusPercent_Fire.Location = new System.Drawing.Point(126, 175);
+            this.guiCalculatedSkillBonusPercent_Fire.Location = new System.Drawing.Point(84, 71);
             this.guiCalculatedSkillBonusPercent_Fire.Name = "guiCalculatedSkillBonusPercent_Fire";
             this.guiCalculatedSkillBonusPercent_Fire.ReadOnly = true;
             this.guiCalculatedSkillBonusPercent_Fire.Size = new System.Drawing.Size(45, 20);
@@ -1602,15 +1564,15 @@
             // label60
             // 
             label60.AutoSize = true;
-            label60.Location = new System.Drawing.Point(74, 178);
+            label60.Location = new System.Drawing.Point(48, 74);
             label60.Name = "label60";
-            label60.Size = new System.Drawing.Size(46, 13);
+            label60.Size = new System.Drawing.Size(30, 13);
             label60.TabIndex = 57;
-            label60.Text = "fire skills";
+            label60.Text = "+ fire";
             // 
             // guiCalculatedSkillBonusPercent_Cold
             // 
-            this.guiCalculatedSkillBonusPercent_Cold.Location = new System.Drawing.Point(126, 149);
+            this.guiCalculatedSkillBonusPercent_Cold.Location = new System.Drawing.Point(84, 45);
             this.guiCalculatedSkillBonusPercent_Cold.Name = "guiCalculatedSkillBonusPercent_Cold";
             this.guiCalculatedSkillBonusPercent_Cold.ReadOnly = true;
             this.guiCalculatedSkillBonusPercent_Cold.Size = new System.Drawing.Size(45, 20);
@@ -1619,11 +1581,11 @@
             // label61
             // 
             label61.AutoSize = true;
-            label61.Location = new System.Drawing.Point(68, 152);
+            label61.Location = new System.Drawing.Point(42, 48);
             label61.Name = "label61";
-            label61.Size = new System.Drawing.Size(52, 13);
+            label61.Size = new System.Drawing.Size(36, 13);
             label61.TabIndex = 53;
-            label61.Text = "cold skills";
+            label61.Text = "+ cold";
             // 
             // guiCalculatedDPS
             // 
@@ -2056,6 +2018,7 @@
             // 
             // tabActiveSkills
             // 
+            tabActiveSkills.Controls.Add(groupBox12);
             tabActiveSkills.Controls.Add(groupBoxBarbarianActiveSkills);
             tabActiveSkills.Controls.Add(groupBoxMonkActiveSkills);
             tabActiveSkills.Location = new System.Drawing.Point(4, 22);
@@ -2064,6 +2027,27 @@
             tabActiveSkills.TabIndex = 14;
             tabActiveSkills.Text = "Active Skills";
             tabActiveSkills.UseVisualStyleBackColor = true;
+            // 
+            // groupBox12
+            // 
+            groupBox12.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox12.Controls.Add(this.guiSkillCompanion_BoarCompanion);
+            groupBox12.Location = new System.Drawing.Point(8, 220);
+            groupBox12.Name = "groupBox12";
+            groupBox12.Size = new System.Drawing.Size(340, 55);
+            groupBox12.TabIndex = 8;
+            groupBox12.TabStop = false;
+            groupBox12.Text = "Demon Hunter";
+            // 
+            // guiSkillCompanion_BoarCompanion
+            // 
+            this.guiSkillCompanion_BoarCompanion.AutoSize = true;
+            this.guiSkillCompanion_BoarCompanion.Location = new System.Drawing.Point(6, 19);
+            this.guiSkillCompanion_BoarCompanion.Name = "guiSkillCompanion_BoarCompanion";
+            this.guiSkillCompanion_BoarCompanion.Size = new System.Drawing.Size(264, 17);
+            this.guiSkillCompanion_BoarCompanion.TabIndex = 4;
+            this.guiSkillCompanion_BoarCompanion.Text = "Companion / Boar Companion (+20% armor +life/s)";
+            this.guiSkillCompanion_BoarCompanion.UseVisualStyleBackColor = true;
             // 
             // groupBox11
             // 
@@ -2303,6 +2287,31 @@
             tacControl1.Size = new System.Drawing.Size(1034, 602);
             tacControl1.TabIndex = 0;
             // 
+            // tabResults
+            // 
+            this.tabResults.Controls.Add(this.guiSkillCooldownReductionAll);
+            this.tabResults.Controls.Add(groupBox13);
+            this.tabResults.Controls.Add(groupBox2);
+            this.tabResults.Controls.Add(this.guiDoCalculations);
+            this.tabResults.Controls.Add(groupBox10);
+            this.tabResults.Controls.Add(groupBox1);
+            this.tabResults.Location = new System.Drawing.Point(4, 22);
+            this.tabResults.Name = "tabResults";
+            this.tabResults.Size = new System.Drawing.Size(1026, 576);
+            this.tabResults.TabIndex = 15;
+            this.tabResults.Text = "Calculation Results";
+            this.tabResults.UseVisualStyleBackColor = true;
+            // 
+            // guiDoCalculations
+            // 
+            this.guiDoCalculations.Location = new System.Drawing.Point(3, 3);
+            this.guiDoCalculations.Name = "guiDoCalculations";
+            this.guiDoCalculations.Size = new System.Drawing.Size(100, 23);
+            this.guiDoCalculations.TabIndex = 1;
+            this.guiDoCalculations.Text = "Do Calculations";
+            this.guiDoCalculations.UseVisualStyleBackColor = true;
+            this.guiDoCalculations.Click += new System.EventHandler(this.guiDoCalculations_Click);
+            // 
             // tabItemEditor
             // 
             this.tabItemEditor.Controls.Add(groupBox11);
@@ -2315,16 +2324,6 @@
             this.tabItemEditor.Text = "Items Editor";
             this.tabItemEditor.UseVisualStyleBackColor = true;
             // 
-            // guiItemEditor
-            // 
-            this.guiItemEditor.AutoSize = true;
-            this.guiItemEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiItemEditor.KnownGems = null;
-            this.guiItemEditor.Location = new System.Drawing.Point(171, 6);
-            this.guiItemEditor.Name = "guiItemEditor";
-            this.guiItemEditor.Size = new System.Drawing.Size(852, 531);
-            this.guiItemEditor.TabIndex = 1;
-            // 
             // tabSetBonus
             // 
             this.tabSetBonus.Controls.Add(this.guiSetBonusEditor);
@@ -2336,6 +2335,82 @@
             this.tabSetBonus.Text = "Set Bonus";
             this.tabSetBonus.UseVisualStyleBackColor = true;
             // 
+            // guiSkillCooldownReductionAll
+            // 
+            this.guiSkillCooldownReductionAll.Location = new System.Drawing.Point(259, 401);
+            this.guiSkillCooldownReductionAll.Name = "guiSkillCooldownReductionAll";
+            this.guiSkillCooldownReductionAll.ReadOnly = true;
+            this.guiSkillCooldownReductionAll.Size = new System.Drawing.Size(45, 20);
+            this.guiSkillCooldownReductionAll.TabIndex = 37;
+            // 
+            // label70
+            // 
+            label70.AutoSize = true;
+            label70.Location = new System.Drawing.Point(14, 204);
+            label70.Name = "label70";
+            label70.Size = new System.Drawing.Size(64, 13);
+            label70.TabIndex = 36;
+            label70.Text = "% cooldown";
+            // 
+            // groupBox13
+            // 
+            groupBox13.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox13.Controls.Add(label71);
+            groupBox13.Controls.Add(label49);
+            groupBox13.Controls.Add(label70);
+            groupBox13.Controls.Add(label61);
+            groupBox13.Controls.Add(this.guiCalculatedSkillBonusPercent_Cold);
+            groupBox13.Controls.Add(label48);
+            groupBox13.Controls.Add(label60);
+            groupBox13.Controls.Add(this.guiCalculatedSkillBonusPercent_Fire);
+            groupBox13.Controls.Add(label50);
+            groupBox13.Controls.Add(label59);
+            groupBox13.Controls.Add(label51);
+            groupBox13.Controls.Add(this.guiCalculatedSkillBonusPercent_Holy);
+            groupBox13.Controls.Add(label52);
+            groupBox13.Controls.Add(label58);
+            groupBox13.Controls.Add(label53);
+            groupBox13.Controls.Add(this.guiCalculatedSkillBonusPercent_Lightning);
+            groupBox13.Controls.Add(label54);
+            groupBox13.Controls.Add(label57);
+            groupBox13.Controls.Add(label55);
+            groupBox13.Controls.Add(this.guiCalculatedSkillBonusPercent_Physical);
+            groupBox13.Controls.Add(this.guiCalculatedSkillDamage_Poison);
+            groupBox13.Controls.Add(label56);
+            groupBox13.Controls.Add(this.guiCalculatedSkillDamage_Physical);
+            groupBox13.Controls.Add(this.guiCalculatedSkillBonusPercent_Poison);
+            groupBox13.Controls.Add(this.guiCalculatedSkillDamage_Lightning);
+            groupBox13.Controls.Add(this.guiCalculatedSkillBonusPercent_Arcane);
+            groupBox13.Controls.Add(this.guiCalculatedSkillDamage_Holy);
+            groupBox13.Controls.Add(this.guiCalculatedSkillDamage_Arcane);
+            groupBox13.Controls.Add(this.guiCalculatedSkillDamage_Fire);
+            groupBox13.Controls.Add(this.guiCalculatedSkillDamage_Cold);
+            groupBox13.Location = new System.Drawing.Point(175, 200);
+            groupBox13.Name = "groupBox13";
+            groupBox13.Size = new System.Drawing.Size(278, 233);
+            groupBox13.TabIndex = 5;
+            groupBox13.TabStop = false;
+            groupBox13.Text = "Calculation: Skills";
+            // 
+            // label71
+            // 
+            label71.AutoSize = true;
+            label71.Location = new System.Drawing.Point(135, 204);
+            label71.Name = "label71";
+            label71.Size = new System.Drawing.Size(15, 13);
+            label71.TabIndex = 78;
+            label71.Text = "%";
+            // 
+            // guiItemEditor
+            // 
+            this.guiItemEditor.AutoSize = true;
+            this.guiItemEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiItemEditor.KnownGems = null;
+            this.guiItemEditor.Location = new System.Drawing.Point(171, 6);
+            this.guiItemEditor.Name = "guiItemEditor";
+            this.guiItemEditor.Size = new System.Drawing.Size(853, 531);
+            this.guiItemEditor.TabIndex = 1;
+            // 
             // guiSetBonusEditor
             // 
             this.guiSetBonusEditor.AutoSize = true;
@@ -2343,7 +2418,7 @@
             this.guiSetBonusEditor.KnownGems = null;
             this.guiSetBonusEditor.Location = new System.Drawing.Point(6, 6);
             this.guiSetBonusEditor.Name = "guiSetBonusEditor";
-            this.guiSetBonusEditor.Size = new System.Drawing.Size(852, 531);
+            this.guiSetBonusEditor.Size = new System.Drawing.Size(853, 531);
             this.guiSetBonusEditor.TabIndex = 0;
             // 
             // D3CalculatorForm
@@ -2373,8 +2448,6 @@
             groupBoxBarbarianActiveSkills.PerformLayout();
             groupBoxMonkActiveSkills.ResumeLayout(false);
             groupBoxMonkActiveSkills.PerformLayout();
-            this.tabResults.ResumeLayout(false);
-            this.tabResults.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox10.ResumeLayout(false);
@@ -2382,12 +2455,18 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             tabActiveSkills.ResumeLayout(false);
+            groupBox12.ResumeLayout(false);
+            groupBox12.PerformLayout();
             groupBox11.ResumeLayout(false);
             tacControl1.ResumeLayout(false);
+            this.tabResults.ResumeLayout(false);
+            this.tabResults.PerformLayout();
             this.tabItemEditor.ResumeLayout(false);
             this.tabItemEditor.PerformLayout();
             this.tabSetBonus.ResumeLayout(false);
             this.tabSetBonus.PerformLayout();
+            groupBox13.ResumeLayout(false);
+            groupBox13.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2505,5 +2584,7 @@
         private System.Windows.Forms.TextBox guiCalculatedReductionFromMeleePercent;
         private System.Windows.Forms.TextBox guiCalculatedReductionFromElitesPercent;
         private System.Windows.Forms.TabPage tabResults;
+        private System.Windows.Forms.CheckBox guiSkillCompanion_BoarCompanion;
+        private System.Windows.Forms.TextBox guiSkillCooldownReductionAll;
     }
 }

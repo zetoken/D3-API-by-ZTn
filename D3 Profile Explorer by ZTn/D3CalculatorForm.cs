@@ -9,6 +9,7 @@ using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Calculator.Skills.Barbarian;
+using ZTn.BNet.D3.Calculator.Skills.DemonHunter;
 using ZTn.BNet.D3.Calculator.Skills.Followers;
 using ZTn.BNet.D3.Calculator.Skills.Monk;
 using ZTn.BNet.D3.Helpers;
@@ -375,6 +376,10 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
 
             // Demon Hunter active skills
+            if (guiSkillCompanion_BoarCompanion.Checked)
+            {
+                activeSkills.Add(new Companion_BoarCompanion());
+            }
 
             // Monk active skills
             if (guiSkillMantraOfHealing_TimeOfNeed.Checked)
@@ -612,6 +617,8 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateCalculatedData(guiCalculatedSkillDamage_Physical, calculatedDps * attr.damageDealtPercentBonusPhysical);
             PopulateCalculatedData(guiCalculatedSkillDamage_Poison, calculatedDps * attr.damageDealtPercentBonusPoison);
 
+            PopulateCalculatedDataPercent(guiSkillCooldownReductionAll, attr.powerCooldownReductionPercentAll);
+
             PopulateCalculatedDataPercent(guiCalculatedBonusEliteDamagePercent, attr.damagePercentBonusVsElites);
             PopulateCalculatedDataPercent(guiCalculatedReductionFromMeleePercent, attr.damagePercentReductionFromMelee);
             PopulateCalculatedDataPercent(guiCalculatedReductionFromRangedPercent, attr.damagePercentReductionFromRanged);
@@ -646,7 +653,9 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void guiHeroClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), guiHeroClass.SelectedItem as String);
+            var heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), (string)guiHeroClass.SelectedItem);
+
+            var isHero = false;
 
             switch (heroClass)
             {
@@ -656,31 +665,20 @@ namespace ZTn.BNet.D3ProfileExplorer
                 case HeroClass.Monk:
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
-                    guiItemChoiceSpecial.Visible = false;
-                    guiItemChoiceBracers.Visible = true;
-                    guiItemChoiceBracers.Visible = true;
-                    guiItemChoiceFeet.Visible = true;
-                    guiItemChoiceHands.Visible = true;
-                    guiItemChoiceHead.Visible = true;
-                    guiItemChoiceLegs.Visible = true;
-                    guiItemChoiceShoulders.Visible = true;
-                    guiItemChoiceTorso.Visible = true;
-                    guiItemChoiceWaist.Visible = true;
-                    break;
-                case HeroClass.EnchantressFollower:
-                case HeroClass.ScoundrelFollower:
-                case HeroClass.TemplarFollower:
-                    guiItemChoiceSpecial.Visible = true;
-                    guiItemChoiceBracers.Visible = false;
-                    guiItemChoiceFeet.Visible = false;
-                    guiItemChoiceHands.Visible = false;
-                    guiItemChoiceHead.Visible = false;
-                    guiItemChoiceLegs.Visible = false;
-                    guiItemChoiceShoulders.Visible = false;
-                    guiItemChoiceTorso.Visible = false;
-                    guiItemChoiceWaist.Visible = false;
+                    isHero = true;
                     break;
             }
+
+            guiItemChoiceSpecial.Visible = !isHero;
+            guiItemChoiceBracers.Visible = isHero;
+            guiItemChoiceBracers.Visible = isHero;
+            guiItemChoiceFeet.Visible = isHero;
+            guiItemChoiceHands.Visible = isHero;
+            guiItemChoiceHead.Visible = isHero;
+            guiItemChoiceLegs.Visible = isHero;
+            guiItemChoiceShoulders.Visible = isHero;
+            guiItemChoiceTorso.Visible = isHero;
+            guiItemChoiceWaist.Visible = isHero;
         }
 
         private void guiItemChoices_Click(object sender, EventArgs e)

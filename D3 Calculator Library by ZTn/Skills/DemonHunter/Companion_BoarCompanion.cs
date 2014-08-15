@@ -1,24 +1,24 @@
 ﻿using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
-namespace ZTn.BNet.D3.Calculator.Skills.Monk
+namespace ZTn.BNet.D3.Calculator.Skills.DemonHunter
 {
-    public sealed class MantraOfHealing_TimeOfNeed : ID3SkillModifier
+    public sealed class Companion_BoarCompanion : ID3SkillModifier
     {
-        private const double multiplier = 0.20;
+        private const double multiplier = 0.10;
 
         #region >> ID3SkillModifier
 
         /// <inheritdoc />
         public HeroClass HeroClass
         {
-            get { return HeroClass.Monk; }
+            get { return HeroClass.DemonHunter; }
         }
 
         /// <inheritdoc />
         public string Slug
         {
-            get { return "mantra-of-healing-time-of-need"; }
+            get { return "companion-boar-companion"; }
         }
 
         /// <inheritdoc />
@@ -26,7 +26,7 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
         {
             var attr = new ItemAttributes { hitpointsRegenPerSecond = new ItemValueRange(4126) };
 
-            attr += (new ResistancesMultiplier(multiplier)).GetBonus(calculator);
+            attr += (new ResistancesMultiplier(0.20)).GetBonus(calculator);
 
             return attr;
         }

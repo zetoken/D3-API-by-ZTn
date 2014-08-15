@@ -183,6 +183,8 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateDataPercent(guiSkillBonusPercentPhysical, attr.damageDealtPercentBonusPhysical);
             PopulateDataPercent(guiSkillBonusPercentPoison, attr.damageDealtPercentBonusPoison);
 
+            PopulateDataPercent(guiSkillCooldownReductionAll, attr.powerCooldownReductionPercentAll);
+
             PopulateDataPercent(guiBonusEliteDamagePercent, attr.damagePercentBonusVsElites);
 
             // Resistances
@@ -315,6 +317,8 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.damageDealtPercentBonusLightning = GetDataPercent(guiSkillBonusPercentLightning);
             attr.damageDealtPercentBonusPhysical = GetDataPercent(guiSkillBonusPercentPhysical);
             attr.damageDealtPercentBonusPoison = GetDataPercent(guiSkillBonusPercentPoison);
+
+            attr.powerCooldownReductionPercentAll = GetDataPercent(guiSkillCooldownReductionAll);
 
             attr.damagePercentBonusVsElites = GetDataPercent(guiBonusEliteDamagePercent);
 
