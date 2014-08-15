@@ -128,9 +128,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateDataPercent(guiCriticChance, attr.critPercentBonusCapped);
             PopulateDataPercent(guiHitpointsMaxPercent, attr.hitpointsMaxPercentBonusItem);
             PopulateData(guiArmor, attr.armorItem);
-            PopulateData(guiHitpointsOnHit, attr.hitpointsOnHit);
-            PopulateData(guiHitpointsRegenPerSecond, attr.hitpointsRegenPerSecond);
-            PopulateDataPercent(guiLifeSteal, attr.stealHealthPercent);
 
             // Weapon characterics
             PopulateData(guiWeaponAttackPerSecond, attr.attacksPerSecondItem);
@@ -186,6 +183,8 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateDataPercent(guiSkillBonusPercentPhysical, attr.damageDealtPercentBonusPhysical);
             PopulateDataPercent(guiSkillBonusPercentPoison, attr.damageDealtPercentBonusPoison);
 
+            PopulateDataPercent(guiBonusEliteDamagePercent, attr.damagePercentBonusVsElites);
+
             // Resistances
             PopulateData(guiResistance_All, attr.resistance_All);
             PopulateData(guiResistance_Arcane, attr.resistance_Arcane);
@@ -199,6 +198,14 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateDataPercent(guiShieldBlockPercent, attr.blockChanceItem + attr.blockChanceBonusItem);
             PopulateData(guiShieldBlockMin, attr.blockAmountItemMin);
             PopulateData(guiShieldBlockMax, attr.blockAmountItemMin + attr.blockAmountItemDelta);
+
+            PopulateData(guiHitpointsOnHit, attr.hitpointsOnHit);
+            PopulateData(guiHitpointsRegenPerSecond, attr.hitpointsRegenPerSecond);
+            PopulateDataPercent(guiLifeSteal, attr.stealHealthPercent);
+
+            PopulateDataPercent(guiReductionFromElitesPercent, attr.damagePercentReductionFromElites);
+            PopulateDataPercent(guiReductionFromMeleePercent, attr.damagePercentReductionFromMelee);
+            PopulateDataPercent(guiReductionFromRangedPercent, attr.damagePercentReductionFromRanged);
 
             // Gems
             gems1 = new List<GemsListViewItem>();
@@ -255,9 +262,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.critPercentBonusCapped = GetDataPercent(guiCriticChance);
             attr.hitpointsMaxPercentBonusItem = GetDataPercent(guiHitpointsMaxPercent);
             attr.armorItem = GetData(guiArmor);
-            attr.hitpointsOnHit = GetData(guiHitpointsOnHit);
-            attr.hitpointsRegenPerSecond = GetData(guiHitpointsRegenPerSecond);
-            attr.stealHealthPercent = GetDataPercent(guiLifeSteal);
 
             attr.attacksPerSecondItem = GetData(guiWeaponAttackPerSecond);
 
@@ -312,6 +316,8 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.damageDealtPercentBonusPhysical = GetDataPercent(guiSkillBonusPercentPhysical);
             attr.damageDealtPercentBonusPoison = GetDataPercent(guiSkillBonusPercentPoison);
 
+            attr.damagePercentBonusVsElites = GetDataPercent(guiBonusEliteDamagePercent);
+
             attr.resistance_All = GetData(guiResistance_All);
             attr.resistance_Arcane = GetData(guiResistance_Arcane);
             attr.resistance_Cold = GetData(guiResistance_Cold);
@@ -324,6 +330,14 @@ namespace ZTn.BNet.D3ProfileExplorer
             attr.blockChanceItem = GetData(guiShieldBlockPercent);
             attr.blockAmountItemMin = GetData(guiShieldBlockMin);
             attr.blockAmountItemDelta = GetData(guiShieldBlockMax) - attr.blockAmountItemMin;
+
+            attr.hitpointsOnHit = GetData(guiHitpointsOnHit);
+            attr.hitpointsRegenPerSecond = GetData(guiHitpointsRegenPerSecond);
+            attr.stealHealthPercent = GetDataPercent(guiLifeSteal);
+
+            attr.damagePercentReductionFromElites = GetDataPercent(guiReductionFromElitesPercent);
+            attr.damagePercentReductionFromMelee = GetDataPercent(guiReductionFromMeleePercent);
+            attr.damagePercentReductionFromRanged = GetDataPercent(guiReductionFromRangedPercent);
 
             item.AttributesRaw = attr;
             var gems = new List<SocketedGem>();

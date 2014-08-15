@@ -41,8 +41,13 @@
             System.Windows.Forms.GroupBox groupBox4;
             System.Windows.Forms.GroupBox groupBoxBarbarianActiveSkills;
             System.Windows.Forms.GroupBox groupBoxMonkActiveSkills;
-            System.Windows.Forms.TabPage tabResults;
             System.Windows.Forms.GroupBox groupBox2;
+            System.Windows.Forms.Label label68;
+            System.Windows.Forms.Label label69;
+            System.Windows.Forms.Label label66;
+            System.Windows.Forms.Label label67;
+            System.Windows.Forms.Label label65;
+            System.Windows.Forms.Label label64;
             System.Windows.Forms.Label label46;
             System.Windows.Forms.Label label45;
             System.Windows.Forms.Label label44;
@@ -66,6 +71,8 @@
             System.Windows.Forms.Label label22;
             System.Windows.Forms.Label label21;
             System.Windows.Forms.GroupBox groupBox10;
+            System.Windows.Forms.Label label62;
+            System.Windows.Forms.Label label63;
             System.Windows.Forms.Label label48;
             System.Windows.Forms.Label label49;
             System.Windows.Forms.Label label50;
@@ -132,6 +139,10 @@
             this.guiSkillMysticAlly_EarthAlly = new System.Windows.Forms.CheckBox();
             this.guiSkillMantraOfHealing_TimeOfNeed = new System.Windows.Forms.CheckBox();
             this.guiSkillMantraOfEvasion_HardTarget = new System.Windows.Forms.CheckBox();
+            this.tabResults = new System.Windows.Forms.TabPage();
+            this.guiCalculatedReductionFromRangedPercent = new System.Windows.Forms.TextBox();
+            this.guiCalculatedReductionFromMeleePercent = new System.Windows.Forms.TextBox();
+            this.guiCalculatedReductionFromElitesPercent = new System.Windows.Forms.TextBox();
             this.guiCalculatedDPSEHPRatio = new System.Windows.Forms.TextBox();
             this.guiCalculatedEffectiveHitpoints = new System.Windows.Forms.TextBox();
             this.guiCalculatedResistance_All = new System.Windows.Forms.TextBox();
@@ -155,6 +166,7 @@
             this.guiCalculatedResistance_Cold = new System.Windows.Forms.TextBox();
             this.guiCalculatedResistance_Arcane = new System.Windows.Forms.TextBox();
             this.guiDoCalculations = new System.Windows.Forms.Button();
+            this.guiCalculatedBonusEliteDamagePercent = new System.Windows.Forms.TextBox();
             this.guiCalculatedSkillDamage_Poison = new System.Windows.Forms.TextBox();
             this.guiCalculatedSkillDamage_Physical = new System.Windows.Forms.TextBox();
             this.guiCalculatedSkillDamage_Lightning = new System.Windows.Forms.TextBox();
@@ -207,10 +219,10 @@
             this.guiItemChoiceSpecial = new System.Windows.Forms.Button();
             this.guiItemChoiceOffHand = new System.Windows.Forms.Button();
             this.guiItemChoiceMainHand = new System.Windows.Forms.Button();
-            this.tabSetBonus = new System.Windows.Forms.TabPage();
-            this.guiSetBonusEditor = new ZTn.BNet.D3ProfileExplorer.D3ItemEditor();
             this.tabItemEditor = new System.Windows.Forms.TabPage();
             this.guiItemEditor = new ZTn.BNet.D3ProfileExplorer.D3ItemEditor();
+            this.tabSetBonus = new System.Windows.Forms.TabPage();
+            this.guiSetBonusEditor = new ZTn.BNet.D3ProfileExplorer.D3ItemEditor();
             label6 = new System.Windows.Forms.Label();
             tabPassiveSkills = new System.Windows.Forms.TabPage();
             groupBox9 = new System.Windows.Forms.GroupBox();
@@ -224,8 +236,13 @@
             groupBox4 = new System.Windows.Forms.GroupBox();
             groupBoxBarbarianActiveSkills = new System.Windows.Forms.GroupBox();
             groupBoxMonkActiveSkills = new System.Windows.Forms.GroupBox();
-            tabResults = new System.Windows.Forms.TabPage();
             groupBox2 = new System.Windows.Forms.GroupBox();
+            label68 = new System.Windows.Forms.Label();
+            label69 = new System.Windows.Forms.Label();
+            label66 = new System.Windows.Forms.Label();
+            label67 = new System.Windows.Forms.Label();
+            label65 = new System.Windows.Forms.Label();
+            label64 = new System.Windows.Forms.Label();
             label46 = new System.Windows.Forms.Label();
             label45 = new System.Windows.Forms.Label();
             label44 = new System.Windows.Forms.Label();
@@ -249,6 +266,8 @@
             label22 = new System.Windows.Forms.Label();
             label21 = new System.Windows.Forms.Label();
             groupBox10 = new System.Windows.Forms.GroupBox();
+            label62 = new System.Windows.Forms.Label();
+            label63 = new System.Windows.Forms.Label();
             label48 = new System.Windows.Forms.Label();
             label49 = new System.Windows.Forms.Label();
             label50 = new System.Windows.Forms.Label();
@@ -298,15 +317,15 @@
             groupBox4.SuspendLayout();
             groupBoxBarbarianActiveSkills.SuspendLayout();
             groupBoxMonkActiveSkills.SuspendLayout();
-            tabResults.SuspendLayout();
+            this.tabResults.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox10.SuspendLayout();
             groupBox1.SuspendLayout();
             tabActiveSkills.SuspendLayout();
             groupBox11.SuspendLayout();
-            this.tabSetBonus.SuspendLayout();
             tacControl1.SuspendLayout();
             this.tabItemEditor.SuspendLayout();
+            this.tabSetBonus.SuspendLayout();
             this.SuspendLayout();
             // 
             // label6
@@ -519,7 +538,7 @@
             this.guiHeroClass.Name = "guiHeroClass";
             this.guiHeroClass.Size = new System.Drawing.Size(100, 21);
             this.guiHeroClass.TabIndex = 5;
-            this.guiHeroClass.SelectionChangeCommitted += new System.EventHandler(this.guiHeroClass_SelectionChangeCommitted);
+            this.guiHeroClass.SelectedIndexChanged += new System.EventHandler(this.guiHeroClass_SelectedIndexChanged);
             // 
             // guiHeroParagonLevel
             // 
@@ -751,21 +770,29 @@
             // 
             // tabResults
             // 
-            tabResults.Controls.Add(groupBox2);
-            tabResults.Controls.Add(this.guiDoCalculations);
-            tabResults.Controls.Add(groupBox10);
-            tabResults.Controls.Add(groupBox1);
-            tabResults.Location = new System.Drawing.Point(4, 22);
-            tabResults.Name = "tabResults";
-            tabResults.Size = new System.Drawing.Size(1026, 576);
-            tabResults.TabIndex = 15;
-            tabResults.Text = "Calculation Results";
-            tabResults.UseVisualStyleBackColor = true;
+            this.tabResults.Controls.Add(groupBox2);
+            this.tabResults.Controls.Add(this.guiDoCalculations);
+            this.tabResults.Controls.Add(groupBox10);
+            this.tabResults.Controls.Add(groupBox1);
+            this.tabResults.Location = new System.Drawing.Point(4, 22);
+            this.tabResults.Name = "tabResults";
+            this.tabResults.Size = new System.Drawing.Size(1026, 576);
+            this.tabResults.TabIndex = 15;
+            this.tabResults.Text = "Calculation Results";
+            this.tabResults.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
-            groupBox2.AutoSize = true;
             groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox2.Controls.Add(label68);
+            groupBox2.Controls.Add(this.guiCalculatedReductionFromRangedPercent);
+            groupBox2.Controls.Add(label69);
+            groupBox2.Controls.Add(label66);
+            groupBox2.Controls.Add(this.guiCalculatedReductionFromMeleePercent);
+            groupBox2.Controls.Add(label67);
+            groupBox2.Controls.Add(label65);
+            groupBox2.Controls.Add(this.guiCalculatedReductionFromElitesPercent);
+            groupBox2.Controls.Add(label64);
             groupBox2.Controls.Add(label46);
             groupBox2.Controls.Add(this.guiCalculatedDPSEHPRatio);
             groupBox2.Controls.Add(label45);
@@ -812,10 +839,88 @@
             groupBox2.Controls.Add(label21);
             groupBox2.Location = new System.Drawing.Point(459, 32);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new System.Drawing.Size(280, 370);
+            groupBox2.Size = new System.Drawing.Size(280, 477);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Calculation: Defense";
+            // 
+            // label68
+            // 
+            label68.AutoSize = true;
+            label68.Location = new System.Drawing.Point(177, 412);
+            label68.Name = "label68";
+            label68.Size = new System.Drawing.Size(15, 13);
+            label68.TabIndex = 62;
+            label68.Text = "%";
+            // 
+            // guiCalculatedReductionFromRangedPercent
+            // 
+            this.guiCalculatedReductionFromRangedPercent.Location = new System.Drawing.Point(126, 409);
+            this.guiCalculatedReductionFromRangedPercent.Name = "guiCalculatedReductionFromRangedPercent";
+            this.guiCalculatedReductionFromRangedPercent.ReadOnly = true;
+            this.guiCalculatedReductionFromRangedPercent.Size = new System.Drawing.Size(45, 20);
+            this.guiCalculatedReductionFromRangedPercent.TabIndex = 61;
+            // 
+            // label69
+            // 
+            label69.AutoSize = true;
+            label69.Location = new System.Drawing.Point(33, 412);
+            label69.Name = "label69";
+            label69.Size = new System.Drawing.Size(87, 13);
+            label69.TabIndex = 60;
+            label69.Text = "ranged reduction";
+            // 
+            // label66
+            // 
+            label66.AutoSize = true;
+            label66.Location = new System.Drawing.Point(177, 386);
+            label66.Name = "label66";
+            label66.Size = new System.Drawing.Size(15, 13);
+            label66.TabIndex = 59;
+            label66.Text = "%";
+            // 
+            // guiCalculatedReductionFromMeleePercent
+            // 
+            this.guiCalculatedReductionFromMeleePercent.Location = new System.Drawing.Point(126, 383);
+            this.guiCalculatedReductionFromMeleePercent.Name = "guiCalculatedReductionFromMeleePercent";
+            this.guiCalculatedReductionFromMeleePercent.ReadOnly = true;
+            this.guiCalculatedReductionFromMeleePercent.Size = new System.Drawing.Size(45, 20);
+            this.guiCalculatedReductionFromMeleePercent.TabIndex = 58;
+            // 
+            // label67
+            // 
+            label67.AutoSize = true;
+            label67.Location = new System.Drawing.Point(38, 386);
+            label67.Name = "label67";
+            label67.Size = new System.Drawing.Size(82, 13);
+            label67.TabIndex = 57;
+            label67.Text = "melee reduction";
+            // 
+            // label65
+            // 
+            label65.AutoSize = true;
+            label65.Location = new System.Drawing.Point(177, 360);
+            label65.Name = "label65";
+            label65.Size = new System.Drawing.Size(15, 13);
+            label65.TabIndex = 56;
+            label65.Text = "%";
+            // 
+            // guiCalculatedReductionFromElitesPercent
+            // 
+            this.guiCalculatedReductionFromElitesPercent.Location = new System.Drawing.Point(126, 357);
+            this.guiCalculatedReductionFromElitesPercent.Name = "guiCalculatedReductionFromElitesPercent";
+            this.guiCalculatedReductionFromElitesPercent.ReadOnly = true;
+            this.guiCalculatedReductionFromElitesPercent.Size = new System.Drawing.Size(45, 20);
+            this.guiCalculatedReductionFromElitesPercent.TabIndex = 55;
+            // 
+            // label64
+            // 
+            label64.AutoSize = true;
+            label64.Location = new System.Drawing.Point(42, 360);
+            label64.Name = "label64";
+            label64.Size = new System.Drawing.Size(78, 13);
+            label64.TabIndex = 54;
+            label64.Text = "elites reduction";
             // 
             // label46
             // 
@@ -1208,6 +1313,9 @@
             // groupBox10
             // 
             groupBox10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox10.Controls.Add(label62);
+            groupBox10.Controls.Add(this.guiCalculatedBonusEliteDamagePercent);
+            groupBox10.Controls.Add(label63);
             groupBox10.Controls.Add(label48);
             groupBox10.Controls.Add(label49);
             groupBox10.Controls.Add(label50);
@@ -1248,10 +1356,36 @@
             groupBox10.Controls.Add(this.guiCalcultatedDamageCriticMin);
             groupBox10.Location = new System.Drawing.Point(175, 32);
             groupBox10.Name = "groupBox10";
-            groupBox10.Size = new System.Drawing.Size(278, 318);
+            groupBox10.Size = new System.Drawing.Size(278, 344);
             groupBox10.TabIndex = 4;
             groupBox10.TabStop = false;
             groupBox10.Text = "Calculation: Damage";
+            // 
+            // label62
+            // 
+            label62.AutoSize = true;
+            label62.Location = new System.Drawing.Point(177, 308);
+            label62.Name = "label62";
+            label62.Size = new System.Drawing.Size(15, 13);
+            label62.TabIndex = 80;
+            label62.Text = "%";
+            // 
+            // guiCalculatedBonusEliteDamagePercent
+            // 
+            this.guiCalculatedBonusEliteDamagePercent.Location = new System.Drawing.Point(126, 305);
+            this.guiCalculatedBonusEliteDamagePercent.Name = "guiCalculatedBonusEliteDamagePercent";
+            this.guiCalculatedBonusEliteDamagePercent.ReadOnly = true;
+            this.guiCalculatedBonusEliteDamagePercent.Size = new System.Drawing.Size(45, 20);
+            this.guiCalculatedBonusEliteDamagePercent.TabIndex = 79;
+            // 
+            // label63
+            // 
+            label63.AutoSize = true;
+            label63.Location = new System.Drawing.Point(48, 308);
+            label63.Name = "label63";
+            label63.Size = new System.Drawing.Size(72, 13);
+            label63.TabIndex = 78;
+            label63.Text = "bonus vs elite";
             // 
             // label48
             // 
@@ -2153,30 +2287,9 @@
             this.guiItemChoiceMainHand.UseVisualStyleBackColor = true;
             this.guiItemChoiceMainHand.Click += new System.EventHandler(this.guiItemChoices_Click);
             // 
-            // tabSetBonus
-            // 
-            this.tabSetBonus.Controls.Add(this.guiSetBonusEditor);
-            this.tabSetBonus.Location = new System.Drawing.Point(4, 22);
-            this.tabSetBonus.Name = "tabSetBonus";
-            this.tabSetBonus.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSetBonus.Size = new System.Drawing.Size(1026, 576);
-            this.tabSetBonus.TabIndex = 16;
-            this.tabSetBonus.Text = "Set Bonus";
-            this.tabSetBonus.UseVisualStyleBackColor = true;
-            // 
-            // guiSetBonusEditor
-            // 
-            this.guiSetBonusEditor.AutoSize = true;
-            this.guiSetBonusEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiSetBonusEditor.KnownGems = null;
-            this.guiSetBonusEditor.Location = new System.Drawing.Point(6, 6);
-            this.guiSetBonusEditor.Name = "guiSetBonusEditor";
-            this.guiSetBonusEditor.Size = new System.Drawing.Size(708, 531);
-            this.guiSetBonusEditor.TabIndex = 0;
-            // 
             // tacControl1
             // 
-            tacControl1.Controls.Add(tabResults);
+            tacControl1.Controls.Add(this.tabResults);
             tacControl1.Controls.Add(this.tabItemEditor);
             tacControl1.Controls.Add(this.tabSetBonus);
             tacControl1.Controls.Add(tabPassiveSkills);
@@ -2209,8 +2322,29 @@
             this.guiItemEditor.KnownGems = null;
             this.guiItemEditor.Location = new System.Drawing.Point(171, 6);
             this.guiItemEditor.Name = "guiItemEditor";
-            this.guiItemEditor.Size = new System.Drawing.Size(708, 531);
+            this.guiItemEditor.Size = new System.Drawing.Size(852, 531);
             this.guiItemEditor.TabIndex = 1;
+            // 
+            // tabSetBonus
+            // 
+            this.tabSetBonus.Controls.Add(this.guiSetBonusEditor);
+            this.tabSetBonus.Location = new System.Drawing.Point(4, 22);
+            this.tabSetBonus.Name = "tabSetBonus";
+            this.tabSetBonus.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSetBonus.Size = new System.Drawing.Size(1026, 576);
+            this.tabSetBonus.TabIndex = 16;
+            this.tabSetBonus.Text = "Set Bonus";
+            this.tabSetBonus.UseVisualStyleBackColor = true;
+            // 
+            // guiSetBonusEditor
+            // 
+            this.guiSetBonusEditor.AutoSize = true;
+            this.guiSetBonusEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiSetBonusEditor.KnownGems = null;
+            this.guiSetBonusEditor.Location = new System.Drawing.Point(6, 6);
+            this.guiSetBonusEditor.Name = "guiSetBonusEditor";
+            this.guiSetBonusEditor.Size = new System.Drawing.Size(852, 531);
+            this.guiSetBonusEditor.TabIndex = 0;
             // 
             // D3CalculatorForm
             // 
@@ -2239,8 +2373,8 @@
             groupBoxBarbarianActiveSkills.PerformLayout();
             groupBoxMonkActiveSkills.ResumeLayout(false);
             groupBoxMonkActiveSkills.PerformLayout();
-            tabResults.ResumeLayout(false);
-            tabResults.PerformLayout();
+            this.tabResults.ResumeLayout(false);
+            this.tabResults.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox10.ResumeLayout(false);
@@ -2249,11 +2383,11 @@
             groupBox1.PerformLayout();
             tabActiveSkills.ResumeLayout(false);
             groupBox11.ResumeLayout(false);
-            this.tabSetBonus.ResumeLayout(false);
-            this.tabSetBonus.PerformLayout();
             tacControl1.ResumeLayout(false);
             this.tabItemEditor.ResumeLayout(false);
             this.tabItemEditor.PerformLayout();
+            this.tabSetBonus.ResumeLayout(false);
+            this.tabSetBonus.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2366,5 +2500,10 @@
         private System.Windows.Forms.Button guiItemChoiceOffHand;
         private System.Windows.Forms.Button guiItemChoiceMainHand;
         private D3ItemEditor guiItemEditor;
+        private System.Windows.Forms.TextBox guiCalculatedBonusEliteDamagePercent;
+        private System.Windows.Forms.TextBox guiCalculatedReductionFromRangedPercent;
+        private System.Windows.Forms.TextBox guiCalculatedReductionFromMeleePercent;
+        private System.Windows.Forms.TextBox guiCalculatedReductionFromElitesPercent;
+        private System.Windows.Forms.TabPage tabResults;
     }
 }

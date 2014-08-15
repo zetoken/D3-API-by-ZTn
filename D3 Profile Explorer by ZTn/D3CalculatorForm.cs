@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Calculator.Gems;
@@ -10,6 +11,7 @@ using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Calculator.Skills.Barbarian;
 using ZTn.BNet.D3.Calculator.Skills.Followers;
 using ZTn.BNet.D3.Calculator.Skills.Monk;
+using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.HeroFollowers;
 using ZTn.BNet.D3.Items;
@@ -347,10 +349,13 @@ namespace ZTn.BNet.D3ProfileExplorer
                 guiItemChoiceWaist.Tag as Item,
                 guiSetBonusEditor.GetEditedItem()
             };
+            items = items.Where(i => i != null)
+                .Select(i => i.DeepClone())
+                .ToList();
 
-            var mainHand = guiItemChoiceMainHand.Tag as Item;
+            var mainHand = (guiItemChoiceMainHand.Tag as Item).DeepClone();
 
-            var offHand = guiItemChoiceOffHand.Tag as Item;
+            var offHand = (guiItemChoiceOffHand.Tag as Item).DeepClone();
 
             var d3Calculator = new D3Calculator(hero, mainHand, offHand, items.ToArray());
 
@@ -416,6 +421,8 @@ namespace ZTn.BNet.D3ProfileExplorer
             UpdateItemsSummary(d3Calculator);
 
             UpdateCalculationResults(d3Calculator);
+
+            UpdateControlsOnCalculationDone();
         }
 
         private void GuiDoCalculationsForFollower()
@@ -432,10 +439,13 @@ namespace ZTn.BNet.D3ProfileExplorer
                 guiItemChoiceRightFinger.Tag as Item,
                 guiSetBonusEditor.GetEditedItem()
             };
+            items = items.Where(i => i != null)
+                .Select(i => i.DeepClone())
+                .ToList();
 
-            var mainHand = guiItemChoiceMainHand.Tag as Item;
+            var mainHand = (guiItemChoiceMainHand.Tag as Item).DeepClone();
 
-            var offHand = guiItemChoiceOffHand.Tag as Item;
+            var offHand = (guiItemChoiceOffHand.Tag as Item).DeepClone();
 
             var heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), (String)(guiHeroClass.SelectedItem));
 
@@ -461,11 +471,15 @@ namespace ZTn.BNet.D3ProfileExplorer
                 activeSkills.Add(new PoweredArmor());
             }
 
-            guiCalculatedDPS.Text = d3Calculator.GetHeroDps(passiveSkills, activeSkills).Min.ToString();
+            calculatedDps = d3Calculator.GetHeroDps(passiveSkills, activeSkills);
+
+            guiCalculatedDPS.Text = calculatedDps.Min.ToString();
 
             UpdateItemsSummary(d3Calculator);
 
             UpdateCalculationResults(d3Calculator);
+
+            UpdateControlsOnCalculationDone();
         }
 
         private static void PopulateActiveSkills(Hero hero)
@@ -598,6 +612,10 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateCalculatedData(guiCalculatedSkillDamage_Physical, calculatedDps * attr.damageDealtPercentBonusPhysical);
             PopulateCalculatedData(guiCalculatedSkillDamage_Poison, calculatedDps * attr.damageDealtPercentBonusPoison);
 
+            PopulateCalculatedDataPercent(guiCalculatedBonusEliteDamagePercent, attr.damagePercentBonusVsElites);
+            PopulateCalculatedDataPercent(guiCalculatedReductionFromMeleePercent, attr.damagePercentReductionFromMelee);
+            PopulateCalculatedDataPercent(guiCalculatedReductionFromRangedPercent, attr.damagePercentReductionFromRanged);
+
             PopulateCalculatedData(guiCalculatedHitpoints, d3Calculator.GetHeroHitpoints());
             guiCalculatedDodge.Text = d3Calculator.GetHeroDodge().ToString();
 
@@ -626,11 +644,10 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiCalculatedDPSEHPRatio.Text = Math.Round(d3Calculator.GetHeroDps().Min * d3Calculator.GetHeroEffectiveHitpoints(heroLevel) / 1000000).ToString("N0");
         }
 
-        private void guiHeroClass_SelectionChangeCommitted(object sender, EventArgs e)
+        private void guiHeroClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             var heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), guiHeroClass.SelectedItem as String);
 
-            // TODO: hide useless tabs
             switch (heroClass)
             {
                 case HeroClass.Barbarian:
@@ -639,10 +656,29 @@ namespace ZTn.BNet.D3ProfileExplorer
                 case HeroClass.Monk:
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
+                    guiItemChoiceSpecial.Visible = false;
+                    guiItemChoiceBracers.Visible = true;
+                    guiItemChoiceBracers.Visible = true;
+                    guiItemChoiceFeet.Visible = true;
+                    guiItemChoiceHands.Visible = true;
+                    guiItemChoiceHead.Visible = true;
+                    guiItemChoiceLegs.Visible = true;
+                    guiItemChoiceShoulders.Visible = true;
+                    guiItemChoiceTorso.Visible = true;
+                    guiItemChoiceWaist.Visible = true;
                     break;
                 case HeroClass.EnchantressFollower:
                 case HeroClass.ScoundrelFollower:
                 case HeroClass.TemplarFollower:
+                    guiItemChoiceSpecial.Visible = true;
+                    guiItemChoiceBracers.Visible = false;
+                    guiItemChoiceFeet.Visible = false;
+                    guiItemChoiceHands.Visible = false;
+                    guiItemChoiceHead.Visible = false;
+                    guiItemChoiceLegs.Visible = false;
+                    guiItemChoiceShoulders.Visible = false;
+                    guiItemChoiceTorso.Visible = false;
+                    guiItemChoiceWaist.Visible = false;
                     break;
             }
         }
@@ -671,6 +707,48 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiItemEditor.SetEditedItem(currentItem);
 
             lastItemButton = currentItemButton;
+        }
+
+        private static void UpdateControlsOnCalculationDone(GroupBox groupBox)
+        {
+            foreach (var control in groupBox.Controls)
+            {
+                var textBox = control as TextBox;
+                if (textBox != null)
+                {
+                    var tag = textBox.Tag as string;
+                    if (!String.IsNullOrWhiteSpace(tag))
+                    {
+                        var previousValue = Double.Parse((string)textBox.Tag);
+                        var currentValue = Double.Parse(textBox.Text);
+                        if (currentValue > previousValue)
+                        {
+                            textBox.BackColor = Color.PaleGreen;
+                        }
+                        else if (currentValue < previousValue)
+                        {
+                            textBox.BackColor = Color.LightSalmon;
+                        }
+                        else
+                        {
+                            textBox.BackColor = SystemColors.Control;
+                        }
+                    }
+                    textBox.Tag = textBox.Text;
+                }
+            }
+        }
+
+        private void UpdateControlsOnCalculationDone()
+        {
+            foreach (var control in tabResults.Controls)
+            {
+                var groupBox = control as GroupBox;
+                if (groupBox != null)
+                {
+                    UpdateControlsOnCalculationDone(groupBox);
+                }
+            }
         }
     }
 }

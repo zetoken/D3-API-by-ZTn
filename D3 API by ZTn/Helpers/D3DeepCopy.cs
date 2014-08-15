@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using ZTn.BNet.D3.Annotations;
 using ZTn.BNet.D3.Items;
@@ -115,6 +117,12 @@ namespace ZTn.BNet.D3.Helpers
         private static void CopyValue(PropertyInfo info, object target, ItemValueRange value)
         {
             info.SetValue(target, new ItemValueRange(value), null);
+        }
+
+        [UsedImplicitly]
+        private static void CopyValue(PropertyInfo info, object target, SocketedGem[] value)
+        {
+            info.SetValue(target, value.Select(socketedGem => new SocketedGem(socketedGem)).ToArray(), null);
         }
     }
 }
