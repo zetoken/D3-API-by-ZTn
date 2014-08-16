@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Calculator.Gems;
@@ -191,6 +190,9 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             PopulatePassiveSkills(hero);
             PopulateActiveSkills(hero);
+
+            DoCalculations();
+            DoActionOnCalculatedControls(SetAsReferenceValue);
         }
 
         public D3CalculatorForm(Follower follower, HeroClass heroClass)
@@ -254,6 +256,10 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             // Main hand item selected by default
             guiItemChoices_Click(guiItemChoiceMainHand, null);
+
+            // Run initial calculations
+            DoCalculations();
+            DoActionOnCalculatedControls(UpdateResultControlColor);
         }
 
         #endregion
@@ -308,6 +314,11 @@ namespace ZTn.BNet.D3ProfileExplorer
                 guiItemChoices_Click(currentItemButton, null);
             }
 
+            DoCalculations();
+        }
+
+        private void DoCalculations()
+        {
             var heroClass = (HeroClass)Enum.Parse(typeof(HeroClass), (String)(guiHeroClass.SelectedItem));
 
             switch (heroClass)
@@ -427,7 +438,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             UpdateCalculationResults(d3Calculator);
 
-            UpdateControlsOnCalculationDone();
+            DoActionOnCalculatedControls(UpdateResultControlColor);
         }
 
         private void GuiDoCalculationsForFollower()
@@ -484,7 +495,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             UpdateCalculationResults(d3Calculator);
 
-            UpdateControlsOnCalculationDone();
+            DoActionOnCalculatedControls(UpdateResultControlColor);
         }
 
         private static void PopulateActiveSkills(Hero hero)
@@ -540,7 +551,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private static void PopulateCalculatedDataPercent(Control textBox, ItemValueRange itemValueRange)
         {
-            if (itemValueRange != null && itemValueRange.Min != 0)
+            if (itemValueRange != null && !itemValueRange.IsZero())
             {
                 textBox.Text = (100 * itemValueRange.Min).ToString("N2");
             }
@@ -579,14 +590,6 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateCalculatedData(guiItemsLifeOnHit, attr.hitpointsOnHit);
             PopulateCalculatedData(guiItemsLifePerSecond, attr.hitpointsRegenPerSecond);
             PopulateCalculatedDataPercent(guiItemsLifeSteal, attr.stealHealthPercent);
-
-            PopulateCalculatedData(guiItemsResistance_All, attr.resistance_All);
-            PopulateCalculatedData(guiItemsResistance_Arcane, attr.resistance_Arcane);
-            PopulateCalculatedData(guiItemsResistance_Cold, attr.resistance_Cold);
-            PopulateCalculatedData(guiItemsResistance_Fire, attr.resistance_Fire);
-            PopulateCalculatedData(guiItemsResistance_Lightning, attr.resistance_Lightning);
-            PopulateCalculatedData(guiItemsResistance_Physical, attr.resistance_Physical);
-            PopulateCalculatedData(guiItemsResistance_Poison, attr.resistance_Poison);
         }
 
         private void UpdateCalculationResults(D3Calculator d3Calculator)
@@ -609,13 +612,21 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateCalculatedDataPercent(guiCalculatedSkillBonusPercent_Physical, attr.damageDealtPercentBonusPhysical);
             PopulateCalculatedDataPercent(guiCalculatedSkillBonusPercent_Poison, attr.damageDealtPercentBonusPoison);
 
-            PopulateCalculatedData(guiCalculatedSkillDamage_Arcane, calculatedDps * attr.damageDealtPercentBonusArcane);
-            PopulateCalculatedData(guiCalculatedSkillDamage_Cold, calculatedDps * attr.damageDealtPercentBonusCold);
-            PopulateCalculatedData(guiCalculatedSkillDamage_Fire, calculatedDps * attr.damageDealtPercentBonusFire);
-            PopulateCalculatedData(guiCalculatedSkillDamage_Holy, calculatedDps * attr.damageDealtPercentBonusHoly);
-            PopulateCalculatedData(guiCalculatedSkillDamage_Lightning, calculatedDps * attr.damageDealtPercentBonusLightning);
-            PopulateCalculatedData(guiCalculatedSkillDamage_Physical, calculatedDps * attr.damageDealtPercentBonusPhysical);
-            PopulateCalculatedData(guiCalculatedSkillDamage_Poison, calculatedDps * attr.damageDealtPercentBonusPoison);
+            PopulateCalculatedData(guiCalculatedSkillDamage_Arcane, calculatedDps * (1 + attr.damageDealtPercentBonusArcane));
+            PopulateCalculatedData(guiCalculatedSkillDamage_Cold, calculatedDps * (1 + attr.damageDealtPercentBonusCold));
+            PopulateCalculatedData(guiCalculatedSkillDamage_Fire, calculatedDps * (1 + attr.damageDealtPercentBonusFire));
+            PopulateCalculatedData(guiCalculatedSkillDamage_Holy, calculatedDps * (1 + attr.damageDealtPercentBonusHoly));
+            PopulateCalculatedData(guiCalculatedSkillDamage_Lightning, calculatedDps * (1 + attr.damageDealtPercentBonusLightning));
+            PopulateCalculatedData(guiCalculatedSkillDamage_Physical, calculatedDps * (1 + attr.damageDealtPercentBonusPhysical));
+            PopulateCalculatedData(guiCalculatedSkillDamage_Poison, calculatedDps * (1 + attr.damageDealtPercentBonusPoison));
+
+            PopulateCalculatedData(guiCalculatedSkillDamageVsElites_Arcane, calculatedDps * (1 + attr.damageDealtPercentBonusArcane) * (1 + attr.damagePercentBonusVsElites));
+            PopulateCalculatedData(guiCalculatedSkillDamageVsElites_Cold, calculatedDps * (1 + attr.damageDealtPercentBonusCold) * (1 + attr.damagePercentBonusVsElites));
+            PopulateCalculatedData(guiCalculatedSkillDamageVsElites_Fire, calculatedDps * (1 + attr.damageDealtPercentBonusFire) * (1 + attr.damagePercentBonusVsElites));
+            PopulateCalculatedData(guiCalculatedSkillDamageVsElites_Holy, calculatedDps * (1 + attr.damageDealtPercentBonusHoly) * (1 + attr.damagePercentBonusVsElites));
+            PopulateCalculatedData(guiCalculatedSkillDamageVsElites_Lightning, calculatedDps * (1 + attr.damageDealtPercentBonusLightning) * (1 + attr.damagePercentBonusVsElites));
+            PopulateCalculatedData(guiCalculatedSkillDamageVsElites_Physical, calculatedDps * (1 + attr.damageDealtPercentBonusPhysical) * (1 + attr.damagePercentBonusVsElites));
+            PopulateCalculatedData(guiCalculatedSkillDamageVsElites_Poison, calculatedDps * (1 + attr.damageDealtPercentBonusPoison) * (1 + attr.damagePercentBonusVsElites));
 
             PopulateCalculatedDataPercent(guiSkillCooldownReductionAll, attr.powerCooldownReductionPercentAll);
 
@@ -707,44 +718,59 @@ namespace ZTn.BNet.D3ProfileExplorer
             lastItemButton = currentItemButton;
         }
 
-        private static void UpdateControlsOnCalculationDone(GroupBox groupBox)
+        private void guiSetAsReference_Click(object sender, EventArgs e)
         {
-            foreach (var control in groupBox.Controls)
-            {
-                var textBox = control as TextBox;
-                if (textBox != null)
-                {
-                    var tag = textBox.Tag as string;
-                    if (!String.IsNullOrWhiteSpace(tag))
-                    {
-                        var previousValue = Double.Parse((string)textBox.Tag);
-                        var currentValue = Double.Parse(textBox.Text);
-                        if (currentValue > previousValue)
-                        {
-                            textBox.BackColor = Color.PaleGreen;
-                        }
-                        else if (currentValue < previousValue)
-                        {
-                            textBox.BackColor = Color.LightSalmon;
-                        }
-                        else
-                        {
-                            textBox.BackColor = SystemColors.Control;
-                        }
-                    }
-                    textBox.Tag = textBox.Text;
-                }
-            }
+            DoActionOnCalculatedControls(SetAsReferenceValue);
         }
 
-        private void UpdateControlsOnCalculationDone()
+        private void DoActionOnCalculatedControls(Action<Control> action)
         {
             foreach (var control in tabResults.Controls)
             {
                 var groupBox = control as GroupBox;
                 if (groupBox != null)
                 {
-                    UpdateControlsOnCalculationDone(groupBox);
+                    UpdateControlsOnCalculationDone(groupBox, action);
+                }
+            }
+        }
+
+        private static void SetAsReferenceValue(Control textBox)
+        {
+            textBox.Tag = textBox.Text;
+            textBox.BackColor = SystemColors.Control;
+        }
+
+        private static void UpdateResultControlColor(Control textBox)
+        {
+            var tag = textBox.Tag as string;
+            if (!String.IsNullOrWhiteSpace(tag))
+            {
+                var previousValue = Double.Parse((string)textBox.Tag);
+                var currentValue = Double.Parse(textBox.Text);
+                if (currentValue > previousValue)
+                {
+                    textBox.BackColor = Color.PaleGreen;
+                }
+                else if (currentValue < previousValue)
+                {
+                    textBox.BackColor = Color.LightSalmon;
+                }
+                else
+                {
+                    textBox.BackColor = SystemColors.Control;
+                }
+            }
+        }
+
+        private static void UpdateControlsOnCalculationDone(Control control, Action<Control> action)
+        {
+            foreach (var innerControl in control.Controls)
+            {
+                var textBox = innerControl as TextBox;
+                if (textBox != null)
+                {
+                    action(textBox);
                 }
             }
         }
