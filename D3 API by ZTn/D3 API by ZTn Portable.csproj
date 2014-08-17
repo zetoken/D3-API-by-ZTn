@@ -69,6 +69,8 @@
     <Compile Include="DataProviders\MD5Digest.cs" />
     <Compile Include="FailureObject.cs" />
     <Compile Include="Helpers\D3DeepCopy.cs" />
+    <Compile Include="Helpers\ItemAttributesExtension.cs" />
+    <Compile Include="Helpers\ItemValueRangeExtension.cs" />
     <Compile Include="Helpers\JsonHelpers.cs" />
     <Compile Include="Heroes\Hero.cs" />
     <Compile Include="Heroes\HeroClass.cs" />

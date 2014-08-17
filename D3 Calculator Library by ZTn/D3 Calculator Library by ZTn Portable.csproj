@@ -51,6 +51,7 @@
     <Compile Include="Skills\Barbarian\WeaponsMaster.cs" />
     <Compile Include="Skills\DamageMultiplier.cs" />
     <Compile Include="Skills\DemonHunter\Archery.cs" />
+    <Compile Include="Skills\DemonHunter\Companion_BoarCompanion.cs" />
     <Compile Include="Skills\DemonHunter\Perfectionist.cs" />
     <Compile Include="Skills\DemonHunter\SharpShooter.cs" />
     <Compile Include="Skills\DemonHunter\SteadyAim.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Skills\Followers\FocusedMind.cs" />
     <Compile Include="Skills\Followers\PoweredArmor.cs" />
     <Compile Include="Skills\ID3SkillModifier.cs" />
+    <Compile Include="Skills\Monk\Harmony.cs" />
     <Compile Include="Skills\Monk\MantraOfEvasion_HardTarget.cs" />
     <Compile Include="Skills\Monk\MantraOfHealing_TimeOfNeed.cs" />
     <Compile Include="Skills\Monk\MantraOfRetribution_Transgression.cs" />
@@ -72,8 +74,8 @@
     <Compile Include="Skills\ThornsMultiplier.cs" />
     <Compile Include="Skills\UnknownSkillSlugException.cs" />
     <Compile Include="Skills\WitchDoctor\PierceTheVeil.cs" />
-    <Compile Include="Skills\Wizard\GalvanizingWard.cs" />
     <Compile Include="Skills\Wizard\GlassCannon.cs" />
+    <Compile Include="Skills\Wizard\UnwaveringWill.cs" />
     <Compile Include="StatsItem.cs" />
   </ItemGroup>
   <ItemGroup>

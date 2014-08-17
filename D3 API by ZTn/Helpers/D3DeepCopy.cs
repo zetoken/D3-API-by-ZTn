@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using ZTn.BNet.D3.Annotations;
 using ZTn.BNet.D3.Items;
@@ -29,7 +27,7 @@ namespace ZTn.BNet.D3.Helpers
         /// <param name="target"></param>
         public static void DeepCopy<T>(this T source, T target) where T : class
         {
-            foreach (var info in typeof(T).GetTypeInfo().GetProperties())
+            foreach (var info in typeof(T).GetRuntimeProperties())
             {
                 var value = info.GetValue(source, null);
                 if (value != null)
