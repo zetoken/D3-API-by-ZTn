@@ -72,7 +72,7 @@ namespace ZTn.BNet.D3.Items
         {
             if (left == null)
             {
-                return right;
+                return new ItemValueRange(right);
             }
 
             return right == null ? left : new ItemValueRange(left.Min + right.Min, left.Max + right.Max);
@@ -194,5 +194,27 @@ namespace ZTn.BNet.D3.Items
         }
 
         #endregion
+
+        public static void SumIntoLeftOperand(ItemValueRange left, ItemValueRange right)
+        {
+            if (right == null)
+            {
+                return;
+            }
+
+            left.Min += right.Min;
+            left.Max += right.Max;
+        }
+
+        public static void SumAsPercentOnRemainingIntoLeftOperand(ItemValueRange left, ItemValueRange right)
+        {
+            if (right == null)
+            {
+                return;
+            }
+
+            left.Min = 1 - (1 - left.Min) * (1 - right.Min);
+            left.Max = 1 - (1 - left.Max) * (1 - right.Max);
+        }
     }
 }

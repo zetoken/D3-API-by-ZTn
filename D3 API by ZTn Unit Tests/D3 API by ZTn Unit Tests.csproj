@@ -69,6 +69,7 @@
     <Compile Include="DataProviders\FakeFailureDataProviderUnitTest.cs" />
     <Compile Include="DataProviders\MD5DigestUnitTest.cs" />
     <Compile Include="FailureObjectUnitTest.cs" />
+    <Compile Include="Items\ItemAttributesUnitTest.cs" />
     <Compile Include="Items\ItemValueRangeUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="D3ApiUnitTest.cs" />

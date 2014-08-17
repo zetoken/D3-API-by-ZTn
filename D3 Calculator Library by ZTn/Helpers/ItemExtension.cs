@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using ZTn.BNet.D3.Calculator.Sets;
+using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Helpers
@@ -222,7 +223,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static Item MergeSocketedGems(this Item item)
         {
-            item.AttributesRaw += item.Gems.Aggregate(new ItemAttributes(), (current, gem) => current + gem.AttributesRaw);
+            item.AttributesRaw += item.Gems.Select(g => g.AttributesRaw).Sum();
 
             item.Gems = null;
 

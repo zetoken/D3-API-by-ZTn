@@ -693,6 +693,11 @@ namespace ZTn.BNet.D3.Items
         /// <param name="itemAttributes"></param>
         public ItemAttributes(ItemAttributes itemAttributes)
         {
+            if (itemAttributes == null)
+            {
+                return;
+            }
+
             var type = GetType();
 
             foreach (var fieldInfo in type.GetTypeInfo().DeclaredFields)
@@ -711,26 +716,14 @@ namespace ZTn.BNet.D3.Items
 
         public static ItemAttributes operator +(ItemAttributes left, ItemAttributes right)
         {
-            var target = new ItemAttributes(left);
-
-            var type = target.GetType();
-
-            foreach (var fieldInfo in type.GetTypeInfo().DeclaredFields)
+            if (left == null)
             {
-                if (fieldInfo.Name != "UnmanagedAttributes" && fieldInfo.GetValue(right) != null)
-                {
-                    var targetValueRange = (ItemValueRange)fieldInfo.GetValue(target);
-                    var rightValueRange = (ItemValueRange)fieldInfo.GetValue(right);
-                    if (targetValueRange == null)
-                    {
-                        targetValueRange = new ItemValueRange();
-                    }
-                    fieldInfo.SetValue(target, targetValueRange + rightValueRange);
-                }
+                return new ItemAttributes(right);
             }
 
-            // TODO: find a better way to handle this particular case...
-            target.powerCooldownReductionPercentAll = 1 - (1 - left.powerCooldownReductionPercentAll) * (1 - right.powerCooldownReductionPercentAll);
+            var target = new ItemAttributes(left);
+
+            SumIntoLeftOperand(target, right);
 
             return target;
         }
@@ -787,5 +780,53 @@ namespace ZTn.BNet.D3.Items
         }
 
         #endregion
+
+        /// <summary>
+        /// Sums up <paramref name="right"/> operand into <paramref name="left"/> operand.
+        /// <paramref name="left"/> is updated by this method (used as a memory and speed optimization of <c>left = left + right</c>).
+        /// </summary>
+        /// <param name="left">Left operand of the addition, can't be <c>null</c>.</param>
+        /// <param name="right">Right operand of the addition, can be <c>null</c>.</param>
+        public static void SumIntoLeftOperand(ItemAttributes left, ItemAttributes right)
+        {
+            if (right == null)
+            {
+                return;
+            }
+
+            var typeInfo = left.GetType().GetTypeInfo();
+            var targetType = typeof(ItemValueRange);
+
+            // TODO: find a better way to handle this particular case...
+            var powerCooldownReductionPercentAll = left.powerCooldownReductionPercentAll;
+
+            foreach (var fieldInfo in typeInfo.DeclaredFields)
+            {
+                if (fieldInfo.FieldType == targetType)
+                {
+                    var rightValue = fieldInfo.GetValue(right);
+                    if (rightValue != null)
+                    {
+                        var leftValueRange = (ItemValueRange)fieldInfo.GetValue(left);
+                        var rightValueRange = (ItemValueRange)rightValue;
+                        if (leftValueRange == null)
+                        {
+                            fieldInfo.SetValue(left, new ItemValueRange(rightValueRange));
+                        }
+                        else
+                        {
+                            fieldInfo.SetValue(left, leftValueRange + rightValueRange);
+                        }
+                    }
+                }
+            }
+
+            // TODO: find a better way to handle this particular case...
+            if (powerCooldownReductionPercentAll != null)
+            {
+                left.powerCooldownReductionPercentAll = powerCooldownReductionPercentAll;
+                ItemValueRange.SumAsPercentOnRemainingIntoLeftOperand(left.powerCooldownReductionPercentAll, right.powerCooldownReductionPercentAll);
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Sets
@@ -21,7 +22,8 @@ namespace ZTn.BNet.D3.Calculator.Sets
             {
                 attr = set.ranks
                     .Where(rank => count >= rank.Required)
-                    .Aggregate(attr, (current, setRank) => current + setRank.AttributesRaw);
+                    .Select(rank => rank.AttributesRaw)
+                    .Sum();
             }
 
             return attr;
