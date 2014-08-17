@@ -43,8 +43,11 @@
             System.Windows.Forms.GroupBox groupBoxMonkActiveSkills;
             System.Windows.Forms.GroupBox groupBox2;
             System.Windows.Forms.Label label68;
+            System.Windows.Forms.Label label47;
             System.Windows.Forms.Label label69;
+            System.Windows.Forms.Label label11;
             System.Windows.Forms.Label label66;
+            System.Windows.Forms.Label label9;
             System.Windows.Forms.Label label67;
             System.Windows.Forms.Label label65;
             System.Windows.Forms.Label label64;
@@ -92,9 +95,6 @@
             System.Windows.Forms.Label label60;
             System.Windows.Forms.Label label61;
             System.Windows.Forms.GroupBox groupBox1;
-            System.Windows.Forms.Label label47;
-            System.Windows.Forms.Label label11;
-            System.Windows.Forms.Label label9;
             System.Windows.Forms.Label label19;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label7;
@@ -108,9 +108,9 @@
             System.Windows.Forms.TabControl tacControl1;
             System.Windows.Forms.GroupBox groupBox14;
             System.Windows.Forms.GroupBox groupBox13;
+            System.Windows.Forms.Label label72;
             System.Windows.Forms.Label label71;
             System.Windows.Forms.Label label70;
-            System.Windows.Forms.Label label72;
             this.guiSkillGalvanizingWard = new System.Windows.Forms.CheckBox();
             this.guiSkillGlassCannon = new System.Windows.Forms.CheckBox();
             this.guiSkillPierceTheVeil = new System.Windows.Forms.CheckBox();
@@ -138,7 +138,10 @@
             this.guiSkillMysticAlly_EarthAlly = new System.Windows.Forms.CheckBox();
             this.guiSkillMantraOfHealing_TimeOfNeed = new System.Windows.Forms.CheckBox();
             this.guiSkillMantraOfEvasion_HardTarget = new System.Windows.Forms.CheckBox();
+            this.guiItemsLifeSteal = new System.Windows.Forms.TextBox();
             this.guiCalculatedReductionFromRangedPercent = new System.Windows.Forms.TextBox();
+            this.guiItemsLifePerSecond = new System.Windows.Forms.TextBox();
+            this.guiItemsLifeOnHit = new System.Windows.Forms.TextBox();
             this.guiCalculatedReductionFromMeleePercent = new System.Windows.Forms.TextBox();
             this.guiCalculatedReductionFromElitesPercent = new System.Windows.Forms.TextBox();
             this.guiCalculatedDPSEHPRatio = new System.Windows.Forms.TextBox();
@@ -170,9 +173,6 @@
             this.guiCalcultatedDamageMin = new System.Windows.Forms.TextBox();
             this.guiCalcultatedDamageCriticMax = new System.Windows.Forms.TextBox();
             this.guiCalcultatedDamageCriticMin = new System.Windows.Forms.TextBox();
-            this.guiItemsLifeSteal = new System.Windows.Forms.TextBox();
-            this.guiItemsLifePerSecond = new System.Windows.Forms.TextBox();
-            this.guiItemsLifeOnHit = new System.Windows.Forms.TextBox();
             this.guiItemsLifePercent = new System.Windows.Forms.TextBox();
             this.guiItemsDexterity = new System.Windows.Forms.TextBox();
             this.guiItemsCriticDamage = new System.Windows.Forms.TextBox();
@@ -199,6 +199,13 @@
             this.tabResults = new System.Windows.Forms.TabPage();
             this.guiDoCalculations = new System.Windows.Forms.Button();
             this.guiSetAsReference = new System.Windows.Forms.Button();
+            this.guiCalculatedSkillDamageVsElites_Poison = new System.Windows.Forms.TextBox();
+            this.guiCalculatedSkillDamageVsElites_Physical = new System.Windows.Forms.TextBox();
+            this.guiCalculatedSkillDamageVsElites_Lightning = new System.Windows.Forms.TextBox();
+            this.guiCalculatedSkillDamageVsElites_Holy = new System.Windows.Forms.TextBox();
+            this.guiCalculatedSkillDamageVsElites_Arcane = new System.Windows.Forms.TextBox();
+            this.guiCalculatedSkillDamageVsElites_Fire = new System.Windows.Forms.TextBox();
+            this.guiCalculatedSkillDamageVsElites_Cold = new System.Windows.Forms.TextBox();
             this.guiSkillCooldownReductionAll = new System.Windows.Forms.TextBox();
             this.guiCalculatedSkillBonusPercent_Cold = new System.Windows.Forms.TextBox();
             this.guiCalculatedSkillBonusPercent_Fire = new System.Windows.Forms.TextBox();
@@ -216,13 +223,7 @@
             this.guiCalculatedSkillDamage_Cold = new System.Windows.Forms.TextBox();
             this.tabItemEditor = new System.Windows.Forms.TabPage();
             this.tabSetBonus = new System.Windows.Forms.TabPage();
-            this.guiCalculatedSkillDamageVsElites_Poison = new System.Windows.Forms.TextBox();
-            this.guiCalculatedSkillDamageVsElites_Physical = new System.Windows.Forms.TextBox();
-            this.guiCalculatedSkillDamageVsElites_Lightning = new System.Windows.Forms.TextBox();
-            this.guiCalculatedSkillDamageVsElites_Holy = new System.Windows.Forms.TextBox();
-            this.guiCalculatedSkillDamageVsElites_Arcane = new System.Windows.Forms.TextBox();
-            this.guiCalculatedSkillDamageVsElites_Fire = new System.Windows.Forms.TextBox();
-            this.guiCalculatedSkillDamageVsElites_Cold = new System.Windows.Forms.TextBox();
+            this.guiSkillHarmony = new System.Windows.Forms.CheckBox();
             this.guiItemEditor = new ZTn.BNet.D3ProfileExplorer.D3ItemEditor();
             this.guiSetBonusEditor = new ZTn.BNet.D3ProfileExplorer.D3ItemEditor();
             label6 = new System.Windows.Forms.Label();
@@ -240,8 +241,11 @@
             groupBoxMonkActiveSkills = new System.Windows.Forms.GroupBox();
             groupBox2 = new System.Windows.Forms.GroupBox();
             label68 = new System.Windows.Forms.Label();
+            label47 = new System.Windows.Forms.Label();
             label69 = new System.Windows.Forms.Label();
+            label11 = new System.Windows.Forms.Label();
             label66 = new System.Windows.Forms.Label();
+            label9 = new System.Windows.Forms.Label();
             label67 = new System.Windows.Forms.Label();
             label65 = new System.Windows.Forms.Label();
             label64 = new System.Windows.Forms.Label();
@@ -289,9 +293,6 @@
             label60 = new System.Windows.Forms.Label();
             label61 = new System.Windows.Forms.Label();
             groupBox1 = new System.Windows.Forms.GroupBox();
-            label47 = new System.Windows.Forms.Label();
-            label11 = new System.Windows.Forms.Label();
-            label9 = new System.Windows.Forms.Label();
             label19 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
@@ -305,9 +306,9 @@
             tacControl1 = new System.Windows.Forms.TabControl();
             groupBox14 = new System.Windows.Forms.GroupBox();
             groupBox13 = new System.Windows.Forms.GroupBox();
+            label72 = new System.Windows.Forms.Label();
             label71 = new System.Windows.Forms.Label();
             label70 = new System.Windows.Forms.Label();
-            label72 = new System.Windows.Forms.Label();
             tabPassiveSkills.SuspendLayout();
             groupBox9.SuspendLayout();
             groupBox8.SuspendLayout();
@@ -475,12 +476,13 @@
             // groupBox3
             // 
             groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox3.Controls.Add(this.guiSkillHarmony);
             groupBox3.Controls.Add(this.guiSkillUnity);
             groupBox3.Controls.Add(this.guiSkillSeizeTheInitiative);
             groupBox3.Controls.Add(this.guiSkillOneWithEverything);
             groupBox3.Location = new System.Drawing.Point(6, 266);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new System.Drawing.Size(300, 101);
+            groupBox3.Size = new System.Drawing.Size(300, 124);
             groupBox3.TabIndex = 3;
             groupBox3.TabStop = false;
             groupBox3.Text = "Monk";
@@ -842,6 +844,14 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Calculation: Defense";
             // 
+            // guiItemsLifeSteal
+            // 
+            this.guiItemsLifeSteal.Location = new System.Drawing.Point(126, 487);
+            this.guiItemsLifeSteal.Name = "guiItemsLifeSteal";
+            this.guiItemsLifeSteal.ReadOnly = true;
+            this.guiItemsLifeSteal.Size = new System.Drawing.Size(45, 20);
+            this.guiItemsLifeSteal.TabIndex = 35;
+            // 
             // label68
             // 
             label68.AutoSize = true;
@@ -851,6 +861,15 @@
             label68.TabIndex = 62;
             label68.Text = "%";
             // 
+            // label47
+            // 
+            label47.AutoSize = true;
+            label47.Location = new System.Drawing.Point(64, 490);
+            label47.Name = "label47";
+            label47.Size = new System.Drawing.Size(56, 13);
+            label47.TabIndex = 34;
+            label47.Text = "% life steal";
+            // 
             // guiCalculatedReductionFromRangedPercent
             // 
             this.guiCalculatedReductionFromRangedPercent.Location = new System.Drawing.Point(126, 409);
@@ -858,6 +877,14 @@
             this.guiCalculatedReductionFromRangedPercent.ReadOnly = true;
             this.guiCalculatedReductionFromRangedPercent.Size = new System.Drawing.Size(45, 20);
             this.guiCalculatedReductionFromRangedPercent.TabIndex = 61;
+            // 
+            // guiItemsLifePerSecond
+            // 
+            this.guiItemsLifePerSecond.Location = new System.Drawing.Point(126, 461);
+            this.guiItemsLifePerSecond.Name = "guiItemsLifePerSecond";
+            this.guiItemsLifePerSecond.ReadOnly = true;
+            this.guiItemsLifePerSecond.Size = new System.Drawing.Size(45, 20);
+            this.guiItemsLifePerSecond.TabIndex = 33;
             // 
             // label69
             // 
@@ -868,6 +895,15 @@
             label69.TabIndex = 60;
             label69.Text = "ranged reduction";
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new System.Drawing.Point(44, 464);
+            label11.Name = "label11";
+            label11.Size = new System.Drawing.Size(76, 13);
+            label11.TabIndex = 32;
+            label11.Text = "life per second";
+            // 
             // label66
             // 
             label66.AutoSize = true;
@@ -876,6 +912,23 @@
             label66.Size = new System.Drawing.Size(15, 13);
             label66.TabIndex = 59;
             label66.Text = "%";
+            // 
+            // guiItemsLifeOnHit
+            // 
+            this.guiItemsLifeOnHit.Location = new System.Drawing.Point(126, 435);
+            this.guiItemsLifeOnHit.Name = "guiItemsLifeOnHit";
+            this.guiItemsLifeOnHit.ReadOnly = true;
+            this.guiItemsLifeOnHit.Size = new System.Drawing.Size(45, 20);
+            this.guiItemsLifeOnHit.TabIndex = 31;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new System.Drawing.Point(71, 438);
+            label9.Name = "label9";
+            label9.Size = new System.Drawing.Size(49, 13);
+            label9.TabIndex = 30;
+            label9.Text = "life on hit";
             // 
             // guiCalculatedReductionFromMeleePercent
             // 
@@ -1585,57 +1638,6 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Characteristics";
             // 
-            // guiItemsLifeSteal
-            // 
-            this.guiItemsLifeSteal.Location = new System.Drawing.Point(126, 487);
-            this.guiItemsLifeSteal.Name = "guiItemsLifeSteal";
-            this.guiItemsLifeSteal.ReadOnly = true;
-            this.guiItemsLifeSteal.Size = new System.Drawing.Size(45, 20);
-            this.guiItemsLifeSteal.TabIndex = 35;
-            // 
-            // label47
-            // 
-            label47.AutoSize = true;
-            label47.Location = new System.Drawing.Point(64, 490);
-            label47.Name = "label47";
-            label47.Size = new System.Drawing.Size(56, 13);
-            label47.TabIndex = 34;
-            label47.Text = "% life steal";
-            // 
-            // guiItemsLifePerSecond
-            // 
-            this.guiItemsLifePerSecond.Location = new System.Drawing.Point(126, 461);
-            this.guiItemsLifePerSecond.Name = "guiItemsLifePerSecond";
-            this.guiItemsLifePerSecond.ReadOnly = true;
-            this.guiItemsLifePerSecond.Size = new System.Drawing.Size(45, 20);
-            this.guiItemsLifePerSecond.TabIndex = 33;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new System.Drawing.Point(44, 464);
-            label11.Name = "label11";
-            label11.Size = new System.Drawing.Size(76, 13);
-            label11.TabIndex = 32;
-            label11.Text = "life per second";
-            // 
-            // guiItemsLifeOnHit
-            // 
-            this.guiItemsLifeOnHit.Location = new System.Drawing.Point(126, 435);
-            this.guiItemsLifeOnHit.Name = "guiItemsLifeOnHit";
-            this.guiItemsLifeOnHit.ReadOnly = true;
-            this.guiItemsLifeOnHit.Size = new System.Drawing.Size(45, 20);
-            this.guiItemsLifeOnHit.TabIndex = 31;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new System.Drawing.Point(71, 438);
-            label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(49, 13);
-            label9.TabIndex = 30;
-            label9.Text = "life on hit";
-            // 
             // guiItemsLifePercent
             // 
             this.guiItemsLifePercent.Location = new System.Drawing.Point(115, 201);
@@ -2135,6 +2137,71 @@
             groupBox13.TabStop = false;
             groupBox13.Text = "Calculation: Base Skills Damage";
             // 
+            // label72
+            // 
+            label72.AutoSize = true;
+            label72.Location = new System.Drawing.Point(227, 16);
+            label72.Name = "label72";
+            label72.Size = new System.Drawing.Size(45, 13);
+            label72.TabIndex = 86;
+            label72.Text = "vs elites";
+            // 
+            // guiCalculatedSkillDamageVsElites_Poison
+            // 
+            this.guiCalculatedSkillDamageVsElites_Poison.Location = new System.Drawing.Point(230, 187);
+            this.guiCalculatedSkillDamageVsElites_Poison.Name = "guiCalculatedSkillDamageVsElites_Poison";
+            this.guiCalculatedSkillDamageVsElites_Poison.ReadOnly = true;
+            this.guiCalculatedSkillDamageVsElites_Poison.Size = new System.Drawing.Size(70, 20);
+            this.guiCalculatedSkillDamageVsElites_Poison.TabIndex = 85;
+            // 
+            // guiCalculatedSkillDamageVsElites_Physical
+            // 
+            this.guiCalculatedSkillDamageVsElites_Physical.Location = new System.Drawing.Point(230, 161);
+            this.guiCalculatedSkillDamageVsElites_Physical.Name = "guiCalculatedSkillDamageVsElites_Physical";
+            this.guiCalculatedSkillDamageVsElites_Physical.ReadOnly = true;
+            this.guiCalculatedSkillDamageVsElites_Physical.Size = new System.Drawing.Size(70, 20);
+            this.guiCalculatedSkillDamageVsElites_Physical.TabIndex = 84;
+            // 
+            // guiCalculatedSkillDamageVsElites_Lightning
+            // 
+            this.guiCalculatedSkillDamageVsElites_Lightning.Location = new System.Drawing.Point(230, 135);
+            this.guiCalculatedSkillDamageVsElites_Lightning.Name = "guiCalculatedSkillDamageVsElites_Lightning";
+            this.guiCalculatedSkillDamageVsElites_Lightning.ReadOnly = true;
+            this.guiCalculatedSkillDamageVsElites_Lightning.Size = new System.Drawing.Size(70, 20);
+            this.guiCalculatedSkillDamageVsElites_Lightning.TabIndex = 83;
+            // 
+            // guiCalculatedSkillDamageVsElites_Holy
+            // 
+            this.guiCalculatedSkillDamageVsElites_Holy.Location = new System.Drawing.Point(230, 109);
+            this.guiCalculatedSkillDamageVsElites_Holy.Name = "guiCalculatedSkillDamageVsElites_Holy";
+            this.guiCalculatedSkillDamageVsElites_Holy.ReadOnly = true;
+            this.guiCalculatedSkillDamageVsElites_Holy.Size = new System.Drawing.Size(70, 20);
+            this.guiCalculatedSkillDamageVsElites_Holy.TabIndex = 82;
+            // 
+            // guiCalculatedSkillDamageVsElites_Arcane
+            // 
+            this.guiCalculatedSkillDamageVsElites_Arcane.Location = new System.Drawing.Point(230, 32);
+            this.guiCalculatedSkillDamageVsElites_Arcane.Name = "guiCalculatedSkillDamageVsElites_Arcane";
+            this.guiCalculatedSkillDamageVsElites_Arcane.ReadOnly = true;
+            this.guiCalculatedSkillDamageVsElites_Arcane.Size = new System.Drawing.Size(70, 20);
+            this.guiCalculatedSkillDamageVsElites_Arcane.TabIndex = 79;
+            // 
+            // guiCalculatedSkillDamageVsElites_Fire
+            // 
+            this.guiCalculatedSkillDamageVsElites_Fire.Location = new System.Drawing.Point(230, 83);
+            this.guiCalculatedSkillDamageVsElites_Fire.Name = "guiCalculatedSkillDamageVsElites_Fire";
+            this.guiCalculatedSkillDamageVsElites_Fire.ReadOnly = true;
+            this.guiCalculatedSkillDamageVsElites_Fire.Size = new System.Drawing.Size(70, 20);
+            this.guiCalculatedSkillDamageVsElites_Fire.TabIndex = 81;
+            // 
+            // guiCalculatedSkillDamageVsElites_Cold
+            // 
+            this.guiCalculatedSkillDamageVsElites_Cold.Location = new System.Drawing.Point(230, 57);
+            this.guiCalculatedSkillDamageVsElites_Cold.Name = "guiCalculatedSkillDamageVsElites_Cold";
+            this.guiCalculatedSkillDamageVsElites_Cold.ReadOnly = true;
+            this.guiCalculatedSkillDamageVsElites_Cold.Size = new System.Drawing.Size(70, 20);
+            this.guiCalculatedSkillDamageVsElites_Cold.TabIndex = 80;
+            // 
             // label71
             // 
             label71.AutoSize = true;
@@ -2296,70 +2363,16 @@
             this.tabSetBonus.Text = "Set Bonus";
             this.tabSetBonus.UseVisualStyleBackColor = true;
             // 
-            // guiCalculatedSkillDamageVsElites_Poison
+            // guiSkillHarmony
             // 
-            this.guiCalculatedSkillDamageVsElites_Poison.Location = new System.Drawing.Point(230, 187);
-            this.guiCalculatedSkillDamageVsElites_Poison.Name = "guiCalculatedSkillDamageVsElites_Poison";
-            this.guiCalculatedSkillDamageVsElites_Poison.ReadOnly = true;
-            this.guiCalculatedSkillDamageVsElites_Poison.Size = new System.Drawing.Size(70, 20);
-            this.guiCalculatedSkillDamageVsElites_Poison.TabIndex = 85;
-            // 
-            // guiCalculatedSkillDamageVsElites_Physical
-            // 
-            this.guiCalculatedSkillDamageVsElites_Physical.Location = new System.Drawing.Point(230, 161);
-            this.guiCalculatedSkillDamageVsElites_Physical.Name = "guiCalculatedSkillDamageVsElites_Physical";
-            this.guiCalculatedSkillDamageVsElites_Physical.ReadOnly = true;
-            this.guiCalculatedSkillDamageVsElites_Physical.Size = new System.Drawing.Size(70, 20);
-            this.guiCalculatedSkillDamageVsElites_Physical.TabIndex = 84;
-            // 
-            // guiCalculatedSkillDamageVsElites_Lightning
-            // 
-            this.guiCalculatedSkillDamageVsElites_Lightning.Location = new System.Drawing.Point(230, 135);
-            this.guiCalculatedSkillDamageVsElites_Lightning.Name = "guiCalculatedSkillDamageVsElites_Lightning";
-            this.guiCalculatedSkillDamageVsElites_Lightning.ReadOnly = true;
-            this.guiCalculatedSkillDamageVsElites_Lightning.Size = new System.Drawing.Size(70, 20);
-            this.guiCalculatedSkillDamageVsElites_Lightning.TabIndex = 83;
-            // 
-            // guiCalculatedSkillDamageVsElites_Holy
-            // 
-            this.guiCalculatedSkillDamageVsElites_Holy.Location = new System.Drawing.Point(230, 109);
-            this.guiCalculatedSkillDamageVsElites_Holy.Name = "guiCalculatedSkillDamageVsElites_Holy";
-            this.guiCalculatedSkillDamageVsElites_Holy.ReadOnly = true;
-            this.guiCalculatedSkillDamageVsElites_Holy.Size = new System.Drawing.Size(70, 20);
-            this.guiCalculatedSkillDamageVsElites_Holy.TabIndex = 82;
-            // 
-            // guiCalculatedSkillDamageVsElites_Arcane
-            // 
-            this.guiCalculatedSkillDamageVsElites_Arcane.Location = new System.Drawing.Point(230, 32);
-            this.guiCalculatedSkillDamageVsElites_Arcane.Name = "guiCalculatedSkillDamageVsElites_Arcane";
-            this.guiCalculatedSkillDamageVsElites_Arcane.ReadOnly = true;
-            this.guiCalculatedSkillDamageVsElites_Arcane.Size = new System.Drawing.Size(70, 20);
-            this.guiCalculatedSkillDamageVsElites_Arcane.TabIndex = 79;
-            // 
-            // guiCalculatedSkillDamageVsElites_Fire
-            // 
-            this.guiCalculatedSkillDamageVsElites_Fire.Location = new System.Drawing.Point(230, 83);
-            this.guiCalculatedSkillDamageVsElites_Fire.Name = "guiCalculatedSkillDamageVsElites_Fire";
-            this.guiCalculatedSkillDamageVsElites_Fire.ReadOnly = true;
-            this.guiCalculatedSkillDamageVsElites_Fire.Size = new System.Drawing.Size(70, 20);
-            this.guiCalculatedSkillDamageVsElites_Fire.TabIndex = 81;
-            // 
-            // guiCalculatedSkillDamageVsElites_Cold
-            // 
-            this.guiCalculatedSkillDamageVsElites_Cold.Location = new System.Drawing.Point(230, 57);
-            this.guiCalculatedSkillDamageVsElites_Cold.Name = "guiCalculatedSkillDamageVsElites_Cold";
-            this.guiCalculatedSkillDamageVsElites_Cold.ReadOnly = true;
-            this.guiCalculatedSkillDamageVsElites_Cold.Size = new System.Drawing.Size(70, 20);
-            this.guiCalculatedSkillDamageVsElites_Cold.TabIndex = 80;
-            // 
-            // label72
-            // 
-            label72.AutoSize = true;
-            label72.Location = new System.Drawing.Point(227, 16);
-            label72.Name = "label72";
-            label72.Size = new System.Drawing.Size(45, 13);
-            label72.TabIndex = 86;
-            label72.Text = "vs elites";
+            this.guiSkillHarmony.AutoSize = true;
+            this.guiSkillHarmony.Location = new System.Drawing.Point(6, 88);
+            this.guiSkillHarmony.Name = "guiSkillHarmony";
+            this.guiSkillHarmony.Size = new System.Drawing.Size(123, 17);
+            this.guiSkillHarmony.TabIndex = 3;
+            this.guiSkillHarmony.Tag = "harmony";
+            this.guiSkillHarmony.Text = "[ PTR 2.1 ] Harmony";
+            this.guiSkillHarmony.UseVisualStyleBackColor = true;
             // 
             // guiItemEditor
             // 
@@ -2548,5 +2561,6 @@
         private System.Windows.Forms.TextBox guiCalculatedSkillDamageVsElites_Arcane;
         private System.Windows.Forms.TextBox guiCalculatedSkillDamageVsElites_Fire;
         private System.Windows.Forms.TextBox guiCalculatedSkillDamageVsElites_Cold;
+        private System.Windows.Forms.CheckBox guiSkillHarmony;
     }
 }

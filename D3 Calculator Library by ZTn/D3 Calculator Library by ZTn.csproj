@@ -55,6 +55,7 @@
     <Compile Include="Skills\DemonHunter\Companion_BoarCompanion.cs" />
     <Compile Include="Skills\Monk\MantraOfRetribution_Transgression.cs" />
     <Compile Include="Skills\Monk\MysticAlly_FireAlly.cs" />
+    <Compile Include="Skills\Monk\Harmony.cs" />
     <Compile Include="Skills\Monk\Unity.cs" />
     <Compile Include="Skills\PassiveSkillModifierFactory.cs" />
     <Compile Include="Skills\ID3SkillModifier.cs" />

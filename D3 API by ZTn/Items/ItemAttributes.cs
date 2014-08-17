@@ -688,6 +688,7 @@ namespace ZTn.BNet.D3.Items
 
         /// <summary>
         /// Creates a new instance by copying fields of <paramref name="itemAttributes"/> (deep copy).
+        /// Note: Only fields of type <see cref="ItemValueRange"/> are copied.
         /// </summary>
         /// <param name="itemAttributes"></param>
         public ItemAttributes(ItemAttributes itemAttributes)
@@ -727,6 +728,9 @@ namespace ZTn.BNet.D3.Items
                     fieldInfo.SetValue(target, targetValueRange + rightValueRange);
                 }
             }
+
+            // TODO: find a better way to handle this particular case...
+            target.powerCooldownReductionPercentAll = 1 - (1 - left.powerCooldownReductionPercentAll) * (1 - right.powerCooldownReductionPercentAll);
 
             return target;
         }

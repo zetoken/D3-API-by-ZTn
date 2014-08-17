@@ -85,6 +85,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 guiSkillSeizeTheInitiative,
                 guiSkillOneWithEverything,
                 guiSkillUnity,
+                guiSkillHarmony,
 
                 // Witch Doctor skills
                 guiSkillPierceTheVeil,
@@ -630,7 +631,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             PopulateCalculatedDataPercent(guiSkillCooldownReductionAll, attr.powerCooldownReductionPercentAll);
 
-            PopulateCalculatedDataPercent(guiCalculatedBonusEliteDamagePercent, attr.damagePercentBonusVsElites);
+            PopulateCalculatedDataPercent(guiCalculatedReductionFromElitesPercent, attr.damagePercentReductionFromElites);
             PopulateCalculatedDataPercent(guiCalculatedReductionFromMeleePercent, attr.damagePercentReductionFromMelee);
             PopulateCalculatedDataPercent(guiCalculatedReductionFromRangedPercent, attr.damagePercentReductionFromRanged);
 
@@ -760,6 +761,10 @@ namespace ZTn.BNet.D3ProfileExplorer
                 {
                     textBox.BackColor = SystemColors.Control;
                 }
+            }
+            else if (!String.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.BackColor = Color.PaleGreen;
             }
         }
 
