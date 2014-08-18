@@ -60,6 +60,71 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExplorerLight\D3ItemGemLabelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemGemLabelControl.Designer.cs">
+      <DependentUpon>D3ItemGemLabelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemPassiveLabelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemPassiveLabelControl.Designer.cs">
+      <DependentUpon>D3ItemPassiveLabelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemSecondaryLabelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemSecondaryLabelControl.Designer.cs">
+      <DependentUpon>D3ItemSecondaryLabelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemPrimaryLabelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemPrimaryLabelControl.Designer.cs">
+      <DependentUpon>D3ItemPrimaryLabelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemDamageLabelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemDamageLabelControl.Designer.cs">
+      <DependentUpon>D3ItemDamageLabelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerLight\D3LabelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3LabelControl.Designer.cs">
+      <DependentUpon>D3LabelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemArmorLabelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemArmorLabelControl.Designer.cs">
+      <DependentUpon>D3ItemArmorLabelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemControl.Designer.cs">
+      <DependentUpon>D3ItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerLight\D3HeroContainer.cs" />
+    <Compile Include="ExplorerLight\D3SelectableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3HeroControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3HeroControl.Designer.cs">
+      <DependentUpon>D3HeroControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerLight\BNetProfileControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\BNetProfileControl.Designer.cs">
+      <DependentUpon>BNetProfileControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ProfileContainer.cs" />
     <Compile Include="D3CalculatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,8 +144,53 @@
     <Compile Include="D3ProfileExplorer.Designer.cs">
       <DependentUpon>D3ProfileExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExplorerLight\D3ProfileExplorerLight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ProfileExplorerLight.Designer.cs">
+      <DependentUpon>D3ProfileExplorerLight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ProfileExplorerLightConfig.cs" />
+    <Compile Include="ExplorerLight\D3SelectableControl.Designer.cs">
+      <DependentUpon>D3SelectableControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ExplorerLight\D3ItemGemLabelControl.resx">
+      <DependentUpon>D3ItemGemLabelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\D3ItemPassiveLabelControl.resx">
+      <DependentUpon>D3ItemPassiveLabelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\D3ItemSecondaryLabelControl.resx">
+      <DependentUpon>D3ItemSecondaryLabelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\D3ItemPrimaryLabelControl.resx">
+      <DependentUpon>D3ItemPrimaryLabelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\D3ItemDamageLabelControl.resx">
+      <DependentUpon>D3ItemDamageLabelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\D3LabelControl.resx">
+      <DependentUpon>D3LabelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\D3ItemArmorLabelControl.resx">
+      <DependentUpon>D3ItemArmorLabelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\D3ItemControl.resx">
+      <DependentUpon>D3ItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\D3HeroControl.resx">
+      <DependentUpon>D3HeroControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\BNetProfileControl.resx">
+      <DependentUpon>BNetProfileControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="D3CalculatorForm.resx">
       <DependentUpon>D3CalculatorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +199,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="D3ProfileExplorer.resx">
       <DependentUpon>D3ProfileExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\D3ProfileExplorerLight.resx">
+      <DependentUpon>D3ProfileExplorerLight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\D3SelectableControl.resx">
+      <DependentUpon>D3SelectableControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="d3gem.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -100,10 +220,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\ZTn.BNet.D3.Calculator.Skills.Barbarian.NervesOfSteel.datasource" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Diablo III.ico" />
+    <None Include="Resources\ic_input_add.png" />
+    <None Include="Resources\wizard_male.png" />
+    <None Include="Resources\wizard_female.png" />
+    <None Include="Resources\witchdoctor_male.png" />
+    <None Include="Resources\witchdoctor_female.png" />
+    <None Include="Resources\monk_male.png" />
+    <None Include="Resources\monk_female.png" />
+    <None Include="Resources\demonhunter_male.png" />
+    <None Include="Resources\demonhunter_female.png" />
+    <None Include="Resources\crusader_male.png" />
+    <None Include="Resources\crusader_female.png" />
+    <None Include="Resources\barbarian_male.png" />
+    <None Include="Resources\barbarian_female.png" />
+    <None Include="Resources\ic_menu_refresh.png" />
+    <None Include="Resources\ic_menu_refresh.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BNet API by ZTn\BNet API by ZTn.csproj">
@@ -118,6 +252,9 @@
       <Project>{f6e135dd-87c5-49c1-a560-07c2653b69a2}</Project>
       <Name>D3 Calculator Library by ZTn</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

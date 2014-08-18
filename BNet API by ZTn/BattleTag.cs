@@ -45,6 +45,15 @@ namespace ZTn.BNet.BattleNet
         #region >> Constructors
 
         /// <summary>
+        /// Initializes a new instance.
+        /// </summary>
+        public BattleTag()
+        {
+            Name = "Undefined";
+            Code = "0000";
+        }
+
+        /// <summary>
         /// Creates a new <see cref="BattleTag"/> instance.
         /// </summary>
         /// <param name="battleTag">Battle tag (Name#Code).</param>

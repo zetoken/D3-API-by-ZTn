@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using ZTn.BNet.D3ProfileExplorer.ExplorerLight;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -13,7 +14,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GuiD3ProfileExplorer());
+            Application.Run(new D3ProfileExplorerLight());
         }
     }
 }
