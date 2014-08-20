@@ -2,7 +2,7 @@
 
 namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
-    class D3ProfileExplorerLightConfig
+    internal class D3ProfileExplorerLightConfig
     {
         public List<D3ProfileContainer> Profiles { get; set; }
 

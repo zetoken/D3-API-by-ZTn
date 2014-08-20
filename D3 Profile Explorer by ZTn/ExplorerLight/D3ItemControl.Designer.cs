@@ -37,6 +37,7 @@
             // guiItemName
             // 
             this.guiItemName.AutoSize = true;
+            this.guiItemName.BackColor = System.Drawing.Color.Transparent;
             this.guiItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.guiItemName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(100)))), ((int)(((byte)(47)))));
             this.guiItemName.Location = new System.Drawing.Point(73, 3);
@@ -47,6 +48,7 @@
             // 
             // guiItemPicture
             // 
+            this.guiItemPicture.BackColor = System.Drawing.Color.Transparent;
             this.guiItemPicture.Location = new System.Drawing.Point(3, 6);
             this.guiItemPicture.Name = "guiItemPicture";
             this.guiItemPicture.Size = new System.Drawing.Size(64, 128);
@@ -59,6 +61,7 @@
             this.guiDescriptionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.guiDescriptionPanel.AutoSize = true;
+            this.guiDescriptionPanel.BackColor = System.Drawing.Color.Transparent;
             this.guiDescriptionPanel.Location = new System.Drawing.Point(74, 26);
             this.guiDescriptionPanel.Name = "guiDescriptionPanel";
             this.guiDescriptionPanel.Size = new System.Drawing.Size(323, 108);
@@ -70,6 +73,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.guiItemPicture);
             this.Controls.Add(this.guiItemName);
             this.Controls.Add(this.guiDescriptionPanel);

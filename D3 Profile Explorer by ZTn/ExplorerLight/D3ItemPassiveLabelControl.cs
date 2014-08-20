@@ -10,6 +10,8 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
         public D3ItemPassiveLabelControl()
         {
             InitializeComponent();
+
+            InitializeControl();
         }
 
         public D3ItemPassiveLabelControl(Item item)

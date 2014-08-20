@@ -8,8 +8,6 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
     partial class D3ItemControl : D3SelectableControl
     {
-        private readonly int width;
-
         public Item Item
         {
             set
@@ -22,23 +20,21 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
         public D3ItemControl()
         {
             InitializeComponent();
-
-            InitializeControl();
-
-            width = Size.Width;
         }
 
         public D3ItemControl(Item item)
             : this()
         {
             Item = item;
+
+            InitializeControl();
+
+            HookMouseEventOfChildren(guiDescriptionPanel);
         }
 
-        public override Size GetPreferredSize(Size proposedSize)
+        protected override sealed void InitializeControl()
         {
-            var size = base.GetPreferredSize(proposedSize);
-
-            return new Size(width, size.Height);
+            base.InitializeControl();
         }
 
         private void UpdateItemPicture(ItemSummary item)

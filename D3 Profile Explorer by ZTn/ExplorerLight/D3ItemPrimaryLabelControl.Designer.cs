@@ -1,6 +1,6 @@
 ﻿namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
-    partial class D3ItemPrimaryLabelControl
+    sealed partial class D3ItemPrimaryLabelControl
     {
         #region Code généré par le Concepteur de composants
 

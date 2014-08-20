@@ -10,6 +10,8 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
         public D3ItemSecondaryLabelControl()
         {
             InitializeComponent();
+
+            InitializeControl();
         }
 
         public D3ItemSecondaryLabelControl(Item item)

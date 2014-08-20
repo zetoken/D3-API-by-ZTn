@@ -8,6 +8,8 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
         public D3ItemArmorLabelControl()
         {
             InitializeComponent();
+
+            InitializeControl();
         }
 
         public D3ItemArmorLabelControl(Item item)

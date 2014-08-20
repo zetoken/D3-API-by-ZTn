@@ -8,6 +8,8 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
         public D3ItemDamageLabelControl()
         {
             InitializeComponent();
+
+            InitializeControl();
         }
 
         public D3ItemDamageLabelControl(Item item)

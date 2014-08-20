@@ -1,73 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
-    partial class D3SelectableControl : UserControl
+    partial class D3SelectableControl : D3GenericControl
     {
-        private readonly Dictionary<EventHandler, EventHandler> clickEventHandlers = new Dictionary<EventHandler, EventHandler>();
-        private bool activeProfile;
+        private bool isHighlighted;
 
         public D3SelectableControl()
         {
             InitializeComponent();
         }
 
-        protected void InitializeControl()
+        protected override void InitializeControl()
         {
+            base.InitializeControl();
+
             MouseEnter += Control_MouseEnter;
             MouseLeave += Control_MouseLeave;
-
-            foreach (Control control in Controls)
-            {
-                control.MouseEnter += Control_MouseEnter;
-                control.MouseLeave += Control_MouseLeave;
-            }
         }
 
-        public Boolean ActiveProfile
+        public Boolean IsHighlighted
         {
-            get { return activeProfile; }
+            get { return isHighlighted; }
             set
             {
-                activeProfile = value;
+                isHighlighted = value;
                 UpdateControlColors(false);
-            }
-        }
-
-        public new event EventHandler Click
-        {
-            add
-            {
-                EventHandler eventHandler = (s, e) => value(this, e);
-                clickEventHandlers.Add(value, eventHandler);
-
-                foreach (Control control in Controls)
-                {
-                    control.Click += eventHandler;
-                }
-
-                base.Click += value;
-            }
-            remove
-            {
-                EventHandler eventHandler;
-
-                if (clickEventHandlers.TryGetValue(value, out eventHandler) == false)
-                {
-                    return;
-                }
-
-                foreach (Control control in Controls)
-                {
-                    control.Click -= eventHandler;
-                }
-
-                clickEventHandlers.Remove(value);
-
-                base.Click -= value;
             }
         }
 
@@ -78,7 +37,11 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 
         private void Control_MouseLeave(object sender, EventArgs e)
         {
-            UpdateControlColors(false);
+            // Checks if the mouse leaves the control surface but stays in the control rectangle
+            if (!ClientRectangle.Contains(PointToClient(MousePosition)))
+            {
+                UpdateControlColors(false);
+            }
         }
 
         private void UpdateControlColors(bool hovering)
@@ -89,7 +52,7 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
             }
             else
             {
-                BackColor = ActiveProfile ? Color.LimeGreen : Color.Black;
+                BackColor = IsHighlighted ? Color.LimeGreen : Color.Black;
             }
         }
     }

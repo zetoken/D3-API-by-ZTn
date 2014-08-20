@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
-    partial class D3SelectableControl
+    partial class D3GenericControl
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -37,12 +37,12 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
         {
             this.SuspendLayout();
             // 
-            // D3SelectableControl
+            // D3GenericControl
             // 
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DoubleBuffered = true;
-            this.Name = "D3SelectableControl";
+            this.Name = "D3GenericControl";
             this.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.Size = new System.Drawing.Size(198, 48);
             this.ResumeLayout(false);

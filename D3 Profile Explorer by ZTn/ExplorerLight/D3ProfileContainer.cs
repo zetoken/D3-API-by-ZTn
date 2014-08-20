@@ -2,7 +2,7 @@
 
 namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
-    class D3ProfileContainer
+    internal class D3ProfileContainer
     {
         public BattleTag BattleTag { get; set; }
 

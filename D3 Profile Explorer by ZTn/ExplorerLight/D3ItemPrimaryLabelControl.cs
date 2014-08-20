@@ -5,11 +5,13 @@ using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
-    partial class D3ItemPrimaryLabelControl : D3LabelControl
+    sealed partial class D3ItemPrimaryLabelControl : D3LabelControl
     {
         public D3ItemPrimaryLabelControl()
         {
             InitializeComponent();
+
+            InitializeControl();
         }
 
         public D3ItemPrimaryLabelControl(Item item)

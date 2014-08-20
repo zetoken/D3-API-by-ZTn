@@ -109,6 +109,12 @@
       <DependentUpon>D3ItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ExplorerLight\D3HeroContainer.cs" />
+    <Compile Include="ExplorerLight\D3GenericControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3GenericControl.Designer.cs">
+      <DependentUpon>D3GenericControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExplorerLight\D3SelectableControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExplorerLight\D3ProfileExplorerLight.resx">
       <DependentUpon>D3ProfileExplorerLight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerLight\D3GenericControl.resx">
+      <DependentUpon>D3GenericControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExplorerLight\D3SelectableControl.resx">
       <DependentUpon>D3SelectableControl.cs</DependentUpon>

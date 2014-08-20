@@ -3,7 +3,7 @@ using ZTn.BNet.D3.Heroes;
 
 namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
-    class D3HeroContainer
+    internal class D3HeroContainer
     {
         public BattleTag BattleTag { get; set; }
 

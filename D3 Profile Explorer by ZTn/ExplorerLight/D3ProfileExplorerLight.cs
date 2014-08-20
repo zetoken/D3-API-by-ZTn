@@ -109,8 +109,6 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 
             var control = new D3ItemControl(item);
 
-            control.Click += d3ItemSummary_Click;
-
             guiItemsPanel.Controls.Add(control);
         }
 
@@ -177,18 +175,22 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
                 return;
             }
 
+            SuspendLayout();
+
             if (activeProfileControl != null)
             {
-                activeProfileControl.ActiveProfile = false;
+                activeProfileControl.IsHighlighted = false;
             }
 
-            control.ActiveProfile = true;
+            control.IsHighlighted = true;
 
             var profileContainer = (D3ProfileContainer)control.Tag;
             var career = FetchCareer(profileContainer.BattleTag, profileContainer.Host);
             ShowCareer(career, profileContainer.BattleTag, profileContainer.Host);
 
             activeProfileControl = control;
+
+            ResumeLayout();
         }
 
         private void d3HeroControl_Click(object sender, EventArgs e)
@@ -200,28 +202,22 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
                 return;
             }
 
+            SuspendLayout();
+
             if (activeHeroControl != null)
             {
-                activeHeroControl.ActiveProfile = false;
+                activeHeroControl.IsHighlighted = false;
             }
 
-            control.ActiveProfile = true;
+            control.IsHighlighted = true;
 
             var container = (D3HeroContainer)control.Tag;
             var hero = FetchHero(container.HeroSummary, container.BattleTag, container.Host);
             ShowHero(hero);
 
             activeHeroControl = control;
-        }
 
-        private void d3ItemSummary_Click(object sender, EventArgs e)
-        {
-            var control = sender as D3ItemControl;
-
-            if (control == null)
-            {
-                return;
-            }
+            ResumeLayout();
         }
 
         private static Career FetchCareer(BattleTag battleTag, Host host)
@@ -310,6 +306,8 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
             dataProvider.FetchMode = FetchMode.OnlineIfMissing;
 
             ShowCareer(career, container.BattleTag, container.Host);
+
+            guiItemsPanel.Controls.Clear();
 
             MessageBox.Show("Career updated.");
         }

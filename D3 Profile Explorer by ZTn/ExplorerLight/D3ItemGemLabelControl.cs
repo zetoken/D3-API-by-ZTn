@@ -9,6 +9,8 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
         public D3ItemGemLabelControl()
         {
             InitializeComponent();
+
+            InitializeControl();
         }
 
         public D3ItemGemLabelControl(SocketedGem socketedGem)

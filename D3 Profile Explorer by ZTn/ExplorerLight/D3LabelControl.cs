@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
-    partial class D3LabelControl : D3SelectableControl
+    partial class D3LabelControl : D3GenericControl
     {
         public D3LabelControl()
         {
@@ -13,6 +13,7 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
         public override Size GetPreferredSize(Size proposedSize)
         {
             var size = base.GetPreferredSize(proposedSize);
+
             return new Size(Parent.Width - Location.X - Parent.Padding.Right - Margin.Right, size.Height);
         }
 
