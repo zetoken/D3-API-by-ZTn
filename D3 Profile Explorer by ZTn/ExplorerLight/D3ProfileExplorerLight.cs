@@ -28,6 +28,7 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 
             var cacheableDataProvider = new CacheableDataProvider(new HttpRequestDataProvider()) { FetchMode = FetchMode.OnlineIfMissing };
             D3Api.DataProvider = cacheableDataProvider;
+            D3Api.ApiKey = "zrxxcy3qzp8jcbgrce2es4yq52ew2k7r";
 
             var hosts = "hosts.json".CreateFromJsonFile<List<Host>>();
             guiBattleNetHostList.DataSource = hosts;
@@ -148,19 +149,19 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
             }
 
             guiItemsPanel.Controls.Clear();
-            AddItem(hero.items.bracers);
-            AddItem(hero.items.feet);
-            AddItem(hero.items.hands);
-            AddItem(hero.items.head);
-            AddItem(hero.items.leftFinger);
-            AddItem(hero.items.legs);
-            AddItem(hero.items.mainHand);
-            AddItem(hero.items.neck);
-            AddItem(hero.items.offHand);
-            AddItem(hero.items.rightFinger);
-            AddItem(hero.items.shoulders);
-            AddItem(hero.items.torso);
-            AddItem(hero.items.waist);
+            AddItem(hero.Items.bracers);
+            AddItem(hero.Items.feet);
+            AddItem(hero.Items.hands);
+            AddItem(hero.Items.head);
+            AddItem(hero.Items.leftFinger);
+            AddItem(hero.Items.legs);
+            AddItem(hero.Items.mainHand);
+            AddItem(hero.Items.neck);
+            AddItem(hero.Items.offHand);
+            AddItem(hero.Items.rightFinger);
+            AddItem(hero.Items.shoulders);
+            AddItem(hero.Items.torso);
+            AddItem(hero.Items.waist);
 
             guiRefreshHero.Visible = true;
             guiRunCalculator.Visible = true;

@@ -57,7 +57,7 @@ namespace ZTn.BNet.D3.Calculator
         public D3Calculator(Hero hero, Item mainHand, Item offHand, IEnumerable<Item> items)
         {
             HeroClass = hero.heroClass;
-            HeroLevel = hero.level;
+            HeroLevel = hero.Level;
 
             // Build unique item equivalent to items worn
             HeroStatsItem = new StatsItem(mainHand, offHand, items);

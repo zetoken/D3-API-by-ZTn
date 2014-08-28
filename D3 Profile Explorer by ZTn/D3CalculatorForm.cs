@@ -103,65 +103,65 @@ namespace ZTn.BNet.D3ProfileExplorer
         public D3CalculatorForm(Hero hero)
             : this()
         {
-            Text += " [ " + hero.name + " ]";
+            Text += " [ " + hero.Name + " ]";
 
             guiHeroClass.SelectedItem = hero.heroClass.ToString();
-            guiHeroLevel.Text = hero.level.ToString();
-            guiHeroParagonLevel.Text = hero.paragonLevel.ToString();
+            guiHeroLevel.Text = hero.Level.ToString();
+            guiHeroParagonLevel.Text = hero.ParagonLevel.ToString();
 
-            if (hero.items.bracers != null)
+            if (hero.Items.bracers != null)
             {
-                bracers = hero.items.bracers.GetFullItem();
+                bracers = hero.Items.bracers.GetFullItem();
             }
-            if (hero.items.feet != null)
+            if (hero.Items.feet != null)
             {
-                feet = hero.items.feet.GetFullItem();
+                feet = hero.Items.feet.GetFullItem();
             }
-            if (hero.items.hands != null)
+            if (hero.Items.hands != null)
             {
-                hands = hero.items.hands.GetFullItem();
+                hands = hero.Items.hands.GetFullItem();
             }
-            if (hero.items.head != null)
+            if (hero.Items.head != null)
             {
-                head = hero.items.head.GetFullItem();
+                head = hero.Items.head.GetFullItem();
             }
-            if (hero.items.leftFinger != null)
+            if (hero.Items.leftFinger != null)
             {
-                leftFinger = hero.items.leftFinger.GetFullItem();
+                leftFinger = hero.Items.leftFinger.GetFullItem();
             }
-            if (hero.items.legs != null)
+            if (hero.Items.legs != null)
             {
-                legs = hero.items.legs.GetFullItem();
+                legs = hero.Items.legs.GetFullItem();
             }
-            if (hero.items.neck != null)
+            if (hero.Items.neck != null)
             {
-                neck = hero.items.neck.GetFullItem();
+                neck = hero.Items.neck.GetFullItem();
             }
-            if (hero.items.rightFinger != null)
+            if (hero.Items.rightFinger != null)
             {
-                rightFinger = hero.items.rightFinger.GetFullItem();
+                rightFinger = hero.Items.rightFinger.GetFullItem();
             }
-            if (hero.items.shoulders != null)
+            if (hero.Items.shoulders != null)
             {
-                shoulders = hero.items.shoulders.GetFullItem();
+                shoulders = hero.Items.shoulders.GetFullItem();
             }
-            if (hero.items.torso != null)
+            if (hero.Items.torso != null)
             {
-                torso = hero.items.torso.GetFullItem();
+                torso = hero.Items.torso.GetFullItem();
             }
-            if (hero.items.waist != null)
+            if (hero.Items.waist != null)
             {
-                waist = hero.items.waist.GetFullItem();
+                waist = hero.Items.waist.GetFullItem();
             }
 
             // If no weapon is set in mainHand, use "naked hand" weapon
-            var mainHand = (hero.items.mainHand != null ? hero.items.mainHand.GetFullItem() : D3Calculator.NakedHandWeapon);
+            var mainHand = (hero.Items.mainHand != null ? hero.Items.mainHand.GetFullItem() : D3Calculator.NakedHandWeapon);
 
             // If no item is set in offHand, use a blank item
             Item offHand;
-            if (hero.items.offHand != null)
+            if (hero.Items.offHand != null)
             {
-                offHand = hero.items.offHand.GetFullItem();
+                offHand = hero.Items.offHand.GetFullItem();
             }
             else
             {
@@ -272,20 +272,20 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             if (String.IsNullOrEmpty(guiHeroLevel.Text))
             {
-                hero.level = 60;
+                hero.Level = 60;
             }
             else
             {
-                hero.level = Int32.Parse(guiHeroLevel.Text);
+                hero.Level = Int32.Parse(guiHeroLevel.Text);
             }
 
             if (String.IsNullOrEmpty(guiHeroParagonLevel.Text))
             {
-                hero.paragonLevel = 0;
+                hero.ParagonLevel = 0;
             }
             else
             {
-                hero.paragonLevel = Int32.Parse(guiHeroParagonLevel.Text);
+                hero.ParagonLevel = Int32.Parse(guiHeroParagonLevel.Text);
             }
 
             return hero;
@@ -344,7 +344,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             // Retrieve hero from the GUI
             var hero = GetEditedHero();
-            heroLevel = hero.level;
+            heroLevel = hero.Level;
 
             // Retrieve worn items from the GUI
             var items = new List<Item>
@@ -501,9 +501,9 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private static void PopulateActiveSkills(Hero hero)
         {
-            if (hero.skills.active != null)
+            if (hero.Skills.active != null)
             {
-                foreach (var activeSkill in hero.skills.active.Where(active => active.skill != null))
+                foreach (var activeSkill in hero.Skills.active.Where(active => active.skill != null))
                 {
                     switch (activeSkill.skill.slug)
                     {
@@ -560,9 +560,9 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void PopulatePassiveSkills(Hero hero)
         {
-            if (hero.skills.passive != null)
+            if (hero.Skills.passive != null)
             {
-                foreach (var passiveSkill in hero.skills.passive.Where(passive => passive.skill != null))
+                foreach (var passiveSkill in hero.Skills.passive.Where(passive => passive.skill != null))
                 {
                     var skillCheckBox = passiveCheckBoxes
                         .FirstOrDefault(cb => (cb.Tag as string) == passiveSkill.skill.slug);

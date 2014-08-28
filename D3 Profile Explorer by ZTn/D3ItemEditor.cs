@@ -97,7 +97,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             if (equippedGem != null)
             {
-                comboBox.SelectedItem = refGems.First(g => equippedGem.Id == g.Item.Id);
+                comboBox.SelectedItem = refGems.FirstOrDefault(g => equippedGem.Id == g.Item.Id);
             }
         }
 

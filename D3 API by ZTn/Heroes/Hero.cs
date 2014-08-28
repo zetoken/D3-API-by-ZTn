@@ -14,22 +14,22 @@ namespace ZTn.BNet.D3.Heroes
         #region >> Fields
 
         [DataMember]
-        public HeroSkills skills;
+        public HeroSkills Skills;
 
         [DataMember]
-        public HeroItems items;
+        public HeroItems Items;
 
         [DataMember]
-        public Followers followers;
+        public Followers Followers;
 
         [DataMember]
-        public HeroStats stats;
+        public HeroStats Stats;
 
         [DataMember]
-        public HeroKills kills;
+        public HeroKills Kills;
 
         [DataMember]
-        public HeroProgress progression;
+        public HeroProgress Progression;
 
         #endregion
 

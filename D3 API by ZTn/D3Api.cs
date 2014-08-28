@@ -11,13 +11,20 @@ namespace ZTn.BNet.D3
 {
     public class D3Api
     {
-        public static String ProtocolPrefix = "http://";
-        public static String Host = "eu.battle.net";
-        public static String ApiPath = "/api/d3/";
+        public static String ProtocolPrefix = "https://";
+        public static String Host = "eu.api.battle.net";
+        public static String ApiPath = "/d3/";
         public static String Locale = "en";
         public static String MediaPath = "http://media.blizzard.com/d3/";
 
         public static ID3DataProvider DataProvider = new HttpRequestDataProvider();
+
+        public static String ApiKey { get; set; }
+
+        public static String ApiKeySuffix
+        {
+            get { return "&apikey=" + ApiKey; }
+        }
 
         public static String ApiUrl
         {
@@ -32,7 +39,7 @@ namespace ZTn.BNet.D3
         public static Artisan GetArtisanFromSlug(String slug)
         {
             Artisan artisan;
-            using (var stream = DataProvider.FetchData(GetArtisanUrlFromSlug(slug) + ApiLocaleSuffix))
+            using (var stream = DataProvider.FetchData(GetArtisanUrlFromSlug(slug) + ApiLocaleSuffix + ApiKeySuffix))
             {
                 artisan = Artisan.CreateFromJSonStream(stream);
             }
@@ -47,7 +54,7 @@ namespace ZTn.BNet.D3
         public static Career GetCareerFromBattleTag(BattleTag battleTag)
         {
             Career career;
-            using (var stream = DataProvider.FetchData(GetCareerUrl(battleTag) + "/index" + ApiLocaleSuffix))
+            using (var stream = DataProvider.FetchData(GetCareerUrl(battleTag) + "/index" + ApiLocaleSuffix + ApiKeySuffix))
             {
                 career = Career.CreateFromJSonStream(stream);
             }
@@ -62,7 +69,7 @@ namespace ZTn.BNet.D3
         public static Hero GetHeroFromHeroId(BattleTag battleTag, String heroId)
         {
             Hero hero;
-            using (var stream = DataProvider.FetchData(GetHeroUrlFromHeroId(battleTag, heroId) + ApiLocaleSuffix))
+            using (var stream = DataProvider.FetchData(GetHeroUrlFromHeroId(battleTag, heroId) + ApiLocaleSuffix + ApiKeySuffix))
             {
                 hero = Hero.CreateFromJSonStream(stream);
             }
@@ -77,7 +84,7 @@ namespace ZTn.BNet.D3
         public static Item GetItemFromTooltipParams(String tooltipParams)
         {
             Item item;
-            using (var stream = DataProvider.FetchData(GetItemUrlFromTooltipParams(tooltipParams) + ApiLocaleSuffix))
+            using (var stream = DataProvider.FetchData(GetItemUrlFromTooltipParams(tooltipParams) + ApiLocaleSuffix + ApiKeySuffix))
             {
                 item = Item.CreateFromJSonStream(stream);
             }

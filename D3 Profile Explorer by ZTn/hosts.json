@@ -1,18 +1,18 @@
 ﻿[
 	{
 		name: "Europe",
-		url: "eu.battle.net"
+		url: "eu.api.battle.net"
 	},
 	{
 		name: "America",
-		url: "us.battle.net"
+		url: "us.api.battle.net"
 	},
 	{
 		name: "Korea",
-		url: "kr.battle.net"
+		url: "kr.api.battle.net"
 	},
 	{
 		name: "Taiwan",
-		url: "tw.battle.net"
+		url: "tw.api.battle.net"
 	}
 ]

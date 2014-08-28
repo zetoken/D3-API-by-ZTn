@@ -12,7 +12,7 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
             set
             {
                 UpdateHeroInfo(value);
-                UpdateHeroPicture(value.heroClass, value.gender);
+                UpdateHeroPicture(value.heroClass, value.Gender);
             }
         }
 
@@ -31,14 +31,14 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 
         private void UpdateHeroInfo(HeroSummary value)
         {
-            guiHeroName.Text = value.name;
+            guiHeroName.Text = value.Name;
 
             guiHeroClass.Text = value.heroClass.ToString();
 
-            guiHeroLevel.Text = String.Format("{0}", value.level);
-            guiHeroParangonLevel.Text = String.Format("+{0}", value.paragonLevel);
+            guiHeroLevel.Text = String.Format("{0}", value.Level);
+            guiHeroParangonLevel.Text = String.Format("+{0}", value.ParagonLevel);
 
-            guiHeroHardcore.Visible = value.hardcore;
+            guiHeroHardcore.Visible = value.Hardcore;
         }
 
         private void UpdateHeroPicture(HeroClass heroClass, HeroGender gender)

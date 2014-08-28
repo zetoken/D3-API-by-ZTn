@@ -10,28 +10,31 @@ namespace ZTn.BNet.D3.Heroes
         #region >> Properties
 
         [DataMember]
-        public String name;
+        public String Name;
 
         [DataMember]
-        public String id;
+        public String Id;
 
         [DataMember]
-        public int level;
+        public int Level;
 
         [DataMember]
-        public Boolean hardcore;
+        public Boolean Seasonal;
 
         [DataMember]
-        public int paragonLevel;
+        public Boolean Hardcore;
 
         [DataMember]
-        public HeroGender gender;
+        public int ParagonLevel;
 
         [DataMember]
-        public Boolean dead;
+        public HeroGender Gender;
+
+        [DataMember]
+        public Boolean Dead;
 
         [DataMember(Name = "class")]
-        protected String s_heroClass
+        protected String SHeroClass
         {
             set
             {
@@ -86,20 +89,20 @@ namespace ZTn.BNet.D3.Heroes
         public HeroClass heroClass;
 
         [DataMember(Name = "last-updated")]
-        protected long s_lastUpdated
+        protected long SLastUpdated
         {
-            set { lastUpdated = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(value).ToLocalTime(); }
-            get { return lastUpdated.Second - new DateTime(1970, 1, 1, 0, 0, 0, 0).Second; }
+            set { LastUpdated = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(value).ToLocalTime(); }
+            get { return LastUpdated.Second - new DateTime(1970, 1, 1, 0, 0, 0, 0).Second; }
         }
 
         [IgnoreDataMember]
-        public DateTime lastUpdated;
+        public DateTime LastUpdated;
 
         #endregion
 
         public Hero GetHeroFromBattleTag(BattleTag battleTag)
         {
-            return Hero.CreateFromHeroId(battleTag, id);
+            return Hero.CreateFromHeroId(battleTag, Id);
         }
 
         #region >> Object
@@ -107,7 +110,7 @@ namespace ZTn.BNet.D3.Heroes
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + id + " " + name + "]";
+            return "[" + Id + " " + Name + "]";
         }
 
         #endregion

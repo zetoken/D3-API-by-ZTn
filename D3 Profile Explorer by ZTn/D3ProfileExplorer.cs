@@ -39,6 +39,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             InitializeComponent();
 
             D3Api.DataProvider = new CacheableDataProvider(new HttpRequestDataProvider());
+            D3Api.ApiKey = "zrxxcy3qzp8jcbgrce2es4yq52ew2k7r";
 
             hosts = "hosts.json".CreateFromJsonFile<List<Host>>();
             guiBattleNetHostList.DataSource = hosts;
@@ -277,7 +278,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private static void UpdateNodeText(TreeNode node, HeroSummary d3Object)
         {
-            node.Text += String.Format(" >> L:{1:D2} P:{2:D2} - {0}", d3Object.name, d3Object.level, d3Object.paragonLevel);
+            node.Text += String.Format(" >> L:{1:D2} P:{2:D2} - {0}", d3Object.Name, d3Object.Level, d3Object.ParagonLevel);
         }
 
         private static void UpdateNodeText(TreeNode node, int d3Object)
@@ -340,14 +341,14 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             guiBattleNetHostList.SelectedItem = hosts.FirstOrDefault(h => h.Url == d3Object.Host);
             guiBattleTag.Text = d3Object.BattleTag.ToString();
-            D3ObjectLiveUrl.Text = D3Api.GetHeroUrlFromHeroId(d3Object.BattleTag, d3Object.Data.id);
+            D3ObjectLiveUrl.Text = D3Api.GetHeroUrlFromHeroId(d3Object.BattleTag, d3Object.Data.Id);
         }
 
         private void OnNodeClick(BNetContext<HeroSummary> d3Object)
         {
             guiBattleNetHostList.SelectedItem = hosts.FirstOrDefault(h => h.Url == d3Object.Host);
             guiBattleTag.Text = d3Object.BattleTag.ToString();
-            D3ObjectLiveUrl.Text = D3Api.GetHeroUrlFromHeroId(d3Object.BattleTag, d3Object.Data.id);
+            D3ObjectLiveUrl.Text = D3Api.GetHeroUrlFromHeroId(d3Object.BattleTag, d3Object.Data.Id);
         }
 
         private void OnNodeClick(Item d3Object)
@@ -391,12 +392,12 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var heroSummaryInformation = (BNetContext<HeroSummary>)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            var node = new TreeNode("Hero " + heroSummaryInformation.BattleTag + " / " + heroSummaryInformation.Data.id + " (" + heroSummaryInformation.Data.name + ")");
+            var node = new TreeNode("Hero " + heroSummaryInformation.BattleTag + " / " + heroSummaryInformation.Data.Id + " (" + heroSummaryInformation.Data.Name + ")");
 
             Hero hero;
             try
             {
-                hero = Hero.CreateFromHeroId(heroSummaryInformation.BattleTag, heroSummaryInformation.Data.id);
+                hero = Hero.CreateFromHeroId(heroSummaryInformation.BattleTag, heroSummaryInformation.Data.Id);
             }
             catch (FileNotInCacheException)
             {
@@ -500,17 +501,17 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             var heroItems = new[]
             {
-                hero.items.bracers,
-                hero.items.feet,
-                hero.items.hands,
-                hero.items.head,
-                hero.items.leftFinger,
-                hero.items.legs,
-                hero.items.neck,
-                hero.items.rightFinger,
-                hero.items.shoulders,
-                hero.items.torso,
-                hero.items.waist
+                hero.Items.bracers,
+                hero.Items.feet,
+                hero.Items.hands,
+                hero.Items.head,
+                hero.Items.leftFinger,
+                hero.Items.legs,
+                hero.Items.neck,
+                hero.Items.rightFinger,
+                hero.Items.shoulders,
+                hero.Items.torso,
+                hero.Items.waist
             };
 
             var items = heroItems
@@ -518,12 +519,12 @@ namespace ZTn.BNet.D3ProfileExplorer
                 .Select(hi => Item.CreateFromTooltipParams(hi.TooltipParams))
                 .ToList();
 
-            var mainHand = Item.CreateFromTooltipParams(hero.items.mainHand.TooltipParams);
+            var mainHand = Item.CreateFromTooltipParams(hero.Items.mainHand.TooltipParams);
 
             Item offHand;
-            if (hero.items.offHand != null)
+            if (hero.Items.offHand != null)
             {
-                offHand = Item.CreateFromTooltipParams(hero.items.offHand.TooltipParams);
+                offHand = Item.CreateFromTooltipParams(hero.Items.offHand.TooltipParams);
             }
             else
             {
@@ -533,7 +534,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             var heroStuff = new StatsItem(mainHand, offHand, items.ToArray());
             heroStuff.Update();
 
-            var node = new TreeNode("Unique Item for " + hero.name);
+            var node = new TreeNode("Unique Item for " + hero.Name);
             node.Nodes.AddRange(CreateNodeFromD3Object(heroStuff).ToArray());
 
             guiD3ProfileTreeView.Nodes.Add(node);
@@ -584,7 +585,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             Hero hero;
             try
             {
-                hero = Hero.CreateFromHeroId(heroSummaryInformation.BattleTag, heroSummaryInformation.Data.id);
+                hero = Hero.CreateFromHeroId(heroSummaryInformation.BattleTag, heroSummaryInformation.Data.Id);
             }
             catch (FileNotInCacheException)
             {
@@ -718,6 +719,12 @@ namespace ZTn.BNet.D3ProfileExplorer
                     var id = String.Format("{0}_{1:00}", gemColor, index);
                     sockets.Add(Item.CreateFromTooltipParams("item/" + id));
                 }
+            }
+
+            for (var index = 1; index < 14; index++)
+            {
+                var id = String.Format("Unique_Gem_{0:000}_x1", index);
+                sockets.Add(Item.CreateFromTooltipParams("item/" + id));
             }
 
             sockets.WriteToJsonFile("d3gem.json");
