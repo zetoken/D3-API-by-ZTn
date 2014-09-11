@@ -13,14 +13,14 @@ namespace ZTn.BNet.D3.Artisans
         [DataMember(Name = "slug")]
         public String Slug;
 
-        [DataMember(Name = "name")]
-        public String Name;
+        [DataMember(Name = "level")]
+        public int Level;
 
-        [DataMember(Name = "portrait")]
-        public String Portrait;
+        [DataMember(Name = "stepCurrent")]
+        public int StepCurrent;
 
-        [DataMember(Name = "training")]
-        public ArtisanTraining Training;
+        [DataMember(Name = "stepMax")]
+        public int StepMax;
 
         #endregion
 

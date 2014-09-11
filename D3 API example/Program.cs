@@ -14,9 +14,13 @@ namespace ZTn.BNet.D3.Example
 {
     internal class Program
     {
+        private const string ApiKey = "zrxxcy3qzp8jcbgrce2es4yq52ew2k7r";
+
         private static void Main(string[] args)
         {
             RegisterPcl.Register();
+
+            D3Api.ApiKey = ApiKey;
 
             var battleTag = new BattleTag("Tok#2360");
 
@@ -26,6 +30,11 @@ namespace ZTn.BNet.D3.Example
             Console.WriteLine();
             Console.WriteLine("= = = = END = = = =");
             Console.ReadLine();
+        }
+
+        private static Item GetFullItem(ItemSummary itemSummary)
+        {
+            return itemSummary == null ? null : itemSummary.GetFullItem();
         }
 
         private static void WriteCalculation(BattleTag battleTag)
@@ -39,39 +48,39 @@ namespace ZTn.BNet.D3.Example
                 return;
             }
 
-            Console.WriteLine("Downloading Hero {0}/{1}", battleTag, career.Heroes[0].name);
-            var hero = Hero.CreateFromHeroId(battleTag, career.Heroes[0].id);
-            if (hero == null || hero.items == null)
+            Console.WriteLine("Downloading Hero {0}/{1}", battleTag, career.Heroes[0].Name);
+            var hero = Hero.CreateFromHeroId(battleTag, career.Heroes[0].Id);
+            if (hero == null || hero.Items == null)
             {
                 return;
             }
 
             Console.WriteLine("Downloading {0}", "bracers");
-            var bracers = hero.items.bracers.GetFullItem();
+            var bracers = GetFullItem(hero.Items.bracers);
             Console.WriteLine("Downloading {0}", "feet");
-            var feet = hero.items.feet.GetFullItem();
+            var feet = GetFullItem(hero.Items.feet);
             Console.WriteLine("Downloading {0}", "hands");
-            var hands = hero.items.hands.GetFullItem();
+            var hands = GetFullItem(hero.Items.hands);
             Console.WriteLine("Downloading {0}", "head");
-            var head = hero.items.head.GetFullItem();
+            var head = GetFullItem(hero.Items.head);
             Console.WriteLine("Downloading {0}", "leftFinger");
-            var leftFinger = hero.items.leftFinger.GetFullItem();
+            var leftFinger = GetFullItem(hero.Items.leftFinger);
             Console.WriteLine("Downloading {0}", "legs");
-            var legs = hero.items.legs.GetFullItem();
+            var legs = GetFullItem(hero.Items.legs);
             Console.WriteLine("Downloading {0}", "mainHand");
-            var mainHand = hero.items.mainHand.GetFullItem();
+            var mainHand = GetFullItem(hero.Items.mainHand);
             Console.WriteLine("Downloading {0}", "neck");
-            var neck = hero.items.neck.GetFullItem();
+            var neck = GetFullItem(hero.Items.neck);
             Console.WriteLine("Downloading {0}", "offHand");
-            var offHand = hero.items.offHand.GetFullItem();
+            var offHand = GetFullItem(hero.Items.offHand);
             Console.WriteLine("Downloading {0}", "rightFinger");
-            var rightFinger = hero.items.rightFinger.GetFullItem();
+            var rightFinger = GetFullItem(hero.Items.rightFinger);
             Console.WriteLine("Downloading {0}", "shoulders");
-            var shoulders = hero.items.shoulders.GetFullItem();
+            var shoulders = GetFullItem(hero.Items.shoulders);
             Console.WriteLine("Downloading {0}", "torso");
-            var torso = hero.items.torso.GetFullItem();
+            var torso = GetFullItem(hero.Items.torso);
             Console.WriteLine("Downloading {0}", "waist");
-            var waist = hero.items.waist.GetFullItem();
+            var waist = GetFullItem(hero.Items.waist);
 
             var items = new List<Item> { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist }.Where(i => i != null).ToList();
 
@@ -107,17 +116,17 @@ namespace ZTn.BNet.D3.Example
             foreach (var heroDigest in career.Heroes)
             {
                 Console.WriteLine("Hero {0}: {1} is {2} level {3} + {4} last updated {5}",
-                    heroDigest.id,
-                    heroDigest.name,
+                    heroDigest.Id,
+                    heroDigest.Name,
                     heroDigest.heroClass,
-                    heroDigest.level,
-                    heroDigest.paragonLevel, heroDigest.lastUpdated);
+                    heroDigest.Level,
+                    heroDigest.ParagonLevel, heroDigest.LastUpdated);
 
                 var heroFull = heroDigest.GetHeroFromBattleTag(battleTag);
 
-                if (heroFull.items.mainHand != null)
+                if (heroFull.Items.mainHand != null)
                 {
-                    var mainHand = Item.CreateFromTooltipParams(heroFull.items.mainHand.TooltipParams);
+                    var mainHand = Item.CreateFromTooltipParams(heroFull.Items.mainHand.TooltipParams);
                     Console.WriteLine("Hero main hand: level {0} {1} (DPS {2}-{3}) is of type {4}",
                         mainHand.ItemLevel,
                         mainHand.Name,
@@ -125,9 +134,9 @@ namespace ZTn.BNet.D3.Example
                         mainHand.TypeName);
                 }
 
-                if (heroFull.items.torso != null)
+                if (heroFull.Items.torso != null)
                 {
-                    var torso = Item.CreateFromTooltipParams(heroFull.items.torso.TooltipParams);
+                    var torso = Item.CreateFromTooltipParams(heroFull.Items.torso.TooltipParams);
                     Console.WriteLine("Hero torso: level {0} {1} (armor {2}-{3}) is of type {4}",
                         torso.ItemLevel,
                         torso.Name,
@@ -135,13 +144,13 @@ namespace ZTn.BNet.D3.Example
                         torso.TypeName);
                 }
 
-                Console.WriteLine("Hero DPS {0}", heroFull.stats.damage);
+                Console.WriteLine("Hero DPS {0}", heroFull.Stats.damage);
             }
             Console.WriteLine();
             Console.WriteLine("Fallen Heroes count: " + career.FallenHeroes.Length);
             foreach (var heroDigest in career.FallenHeroes)
             {
-                Console.WriteLine("Hero {0}: {1} is {2} level {3} + {4} ", heroDigest.id, heroDigest.name, heroDigest.heroClass, heroDigest.level, heroDigest.paragonLevel);
+                Console.WriteLine("Hero {0}: {1} is {2} level {3} + {4} ", heroDigest.Id, heroDigest.Name, heroDigest.heroClass, heroDigest.Level, heroDigest.ParagonLevel);
             }
         }
     }

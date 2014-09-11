@@ -58,6 +58,7 @@
     <Compile Include="Careers\ClassTimePlayed.cs" />
     <Compile Include="D3Api.cs" />
     <Compile Include="DataProviders\BNetFailureObjectReturnedException.cs" />
+    <Compile Include="DataProviders\BNetResponse403Exception.cs" />
     <Compile Include="DataProviders\BNetResponseFailedException.cs" />
     <Compile Include="DataProviders\CacheableDataProvider.cs" />
     <Compile Include="DataProviders\FakeDataProvider.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Items\SocketedGem.cs" />
     <Compile Include="Items\SocketEffect.cs" />
     <Compile Include="Medias\D3Picture.cs" />
+    <Compile Include="MissingApiKey.cs" />
     <Compile Include="Progresses\ActProgress.cs" />
     <Compile Include="Progresses\CareerProgress.cs" />
     <Compile Include="Progresses\DifficultyProgress.cs" />

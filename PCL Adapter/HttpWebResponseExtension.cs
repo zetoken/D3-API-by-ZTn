@@ -1,5 +1,6 @@
-﻿using System.Net;
-using System.Threading;
+﻿using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace ZTn.Bnet.Portable
 {
@@ -7,22 +8,22 @@ namespace ZTn.Bnet.Portable
     {
         public static WebResponse GetResponse(this HttpWebRequest request)
         {
-            WebResponse response = null;
+            try
+            {
+                var task = Task.Factory.FromAsync(
+                    (callback, state) => ((HttpWebRequest)state).BeginGetResponse(callback, state),
+                    result => ((HttpWebRequest)result.AsyncState).EndGetResponse(result),
+                    request);
 
-            var gotResponse = new AutoResetEvent(false);
+                task.Wait();
 
-            request.BeginGetResponse(
-                a =>
-                {
-                    response = request.EndGetResponse(a);
-                    gotResponse.Set();
-                },
-                request
-                );
-
-            gotResponse.WaitOne();
-
-            return response;
+                return task.Result;
+            }
+            catch (AggregateException exception)
+            {
+                // If an exception occured in the task, it is encapsulated into an AggregateException object.
+                throw exception.InnerException;
+            }
         }
     }
 }

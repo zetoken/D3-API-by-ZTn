@@ -57,6 +57,7 @@
     <Compile Include="Artisans\ArtisanTraining.cs" />
     <Compile Include="Artisans\CareerArtisan.cs" />
     <Compile Include="DataProviders\BNetFailureObjectReturnedException.cs" />
+    <Compile Include="DataProviders\BNetResponse403Exception.cs" />
     <Compile Include="DataProviders\CacheableDataProvider.cs" />
     <Compile Include="DataProviders\BNetResponseFailedException.cs" />
     <Compile Include="DataProviders\FakeDataProvider.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Items\Set.cs" />
     <Compile Include="Items\SetRank.cs" />
     <Compile Include="Medias\D3Picture.cs" />
+    <Compile Include="MissingApiKey.cs" />
     <Compile Include="Progresses\ActProgress.cs" />
     <Compile Include="Progresses\DifficultyProgress.cs" />
     <Compile Include="Progresses\CareerProgress.cs" />

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Annotations;
 using ZTn.BNet.D3.Artisans;
@@ -13,6 +16,9 @@ namespace ZTn.BNet.D3.Careers
     [DataContract]
     public class Career
     {
+        [JsonExtensionData]
+        public IDictionary<string, JToken> UnmanagedAttributes;
+
         #region >> Fields
 
         [DataMember(Name = "battleTag"), UsedImplicitly]
@@ -31,11 +37,45 @@ namespace ZTn.BNet.D3.Careers
         [DataMember(Name = "lastHeroPlayed")]
         public String LastHeroPlayed;
 
-        [DataMember(Name = "artisans")]
-        public CareerArtisan[] Artisans;
+        #region >> Artisans
 
-        [DataMember(Name = "hardcoreArtisans")]
-        public CareerArtisan[] HardcoreArtisans;
+        [DataMember(Name = "blacksmith")]
+        public CareerArtisan Blacksmith;
+
+        [DataMember(Name = "jeweler")]
+        public CareerArtisan Jeweler;
+
+        [DataMember(Name = "mystic")]
+        public CareerArtisan Mystic;
+
+        [DataMember(Name = "blacksmithHardcore")]
+        public CareerArtisan BlacksmithHardcore;
+
+        [DataMember(Name = "jewelerHardcore")]
+        public CareerArtisan JewelerHardcore;
+
+        [DataMember(Name = "mysticHardcore")]
+        public CareerArtisan MysticHardcore;
+
+        [DataMember(Name = "blacksmithSeason")]
+        public CareerArtisan BlacksmithSeason;
+
+        [DataMember(Name = "jewelerSeason")]
+        public CareerArtisan JewelerSeason;
+
+        [DataMember(Name = "mysticSeason")]
+        public CareerArtisan MysticSeason;
+
+        [DataMember(Name = "blacksmithSeasonHardcore")]
+        public CareerArtisan BlacksmithSeasonHardcore;
+
+        [DataMember(Name = "jewelerSeasonHardcore")]
+        public CareerArtisan JewelerSeasonHardcore;
+
+        [DataMember(Name = "mysticSeasonHardcore")]
+        public CareerArtisan MysticSeasonHardcore;
+
+        #endregion
 
         [DataMember(Name = "kills")]
         public CareerKills Kills;
@@ -51,6 +91,12 @@ namespace ZTn.BNet.D3.Careers
 
         [DataMember(Name = "paragonLevelHardcore")]
         public int ParagonLevelHardcore;
+
+        [DataMember(Name = "paragonLevelSeason")]
+        public int ParagonLevelSeason;
+
+        [DataMember(Name = "paragonLevelSeasonHardcore")]
+        public int ParagonLevelSeasonHardcore;
 
         [DataMember(Name = "progression")]
         public CareerProgress Progression;

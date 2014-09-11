@@ -23,7 +23,15 @@ namespace ZTn.BNet.D3
 
         public static String ApiKeySuffix
         {
-            get { return "&apikey=" + ApiKey; }
+            get
+            {
+                if (ApiKey == null)
+                {
+                    throw new MissingApiKey();
+                }
+
+                return "&apikey=" + ApiKey;
+            }
         }
 
         public static String ApiUrl

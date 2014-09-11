@@ -17,8 +17,28 @@ namespace ZTn.BNet.D3.DataProviders
 
         public Stream FetchData(String url)
         {
+            System.Diagnostics.Debug.WriteLine("FetchData({0}): {1}", url, "Start");
+
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
+            HttpWebResponse httpWebResponse;
+            try
+            {
+                httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            }
+            catch (WebException exception)
+            {
+                var response = (HttpWebResponse)exception.Response;
+
+                System.Diagnostics.Debug.WriteLine("FetchData({0}): {1}", url, response.StatusCode);
+
+                if (response.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    throw new BNetResponse403Exception();
+                }
+
+                throw new BNetResponseFailedException();
+            }
 
             if (httpWebResponse.StatusCode != HttpStatusCode.OK)
             {
@@ -27,7 +47,7 @@ namespace ZTn.BNet.D3.DataProviders
 
             using (var responseStream = httpWebResponse.GetResponseStream())
             {
-                // Get the response an try to detect if server returned an object indicating a failure
+                // Get the response and try to detect if server returned an object indicating a failure
                 // Note: Do not use "using" statement, as we want the stream not to be closed to be used outside !
                 var memoryStream = new MemoryStream();
                 responseStream.CopyTo(memoryStream);
@@ -40,6 +60,8 @@ namespace ZTn.BNet.D3.DataProviders
 
                     if (failureObject.IsFailureObject())
                     {
+                        System.Diagnostics.Debug.WriteLine("FetchData({0}): {1}", url, failureObject);
+
                         memoryStream.Dispose();
                         throw new BNetFailureObjectReturnedException(failureObject);
                     }
