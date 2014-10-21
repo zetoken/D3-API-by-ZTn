@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3;
@@ -102,15 +103,25 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
                 return;
             }
 
-            var item = itemSummary.GetFullItem();
-            if (item == null)
-            {
-                return;
-            }
+            itemSummary.GetFullItem(
+                item =>
+                {
+                    if (item == null)
+                    {
+                        return;
+                    }
 
-            var control = new D3ItemControl(item);
+                    var control = new D3ItemControl(item);
 
-            guiItemsPanel.Controls.Add(control);
+                    guiItemsPanel.Invoke(new MethodInvoker(() =>
+                    {
+                        SuspendLayout();
+                        guiItemsPanel.Controls.Add(control);
+                        ResumeLayout();
+                    }));
+                },
+                () => { }
+                );
         }
 
         private void AddProfile(D3ProfileContainer profileContainer)
@@ -148,7 +159,13 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
                 return;
             }
 
-            guiItemsPanel.Controls.Clear();
+            Invoke(new MethodInvoker(() =>
+            {
+                guiItemsPanel.Controls.Clear();
+                guiRefreshHero.Visible = true;
+                guiRunCalculator.Visible = true;
+            }));
+
             AddItem(hero.Items.bracers);
             AddItem(hero.Items.feet);
             AddItem(hero.Items.hands);
@@ -162,9 +179,6 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
             AddItem(hero.Items.shoulders);
             AddItem(hero.Items.torso);
             AddItem(hero.Items.waist);
-
-            guiRefreshHero.Visible = true;
-            guiRunCalculator.Visible = true;
         }
 
         private void bNetProfileControl_Click(object sender, EventArgs e)
@@ -203,8 +217,6 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
                 return;
             }
 
-            SuspendLayout();
-
             if (activeHeroControl != null)
             {
                 activeHeroControl.IsHighlighted = false;
@@ -214,11 +226,11 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 
             var container = (D3HeroContainer)control.Tag;
             var hero = FetchHero(container.HeroSummary, container.BattleTag, container.Host);
-            ShowHero(hero);
-
-            activeHeroControl = control;
-
-            ResumeLayout();
+            Task.Run(() =>
+            {
+                ShowHero(hero);
+                activeHeroControl = control;
+            });
         }
 
         private static Career FetchCareer(BattleTag battleTag, Host host)
@@ -233,6 +245,11 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
             catch (FileNotInCacheException)
             {
                 MessageBox.Show("Career was not found in cache: go online to retrieve it.");
+                return null;
+            }
+            catch (BNetResponse403Exception)
+            {
+                MessageBox.Show("Battle.net sent an http error: 403 - Too much requests ?");
                 return null;
             }
             catch (BNetResponseFailedException)

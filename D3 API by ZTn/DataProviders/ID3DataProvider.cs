@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ZTn.BNet.D3.DataProviders
 {
@@ -13,5 +14,13 @@ namespace ZTn.BNet.D3.DataProviders
         /// <param name="url"></param>
         /// <returns></returns>
         Stream FetchData(string url);
+
+        /// <summary>
+        /// Asynchronously fetches the <paramref name="url"/>.
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="onSuccess">Callback called if the fetch succeeded.</param>
+        /// <param name="onFailure">Callback called if the fetch failed.</param>
+        void FetchData(String url, Action<Stream> onSuccess, Action onFailure);
     }
 }

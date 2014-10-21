@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Newtonsoft.Json;
 #if PORTABLE
 using ZTn.Bnet.Portable;
@@ -27,6 +28,12 @@ namespace ZTn.BNet.D3.DataProviders
 #else
             return new MemoryStream(Encoding.Default.GetBytes(json));
 #endif
+        }
+
+        /// <inheritdoc />
+        public void FetchData(string url, Action<Stream> onSuccess, Action onFailure)
+        {
+            onSuccess(FetchData(url));
         }
 
         #endregion

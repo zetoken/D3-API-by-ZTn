@@ -62,7 +62,6 @@
     <Compile Include="DataProviders\BNetResponseFailedException.cs" />
     <Compile Include="DataProviders\CacheableDataProvider.cs" />
     <Compile Include="DataProviders\FakeDataProvider.cs" />
-    <Compile Include="DataProviders\FakeFailureDataProvider.cs" />
     <Compile Include="DataProviders\FetchMode.cs" />
     <Compile Include="DataProviders\FileNotInCacheException.cs" />
     <Compile Include="DataProviders\HttpRequestDataProvider.cs" />

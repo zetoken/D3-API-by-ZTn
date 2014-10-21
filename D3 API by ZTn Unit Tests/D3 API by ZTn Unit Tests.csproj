@@ -66,7 +66,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DataProviders\FakeDataProviderUnitTest.cs" />
-    <Compile Include="DataProviders\FakeFailureDataProviderUnitTest.cs" />
     <Compile Include="DataProviders\MD5DigestUnitTest.cs" />
     <Compile Include="FailureObjectUnitTest.cs" />
     <Compile Include="Items\ItemAttributesUnitTest.cs" />

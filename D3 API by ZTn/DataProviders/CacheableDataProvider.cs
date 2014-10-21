@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 #if PORTABLE
 using ZTn.Bnet.Portable;
+
 #endif
 
 namespace ZTn.BNet.D3.DataProviders
@@ -112,6 +113,9 @@ namespace ZTn.BNet.D3.DataProviders
             return "cache/";
         }
 
+        #region >> ID3DataProvider
+
+        /// <inheritdoc />
         public Stream FetchData(string url)
         {
             var cachedFilePath = GetCacheStoragePath() + GetCachedFileName(url);
@@ -163,5 +167,24 @@ namespace ZTn.BNet.D3.DataProviders
             return new FileStream(cachedFilePath, FileMode.Open);
 #endif
         }
+
+        /// <inheritdoc />
+        public void FetchData(string url, Action<Stream> onSuccess, Action onFailure)
+        {
+            Stream stream;
+            try
+            {
+                stream = FetchData(url);
+            }
+            catch (Exception)
+            {
+                onFailure();
+                return;
+            }
+
+            onSuccess(stream);
+        }
+
+        #endregion
     }
 }

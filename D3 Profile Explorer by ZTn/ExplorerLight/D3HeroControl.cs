@@ -5,7 +5,7 @@ using ZTn.BNet.D3ProfileExplorer.Properties;
 
 namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
-    partial class D3HeroControl : D3SelectableControl
+    sealed partial class D3HeroControl : D3SelectableControl
     {
         public HeroSummary HeroSummary
         {

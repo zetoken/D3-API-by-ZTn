@@ -96,6 +96,11 @@ namespace ZTn.BNet.D3.Items
             return D3Api.GetItemFromTooltipParams(tooltipParams);
         }
 
+        public static void CreateFromTooltipParams(String tooltipParams, Action<Item> onSuccess, Action onFailure)
+        {
+            D3Api.GetItemFromTooltipParams(tooltipParams, onSuccess, onFailure);
+        }
+
         public static Item CreateFromJSonStream(Stream stream)
         {
             return stream.CreateFromJsonStream<Item>();

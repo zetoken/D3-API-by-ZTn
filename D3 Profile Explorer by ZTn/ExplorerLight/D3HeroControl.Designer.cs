@@ -1,6 +1,6 @@
 ﻿namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
-    partial class D3HeroControl
+    sealed partial class D3HeroControl
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.

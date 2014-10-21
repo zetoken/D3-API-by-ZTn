@@ -99,6 +99,19 @@ namespace ZTn.BNet.D3
             return item;
         }
 
+        public static void GetItemFromTooltipParams(String tooltipParams, Action<Item> onSuccess, Action onFailure)
+        {
+            DataProvider.FetchData(GetItemUrlFromTooltipParams(tooltipParams) + ApiLocaleSuffix + ApiKeySuffix,
+                stream =>
+                {
+                    var item = Item.CreateFromJSonStream(stream);
+                    stream.Close();
+                    onSuccess(item);
+                },
+                onFailure
+                );
+        }
+
         public static String GetItemUrlFromTooltipParams(String tooltipParams)
         {
             return ApiUrl + "data/" + tooltipParams;
@@ -119,6 +132,11 @@ namespace ZTn.BNet.D3
             return picture;
         }
 
+        public static void GetItemIcon(String icon, Action<D3Picture> onSuccess, Action onFailure)
+        {
+            GetItemIcon(icon, "small", onSuccess, onFailure);
+        }
+
         public static D3Picture GetItemIcon(String icon, String size)
         {
             D3Picture picture;
@@ -127,6 +145,19 @@ namespace ZTn.BNet.D3
                 picture = new D3Picture(stream);
             }
             return picture;
+        }
+
+        public static void GetItemIcon(String icon, String size, Action<D3Picture> onSuccess, Action onFailure)
+        {
+            DataProvider.FetchData(GetItemIconUrl(icon, size),
+                stream =>
+                {
+                    var picture = new D3Picture(stream);
+                    stream.Close();
+                    onSuccess(picture);
+                },
+                onFailure
+                );
         }
 
         public static String GetSkillIconUrl(String icon, String size)

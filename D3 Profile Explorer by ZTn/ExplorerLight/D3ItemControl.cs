@@ -39,13 +39,16 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 
         private void UpdateItemPicture(ItemSummary item)
         {
-            var picture = D3Api.GetItemIcon(item.Icon, "large");
-            if (picture == null)
-            {
-                return;
-            }
-
-            guiItemPicture.Image = new Bitmap(new MemoryStream(picture.Bytes));
+            D3Api.GetItemIcon(item.Icon, "large",
+                picture =>
+                {
+                    if (picture != null)
+                    {
+                        guiItemPicture.Image = new Bitmap(new MemoryStream(picture.Bytes));
+                    }
+                },
+                () => { }
+                );
         }
 
         private void UpdateItemInfo(Item item)

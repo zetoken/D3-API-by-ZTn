@@ -41,6 +41,11 @@ namespace ZTn.BNet.D3.Items
             return Item.CreateFromTooltipParams(TooltipParams);
         }
 
+        public void GetFullItem(Action<Item> onSuccess, Action onFailure)
+        {
+            Item.CreateFromTooltipParams(TooltipParams, onSuccess, onFailure);
+        }
+
         #region >> Constructor
 
         public ItemSummary()
