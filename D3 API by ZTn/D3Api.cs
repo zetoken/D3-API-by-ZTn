@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Careers;
@@ -54,6 +55,19 @@ namespace ZTn.BNet.D3
             return artisan;
         }
 
+        public static void GetArtisanFromSlug(String slug, Action<Artisan> onSuccess, Action onFailure)
+        {
+            DataProvider.FetchData(GetArtisanUrlFromSlug(slug) + ApiLocaleSuffix + ApiKeySuffix,
+                stream =>
+                {
+                    var artisan = Artisan.CreateFromJSonStream(stream);
+                    stream.Dispose();
+                    onSuccess(artisan);
+                },
+                onFailure
+                );
+        }
+
         public static String GetArtisanUrlFromSlug(String slug)
         {
             return ApiUrl + "data/artisan/" + slug;
@@ -69,6 +83,19 @@ namespace ZTn.BNet.D3
             return career;
         }
 
+        public static void GetCareerFromBattleTag(BattleTag battleTag, Action<Career> onSuccess, Action onFailure)
+        {
+            DataProvider.FetchData(GetCareerUrl(battleTag) + "/index" + ApiLocaleSuffix + ApiKeySuffix,
+                stream =>
+                {
+                    var career = Career.CreateFromJSonStream(stream);
+                    stream.Dispose();
+                    onSuccess(career);
+                },
+                onFailure
+                );
+        }
+
         public static String GetCareerUrl(BattleTag battleTag)
         {
             return ApiUrl + "profile/" + Uri.EscapeUriString(battleTag.Name) + "-" + battleTag.Code + "/";
@@ -82,6 +109,19 @@ namespace ZTn.BNet.D3
                 hero = Hero.CreateFromJSonStream(stream);
             }
             return hero;
+        }
+
+        public static void GetHeroFromHeroId(BattleTag battleTag, String heroId, Action<Hero> onSuccess, Action onFailure)
+        {
+            DataProvider.FetchData(GetHeroUrlFromHeroId(battleTag, heroId) + ApiLocaleSuffix + ApiKeySuffix,
+                stream =>
+                {
+                    var hero = Hero.CreateFromJSonStream(stream);
+                    stream.Dispose();
+                    onSuccess(hero);
+                },
+                onFailure
+                );
         }
 
         public static String GetHeroUrlFromHeroId(BattleTag battleTag, String heroId)
@@ -105,7 +145,7 @@ namespace ZTn.BNet.D3
                 stream =>
                 {
                     var item = Item.CreateFromJSonStream(stream);
-                    stream.Close();
+                    stream.Dispose();
                     onSuccess(item);
                 },
                 onFailure
@@ -150,12 +190,7 @@ namespace ZTn.BNet.D3
         public static void GetItemIcon(String icon, String size, Action<D3Picture> onSuccess, Action onFailure)
         {
             DataProvider.FetchData(GetItemIconUrl(icon, size),
-                stream =>
-                {
-                    var picture = new D3Picture(stream);
-                    stream.Close();
-                    onSuccess(picture);
-                },
+                stream => OnSuccessStreamToD3Picture(stream, onSuccess),
                 onFailure
                 );
         }
@@ -170,6 +205,11 @@ namespace ZTn.BNet.D3
             return GetSkillIcon(icon, "42");
         }
 
+        public static void GetSkillIcon(String icon, Action<D3Picture> onSuccess, Action onFailure)
+        {
+            GetSkillIcon(icon, "42", onSuccess, onFailure);
+        }
+
         public static D3Picture GetSkillIcon(String icon, String size)
         {
             D3Picture picture;
@@ -178,6 +218,26 @@ namespace ZTn.BNet.D3
                 picture = new D3Picture(stream);
             }
             return picture;
+        }
+
+        public static void GetSkillIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure)
+        {
+            DataProvider.FetchData(GetSkillIconUrl(icon, size),
+                stream => OnSuccessStreamToD3Picture(stream, onSuccess),
+                onFailure
+                );
+        }
+
+        /// <summary>
+        /// Callback
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="onSuccess"></param>
+        private static void OnSuccessStreamToD3Picture(Stream stream, Action<D3Picture> onSuccess)
+        {
+            var picture = new D3Picture(stream);
+            stream.Dispose();
+            onSuccess(picture);
         }
     }
 }
