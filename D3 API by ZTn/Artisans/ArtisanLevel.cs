@@ -3,30 +3,30 @@
 namespace ZTn.BNet.D3.Artisans
 {
     [DataContract]
-    public class ArtisanLevel
+    public class ArtisanLevel : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public int level;
+        public int Level;
 
         [DataMember]
-        public int tierLevel;
+        public int TierLevel;
 
         [DataMember]
-        public int percent;
+        public int Percent;
 
         [DataMember]
-        public Recipe[] trainedRecipes;
+        public Recipe[] TrainedRecipes;
 
         [DataMember]
-        public Recipe[] taughtRecipes;
+        public Recipe[] TaughtRecipes;
 
         [DataMember]
-        public int upgradeCost;
+        public int UpgradeCost;
 
         [DataMember]
-        public Reagent[] upgradeItems;
+        public Reagent[] UpgradeItems;
 
         #endregion
     }

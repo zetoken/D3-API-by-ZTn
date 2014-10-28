@@ -5,7 +5,7 @@ using ZTn.BNet.BattleNet;
 namespace ZTn.BNet.D3.Heroes
 {
     [DataContract]
-    public class HeroSummary
+    public class HeroSummary : D3Object
     {
         #region >> Properties
 
@@ -41,31 +41,31 @@ namespace ZTn.BNet.D3.Heroes
                 switch (value)
                 {
                     case "barbarian":
-                        heroClass = HeroClass.Barbarian;
+                        HeroClass = HeroClass.Barbarian;
                         break;
                     case "crusader":
-                        heroClass = HeroClass.Crusader;
+                        HeroClass = HeroClass.Crusader;
                         break;
                     case "demon-hunter":
-                        heroClass = HeroClass.DemonHunter;
+                        HeroClass = HeroClass.DemonHunter;
                         break;
                     case "monk":
-                        heroClass = HeroClass.Monk;
+                        HeroClass = HeroClass.Monk;
                         break;
                     case "witch-doctor":
-                        heroClass = HeroClass.WitchDoctor;
+                        HeroClass = HeroClass.WitchDoctor;
                         break;
                     case "wizard":
-                        heroClass = HeroClass.Wizard;
+                        HeroClass = HeroClass.Wizard;
                         break;
                     default:
-                        heroClass = HeroClass.Unknown;
+                        HeroClass = HeroClass.Unknown;
                         break;
                 }
             }
             get
             {
-                switch (heroClass)
+                switch (HeroClass)
                 {
                     case HeroClass.Barbarian:
                         return "barbarian";
@@ -86,7 +86,7 @@ namespace ZTn.BNet.D3.Heroes
         }
 
         [IgnoreDataMember]
-        public HeroClass heroClass;
+        public HeroClass HeroClass;
 
         [DataMember(Name = "last-updated")]
         protected long SLastUpdated

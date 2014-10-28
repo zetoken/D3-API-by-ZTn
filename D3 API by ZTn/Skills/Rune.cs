@@ -4,36 +4,36 @@ using System.Runtime.Serialization;
 namespace ZTn.BNet.D3.Skills
 {
     [DataContract]
-    public class Rune
+    public class Rune : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public String slug;
+        public String Slug;
 
         [DataMember]
-        public String type;
+        public String Type;
 
         [DataMember]
-        public String name;
+        public String Name;
 
         [DataMember]
-        public int level;
+        public int Level;
 
         [DataMember]
-        public String description;
+        public String Description;
 
         [DataMember]
-        public String simpleDescription;
+        public String SimpleDescription;
 
         [DataMember]
-        public String tooltipParams;
+        public String TooltipParams;
 
         [DataMember]
-        public String skillCalcId;
+        public String SkillCalcId;
 
         [DataMember]
-        public int order;
+        public int Order;
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace ZTn.BNet.D3.Skills
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + slug + " lvl:" + level + "]";
+            return "[" + Slug + " lvl:" + Level + "]";
         }
 
         #endregion

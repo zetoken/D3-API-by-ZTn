@@ -5,24 +5,24 @@ using ZTn.BNet.D3.Items;
 namespace ZTn.BNet.D3.Artisans
 {
     [DataContract]
-    public class Recipe
+    public class Recipe : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public String slug;
+        public String Slug;
 
         [DataMember]
-        public String name;
+        public String Name;
 
         [DataMember]
-        public int cost;
+        public int Cost;
 
         [DataMember]
-        public Reagent[] reagents;
+        public Reagent[] Reagents;
 
         [DataMember]
-        public ItemSummary itemProduced;
+        public ItemSummary ItemProduced;
 
         #endregion
 
@@ -31,7 +31,7 @@ namespace ZTn.BNet.D3.Artisans
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + slug + "]";
+            return "[" + Slug + "]";
         }
 
         #endregion

@@ -3,7 +3,7 @@
 namespace ZTn.BNet.D3.Careers
 {
     [DataContract]
-    public class CareerKills
+    public class CareerKills : D3Object
     {
         #region >> Properties
 

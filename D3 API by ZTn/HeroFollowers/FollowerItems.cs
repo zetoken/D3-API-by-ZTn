@@ -4,27 +4,27 @@ using ZTn.BNet.D3.Items;
 namespace ZTn.BNet.D3.HeroFollowers
 {
     [DataContract]
-    public class FollowerItems
+    public class FollowerItems : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public ItemSummary special;
+        public ItemSummary Special;
 
         [DataMember]
-        public ItemSummary mainHand;
+        public ItemSummary MainHand;
 
         [DataMember]
-        public ItemSummary offHand;
+        public ItemSummary OffHand;
 
         [DataMember]
-        public ItemSummary rightFinger;
+        public ItemSummary RightFinger;
 
         [DataMember]
-        public ItemSummary leftFinger;
+        public ItemSummary LeftFinger;
 
         [DataMember]
-        public ItemSummary neck;
+        public ItemSummary Neck;
 
         #endregion
     }

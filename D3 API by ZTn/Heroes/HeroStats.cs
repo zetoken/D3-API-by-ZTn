@@ -2,39 +2,41 @@
 
 namespace ZTn.BNet.D3.Heroes
 {
-    public class HeroStats
+    public class HeroStats : D3Object
     {
         #region >> Fields
 
-        public Double life;
-        public Double damage;
-        public Double attackSpeed;
-        public int armor;
-        public int strength;
-        public int dexterity;
-        public int vitality;
-        public int intelligence;
-        public int physicalResist;
-        public int fireResist;
-        public int coldResist;
-        public int lightningResist;
-        public int poisonResist;
-        public int arcaneResist;
-        public Double critDamage;
-        public Double damageIncrease;
-        public Double critChance;
-        public Double damageReduction;
-        public Double blockChance;
-        public Double thorns;
-        public Double lifeSteal;
-        public Double lifePerKill;
-        public Double goldFind;
-        public Double magicFind;
-        public Double blockAmountMin;
-        public Double blockAmountMax;
-        public Double lifeOnHit;
-        public int primaryResource;
-        public int secondaryResource;
+        public Double Toughness;
+        public Double Healing;
+        public Double Life;
+        public Double Damage;
+        public Double AttackSpeed;
+        public int Armor;
+        public int Strength;
+        public int Dexterity;
+        public int Vitality;
+        public int Intelligence;
+        public int PhysicalResist;
+        public int FireResist;
+        public int ColdResist;
+        public int LightningResist;
+        public int PoisonResist;
+        public int ArcaneResist;
+        public Double CritDamage;
+        public Double DamageIncrease;
+        public Double CritChance;
+        public Double DamageReduction;
+        public Double BlockChance;
+        public Double Thorns;
+        public Double LifeSteal;
+        public Double LifePerKill;
+        public Double GoldFind;
+        public Double MagicFind;
+        public Double BlockAmountMin;
+        public Double BlockAmountMax;
+        public Double LifeOnHit;
+        public int PrimaryResource;
+        public int SecondaryResource;
 
         #endregion
     }

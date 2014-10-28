@@ -4,24 +4,24 @@ using System.Runtime.Serialization;
 namespace ZTn.BNet.D3.HeroFollowers
 {
     [DataContract]
-    public class Follower
+    public class Follower : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public String slug;
+        public String Slug;
 
         [DataMember]
-        public int level;
+        public int Level;
 
         [DataMember]
-        public FollowerItems items;
+        public FollowerItems Items;
 
         [DataMember]
-        public FollowerStats stats;
+        public FollowerStats Stats;
 
         [DataMember]
-        public FollowerSkill[] skills;
+        public FollowerSkill[] Skills;
 
         #endregion
 
@@ -30,7 +30,7 @@ namespace ZTn.BNet.D3.HeroFollowers
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + slug + " lvl:" + level + "]";
+            return "[" + Slug + " lvl:" + Level + "]";
         }
 
         #endregion

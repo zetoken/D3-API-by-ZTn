@@ -56,33 +56,34 @@ namespace ZTn.BNet.D3.Example
             }
 
             Console.WriteLine("Downloading {0}", "bracers");
-            var bracers = GetFullItem(hero.Items.bracers);
+            var bracers = GetFullItem(hero.Items.Bracers);
             Console.WriteLine("Downloading {0}", "feet");
-            var feet = GetFullItem(hero.Items.feet);
+            var feet = GetFullItem(hero.Items.Feet);
             Console.WriteLine("Downloading {0}", "hands");
-            var hands = GetFullItem(hero.Items.hands);
+            var hands = GetFullItem(hero.Items.Hands);
             Console.WriteLine("Downloading {0}", "head");
-            var head = GetFullItem(hero.Items.head);
+            var head = GetFullItem(hero.Items.Hands);
             Console.WriteLine("Downloading {0}", "leftFinger");
-            var leftFinger = GetFullItem(hero.Items.leftFinger);
+            var leftFinger = GetFullItem(hero.Items.LeftFinger);
             Console.WriteLine("Downloading {0}", "legs");
-            var legs = GetFullItem(hero.Items.legs);
+            var legs = GetFullItem(hero.Items.Legs);
             Console.WriteLine("Downloading {0}", "mainHand");
-            var mainHand = GetFullItem(hero.Items.mainHand);
+            var mainHand = GetFullItem(hero.Items.MainHand);
             Console.WriteLine("Downloading {0}", "neck");
-            var neck = GetFullItem(hero.Items.neck);
+            var neck = GetFullItem(hero.Items.Neck);
             Console.WriteLine("Downloading {0}", "offHand");
-            var offHand = GetFullItem(hero.Items.offHand);
+            var offHand = GetFullItem(hero.Items.OffHand);
             Console.WriteLine("Downloading {0}", "rightFinger");
-            var rightFinger = GetFullItem(hero.Items.rightFinger);
+            var rightFinger = GetFullItem(hero.Items.RightFinger);
             Console.WriteLine("Downloading {0}", "shoulders");
-            var shoulders = GetFullItem(hero.Items.shoulders);
+            var shoulders = GetFullItem(hero.Items.Shoulders);
             Console.WriteLine("Downloading {0}", "torso");
-            var torso = GetFullItem(hero.Items.torso);
+            var torso = GetFullItem(hero.Items.Torso);
             Console.WriteLine("Downloading {0}", "waist");
-            var waist = GetFullItem(hero.Items.waist);
+            var waist = GetFullItem(hero.Items.Waist);
 
-            var items = new List<Item> { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist }.Where(i => i != null).ToList();
+            var items =
+                new List<Item> { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist }.Where(i => i != null).ToList();
 
             var allItems = new List<Item>(items) { mainHand, offHand }.Where(i => i != null).ToList();
 
@@ -110,7 +111,8 @@ namespace ZTn.BNet.D3.Example
             Console.WriteLine("BattleTag: " + career.BattleTag.Id);
             Console.WriteLine("Last hero played: {0}", career.LastHeroPlayed);
             Console.WriteLine("Time played on Monk is {0}", career.TimePlayed.Monk);
-            Console.WriteLine("Kills: monsters={0} / elites={1} / hardcore monsters={2}", career.Kills.monsters, career.Kills.elites, career.Kills.hardcoreMonsters);
+            Console.WriteLine("Kills: monsters={0} / elites={1} / hardcore monsters={2}", career.Kills.monsters, career.Kills.elites,
+                career.Kills.hardcoreMonsters);
             Console.WriteLine();
             Console.WriteLine("Heroes count: " + career.Heroes.Length);
             foreach (var heroDigest in career.Heroes)
@@ -118,15 +120,15 @@ namespace ZTn.BNet.D3.Example
                 Console.WriteLine("Hero {0}: {1} is {2} level {3} + {4} last updated {5}",
                     heroDigest.Id,
                     heroDigest.Name,
-                    heroDigest.heroClass,
+                    heroDigest.HeroClass,
                     heroDigest.Level,
                     heroDigest.ParagonLevel, heroDigest.LastUpdated);
 
                 var heroFull = heroDigest.GetHeroFromBattleTag(battleTag);
 
-                if (heroFull.Items.mainHand != null)
+                if (heroFull.Items.MainHand != null)
                 {
-                    var mainHand = Item.CreateFromTooltipParams(heroFull.Items.mainHand.TooltipParams);
+                    var mainHand = Item.CreateFromTooltipParams(heroFull.Items.MainHand.TooltipParams);
                     Console.WriteLine("Hero main hand: level {0} {1} (DPS {2}-{3}) is of type {4}",
                         mainHand.ItemLevel,
                         mainHand.Name,
@@ -134,9 +136,9 @@ namespace ZTn.BNet.D3.Example
                         mainHand.TypeName);
                 }
 
-                if (heroFull.Items.torso != null)
+                if (heroFull.Items.Torso != null)
                 {
-                    var torso = Item.CreateFromTooltipParams(heroFull.Items.torso.TooltipParams);
+                    var torso = Item.CreateFromTooltipParams(heroFull.Items.Torso.TooltipParams);
                     Console.WriteLine("Hero torso: level {0} {1} (armor {2}-{3}) is of type {4}",
                         torso.ItemLevel,
                         torso.Name,
@@ -144,13 +146,14 @@ namespace ZTn.BNet.D3.Example
                         torso.TypeName);
                 }
 
-                Console.WriteLine("Hero DPS {0}", heroFull.Stats.damage);
+                Console.WriteLine("Hero DPS {0}", heroFull.Stats.Damage);
             }
             Console.WriteLine();
             Console.WriteLine("Fallen Heroes count: " + career.FallenHeroes.Length);
             foreach (var heroDigest in career.FallenHeroes)
             {
-                Console.WriteLine("Hero {0}: {1} is {2} level {3} + {4} ", heroDigest.Id, heroDigest.Name, heroDigest.heroClass, heroDigest.Level, heroDigest.ParagonLevel);
+                Console.WriteLine("Hero {0}: {1} is {2} level {3} + {4} ", heroDigest.Id, heroDigest.Name, heroDigest.Hardcore, heroDigest.Level,
+                    heroDigest.ParagonLevel);
             }
         }
     }

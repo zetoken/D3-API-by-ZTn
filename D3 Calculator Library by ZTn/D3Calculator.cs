@@ -56,7 +56,7 @@ namespace ZTn.BNet.D3.Calculator
 
         public D3Calculator(Hero hero, Item mainHand, Item offHand, IEnumerable<Item> items)
         {
-            HeroClass = hero.heroClass;
+            HeroClass = hero.HeroClass;
             HeroLevel = hero.Level;
 
             // Build unique item equivalent to items worn
@@ -71,7 +71,7 @@ namespace ZTn.BNet.D3.Calculator
         public D3Calculator(Follower follower, HeroClass heroClass, Item mainHand, Item offHand, IEnumerable<Item> items)
         {
             HeroClass = heroClass;
-            HeroLevel = follower.level;
+            HeroLevel = follower.Level;
 
             foreach (var item in items.Union(new[] { mainHand, offHand }))
             {

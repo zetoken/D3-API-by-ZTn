@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ZTn.BNet.D3.Items
 {
     [DataContract]
-    public class SocketEffect
+    public class SocketEffect : D3Object
     {
         #region >> Fields
 

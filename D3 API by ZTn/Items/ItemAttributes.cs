@@ -1,17 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ZTn.BNet.D3.Items
 {
     [DataContract]
-    public class ItemAttributes
+    public class ItemAttributes : D3Object
     {
-        [JsonExtensionData]
-        public IDictionary<string, JToken> UnmanagedAttributes;
-
         #region >> Fields
 
         // Find how it's used ?

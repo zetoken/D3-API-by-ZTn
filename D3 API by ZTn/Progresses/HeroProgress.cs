@@ -3,7 +3,7 @@
 namespace ZTn.BNet.D3.Progresses
 {
     [DataContract]
-    public class HeroProgress
+    public class HeroProgress : D3Object
     {
         #region >> Fields
 

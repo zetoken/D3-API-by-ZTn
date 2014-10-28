@@ -3,7 +3,7 @@
 namespace ZTn.BNet.D3.Careers
 {
     [DataContract]
-    public class ClassTimePlayed
+    public class ClassTimePlayed : D3Object
     {
         #region >> Fields
 

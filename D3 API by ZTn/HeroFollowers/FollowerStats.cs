@@ -3,18 +3,18 @@
 namespace ZTn.BNet.D3.HeroFollowers
 {
     [DataContract]
-    public class FollowerStats
+    public class FollowerStats : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public int goldFind;
+        public int GoldFind;
 
         [DataMember]
-        public int magicFind;
+        public int MagicFind;
 
         [DataMember]
-        public int experienceBonus;
+        public int ExperienceBonus;
 
         #endregion
     }

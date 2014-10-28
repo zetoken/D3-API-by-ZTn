@@ -4,15 +4,15 @@ using System.Runtime.Serialization;
 namespace ZTn.BNet.D3.Progresses
 {
     [DataContract]
-    public class ActProgress
+    public class ActProgress : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public Boolean completed;
+        public Boolean Completed;
 
         [DataMember]
-        public Quest[] completedQuests;
+        public Quest[] CompletedQuests;
 
         #endregion
     }

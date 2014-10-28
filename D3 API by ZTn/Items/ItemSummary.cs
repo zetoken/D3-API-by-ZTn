@@ -6,7 +6,7 @@ using ZTn.BNet.D3.Helpers;
 namespace ZTn.BNet.D3.Items
 {
     [DataContract]
-    public class ItemSummary
+    public class ItemSummary : D3Object
     {
         #region >> Properties
 

@@ -6,7 +6,7 @@ using ZTn.BNet.D3.Helpers;
 namespace ZTn.BNet.D3.Artisans
 {
     [DataContract]
-    public class Artisan
+    public class Artisan : D3Object
     {
         #region >> Fields
 

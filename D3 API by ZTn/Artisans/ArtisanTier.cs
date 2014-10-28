@@ -3,15 +3,15 @@
 namespace ZTn.BNet.D3.Artisans
 {
     [DataContract]
-    public class ArtisanTier
+    public class ArtisanTier : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public int tier;
+        public int Tier;
 
         [DataMember]
-        public ArtisanLevel[] levels;
+        public ArtisanLevel[] Levels;
 
         #endregion
     }
