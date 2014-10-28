@@ -166,19 +166,19 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
                 guiRunCalculator.Visible = true;
             }));
 
-            AddItem(hero.Items.bracers);
-            AddItem(hero.Items.feet);
-            AddItem(hero.Items.hands);
-            AddItem(hero.Items.head);
-            AddItem(hero.Items.leftFinger);
-            AddItem(hero.Items.legs);
-            AddItem(hero.Items.mainHand);
-            AddItem(hero.Items.neck);
-            AddItem(hero.Items.offHand);
-            AddItem(hero.Items.rightFinger);
-            AddItem(hero.Items.shoulders);
-            AddItem(hero.Items.torso);
-            AddItem(hero.Items.waist);
+            AddItem(hero.Items.Bracers);
+            AddItem(hero.Items.Feet);
+            AddItem(hero.Items.Hands);
+            AddItem(hero.Items.Head);
+            AddItem(hero.Items.LeftFinger);
+            AddItem(hero.Items.Legs);
+            AddItem(hero.Items.MainHand);
+            AddItem(hero.Items.Neck);
+            AddItem(hero.Items.OffHand);
+            AddItem(hero.Items.RightFinger);
+            AddItem(hero.Items.Shoulders);
+            AddItem(hero.Items.Torso);
+            AddItem(hero.Items.Waist);
         }
 
         private void bNetProfileControl_Click(object sender, EventArgs e)

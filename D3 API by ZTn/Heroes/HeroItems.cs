@@ -4,48 +4,48 @@ using ZTn.BNet.D3.Items;
 namespace ZTn.BNet.D3.Heroes
 {
     [DataContract]
-    public class HeroItems
+    public class HeroItems : D3Object
     {
         #region >> Properties
 
         [DataMember]
-        public ItemSummary head;
+        public ItemSummary Head;
 
         [DataMember]
-        public ItemSummary torso;
+        public ItemSummary Torso;
 
         [DataMember]
-        public ItemSummary feet;
+        public ItemSummary Feet;
 
         [DataMember]
-        public ItemSummary hands;
+        public ItemSummary Hands;
 
         [DataMember]
-        public ItemSummary shoulders;
+        public ItemSummary Shoulders;
 
         [DataMember]
-        public ItemSummary legs;
+        public ItemSummary Legs;
 
         [DataMember]
-        public ItemSummary bracers;
+        public ItemSummary Bracers;
 
         [DataMember]
-        public ItemSummary mainHand;
+        public ItemSummary MainHand;
 
         [DataMember]
-        public ItemSummary offHand;
+        public ItemSummary OffHand;
 
         [DataMember]
-        public ItemSummary waist;
+        public ItemSummary Waist;
 
         [DataMember]
-        public ItemSummary rightFinger;
+        public ItemSummary RightFinger;
 
         [DataMember]
-        public ItemSummary leftFinger;
+        public ItemSummary LeftFinger;
 
         [DataMember]
-        public ItemSummary neck;
+        public ItemSummary Neck;
 
         #endregion
     }

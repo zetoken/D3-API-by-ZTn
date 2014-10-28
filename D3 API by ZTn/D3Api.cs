@@ -52,7 +52,7 @@ namespace ZTn.BNet.D3
             {
                 artisan = Artisan.CreateFromJSonStream(stream);
             }
-            return artisan;
+            return artisan != null && artisan.IsValidObject() ? artisan : null;
         }
 
         public static void GetArtisanFromSlug(String slug, Action<Artisan> onSuccess, Action onFailure)
@@ -62,7 +62,14 @@ namespace ZTn.BNet.D3
                 {
                     var artisan = Artisan.CreateFromJSonStream(stream);
                     stream.Dispose();
-                    onSuccess(artisan);
+                    if (artisan.IsValidObject())
+                    {
+                        onSuccess(artisan);
+                    }
+                    else
+                    {
+                        onFailure();
+                    }
                 },
                 onFailure
                 );
@@ -80,7 +87,8 @@ namespace ZTn.BNet.D3
             {
                 career = Career.CreateFromJSonStream(stream);
             }
-            return career;
+
+            return career != null && career.IsValidObject() ? career : null;
         }
 
         public static void GetCareerFromBattleTag(BattleTag battleTag, Action<Career> onSuccess, Action onFailure)
@@ -90,7 +98,14 @@ namespace ZTn.BNet.D3
                 {
                     var career = Career.CreateFromJSonStream(stream);
                     stream.Dispose();
-                    onSuccess(career);
+                    if (career != null && career.IsValidObject())
+                    {
+                        onSuccess(career);
+                    }
+                    else
+                    {
+                        onFailure();
+                    }
                 },
                 onFailure
                 );
@@ -108,7 +123,7 @@ namespace ZTn.BNet.D3
             {
                 hero = Hero.CreateFromJSonStream(stream);
             }
-            return hero;
+            return hero != null && hero.IsValidObject() ? hero : null;
         }
 
         public static void GetHeroFromHeroId(BattleTag battleTag, String heroId, Action<Hero> onSuccess, Action onFailure)
@@ -118,7 +133,14 @@ namespace ZTn.BNet.D3
                 {
                     var hero = Hero.CreateFromJSonStream(stream);
                     stream.Dispose();
-                    onSuccess(hero);
+                    if (hero.IsValidObject())
+                    {
+                        onSuccess(hero);
+                    }
+                    else
+                    {
+                        onFailure();
+                    }
                 },
                 onFailure
                 );
@@ -136,7 +158,7 @@ namespace ZTn.BNet.D3
             {
                 item = Item.CreateFromJSonStream(stream);
             }
-            return item;
+            return item != null && item.IsValidObject() ? item : null;
         }
 
         public static void GetItemFromTooltipParams(String tooltipParams, Action<Item> onSuccess, Action onFailure)
@@ -146,7 +168,14 @@ namespace ZTn.BNet.D3
                 {
                     var item = Item.CreateFromJSonStream(stream);
                     stream.Dispose();
-                    onSuccess(item);
+                    if (item.IsValidObject())
+                    {
+                        onSuccess(item);
+                    }
+                    else
+                    {
+                        onFailure();
+                    }
                 },
                 onFailure
                 );

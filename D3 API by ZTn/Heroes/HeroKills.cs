@@ -3,12 +3,12 @@
 namespace ZTn.BNet.D3.Heroes
 {
     [DataContract]
-    public class HeroKills
+    public class HeroKills : D3Object
     {
         #region >> Properties
 
         [DataMember]
-        public int elites;
+        public int Elites;
 
         #endregion
     }

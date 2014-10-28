@@ -4,15 +4,15 @@ using ZTn.BNet.D3.Items;
 namespace ZTn.BNet.D3.Artisans
 {
     [DataContract]
-    public class Reagent
+    public class Reagent : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public int quantity;
+        public int Quantity;
 
         [DataMember]
-        public ItemSummary item;
+        public ItemSummary Item;
 
         #endregion
 
@@ -21,7 +21,7 @@ namespace ZTn.BNet.D3.Artisans
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + item + " qty:" + quantity + "]";
+            return "[" + Item + " qty:" + Quantity + "]";
         }
 
         #endregion

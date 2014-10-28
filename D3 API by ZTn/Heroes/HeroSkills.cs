@@ -4,15 +4,15 @@ using ZTn.BNet.D3.Skills;
 namespace ZTn.BNet.D3.Heroes
 {
     [DataContract]
-    public class HeroSkills
+    public class HeroSkills : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public ActiveSkill[] active;
+        public ActiveSkill[] Active;
 
         [DataMember]
-        public PassiveSkill[] passive;
+        public PassiveSkill[] Passive;
 
         #endregion
     }

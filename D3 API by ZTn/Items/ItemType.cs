@@ -2,12 +2,12 @@
 
 namespace ZTn.BNet.D3.Items
 {
-    public class ItemType
+    public class ItemType : D3Object
     {
         #region >> Properties
 
-        public String id;
-        public bool twoHanded;
+        public String Id;
+        public bool TwoHanded;
 
         #endregion
 
@@ -26,15 +26,15 @@ namespace ZTn.BNet.D3.Items
         {
             if (itemType != null)
             {
-                id = itemType.id;
-                twoHanded = itemType.twoHanded;
+                Id = itemType.Id;
+                TwoHanded = itemType.TwoHanded;
             }
         }
 
         public ItemType(String id, bool twoHanded)
         {
-            this.id = id;
-            this.twoHanded = twoHanded;
+            Id = id;
+            TwoHanded = twoHanded;
         }
 
         #endregion
@@ -44,7 +44,7 @@ namespace ZTn.BNet.D3.Items
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + id + "]";
+            return "[" + Id + "]";
         }
 
         #endregion

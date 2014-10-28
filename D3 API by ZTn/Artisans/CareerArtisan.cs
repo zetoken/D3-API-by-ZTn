@@ -4,21 +4,21 @@ using System.Runtime.Serialization;
 namespace ZTn.BNet.D3.Artisans
 {
     [DataContract]
-    public class CareerArtisan
+    public class CareerArtisan : D3Object
     {
         #region >> Properties
 
         [DataMember]
-        public String slug;
+        public String Slug;
 
         [DataMember]
-        public int level;
+        public int Level;
 
         [DataMember]
-        public int stepCurrent;
+        public int StepCurrent;
 
         [DataMember]
-        public int stepMax;
+        public int StepMax;
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace ZTn.BNet.D3.Artisans
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + slug + " lvl:" + level + "]";
+            return "[" + Slug + " lvl:" + Level + "]";
         }
 
         #endregion

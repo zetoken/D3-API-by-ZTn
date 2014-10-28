@@ -4,15 +4,15 @@ using System.Runtime.Serialization;
 namespace ZTn.BNet.D3.Progresses
 {
     [DataContract]
-    public class Quest
+    public class Quest : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public String slug;
+        public String Slug;
 
         [DataMember]
-        public String name;
+        public String Name;
 
         #endregion
 
@@ -21,7 +21,7 @@ namespace ZTn.BNet.D3.Progresses
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + slug + "]";
+            return "[" + Slug + "]";
         }
 
         #endregion

@@ -3,7 +3,7 @@
 namespace ZTn.BNet.D3.Items
 {
     [DataContract]
-    public class ItemTextAttribute
+    public class ItemTextAttribute : D3Object
     {
         [DataMember]
         public string Text { get; set; }

@@ -3,18 +3,18 @@
 namespace ZTn.BNet.D3.HeroFollowers
 {
     [DataContract]
-    public class Followers
+    public class Followers : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public Follower templar;
+        public Follower Templar;
 
         [DataMember]
-        public Follower scoundrel;
+        public Follower Scoundrel;
 
         [DataMember]
-        public Follower enchantress;
+        public Follower Enchantress;
 
         #endregion
     }

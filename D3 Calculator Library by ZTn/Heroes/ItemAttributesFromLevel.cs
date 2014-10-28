@@ -7,7 +7,7 @@ namespace ZTn.BNet.D3.Calculator.Heroes
     {
         public ItemAttributesFromLevel(Hero hero)
         {
-            switch (hero.heroClass)
+            switch (hero.HeroClass)
             {
                 case HeroClass.Monk:
                 case HeroClass.DemonHunter:

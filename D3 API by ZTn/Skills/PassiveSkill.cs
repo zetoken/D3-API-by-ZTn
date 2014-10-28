@@ -3,12 +3,12 @@
 namespace ZTn.BNet.D3.Skills
 {
     [DataContract]
-    public class PassiveSkill
+    public class PassiveSkill : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public Skill skill;
+        public Skill Skill;
 
         #endregion
 
@@ -17,7 +17,7 @@ namespace ZTn.BNet.D3.Skills
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + skill + "]";
+            return "[" + Skill + "]";
         }
 
         #endregion

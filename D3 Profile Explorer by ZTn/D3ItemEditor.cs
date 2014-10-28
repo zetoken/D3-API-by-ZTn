@@ -112,7 +112,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             guiItemName.Text = item.Name;
             guiItemId.Text = item.Id;
-            guiItemTypeId.Text = (item.Type != null ? item.Type.id : "");
+            guiItemTypeId.Text = (item.Type != null ? item.Type.Id : "");
 
             item.Simplify();
 

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Annotations;
 using ZTn.BNet.D3.Artisans;
@@ -14,11 +11,8 @@ using ZTn.BNet.D3.Progresses;
 namespace ZTn.BNet.D3.Careers
 {
     [DataContract]
-    public class Career
+    public class Career : D3Object
     {
-        [JsonExtensionData]
-        public IDictionary<string, JToken> UnmanagedAttributes;
-
         #region >> Fields
 
         [DataMember(Name = "battleTag"), UsedImplicitly]

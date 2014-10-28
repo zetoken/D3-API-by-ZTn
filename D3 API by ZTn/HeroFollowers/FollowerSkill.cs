@@ -4,12 +4,12 @@ using ZTn.BNet.D3.Skills;
 namespace ZTn.BNet.D3.HeroFollowers
 {
     [DataContract]
-    public class FollowerSkill
+    public class FollowerSkill : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public Skill skill;
+        public Skill Skill;
 
         #endregion
     }

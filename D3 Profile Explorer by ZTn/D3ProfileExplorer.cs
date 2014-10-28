@@ -13,7 +13,6 @@ using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Calculator.Helpers;
-using ZTn.BNet.D3.Calculator.Sets;
 using ZTn.BNet.D3.Careers;
 using ZTn.BNet.D3.DataProviders;
 using ZTn.BNet.D3.Helpers;
@@ -253,7 +252,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private static void UpdateNodeText(TreeNode node, ActProgress d3Object)
         {
-            node.Text += " >> " + d3Object.completed;
+            node.Text += " >> " + d3Object.Completed;
         }
 
         private static void UpdateNodeText(TreeNode node, bool d3Object)
@@ -268,7 +267,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private static void UpdateNodeText(TreeNode node, CareerArtisan d3Object)
         {
-            node.Text += " >> " + d3Object.slug;
+            node.Text += " >> " + d3Object.Slug;
         }
 
         private static void UpdateNodeText(TreeNode node, float d3Object)
@@ -303,17 +302,17 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private static void UpdateNodeText(TreeNode node, Skill d3Object)
         {
-            node.Text += " >> " + d3Object.name;
+            node.Text += " >> " + d3Object.Name;
         }
 
         private static void UpdateNodeText(TreeNode node, Quest d3Object)
         {
-            node.Text += " >> " + d3Object.name;
+            node.Text += " >> " + d3Object.Name;
         }
 
         private static void UpdateNodeText(TreeNode node, Recipe d3Object)
         {
-            node.Text += " >> " + d3Object.name;
+            node.Text += " >> " + d3Object.Name;
         }
 
         private static void UpdateNodeText(TreeNode node, String d3Object)
@@ -363,7 +362,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void OnNodeClick(CareerArtisan d3Object)
         {
-            D3ObjectLiveUrl.Text = D3Api.GetArtisanUrlFromSlug(d3Object.slug);
+            D3ObjectLiveUrl.Text = D3Api.GetArtisanUrlFromSlug(d3Object.Slug);
         }
 
         #endregion
@@ -442,9 +441,9 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var careerArtisan = (CareerArtisan)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            var node = new TreeNode("Artisan " + careerArtisan.slug);
+            var node = new TreeNode("Artisan " + careerArtisan.Slug);
 
-            var artisan = Artisan.CreateFromSlug(careerArtisan.slug);
+            var artisan = Artisan.CreateFromSlug(careerArtisan.Slug);
 
             node.Nodes.AddRange(CreateNodeFromD3Object(artisan).ToArray());
 
@@ -491,7 +490,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 { "templar", HeroClass.TemplarFollower }
             };
 
-            new D3CalculatorForm(follower, slugToHeroClass[follower.slug]).Show();
+            new D3CalculatorForm(follower, slugToHeroClass[follower.Slug]).Show();
         }
 
         private void buildUniqueItemToolStripMenuItem_Click(object sender, EventArgs e)
@@ -501,17 +500,17 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             var heroItems = new[]
             {
-                hero.Items.bracers,
-                hero.Items.feet,
-                hero.Items.hands,
-                hero.Items.head,
-                hero.Items.leftFinger,
-                hero.Items.legs,
-                hero.Items.neck,
-                hero.Items.rightFinger,
-                hero.Items.shoulders,
-                hero.Items.torso,
-                hero.Items.waist
+                hero.Items.Bracers,
+                hero.Items.Feet,
+                hero.Items.Hands,
+                hero.Items.Head,
+                hero.Items.LeftFinger,
+                hero.Items.Legs,
+                hero.Items.Neck,
+                hero.Items.RightFinger,
+                hero.Items.Shoulders,
+                hero.Items.Torso,
+                hero.Items.Waist
             };
 
             var items = heroItems
@@ -519,12 +518,12 @@ namespace ZTn.BNet.D3ProfileExplorer
                 .Select(hi => Item.CreateFromTooltipParams(hi.TooltipParams))
                 .ToList();
 
-            var mainHand = Item.CreateFromTooltipParams(hero.Items.mainHand.TooltipParams);
+            var mainHand = Item.CreateFromTooltipParams(hero.Items.MainHand.TooltipParams);
 
             Item offHand;
-            if (hero.Items.offHand != null)
+            if (hero.Items.OffHand != null)
             {
-                offHand = Item.CreateFromTooltipParams(hero.Items.offHand.TooltipParams);
+                offHand = Item.CreateFromTooltipParams(hero.Items.OffHand.TooltipParams);
             }
             else
             {
@@ -546,10 +545,10 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             var followerItems = new[]
             {
-                follower.items.special,
-                follower.items.leftFinger,
-                follower.items.neck,
-                follower.items.rightFinger
+                follower.Items.Special,
+                follower.Items.LeftFinger,
+                follower.Items.Neck,
+                follower.Items.RightFinger
             };
 
             var items = followerItems
@@ -557,12 +556,12 @@ namespace ZTn.BNet.D3ProfileExplorer
                 .Select(fi => Item.CreateFromTooltipParams(fi.TooltipParams))
                 .ToList();
 
-            var mainHand = Item.CreateFromTooltipParams(follower.items.mainHand.TooltipParams);
+            var mainHand = Item.CreateFromTooltipParams(follower.Items.MainHand.TooltipParams);
 
             Item offHand;
-            if (follower.items.offHand != null)
+            if (follower.Items.OffHand != null)
             {
-                offHand = Item.CreateFromTooltipParams(follower.items.offHand.TooltipParams);
+                offHand = Item.CreateFromTooltipParams(follower.Items.OffHand.TooltipParams);
             }
             else
             {
@@ -572,7 +571,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             var heroStuff = new StatsItem(mainHand, offHand, items.ToArray());
             heroStuff.Update();
 
-            var node = new TreeNode("Unique Item for " + follower.slug + " follower");
+            var node = new TreeNode("Unique Item for " + follower.Slug + " follower");
             node.Nodes.AddRange(CreateNodeFromD3Object(heroStuff).ToArray());
 
             guiD3ProfileTreeView.Nodes.Add(node);
@@ -625,9 +624,9 @@ namespace ZTn.BNet.D3ProfileExplorer
         private void getSkillIcon42ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var skill = (Skill)guiD3ProfileTreeView.SelectedNode.Tag;
-            if (skill.icon != null)
+            if (skill.Icon != null)
             {
-                var picture = D3Api.GetSkillIcon(skill.icon);
+                var picture = D3Api.GetSkillIcon(skill.Icon);
                 using (var imageStream = new MemoryStream(picture.Bytes))
                 {
                     guiD3Icon.Image = Image.FromStream(imageStream);
@@ -638,9 +637,9 @@ namespace ZTn.BNet.D3ProfileExplorer
         private void getSkillIcon64ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var skill = (Skill)guiD3ProfileTreeView.SelectedNode.Tag;
-            if (skill.icon != null)
+            if (skill.Icon != null)
             {
-                var picture = D3Api.GetSkillIcon(skill.icon, "64");
+                var picture = D3Api.GetSkillIcon(skill.Icon, "64");
                 using (var imageStream = new MemoryStream(picture.Bytes))
                 {
                     guiD3Icon.Image = Image.FromStream(imageStream);

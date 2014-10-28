@@ -57,6 +57,7 @@
     <Compile Include="Careers\CareerKills.cs" />
     <Compile Include="Careers\ClassTimePlayed.cs" />
     <Compile Include="D3Api.cs" />
+    <Compile Include="D3Object.cs" />
     <Compile Include="DataProviders\BNetFailureObjectReturnedException.cs" />
     <Compile Include="DataProviders\BNetResponse403Exception.cs" />
     <Compile Include="DataProviders\BNetResponseFailedException.cs" />

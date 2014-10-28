@@ -3,18 +3,18 @@
 namespace ZTn.BNet.D3.Items
 {
     [DataContract]
-    public class ItemSalvageComponent
+    public class ItemSalvageComponent : D3Object
     {
         #region >> Properties
 
         [DataMember]
-        public double chance;
+        public double Chance;
 
         [DataMember]
-        public ItemSummary item;
+        public ItemSummary Item;
 
         [DataMember]
-        public int quantity;
+        public int Quantity;
 
         #endregion
     }

@@ -110,7 +110,7 @@ namespace ZTn.BNet.D3.Calculator.Gems
 
         public List<Item> GetGemsForItem(Item item)
         {
-            return GetGemsForItemTypeId(item.Type.id);
+            return GetGemsForItemTypeId(item.Type.Id);
         }
 
         public List<Item> GetGemsForItemTypeId(String itemTypeId)

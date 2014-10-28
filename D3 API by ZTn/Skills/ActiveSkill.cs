@@ -3,15 +3,15 @@
 namespace ZTn.BNet.D3.Skills
 {
     [DataContract]
-    public class ActiveSkill
+    public class ActiveSkill : D3Object
     {
         #region >> Fields
 
         [DataMember]
-        public Skill skill;
+        public Skill Skill;
 
         [DataMember]
-        public Rune rune;
+        public Rune Rune;
 
         #endregion
 
@@ -20,7 +20,7 @@ namespace ZTn.BNet.D3.Skills
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + skill + " " + rune + "]";
+            return "[" + Skill + " " + Rune + "]";
         }
 
         #endregion

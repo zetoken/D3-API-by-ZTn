@@ -7,7 +7,7 @@ namespace ZTn.BNet.D3.Items
     /// Represents a range of values from <see cref="Min"/> to <see cref="Max"/>.
     /// </summary>
     [DataContract]
-    public class ItemValueRange
+    public class ItemValueRange : D3Object
     {
         public static readonly ItemValueRange Zero = new ItemValueRange(0);
         public static readonly ItemValueRange One = new ItemValueRange(1);
@@ -162,7 +162,7 @@ namespace ZTn.BNet.D3.Items
 
         #endregion
 
-        /// <inheritdoc cref="Equals(Object)" />
+        /// <inheritdoc cref="Equals(object)" />
         public bool Equals(ItemValueRange value)
         {
             if (value == null)
