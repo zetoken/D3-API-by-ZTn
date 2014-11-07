@@ -18,18 +18,23 @@ namespace ZTn.BNet.D3
     {
         private readonly BattleTag battleTag = new BattleTag("tok#2360");
 
+        public D3ApiUnitTest()
+        {
+            D3Api.ApiKey = "zrxxcy3qzp8jcbgrce2es4yq52ew2k7r";
+        }
+
         [Test]
         public void GetArtisanUrlFromSlug()
         {
             var url = D3Api.GetArtisanUrlFromSlug("whatsoever");
-            Assert.AreEqual("http://eu.battle.net/api/d3/data/artisan/whatsoever", url);
+            Assert.AreEqual("https://eu.api.battle.net/d3/data/artisan/whatsoever", url);
         }
 
         [Test]
         public void GetArtisanFromSlug()
         {
             var mock = new Mock<ID3DataProvider>();
-            mock.Setup(p => p.FetchData("http://eu.battle.net/api/d3/data/artisan/whatsoever?locale=en"))
+            mock.Setup(p => p.FetchData("https://eu.api.battle.net/d3/data/artisan/whatsoever?locale=en&apikey=" + D3Api.ApiKey))
                 .Returns<string>(p => new MemoryStream(Encoding.Default.GetBytes(JsonConvert.SerializeObject(new Artisan()))));
             D3Api.DataProvider = mock.Object;
 
@@ -42,14 +47,14 @@ namespace ZTn.BNet.D3
         public void GetCareerUrl()
         {
             var url = D3Api.GetCareerUrl(battleTag);
-            Assert.AreEqual("http://eu.battle.net/api/d3/profile/tok-2360/", url);
+            Assert.AreEqual("https://eu.api.battle.net/d3/profile/tok-2360/", url);
         }
 
         [Test]
         public void GetCareerFromBattleTag()
         {
             var mock = new Mock<ID3DataProvider>();
-            mock.Setup(p => p.FetchData("http://eu.battle.net/api/d3/profile/tok-2360//index?locale=en"))
+            mock.Setup(p => p.FetchData("https://eu.api.battle.net/d3/profile/tok-2360/index?locale=en&apikey=" + D3Api.ApiKey))
                 .Returns<string>(p => new MemoryStream(Encoding.Default.GetBytes(JsonConvert.SerializeObject(new Career()))));
             D3Api.DataProvider = mock.Object;
 
@@ -62,14 +67,14 @@ namespace ZTn.BNet.D3
         public void GetHeroUrlFromHeroId()
         {
             var url = D3Api.GetHeroUrlFromHeroId(battleTag, "whatsoever");
-            Assert.AreEqual("http://eu.battle.net/api/d3/profile/tok-2360/hero/whatsoever", url);
+            Assert.AreEqual("https://eu.api.battle.net/d3/profile/tok-2360/hero/whatsoever", url);
         }
 
         [Test]
         public void GetHeroFromHeroId()
         {
             var mock = new Mock<ID3DataProvider>();
-            mock.Setup(p => p.FetchData("http://eu.battle.net/api/d3/profile/tok-2360/hero/whatsoever?locale=en"))
+            mock.Setup(p => p.FetchData("https://eu.api.battle.net/d3/profile/tok-2360/hero/whatsoever?locale=en&apikey=" + D3Api.ApiKey))
                 .Returns<string>(p => new MemoryStream(Encoding.Default.GetBytes(JsonConvert.SerializeObject(new Hero()))));
             D3Api.DataProvider = mock.Object;
 
@@ -102,14 +107,14 @@ namespace ZTn.BNet.D3
         public void GetItemUrlFromTooltipParams()
         {
             var url = D3Api.GetItemUrlFromTooltipParams("whatsoever");
-            Assert.AreEqual("http://eu.battle.net/api/d3/data/whatsoever", url);
+            Assert.AreEqual("https://eu.api.battle.net/d3/data/whatsoever", url);
         }
 
         [Test]
         public void GetItemFromTooltipParams()
         {
             var mock = new Mock<ID3DataProvider>();
-            mock.Setup(p => p.FetchData("http://eu.battle.net/api/d3/data/whatsoever?locale=en"))
+            mock.Setup(p => p.FetchData("https://eu.api.battle.net/d3/data/whatsoever?locale=en&apikey=" + D3Api.ApiKey))
                 .Returns<string>(p => new MemoryStream(Encoding.Default.GetBytes(JsonConvert.SerializeObject(new Item()))));
             D3Api.DataProvider = mock.Object;
 

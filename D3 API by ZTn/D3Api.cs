@@ -83,7 +83,7 @@ namespace ZTn.BNet.D3
         public static Career GetCareerFromBattleTag(BattleTag battleTag)
         {
             Career career;
-            using (var stream = DataProvider.FetchData(GetCareerUrl(battleTag) + "/index" + ApiLocaleSuffix + ApiKeySuffix))
+            using (var stream = DataProvider.FetchData(GetCareerUrl(battleTag) + "index" + ApiLocaleSuffix + ApiKeySuffix))
             {
                 career = Career.CreateFromJSonStream(stream);
             }
