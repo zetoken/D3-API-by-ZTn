@@ -577,7 +577,13 @@ namespace ZTn.BNet.D3.Items
         //"Resistance_Root"
         //"Resistance_Stun"
         //"Resistance_StunRootFreeze"
-        //"Resource_Max_Bonus"
+
+        [DataMember(Name = "Resource_Cost_Reduction_Percent_All", EmitDefaultValue = false)]
+        public ItemValueRange resourceCostReductionPercentAll;
+
+        [DataMember(Name = "Resource_max_bonus", EmitDefaultValue = false)]
+        public ItemValueRange resourceMaxBonus;
+
         //"Resource_On_Crit"
         //"Resource_On_Hit"
         //"Resource_On_Kill#Mana"
@@ -603,6 +609,12 @@ namespace ZTn.BNet.D3.Items
 
         //"Spending_Resource_Heals_Percent#Spirit"
         //"Stats_All_Bonus"
+
+        /// <summary>
+        /// Area damage.
+        /// </summary>
+        [DataMember(Name = "Splash_Damage_Effect_Percent", EmitDefaultValue = false)]
+        public ItemValueRange splashDamageEffectPercent;
 
         [DataMember(Name = "Steal_Health_Percent", EmitDefaultValue = false)]
         public ItemValueRange stealHealthPercent;

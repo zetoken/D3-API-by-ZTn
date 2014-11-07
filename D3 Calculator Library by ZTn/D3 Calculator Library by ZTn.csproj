@@ -45,6 +45,8 @@
     <Compile Include="Helpers\ItemValueRangeExtension.cs" />
     <Compile Include="Heroes\ItemAttributesFromLevel.cs" />
     <Compile Include="Heroes\ItemAttributesFromParagonLevel.cs" />
+    <Compile Include="Heroes\ParagonBonus.cs" />
+    <Compile Include="Heroes\ParagonBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sets\SetExtension.cs" />
     <Compile Include="Skills\Barbarian\NervesOfSteel.cs" />
