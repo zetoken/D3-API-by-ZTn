@@ -10,3 +10,5 @@ TestResults
 *.userprefs
 /packages
 *.suo
+*.user
+.nuget/NuGet.exe
