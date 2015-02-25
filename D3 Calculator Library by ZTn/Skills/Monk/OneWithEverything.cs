@@ -1,4 +1,5 @@
-﻿using ZTn.BNet.D3.Heroes;
+﻿using System.Linq;
+using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3.Calculator.Skills.Monk
@@ -25,25 +26,17 @@ namespace ZTn.BNet.D3.Calculator.Skills.Monk
             var stuff = calculator.HeroStatsItem.AttributesRaw;
             var attr = new ItemAttributes();
 
-            double maxResist = 0;
+            var resistances = new[]
+            {
+                calculator.GetHeroResistance("Arcane").Min,
+                calculator.GetHeroResistance("Cold").Min,
+                calculator.GetHeroResistance("Fire").Min,
+                calculator.GetHeroResistance("Lightning").Min,
+                calculator.GetHeroResistance("Physical").Min,
+                calculator.GetHeroResistance("Poison").Min
+            };
 
-            var resistanceArcane = calculator.GetHeroResistance("Arcane").Min;
-            if (resistanceArcane > maxResist) maxResist = resistanceArcane;
-
-            var resistanceCold = calculator.GetHeroResistance("Cold").Min;
-            if (resistanceCold > maxResist) maxResist = resistanceCold;
-
-            var resistanceFire = calculator.GetHeroResistance("Fire").Min;
-            if (resistanceFire > maxResist) maxResist = resistanceFire;
-
-            var resistanceLightning = calculator.GetHeroResistance("Lightning").Min;
-            if (resistanceLightning > maxResist) maxResist = resistanceLightning;
-
-            var resistancePhysical = calculator.GetHeroResistance("Physical").Min;
-            if (resistancePhysical > maxResist) maxResist = resistancePhysical;
-
-            var resistancePoison = calculator.GetHeroResistance("Poison").Min;
-            if (resistancePoison > maxResist) maxResist = resistancePoison;
+            var maxResist = resistances.Max();
 
             if (stuff.resistance_Arcane != null)
                 attr.resistance_Arcane = ItemValueRange.Zero - stuff.resistance_Arcane;

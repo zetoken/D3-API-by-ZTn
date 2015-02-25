@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Heroes;
 using ZTn.BNet.D3.Calculator.Skills;
@@ -42,14 +43,14 @@ namespace ZTn.BNet.D3.Calculator
 
         #endregion
 
-        public static Item NakedHandWeapon
-        {
-            get { return new Item(new ItemAttributes { attacksPerSecondItem = ItemValueRange.One }); }
-        }
-
         public static Item BlankWeapon
         {
             get { return new Item(new ItemAttributes()); }
+        }
+
+        public static Item NakedHandWeapon
+        {
+            get { return new Item(new ItemAttributes { attacksPerSecondItem = ItemValueRange.One }); }
         }
 
         #region >> Constructors
@@ -75,12 +76,12 @@ namespace ZTn.BNet.D3.Calculator
 
             foreach (var item in items.Union(new[] { mainHand, offHand }))
             {
-                ApplyFollowersBonusMalusOnItemAttributes(item.AttributesRaw, heroClass);
+                ApplyFollowersBonusMalusOnItemAttributes(item.AttributesRaw);
                 if (item.Gems != null)
                 {
                     foreach (var gem in item.Gems)
                     {
-                        ApplyFollowersBonusMalusOnItemAttributes(gem.AttributesRaw, heroClass);
+                        ApplyFollowersBonusMalusOnItemAttributes(gem.AttributesRaw);
                     }
                 }
             }
@@ -99,9 +100,8 @@ namespace ZTn.BNet.D3.Calculator
         /// 
         /// </summary>
         /// <param name="itemAttributes"></param>
-        /// <param name="heroClass"></param>
         /// <remarks>No more damage malus applied on followers since Reaper of Souls.</remarks>
-        private void ApplyFollowersBonusMalusOnItemAttributes(ItemAttributes itemAttributes, HeroClass heroClass)
+        private static void ApplyFollowersBonusMalusOnItemAttributes(ItemAttributes itemAttributes)
         {
             itemAttributes.dexterityItem *= 2.5;
             itemAttributes.intelligenceItem *= 2.5;
@@ -115,6 +115,63 @@ namespace ZTn.BNet.D3.Calculator
                     var value = itemAttributes.GetAttributeByName(damage + resist);
                     itemAttributes.SetAttributeByName(damage + resist, value);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Returns damage reduction inherent in the class.
+        /// </summary>
+        /// <param name="heroClass">Class of the hero (can be a follower).</param>
+        /// <returns></returns>
+        public static double GetClassDamageReduction(HeroClass heroClass)
+        {
+            switch (heroClass)
+            {
+                case HeroClass.Monk:
+                case HeroClass.Barbarian:
+                case HeroClass.Crusader:
+                    return 0.30;
+                default:
+                    return 0;
+            }
+        }
+
+        /// <summary>
+        /// Computes the hit points per vitality factor.
+        /// </summary>
+        /// <param name="heroClass">Class of the hero (can be a follower).</param>
+        /// <param name="heroLevel">Level of the hero.</param>
+        /// <returns></returns>
+        public static int GetHitpointsPerVitalityFactor(HeroClass heroClass, int heroLevel)
+        {
+            switch (heroClass)
+            {
+                case HeroClass.Barbarian:
+                case HeroClass.Crusader:
+                case HeroClass.DemonHunter:
+                case HeroClass.Monk:
+                case HeroClass.WitchDoctor:
+                case HeroClass.Wizard:
+                    if (heroLevel <= 35)
+                    {
+                        return 10;
+                    }
+                    if (heroLevel <= 60)
+                    {
+                        return heroLevel - 25;
+                    }
+                    if (heroLevel <= 65)
+                    {
+                        return 35 + 4 * (heroLevel - 60);
+                    }
+                    return 50 + 10 * (heroLevel - 65);
+                case HeroClass.EnchantressFollower:
+                case HeroClass.ScoundrelFollower:
+                case HeroClass.TemplarFollower:
+                    // Missing leveling
+                    return 35 + 5 * (heroLevel - 61);
+                default:
+                    return 0;
             }
         }
 
@@ -224,11 +281,8 @@ namespace ZTn.BNet.D3.Calculator
 
         public double GetHeroDodge()
         {
-            var dexterity = GetHeroDexterity().Min;
-
-            var dogde = dexterity / (0.00031 * HeroLevel * HeroLevel * HeroLevel + 0.0186 * HeroLevel * HeroLevel + 0.25 * HeroLevel + 1.93);
-
-            return dogde;
+            // TODO Update Dodge calculation
+            return 0;
         }
 
         private ItemValueRange GetHeroDpsAsIs()
@@ -295,75 +349,22 @@ namespace ZTn.BNet.D3.Calculator
             ehp /= (1 - GetHeroDamageReduction_Armor(mobLevel));
 
             // Update with lowest resistance reduction
-            var resistance = GetHeroDamageReduction(mobLevel, "Arcane");
-            if (GetHeroDamageReduction(mobLevel, "Cold") < resistance)
+            var damageReductions = new[]
             {
-                resistance = GetHeroDamageReduction(mobLevel, "Cold");
-            }
-            if (GetHeroDamageReduction(mobLevel, "Fire") < resistance)
-            {
-                resistance = GetHeroDamageReduction(mobLevel, "Fire");
-            }
-            if (GetHeroDamageReduction(mobLevel, "Lightning") < resistance)
-            {
-                resistance = GetHeroDamageReduction(mobLevel, "Lightning");
-            }
-            if (GetHeroDamageReduction(mobLevel, "Physical") < resistance)
-            {
-                resistance = GetHeroDamageReduction(mobLevel, "Physical");
-            }
-            if (GetHeroDamageReduction(mobLevel, "Poison") < resistance)
-            {
-                resistance = GetHeroDamageReduction(mobLevel, "Poison");
-            }
-            ehp /= (1 - resistance);
+                GetHeroDamageReduction(mobLevel, "Arcane"),
+                GetHeroDamageReduction(mobLevel, "Cold"),
+                GetHeroDamageReduction(mobLevel, "Fire"),
+                GetHeroDamageReduction(mobLevel, "Lightning"),
+                GetHeroDamageReduction(mobLevel, "Physical"),
+                GetHeroDamageReduction(mobLevel, "Poison")
+            };
+
+            ehp /= (1 - damageReductions.Min());
 
             // Update with class reduction
-            if ((HeroClass == HeroClass.Monk) || (HeroClass == HeroClass.Barbarian) || (HeroClass == HeroClass.Crusader))
-            {
-                ehp /= (1 - 0.30);
-            }
+            ehp /= (1 - GetClassDamageReduction(HeroClass));
 
             return ehp;
-        }
-
-        /// <summary>
-        /// Computes the hit points per vitality factor.
-        /// </summary>
-        /// <param name="heroClass">Class of the hero (can be a follower).</param>
-        /// <param name="heroLevel">Level of the hero.</param>
-        /// <returns></returns>
-        public static int GetHitpointsPerVitalityFactor(HeroClass heroClass, int heroLevel)
-        {
-            switch (heroClass)
-            {
-                case HeroClass.Barbarian:
-                case HeroClass.Crusader:
-                case HeroClass.DemonHunter:
-                case HeroClass.Monk:
-                case HeroClass.WitchDoctor:
-                case HeroClass.Wizard:
-                    if (heroLevel <= 35)
-                    {
-                        return 10;
-                    }
-                    if (heroLevel <= 60)
-                    {
-                        return heroLevel - 25;
-                    }
-                    if (heroLevel <= 65)
-                    {
-                        return 35 + 4 * (heroLevel - 60);
-                    }
-                    return 50 + 10 * (heroLevel - 65);
-                case HeroClass.EnchantressFollower:
-                case HeroClass.ScoundrelFollower:
-                case HeroClass.TemplarFollower:
-                    // Missing leveling
-                    return 35 + 5 * (heroLevel - 61);
-                default:
-                    return 0;
-            }
         }
 
         /// <summary>
@@ -437,6 +438,11 @@ namespace ZTn.BNet.D3.Calculator
             return resist;
         }
 
+        /// <summary>
+        /// Computes elemental resistance for given element.
+        /// </summary>
+        /// <param name="resist">An elemental resist. <c>"All"</c> is forbidden: use <see cref="GetHeroResistance_All"/> instead.</param>
+        /// <returns></returns>
         public ItemValueRange GetHeroResistance(string resist)
         {
             var resistance = GetHeroResistance_All();
