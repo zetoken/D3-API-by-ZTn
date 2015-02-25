@@ -1,135 +1,130 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A62CFAEA-60E1-4586-B306-7D606E6AA4D2}</ProjectGuid>
+    <ProjectGuid>{1EA51BFB-96BE-4E12-8DAB-0546AEB15674}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ZTn.BNet.D3</RootNamespace>
     <AssemblyName>D3 API by ZTn</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>bin\Portable\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PORTABLE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\Portable\Release\</OutputPath>
+    <DefineConstants>TRACE;PORTABLE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\BNet API by ZTn\BNet API by ZTn.csproj">
+      <Project>{da274160-7440-4f6b-b5e6-906b7115d49b}</Project>
+      <Name>BNet API by ZTn Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PCL Adapter\PCL Adapter.csproj">
+      <Project>{22de4d3a-231f-40df-af26-976e5fd9b31f}</Project>
+      <Name>PCL Adapter</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Artisans\Artisan.cs" />
     <Compile Include="Artisans\ArtisanLevel.cs" />
-    <Compile Include="Artisans\Reagent.cs" />
-    <Compile Include="Artisans\Recipe.cs" />
     <Compile Include="Artisans\ArtisanTier.cs" />
     <Compile Include="Artisans\ArtisanTraining.cs" />
     <Compile Include="Artisans\CareerArtisan.cs" />
-    <Compile Include="Careers\SeasonalProfile.cs" />
-    <Compile Include="Careers\SeasonalProfiles.cs" />
-    <Compile Include="D3Object.cs" />
-    <Compile Include="DataProviders\BNetFailureObjectReturnedException.cs" />
-    <Compile Include="DataProviders\BNetResponse403Exception.cs" />
-    <Compile Include="DataProviders\CacheableDataProvider.cs" />
-    <Compile Include="DataProviders\BNetResponseFailedException.cs" />
-    <Compile Include="DataProviders\FakeDataProvider.cs" />
-    <Compile Include="DataProviders\MD5Digest.cs" />
-    <Compile Include="DataProviders\FetchMode.cs" />
-    <Compile Include="DataProviders\FileNotInCacheException.cs" />
-    <Compile Include="DataProviders\HttpRequestDataProvider.cs" />
+    <Compile Include="Artisans\Reagent.cs" />
+    <Compile Include="Artisans\Recipe.cs" />
     <Compile Include="Careers\Career.cs" />
     <Compile Include="Careers\CareerKills.cs" />
     <Compile Include="Careers\ClassTimePlayed.cs" />
+    <Compile Include="Careers\SeasonalProfile.cs" />
+    <Compile Include="Careers\SeasonalProfiles.cs" />
+    <Compile Include="D3Api.cs" />
+    <Compile Include="D3Object.cs" />
+    <Compile Include="DataProviders\BNetFailureObjectReturnedException.cs" />
+    <Compile Include="DataProviders\BNetResponse403Exception.cs" />
+    <Compile Include="DataProviders\BNetResponseFailedException.cs" />
+    <Compile Include="DataProviders\CacheableDataProvider.cs" />
+    <Compile Include="DataProviders\FakeDataProvider.cs" />
+    <Compile Include="DataProviders\FetchMode.cs" />
+    <Compile Include="DataProviders\FileNotInCacheException.cs" />
+    <Compile Include="DataProviders\HttpRequestDataProvider.cs" />
     <Compile Include="DataProviders\ID3DataProvider.cs" />
+    <Compile Include="DataProviders\MD5Digest.cs" />
     <Compile Include="FailureObject.cs" />
     <Compile Include="Helpers\D3DeepCopy.cs" />
-    <Compile Include="Helpers\ItemValueRangeExtension.cs" />
     <Compile Include="Helpers\ItemAttributesExtension.cs" />
+    <Compile Include="Helpers\ItemValueRangeExtension.cs" />
     <Compile Include="Helpers\JsonHelpers.cs" />
+    <Compile Include="Heroes\Hero.cs" />
     <Compile Include="Heroes\HeroClass.cs" />
     <Compile Include="Heroes\HeroGender.cs" />
+    <Compile Include="Heroes\HeroItems.cs" />
     <Compile Include="Heroes\HeroKills.cs" />
+    <Compile Include="Heroes\HeroSkills.cs" />
+    <Compile Include="Heroes\HeroStats.cs" />
+    <Compile Include="Heroes\HeroSummary.cs" />
     <Compile Include="HeroFollowers\Follower.cs" />
     <Compile Include="HeroFollowers\FollowerItems.cs" />
     <Compile Include="HeroFollowers\Followers.cs" />
     <Compile Include="HeroFollowers\FollowerSkill.cs" />
     <Compile Include="HeroFollowers\FollowerStats.cs" />
     <Compile Include="Items\Affix.cs" />
-    <Compile Include="Items\ItemTextAttribute.cs" />
-    <Compile Include="Items\ItemTextAttributes.cs" />
-    <Compile Include="Items\RandomAffix.cs" />
-    <Compile Include="Items\SocketEffect.cs" />
-    <Compile Include="Items\SocketedGem.cs" />
-    <Compile Include="Items\Set.cs" />
-    <Compile Include="Items\SetRank.cs" />
-    <Compile Include="Medias\D3Picture.cs" />
-    <Compile Include="MissingApiKey.cs" />
-    <Compile Include="Progresses\ActProgress.cs" />
-    <Compile Include="Progresses\DifficultyProgress.cs" />
-    <Compile Include="Progresses\CareerProgress.cs" />
-    <Compile Include="Progresses\HeroProgress.cs" />
-    <Compile Include="Progresses\Quest.cs" />
-    <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Skills\ActiveSkill.cs" />
-    <Compile Include="Heroes\Hero.cs" />
-    <Compile Include="Skills\PassiveSkill.cs" />
-    <Compile Include="Heroes\HeroSummary.cs" />
-    <Compile Include="Heroes\HeroStats.cs" />
-    <Compile Include="Heroes\HeroSkills.cs" />
-    <Compile Include="Skills\Rune.cs" />
-    <Compile Include="Skills\Skill.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\ItemAttributes.cs" />
     <Compile Include="Items\ItemSalvageComponent.cs" />
-    <Compile Include="Items\ItemValueRange.cs" />
     <Compile Include="Items\ItemSummary.cs" />
-    <Compile Include="Heroes\HeroItems.cs" />
+    <Compile Include="Items\ItemTextAttribute.cs" />
+    <Compile Include="Items\ItemTextAttributes.cs" />
     <Compile Include="Items\ItemType.cs" />
-    <Compile Include="D3Api.cs" />
+    <Compile Include="Items\ItemValueRange.cs" />
+    <Compile Include="Items\RandomAffix.cs" />
+    <Compile Include="Items\Set.cs" />
+    <Compile Include="Items\SetRank.cs" />
+    <Compile Include="Items\SocketedGem.cs" />
+    <Compile Include="Items\SocketEffect.cs" />
+    <Compile Include="Medias\D3Picture.cs" />
+    <Compile Include="MissingApiKey.cs" />
+    <Compile Include="Progresses\ActProgress.cs" />
+    <Compile Include="Progresses\CareerProgress.cs" />
+    <Compile Include="Progresses\DifficultyProgress.cs" />
+    <Compile Include="Progresses\HeroProgress.cs" />
+    <Compile Include="Progresses\Quest.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skills\ActiveSkill.cs" />
+    <Compile Include="Skills\PassiveSkill.cs" />
+    <Compile Include="Skills\Rune.cs" />
+    <Compile Include="Skills\Skill.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BNet API by ZTn\BNet API by ZTn.csproj">
-      <Project>{865b78ca-5ee6-4580-a5de-e74f0303f70b}</Project>
-      <Name>BNet API by ZTn</Name>
-    </ProjectReference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

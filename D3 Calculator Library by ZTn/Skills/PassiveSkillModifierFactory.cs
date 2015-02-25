@@ -21,7 +21,6 @@ namespace ZTn.BNet.D3.Calculator.Skills
             new SharpShooter(),
             new SteadyAim(),
 
-            new OneWithEverything(),
             new SeizeTheInitiative(),
             new Unity(), 
             new Harmony(),

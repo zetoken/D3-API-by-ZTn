@@ -49,17 +49,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BNet API by ZTn\BNet API by ZTn Portable.csproj">
+    <ProjectReference Include="..\BNet API by ZTn\BNet API by ZTn.csproj">
       <Project>{da274160-7440-4f6b-b5e6-906b7115d49b}</Project>
-      <Name>BNet API by ZTn Portable</Name>
+      <Name>BNet API by ZTn</Name>
     </ProjectReference>
-    <ProjectReference Include="..\D3 API by ZTn\D3 API by ZTn Portable.csproj">
+    <ProjectReference Include="..\D3 API by ZTn\D3 API by ZTn.csproj">
       <Project>{1ea51bfb-96be-4e12-8dab-0546aeb15674}</Project>
-      <Name>D3 API by ZTn Portable</Name>
+      <Name>D3 API by ZTn</Name>
     </ProjectReference>
-    <ProjectReference Include="..\D3 Calculator Library by ZTn\D3 Calculator Library by ZTn Portable.csproj">
+    <ProjectReference Include="..\D3 Calculator Library by ZTn\D3 Calculator Library by ZTn.csproj">
       <Project>{78516ce1-496f-4591-ad69-3164694d4555}</Project>
-      <Name>D3 Calculator Library by ZTn Portable</Name>
+      <Name>D3 Calculator Library by ZTn</Name>
     </ProjectReference>
     <ProjectReference Include="..\PCL Adapter for Windows\PCL Adapter for Windows.csproj">
       <Project>{c097a16b-03d4-4ad0-adfa-d35e3b9575f2}</Project>

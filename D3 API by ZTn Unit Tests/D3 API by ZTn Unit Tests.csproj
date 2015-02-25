@@ -74,17 +74,21 @@
     <Compile Include="D3ApiUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\BNet API by ZTn\BNet API by ZTn.csproj">
-      <Project>{865B78CA-5EE6-4580-A5DE-E74F0303F70B}</Project>
+      <Project>{da274160-7440-4f6b-b5e6-906b7115d49b}</Project>
       <Name>BNet API by ZTn</Name>
     </ProjectReference>
     <ProjectReference Include="..\D3 API by ZTn\D3 API by ZTn.csproj">
-      <Project>{a62cfaea-60e1-4586-b306-7d606e6aa4d2}</Project>
+      <Project>{1ea51bfb-96be-4e12-8dab-0546aeb15674}</Project>
       <Name>D3 API by ZTn</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\PCL Adapter for Windows\PCL Adapter for Windows.csproj">
+      <Project>{c097a16b-03d4-4ad0-adfa-d35e3b9575f2}</Project>
+      <Name>PCL Adapter for Windows</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

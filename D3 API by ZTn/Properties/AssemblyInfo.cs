@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ZeToken.net")]
 [assembly: AssemblyProduct("D3 API by ZTn")]
-[assembly: AssemblyCopyright("Copyright © ZeToken.net 2012-2014")]
+[assembly: AssemblyCopyright("Copyright © ZeToken.net 2012-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -39,5 +39,5 @@ using System.Runtime.InteropServices;
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("2.2.1.*")]
-[assembly: AssemblyFileVersion("2.2.1.0")]
+[assembly: AssemblyVersion("2.3.0.*")]
+[assembly: AssemblyFileVersion("2.3.0.0")]

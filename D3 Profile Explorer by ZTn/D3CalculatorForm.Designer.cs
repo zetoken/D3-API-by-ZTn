@@ -118,9 +118,9 @@
             this.guiSkillToughAsNails = new System.Windows.Forms.CheckBox();
             this.guiSkillNervesOfSteel = new System.Windows.Forms.CheckBox();
             this.guiSkillWeaponsMaster = new System.Windows.Forms.CheckBox();
+            this.guiSkillHarmony = new System.Windows.Forms.CheckBox();
             this.guiSkillUnity = new System.Windows.Forms.CheckBox();
             this.guiSkillSeizeTheInitiative = new System.Windows.Forms.CheckBox();
-            this.guiSkillOneWithEverything = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.guiHeroClass = new System.Windows.Forms.ComboBox();
             this.guiHeroParagonLevel = new System.Windows.Forms.TextBox();
@@ -222,9 +222,8 @@
             this.guiCalculatedSkillDamage_Fire = new System.Windows.Forms.TextBox();
             this.guiCalculatedSkillDamage_Cold = new System.Windows.Forms.TextBox();
             this.tabItemEditor = new System.Windows.Forms.TabPage();
-            this.tabSetBonus = new System.Windows.Forms.TabPage();
-            this.guiSkillHarmony = new System.Windows.Forms.CheckBox();
             this.guiItemEditor = new ZTn.BNet.D3ProfileExplorer.D3ItemEditor();
+            this.tabSetBonus = new System.Windows.Forms.TabPage();
             this.guiSetBonusEditor = new ZTn.BNet.D3ProfileExplorer.D3ItemEditor();
             label6 = new System.Windows.Forms.Label();
             tabPassiveSkills = new System.Windows.Forms.TabPage();
@@ -479,18 +478,28 @@
             groupBox3.Controls.Add(this.guiSkillHarmony);
             groupBox3.Controls.Add(this.guiSkillUnity);
             groupBox3.Controls.Add(this.guiSkillSeizeTheInitiative);
-            groupBox3.Controls.Add(this.guiSkillOneWithEverything);
             groupBox3.Location = new System.Drawing.Point(6, 266);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new System.Drawing.Size(300, 124);
+            groupBox3.Size = new System.Drawing.Size(300, 101);
             groupBox3.TabIndex = 3;
             groupBox3.TabStop = false;
             groupBox3.Text = "Monk";
             // 
+            // guiSkillHarmony
+            // 
+            this.guiSkillHarmony.AutoSize = true;
+            this.guiSkillHarmony.Location = new System.Drawing.Point(6, 65);
+            this.guiSkillHarmony.Name = "guiSkillHarmony";
+            this.guiSkillHarmony.Size = new System.Drawing.Size(68, 17);
+            this.guiSkillHarmony.TabIndex = 3;
+            this.guiSkillHarmony.Tag = "harmony";
+            this.guiSkillHarmony.Text = "Harmony";
+            this.guiSkillHarmony.UseVisualStyleBackColor = true;
+            // 
             // guiSkillUnity
             // 
             this.guiSkillUnity.AutoSize = true;
-            this.guiSkillUnity.Location = new System.Drawing.Point(6, 65);
+            this.guiSkillUnity.Location = new System.Drawing.Point(6, 42);
             this.guiSkillUnity.Name = "guiSkillUnity";
             this.guiSkillUnity.Size = new System.Drawing.Size(50, 17);
             this.guiSkillUnity.TabIndex = 2;
@@ -501,24 +510,13 @@
             // guiSkillSeizeTheInitiative
             // 
             this.guiSkillSeizeTheInitiative.AutoSize = true;
-            this.guiSkillSeizeTheInitiative.Location = new System.Drawing.Point(6, 42);
+            this.guiSkillSeizeTheInitiative.Location = new System.Drawing.Point(6, 19);
             this.guiSkillSeizeTheInitiative.Name = "guiSkillSeizeTheInitiative";
             this.guiSkillSeizeTheInitiative.Size = new System.Drawing.Size(112, 17);
             this.guiSkillSeizeTheInitiative.TabIndex = 1;
             this.guiSkillSeizeTheInitiative.Tag = "seize-the-initiative";
             this.guiSkillSeizeTheInitiative.Text = "Seize the Initiative";
             this.guiSkillSeizeTheInitiative.UseVisualStyleBackColor = true;
-            // 
-            // guiSkillOneWithEverything
-            // 
-            this.guiSkillOneWithEverything.AutoSize = true;
-            this.guiSkillOneWithEverything.Location = new System.Drawing.Point(6, 19);
-            this.guiSkillOneWithEverything.Name = "guiSkillOneWithEverything";
-            this.guiSkillOneWithEverything.Size = new System.Drawing.Size(121, 17);
-            this.guiSkillOneWithEverything.TabIndex = 0;
-            this.guiSkillOneWithEverything.Tag = "one-with-everything";
-            this.guiSkillOneWithEverything.Text = "One with Everything";
-            this.guiSkillOneWithEverything.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -2352,6 +2350,16 @@
             this.tabItemEditor.Text = "Items Editor";
             this.tabItemEditor.UseVisualStyleBackColor = true;
             // 
+            // guiItemEditor
+            // 
+            this.guiItemEditor.AutoSize = true;
+            this.guiItemEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.guiItemEditor.KnownGems = null;
+            this.guiItemEditor.Location = new System.Drawing.Point(171, 6);
+            this.guiItemEditor.Name = "guiItemEditor";
+            this.guiItemEditor.Size = new System.Drawing.Size(853, 531);
+            this.guiItemEditor.TabIndex = 1;
+            // 
             // tabSetBonus
             // 
             this.tabSetBonus.Controls.Add(this.guiSetBonusEditor);
@@ -2362,27 +2370,6 @@
             this.tabSetBonus.TabIndex = 16;
             this.tabSetBonus.Text = "Set Bonus";
             this.tabSetBonus.UseVisualStyleBackColor = true;
-            // 
-            // guiSkillHarmony
-            // 
-            this.guiSkillHarmony.AutoSize = true;
-            this.guiSkillHarmony.Location = new System.Drawing.Point(6, 88);
-            this.guiSkillHarmony.Name = "guiSkillHarmony";
-            this.guiSkillHarmony.Size = new System.Drawing.Size(123, 17);
-            this.guiSkillHarmony.TabIndex = 3;
-            this.guiSkillHarmony.Tag = "harmony";
-            this.guiSkillHarmony.Text = "[ PTR 2.1 ] Harmony";
-            this.guiSkillHarmony.UseVisualStyleBackColor = true;
-            // 
-            // guiItemEditor
-            // 
-            this.guiItemEditor.AutoSize = true;
-            this.guiItemEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.guiItemEditor.KnownGems = null;
-            this.guiItemEditor.Location = new System.Drawing.Point(171, 6);
-            this.guiItemEditor.Name = "guiItemEditor";
-            this.guiItemEditor.Size = new System.Drawing.Size(853, 531);
-            this.guiItemEditor.TabIndex = 1;
             // 
             // guiSetBonusEditor
             // 
@@ -2490,7 +2477,6 @@
         private System.Windows.Forms.CheckBox guiSkillSeizeTheInitiative;
         private System.Windows.Forms.CheckBox guiSkillSharpShooter;
         private System.Windows.Forms.CheckBox guiSkillNervesOfSteel;
-        private System.Windows.Forms.CheckBox guiSkillOneWithEverything;
         private System.Windows.Forms.CheckBox guiSkillWeaponsMaster;
         private System.Windows.Forms.CheckBox guiSkillToughAsNails;
         private System.Windows.Forms.CheckBox guiSkillRuthless;

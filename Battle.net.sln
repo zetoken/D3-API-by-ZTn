@@ -1,17 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 API by ZTn", "D3 API by ZTn\D3 API by ZTn.csproj", "{A62CFAEA-60E1-4586-B306-7D606E6AA4D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 API example", "D3 API example\D3 API example.csproj", "{4695E039-C388-48CF-89EC-6DF9515E2E16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNet API by ZTn", "BNet API by ZTn\BNet API by ZTn.csproj", "{865B78CA-5EE6-4580-A5DE-E74F0303F70B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNet API by ZTn", "BNet API by ZTn\BNet API by ZTn.csproj", "{DA274160-7440-4F6B-B5E6-906B7115D49B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Profile Explorer by ZTn", "D3 Profile Explorer by ZTn\D3 Profile Explorer by ZTn.csproj", "{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 API by ZTn", "D3 API by ZTn\D3 API by ZTn.csproj", "{1EA51BFB-96BE-4E12-8DAB-0546AEB15674}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Calculator Library by ZTn", "D3 Calculator Library by ZTn\D3 Calculator Library by ZTn.csproj", "{F6E135DD-87C5-49C1-A560-07C2653B69A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCL Adapter", "PCL Adapter\PCL Adapter.csproj", "{22DE4D3A-231F-40DF-AF26-976E5FD9B31F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Tests", "Unit Tests", "{026E4CEE-2A22-44F2-8D86-9ED8C5C87246}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCL Adapter for Windows", "PCL Adapter for Windows\PCL Adapter for Windows.csproj", "{C097A16B-03D4-4AD0-ADFA-D35E3B9575F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Calculator Library by ZTn", "D3 Calculator Library by ZTn\D3 Calculator Library by ZTn.csproj", "{78516CE1-496F-4591-AD69-3164694D4555}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E9D2247D-B40C-416A-902F-2455CF7D817B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNet API by ZTn Unit Tests", "BNet API by ZTn Unit Tests\BNet API by ZTn Unit Tests.csproj", "{28A0939F-269F-451B-93E5-E938FBB9B11A}"
 EndProject
@@ -19,12 +28,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 API by ZTn Unit Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Calculator Library by ZTn Unit Tests", "D3 Calculator Library by ZTn Unit Tests\D3 Calculator Library by ZTn Unit Tests.csproj", "{D832893E-F2F2-4A28-8EFB-E881D141EA7D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A85E18A1-0ECB-42E8-8ADB-D97B6E64B19F}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Tests", "Unit Tests", "{18DEF7F0-5FE6-4013-8856-3EC21B48DFA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Profile Explorer by ZTn", "D3 Profile Explorer by ZTn\D3 Profile Explorer by ZTn.csproj", "{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,22 +38,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A62CFAEA-60E1-4586-B306-7D606E6AA4D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A62CFAEA-60E1-4586-B306-7D606E6AA4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A62CFAEA-60E1-4586-B306-7D606E6AA4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A62CFAEA-60E1-4586-B306-7D606E6AA4D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{865B78CA-5EE6-4580-A5DE-E74F0303F70B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{865B78CA-5EE6-4580-A5DE-E74F0303F70B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{865B78CA-5EE6-4580-A5DE-E74F0303F70B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{865B78CA-5EE6-4580-A5DE-E74F0303F70B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6E135DD-87C5-49C1-A560-07C2653B69A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6E135DD-87C5-49C1-A560-07C2653B69A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6E135DD-87C5-49C1-A560-07C2653B69A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6E135DD-87C5-49C1-A560-07C2653B69A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4695E039-C388-48CF-89EC-6DF9515E2E16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4695E039-C388-48CF-89EC-6DF9515E2E16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4695E039-C388-48CF-89EC-6DF9515E2E16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4695E039-C388-48CF-89EC-6DF9515E2E16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA274160-7440-4F6B-B5E6-906B7115D49B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA274160-7440-4F6B-B5E6-906B7115D49B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA274160-7440-4F6B-B5E6-906B7115D49B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA274160-7440-4F6B-B5E6-906B7115D49B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EA51BFB-96BE-4E12-8DAB-0546AEB15674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EA51BFB-96BE-4E12-8DAB-0546AEB15674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EA51BFB-96BE-4E12-8DAB-0546AEB15674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EA51BFB-96BE-4E12-8DAB-0546AEB15674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22DE4D3A-231F-40DF-AF26-976E5FD9B31F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22DE4D3A-231F-40DF-AF26-976E5FD9B31F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22DE4D3A-231F-40DF-AF26-976E5FD9B31F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22DE4D3A-231F-40DF-AF26-976E5FD9B31F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C097A16B-03D4-4AD0-ADFA-D35E3B9575F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C097A16B-03D4-4AD0-ADFA-D35E3B9575F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C097A16B-03D4-4AD0-ADFA-D35E3B9575F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C097A16B-03D4-4AD0-ADFA-D35E3B9575F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78516CE1-496F-4591-AD69-3164694D4555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78516CE1-496F-4591-AD69-3164694D4555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78516CE1-496F-4591-AD69-3164694D4555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78516CE1-496F-4591-AD69-3164694D4555}.Release|Any CPU.Build.0 = Release|Any CPU
 		{28A0939F-269F-451B-93E5-E938FBB9B11A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{28A0939F-269F-451B-93E5-E938FBB9B11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28A0939F-269F-451B-93E5-E938FBB9B11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -60,13 +74,17 @@ Global
 		{D832893E-F2F2-4A28-8EFB-E881D141EA7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D832893E-F2F2-4A28-8EFB-E881D141EA7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D832893E-F2F2-4A28-8EFB-E881D141EA7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{28A0939F-269F-451B-93E5-E938FBB9B11A} = {026E4CEE-2A22-44F2-8D86-9ED8C5C87246}
-		{725895DE-B6EA-4C91-ADE3-26795C6BF04E} = {026E4CEE-2A22-44F2-8D86-9ED8C5C87246}
-		{D832893E-F2F2-4A28-8EFB-E881D141EA7D} = {026E4CEE-2A22-44F2-8D86-9ED8C5C87246}
+		{28A0939F-269F-451B-93E5-E938FBB9B11A} = {18DEF7F0-5FE6-4013-8856-3EC21B48DFA8}
+		{725895DE-B6EA-4C91-ADE3-26795C6BF04E} = {18DEF7F0-5FE6-4013-8856-3EC21B48DFA8}
+		{D832893E-F2F2-4A28-8EFB-E881D141EA7D} = {18DEF7F0-5FE6-4013-8856-3EC21B48DFA8}
 	EndGlobalSection
 EndGlobal

@@ -83,7 +83,6 @@ namespace ZTn.BNet.D3ProfileExplorer
 
                 // Monk passive skills
                 guiSkillSeizeTheInitiative,
-                guiSkillOneWithEverything,
                 guiSkillUnity,
                 guiSkillHarmony,
 
@@ -340,6 +339,14 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
         }
 
+        private static void AddActiveSkillIfChecked(List<ID3SkillModifier> activeSkills, CheckBox checkBox, Type type)
+        {
+            if (checkBox.Checked)
+            {
+                activeSkills.Add(Activator.CreateInstance(type) as ID3SkillModifier);
+            }
+        }
+
         private void GuiDoCalculationsForHero()
         {
             // Retrieve hero from the GUI
@@ -382,56 +389,26 @@ namespace ZTn.BNet.D3ProfileExplorer
             var activeSkills = new List<ID3SkillModifier>();
 
             // Barbarian active skills
-            if (guiSkillWarCry_Invigorate.Checked)
-            {
-                activeSkills.Add(new WarCry_Invigorate());
-            }
+            AddActiveSkillIfChecked(activeSkills, guiSkillWarCry_Invigorate, typeof(WarCry_Invigorate));
 
             // Demon Hunter active skills
-            if (guiSkillCompanion_BoarCompanion.Checked)
-            {
-                activeSkills.Add(new Companion_BoarCompanion());
-            }
+            AddActiveSkillIfChecked(activeSkills, guiSkillCompanion_BoarCompanion, typeof(Companion_BoarCompanion));
 
             // Monk active skills
-            if (guiSkillMantraOfHealing_TimeOfNeed.Checked)
-            {
-                activeSkills.Add(new MantraOfHealing_TimeOfNeed());
-            }
-            if (guiSkillMantraOfEvasion_HardTarget.Checked)
-            {
-                activeSkills.Add(new MantraOfEvasion_HardTarget());
-            }
-            if (guiSkillMantraOfRetribution_Transgression.Checked)
-            {
-                activeSkills.Add(new MantraOfRetribution_Transgression());
-            }
-            if (guiSkillMysticAlly_EarthAlly.Checked)
-            {
-                activeSkills.Add(new MysticAlly_EarthAlly());
-            }
-            if (guiSkillMysticAlly_FireAlly.Checked)
-            {
-                activeSkills.Add(new MysticAlly_FireAlly());
-            }
+            AddActiveSkillIfChecked(activeSkills, guiSkillMantraOfHealing_TimeOfNeed, typeof(MantraOfHealing_TimeOfNeed));
+            AddActiveSkillIfChecked(activeSkills, guiSkillMantraOfEvasion_HardTarget, typeof(MantraOfEvasion_HardTarget));
+            AddActiveSkillIfChecked(activeSkills, guiSkillMantraOfRetribution_Transgression, typeof(MantraOfRetribution_Transgression));
+            AddActiveSkillIfChecked(activeSkills, guiSkillMysticAlly_EarthAlly, typeof(MysticAlly_EarthAlly));
+            AddActiveSkillIfChecked(activeSkills, guiSkillMysticAlly_FireAlly, typeof(MysticAlly_FireAlly));
 
             // Witch Doctor active skills
 
             // Wizard skills
 
             // Followers
-            if (guiSkillAnatomy.Checked)
-            {
-                activeSkills.Add(new Anatomy());
-            }
-            if (guiSkillFocusedMind.Checked)
-            {
-                activeSkills.Add(new FocusedMind());
-            }
-            if (guiSkillPoweredArmor.Checked)
-            {
-                activeSkills.Add(new PoweredArmor());
-            }
+            AddActiveSkillIfChecked(activeSkills, guiSkillAnatomy, typeof(Anatomy));
+            AddActiveSkillIfChecked(activeSkills, guiSkillFocusedMind, typeof(FocusedMind));
+            AddActiveSkillIfChecked(activeSkills, guiSkillPoweredArmor, typeof(PoweredArmor));
 
             calculatedDps = d3Calculator.GetHeroDps(passiveSkills, activeSkills);
 

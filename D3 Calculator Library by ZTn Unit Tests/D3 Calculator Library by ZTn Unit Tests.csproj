@@ -69,11 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\D3 API by ZTn\D3 API by ZTn.csproj">
-      <Project>{a62cfaea-60e1-4586-b306-7d606e6aa4d2}</Project>
+      <Project>{1ea51bfb-96be-4e12-8dab-0546aeb15674}</Project>
       <Name>D3 API by ZTn</Name>
     </ProjectReference>
     <ProjectReference Include="..\D3 Calculator Library by ZTn\D3 Calculator Library by ZTn.csproj">
-      <Project>{f6e135dd-87c5-49c1-a560-07c2653b69a2}</Project>
+      <Project>{78516ce1-496f-4591-ad69-3164694d4555}</Project>
       <Name>D3 Calculator Library by ZTn</Name>
     </ProjectReference>
   </ItemGroup>

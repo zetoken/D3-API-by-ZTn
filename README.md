@@ -1,4 +1,4 @@
-Project up to date for RoS.
+Project up to date for RoS 2.1.2.
 
 D3-API-by-ZTn
 =============
@@ -10,8 +10,8 @@ This project, dedicated to the game Diablo 3, is divided into 3 main parts:
 * D3 Profile Explorer: a GUI application allowing to retrieve profile datas and show them in a tree.
 * D3 Calculator: an API allowing DPS calculation based on stuff and buffs and a GUI integrated in D3 Profile Explorer.
 
-Look at the wiki for more informations.
+All core libraries are portable libraries (PCL) and can be used under Windows, Linux and Android (iOS could be available but having no iOS machine I can't write a dedicated PCL Wrapper).
 
-Binaries for .net 4.0 or later and Portable Class Library available in download section.
+Have a look at the [wiki](home) for more information.
 
 Be free to comment, review and use this tools!
