@@ -425,7 +425,7 @@ namespace ZTn.BNet.D3.Calculator
             return hitPoints;
         }
 
-        public ItemValueRange getHeroResistance_All()
+        public ItemValueRange GetHeroResistance_All()
         {
             var resist = ItemValueRange.Zero;
 
@@ -439,7 +439,7 @@ namespace ZTn.BNet.D3.Calculator
 
         public ItemValueRange GetHeroResistance(string resist)
         {
-            var resistance = getHeroResistance_All();
+            var resistance = GetHeroResistance_All();
 
             resistance += HeroStatsItem.GetResistance(resist);
 

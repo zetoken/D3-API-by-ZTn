@@ -645,7 +645,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             PopulateCalculatedData(guiCalculatedResistance_Lightning, d3Calculator.GetHeroResistance("Lightning"));
             PopulateCalculatedData(guiCalculatedResistance_Physical, d3Calculator.GetHeroResistance("Physical"));
             PopulateCalculatedData(guiCalculatedResistance_Poison, d3Calculator.GetHeroResistance("Poison"));
-            PopulateCalculatedData(guiCalculatedResistance_All, d3Calculator.getHeroResistance_All());
+            PopulateCalculatedData(guiCalculatedResistance_All, d3Calculator.GetHeroResistance_All());
 
             guiCalculatedDamageReduction_Armor.Text = (100 * d3Calculator.GetHeroDamageReduction_Armor(heroLevel)).ToString("N2");
             guiCalculatedDamageReduction_Arcane.Text = (100 * d3Calculator.GetHeroDamageReduction(heroLevel, "Arcane")).ToString("N2");
