@@ -57,6 +57,8 @@
     <Compile Include="Artisans\ArtisanTier.cs" />
     <Compile Include="Artisans\ArtisanTraining.cs" />
     <Compile Include="Artisans\CareerArtisan.cs" />
+    <Compile Include="Careers\SeasonalProfile.cs" />
+    <Compile Include="Careers\SeasonalProfiles.cs" />
     <Compile Include="D3Object.cs" />
     <Compile Include="DataProviders\BNetFailureObjectReturnedException.cs" />
     <Compile Include="DataProviders\BNetResponse403Exception.cs" />

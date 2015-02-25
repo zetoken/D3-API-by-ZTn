@@ -31,6 +31,16 @@ namespace ZTn.BNet.D3.Careers
         [DataMember(Name = "lastHeroPlayed")]
         public String LastHeroPlayed;
 
+        [DataMember(Name = "lastUpdated")]
+        protected long SLastUpdated
+        {
+            set { LastUpdated = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(value).ToLocalTime(); }
+            get { return LastUpdated.Second - new DateTime(1970, 1, 1, 0, 0, 0, 0).Second; }
+        }
+
+        [IgnoreDataMember]
+        public DateTime LastUpdated;
+
         #region >> Artisans
 
         [DataMember(Name = "blacksmith")]
@@ -74,6 +84,9 @@ namespace ZTn.BNet.D3.Careers
         [DataMember(Name = "kills")]
         public CareerKills Kills;
 
+        [DataMember(Name = "highestHardcoreLevel")]
+        public int HighestHardcoreLevel;
+
         [DataMember(Name = "timePlayed")]
         public ClassTimePlayed TimePlayed;
 
@@ -94,6 +107,9 @@ namespace ZTn.BNet.D3.Careers
 
         [DataMember(Name = "progression")]
         public CareerProgress Progression;
+
+        [DataMember(Name = "seasonalProfiles")]
+        public SeasonalProfiles SeasonalProfiles;
 
         #endregion
 

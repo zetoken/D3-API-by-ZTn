@@ -14,6 +14,9 @@ namespace ZTn.BNet.D3.Heroes
         #region >> Fields
 
         [DataMember]
+        public int SeasonCreated;
+
+        [DataMember]
         public HeroSkills Skills;
 
         [DataMember]

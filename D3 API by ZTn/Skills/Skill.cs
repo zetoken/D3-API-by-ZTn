@@ -9,25 +9,31 @@ namespace ZTn.BNet.D3.Skills
         #region >> Fields
 
         [DataMember]
-        public String Slug;
+        public string Slug;
 
         [DataMember]
-        public String Name;
+        public string categorySlug;
 
         [DataMember]
-        public String Icon;
+        public string Name;
 
         [DataMember]
-        public String TooltipUrl;
+        public string Icon;
 
         [DataMember]
-        public String Description;
+        public string TooltipUrl;
 
         [DataMember]
-        public String Flavor;
+        public string Description;
 
         [DataMember]
-        public String SkillCalcId;
+        public string SimpleDescription;
+
+        [DataMember]
+        public string Flavor;
+
+        [DataMember]
+        public string SkillCalcId;
 
         [DataMember]
         public int Level;
