@@ -327,10 +327,53 @@ namespace ZTn.BNet.D3.Calculator
             return ehp;
         }
 
+        /// <summary>
+        /// Computes the hit points per vitality factor.
+        /// </summary>
+        /// <param name="heroClass">Class of the hero (can be a follower).</param>
+        /// <param name="heroLevel">Level of the hero.</param>
+        /// <returns></returns>
+        public static int GetHitpointsPerVitalityFactor(HeroClass heroClass, int heroLevel)
+        {
+            switch (heroClass)
+            {
+                case HeroClass.Barbarian:
+                case HeroClass.Crusader:
+                case HeroClass.DemonHunter:
+                case HeroClass.Monk:
+                case HeroClass.WitchDoctor:
+                case HeroClass.Wizard:
+                    if (heroLevel <= 35)
+                    {
+                        return 10;
+                    }
+                    if (heroLevel <= 60)
+                    {
+                        return heroLevel - 25;
+                    }
+                    if (heroLevel <= 65)
+                    {
+                        return 35 + 4 * (heroLevel - 60);
+                    }
+                    return 50 + 10 * (heroLevel - 65);
+                case HeroClass.EnchantressFollower:
+                case HeroClass.ScoundrelFollower:
+                case HeroClass.TemplarFollower:
+                    // Missing leveling
+                    return 35 + 5 * (heroLevel - 61);
+                default:
+                    return 0;
+            }
+        }
+
+        /// <summary>
+        /// Computes the hero maximum hit points.
+        /// </summary>
+        /// <returns></returns>
         public ItemValueRange GetHeroHitpoints()
         {
             // Use hitpoints formula
-            ItemValueRange hitpoints;
+            ItemValueRange hitPoints;
 
             switch (HeroClass)
             {
@@ -340,46 +383,46 @@ namespace ZTn.BNet.D3.Calculator
                 case HeroClass.Monk:
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
-                    if (HeroLevel < 35)
+                    if (HeroLevel <= 35)
                     {
-                        hitpoints = 36 + 4 * HeroLevel + 10 * GetHeroVitality();
+                        hitPoints = 36 + 4 * HeroLevel + 10 * GetHeroVitality();
                     }
                     else if (HeroLevel <= 60)
                     {
-                        hitpoints = 36 + 4 * HeroLevel + (HeroLevel - 25) * GetHeroVitality();
+                        hitPoints = 36 + 4 * HeroLevel + GetHitpointsPerVitalityFactor(HeroClass, HeroLevel) * GetHeroVitality();
                     }
                     else if (HeroLevel <= 65)
                     {
-                        hitpoints = 36 + 4 * HeroLevel + 35 * GetHeroVitality() + 4 * (HeroLevel - 60) * GetHeroVitality();
+                        hitPoints = 36 + 4 * HeroLevel + GetHitpointsPerVitalityFactor(HeroClass, HeroLevel) * GetHeroVitality();
                     }
                     else
                     {
-                        hitpoints = 36 + 4 * HeroLevel + 35 * GetHeroVitality() + 5 * (HeroLevel - 61) * GetHeroVitality();
+                        hitPoints = 36 + 4 * HeroLevel + GetHitpointsPerVitalityFactor(HeroClass, HeroLevel) * GetHeroVitality();
                     }
                     break;
                 case HeroClass.EnchantressFollower:
                 case HeroClass.ScoundrelFollower:
                     // Missing leveling
-                    // 60: hitpoints = 6219 + 35 * GetHeroVitality() + 5 * (HeroLevel - 61) * GetHeroVitality();
-                    hitpoints = 54685 + 35 * GetHeroVitality() + 5 * (HeroLevel - 61) * GetHeroVitality();
+                    // 60: hitpoints = 6219 + GetHitpointsPerVitalityFactor(HeroClass, HeroLevel) * GetHeroVitality();
+                    hitPoints = 54685 + GetHitpointsPerVitalityFactor(HeroClass, HeroLevel) * GetHeroVitality();
                     break;
                 case HeroClass.TemplarFollower:
                     // Missing leveling
-                    // 60: hitpoints = 7752 + 35 * GetHeroVitality() + 5 * (HeroLevel - 61) * GetHeroVitality();
-                    hitpoints = 68346 + 35 * GetHeroVitality() + 5 * (HeroLevel - 61) * GetHeroVitality();
+                    // 60: hitpoints = 7752 + GetHitpointsPerVitalityFactor(HeroClass, HeroLevel) * GetHeroVitality();
+                    hitPoints = 68346 + GetHitpointsPerVitalityFactor(HeroClass, HeroLevel) * GetHeroVitality();
                     break;
                 default:
-                    hitpoints = ItemValueRange.Zero;
+                    hitPoints = ItemValueRange.Zero;
                     break;
             }
 
             // Update with +% Life bonus
             if (HeroStatsItem.AttributesRaw.hitpointsMaxPercentBonusItem != null)
             {
-                hitpoints *= 1 + HeroStatsItem.AttributesRaw.hitpointsMaxPercentBonusItem.Min;
+                hitPoints *= 1 + HeroStatsItem.AttributesRaw.hitpointsMaxPercentBonusItem.Min;
             }
 
-            return hitpoints;
+            return hitPoints;
         }
 
         public ItemValueRange getHeroResistance_All()

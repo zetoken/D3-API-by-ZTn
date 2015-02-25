@@ -57,6 +57,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="D3Calculator.cs" />
     <Compile Include="Helpers\ItemAttributesExtensionUnitTest.cs" />
     <Compile Include="Heroes\ParagonBuilderUnitTest.cs" />
     <Compile Include="Heroes\ParagonBonusUnitTest.cs" />
