@@ -91,7 +91,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             guiD3ProfileTreeView.Nodes.Add(node);
         }
 
-        private List<TreeNode> CreateNodeFromD3Object(Object d3Object)
+        private List<TreeNode> CreateNodeFromD3Object(object d3Object)
         {
             var newNodes = new List<TreeNode>();
 
@@ -104,12 +104,22 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             if (type.IsArray)
             {
-                foreach (var o in (Object[])d3Object)
+                var arrayOfObjects = d3Object as object[];
+                if (arrayOfObjects != null)
                 {
-                    var newNode = new TreeNode(String.Format("[{0}]", o.GetType().Name));
-                    newNode.Nodes.AddRange(CreateNodeFromD3Object(o).ToArray());
-                    InsertContextMenu(newNode, (dynamic)o);
-                    UpdateNodeText(newNode, (dynamic)o);
+                    foreach (var o in arrayOfObjects)
+                    {
+                        var newNode = new TreeNode(String.Format("[{0}]", o.GetType().Name));
+                        newNode.Nodes.AddRange(CreateNodeFromD3Object(o).ToArray());
+                        InsertContextMenu(newNode, (dynamic)o);
+                        UpdateNodeText(newNode, (dynamic)o);
+                        newNodes.Add(newNode);
+                    }
+                }
+                else
+                {
+                    var arrayOfEnum = ((Array)d3Object).Cast<Enum>();
+                    var newNode = new TreeNode(arrayOfEnum.Aggregate("", (s, e) => String.Format("{0}[{1}]", s, e.ToString())));
                     newNodes.Add(newNode);
                 }
             }
@@ -375,7 +385,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
             else
             {
-                OnNodeClick((Object)null);
+                OnNodeClick((object)null);
             }
         }
 
@@ -720,7 +730,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 }
             }
 
-            for (var index = 1; index < 14; index++)
+            for (var index = 1; index < 22; index++)
             {
                 var id = String.Format("Unique_Gem_{0:000}_x1", index);
                 sockets.Add(Item.CreateFromTooltipParams("item/" + id));
@@ -728,7 +738,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             sockets.WriteToJsonFile("d3gem.json");
 
-            var node = new TreeNode("Updated Gems from battle.net (saved from d3gem.json)");
+            var node = new TreeNode("Updated Gems from battle.net (saved to d3gem.json)");
 
             var knownSets = KnownGems.GetKnownGemsFromJsonFile("d3gem.json");
 

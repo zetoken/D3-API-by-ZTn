@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 using ZTn.BNet.D3.Items;
 
 namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
@@ -41,6 +43,18 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
                     guiGemEffectLabel.Text += passive.Text;
                 }
             }
+
+            if (socketedGem.AttributesRaw.JewelRank != null)
+            {
+                guiGemEffectLabel.Text += Environment.NewLine + String.Format("Rank {0}", socketedGem.AttributesRaw.JewelRank.Min);
+            }
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            guiGemEffectLabel.MaximumSize = new Size(Size.Width - Padding.Left - Padding.Right, 0);
+
+            base.OnPaint(e);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using ZTn.BNet.BattleNet;
+using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Heroes
 {
@@ -10,19 +11,19 @@ namespace ZTn.BNet.D3.Heroes
         #region >> Properties
 
         [DataMember]
-        public String Name;
+        public string Name;
 
         [DataMember]
-        public String Id;
+        public string Id;
 
         [DataMember]
         public int Level;
 
         [DataMember]
-        public Boolean Seasonal;
+        public bool Seasonal;
 
         [DataMember]
-        public Boolean Hardcore;
+        public bool Hardcore;
 
         [DataMember]
         public int ParagonLevel;
@@ -31,57 +32,18 @@ namespace ZTn.BNet.D3.Heroes
         public HeroGender Gender;
 
         [DataMember]
-        public Boolean Dead;
+        public bool Dead;
 
         [DataMember(Name = "class")]
-        protected String SHeroClass
+        protected string SHeroClass
         {
             set
             {
-                switch (value)
-                {
-                    case "barbarian":
-                        HeroClass = HeroClass.Barbarian;
-                        break;
-                    case "crusader":
-                        HeroClass = HeroClass.Crusader;
-                        break;
-                    case "demon-hunter":
-                        HeroClass = HeroClass.DemonHunter;
-                        break;
-                    case "monk":
-                        HeroClass = HeroClass.Monk;
-                        break;
-                    case "witch-doctor":
-                        HeroClass = HeroClass.WitchDoctor;
-                        break;
-                    case "wizard":
-                        HeroClass = HeroClass.Wizard;
-                        break;
-                    default:
-                        HeroClass = HeroClass.Unknown;
-                        break;
-                }
+                HeroClass = value.ParseAsEnum<HeroClass>();
             }
             get
             {
-                switch (HeroClass)
-                {
-                    case HeroClass.Barbarian:
-                        return "barbarian";
-                    case HeroClass.Crusader:
-                        return "crusader";
-                    case HeroClass.DemonHunter:
-                        return "demon-hunter";
-                    case HeroClass.Monk:
-                        return "monk";
-                    case HeroClass.WitchDoctor:
-                        return "witch-doctor";
-                    case HeroClass.Wizard:
-                        return "wizard";
-                    default:
-                        return null;
-                }
+                return HeroClass.ToEnumString();
             }
         }
 

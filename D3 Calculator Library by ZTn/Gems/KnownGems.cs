@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -19,15 +17,36 @@ namespace ZTn.BNet.D3.Calculator.Gems
         public List<Item> Gems;
 
         [IgnoreDataMember]
+        private List<Item> amuletSocketedGems;
+
+        [IgnoreDataMember]
         private List<Item> helmSocketedGems;
+
         [IgnoreDataMember]
         private List<Item> otherSocketedGems;
+
+        [IgnoreDataMember]
+        private List<Item> ringSocketedGems;
+
         [IgnoreDataMember]
         private List<Item> weaponSocketedGems;
 
         #endregion
 
         #region >> Properties
+
+        [IgnoreDataMember]
+        public List<Item> AmuletSocketedGems
+        {
+            get
+            {
+                if (amuletSocketedGems == null)
+                {
+                    amuletSocketedGems = FilterGems("Amulet");
+                }
+                return amuletSocketedGems;
+            }
+        }
 
         [IgnoreDataMember]
         public List<Item> HelmSocketedGems
@@ -56,6 +75,19 @@ namespace ZTn.BNet.D3.Calculator.Gems
         }
 
         [IgnoreDataMember]
+        public List<Item> RingSocketedGems
+        {
+            get
+            {
+                if (ringSocketedGems == null)
+                {
+                    ringSocketedGems = FilterGems("Ring");
+                }
+                return ringSocketedGems;
+            }
+        }
+
+        [IgnoreDataMember]
         public List<Item> WeaponSocketedGems
         {
             get
@@ -79,7 +111,7 @@ namespace ZTn.BNet.D3.Calculator.Gems
 
         #endregion
 
-        public static KnownGems GetKnownGemsFromJsonFile(String fileName)
+        public static KnownGems GetKnownGemsFromJsonFile(string fileName)
         {
             return new KnownGems(fileName.CreateFromJsonFile<List<Item>>());
         }
@@ -89,7 +121,7 @@ namespace ZTn.BNet.D3.Calculator.Gems
             return new KnownGems(stream.CreateFromJsonStream<List<Item>>());
         }
 
-        private List<Item> FilterGems(String itemTypeId)
+        private List<Item> FilterGems(string itemTypeId)
         {
             var filteredGems = new List<Item>();
             foreach (var gem in Gems)
@@ -99,8 +131,8 @@ namespace ZTn.BNet.D3.Calculator.Gems
                    .Select(e => new Item
                    {
                        Id = gem.Id,
-                       Attributes = e.Attributes,
-                       AttributesRaw = e.AttributesRaw,
+                       Attributes = e.IsAttributesFieldEmpty() ? gem.Attributes : e.Attributes,
+                       AttributesRaw = gem.AttributesRaw + e.AttributesRaw,
                        Name = gem.Name,
                        Icon = gem.Icon
                    }));
@@ -110,10 +142,10 @@ namespace ZTn.BNet.D3.Calculator.Gems
 
         public List<Item> GetGemsForItem(Item item)
         {
-            return GetGemsForItemTypeId(item.Type.Id);
+            return GetGemsForItemTypeId(item.Type.Id, item.Slots);
         }
 
-        public List<Item> GetGemsForItemTypeId(String itemTypeId)
+        public List<Item> GetGemsForItemTypeId(string itemTypeId, Slot[] slots = null)
         {
             if (ItemHelper.WeaponTypeIds.Any(id => itemTypeId == id))
             {
@@ -123,6 +155,14 @@ namespace ZTn.BNet.D3.Calculator.Gems
             if (ItemHelper.HelmTypeIds.Any(itemTypeId.Contains))
             {
                 return HelmSocketedGems;
+            }
+
+            switch (itemTypeId)
+            {
+                case "Amulet":
+                    return AmuletSocketedGems.Concat(OtherSocketedGems).ToList();
+                case "Ring":
+                    return RingSocketedGems.Concat(OtherSocketedGems).ToList();
             }
 
             return OtherSocketedGems;

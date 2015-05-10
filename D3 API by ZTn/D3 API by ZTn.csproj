@@ -72,6 +72,7 @@
     <Compile Include="DataProviders\MD5Digest.cs" />
     <Compile Include="FailureObject.cs" />
     <Compile Include="Helpers\D3DeepCopy.cs" />
+    <Compile Include="Helpers\EnumMemberHelpers.cs" />
     <Compile Include="Helpers\ItemAttributesExtension.cs" />
     <Compile Include="Helpers\ItemValueRangeExtension.cs" />
     <Compile Include="Helpers\JsonHelpers.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Items\RandomAffix.cs" />
     <Compile Include="Items\Set.cs" />
     <Compile Include="Items\SetRank.cs" />
+    <Compile Include="Items\Slot.cs" />
     <Compile Include="Items\SocketedGem.cs" />
     <Compile Include="Items\SocketEffect.cs" />
     <Compile Include="Medias\D3Picture.cs" />

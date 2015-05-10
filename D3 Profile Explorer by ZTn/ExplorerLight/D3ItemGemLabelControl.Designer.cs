@@ -31,7 +31,7 @@
             this.Controls.Add(this.guiGemEffectLabel);
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.Name = "D3ItemGemLabelControl";
-            this.Size = new System.Drawing.Size(1274, 19);
+            this.Size = new System.Drawing.Size(1484, 19);
             this.ResumeLayout(false);
             this.PerformLayout();
 

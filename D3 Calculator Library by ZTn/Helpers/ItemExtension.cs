@@ -211,7 +211,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static Boolean IsWeapon(this Item item)
+        public static bool IsWeapon(this Item item)
         {
             return item.AttributesRaw.IsWeapon();
         }

@@ -17,6 +17,20 @@ namespace ZTn.BNet.D3.Items
         [DataMember]
         public ItemTextAttributes Attributes { get; set; }
 
+        [DataMember]
+        public bool IsGem { get; set; }
+
+        [DataMember]
+        public bool IsJewel { get; set; }
+
+        [DataMember]
+        public int JewelRank { get; set; }
+
+        [DataMember]
+        public int JewelSecondaryEffectUnlockRank { get; set; }
+
+        // jewelSecondaryEffect : Item_Power_Passive#ItemPassive_Unique_Gem_002U_x1
+
         #endregion
 
         #region >> Constructors

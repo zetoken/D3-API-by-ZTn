@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using ZTn.BNet.D3.Helpers;
 
@@ -10,13 +11,13 @@ namespace ZTn.BNet.D3.Items
     {
         #region >> Properties
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int RequiredLevel { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int ItemLevel { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int BonusAffixes { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
@@ -26,12 +27,12 @@ namespace ZTn.BNet.D3.Items
         public bool AccountBound { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public String FlavorText { get; set; }
+        public string FlavorText { get; set; }
 
-        [DataMember]
-        public String TypeName { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public string TypeName { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ItemType Type { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
@@ -49,23 +50,39 @@ namespace ZTn.BNet.D3.Items
         [DataMember(EmitDefaultValue = false)]
         public ItemValueRange Armor { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ItemTextAttributes Attributes { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ItemAttributes AttributesRaw { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public SocketEffect[] SocketEffects { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ItemSalvageComponent[] Salvage { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public Set Set { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public SocketedGem[] Gems { get; set; }
+
+        [DataMember(Name = "slots", EmitDefaultValue = false)]
+        protected string[] SSlots
+        {
+            get
+            {
+                return Slots == null ? null : Slots.Select(s => s.ToEnumString()).ToArray();
+            }
+            set
+            {
+                Slots = value.Select(s => s.ParseAsEnum<Slot>()).ToArray();
+            }
+        }
+
+        [IgnoreDataMember]
+        public Slot[] Slots { get; set; }
 
         #endregion
 

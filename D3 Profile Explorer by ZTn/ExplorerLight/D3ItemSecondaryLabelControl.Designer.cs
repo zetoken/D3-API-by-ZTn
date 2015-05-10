@@ -44,7 +44,7 @@
             this.Controls.Add(this.guiSecondaryLabel);
             this.Controls.Add(this.guiSecondaryValue);
             this.Name = "D3ItemSecondaryLabelControl";
-            this.Size = new System.Drawing.Size(1386, 32);
+            this.Size = new System.Drawing.Size(1484, 32);
             this.ResumeLayout(false);
             this.PerformLayout();
 

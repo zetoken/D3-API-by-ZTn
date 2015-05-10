@@ -37,23 +37,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             public GemsListViewItem(Item item)
             {
                 Item = item;
-                var primary = item.Attributes.Primary.FirstOrDefault();
-                if (primary != null)
-                {
-                    Label = primary.Text;
-                    return;
-                }
-                var secondary = item.Attributes.Secondary.FirstOrDefault();
-                if (secondary != null)
-                {
-                    Label = secondary.Text;
-                    return;
-                }
-                var passive = item.Attributes.Passive.FirstOrDefault();
-                if (passive != null)
-                {
-                    Label = passive.Text;
-                }
+                Label = item.Name;
             }
         }
 

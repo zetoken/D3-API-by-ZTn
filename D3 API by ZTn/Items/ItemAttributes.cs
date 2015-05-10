@@ -514,6 +514,9 @@ namespace ZTn.BNet.D3.Items
 
         //"Item_Power_Passive"
 
+        [DataMember(Name = "Jewel_Rank", EmitDefaultValue = false)]
+        public ItemValueRange JewelRank;
+
         [DataMember(Name = "Magic_Find", EmitDefaultValue = false)]
         public ItemValueRange magicFind;
 
