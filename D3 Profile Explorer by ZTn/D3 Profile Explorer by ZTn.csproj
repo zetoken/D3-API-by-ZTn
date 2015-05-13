@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExplorerLight\D3ItemJewelLabelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplorerLight\D3ItemJewelLabelControl.Designer.cs">
+      <DependentUpon>D3ItemJewelLabelControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExplorerLight\D3ItemGemLabelControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -161,6 +167,7 @@
     <Compile Include="ExplorerLight\D3SelectableControl.Designer.cs">
       <DependentUpon>D3SelectableControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\LabelHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -168,6 +175,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ExplorerLight\D3ItemJewelLabelControl.resx">
+      <DependentUpon>D3ItemJewelLabelControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExplorerLight\D3ItemGemLabelControl.resx">
       <DependentUpon>D3ItemGemLabelControl.cs</DependentUpon>
     </EmbeddedResource>

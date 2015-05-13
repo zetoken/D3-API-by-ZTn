@@ -12,6 +12,9 @@ namespace ZTn.BNet.D3.Items
         [DataMember(Name = "Amplify_Damage_Type_Percent", EmitDefaultValue = false)]
         public ItemValueRange amplifyDamageTypePercent;
 
+        [DataMember(Name = "Ancient_Rank", EmitDefaultValue = false)]
+        public ItemValueRange AncientRank { get; set; }
+
         [DataMember(Name = "Armor_Item", EmitDefaultValue = false)]
         public ItemValueRange armorItem;
 

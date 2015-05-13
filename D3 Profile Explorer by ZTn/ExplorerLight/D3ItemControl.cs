@@ -1,25 +1,51 @@
 ﻿using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using ZTn.BNet.D3;
 using ZTn.BNet.D3.Items;
+using ZTn.BNet.D3.Calculator.Helpers;
 
 namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
 {
     partial class D3ItemControl : D3SelectableControl
     {
+        private Item item;
+
         public Item Item
         {
             set
             {
+                item = value;
                 UpdateItemInfo(value);
                 UpdateItemPicture(value);
             }
+            private get { return item; }
         }
 
-        public D3ItemControl()
+        private D3ItemControl()
         {
             InitializeComponent();
+
+            Paint += (sender, args) =>
+            {
+                if (Item.IsAncient())
+                {
+                    var controlRectangle = guiItemPicture.ClientRectangle;
+                    controlRectangle.Location = guiItemPicture.Location;
+                    ControlPaint.DrawBorder(args.Graphics, controlRectangle,
+                        Color.Goldenrod, 4, ButtonBorderStyle.Solid,
+                        Color.Goldenrod, 4, ButtonBorderStyle.Solid,
+                        Color.Goldenrod, 4, ButtonBorderStyle.Solid,
+                        Color.Goldenrod, 4, ButtonBorderStyle.Solid);
+                }
+                else
+                {
+                    var controlRectangle = guiItemPicture.ClientRectangle;
+                    controlRectangle.Location = guiItemPicture.Location;
+                    ControlPaint.DrawBorder(args.Graphics, controlRectangle, Color.Goldenrod, ButtonBorderStyle.None);
+                }
+            };
         }
 
         public D3ItemControl(Item item)
@@ -85,7 +111,14 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
             {
                 foreach (var gem in item.Gems)
                 {
-                    guiDescriptionPanel.Controls.Add(new D3ItemGemLabelControl(gem));
+                    if (gem.IsJewel)
+                    {
+                        guiDescriptionPanel.Controls.Add(new D3ItemJewelLabelControl(gem));
+                    }
+                    else
+                    {
+                        guiDescriptionPanel.Controls.Add(new D3ItemGemLabelControl(gem));
+                    }
                 }
             }
         }

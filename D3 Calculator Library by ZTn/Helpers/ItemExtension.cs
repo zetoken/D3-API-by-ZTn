@@ -207,7 +207,27 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         #endregion
 
         /// <summary>
-        /// Informs if the gems is a weapon based on its characteristics
+        /// Informs if the item is ancient based on its attributes.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static bool IsAncient(this Item item)
+        {
+            return item.AttributesRaw.IsAncient();
+        }
+
+        /// <summary>
+        /// Informs if the item is a legendary jewel based on its attributes.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static bool IsJewel(this Item item)
+        {
+            return item.AttributesRaw.IsJewel();
+        }
+
+        /// <summary>
+        /// Informs if the item is a weapon based on its characteristics
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>

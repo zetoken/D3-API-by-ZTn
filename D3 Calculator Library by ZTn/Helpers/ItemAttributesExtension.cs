@@ -338,13 +338,33 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         #endregion
 
         /// <summary>
+        /// Informs if the item is ancient based on its attributes.
+        /// </summary>
+        /// <param name="itemAttr">Attributes of the item.</param>
+        /// <returns></returns>
+        public static bool IsAncient(this ItemAttributes itemAttr)
+        {
+            return itemAttr != null && itemAttr.AncientRank != null;
+        }
+
+        /// <summary>
+        /// Informs if the item is a legendary jewel based on its attributes.
+        /// </summary>
+        /// <param name="itemAttr">Attributes of the item.</param>
+        /// <returns></returns>
+        public static bool IsJewel(this ItemAttributes itemAttr)
+        {
+            return itemAttr != null && itemAttr.JewelRank != null;
+        }
+
+        /// <summary>
         /// Informs if the item is a weapon based on its attributes
         /// </summary>
         /// <param name="itemAttr">Attributes of the item.</param>
         /// <returns></returns>
-        public static Boolean IsWeapon(this ItemAttributes itemAttr)
+        public static bool IsWeapon(this ItemAttributes itemAttr)
         {
-            return (itemAttr != null && itemAttr.attacksPerSecondItem != null);
+            return itemAttr != null && itemAttr.attacksPerSecondItem != null;
         }
 
         /// <summary>
