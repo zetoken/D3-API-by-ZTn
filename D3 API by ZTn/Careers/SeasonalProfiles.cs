@@ -3,7 +3,7 @@
 namespace ZTn.BNet.D3.Careers
 {
     [DataContract]
-    public class SeasonalProfiles
+    public class SeasonalProfiles : D3Object
     {
         [DataMember(Name = "season0")]
         public SeasonalProfile Season0;
@@ -13,5 +13,11 @@ namespace ZTn.BNet.D3.Careers
 
         [DataMember(Name = "season2")]
         public SeasonalProfile Season2;
+
+        [DataMember(Name = "season3")]
+        public SeasonalProfile Season3;
+
+        [DataMember(Name = "season4")]
+        public SeasonalProfile Season4;
     }
 }

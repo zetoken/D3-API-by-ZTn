@@ -21,6 +21,7 @@ using ZTn.BNet.D3.HeroFollowers;
 using ZTn.BNet.D3.Items;
 using ZTn.BNet.D3.Progresses;
 using ZTn.BNet.D3.Skills;
+using ZTn.BNet.D3ProfileExplorer.Properties;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {
@@ -70,17 +71,17 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
             catch (FileNotInCacheException)
             {
-                MessageBox.Show("Career was not found in cache: go online to retrieve it.");
+                MessageBox.Show(Resources.CareerWasNotFoundInCache);
                 return;
             }
             catch (BNetResponseFailedException)
             {
-                MessageBox.Show("Battle.net sent an http error: try again later.");
+                MessageBox.Show(Resources.BattleNetSentHttpError);
                 return;
             }
             catch (BNetFailureObjectReturnedException)
             {
-                MessageBox.Show("Battle.net sent an error: verify the battle tag.");
+                MessageBox.Show(Resources.BattleNetSentError);
                 return;
             }
 
@@ -109,7 +110,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 {
                     foreach (var o in arrayOfObjects)
                     {
-                        var newNode = new TreeNode(String.Format("[{0}]", o.GetType().Name));
+                        var newNode = new TreeNode($"[{o.GetType().Name}]");
                         newNode.Nodes.AddRange(CreateNodeFromD3Object(o).ToArray());
                         InsertContextMenu(newNode, (dynamic)o);
                         UpdateNodeText(newNode, (dynamic)o);
@@ -119,7 +120,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 else
                 {
                     var arrayOfEnum = ((Array)d3Object).Cast<Enum>();
-                    var newNode = new TreeNode(arrayOfEnum.Aggregate("", (s, e) => String.Format("{0}[{1}]", s, e.ToString())));
+                    var newNode = new TreeNode(arrayOfEnum.Aggregate("", (s, e) => $"{s}[{e.ToString()}]"));
                     newNodes.Add(newNode);
                 }
             }
@@ -132,7 +133,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 foreach (var o in (IList)d3Object)
                 {
-                    var newNode = new TreeNode(String.Format("[{0}]", o.GetType().Name));
+                    var newNode = new TreeNode($"[{o.GetType().Name}]");
                     newNode.Nodes.AddRange(CreateNodeFromD3Object(o).ToArray());
                     InsertContextMenu(newNode, (dynamic)o);
                     UpdateNodeText(newNode, (dynamic)o);
@@ -143,7 +144,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 foreach (var o in (Dictionary<string, JToken>)d3Object)
                 {
-                    var newNode = new TreeNode(String.Format("{0}: {1}", o.Key, o.Value));
+                    var newNode = new TreeNode($"{o.Key}: {o.Value}");
                     InsertContextMenu(newNode, (dynamic)o);
                     UpdateNodeText(newNode, (dynamic)o);
                     newNodes.Add(newNode);
@@ -250,91 +251,111 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
         }
 
+        private static void UpdateNodeText(TreeNode node, ActiveSkill d3Object)
+        {
+            node.Text += $" >> {d3Object.Skill?.Name} / {d3Object.Rune?.Name}";
+        }
+
         private static void UpdateNodeText(TreeNode node, Affix d3Object)
         {
             var sources = new[] { d3Object.Attributes.Primary, d3Object.Attributes.Secondary, d3Object.Attributes.Passive };
             var text = sources.Where(s => s != null)
                 .SelectMany(s => s)
-                .Select(s => "[" + s.Text + "]")
+                .Select(s => $"[{s.Text}]")
                 .Aggregate((c, s) => c + s);
-            node.Text += " >> " + text;
+            node.Text += $" >> {text}";
         }
 
         private static void UpdateNodeText(TreeNode node, ActProgress d3Object)
         {
-            node.Text += " >> " + d3Object.Completed;
+            node.Text += $" >> {d3Object.Completed}";
         }
 
         private static void UpdateNodeText(TreeNode node, bool d3Object)
         {
-            node.Text += " >> " + d3Object;
+            node.Text += $" >> {d3Object}";
         }
 
         private static void UpdateNodeText(TreeNode node, ItemTextAttribute d3Object)
         {
-            node.Text += " >> " + d3Object.Text;
+            node.Text += $" >> {d3Object.Text}";
         }
 
         private static void UpdateNodeText(TreeNode node, CareerArtisan d3Object)
         {
-            node.Text += " >> " + d3Object.Slug;
+            node.Text += $" >> {d3Object.Slug}";
         }
 
         private static void UpdateNodeText(TreeNode node, float d3Object)
         {
-            node.Text += " >> " + d3Object;
+            node.Text += $" >> {d3Object}";
         }
 
         private static void UpdateNodeText(TreeNode node, HeroSummary d3Object)
         {
-            node.Text += String.Format(" >> L:{1:D2} P:{2:D2} - {0}", d3Object.Name, d3Object.Level, d3Object.ParagonLevel);
+            node.Text += $" >> L:{d3Object.Level:D2} P:{d3Object.ParagonLevel:D2} - {d3Object.Name}";
         }
 
         private static void UpdateNodeText(TreeNode node, int d3Object)
         {
-            node.Text += " >> " + d3Object;
+            node.Text += $" >> {d3Object}";
         }
 
         private static void UpdateNodeText(TreeNode node, ItemSummary d3Object)
         {
-            node.Text += " >> " + d3Object.Name;
+            node.Text += $" >> {d3Object.Name}";
         }
 
         private static void UpdateNodeText(TreeNode node, ItemValueRange d3Object)
         {
-            node.Text += " >> [ " + d3Object.Min + " - " + d3Object.Max + "]";
+            node.Text += $" >> [ {d3Object.Min} - {d3Object.Max}]";
         }
 
-        private static void UpdateNodeText(TreeNode node, Set d3Object)
+        private static void UpdateNodeText(TreeNode node, LegendaryPower d3Object)
         {
-            node.Text += " >> " + d3Object.name;
+            node.Text += $" >> {d3Object.Name}";
         }
 
-        private static void UpdateNodeText(TreeNode node, Skill d3Object)
+        private static void UpdateNodeText(TreeNode node, PassiveSkill d3Object)
         {
-            node.Text += " >> " + d3Object.Name;
+            node.Text += $" >> {d3Object.Skill?.Name}";
         }
 
         private static void UpdateNodeText(TreeNode node, Quest d3Object)
         {
-            node.Text += " >> " + d3Object.Name;
+            node.Text += $" >> {d3Object.Name}";
         }
 
         private static void UpdateNodeText(TreeNode node, Recipe d3Object)
         {
-            node.Text += " >> " + d3Object.Name;
+            node.Text += $" >> {d3Object.Name}";
         }
 
-        private static void UpdateNodeText(TreeNode node, String d3Object)
+        private static void UpdateNodeText(TreeNode node, Rune d3Object)
         {
-            node.Text += " >> " + d3Object;
+            node.Text += $" >> {d3Object.Name}";
+        }
+
+        private static void UpdateNodeText(TreeNode node, Set d3Object)
+        {
+            node.Text += $" >> {d3Object.name}";
+        }
+
+        private static void UpdateNodeText(TreeNode node, Skill d3Object)
+        {
+            node.Text += $" >> {d3Object.Name}";
+        }
+
+        private static void UpdateNodeText(TreeNode node, string d3Object)
+        {
+            node.Text += $" >> {d3Object}";
         }
 
         #endregion
 
         #region >> OnNodeClick Overloads
 
-        private void OnNodeClick(Object d3Object)
+        private void OnNodeClick(object d3Object)
         {
             D3ObjectLiveUrl.Text = "";
         }
@@ -379,7 +400,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void guiD3ProfileTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node != null && e.Node.Tag != null)
+            if (e.Node?.Tag != null)
             {
                 OnNodeClick((dynamic)e.Node.Tag);
             }
@@ -401,7 +422,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var heroSummaryInformation = (BNetContext<HeroSummary>)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            var node = new TreeNode("Hero " + heroSummaryInformation.BattleTag + " / " + heroSummaryInformation.Data.Id + " (" + heroSummaryInformation.Data.Name + ")");
+            var node = new TreeNode($"Hero {heroSummaryInformation.BattleTag} / {heroSummaryInformation.Data.Id} ({heroSummaryInformation.Data.Name})");
 
             Hero hero;
             try
@@ -410,7 +431,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
             catch (FileNotInCacheException)
             {
-                MessageBox.Show("Hero was not found in cache: go online to retrieve it.");
+                MessageBox.Show(Resources.HeroWasNotFoundInCache);
                 return;
             }
 
@@ -426,7 +447,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             if (itemSummary.TooltipParams != null)
             {
-                var node = new TreeNode("Item [ " + itemSummary.Name + " ]");
+                var node = new TreeNode($"Item [ {itemSummary.Name} ]");
 
                 Item item;
                 try
@@ -435,7 +456,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 }
                 catch (FileNotInCacheException)
                 {
-                    MessageBox.Show("Item was not found in cache: go online to retrieve it.");
+                    MessageBox.Show(Resources.ItemWasNotFoundInCache);
                     return;
                 }
 
@@ -451,7 +472,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var careerArtisan = (CareerArtisan)guiD3ProfileTreeView.SelectedNode.Tag;
 
-            var node = new TreeNode("Artisan " + careerArtisan.Slug);
+            var node = new TreeNode($"Artisan {careerArtisan.Slug}");
 
             var artisan = Artisan.CreateFromSlug(careerArtisan.Slug);
 
@@ -543,7 +564,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             var heroStuff = new StatsItem(mainHand, offHand, items.ToArray());
             heroStuff.Update();
 
-            var node = new TreeNode("Unique Item for " + hero.Name);
+            var node = new TreeNode($"Unique Item for {hero.Name}");
             node.Nodes.AddRange(CreateNodeFromD3Object(heroStuff).ToArray());
 
             guiD3ProfileTreeView.Nodes.Add(node);
@@ -568,20 +589,12 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             var mainHand = Item.CreateFromTooltipParams(follower.Items.MainHand.TooltipParams);
 
-            Item offHand;
-            if (follower.Items.OffHand != null)
-            {
-                offHand = Item.CreateFromTooltipParams(follower.Items.OffHand.TooltipParams);
-            }
-            else
-            {
-                offHand = new Item(new ItemAttributes());
-            }
+            var offHand = follower.Items.OffHand != null ? Item.CreateFromTooltipParams(follower.Items.OffHand.TooltipParams) : new Item(new ItemAttributes());
 
             var heroStuff = new StatsItem(mainHand, offHand, items.ToArray());
             heroStuff.Update();
 
-            var node = new TreeNode("Unique Item for " + follower.Slug + " follower");
+            var node = new TreeNode($"Unique Item for {follower.Slug} follower");
             node.Nodes.AddRange(CreateNodeFromD3Object(heroStuff).ToArray());
 
             guiD3ProfileTreeView.Nodes.Add(node);
@@ -598,7 +611,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
             catch (FileNotInCacheException)
             {
-                MessageBox.Show("Hero was not found in cache: go online to retrieve it.");
+                MessageBox.Show(Resources.HeroWasNotFoundInCache);
                 return;
             }
 
@@ -668,7 +681,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
             catch (FileNotInCacheException)
             {
-                MessageBox.Show("Known gems file was not found");
+                MessageBox.Show(Resources.KnownGemsFileNotFound);
                 return;
             }
 
@@ -683,16 +696,16 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             if (itemSummary.Id != null)
             {
-                var node = new TreeNode("Item (meta) [ " + itemSummary.Name + " ]");
+                var node = new TreeNode($"Item (meta) [ {itemSummary.Name} ]");
 
                 Item item;
                 try
                 {
-                    item = Item.CreateFromTooltipParams("item/" + itemSummary.Id);
+                    item = Item.CreateFromTooltipParams($"item/{itemSummary.Id}");
                 }
                 catch (FileNotInCacheException)
                 {
-                    MessageBox.Show("Item was not found in cache: go online to retrieve it.");
+                    MessageBox.Show(Resources.ItemWasNotFoundInCache);
                     return;
                 }
 
@@ -706,7 +719,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             var simplifiedItem = ((Item)guiD3ProfileTreeView.SelectedNode.Tag).Simplify();
 
-            var node = new TreeNode("Item (simplified) [ " + simplifiedItem.Name + " ]");
+            var node = new TreeNode($"Item (simplified) [ {simplifiedItem.Name} ]");
 
             InsertContextMenu(node, simplifiedItem);
 
@@ -717,7 +730,7 @@ namespace ZTn.BNet.D3ProfileExplorer
 
         private void guiUpdateKnownGems_Click(object sender, EventArgs e)
         {
-            var socketColors = new List<string> { "Amethyst", "Diamond", "Emerald", "Ruby", "Topaz" };
+            var socketColors = new[] { "Amethyst", "Diamond", "Emerald", "Ruby", "Topaz" };
 
             var sockets = new List<Item>();
 
@@ -725,15 +738,15 @@ namespace ZTn.BNet.D3ProfileExplorer
             {
                 for (var index = 1; index < 20; index++)
                 {
-                    var id = String.Format("{0}_{1:00}", gemColor, index);
-                    sockets.Add(Item.CreateFromTooltipParams("item/" + id));
+                    var id = $"{gemColor}_{index:00}";
+                    sockets.Add(Item.CreateFromTooltipParams($"item/{id}"));
                 }
             }
 
             for (var index = 1; index < 22; index++)
             {
-                var id = String.Format("Unique_Gem_{0:000}_x1", index);
-                sockets.Add(Item.CreateFromTooltipParams("item/" + id));
+                var id = $"Unique_Gem_{index:000}_x1";
+                sockets.Add(Item.CreateFromTooltipParams($"item/{id}"));
             }
 
             sockets.WriteToJsonFile("d3gem.json");

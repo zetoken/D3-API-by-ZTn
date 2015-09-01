@@ -16,7 +16,7 @@ namespace ZTn.BNet.D3.Careers
         #region >> Fields
 
         [DataMember(Name = "battleTag"), UsedImplicitly]
-        private String SBattleTag
+        private string SBattleTag
         {
             set { BattleTag = new BattleTag(value); }
             get { return BattleTag.Id; }
@@ -25,11 +25,14 @@ namespace ZTn.BNet.D3.Careers
         [IgnoreDataMember]
         public BattleTag BattleTag = new BattleTag("undefined#0000");
 
+        [DataMember(Name = "guildName")]
+        public string GuildName;
+
         [DataMember(Name = "heroes")]
         public HeroSummary[] Heroes;
 
         [DataMember(Name = "lastHeroPlayed")]
-        public String LastHeroPlayed;
+        public string LastHeroPlayed;
 
         [DataMember(Name = "lastUpdated")]
         protected long SLastUpdated
@@ -123,7 +126,7 @@ namespace ZTn.BNet.D3.Careers
             return stream.CreateFromJsonStream<Career>();
         }
 
-        public static Career CreateFromJSonString(String json)
+        public static Career CreateFromJSonString(string json)
         {
             return json.CreateFromJsonString<Career>();
         }

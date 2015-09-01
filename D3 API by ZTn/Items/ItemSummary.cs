@@ -11,19 +11,19 @@ namespace ZTn.BNet.D3.Items
         #region >> Properties
 
         [DataMember]
-        public String Id { get; set; }
+        public string Id { get; set; }
 
         [DataMember]
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         [DataMember]
-        public String Icon { get; set; }
+        public string Icon { get; set; }
 
         [DataMember]
-        public String DisplayColor { get; set; }
+        public string DisplayColor { get; set; }
 
         [DataMember]
-        public String TooltipParams { get; set; }
+        public string TooltipParams { get; set; }
 
         [DataMember]
         public Recipe Recipe { get; set; }
@@ -33,6 +33,9 @@ namespace ZTn.BNet.D3.Items
 
         [DataMember]
         public Recipe[] CraftedBy { get; set; }
+
+        [DataMember]
+        public string[] SetItemsEquipped { get; set; }
 
         #endregion
 
@@ -68,7 +71,7 @@ namespace ZTn.BNet.D3.Items
         /// <inheritdoc />
         public override string ToString()
         {
-            return "[" + Id + "]";
+            return $"[{Id}]";
         }
 
         #endregion

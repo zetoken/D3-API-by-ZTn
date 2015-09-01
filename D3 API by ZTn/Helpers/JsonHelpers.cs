@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
 #if PORTABLE
@@ -102,11 +103,17 @@ namespace ZTn.BNet.D3.Helpers
         public static T CreateFromJsonStream<T>(this Stream stream)
         {
             var serializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.Auto };
+            serializer.Error += (sender, args) =>
+            {
+                Debug.WriteLine(args.ErrorContext.Error.Message);
+                args.ErrorContext.Handled = true;
+            };
             T data;
 
             using (var streamReader = new StreamReader(stream))
             {
                 data = (T)serializer.Deserialize(streamReader, typeof(T));
+                JsonConvert.DeserializeObject<T>("");
             }
 
             return data;

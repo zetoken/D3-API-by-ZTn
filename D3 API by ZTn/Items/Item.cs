@@ -73,7 +73,7 @@ namespace ZTn.BNet.D3.Items
         {
             get
             {
-                return Slots == null ? null : Slots.Select(s => s.ToEnumString()).ToArray();
+                return Slots?.Select(s => s.ToEnumString()).ToArray();
             }
             set
             {

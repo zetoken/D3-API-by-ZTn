@@ -160,4 +160,22 @@
   <data name="wizard_male" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wizard_male.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CareerWasNotFoundInCache" xml:space="preserve">
+    <value>Career was not found in cache: go online to retrieve it.</value>
+  </data>
+  <data name="BattleNetSentHttpError" xml:space="preserve">
+    <value>Battle.net sent an http error: try again later.</value>
+  </data>
+  <data name="BattleNetSentError" xml:space="preserve">
+    <value>Battle.net sent an error: verify the battle tag.</value>
+  </data>
+  <data name="HeroWasNotFoundInCache" xml:space="preserve">
+    <value>Hero was not found in cache: go online to retrieve it.</value>
+  </data>
+  <data name="ItemWasNotFoundInCache" xml:space="preserve">
+    <value>Item was not found in cache: go online to retrieve it.</value>
+  </data>
+  <data name="KnownGemsFileNotFound" xml:space="preserve">
+    <value>Known gems file was not found</value>
+  </data>
 </root>

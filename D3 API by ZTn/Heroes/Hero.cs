@@ -20,6 +20,9 @@ namespace ZTn.BNet.D3.Heroes
         public HeroSkills Skills;
 
         [DataMember]
+        public LegendaryPower[] LegendaryPowers;
+
+        [DataMember]
         public HeroItems Items;
 
         [DataMember]
