@@ -1,122 +1,69 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
-using System.Threading;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ZTn.BNet.D3.DataProviders
 {
     public class HttpRequestDataProvider : ID3DataProvider
     {
-        public Stream FetchData(String url)
+        public int MaxRetries { get; set; } = 3;
+
+        public Stream FetchData(string url)
         {
-            var resetEvent = new ManualResetEvent(false);
+            var task = FetchDataAsync(url);
 
-            Stream outputStream = null;
-            FetchData(url,
-                stream =>
-                {
-                    outputStream = stream;
-                    resetEvent.Set();
-                },
-                () => { });
+            task.Wait();
 
-            resetEvent.WaitOne();
-
-            return outputStream;
+            return task.Result;
         }
 
-        public void FetchData(String url, Action<Stream> onSuccess, Action onFailure)
+        public void FetchData(string url, Action<Stream> onSuccess, Action onFailure)
         {
-            FetchData(url, onSuccess, onFailure, 3);
-        }
+            var task = FetchDataAsync(url);
 
-        private void FetchData(String url, Action<Stream> onSuccess, Action onFailure, int remainingTries)
-        {
-            Debug.WriteLine("FetchData({0},...): {1}", url, "Start");
+            task.Wait();
 
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-
-            httpWebRequest.BeginGetResponse(OnFetchDataCompleted, new RequestState(httpWebRequest, onSuccess, onFailure, remainingTries));
-        }
-
-        private void OnFetchDataCompleted(IAsyncResult asyncResult)
-        {
-            var requestState = (RequestState)asyncResult.AsyncState;
-
-            HttpWebResponse httpWebResponse = null;
-            try
+            if (task.Result == null)
             {
-                try
-                {
-                    httpWebResponse = (HttpWebResponse)requestState.Request.EndGetResponse(asyncResult);
-                }
-                catch (WebException exception)
-                {
-                    httpWebResponse = (HttpWebResponse)exception.Response;
+                onFailure();
+            }
+            else
+            {
+                onSuccess(task.Result);
+            }
+        }
 
-                    // Forbidden code is received when too much requests are sent in a given time.
-                    if (httpWebResponse.StatusCode == HttpStatusCode.Forbidden && requestState.RemainingTries != 0)
+        public async Task<Stream> FetchDataAsync(string url)
+        {
+            Debug.WriteLine("FetchDataAsync({0},...): {1}", url, "Start");
+
+            var remainingTries = MaxRetries;
+
+            var httpClient = new HttpClient();
+
+            do
+            {
+                var response = await httpClient.GetAsync(url).ConfigureAwait(false);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var memoryStream = new MemoryStream();
+                    using (var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
                     {
-                        Debug.WriteLine("FetchData({0},...): {1}", requestState.Request.RequestUri, "Retry allowed");
-
-                        Task.Delay(100);
-
-                        FetchData(requestState.Request.RequestUri.AbsoluteUri, requestState.OnSuccess, requestState.OnFailure, requestState.RemainingTries - 1);
+                        responseStream.CopyTo(memoryStream);
                     }
-                    else
-                    {
-                        Debug.WriteLine("FetchData({0},...): {1}", requestState.Request.RequestUri, exception.Message);
+                    memoryStream.Position = 0;
 
-                        requestState.OnFailure();
-                    }
-
-                    throw;
-                }
-                catch (Exception exception)
-                {
-                    Debug.WriteLine("FetchData({0},...): {1}", requestState.Request.RequestUri, exception);
-
-                    requestState.OnFailure();
-
-                    throw;
+                    return memoryStream;
                 }
 
-                var memoryStream = new MemoryStream();
-                using (var responseStream = httpWebResponse.GetResponseStream())
-                {
-                    responseStream.CopyTo(memoryStream);
-                }
-                memoryStream.Position = 0;
+                remainingTries--;
 
-                // If no exception occurred then the request was a success
-                requestState.OnSuccess(memoryStream);
-            }
-            finally
-            {
-                // Don't forget to always dispose the response !
-                if (httpWebResponse != null)
-                {
-                    httpWebResponse.Dispose();
-                }
-            }
-        }
+            } while (remainingTries > 0);
 
-        private class RequestState
-        {
-            public readonly Action OnFailure;
-            public readonly Action<Stream> OnSuccess;
-            public readonly int RemainingTries;
-            public readonly HttpWebRequest Request;
-
-            public RequestState(HttpWebRequest request, Action<Stream> onSuccess, Action onFailure, int remainingTries)
-            {
-                Request = request;
-                OnSuccess = onSuccess;
-                OnFailure = onFailure;
-                RemainingTries = remainingTries;
-            }
+            return null;
         }
     }
 }

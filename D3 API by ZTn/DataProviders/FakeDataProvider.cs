@@ -1,11 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
-#if PORTABLE
 using ZTn.Bnet.Portable;
-#else
-using System.Text;
-#endif
 
 namespace ZTn.BNet.D3.DataProviders
 {
@@ -23,17 +20,19 @@ namespace ZTn.BNet.D3.DataProviders
 
             var json = JsonConvert.SerializeObject(responseObject);
 
-#if PORTABLE
             return new MemoryStream(PortableEncoding.Default.GetBytes(json));
-#else
-            return new MemoryStream(Encoding.Default.GetBytes(json));
-#endif
         }
 
         /// <inheritdoc />
         public void FetchData(string url, Action<Stream> onSuccess, Action onFailure)
         {
             onSuccess(FetchData(url));
+        }
+
+        /// <inheritdoc />
+        public Task<Stream> FetchDataAsync(string url)
+        {
+            return Task.Run(() => FetchData(url));
         }
 
         #endregion

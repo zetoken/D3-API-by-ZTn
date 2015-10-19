@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Careers;
@@ -12,261 +11,163 @@ namespace ZTn.BNet.D3
 {
     public class D3Api
     {
-        public static String ProtocolPrefix = "https://";
-        public static String Host = "eu.api.battle.net";
-        public static String ApiPath = "/d3/";
-        public static String Locale = "en";
-        public static String MediaPath = "http://media.blizzard.com/d3/";
+        private static readonly D3ApiRequester Requester = new D3ApiRequester();
 
-        public static ID3DataProvider DataProvider = new HttpRequestDataProvider();
-
-        public static String ApiKey { get; set; }
-
-        public static String ApiKeySuffix
+        public static string ProtocolPrefix
         {
-            get
-            {
-                if (ApiKey == null)
-                {
-                    throw new MissingApiKey();
-                }
-
-                return "&apikey=" + ApiKey;
-            }
+            get { return Requester.ProtocolPrefix; }
+            set { Requester.ProtocolPrefix = value; }
         }
 
-        public static String ApiUrl
+        public static string Host
         {
-            get { return ProtocolPrefix + Host + ApiPath; }
+            get { return Requester.Host; }
+            set { Requester.Host = value; }
         }
 
-        public static String ApiLocaleSuffix
+        public static string ApiPath
         {
-            get { return "?locale=" + Locale; }
+            get { return Requester.ApiPath; }
+            set { Requester.ApiPath = value; }
         }
 
-        public static Artisan GetArtisanFromSlug(String slug)
+        public static string Locale
         {
-            Artisan artisan;
-            using (var stream = DataProvider.FetchData(GetArtisanUrlFromSlug(slug) + ApiLocaleSuffix + ApiKeySuffix))
-            {
-                artisan = Artisan.CreateFromJSonStream(stream);
-            }
-            return artisan != null && artisan.IsValidObject() ? artisan : null;
+            get { return Requester.Locale; }
+            set { Requester.Locale = value; }
         }
 
-        public static void GetArtisanFromSlug(String slug, Action<Artisan> onSuccess, Action onFailure)
+        public static string MediaPath
         {
-            DataProvider.FetchData(GetArtisanUrlFromSlug(slug) + ApiLocaleSuffix + ApiKeySuffix,
-                stream =>
-                {
-                    var artisan = Artisan.CreateFromJSonStream(stream);
-                    stream.Dispose();
-                    if (artisan.IsValidObject())
-                    {
-                        onSuccess(artisan);
-                    }
-                    else
-                    {
-                        onFailure();
-                    }
-                },
-                onFailure
-                );
+            get { return Requester.MediaPath; }
+            set { Requester.MediaPath = value; }
         }
 
-        public static String GetArtisanUrlFromSlug(String slug)
+        public static ID3DataProvider DataProvider
         {
-            return ApiUrl + "data/artisan/" + slug;
+            get { return Requester.DataProvider; }
+            set { Requester.DataProvider = value; }
+        }
+
+        public static string ApiKey
+        {
+            get { return Requester.ApiKey; }
+            set { Requester.ApiKey = value; }
+        }
+
+        static D3Api()
+        {
+            DataProvider = new HttpRequestDataProvider();
+        }
+
+        public static Artisan GetArtisanFromSlug(string slug)
+        {
+            return Requester.GetArtisanFromSlug(slug);
+        }
+
+        public static void GetArtisanFromSlug(string slug, Action<Artisan> onSuccess, Action onFailure)
+        {
+            Requester.GetArtisanFromSlug(slug, onSuccess, onFailure);
+        }
+
+        public static string GetArtisanUrlFromSlug(string slug)
+        {
+            return Requester.GetArtisanUrlFromSlug(slug);
         }
 
         public static Career GetCareerFromBattleTag(BattleTag battleTag)
         {
-            Career career;
-            using (var stream = DataProvider.FetchData(GetCareerUrl(battleTag) + "index" + ApiLocaleSuffix + ApiKeySuffix))
-            {
-                career = Career.CreateFromJSonStream(stream);
-            }
-
-            return career != null && career.IsValidObject() ? career : null;
+            return Requester.GetCareerFromBattleTag(battleTag);
         }
 
         public static void GetCareerFromBattleTag(BattleTag battleTag, Action<Career> onSuccess, Action onFailure)
         {
-            DataProvider.FetchData(GetCareerUrl(battleTag) + "/index" + ApiLocaleSuffix + ApiKeySuffix,
-                stream =>
-                {
-                    var career = Career.CreateFromJSonStream(stream);
-                    stream.Dispose();
-                    if (career != null && career.IsValidObject())
-                    {
-                        onSuccess(career);
-                    }
-                    else
-                    {
-                        onFailure();
-                    }
-                },
-                onFailure
-                );
+            Requester.GetCareerFromBattleTag(battleTag, onSuccess, onFailure);
         }
 
-        public static String GetCareerUrl(BattleTag battleTag)
+        public static string GetCareerUrl(BattleTag battleTag)
         {
-            return ApiUrl + "profile/" + Uri.EscapeUriString(battleTag.Name) + "-" + battleTag.Code + "/";
+            return Requester.GetCareerUrl(battleTag);
         }
 
-        public static Hero GetHeroFromHeroId(BattleTag battleTag, String heroId)
+        public static Hero GetHeroFromHeroId(BattleTag battleTag, string heroId)
         {
-            Hero hero;
-            using (var stream = DataProvider.FetchData(GetHeroUrlFromHeroId(battleTag, heroId) + ApiLocaleSuffix + ApiKeySuffix))
-            {
-                hero = Hero.CreateFromJSonStream(stream);
-            }
-            return hero != null && hero.IsValidObject() ? hero : null;
+            return Requester.GetHeroFromHeroId(battleTag, heroId);
         }
 
-        public static void GetHeroFromHeroId(BattleTag battleTag, String heroId, Action<Hero> onSuccess, Action onFailure)
+        public static void GetHeroFromHeroId(BattleTag battleTag, string heroId, Action<Hero> onSuccess, Action onFailure)
         {
-            DataProvider.FetchData(GetHeroUrlFromHeroId(battleTag, heroId) + ApiLocaleSuffix + ApiKeySuffix,
-                stream =>
-                {
-                    var hero = Hero.CreateFromJSonStream(stream);
-                    stream.Dispose();
-                    if (hero.IsValidObject())
-                    {
-                        onSuccess(hero);
-                    }
-                    else
-                    {
-                        onFailure();
-                    }
-                },
-                onFailure
-                );
+            Requester.GetHeroFromHeroId(battleTag, heroId, onSuccess, onFailure);
         }
 
-        public static String GetHeroUrlFromHeroId(BattleTag battleTag, String heroId)
+        public static string GetHeroUrlFromHeroId(BattleTag battleTag, string heroId)
         {
-            return GetCareerUrl(battleTag) + "hero/" + heroId;
+            return Requester.GetHeroUrlFromHeroId(battleTag, heroId);
         }
 
-        public static Item GetItemFromTooltipParams(String tooltipParams)
+        public static Item GetItemFromTooltipParams(string tooltipParams)
         {
-            Item item;
-            using (var stream = DataProvider.FetchData(GetItemUrlFromTooltipParams(tooltipParams) + ApiLocaleSuffix + ApiKeySuffix))
-            {
-                item = Item.CreateFromJSonStream(stream);
-            }
-            return item != null && item.IsValidObject() ? item : null;
+            return Requester.GetItemFromTooltipParams(tooltipParams);
         }
 
-        public static void GetItemFromTooltipParams(String tooltipParams, Action<Item> onSuccess, Action onFailure)
+        public static void GetItemFromTooltipParams(string tooltipParams, Action<Item> onSuccess, Action onFailure)
         {
-            DataProvider.FetchData(GetItemUrlFromTooltipParams(tooltipParams) + ApiLocaleSuffix + ApiKeySuffix,
-                stream =>
-                {
-                    var item = Item.CreateFromJSonStream(stream);
-                    stream.Dispose();
-                    if (item.IsValidObject())
-                    {
-                        onSuccess(item);
-                    }
-                    else
-                    {
-                        onFailure();
-                    }
-                },
-                onFailure
-                );
+            Requester.GetItemFromTooltipParams(tooltipParams, onSuccess, onFailure);
         }
 
-        public static String GetItemUrlFromTooltipParams(String tooltipParams)
+        public static string GetItemUrlFromTooltipParams(string tooltipParams)
         {
-            return ApiUrl + "data/" + tooltipParams;
+            return Requester.GetItemUrlFromTooltipParams(tooltipParams);
         }
 
-        public static String GetItemIconUrl(String icon, String size)
+        public static string GetItemIconUrl(string icon, string size)
         {
-            return MediaPath + "icons/items/" + size + "/" + icon + ".png";
+            return Requester.GetItemIconUrl(icon, size);
         }
 
-        public static D3Picture GetItemIcon(String icon)
+        public static D3Picture GetItemIcon(string icon)
         {
-            D3Picture picture;
-            using (var stream = DataProvider.FetchData(GetItemIconUrl(icon, "small")))
-            {
-                picture = new D3Picture(stream);
-            }
-            return picture;
+            return Requester.GetItemIcon(icon);
         }
 
-        public static void GetItemIcon(String icon, Action<D3Picture> onSuccess, Action onFailure)
+        public static void GetItemIcon(string icon, Action<D3Picture> onSuccess, Action onFailure)
         {
-            GetItemIcon(icon, "small", onSuccess, onFailure);
+            Requester.GetItemIcon(icon, onSuccess, onFailure);
         }
 
-        public static D3Picture GetItemIcon(String icon, String size)
+        public static D3Picture GetItemIcon(string icon, string size)
         {
-            D3Picture picture;
-            using (var stream = DataProvider.FetchData(GetItemIconUrl(icon, size)))
-            {
-                picture = new D3Picture(stream);
-            }
-            return picture;
+            return Requester.GetItemIcon(icon, size);
         }
 
-        public static void GetItemIcon(String icon, String size, Action<D3Picture> onSuccess, Action onFailure)
+        public static void GetItemIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure)
         {
-            DataProvider.FetchData(GetItemIconUrl(icon, size),
-                stream => OnSuccessStreamToD3Picture(stream, onSuccess),
-                onFailure
-                );
+            Requester.GetItemIcon(icon, size, onSuccess, onFailure);
         }
 
-        public static String GetSkillIconUrl(String icon, String size)
+        public static string GetSkillIconUrl(string icon, string size)
         {
-            return MediaPath + "icons/skills/" + size + "/" + icon + ".png";
+            return Requester.GetSkillIconUrl(icon, size);
         }
 
-        public static D3Picture GetSkillIcon(String icon)
+        public static D3Picture GetSkillIcon(string icon)
         {
-            return GetSkillIcon(icon, "42");
+            return Requester.GetSkillIcon(icon);
         }
 
-        public static void GetSkillIcon(String icon, Action<D3Picture> onSuccess, Action onFailure)
+        public static void GetSkillIcon(string icon, Action<D3Picture> onSuccess, Action onFailure)
         {
-            GetSkillIcon(icon, "42", onSuccess, onFailure);
+            Requester.GetSkillIcon(icon, onSuccess, onFailure);
         }
 
-        public static D3Picture GetSkillIcon(String icon, String size)
+        public static D3Picture GetSkillIcon(string icon, string size)
         {
-            D3Picture picture;
-            using (var stream = DataProvider.FetchData(GetSkillIconUrl(icon, size)))
-            {
-                picture = new D3Picture(stream);
-            }
-            return picture;
+            return Requester.GetSkillIcon(icon, size);
         }
 
         public static void GetSkillIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure)
         {
-            DataProvider.FetchData(GetSkillIconUrl(icon, size),
-                stream => OnSuccessStreamToD3Picture(stream, onSuccess),
-                onFailure
-                );
-        }
-
-        /// <summary>
-        /// Callback
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <param name="onSuccess"></param>
-        private static void OnSuccessStreamToD3Picture(Stream stream, Action<D3Picture> onSuccess)
-        {
-            var picture = new D3Picture(stream);
-            stream.Dispose();
-            onSuccess(picture);
+            Requester.GetSkillIcon(icon, size, onSuccess, onFailure);
         }
     }
 }

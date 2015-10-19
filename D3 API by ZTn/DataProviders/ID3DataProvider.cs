@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace ZTn.BNet.D3.DataProviders
 {
@@ -16,11 +19,18 @@ namespace ZTn.BNet.D3.DataProviders
         Stream FetchData(string url);
 
         /// <summary>
-        /// Asynchronously fetches the <paramref name="url"/>.
+        /// Asynchronously fetches the <paramref name="url"/> using callbacks.
         /// </summary>
         /// <param name="url"></param>
         /// <param name="onSuccess">Callback called if the fetch succeeded.</param>
         /// <param name="onFailure">Callback called if the fetch failed.</param>
-        void FetchData(String url, Action<Stream> onSuccess, Action onFailure);
+        void FetchData(string url, Action<Stream> onSuccess, Action onFailure);
+
+        /// <summary>
+        /// Asynchronously fetches the <paramref name="url"/>.
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        Task<Stream> FetchDataAsync(string url);
     }
 }
