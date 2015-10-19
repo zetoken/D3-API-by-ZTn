@@ -9,22 +9,22 @@ namespace ZTn.BNet.D3.HeroFollowers
         #region >> Fields
 
         [DataMember]
-        public ItemSummary Special;
+        public ItemSummary Special { get; set; }
 
         [DataMember]
-        public ItemSummary MainHand;
+        public ItemSummary MainHand { get; set; }
 
         [DataMember]
-        public ItemSummary OffHand;
+        public ItemSummary OffHand { get; set; }
 
         [DataMember]
-        public ItemSummary RightFinger;
+        public ItemSummary RightFinger { get; set; }
 
         [DataMember]
-        public ItemSummary LeftFinger;
+        public ItemSummary LeftFinger { get; set; }
 
         [DataMember]
-        public ItemSummary Neck;
+        public ItemSummary Neck { get; set; }
 
         #endregion
     }

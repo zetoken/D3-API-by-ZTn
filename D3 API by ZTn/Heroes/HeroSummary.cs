@@ -11,28 +11,28 @@ namespace ZTn.BNet.D3.Heroes
         #region >> Properties
 
         [DataMember]
-        public string Name;
+        public string Name { get; set; }
 
         [DataMember]
-        public string Id;
+        public string Id { get; set; }
 
         [DataMember]
-        public int Level;
+        public int Level { get; set; }
 
         [DataMember]
-        public bool Seasonal;
+        public bool Seasonal { get; set; }
 
         [DataMember]
-        public bool Hardcore;
+        public bool Hardcore { get; set; }
 
         [DataMember]
-        public int ParagonLevel;
+        public int ParagonLevel { get; set; }
 
         [DataMember]
-        public HeroGender Gender;
+        public HeroGender Gender { get; set; }
 
         [DataMember]
-        public bool Dead;
+        public bool Dead { get; set; }
 
         [DataMember(Name = "class")]
         protected string SHeroClass
@@ -48,7 +48,7 @@ namespace ZTn.BNet.D3.Heroes
         }
 
         [IgnoreDataMember]
-        public HeroClass HeroClass;
+        public HeroClass HeroClass { get; set; }
 
         [DataMember(Name = "last-updated")]
         protected long SLastUpdated
@@ -58,7 +58,7 @@ namespace ZTn.BNet.D3.Heroes
         }
 
         [IgnoreDataMember]
-        public DateTime LastUpdated;
+        public DateTime LastUpdated { get; set; }
 
         #endregion
 

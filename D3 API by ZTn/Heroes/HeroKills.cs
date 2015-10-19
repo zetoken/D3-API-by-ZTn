@@ -8,7 +8,7 @@ namespace ZTn.BNet.D3.Heroes
         #region >> Properties
 
         [DataMember]
-        public int Elites;
+        public int Elites { get; set; }
 
         #endregion
     }

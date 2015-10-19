@@ -10,19 +10,19 @@ namespace ZTn.BNet.D3.Artisans
         #region >> Fields
 
         [DataMember]
-        public String Slug;
+        public String Slug { get; set; }
 
         [DataMember]
-        public String Name;
+        public String Name { get; set; }
 
         [DataMember]
-        public int Cost;
+        public int Cost { get; set; }
 
         [DataMember]
-        public Reagent[] Reagents;
+        public Reagent[] Reagents { get; set; }
 
         [DataMember]
-        public ItemSummary ItemProduced;
+        public ItemSummary ItemProduced { get; set; }
 
         #endregion
 

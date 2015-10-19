@@ -9,19 +9,19 @@ namespace ZTn.BNet.D3.HeroFollowers
         #region >> Fields
 
         [DataMember]
-        public String Slug;
+        public String Slug { get; set; }
 
         [DataMember]
-        public int Level;
+        public int Level { get; set; }
 
         [DataMember]
-        public FollowerItems Items;
+        public FollowerItems Items { get; set; }
 
         [DataMember]
-        public FollowerStats Stats;
+        public FollowerStats Stats { get; set; }
 
         [DataMember]
-        public FollowerSkill[] Skills;
+        public FollowerSkill[] Skills { get; set; }
 
         #endregion
 

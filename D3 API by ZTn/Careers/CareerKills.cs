@@ -8,13 +8,13 @@ namespace ZTn.BNet.D3.Careers
         #region >> Properties
 
         [DataMember]
-        public int monsters;
+        public int Monsters { get; set; }
 
         [DataMember]
-        public int elites;
+        public int Elites { get; set; }
 
         [DataMember]
-        public int hardcoreMonsters;
+        public int HardcoreMonsters { get; set; }
 
         #endregion
     }

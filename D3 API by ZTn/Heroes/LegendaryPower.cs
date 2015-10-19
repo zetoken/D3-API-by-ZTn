@@ -5,18 +5,18 @@ namespace ZTn.BNet.D3.Heroes
     public class LegendaryPower : D3Object
     {
         [DataMember]
-        public string Id;
+        public string Id { get; set; }
 
         [DataMember]
-        public string Name;
+        public string Name { get; set; }
 
         [DataMember]
-        public string Icon;
+        public string Icon { get; set; }
 
         [DataMember]
-        public string DisplayColor;
+        public string DisplayColor { get; set; }
 
         [DataMember]
-        public string TooltipParams;
+        public string TooltipParams { get; set; }
     }
 }

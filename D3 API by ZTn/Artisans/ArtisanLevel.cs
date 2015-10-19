@@ -8,25 +8,25 @@ namespace ZTn.BNet.D3.Artisans
         #region >> Fields
 
         [DataMember]
-        public int Level;
+        public int Level { get; set; }
 
         [DataMember]
-        public int TierLevel;
+        public int TierLevel { get; set; }
 
         [DataMember]
-        public int Percent;
+        public int Percent { get; set; }
 
         [DataMember]
-        public Recipe[] TrainedRecipes;
+        public Recipe[] TrainedRecipes { get; set; }
 
         [DataMember]
-        public Recipe[] TaughtRecipes;
+        public Recipe[] TaughtRecipes { get; set; }
 
         [DataMember]
-        public int UpgradeCost;
+        public int UpgradeCost { get; set; }
 
         [DataMember]
-        public Reagent[] UpgradeItems;
+        public Reagent[] UpgradeItems { get; set; }
 
         #endregion
     }

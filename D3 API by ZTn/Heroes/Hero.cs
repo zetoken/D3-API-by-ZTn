@@ -14,28 +14,28 @@ namespace ZTn.BNet.D3.Heroes
         #region >> Fields
 
         [DataMember]
-        public int SeasonCreated;
+        public int SeasonCreated { get; set; }
 
         [DataMember]
-        public HeroSkills Skills;
+        public HeroSkills Skills { get; set; }
 
         [DataMember]
-        public LegendaryPower[] LegendaryPowers;
+        public LegendaryPower[] LegendaryPowers { get; set; }
 
         [DataMember]
-        public HeroItems Items;
+        public HeroItems Items { get; set; }
 
         [DataMember]
-        public Followers Followers;
+        public Followers Followers { get; set; }
 
         [DataMember]
-        public HeroStats Stats;
+        public HeroStats Stats { get; set; }
 
         [DataMember]
-        public HeroKills Kills;
+        public HeroKills Kills { get; set; }
 
         [DataMember]
-        public HeroProgress Progression;
+        public HeroProgress Progression { get; set; }
 
         #endregion
 

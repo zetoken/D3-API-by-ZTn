@@ -8,13 +8,13 @@ namespace ZTn.BNet.D3.HeroFollowers
         #region >> Fields
 
         [DataMember]
-        public Follower Templar;
+        public Follower Templar { get; set; }
 
         [DataMember]
-        public Follower Scoundrel;
+        public Follower Scoundrel { get; set; }
 
         [DataMember]
-        public Follower Enchantress;
+        public Follower Enchantress { get; set; }
 
         #endregion
     }

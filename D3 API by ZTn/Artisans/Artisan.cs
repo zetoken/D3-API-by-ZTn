@@ -11,16 +11,16 @@ namespace ZTn.BNet.D3.Artisans
         #region >> Fields
 
         [DataMember(Name = "slug")]
-        public String Slug;
+        public String Slug { get; set; }
 
         [DataMember(Name = "level")]
-        public int Level;
+        public int Level { get; set; }
 
         [DataMember(Name = "stepCurrent")]
-        public int StepCurrent;
+        public int StepCurrent { get; set; }
 
         [DataMember(Name = "stepMax")]
-        public int StepMax;
+        public int StepMax { get; set; }
 
         #endregion
 

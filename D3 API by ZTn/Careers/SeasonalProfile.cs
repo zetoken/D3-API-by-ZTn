@@ -7,24 +7,24 @@ namespace ZTn.BNet.D3.Careers
     public class SeasonalProfile
     {
         [DataMember(Name = "seasonId")]
-        public int SeasonId;
+        public int SeasonId { get; set; }
 
         [DataMember(Name = "paragonLevel")]
-        public int ParagonLevel;
+        public int ParagonLevel { get; set; }
 
         [DataMember(Name = "paragonLevelHardcore")]
-        public int ParagonLevelHardcore;
+        public int ParagonLevelHardcore { get; set; }
 
         [DataMember(Name = "kills")]
-        public CareerKills Kills;
+        public CareerKills Kills { get; set; }
 
         [DataMember(Name = "timePlayed")]
-        public ClassTimePlayed TimePlayed;
+        public ClassTimePlayed TimePlayed { get; set; }
 
         [DataMember(Name = "highestHardcoreLevel")]
-        public int HighestHardcoreLevel;
+        public int HighestHardcoreLevel { get; set; }
 
         [DataMember(Name = "progression")]
-        public CareerProgress Progression;
+        public CareerProgress Progression { get; set; }
     }
 }

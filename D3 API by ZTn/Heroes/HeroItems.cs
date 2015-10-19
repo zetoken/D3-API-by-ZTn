@@ -9,43 +9,43 @@ namespace ZTn.BNet.D3.Heroes
         #region >> Properties
 
         [DataMember]
-        public ItemSummary Head;
+        public ItemSummary Head { get; set; }
 
         [DataMember]
-        public ItemSummary Torso;
+        public ItemSummary Torso { get; set; }
 
         [DataMember]
-        public ItemSummary Feet;
+        public ItemSummary Feet { get; set; }
 
         [DataMember]
-        public ItemSummary Hands;
+        public ItemSummary Hands { get; set; }
 
         [DataMember]
-        public ItemSummary Shoulders;
+        public ItemSummary Shoulders { get; set; }
 
         [DataMember]
-        public ItemSummary Legs;
+        public ItemSummary Legs { get; set; }
 
         [DataMember]
-        public ItemSummary Bracers;
+        public ItemSummary Bracers { get; set; }
 
         [DataMember]
-        public ItemSummary MainHand;
+        public ItemSummary MainHand { get; set; }
 
         [DataMember]
-        public ItemSummary OffHand;
+        public ItemSummary OffHand { get; set; }
 
         [DataMember]
-        public ItemSummary Waist;
+        public ItemSummary Waist { get; set; }
 
         [DataMember]
-        public ItemSummary RightFinger;
+        public ItemSummary RightFinger { get; set; }
 
         [DataMember]
-        public ItemSummary LeftFinger;
+        public ItemSummary LeftFinger { get; set; }
 
         [DataMember]
-        public ItemSummary Neck;
+        public ItemSummary Neck { get; set; }
 
         #endregion
     }

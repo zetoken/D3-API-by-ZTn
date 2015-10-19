@@ -9,10 +9,10 @@ namespace ZTn.BNet.D3.Heroes
         #region >> Fields
 
         [DataMember]
-        public ActiveSkill[] Active;
+        public ActiveSkill[] Active { get; set; }
 
         [DataMember]
-        public PassiveSkill[] Passive;
+        public PassiveSkill[] Passive { get; set; }
 
         #endregion
     }

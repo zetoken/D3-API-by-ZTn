@@ -9,10 +9,10 @@ namespace ZTn.BNet.D3.Artisans
         #region >> Fields
 
         [DataMember]
-        public int Quantity;
+        public int Quantity { get; set; }
 
         [DataMember]
-        public ItemSummary Item;
+        public ItemSummary Item { get; set; }
 
         #endregion
 

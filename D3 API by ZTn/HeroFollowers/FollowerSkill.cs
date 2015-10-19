@@ -9,7 +9,7 @@ namespace ZTn.BNet.D3.HeroFollowers
         #region >> Fields
 
         [DataMember]
-        public Skill Skill;
+        public Skill Skill { get; set; }
 
         #endregion
     }

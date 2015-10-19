@@ -8,10 +8,10 @@ namespace ZTn.BNet.D3.Artisans
         #region >> Fields
 
         [DataMember]
-        public int Tier;
+        public int Tier { get; set; }
 
         [DataMember]
-        public ArtisanLevel[] Levels;
+        public ArtisanLevel[] Levels { get; set; }
 
         #endregion
     }

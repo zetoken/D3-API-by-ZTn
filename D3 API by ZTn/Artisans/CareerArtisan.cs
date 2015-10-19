@@ -9,16 +9,16 @@ namespace ZTn.BNet.D3.Artisans
         #region >> Properties
 
         [DataMember]
-        public String Slug;
+        public String Slug { get; set; }
 
         [DataMember]
-        public int Level;
+        public int Level { get; set; }
 
         [DataMember]
-        public int StepCurrent;
+        public int StepCurrent { get; set; }
 
         [DataMember]
-        public int StepMax;
+        public int StepMax { get; set; }
 
         #endregion
 

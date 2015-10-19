@@ -111,8 +111,8 @@ namespace ZTn.BNet.D3.Example
             Console.WriteLine("BattleTag: " + career.BattleTag.Id);
             Console.WriteLine("Last hero played: {0}", career.LastHeroPlayed);
             Console.WriteLine("Time played on Monk is {0}", career.TimePlayed.Monk);
-            Console.WriteLine("Kills: monsters={0} / elites={1} / hardcore monsters={2}", career.Kills.monsters, career.Kills.elites,
-                career.Kills.hardcoreMonsters);
+            Console.WriteLine("Kills: monsters={0} / elites={1} / hardcore monsters={2}", career.Kills.Monsters, career.Kills.Elites,
+                career.Kills.HardcoreMonsters);
             Console.WriteLine();
             Console.WriteLine("Heroes count: " + career.Heroes.Length);
             foreach (var heroDigest in career.Heroes)

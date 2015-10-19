@@ -8,13 +8,13 @@ namespace ZTn.BNet.D3.HeroFollowers
         #region >> Fields
 
         [DataMember]
-        public int GoldFind;
+        public int GoldFind { get; set; }
 
         [DataMember]
-        public int MagicFind;
+        public int MagicFind { get; set; }
 
         [DataMember]
-        public int ExperienceBonus;
+        public int ExperienceBonus { get; set; }
 
         #endregion
     }

@@ -26,13 +26,13 @@ namespace ZTn.BNet.D3.Careers
         public BattleTag BattleTag = new BattleTag("undefined#0000");
 
         [DataMember(Name = "guildName")]
-        public string GuildName;
+        public string GuildName { get; set; }
 
         [DataMember(Name = "heroes")]
-        public HeroSummary[] Heroes;
+        public HeroSummary[] Heroes { get; set; }
 
         [DataMember(Name = "lastHeroPlayed")]
-        public string LastHeroPlayed;
+        public string LastHeroPlayed { get; set; }
 
         [DataMember(Name = "lastUpdated")]
         protected long SLastUpdated
@@ -42,7 +42,7 @@ namespace ZTn.BNet.D3.Careers
         }
 
         [IgnoreDataMember]
-        public DateTime LastUpdated;
+        public DateTime LastUpdated { get; set; }
 
         #region >> Artisans
 
@@ -85,34 +85,34 @@ namespace ZTn.BNet.D3.Careers
         #endregion
 
         [DataMember(Name = "kills")]
-        public CareerKills Kills;
+        public CareerKills Kills { get; set; }
 
         [DataMember(Name = "highestHardcoreLevel")]
-        public int HighestHardcoreLevel;
+        public int HighestHardcoreLevel { get; set; }
 
         [DataMember(Name = "timePlayed")]
-        public ClassTimePlayed TimePlayed;
+        public ClassTimePlayed TimePlayed { get; set; }
 
         [DataMember(Name = "fallenHeroes")]
-        public HeroSummary[] FallenHeroes;
+        public HeroSummary[] FallenHeroes { get; set; }
 
         [DataMember(Name = "paragonLevel")]
-        public int ParagonLevel;
+        public int ParagonLevel { get; set; }
 
         [DataMember(Name = "paragonLevelHardcore")]
-        public int ParagonLevelHardcore;
+        public int ParagonLevelHardcore { get; set; }
 
         [DataMember(Name = "paragonLevelSeason")]
-        public int ParagonLevelSeason;
+        public int ParagonLevelSeason { get; set; }
 
         [DataMember(Name = "paragonLevelSeasonHardcore")]
-        public int ParagonLevelSeasonHardcore;
+        public int ParagonLevelSeasonHardcore { get; set; }
 
         [DataMember(Name = "progression")]
-        public CareerProgress Progression;
+        public CareerProgress Progression { get; set; }
 
         [DataMember(Name = "seasonalProfiles")]
-        public SeasonalProfiles SeasonalProfiles;
+        public SeasonalProfiles SeasonalProfiles { get; set; }
 
         #endregion
 

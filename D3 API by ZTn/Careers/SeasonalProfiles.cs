@@ -6,18 +6,18 @@ namespace ZTn.BNet.D3.Careers
     public class SeasonalProfiles : D3Object
     {
         [DataMember(Name = "season0")]
-        public SeasonalProfile Season0;
+        public SeasonalProfile Season0 { get; set; }
 
         [DataMember(Name = "season1")]
-        public SeasonalProfile Season1;
+        public SeasonalProfile Season1 { get; set; }
 
         [DataMember(Name = "season2")]
-        public SeasonalProfile Season2;
+        public SeasonalProfile Season2 { get; set; }
 
         [DataMember(Name = "season3")]
-        public SeasonalProfile Season3;
+        public SeasonalProfile Season3 { get; set; }
 
         [DataMember(Name = "season4")]
-        public SeasonalProfile Season4;
+        public SeasonalProfile Season4 { get; set; }
     }
 }
