@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Careers;
 using ZTn.BNet.D3.DataProviders;
+using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 using ZTn.BNet.D3.Medias;
@@ -57,145 +59,56 @@ namespace ZTn.BNet.D3
 
         #endregion
 
-        public Artisan GetArtisanFromSlug(string slug)
+        public Artisan GetArtisanFromSlug(string slug) =>
+            GetFromDataProvider<Artisan>(GetArtisanUrlFromSlug(slug, true));
+
+        public Task<Artisan> GetArtisanFromSlugAsync(string slug) =>
+            GetFromDataProviderAsync<Artisan>(GetArtisanUrlFromSlug(slug, true));
+
+        public string GetArtisanUrlFromSlug(string slug, bool fullUrl = false)
         {
-            Artisan artisan;
-            using (var stream = DataProvider.FetchData($"{GetArtisanUrlFromSlug(slug)}{ApiLocaleSuffix}{ApiKeySuffix}"))
-            {
-                artisan = Artisan.CreateFromJSonStream(stream);
-            }
-            return artisan != null && artisan.IsValidObject() ? artisan : null;
+            return fullUrl ?
+                $"{ApiUrl}data/artisan/{slug}{ApiLocaleSuffix}{ApiKeySuffix}" :
+                $"{ApiUrl}data/artisan/{slug}";
         }
 
-        public void GetArtisanFromSlug(string slug, Action<Artisan> onSuccess, Action onFailure)
+        public Career GetCareerFromBattleTag(BattleTag battleTag) =>
+            GetFromDataProvider<Career>(GetCareerUrl(battleTag, true));
+
+        public Task<Career> GetCareerFromBattleTagAsync(BattleTag battleTag) =>
+            GetFromDataProviderAsync<Career>(GetCareerUrl(battleTag, true));
+
+        public string GetCareerUrl(BattleTag battleTag, bool fullUrl = false)
         {
-            DataProvider.FetchData($"{GetArtisanUrlFromSlug(slug)}{ApiLocaleSuffix}{ApiKeySuffix}",
-                stream =>
-                {
-                    var artisan = Artisan.CreateFromJSonStream(stream);
-                    stream.Dispose();
-                    if (artisan.IsValidObject())
-                    {
-                        onSuccess(artisan);
-                    }
-                    else
-                    {
-                        onFailure();
-                    }
-                },
-                onFailure
-                );
+            return fullUrl ?
+                $"{ApiUrl}profile/{Uri.EscapeUriString(battleTag.Name)}-{battleTag.Code}/index{ApiLocaleSuffix}{ApiKeySuffix}" :
+                $"{ApiUrl}profile/{Uri.EscapeUriString(battleTag.Name)}-{battleTag.Code}/";
         }
 
-        public string GetArtisanUrlFromSlug(string slug)
+        public Hero GetHeroFromHeroId(BattleTag battleTag, string heroId) =>
+            GetFromDataProvider<Hero>(GetHeroUrlFromHeroId(battleTag, heroId, true));
+
+        public Task<Hero> GetHeroFromHeroIdAsync(BattleTag battleTag, string heroId) =>
+            GetFromDataProviderAsync<Hero>(GetHeroUrlFromHeroId(battleTag, heroId, true));
+
+        public string GetHeroUrlFromHeroId(BattleTag battleTag, string heroId, bool fullUrl = false)
         {
-            return $"{ApiUrl}data/artisan/{slug}";
+            return fullUrl ?
+                $"{GetCareerUrl(battleTag)}hero/{heroId}{ApiLocaleSuffix}{ApiKeySuffix}" :
+                $"{GetCareerUrl(battleTag)}hero/{heroId}";
         }
 
-        public Career GetCareerFromBattleTag(BattleTag battleTag)
-        {
-            Career career;
-            using (var stream = DataProvider.FetchData($"{GetCareerUrl(battleTag)}{$"index{ApiLocaleSuffix}{ApiKeySuffix}"}"))
-            {
-                career = Career.CreateFromJSonStream(stream);
-            }
+        public Item GetItemFromTooltipParams(string tooltipParams) =>
+            GetFromDataProvider<Item>(GetItemUrlFromTooltipParams(tooltipParams, true));
 
-            return career != null && career.IsValidObject() ? career : null;
-        }
+        public Task<Item> GetItemFromTooltipParamsAsync(string tooltipParams) =>
+            GetFromDataProviderAsync<Item>(GetItemUrlFromTooltipParams(tooltipParams, true));
 
-        public void GetCareerFromBattleTag(BattleTag battleTag, Action<Career> onSuccess, Action onFailure)
+        public string GetItemUrlFromTooltipParams(string tooltipParams, bool fullUrl = false)
         {
-            DataProvider.FetchData($"{GetCareerUrl(battleTag)}/index{ApiLocaleSuffix}{ApiKeySuffix}",
-                stream =>
-                {
-                    var career = Career.CreateFromJSonStream(stream);
-                    stream.Dispose();
-                    if (career != null && career.IsValidObject())
-                    {
-                        onSuccess(career);
-                    }
-                    else
-                    {
-                        onFailure();
-                    }
-                },
-                onFailure
-                );
-        }
-
-        public string GetCareerUrl(BattleTag battleTag)
-        {
-            return $"{ApiUrl}profile/{Uri.EscapeUriString(battleTag.Name)}-{battleTag.Code}/";
-        }
-
-        public Hero GetHeroFromHeroId(BattleTag battleTag, string heroId)
-        {
-            Hero hero;
-            using (var stream = DataProvider.FetchData($"{GetHeroUrlFromHeroId(battleTag, heroId)}{ApiLocaleSuffix}{ApiKeySuffix}"))
-            {
-                hero = Hero.CreateFromJSonStream(stream);
-            }
-            return hero != null && hero.IsValidObject() ? hero : null;
-        }
-
-        public void GetHeroFromHeroId(BattleTag battleTag, string heroId, Action<Hero> onSuccess, Action onFailure)
-        {
-            DataProvider.FetchData($"{GetHeroUrlFromHeroId(battleTag, heroId)}{ApiLocaleSuffix}{ApiKeySuffix}",
-                stream =>
-                {
-                    var hero = Hero.CreateFromJSonStream(stream);
-                    stream.Dispose();
-                    if (hero.IsValidObject())
-                    {
-                        onSuccess(hero);
-                    }
-                    else
-                    {
-                        onFailure();
-                    }
-                },
-                onFailure
-                );
-        }
-
-        public string GetHeroUrlFromHeroId(BattleTag battleTag, string heroId)
-        {
-            return $"{GetCareerUrl(battleTag)}hero/{heroId}";
-        }
-
-        public Item GetItemFromTooltipParams(string tooltipParams)
-        {
-            Item item;
-            using (var stream = DataProvider.FetchData($"{GetItemUrlFromTooltipParams(tooltipParams)}{ApiLocaleSuffix}{ApiKeySuffix}"))
-            {
-                item = Item.CreateFromJSonStream(stream);
-            }
-            return item != null && item.IsValidObject() ? item : null;
-        }
-
-        public void GetItemFromTooltipParams(string tooltipParams, Action<Item> onSuccess, Action onFailure)
-        {
-            DataProvider.FetchData($"{GetItemUrlFromTooltipParams(tooltipParams)}{ApiLocaleSuffix}{ApiKeySuffix}",
-                stream =>
-                {
-                    var item = Item.CreateFromJSonStream(stream);
-                    stream.Dispose();
-                    if (item.IsValidObject())
-                    {
-                        onSuccess(item);
-                    }
-                    else
-                    {
-                        onFailure();
-                    }
-                },
-                onFailure
-                );
-        }
-
-        public string GetItemUrlFromTooltipParams(string tooltipParams)
-        {
-            return $"{ApiUrl}data/{tooltipParams}";
+            return fullUrl ?
+                $"{ApiUrl}data/{tooltipParams}{ApiLocaleSuffix}{ApiKeySuffix}" :
+                $"{ApiUrl}data/{tooltipParams}";
         }
 
         public string GetItemIconUrl(string icon, string size)
@@ -203,35 +116,29 @@ namespace ZTn.BNet.D3
             return $"{MediaPath}icons/items/{size}/{icon}.png";
         }
 
-        public D3Picture GetItemIcon(string icon)
-        {
-            D3Picture picture;
-            using (var stream = DataProvider.FetchData(GetItemIconUrl(icon, "small")))
-            {
-                picture = new D3Picture(stream);
-            }
-            return picture;
-        }
+        public D3Picture GetItemIcon(string icon) =>
+            GetPictureFromDataProvider(GetItemIconUrl(icon, "small"));
+
+        public Task<D3Picture> GetItemIconAsync(string icon) =>
+            GetPictureFromDataProviderAsync(GetItemIconUrl(icon, "small"));
 
         public void GetItemIcon(string icon, Action<D3Picture> onSuccess, Action onFailure)
         {
             GetItemIcon(icon, "small", onSuccess, onFailure);
         }
 
-        public D3Picture GetItemIcon(string icon, string size)
-        {
-            D3Picture picture;
-            using (var stream = DataProvider.FetchData(GetItemIconUrl(icon, size)))
-            {
-                picture = new D3Picture(stream);
-            }
-            return picture;
-        }
+        public D3Picture GetItemIcon(string icon, string size) =>
+            GetPictureFromDataProvider(GetItemIconUrl(icon, size));
 
         public void GetItemIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure)
         {
             DataProvider.FetchData(GetItemIconUrl(icon, size),
-                stream => OnSuccessStreamToD3Picture(stream, onSuccess),
+                stream =>
+                {
+                    var picture = new D3Picture(stream);
+                    stream.Dispose();
+                    onSuccess(picture);
+                },
                 onFailure
                 );
         }
@@ -251,34 +158,68 @@ namespace ZTn.BNet.D3
             GetSkillIcon(icon, "42", onSuccess, onFailure);
         }
 
-        public D3Picture GetSkillIcon(string icon, string size)
-        {
-            D3Picture picture;
-            using (var stream = DataProvider.FetchData(GetSkillIconUrl(icon, size)))
-            {
-                picture = new D3Picture(stream);
-            }
-            return picture;
-        }
+        public D3Picture GetSkillIcon(string icon, string size) =>
+            GetPictureFromDataProvider(GetSkillIconUrl(icon, size));
 
         public void GetSkillIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure)
         {
             DataProvider.FetchData(GetSkillIconUrl(icon, size),
-                stream => OnSuccessStreamToD3Picture(stream, onSuccess),
+                stream =>
+                {
+                    var picture = new D3Picture(stream);
+                    stream.Dispose();
+                    onSuccess(picture);
+                },
                 onFailure
                 );
         }
 
-        /// <summary>
-        /// Callback
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <param name="onSuccess"></param>
-        private static void OnSuccessStreamToD3Picture(Stream stream, Action<D3Picture> onSuccess)
+        private T GetFromDataProvider<T>(string url) where T : D3Object
         {
-            var picture = new D3Picture(stream);
-            stream.Dispose();
-            onSuccess(picture);
+            T data;
+
+            using (var stream = DataProvider.FetchData(url))
+            {
+                data = stream.CreateFromJsonStream<T>();
+            }
+
+            return data != null && data.IsValidObject() ? data : null;
+        }
+
+        private async Task<T> GetFromDataProviderAsync<T>(string url) where T : D3Object
+        {
+            T data;
+
+            using (var stream = await DataProvider.FetchDataAsync(url).ConfigureAwait(false))
+            {
+                data = await stream.CreateFromJsonStreamAsync<T>().ConfigureAwait(false);
+            }
+
+            return data != null && data.IsValidObject() ? data : null;
+        }
+
+        private D3Picture GetPictureFromDataProvider(string url)
+        {
+            D3Picture picture;
+
+            using (var stream = DataProvider.FetchData(url))
+            {
+                picture = new D3Picture(stream);
+            }
+
+            return picture;
+        }
+
+        private async Task<D3Picture> GetPictureFromDataProviderAsync(string url)
+        {
+            D3Picture picture;
+
+            using (var stream = await DataProvider.FetchDataAsync(url))
+            {
+                picture = new D3Picture(stream);
+            }
+
+            return picture;
         }
     }
 }

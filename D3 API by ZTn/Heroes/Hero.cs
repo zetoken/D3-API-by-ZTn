@@ -1,6 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.HeroFollowers;
@@ -39,9 +39,14 @@ namespace ZTn.BNet.D3.Heroes
 
         #endregion
 
-        public static Hero CreateFromHeroId(BattleTag battleTag, String heroId)
+        public static Hero CreateFromHeroId(BattleTag battleTag, string heroId)
         {
             return D3Api.GetHeroFromHeroId(battleTag, heroId);
+        }
+
+        public static async Task<Hero> CreateFromHeroIdAsync(BattleTag battleTag, string heroId)
+        {
+            return await D3Api.GetHeroFromHeroIdAsync(battleTag, heroId);
         }
 
         public static Hero CreateFromJSonStream(Stream stream)
@@ -49,7 +54,7 @@ namespace ZTn.BNet.D3.Heroes
             return stream.CreateFromJsonStream<Hero>();
         }
 
-        public static Hero CreateFromJSonString(String json)
+        public static Hero CreateFromJSonString(string json)
         {
             return json.CreateFromJsonString<Hero>();
         }

@@ -19,6 +19,7 @@ namespace ZTn.BNet.D3.DataProviders
             return task.Result;
         }
 
+        [Obsolete("Deprecated by *ASync method.")]
         public void FetchData(string url, Action<Stream> onSuccess, Action onFailure)
         {
             var task = FetchDataAsync(url);

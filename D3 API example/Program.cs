@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Calculator.Helpers;
@@ -25,65 +26,78 @@ namespace ZTn.BNet.D3.Example
             var battleTag = new BattleTag("Tok#2360");
 
             // WriteCareer(battleTag);
-            WriteCalculation(battleTag);
+            WriteCalculation(battleTag).Wait();
 
             Console.WriteLine();
             Console.WriteLine("= = = = END = = = =");
             Console.ReadLine();
         }
 
-        private static Item GetFullItem(ItemSummary itemSummary)
+        private static async Task<Item> GetFullItem(ItemSummary itemSummary, string itemName)
         {
-            return itemSummary == null ? null : itemSummary.GetFullItem();
+            if (itemSummary == null)
+            {
+                return null;
+            }
+
+            Console.WriteLine($"Downloading {itemName}");
+
+            var itemAsync = await itemSummary?.GetFullItemAsync();
+
+            Console.WriteLine($"{itemName} downloaded");
+
+            return itemAsync;
         }
 
-        private static void WriteCalculation(BattleTag battleTag)
+        private static async Task WriteCalculation(BattleTag battleTag)
         {
             Console.WriteLine("= = = = Calculator of {0} = = = =", battleTag);
 
             Console.WriteLine("Downloading {0}", "career");
-            var career = Career.CreateFromBattleTag(battleTag);
+            var career = await D3Api.GetCareerFromBattleTagAsync(battleTag);
             if (career == null || career.Heroes.Length == 0)
             {
                 return;
             }
 
             Console.WriteLine("Downloading Hero {0}/{1}", battleTag, career.Heroes[0].Name);
-            var hero = Hero.CreateFromHeroId(battleTag, career.Heroes[0].Id);
-            if (hero == null || hero.Items == null)
+            var hero = await D3Api.GetHeroFromHeroIdAsync(battleTag, career.Heroes[0].Id);
+            if (hero?.Items == null)
             {
                 return;
             }
 
-            Console.WriteLine("Downloading {0}", "bracers");
-            var bracers = GetFullItem(hero.Items.Bracers);
-            Console.WriteLine("Downloading {0}", "feet");
-            var feet = GetFullItem(hero.Items.Feet);
-            Console.WriteLine("Downloading {0}", "hands");
-            var hands = GetFullItem(hero.Items.Hands);
-            Console.WriteLine("Downloading {0}", "head");
-            var head = GetFullItem(hero.Items.Hands);
-            Console.WriteLine("Downloading {0}", "leftFinger");
-            var leftFinger = GetFullItem(hero.Items.LeftFinger);
-            Console.WriteLine("Downloading {0}", "legs");
-            var legs = GetFullItem(hero.Items.Legs);
-            Console.WriteLine("Downloading {0}", "mainHand");
-            var mainHand = GetFullItem(hero.Items.MainHand);
-            Console.WriteLine("Downloading {0}", "neck");
-            var neck = GetFullItem(hero.Items.Neck);
-            Console.WriteLine("Downloading {0}", "offHand");
-            var offHand = GetFullItem(hero.Items.OffHand);
-            Console.WriteLine("Downloading {0}", "rightFinger");
-            var rightFinger = GetFullItem(hero.Items.RightFinger);
-            Console.WriteLine("Downloading {0}", "shoulders");
-            var shoulders = GetFullItem(hero.Items.Shoulders);
-            Console.WriteLine("Downloading {0}", "torso");
-            var torso = GetFullItem(hero.Items.Torso);
-            Console.WriteLine("Downloading {0}", "waist");
-            var waist = GetFullItem(hero.Items.Waist);
+            var bracersTask = GetFullItem(hero.Items.Bracers, "bracers");
+            var feetTask = GetFullItem(hero.Items.Feet, "feet");
+            var handsTask = GetFullItem(hero.Items.Hands, "hands");
+            var headTask = GetFullItem(hero.Items.Hands, "head");
+            var leftFingerTask = GetFullItem(hero.Items.LeftFinger, "leftFinger");
+            var legsTask = GetFullItem(hero.Items.Legs, "legs");
+            var mainHandTask = GetFullItem(hero.Items.MainHand, "mainHand");
+            var neckTask = GetFullItem(hero.Items.Neck, "neck");
+            var offHandTask = GetFullItem(hero.Items.OffHand, "offHand");
+            var rightFingerTask = GetFullItem(hero.Items.RightFinger, "rightFinger");
+            var shouldersTask = GetFullItem(hero.Items.Shoulders, "shoulders");
+            var torsoTask = GetFullItem(hero.Items.Torso, "torso");
+            var waistTask = GetFullItem(hero.Items.Waist, "waist");
 
-            var items =
-                new List<Item> { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist }.Where(i => i != null).ToList();
+            Task.WaitAll(bracersTask, feetTask, handsTask, headTask, leftFingerTask, legsTask, mainHandTask, neckTask, offHandTask, rightFingerTask, shouldersTask, torsoTask, waistTask);
+
+            var bracers = bracersTask.Result;
+            var feet = feetTask.Result;
+            var hands = handsTask.Result;
+            var head = headTask.Result;
+            var leftFinger = leftFingerTask.Result;
+            var legs = legsTask.Result;
+            var mainHand = mainHandTask.Result;
+            var neck = neckTask.Result;
+            var offHand = offHandTask.Result;
+            var rightFinger = rightFingerTask.Result;
+            var shoulders = shouldersTask.Result;
+            var torso = torsoTask.Result;
+            var waist = waistTask.Result;
+
+            var items = new List<Item> { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist }.Where(i => i != null).ToList();
 
             var allItems = new List<Item>(items) { mainHand, offHand }.Where(i => i != null).ToList();
 

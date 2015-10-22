@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
-#if PORTABLE
 using ZTn.Bnet.Portable;
-#else
-using System.Text;
-#endif
+using ZTn.BNet.D3.Annotations;
 
 namespace ZTn.BNet.D3.Helpers
 {
@@ -57,11 +55,7 @@ namespace ZTn.BNet.D3.Helpers
         public static T GetFromJSonString<T>(String json)
         {
             T datas;
-#if PORTABLE
             using (var stream = new MemoryStream(PortableEncoding.Default.GetBytes(json)))
-#else
-            using (var stream = new MemoryStream(Encoding.Default.GetBytes(json)))
-#endif
             {
                 datas = GetFromJSonStream<T>(stream);
             }
@@ -79,11 +73,7 @@ namespace ZTn.BNet.D3.Helpers
         {
             T datas;
 
-#if PORTABLE
             using (var fileStream = PortableFile.Open(fileName, PortableFileMode.Open))
-#else
-            using (var fileStream = new FileStream(fileName, FileMode.Open))
-#endif
             {
                 datas = GetFromJSonStream<T>(fileStream);
             }
@@ -120,6 +110,18 @@ namespace ZTn.BNet.D3.Helpers
         }
 
         /// <summary>
+        /// Asynchronously reads (deserializes) an instance of type <typeparamref Name="T"/> from a JSON stream.
+        /// The stream is safely disposed by the method.
+        /// </summary>
+        /// <typeparam name="T">Target instance type.</typeparam>
+        /// <param name="stream">JSON source stream.</param>
+        /// <returns>A new instance of <typeparamref Name="T"/> read from <paramref Name="stream"/>.</returns>
+        public async static Task<T> CreateFromJsonStreamAsync<T>(this Stream stream)
+        {
+            return await Task.Run(() => stream.CreateFromJsonStream<T>()).ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// Reads (deserializes) an instance of type <typeparamref Name="T"/> from a JSON stream.
         /// Warning: the stream is not closed and must be disposed by the caller.
         /// </summary>
@@ -142,15 +144,11 @@ namespace ZTn.BNet.D3.Helpers
         /// <typeparam name="T">Target instance type.</typeparam>
         /// <param name="json">JSON source string.</param>
         /// <returns>A new instance of <typeparamref Name="T"/> read from <paramref Name="json"/>.</returns>
-        public static T CreateFromJsonString<T>(this String json)
+        public static T CreateFromJsonString<T>(this string json)
         {
             T data;
 
-#if PORTABLE
             using (var stream = new MemoryStream(PortableEncoding.Default.GetBytes(json)))
-#else
-            using (var stream = new MemoryStream(Encoding.Default.GetBytes(json)))
-#endif
             {
                 data = CreateFromJsonStream<T>(stream);
             }
@@ -164,20 +162,18 @@ namespace ZTn.BNet.D3.Helpers
         /// <typeparam name="T">Target instance type.</typeparam>
         /// <param name="fileName">JSON source path and filename.</param>
         /// <returns>A new instance of <typeparamref Name="T"/> read from <paramref Name="fileName"/>.</returns>
-        public static T CreateFromJsonFile<T>(this String fileName)
+        public static T CreateFromJsonFile<T>([NotNull] this string fileName)
         {
+            if (fileName == null)
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
             T data;
-#if PORTABLE
+
             using (var fileStream = PortableFile.Open(fileName, PortableFileMode.Open))
             {
                 data = CreateFromJsonStream<T>(fileStream);
             }
-#else
-            using (var fileStream = new FileStream(fileName, FileMode.Open))
-            {
-                data = CreateFromJsonStream<T>(fileStream);
-            }
-#endif
 
             return data;
         }
@@ -187,7 +183,7 @@ namespace ZTn.BNet.D3.Helpers
         /// </summary>
         /// <param name="instance"></param>
         /// <param name="fileName"></param>
-        public static void WriteToJsonFile(this Object instance, String fileName)
+        public static void WriteToJsonFile(this object instance, string fileName)
         {
             instance.WriteToJsonFile(fileName, false);
         }
@@ -198,27 +194,34 @@ namespace ZTn.BNet.D3.Helpers
         /// <param name="instance"></param>
         /// <param name="fileName"></param>
         /// <param name="indented"></param>
-        public static void WriteToJsonFile(this Object instance, String fileName, bool indented)
+        public static void WriteToJsonFile(this object instance, string fileName, bool indented)
         {
             var formatting = (indented ? Formatting.Indented : Formatting.None);
 
             var serializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.Auto, Formatting = formatting };
 
-#if PORTABLE
             using (var streamWriter = new StreamWriter(PortableFile.Open(fileName, PortableFileMode.OpenOrCreate)))
-#else
-            using (var streamWriter = new StreamWriter(fileName))
-#endif
             {
                 serializer.Serialize(streamWriter, instance);
             }
         }
 
         /// <summary>
+        /// Asynchronously writes (serializes) an instance to a JSON file.
+        /// </summary>
+        /// <param name="instance"></param>
+        /// <param name="fileName"></param>
+        /// <param name="indented"></param>
+        public static async Task WriteToJsonFileAsync(this object instance, string fileName, bool indented)
+        {
+            await Task.Run(() => instance.WriteToJsonFile(fileName, indented));
+        }
+
+        /// <summary>
         /// Writes (serializes) an instance to a json string.
         /// </summary>
         /// <param name="instance"></param>
-        public static string WriteToJsonString(this Object instance)
+        public static string WriteToJsonString(this object instance)
         {
             return instance.WriteToJsonString(false);
         }
@@ -228,12 +231,11 @@ namespace ZTn.BNet.D3.Helpers
         /// </summary>
         /// <param name="instance"></param>
         /// <param name="indented"></param>
-        public static string WriteToJsonString(this Object instance, bool indented)
+        public static string WriteToJsonString(this object instance, bool indented)
         {
             var formatting = (indented ? Formatting.Indented : Formatting.None);
 
-            return JsonConvert.SerializeObject(instance,
-                new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, Formatting = formatting });
+            return JsonConvert.SerializeObject(instance, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, Formatting = formatting });
         }
     }
 }

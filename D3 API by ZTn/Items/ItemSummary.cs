@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Helpers;
 
@@ -47,6 +49,11 @@ namespace ZTn.BNet.D3.Items
         public void GetFullItem(Action<Item> onSuccess, Action onFailure)
         {
             Item.CreateFromTooltipParams(TooltipParams, onSuccess, onFailure);
+        }
+
+        public async Task<Item> GetFullItemAsync()
+        {
+            return await Item.CreateFromTooltipParamsAsync(TooltipParams);
         }
 
         #region >> Constructor

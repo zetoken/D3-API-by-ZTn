@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using ZTn.BNet.D3.Helpers;
 
 namespace ZTn.BNet.D3.Items
@@ -108,14 +109,20 @@ namespace ZTn.BNet.D3.Items
 
         #endregion
 
-        public static Item CreateFromTooltipParams(String tooltipParams)
+        public static Item CreateFromTooltipParams(string tooltipParams)
         {
             return D3Api.GetItemFromTooltipParams(tooltipParams);
         }
 
-        public static void CreateFromTooltipParams(String tooltipParams, Action<Item> onSuccess, Action onFailure)
+        [Obsolete("Deprecated")]
+        public static void CreateFromTooltipParams(string tooltipParams, Action<Item> onSuccess, Action onFailure)
         {
             D3Api.GetItemFromTooltipParams(tooltipParams, onSuccess, onFailure);
+        }
+
+        public static async Task<Item> CreateFromTooltipParamsAsync(string tooltipParams)
+        {
+            return await D3Api.GetItemFromTooltipParamsAsync(tooltipParams);
         }
 
         public static Item CreateFromJSonStream(Stream stream)
@@ -123,7 +130,7 @@ namespace ZTn.BNet.D3.Items
             return stream.CreateFromJsonStream<Item>();
         }
 
-        public static Item CreateFromJSonString(String json)
+        public static Item CreateFromJSonString(string json)
         {
             return json.CreateFromJsonString<Item>();
         }

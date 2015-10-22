@@ -1,8 +1,11 @@
 ﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Careers;
 using ZTn.BNet.D3.DataProviders;
+using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
 using ZTn.BNet.D3.Medias;
@@ -65,109 +68,117 @@ namespace ZTn.BNet.D3
             return Requester.GetArtisanFromSlug(slug);
         }
 
-        public static void GetArtisanFromSlug(string slug, Action<Artisan> onSuccess, Action onFailure)
+        [Obsolete("Deprecated by *Async method.")]
+        public static void GetArtisanFromSlug(string slug, Action<Artisan> onSuccess, Action onFailure) =>
+            GetFromDataProvider(Requester.GetArtisanUrlFromSlug(slug, true), onSuccess, onFailure);
+
+        public static string GetArtisanUrlFromSlug(string slug) =>
+            Requester.GetArtisanUrlFromSlug(slug);
+
+        public static Career GetCareerFromBattleTag(BattleTag battleTag) =>
+            Requester.GetCareerFromBattleTag(battleTag);
+
+        [Obsolete("Deprecated by *Async method.")]
+        public static void GetCareerFromBattleTag(BattleTag battleTag, Action<Career> onSuccess, Action onFailure) =>
+            GetFromDataProvider(Requester.GetCareerUrl(battleTag, true), onSuccess, onFailure);
+
+        public static Task<Career> GetCareerFromBattleTagAsync(BattleTag battleTag) =>
+            Requester.GetCareerFromBattleTagAsync(battleTag);
+
+        public static string GetCareerUrl(BattleTag battleTag) =>
+            Requester.GetCareerUrl(battleTag);
+
+        public static Hero GetHeroFromHeroId(BattleTag battleTag, string heroId) =>
+            Requester.GetHeroFromHeroId(battleTag, heroId);
+
+        [Obsolete("Deprecated by *Async method.")]
+        public static void GetHeroFromHeroId(BattleTag battleTag, string heroId, Action<Hero> onSuccess, Action onFailure) =>
+            GetFromDataProvider($"{Requester.GetHeroUrlFromHeroId(battleTag, heroId, true)}", onSuccess, onFailure);
+
+        public static async Task<Hero> GetHeroFromHeroIdAsync(BattleTag battleTag, string heroId) =>
+            await Requester.GetHeroFromHeroIdAsync(battleTag, heroId).ConfigureAwait(false);
+
+        public static string GetHeroUrlFromHeroId(BattleTag battleTag, string heroId) =>
+            Requester.GetHeroUrlFromHeroId(battleTag, heroId);
+
+        public static Item GetItemFromTooltipParams(string tooltipParams) =>
+            Requester.GetItemFromTooltipParams(tooltipParams);
+
+        [Obsolete("Deprecated by *Async method.")]
+        public static void GetItemFromTooltipParams(string tooltipParams, Action<Item> onSuccess, Action onFailure) =>
+            GetFromDataProvider(Requester.GetItemUrlFromTooltipParams(tooltipParams, true), onSuccess, onFailure);
+
+        public static async Task<Item> GetItemFromTooltipParamsAsync(string tooltipParams) =>
+            await Requester.GetItemFromTooltipParamsAsync(tooltipParams).ConfigureAwait(false);
+
+        public static string GetItemUrlFromTooltipParams(string tooltipParams) =>
+            Requester.GetItemUrlFromTooltipParams(tooltipParams);
+
+        public static string GetItemIconUrl(string icon, string size) =>
+            Requester.GetItemIconUrl(icon, size);
+
+        public static D3Picture GetItemIcon(string icon) =>
+            Requester.GetItemIcon(icon);
+
+        [Obsolete("Deprecated by *Async method.")]
+        public static void GetItemIcon(string icon, Action<D3Picture> onSuccess, Action onFailure) =>
+            GetPictureFromDataProvider(GetItemIconUrl(icon, "small"), onSuccess, onFailure);
+
+        public static D3Picture GetItemIcon(string icon, string size) =>
+            Requester.GetItemIcon(icon, size);
+
+        [Obsolete("Deprecated by *Async method.")]
+        public static void GetItemIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure) =>
+            GetPictureFromDataProvider(GetItemIconUrl(icon, size), onSuccess, onFailure);
+
+        public static string GetSkillIconUrl(string icon, string size) =>
+            Requester.GetSkillIconUrl(icon, size);
+
+        public static D3Picture GetSkillIcon(string icon) =>
+            Requester.GetSkillIcon(icon);
+
+        [Obsolete("Deprecated by *Async method.")]
+        public static void GetSkillIcon(string icon, Action<D3Picture> onSuccess, Action onFailure) =>
+            GetPictureFromDataProvider(GetSkillIconUrl(icon, "42"), onSuccess, onFailure);
+
+        public static D3Picture GetSkillIcon(string icon, string size) =>
+            Requester.GetSkillIcon(icon, size);
+
+        [Obsolete("Deprecated by *Async method.")]
+        public static void GetSkillIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure) =>
+            GetPictureFromDataProvider(GetSkillIconUrl(icon, size), onSuccess, onFailure);
+
+        private static void GetFromDataProvider<T>(string url, Action<T> onSuccess, Action onFailure) where T : D3Object
         {
-            Requester.GetArtisanFromSlug(slug, onSuccess, onFailure);
+            DataProvider.FetchData(url,
+                stream =>
+                {
+                    var data = stream.CreateFromJsonStream<T>();
+                    stream.Dispose();
+                    if (data.IsValidObject())
+                    {
+                        onSuccess(data);
+                    }
+                    else
+                    {
+                        onFailure();
+                    }
+                },
+                onFailure
+                );
         }
 
-        public static string GetArtisanUrlFromSlug(string slug)
+        private static void GetPictureFromDataProvider(string url, Action<D3Picture> onSuccess, Action onFailure)
         {
-            return Requester.GetArtisanUrlFromSlug(slug);
-        }
-
-        public static Career GetCareerFromBattleTag(BattleTag battleTag)
-        {
-            return Requester.GetCareerFromBattleTag(battleTag);
-        }
-
-        public static void GetCareerFromBattleTag(BattleTag battleTag, Action<Career> onSuccess, Action onFailure)
-        {
-            Requester.GetCareerFromBattleTag(battleTag, onSuccess, onFailure);
-        }
-
-        public static string GetCareerUrl(BattleTag battleTag)
-        {
-            return Requester.GetCareerUrl(battleTag);
-        }
-
-        public static Hero GetHeroFromHeroId(BattleTag battleTag, string heroId)
-        {
-            return Requester.GetHeroFromHeroId(battleTag, heroId);
-        }
-
-        public static void GetHeroFromHeroId(BattleTag battleTag, string heroId, Action<Hero> onSuccess, Action onFailure)
-        {
-            Requester.GetHeroFromHeroId(battleTag, heroId, onSuccess, onFailure);
-        }
-
-        public static string GetHeroUrlFromHeroId(BattleTag battleTag, string heroId)
-        {
-            return Requester.GetHeroUrlFromHeroId(battleTag, heroId);
-        }
-
-        public static Item GetItemFromTooltipParams(string tooltipParams)
-        {
-            return Requester.GetItemFromTooltipParams(tooltipParams);
-        }
-
-        public static void GetItemFromTooltipParams(string tooltipParams, Action<Item> onSuccess, Action onFailure)
-        {
-            Requester.GetItemFromTooltipParams(tooltipParams, onSuccess, onFailure);
-        }
-
-        public static string GetItemUrlFromTooltipParams(string tooltipParams)
-        {
-            return Requester.GetItemUrlFromTooltipParams(tooltipParams);
-        }
-
-        public static string GetItemIconUrl(string icon, string size)
-        {
-            return Requester.GetItemIconUrl(icon, size);
-        }
-
-        public static D3Picture GetItemIcon(string icon)
-        {
-            return Requester.GetItemIcon(icon);
-        }
-
-        public static void GetItemIcon(string icon, Action<D3Picture> onSuccess, Action onFailure)
-        {
-            Requester.GetItemIcon(icon, onSuccess, onFailure);
-        }
-
-        public static D3Picture GetItemIcon(string icon, string size)
-        {
-            return Requester.GetItemIcon(icon, size);
-        }
-
-        public static void GetItemIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure)
-        {
-            Requester.GetItemIcon(icon, size, onSuccess, onFailure);
-        }
-
-        public static string GetSkillIconUrl(string icon, string size)
-        {
-            return Requester.GetSkillIconUrl(icon, size);
-        }
-
-        public static D3Picture GetSkillIcon(string icon)
-        {
-            return Requester.GetSkillIcon(icon);
-        }
-
-        public static void GetSkillIcon(string icon, Action<D3Picture> onSuccess, Action onFailure)
-        {
-            Requester.GetSkillIcon(icon, onSuccess, onFailure);
-        }
-
-        public static D3Picture GetSkillIcon(string icon, string size)
-        {
-            return Requester.GetSkillIcon(icon, size);
-        }
-
-        public static void GetSkillIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure)
-        {
-            Requester.GetSkillIcon(icon, size, onSuccess, onFailure);
+            DataProvider.FetchData(url,
+                stream =>
+                {
+                    var picture = new D3Picture(stream);
+                    stream.Dispose();
+                    onSuccess(picture);
+                },
+                onFailure
+                );
         }
     }
 }

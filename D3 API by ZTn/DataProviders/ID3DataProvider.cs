@@ -24,6 +24,7 @@ namespace ZTn.BNet.D3.DataProviders
         /// <param name="url"></param>
         /// <param name="onSuccess">Callback called if the fetch succeeded.</param>
         /// <param name="onFailure">Callback called if the fetch failed.</param>
+        [Obsolete("Deprecated by *Async method.")]
         void FetchData(string url, Action<Stream> onSuccess, Action onFailure);
 
         /// <summary>
