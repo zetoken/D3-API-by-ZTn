@@ -38,7 +38,7 @@ namespace ZTn.BNet.D3.DataProviders
 
         public async Task<Stream> FetchDataAsync(string url)
         {
-            Debug.WriteLine("FetchDataAsync({0},...): {1}", url, "Start");
+            Debug.WriteLine("{1}: FetchDataAsync({0},...)", url, "Start");
 
             var remainingTries = MaxRetries;
 
@@ -61,6 +61,8 @@ namespace ZTn.BNet.D3.DataProviders
                 }
 
                 remainingTries--;
+
+                Debug.WriteLine("{1}: FetchDataAsync({0},...)", url, "Try Again");
 
             } while (remainingTries > 0);
 

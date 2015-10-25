@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
@@ -111,68 +110,26 @@ namespace ZTn.BNet.D3
                 $"{ApiUrl}data/{tooltipParams}";
         }
 
-        public string GetItemIconUrl(string icon, string size)
-        {
-            return $"{MediaPath}icons/items/{size}/{icon}.png";
-        }
-
         public D3Picture GetItemIcon(string icon) =>
             GetPictureFromDataProvider(GetItemIconUrl(icon, "small"));
-
-        public Task<D3Picture> GetItemIconAsync(string icon) =>
-            GetPictureFromDataProviderAsync(GetItemIconUrl(icon, "small"));
-
-        public void GetItemIcon(string icon, Action<D3Picture> onSuccess, Action onFailure)
-        {
-            GetItemIcon(icon, "small", onSuccess, onFailure);
-        }
 
         public D3Picture GetItemIcon(string icon, string size) =>
             GetPictureFromDataProvider(GetItemIconUrl(icon, size));
 
-        public void GetItemIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure)
-        {
-            DataProvider.FetchData(GetItemIconUrl(icon, size),
-                stream =>
-                {
-                    var picture = new D3Picture(stream);
-                    stream.Dispose();
-                    onSuccess(picture);
-                },
-                onFailure
-                );
-        }
+        public Task<D3Picture> GetItemIconAsync(string icon) =>
+            GetPictureFromDataProviderAsync(GetItemIconUrl(icon, "small"));
 
-        public string GetSkillIconUrl(string icon, string size)
-        {
-            return $"{MediaPath}icons/skills/{size}/{icon}.png";
-        }
+        public string GetItemIconUrl(string icon, string size) =>
+            $"{MediaPath}icons/items/{size}/{icon}.png";
 
-        public D3Picture GetSkillIcon(string icon)
-        {
-            return GetSkillIcon(icon, "42");
-        }
-
-        public void GetSkillIcon(string icon, Action<D3Picture> onSuccess, Action onFailure)
-        {
-            GetSkillIcon(icon, "42", onSuccess, onFailure);
-        }
+        public D3Picture GetSkillIcon(string icon) =>
+            GetSkillIcon(icon, "42");
 
         public D3Picture GetSkillIcon(string icon, string size) =>
             GetPictureFromDataProvider(GetSkillIconUrl(icon, size));
 
-        public void GetSkillIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure)
-        {
-            DataProvider.FetchData(GetSkillIconUrl(icon, size),
-                stream =>
-                {
-                    var picture = new D3Picture(stream);
-                    stream.Dispose();
-                    onSuccess(picture);
-                },
-                onFailure
-                );
-        }
+        public string GetSkillIconUrl(string icon, string size) =>
+            $"{MediaPath}icons/skills/{size}/{icon}.png";
 
         private T GetFromDataProvider<T>(string url) where T : D3Object
         {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Artisans;
@@ -63,14 +62,15 @@ namespace ZTn.BNet.D3
             DataProvider = new HttpRequestDataProvider();
         }
 
-        public static Artisan GetArtisanFromSlug(string slug)
-        {
-            return Requester.GetArtisanFromSlug(slug);
-        }
+        public static Artisan GetArtisanFromSlug(string slug) =>
+            Requester.GetArtisanFromSlug(slug);
 
         [Obsolete("Deprecated by *Async method.")]
         public static void GetArtisanFromSlug(string slug, Action<Artisan> onSuccess, Action onFailure) =>
             GetFromDataProvider(Requester.GetArtisanUrlFromSlug(slug, true), onSuccess, onFailure);
+
+        public static Task<Artisan> GetArtisanFromSlugAsync(string slug) =>
+            Requester.GetArtisanFromSlugAsync(slug);
 
         public static string GetArtisanUrlFromSlug(string slug) =>
             Requester.GetArtisanUrlFromSlug(slug);
@@ -95,8 +95,8 @@ namespace ZTn.BNet.D3
         public static void GetHeroFromHeroId(BattleTag battleTag, string heroId, Action<Hero> onSuccess, Action onFailure) =>
             GetFromDataProvider($"{Requester.GetHeroUrlFromHeroId(battleTag, heroId, true)}", onSuccess, onFailure);
 
-        public static async Task<Hero> GetHeroFromHeroIdAsync(BattleTag battleTag, string heroId) =>
-            await Requester.GetHeroFromHeroIdAsync(battleTag, heroId).ConfigureAwait(false);
+        public static Task<Hero> GetHeroFromHeroIdAsync(BattleTag battleTag, string heroId) =>
+            Requester.GetHeroFromHeroIdAsync(battleTag, heroId);
 
         public static string GetHeroUrlFromHeroId(BattleTag battleTag, string heroId) =>
             Requester.GetHeroUrlFromHeroId(battleTag, heroId);
@@ -108,46 +108,47 @@ namespace ZTn.BNet.D3
         public static void GetItemFromTooltipParams(string tooltipParams, Action<Item> onSuccess, Action onFailure) =>
             GetFromDataProvider(Requester.GetItemUrlFromTooltipParams(tooltipParams, true), onSuccess, onFailure);
 
-        public static async Task<Item> GetItemFromTooltipParamsAsync(string tooltipParams) =>
-            await Requester.GetItemFromTooltipParamsAsync(tooltipParams).ConfigureAwait(false);
+        public static Task<Item> GetItemFromTooltipParamsAsync(string tooltipParams) =>
+            Requester.GetItemFromTooltipParamsAsync(tooltipParams);
 
         public static string GetItemUrlFromTooltipParams(string tooltipParams) =>
             Requester.GetItemUrlFromTooltipParams(tooltipParams);
 
-        public static string GetItemIconUrl(string icon, string size) =>
-            Requester.GetItemIconUrl(icon, size);
-
         public static D3Picture GetItemIcon(string icon) =>
             Requester.GetItemIcon(icon);
-
-        [Obsolete("Deprecated by *Async method.")]
-        public static void GetItemIcon(string icon, Action<D3Picture> onSuccess, Action onFailure) =>
-            GetPictureFromDataProvider(GetItemIconUrl(icon, "small"), onSuccess, onFailure);
 
         public static D3Picture GetItemIcon(string icon, string size) =>
             Requester.GetItemIcon(icon, size);
 
         [Obsolete("Deprecated by *Async method.")]
+        public static void GetItemIcon(string icon, Action<D3Picture> onSuccess, Action onFailure) =>
+            GetPictureFromDataProvider(GetItemIconUrl(icon, "small"), onSuccess, onFailure);
+
+        [Obsolete("Deprecated by *Async method.")]
         public static void GetItemIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure) =>
             GetPictureFromDataProvider(GetItemIconUrl(icon, size), onSuccess, onFailure);
 
-        public static string GetSkillIconUrl(string icon, string size) =>
-            Requester.GetSkillIconUrl(icon, size);
+        public static string GetItemIconUrl(string icon, string size) =>
+            Requester.GetItemIconUrl(icon, size);
 
         public static D3Picture GetSkillIcon(string icon) =>
             Requester.GetSkillIcon(icon);
-
-        [Obsolete("Deprecated by *Async method.")]
-        public static void GetSkillIcon(string icon, Action<D3Picture> onSuccess, Action onFailure) =>
-            GetPictureFromDataProvider(GetSkillIconUrl(icon, "42"), onSuccess, onFailure);
 
         public static D3Picture GetSkillIcon(string icon, string size) =>
             Requester.GetSkillIcon(icon, size);
 
         [Obsolete("Deprecated by *Async method.")]
+        public static void GetSkillIcon(string icon, Action<D3Picture> onSuccess, Action onFailure) =>
+            GetPictureFromDataProvider(GetSkillIconUrl(icon, "42"), onSuccess, onFailure);
+
+        [Obsolete("Deprecated by *Async method.")]
         public static void GetSkillIcon(string icon, string size, Action<D3Picture> onSuccess, Action onFailure) =>
             GetPictureFromDataProvider(GetSkillIconUrl(icon, size), onSuccess, onFailure);
 
+        public static string GetSkillIconUrl(string icon, string size) =>
+            Requester.GetSkillIconUrl(icon, size);
+
+        [Obsolete("For D3 API v2 compatibility.", false)]
         private static void GetFromDataProvider<T>(string url, Action<T> onSuccess, Action onFailure) where T : D3Object
         {
             DataProvider.FetchData(url,
@@ -168,6 +169,7 @@ namespace ZTn.BNet.D3
                 );
         }
 
+        [Obsolete("For D3 API v2 compatibility.", false)]
         private static void GetPictureFromDataProvider(string url, Action<D3Picture> onSuccess, Action onFailure)
         {
             DataProvider.FetchData(url,

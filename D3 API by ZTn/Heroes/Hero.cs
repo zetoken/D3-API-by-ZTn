@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using ZTn.BNet.BattleNet;
@@ -39,6 +40,7 @@ namespace ZTn.BNet.D3.Heroes
 
         #endregion
 
+        [Obsolete("Deprecated by *Async method.")]
         public static Hero CreateFromHeroId(BattleTag battleTag, string heroId)
         {
             return D3Api.GetHeroFromHeroId(battleTag, heroId);

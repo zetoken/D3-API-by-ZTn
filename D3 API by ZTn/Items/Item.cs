@@ -114,25 +114,17 @@ namespace ZTn.BNet.D3.Items
             return D3Api.GetItemFromTooltipParams(tooltipParams);
         }
 
-        [Obsolete("Deprecated")]
-        public static void CreateFromTooltipParams(string tooltipParams, Action<Item> onSuccess, Action onFailure)
-        {
+        [Obsolete("Deprecated by *Async method.")]
+        public static void CreateFromTooltipParams(string tooltipParams, Action<Item> onSuccess, Action onFailure) =>
             D3Api.GetItemFromTooltipParams(tooltipParams, onSuccess, onFailure);
-        }
 
-        public static async Task<Item> CreateFromTooltipParamsAsync(string tooltipParams)
-        {
-            return await D3Api.GetItemFromTooltipParamsAsync(tooltipParams);
-        }
+        public static async Task<Item> CreateFromTooltipParamsAsync(string tooltipParams) =>
+            await D3Api.GetItemFromTooltipParamsAsync(tooltipParams);
 
-        public static Item CreateFromJSonStream(Stream stream)
-        {
-            return stream.CreateFromJsonStream<Item>();
-        }
+        public static Item CreateFromJSonStream(Stream stream) =>
+            stream.CreateFromJsonStream<Item>();
 
-        public static Item CreateFromJSonString(string json)
-        {
-            return json.CreateFromJsonString<Item>();
-        }
+        public static Item CreateFromJSonString(string json) =>
+            json.CreateFromJsonString<Item>();
     }
 }
