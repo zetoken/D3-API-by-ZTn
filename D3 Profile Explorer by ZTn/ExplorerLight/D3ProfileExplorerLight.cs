@@ -27,7 +27,7 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
         {
             InitializeComponent();
 
-            var cacheableDataProvider = new CacheableDataProvider(new HttpRequestDataProvider()) { FetchMode = FetchMode.OnlineIfMissing };
+            var cacheableDataProvider = new CachedDataProvider(new HttpRequestDataProvider()) { FetchMode = FetchMode.OnlineIfMissing };
             D3Api.DataProvider = cacheableDataProvider;
             D3Api.ApiKey = "zrxxcy3qzp8jcbgrce2es4yq52ew2k7r";
 

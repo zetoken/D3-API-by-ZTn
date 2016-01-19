@@ -6,31 +6,39 @@ using ZTn.Bnet.Portable;
 
 namespace ZTn.BNet.D3.DataProviders
 {
-    public class CacheableDataProvider : ID3DataProvider
+    public class CacheableDataProvider : ICacheableD3DataProvider
     {
         #region >> Fields
 
         private readonly ID3DataProvider dataProvider;
 
-        public FetchMode FetchMode = FetchMode.Online;
-
         #endregion
 
         #region >> Constructors
 
-        public CacheableDataProvider(ID3DataProvider dataProvider)
-            : this()
+        public CacheableDataProvider(string storagePath, ID3DataProvider dataProvider)
+            : this(storagePath)
         {
             this.dataProvider = dataProvider;
         }
 
-        public CacheableDataProvider()
+        public CacheableDataProvider(string storagePath)
         {
-            PortableDirectory.CreateDirectory(@"cache");
+            StoragePath = storagePath;
+            PortableDirectory.CreateDirectory(storagePath);
         }
 
         #endregion
 
+        #region >> ICacheableD3DataProvider
+
+        /// <inheritdoc />
+        public FetchMode FetchMode { get; set; } = FetchMode.Online;
+
+        /// <inheritdoc />
+        public string StoragePath { get; set; }
+
+        /// <inheritdoc />
         public string GetCachedFileName(string url)
         {
             var stringBuilder = new StringBuilder();
@@ -94,17 +102,14 @@ namespace ZTn.BNet.D3.DataProviders
             return stringBuilder.ToString();
         }
 
-        public virtual string GetCacheStoragePath()
-        {
-            return "cache/";
-        }
+        #endregion
 
         #region >> ID3DataProvider
 
         /// <inheritdoc />
         public Stream FetchData(string url)
         {
-            var cachedFilePath = GetCacheStoragePath() + GetCachedFileName(url);
+            var cachedFilePath = Path.Combine(StoragePath, GetCachedFileName(url));
             var cachedFilePathExists = PortableFile.Exists(cachedFilePath);
 
             if ((FetchMode == FetchMode.Online) ||

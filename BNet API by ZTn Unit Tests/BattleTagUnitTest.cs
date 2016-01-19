@@ -17,19 +17,17 @@ namespace ZTn.BNet.BattleNet
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void ConstructorFailure()
         {
             // ReSharper disable once ObjectCreationAsStatement
-            new BattleTag("tok@2360");
+            Assert.Throws<ArgumentException>(() => new BattleTag("tok@2360"));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void ConstructorFailure2()
         {
             // ReSharper disable once ObjectCreationAsStatement
-            new BattleTag("tok#");
+            Assert.Throws<ArgumentException>(() => new BattleTag("tok#"));
         }
     }
 }

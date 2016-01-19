@@ -67,10 +67,12 @@
     <Compile Include="DataProviders\BNetResponse403Exception.cs" />
     <Compile Include="DataProviders\BNetResponseFailedException.cs" />
     <Compile Include="DataProviders\CacheableDataProvider.cs" />
+    <Compile Include="DataProviders\CachedDataProvider.cs" />
     <Compile Include="DataProviders\FakeDataProvider.cs" />
     <Compile Include="DataProviders\FetchMode.cs" />
     <Compile Include="DataProviders\FileNotInCacheException.cs" />
     <Compile Include="DataProviders\HttpRequestDataProvider.cs" />
+    <Compile Include="DataProviders\ICacheableD3DataProvider.cs" />
     <Compile Include="DataProviders\ID3DataProvider.cs" />
     <Compile Include="DataProviders\MD5Digest.cs" />
     <Compile Include="FailureObject.cs" />
@@ -123,8 +125,8 @@
     <Compile Include="Skills\Skill.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">

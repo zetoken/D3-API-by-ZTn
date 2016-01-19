@@ -38,7 +38,7 @@ namespace ZTn.BNet.D3ProfileExplorer
         {
             InitializeComponent();
 
-            D3Api.DataProvider = new CacheableDataProvider(new HttpRequestDataProvider());
+            D3Api.DataProvider = new CachedDataProvider(new HttpRequestDataProvider());
             D3Api.ApiKey = "zrxxcy3qzp8jcbgrce2es4yq52ew2k7r";
 
             hosts = "hosts.json".CreateFromJsonFile<List<Host>>();
