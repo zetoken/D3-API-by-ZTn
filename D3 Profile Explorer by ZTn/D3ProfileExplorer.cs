@@ -736,9 +736,9 @@ namespace ZTn.BNet.D3ProfileExplorer
 
             foreach (var gemColor in socketColors)
             {
-                for (var index = 1; index < 20; index++)
+                for (var index = 1; index < 11; index++)
                 {
-                    var id = $"{gemColor}_{index:00}";
+                    var id = $"x1_{gemColor}_{index:00}";
                     sockets.Add(Item.CreateFromTooltipParams($"item/{id}"));
                 }
             }
