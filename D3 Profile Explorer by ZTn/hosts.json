@@ -1,18 +1,22 @@
-﻿[
-	{
-		name: "Europe",
-		url: "eu.api.battle.net"
-	},
-	{
-		name: "America",
-		url: "us.api.battle.net"
-	},
-	{
-		name: "Korea",
-		url: "kr.api.battle.net"
-	},
-	{
-		name: "Taiwan",
-		url: "tw.api.battle.net"
-	}
+[
+  {
+    "name": "Europe",
+    "url": "eu.api.battle.net"
+  },
+  {
+    "name": "America",
+    "url": "us.api.battle.net"
+  },
+  {
+    "name": "Korea",
+    "url": "kr.api.battle.net"
+  },
+  {
+    "name": "Taiwan",
+    "url": "tw.api.battle.net"
+  },
+  {
+    "name": "China",
+    "url": "api.battlenet.com.cn"
+  }
 ]
