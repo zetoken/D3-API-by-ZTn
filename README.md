@@ -1,5 +1,6 @@
-Project up to date for RoS 2.1.2.
+Project up to date for Season 6.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/82u38q71u5vwkar9/branch/master?svg=true)](https://ci.appveyor.com/project/zetoken/d3-api-by-ztn/branch/master) 
 D3-API-by-ZTn
 =============
 
