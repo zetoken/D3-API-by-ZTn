@@ -1,4 +1,4 @@
-﻿namespace ZTn.Bnet.PclAdapters
+﻿namespace ZTn.Bnet.PclAdapter
 {
     public enum PortableFileMode
     {

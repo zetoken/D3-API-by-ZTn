@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
-using ZTn.BNet.D3.Annotations;
 using ZTn.BNet.D3.Items;
+using ZTn.BNet.D3.Properties;
 
 namespace ZTn.BNet.D3.Helpers
 {

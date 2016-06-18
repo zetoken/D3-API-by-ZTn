@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using ZTn.BNet.D3.Annotations;
 using ZTn.BNet.D3.Calculator.Gems;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Items;
+using ZTn.BNet.D3.Properties;
 
 namespace ZTn.BNet.D3ProfileExplorer
 {

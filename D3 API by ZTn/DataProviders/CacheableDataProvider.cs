@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using ZTn.Bnet.PclAdapters;
+using ZTn.Bnet.PclAdapter;
 
 namespace ZTn.BNet.D3.DataProviders
 {

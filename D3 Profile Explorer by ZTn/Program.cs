@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using ZTn.Bnet.PclAdapters;
 using ZTn.BNet.D3ProfileExplorer.ExplorerLight;
 
 namespace ZTn.BNet.D3ProfileExplorer

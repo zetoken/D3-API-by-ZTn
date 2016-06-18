@@ -8,8 +8,8 @@
     <ProjectGuid>{22DE4D3A-231F-40DF-AF26-976E5FD9B31F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZTn.Bnet.PclAdapters</RootNamespace>
-    <AssemblyName>ZTn.Bnet.PclAdapters</AssemblyName>
+    <RootNamespace>ZTn.Bnet.PclAdapter</RootNamespace>
+    <AssemblyName>ZTn.Bnet.PclAdapter</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

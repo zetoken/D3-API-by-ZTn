@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZTn.Bnet.PclAdapters
+namespace ZTn.Bnet.PclAdapter
 {
     public abstract class PortableDirectory
     {

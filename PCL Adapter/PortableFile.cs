@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace ZTn.Bnet.PclAdapters
+namespace ZTn.Bnet.PclAdapter
 {
     public abstract class PortableFile
     {

@@ -3,8 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using ZTn.Bnet.PclAdapters;
-using ZTn.BNet.D3.Annotations;
+using ZTn.Bnet.PclAdapter;
+using ZTn.BNet.D3.Properties;
 
 namespace ZTn.BNet.D3.Helpers
 {

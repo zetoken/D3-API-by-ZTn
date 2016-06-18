@@ -2,11 +2,11 @@
 using System.IO;
 using System.Runtime.Serialization;
 using ZTn.BNet.BattleNet;
-using ZTn.BNet.D3.Annotations;
 using ZTn.BNet.D3.Artisans;
 using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Progresses;
+using ZTn.BNet.D3.Properties;
 
 namespace ZTn.BNet.D3.Careers
 {
