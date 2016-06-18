@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ZTn.BNet.BattleNet;
 using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.HeroFollowers;
+using ZTn.BNet.D3.Items;
 using ZTn.BNet.D3.Progresses;
 
 namespace ZTn.BNet.D3.Heroes

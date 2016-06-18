@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using ZTn.Bnet.Portable;
+using ZTn.Bnet.PclAdapters;
 using ZTn.BNet.D3.Annotations;
 
 namespace ZTn.BNet.D3.Helpers
@@ -116,7 +116,7 @@ namespace ZTn.BNet.D3.Helpers
         /// <typeparam name="T">Target instance type.</typeparam>
         /// <param name="stream">JSON source stream.</param>
         /// <returns>A new instance of <typeparamref Name="T"/> read from <paramref Name="stream"/>.</returns>
-        public async static Task<T> CreateFromJsonStreamAsync<T>(this Stream stream)
+        public static async Task<T> CreateFromJsonStreamAsync<T>(this Stream stream)
         {
             return await Task.Run(() => stream.CreateFromJsonStream<T>()).ConfigureAwait(false);
         }

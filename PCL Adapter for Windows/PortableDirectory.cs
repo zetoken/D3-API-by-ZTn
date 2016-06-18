@@ -1,11 +1,11 @@
 ﻿using System.IO;
 
-namespace ZTn.Bnet.Portable.Windows
+namespace ZTn.Bnet.PclAdapters
 {
-    internal class PortableDirectory : IPortableDirectory
+    public class PortableDirectory
     {
         /// <inheritdoc />
-        public void CreateDirectory(string path)
+        public static void CreateDirectory(string path)
         {
             Directory.CreateDirectory(path);
         }

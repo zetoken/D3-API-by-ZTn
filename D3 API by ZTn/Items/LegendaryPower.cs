@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace ZTn.BNet.D3.Heroes
+namespace ZTn.BNet.D3.Items
 {
     public class LegendaryPower : D3Object
     {

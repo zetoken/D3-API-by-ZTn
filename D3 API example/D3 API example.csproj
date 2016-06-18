@@ -79,10 +79,6 @@
       <Project>{c097a16b-03d4-4ad0-adfa-d35e3b9575f2}</Project>
       <Name>PCL Adapter for Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PCL Adapter\PCL Adapter.csproj">
-      <Project>{22de4d3a-231f-40df-af26-976e5fd9b31f}</Project>
-      <Name>PCL Adapter</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

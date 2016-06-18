@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using ZTn.Bnet.Portable.Windows;
+using ZTn.Bnet.PclAdapters;
 using ZTn.BNet.D3ProfileExplorer.ExplorerLight;
 
 namespace ZTn.BNet.D3ProfileExplorer
@@ -13,8 +13,6 @@ namespace ZTn.BNet.D3ProfileExplorer
         [STAThread]
         private static void Main()
         {
-            RegisterPcl.Register();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new D3ProfileExplorerLight());

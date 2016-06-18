@@ -2,7 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 
-namespace ZTn.Bnet.Portable
+namespace ZTn.BNet.D3.Helpers
 {
     public static class HttpWebResponseExtension
     {

@@ -1,15 +1,13 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
-namespace ZTn.Bnet.Portable
+namespace ZTn.Bnet.PclAdapters
 {
     public class PortableEncoding
     {
         public static Encoding Default
         {
-            get
-            {
-                return PortableInjector.Resolve<IPortableEncoding>().Default;
-            }
+            get { throw new NotImplementedException("Should be implemented in native library."); }
         }
     }
 }

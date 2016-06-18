@@ -1,22 +1,23 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
-namespace ZTn.Bnet.Portable
+namespace ZTn.Bnet.PclAdapters
 {
     public abstract class PortableFile
     {
         public static Stream Create(string path)
         {
-            return PortableInjector.Resolve<IPortableFile>().Create(path);
-        }
+            throw new NotImplementedException("Should be implemented in native library.");
+        ;}
 
         public static bool Exists(string path)
         {
-            return PortableInjector.Resolve<IPortableFile>().Exists(path);
+            throw new NotImplementedException("Should be implemented in native library.");
         }
 
         public static Stream Open(string path, PortableFileMode mode)
         {
-            return PortableInjector.Resolve<IPortableFile>().Open(path, mode);
+            throw new NotImplementedException("Should be implemented in native library.");
         }
     }
 }

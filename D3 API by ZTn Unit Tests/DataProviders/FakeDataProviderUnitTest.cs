@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using ZTn.Bnet.Portable.Windows;
 using ZTn.BNet.D3.Careers;
 using ZTn.BNet.D3.Helpers;
 
@@ -13,7 +12,6 @@ namespace ZTn.BNet.D3.DataProviders
         [TestFixtureSetUp]
         public void PclInitialization()
         {
-            RegisterPcl.Register();
         }
 
         [Test]

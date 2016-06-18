@@ -7,9 +7,7 @@ using ZTn.BNet.D3.Calculator;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Skills;
 using ZTn.BNet.D3.Careers;
-using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.Items;
-using ZTn.Bnet.Portable.Windows;
 
 namespace ZTn.BNet.D3.Example
 {
@@ -19,8 +17,6 @@ namespace ZTn.BNet.D3.Example
 
         private static void Main(string[] args)
         {
-            RegisterPcl.Register();
-
             D3Api.ApiKey = ApiKey;
 
             var battleTag = new BattleTag("Tok#2360");

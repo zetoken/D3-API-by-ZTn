@@ -1,13 +1,10 @@
 ﻿using System.Text;
 
-namespace ZTn.Bnet.Portable.Windows
+namespace ZTn.Bnet.PclAdapters
 {
-    internal class PortableEncoding : IPortableEncoding
+    public class PortableEncoding 
     {
         /// <inheritdoc />
-        public Encoding Default
-        {
-            get { return Encoding.Default; }
-        }
+        public static Encoding Default => Encoding.Default;
     }
 }

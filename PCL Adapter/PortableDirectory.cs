@@ -1,10 +1,12 @@
-﻿namespace ZTn.Bnet.Portable
+﻿using System;
+
+namespace ZTn.Bnet.PclAdapters
 {
     public abstract class PortableDirectory
     {
         public static void CreateDirectory(string path)
         {
-            PortableInjector.Resolve<IPortableDirectory>().CreateDirectory(path);
+            throw new NotImplementedException("Should be implemented in native library.");
         }
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{C097A16B-03D4-4AD0-ADFA-D35E3B9575F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZTn.Bnet.Portable.Windows</RootNamespace>
-    <AssemblyName>PCL Adapter for Windows</AssemblyName>
+    <RootNamespace>ZTn.Bnet.PclAdapters</RootNamespace>
+    <AssemblyName>ZTn.Bnet.PclAdapters</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -46,12 +46,11 @@
     <Compile Include="PortableEncoding.cs" />
     <Compile Include="PortableFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterPcl.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PCL Adapter\PCL Adapter.csproj">
-      <Project>{22DE4D3A-231F-40DF-AF26-976E5FD9B31F}</Project>
-      <Name>PCL Adapter</Name>
+    <ProjectReference Include="..\PCL Adapter Common\PCL Adapter Common.csproj">
+      <Project>{cedcfe29-acff-44b0-bb96-94290bb65b2e}</Project>
+      <Name>PCL Adapter Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

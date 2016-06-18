@@ -74,6 +74,10 @@
       <Project>{78516ce1-496f-4591-ad69-3164694d4555}</Project>
       <Name>D3 Calculator Library by ZTn</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PCL Adapter Common\PCL Adapter Common.csproj">
+      <Project>{cedcfe29-acff-44b0-bb96-94290bb65b2e}</Project>
+      <Name>PCL Adapter Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

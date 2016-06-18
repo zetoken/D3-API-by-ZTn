@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using ZTn.Bnet.Portable;
+using ZTn.Bnet.PclAdapters;
 
 namespace ZTn.BNet.D3.DataProviders
 {
