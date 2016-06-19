@@ -154,7 +154,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
 
             // If no weapon is set in mainHand, use "naked hand" weapon
-            var mainHand = (hero.Items.MainHand != null ? hero.Items.MainHand.GetFullItem() : D3Calculator.NakedHandWeapon);
+            var mainHand = (hero.Items.MainHand != null ? hero.Items.MainHand.GetFullItem() : Constants.NakedHandWeapon);
 
             // If no item is set in offHand, use a blank item
             Item offHand;
@@ -164,7 +164,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
             else
             {
-                offHand = D3Calculator.BlankWeapon;
+                offHand = Constants.BlankWeapon;
             }
 
             var allRawItems = new List<Item> { bracers, feet, hands, head, leftFinger, legs, neck, rightFinger, shoulders, torso, waist, mainHand, offHand };
@@ -230,7 +230,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
             else
             {
-                mainHand = D3Calculator.NakedHandWeapon;
+                mainHand = Constants.NakedHandWeapon;
             }
 
             // If no item is set in offHand, use a blank item
@@ -240,7 +240,7 @@ namespace ZTn.BNet.D3ProfileExplorer
             }
             else
             {
-                offHand = D3Calculator.BlankWeapon;
+                offHand = Constants.BlankWeapon;
             }
 
             var allRawItems = new List<Item> { special, leftFinger, neck, rightFinger, mainHand, offHand };

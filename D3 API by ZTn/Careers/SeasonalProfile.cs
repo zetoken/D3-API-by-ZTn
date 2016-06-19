@@ -4,7 +4,7 @@ using ZTn.BNet.D3.Progresses;
 namespace ZTn.BNet.D3.Careers
 {
     [DataContract]
-    public class SeasonalProfile
+    public class SeasonalProfile : D3Object
     {
         [DataMember(Name = "seasonId")]
         public int SeasonId { get; set; }

@@ -22,8 +22,8 @@ namespace ZTn.BNet.D3ProfileExplorer
             InitializeComponent();
 
             var typeIdSource = new List<String> { "", "Generic Armor" };
-            typeIdSource.AddRange(ItemHelper.WeaponTypeIds);
-            typeIdSource.AddRange(ItemHelper.HelmTypeIds);
+            typeIdSource.AddRange(Constants.WeaponTypeIds);
+            typeIdSource.AddRange(Constants.HelmTypeIds);
             guiItemTypeId.Items.AddRange(typeIdSource.ToArray());
         }
 

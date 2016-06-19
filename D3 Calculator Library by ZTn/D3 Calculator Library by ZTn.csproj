@@ -40,7 +40,7 @@
     <Compile Include="Gems\KnownGems.cs" />
     <Compile Include="Helpers\ItemAttributesExtension.cs" />
     <Compile Include="Helpers\ItemExtension.cs" />
-    <Compile Include="Helpers\ItemHelper.cs" />
+    <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\ItemValueRangeExtension.cs" />
     <Compile Include="Helpers\SocketEffectExtension.cs" />
     <Compile Include="Heroes\ItemAttributesFromLevel.cs" />
@@ -98,6 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\damage-resists.json" />
+    <EmbeddedResource Include="Resources\damage-prefixes.json" />
+    <EmbeddedResource Include="Resources\typeid-weapons.json" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -112,6 +115,9 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\typeid-helms.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

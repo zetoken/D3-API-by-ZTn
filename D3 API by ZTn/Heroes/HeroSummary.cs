@@ -34,6 +34,9 @@ namespace ZTn.BNet.D3.Heroes
         [DataMember]
         public bool Dead { get; set; }
 
+        [DataMember]
+        public HeroKills Kills { get; set; }
+
         [DataMember(Name = "class")]
         protected string SHeroClass
         {

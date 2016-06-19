@@ -9,6 +9,8 @@ namespace ZTn.BNet.D3.Calculator.Helpers
     /// </summary>
     public static class ItemAttributesExtension
     {
+        private static readonly TypeInfo ItemAttributesTypeInfo = typeof(ItemAttributes).GetTypeInfo();
+
         #region >> Reflection Helpers
 
         /// <summary>
@@ -19,7 +21,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetAttributeByName(this ItemAttributes itemAttributes, String fieldName)
         {
-            return (ItemValueRange)typeof(ItemAttributes).GetTypeInfo().GetDeclaredField(fieldName).GetValue(itemAttributes);
+            return (ItemValueRange)ItemAttributesTypeInfo.GetDeclaredField(fieldName).GetValue(itemAttributes);
         }
 
         /// <summary>
@@ -30,7 +32,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <param name="value">Value to set</param>
         public static ItemAttributes SetAttributeByName(this ItemAttributes itemAttributes, string fieldName, ItemValueRange value)
         {
-            typeof(ItemAttributes).GetTypeInfo().GetDeclaredField(fieldName).SetValue(itemAttributes, value);
+            ItemAttributesTypeInfo.GetDeclaredField(fieldName).SetValue(itemAttributes, value);
 
             return itemAttributes;
         }
@@ -344,7 +346,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static bool IsAncient(this ItemAttributes itemAttr)
         {
-            return itemAttr != null && itemAttr.AncientRank != null;
+            return itemAttr?.AncientRank != null;
         }
 
         /// <summary>
@@ -354,7 +356,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static bool IsJewel(this ItemAttributes itemAttr)
         {
-            return itemAttr != null && itemAttr.JewelRank != null;
+            return itemAttr?.JewelRank != null;
         }
 
         /// <summary>
@@ -364,7 +366,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static bool IsWeapon(this ItemAttributes itemAttr)
         {
-            return itemAttr != null && itemAttr.attacksPerSecondItem != null;
+            return itemAttr?.attacksPerSecondItem != null;
         }
 
         /// <summary>
@@ -386,7 +388,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
             itemAttr.CheckAndUpdateWeaponDelta();
 
-            foreach (var resist in D3Calculator.DamageResists)
+            foreach (var resist in Constants.DamageResists)
             {
                 var baseWeaponDamageMin = itemAttr.GetBaseWeaponDamageMin(resist);
                 var baseWeaponDamageDelta = itemAttr.GetBaseWeaponDamageMax(resist) - baseWeaponDamageMin;
@@ -401,7 +403,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
             }
 
             // Item damage bonuses
-            foreach (var resist in D3Calculator.DamageResists)
+            foreach (var resist in Constants.DamageResists)
             {
                 var rawDamageMin = itemAttr.GetRawBonusDamageMin(resist, false);
                 var rawDamageDelta = itemAttr.GetRawBonusDamageMax(resist, false) - rawDamageMin;

@@ -67,7 +67,7 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         {
             if (items == null)
             {
-                throw new ArgumentNullException("items");
+                throw new ArgumentNullException(nameof(items));
             }
 
             var attributeSetItemDiscount = items
@@ -191,12 +191,12 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
         public static Boolean IsItemTypeHelm(this Item item)
         {
-            return ItemHelper.HelmTypeIds.Any(id => item.Id.Contains(id));
+            return Constants.HelmTypeIds.Any(id => item.Id.Contains(id));
         }
 
         public static Boolean IsItemTypeWeapon(this Item item)
         {
-            return ItemHelper.WeaponTypeIds.Any(id => item.Id == id);
+            return Constants.WeaponTypeIds.Any(id => item.Id == id);
         }
 
         public static Boolean IsItemTypeOther(this Item item)

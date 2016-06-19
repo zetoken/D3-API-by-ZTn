@@ -19,5 +19,11 @@ namespace ZTn.BNet.D3.Careers
 
         [DataMember(Name = "season4")]
         public SeasonalProfile Season4 { get; set; }
+
+        [DataMember(Name = "season5")]
+        public SeasonalProfile Season5 { get; set; }
+
+        [DataMember(Name = "season6")]
+        public SeasonalProfile Season6 { get; set; }
     }
 }

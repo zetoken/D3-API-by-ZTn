@@ -147,12 +147,12 @@ namespace ZTn.BNet.D3.Calculator.Gems
 
         public List<Item> GetGemsForItemTypeId(string itemTypeId, Slot[] slots = null)
         {
-            if (ItemHelper.WeaponTypeIds.Any(id => itemTypeId == id))
+            if (Constants.WeaponTypeIds.Any(id => itemTypeId == id))
             {
                 return WeaponSocketedGems;
             }
 
-            if (ItemHelper.HelmTypeIds.Any(itemTypeId.Contains))
+            if (Constants.HelmTypeIds.Any(itemTypeId.Contains))
             {
                 return HelmSocketedGems;
             }

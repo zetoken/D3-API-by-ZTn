@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
+using System.Reflection;
 using ZTn.BNet.D3.Calculator.Helpers;
 using ZTn.BNet.D3.Calculator.Heroes;
 using ZTn.BNet.D3.Calculator.Skills;
+using ZTn.BNet.D3.Helpers;
 using ZTn.BNet.D3.Heroes;
 using ZTn.BNet.D3.HeroFollowers;
 using ZTn.BNet.D3.Items;
@@ -23,35 +24,6 @@ namespace ZTn.BNet.D3.Calculator
         private readonly ItemAttributes paragonLevelAttributes;
 
         #endregion
-
-        #region >> Constants
-
-        public static readonly string[] DamagePrefixes =
-        {
-            "damageMin_", "damageBonusMin_",
-            "damageDelta_",
-            "damageWeaponBonusMinX1_",
-            "damageWeaponBonusFlat_",
-            "damageWeaponMin_", "damageWeaponBonusMin_",
-            "damageWeaponDelta_", "damageWeaponBonusDelta_"
-        };
-
-        public static readonly string[] DamageResists =
-        {
-            "Arcane", "Cold", "Fire", "Holy", "Lightning", "Physical", "Poison"
-        };
-
-        #endregion
-
-        public static Item BlankWeapon
-        {
-            get { return new Item(new ItemAttributes()); }
-        }
-
-        public static Item NakedHandWeapon
-        {
-            get { return new Item(new ItemAttributes { attacksPerSecondItem = ItemValueRange.One }); }
-        }
 
         #region >> Constructors
 
@@ -108,9 +80,9 @@ namespace ZTn.BNet.D3.Calculator
             itemAttributes.strengthItem *= 2.5;
             itemAttributes.vitalityItem *= 2.5;
 
-            foreach (var resist in DamageResists)
+            foreach (var resist in Constants.DamageResists)
             {
-                foreach (var damage in DamagePrefixes)
+                foreach (var damage in Constants.DamagePrefixes)
                 {
                     var value = itemAttributes.GetAttributeByName(damage + resist);
                     itemAttributes.SetAttributeByName(damage + resist, value);

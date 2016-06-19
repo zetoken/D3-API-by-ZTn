@@ -43,10 +43,10 @@ namespace ZTn.BNet.D3.Calculator
             }
 
             // If no mainHand is used, then use default "naked hand" weapon
-            MainHand = mainHand ?? D3Calculator.NakedHandWeapon;
+            MainHand = mainHand ?? Constants.NakedHandWeapon;
 
             // If no offHand is used, then use default "blank" weapon
-            this.offHand = offHand ?? D3Calculator.BlankWeapon;
+            this.offHand = offHand ?? Constants.BlankWeapon;
 
             this.items = new List<Item>(items);
         }
@@ -63,7 +63,7 @@ namespace ZTn.BNet.D3.Calculator
 
         private ItemAttributes ComputeAmbidexterityWeaponAttributes()
         {
-            var resists = D3Calculator.DamageResists;
+            var resists = Constants.DamageResists;
             var fields = new List<string>
             {
                 "damageWeaponBonusDelta_", 
