@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace ZTn.BNet.D3.DataProviders
 
         public CacheableDataProvider(string storagePath)
         {
+            Debug.WriteLine($"{nameof(storagePath)}: [{storagePath}]");
+
             StoragePath = storagePath;
             PortableDirectory.CreateDirectory(storagePath);
         }

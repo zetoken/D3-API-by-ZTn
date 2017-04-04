@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using ZTn.BNet.D3.Calculator.Sets;
 using ZTn.BNet.D3.Helpers;
@@ -127,7 +128,8 @@ namespace ZTn.BNet.D3.Calculator.Helpers
         /// <returns></returns>
         public static ItemValueRange GetResistance(this Item item, String resist)
         {
-            return item.AttributesRaw.GetAttributeByName("resistance_" + resist);
+            // return item.AttributesRaw.GetAttributeByName("resistance_" + resist);
+            return GetterForField("resistance_" + resist)(item.AttributesRaw);
         }
 
         /// <summary>
@@ -283,5 +285,14 @@ namespace ZTn.BNet.D3.Calculator.Helpers
 
             return item;
         }
+
+        private static Func<ItemAttributes, ItemValueRange> GetterForField(string fieldname)
+        {
+            var parameterExpression = Expression.Parameter(typeof(ItemAttributes));
+            var lambda = Expression.Lambda<Func<ItemAttributes, ItemValueRange>>(Expression.Field(parameterExpression, fieldname), parameterExpression);
+            // TODO Should be cached for further use...
+            return lambda.Compile();
+        }
+
     }
 }
