@@ -25,6 +25,9 @@ namespace ZTn.BNet.D3.Heroes
         [EnumMember(Value = "wizard")]
         Wizard,
 
+        [EnumMember(Value = "necromancer")]
+        Necromancer,
+        
         [EnumMember(Value = "templar")]
         TemplarFollower,
 
