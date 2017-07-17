@@ -2,7 +2,7 @@ Project up to date for new Necromancer update.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/82u38q71u5vwkar9/branch/master?svg=true)](https://ci.appveyor.com/project/zetoken/d3-api-by-ztn/branch/master) 
 
-[Download last successful build from appveyor](https://ci.appveyor.com/api/buildjobs/qgnm0oxsfp8q1ark/artifacts/D3%20Profile%20Explorer%20by%20ZTn/bin/ztn-d3-profile-explorer.zip.zip)
+[Download last successful build from appveyor](https://ci.appveyor.com/api/projects/zetoken/d3-api-by-ztn/artifacts/D3%20Profile%20Explorer%20by%20ZTn/bin/ztn-d3-profile-explorer.zip)
 
 D3-API-by-ZTn
 =============
