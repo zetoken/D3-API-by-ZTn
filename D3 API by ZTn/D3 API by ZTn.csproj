@@ -47,6 +47,10 @@
       <Project>{CEDCFE29-ACFF-44B0-BB96-94290BB65B2E}</Project>
       <Name>PCL Adapter Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PCL Adapter\PCL Adapter.csproj">
+      <Project>{22de4d3a-231f-40df-af26-976e5fd9b31f}</Project>
+      <Name>PCL Adapter</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Artisans\Artisan.cs" />
@@ -126,11 +130,6 @@
     <Compile Include="Skills\PassiveSkill.cs" />
     <Compile Include="Skills\Rune.cs" />
     <Compile Include="Skills\Skill.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="ZTn.Bnet.PclAdapter">
-      <HintPath>..\..\D3 Calc Mobile by ZTn\Libraries\ZTn.Bnet.PclAdapter.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

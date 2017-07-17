@@ -567,6 +567,15 @@
           "System.Runtime.Serialization.Primitives": "4.3.0"
         }
       },
+      "PCL Adapter/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.1",
+        "dependencies": {
+          "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
+          "NETStandard.Library": "1.6.1",
+          "PCL Adapter Common": "1.0.0"
+        }
+      },
       "PCL Adapter Common/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v1.1",
@@ -3171,6 +3180,11 @@
       "path": "../BNet API by ZTn/project.json",
       "msbuildProject": "../BNet API by ZTn/BNet API by ZTn.csproj"
     },
+    "PCL Adapter/1.0.0": {
+      "type": "project",
+      "path": "../PCL Adapter/project.json",
+      "msbuildProject": "../PCL Adapter/PCL Adapter.csproj"
+    },
     "PCL Adapter Common/1.0.0": {
       "type": "project",
       "path": "../PCL Adapter Common/project.json",
@@ -3206,6 +3220,9 @@
             },
             "C:\\src\\ZTn D3\\D3-API-by-ZTn\\PCL Adapter Common\\PCL Adapter Common.csproj": {
               "projectPath": "C:\\src\\ZTn D3\\D3-API-by-ZTn\\PCL Adapter Common\\PCL Adapter Common.csproj"
+            },
+            "C:\\src\\ZTn D3\\D3-API-by-ZTn\\PCL Adapter\\PCL Adapter.csproj": {
+              "projectPath": "C:\\src\\ZTn D3\\D3-API-by-ZTn\\PCL Adapter\\PCL Adapter.csproj"
             }
           }
         }

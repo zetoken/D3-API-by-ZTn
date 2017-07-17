@@ -575,6 +575,7 @@
           "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
           "NETStandard.Library": "1.6.1",
           "Newtonsoft.Json": "10.0.3",
+          "PCL Adapter": "1.0.0",
           "PCL Adapter Common": "1.0.0",
           "System.Net.Http": "4.3.2",
           "System.Net.Requests": "4.3.0",
