@@ -11,6 +11,7 @@ namespace ZTn.BNet.D3.Calculator.Heroes
             {
                 case HeroClass.Monk:
                 case HeroClass.DemonHunter:
+                case HeroClass.Necromancer:
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
                 case HeroClass.Barbarian:

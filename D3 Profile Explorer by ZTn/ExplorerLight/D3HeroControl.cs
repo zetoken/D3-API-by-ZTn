@@ -58,6 +58,9 @@ namespace ZTn.BNet.D3ProfileExplorer.ExplorerLight
                 case HeroClass.Monk:
                     picture = (gender == HeroGender.Female ? Resources.monk_female : Resources.monk_male);
                     break;
+                case HeroClass.Necromancer:
+                    picture = (gender == HeroGender.Female ? Resources.necromancer_female : Resources.necromancer_male);
+                    break;
                 case HeroClass.WitchDoctor:
                     picture = (gender == HeroGender.Female ? Resources.witchdoctor_female : Resources.witchdoctor_male);
                     break;

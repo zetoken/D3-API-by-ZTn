@@ -139,6 +139,7 @@ namespace ZTn.BNet.D3.Calculator.Heroes
                     mainCharacteristicName = "dexterityItem";
                     break;
 
+                case HeroClass.Necromancer:
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
                     mainCharacteristicName = "intelligenceItem";

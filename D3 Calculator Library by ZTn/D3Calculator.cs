@@ -122,6 +122,7 @@ namespace ZTn.BNet.D3.Calculator
                 case HeroClass.Crusader:
                 case HeroClass.DemonHunter:
                 case HeroClass.Monk:
+                case HeroClass.Necromancer:
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
                     if (heroLevel <= 35)
@@ -354,6 +355,7 @@ namespace ZTn.BNet.D3.Calculator
                 case HeroClass.Crusader:
                 case HeroClass.DemonHunter:
                 case HeroClass.Monk:
+                case HeroClass.Necromancer:
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
                     if (HeroLevel <= 35)
@@ -471,6 +473,7 @@ namespace ZTn.BNet.D3.Calculator
                 case HeroClass.ScoundrelFollower:
                     return GetHeroDexterity();
 
+                case HeroClass.Necromancer:
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
                 case HeroClass.EnchantressFollower:

@@ -217,6 +217,26 @@ namespace ZTn.BNet.D3ProfileExplorer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap necromancer_female {
+            get {
+                object obj = ResourceManager.GetObject("necromancer_female", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap necromancer_male {
+            get {
+                object obj = ResourceManager.GetObject("necromancer_male", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap witchdoctor_female {
             get {
                 object obj = ResourceManager.GetObject("witchdoctor_female", resourceCulture);

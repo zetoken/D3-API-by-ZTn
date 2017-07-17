@@ -19,6 +19,9 @@ namespace ZTn.BNet.D3.Careers
         [DataMember]
         public double Monk { get; set; }
 
+        [DataMember]
+        public double Necromancer { get; set; }
+
         [DataMember(Name = "witch-doctor")]
         public double WitchDoctor { get; set; }
 

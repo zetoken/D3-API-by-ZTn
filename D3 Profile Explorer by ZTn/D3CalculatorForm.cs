@@ -58,6 +58,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 HeroClass.Crusader.ToString(),
                 HeroClass.DemonHunter.ToString(),
                 HeroClass.Monk.ToString(),
+                HeroClass.Necromancer.ToString(),
                 HeroClass.WitchDoctor.ToString(),
                 HeroClass.Wizard.ToString(),
                 HeroClass.EnchantressFollower.ToString(),
@@ -327,6 +328,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 case HeroClass.Crusader:
                 case HeroClass.DemonHunter:
                 case HeroClass.Monk:
+                case HeroClass.Necromancer:
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
                     GuiDoCalculationsForHero();
@@ -652,6 +654,7 @@ namespace ZTn.BNet.D3ProfileExplorer
                 case HeroClass.Crusader:
                 case HeroClass.DemonHunter:
                 case HeroClass.Monk:
+                case HeroClass.Necromancer:
                 case HeroClass.WitchDoctor:
                 case HeroClass.Wizard:
                     isHero = true;
