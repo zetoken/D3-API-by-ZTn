@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 API example", "D3 API example\D3 API example.csproj", "{4695E039-C388-48CF-89EC-6DF9515E2E16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNet API by ZTn", "BNet API by ZTn\BNet API by ZTn.csproj", "{DA274160-7440-4F6B-B5E6-906B7115D49B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BNet API by ZTn", "BNet API by ZTn\BNet API by ZTn.csproj", "{DA274160-7440-4F6B-B5E6-906B7115D49B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 API by ZTn", "D3 API by ZTn\D3 API by ZTn.csproj", "{1EA51BFB-96BE-4E12-8DAB-0546AEB15674}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D3 API by ZTn", "D3 API by ZTn\D3 API by ZTn.csproj", "{1EA51BFB-96BE-4E12-8DAB-0546AEB15674}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCL Adapter", "PCL Adapter\PCL Adapter.csproj", "{22DE4D3A-231F-40DF-AF26-976E5FD9B31F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCL Adapter", "PCL Adapter\PCL Adapter.csproj", "{22DE4D3A-231F-40DF-AF26-976E5FD9B31F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCL Adapter for Windows", "PCL Adapter for Windows\PCL Adapter for Windows.csproj", "{C097A16B-03D4-4AD0-ADFA-D35E3B9575F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Calculator Library by ZTn", "D3 Calculator Library by ZTn\D3 Calculator Library by ZTn.csproj", "{78516CE1-496F-4591-AD69-3164694D4555}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D3 Calculator Library by ZTn", "D3 Calculator Library by ZTn\D3 Calculator Library by ZTn.csproj", "{78516CE1-496F-4591-AD69-3164694D4555}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNet API by ZTn Unit Tests", "BNet API by ZTn Unit Tests\BNet API by ZTn Unit Tests.csproj", "{28A0939F-269F-451B-93E5-E938FBB9B11A}"
 EndProject
@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Tests", "Unit Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3 Profile Explorer by ZTn", "D3 Profile Explorer by ZTn\D3 Profile Explorer by ZTn.csproj", "{1C01AD43-C924-4085-9A08-CFB19BAD8DB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCL Adapter Common", "PCL Adapter Common\PCL Adapter Common.csproj", "{CEDCFE29-ACFF-44B0-BB96-94290BB65B2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCL Adapter Common", "PCL Adapter Common\PCL Adapter Common.csproj", "{CEDCFE29-ACFF-44B0-BB96-94290BB65B2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
