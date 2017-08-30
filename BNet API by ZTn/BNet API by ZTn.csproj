@@ -1,15 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>ZTn</Authors>
     <Company>ZeToken.net</Company>
-    <Copyright>Copyright © ZeToken.net 2012-2015</Copyright>
+    <Copyright>Copyright © ZeToken.net 2012-2017</Copyright>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
     <FileVersion>2.1.0.0</FileVersion>
-    <Description />
+    <Description>Basic battle.net Battle Tag account definition.</Description>
     <Version>2.1.0</Version>
     <RootNamespace>ZTn.BNet.BattleNet</RootNamespace>
+    <PackageId>ZTn.BNet.BattleNet</PackageId>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/zetoken/D3-API-by-ZTn/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/zetoken/D3-API-by-ZTn/</RepositoryUrl>
+    <PackageTags>Blizzard, API</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

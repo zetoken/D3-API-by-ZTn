@@ -1,15 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Copyright>Copyright © ZeToken.net 2012-2017</Copyright>
     <Company>ZeToken.net</Company>
     <Authors>ZTn</Authors>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
-    <Description />
+    <Description>Defines a C# API to access Diablo 3 player accounts information</Description>
     <Version>3.0.0</Version>
     <RootNamespace>ZTn.BNet.D3</RootNamespace>
+    <PackageId>ZTn.BNet.D3</PackageId>
+    <PackageProjectUrl>https://github.com/zetoken/D3-API-by-ZTn/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/zetoken/D3-API-by-ZTn/</RepositoryUrl>
+    <PackageTags>Blizzard, Diablo 3, D3, API</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

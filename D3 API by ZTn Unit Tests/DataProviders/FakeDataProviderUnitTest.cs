@@ -9,11 +9,6 @@ namespace ZTn.BNet.D3.DataProviders
     {
         private const string Url = "http://eu.battle.net/whatsoever";
 
-        [TestFixtureSetUp]
-        public void PclInitialization()
-        {
-        }
-
         [Test]
         public void FetchData()
         {
