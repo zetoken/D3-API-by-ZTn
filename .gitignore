@@ -12,3 +12,4 @@ TestResults
 *.suo
 *.user
 .nuget/NuGet.exe
+.vs/

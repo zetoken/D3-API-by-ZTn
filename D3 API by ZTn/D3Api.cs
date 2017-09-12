@@ -17,44 +17,44 @@ namespace ZTn.BNet.D3
 
         public static string ProtocolPrefix
         {
-            get { return Requester.ProtocolPrefix; }
-            set { Requester.ProtocolPrefix = value; }
+            get => Requester.ProtocolPrefix;
+            set => Requester.ProtocolPrefix = value;
         }
 
         public static string Host
         {
-            get { return Requester.Host; }
-            set { Requester.Host = value; }
+            get => Requester.Host;
+            set => Requester.Host = value;
         }
 
         public static string ApiPath
         {
-            get { return Requester.ApiPath; }
-            set { Requester.ApiPath = value; }
+            get => Requester.ApiPath;
+            set => Requester.ApiPath = value;
         }
 
         public static string Locale
         {
-            get { return Requester.Locale; }
-            set { Requester.Locale = value; }
+            get => Requester.Locale;
+            set => Requester.Locale = value;
         }
 
         public static string MediaPath
         {
-            get { return Requester.MediaPath; }
-            set { Requester.MediaPath = value; }
+            get => Requester.MediaPath;
+            set => Requester.MediaPath = value;
         }
 
         public static ID3DataProvider DataProvider
         {
-            get { return Requester.DataProvider; }
-            set { Requester.DataProvider = value; }
+            get => Requester.DataProvider;
+            set => Requester.DataProvider = value;
         }
 
         public static string ApiKey
         {
-            get { return Requester.ApiKey; }
-            set { Requester.ApiKey = value; }
+            get => Requester.ApiKey;
+            set => Requester.ApiKey = value;
         }
 
         static D3Api()
